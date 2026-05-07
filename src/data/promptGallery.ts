@@ -21,6 +21,8 @@ type ImportedPrompt = {
   user_name?: unknown;
   source_url?: unknown;
   images?: unknown;
+  local_images?: unknown;
+  remote_images?: unknown;
 };
 
 function slugify(input: string): string {

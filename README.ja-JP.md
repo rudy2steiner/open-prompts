@@ -2,6 +2,8 @@
 
 オープンソースの Prompt テンプレートギャラリー + 画像生成ワークスペースです。
 
+- GitHub: [rudy2steiner/open-prompts](https://github.com/rudy2steiner/open-prompts)
+
 - `/${locale}/gallery` でテンプレートを閲覧
 - “Generate” から `/${locale}/create` に移動し、そのテンプレートを自動選択
 - Provider 切り替え対応（必要に応じてブラウザに API Key の上書きを保存）

@@ -12,10 +12,13 @@
     "user_name": "@marmaduke091",
     "source_url": "https://x.com/marmaduke091/status/2044909851852030420",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260417/1776389449_22851335.jpg"
+      "/local_images/gpt-image2-prompts/01_gta_6_style_urban_realism.jpg"
     ],
     "local_images": [
       "01_gta_6_style_urban_realism.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260417/1776389449_22851335.jpg"
     ]
   },
   {
@@ -31,14 +34,19 @@
     "user_name": "@joshesye",
     "source_url": "https://x.com/joshesye/status/2046493442428039212",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260422/1776843885_74205423.jpg",
-      "https://cdn-images.toolify.ai/x/20260422/1776843885_86319417.jpg",
-      "https://cdn-images.toolify.ai/x/20260422/1776843885_35273294.jpg"
+      "/local_images/gpt-image2-prompts/02_k-pop_fashion_album_cover_art_1.jpg",
+      "/local_images/gpt-image2-prompts/02_k-pop_fashion_album_cover_art_2.jpg",
+      "/local_images/gpt-image2-prompts/02_k-pop_fashion_album_cover_art_3.jpg"
     ],
     "local_images": [
       "02_k-pop_fashion_album_cover_art_1.jpg",
       "02_k-pop_fashion_album_cover_art_2.jpg",
       "02_k-pop_fashion_album_cover_art_3.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260422/1776843885_74205423.jpg",
+      "https://cdn-images.toolify.ai/x/20260422/1776843885_86319417.jpg",
+      "https://cdn-images.toolify.ai/x/20260422/1776843885_35273294.jpg"
     ]
   },
   {
@@ -54,10 +62,13 @@
     "user_name": "@a_lonely_fenrir",
     "source_url": "https://x.com/a_lonely_fenrir/status/2045815564237738353",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260420/1776649160_38214698.jpg"
+      "/local_images/gpt-image2-prompts/03_rich_informational_advertising_image.jpg"
     ],
     "local_images": [
       "03_rich_informational_advertising_image.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260420/1776649160_38214698.jpg"
     ]
   },
   {
@@ -73,10 +84,13 @@
     "user_name": "@o_tal_do_ken",
     "source_url": "https://x.com/o_tal_do_ken/status/2045987847790886956",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260420/1776649164_94477373.jpg"
+      "/local_images/gpt-image2-prompts/04_cctv_alien_sighting.jpg"
     ],
     "local_images": [
       "04_cctv_alien_sighting.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260420/1776649164_94477373.jpg"
     ]
   },
   {
@@ -92,12 +106,16 @@
     "user_name": "@fawzXBT",
     "source_url": "https://x.com/fawzXBT/status/2048728481819664578",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364927_21257190.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364937_71904800.jpg"
+      "/local_images/gpt-image2-prompts/05_technical_movement_reference_sheet_1.jpg",
+      "/local_images/gpt-image2-prompts/05_technical_movement_reference_sheet_2.jpg"
     ],
     "local_images": [
       "05_technical_movement_reference_sheet_1.jpg",
       "05_technical_movement_reference_sheet_2.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364927_21257190.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364937_71904800.jpg"
     ]
   },
   {
@@ -113,10 +131,13 @@
     "user_name": "@tetumemo",
     "source_url": "https://x.com/tetumemo/status/2048732541302227448",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364930_51700093.jpg"
+      "/local_images/gpt-image2-prompts/06_ai_hairstyle_analysis_graphic.jpg"
     ],
     "local_images": [
       "06_ai_hairstyle_analysis_graphic.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364930_51700093.jpg"
     ]
   },
   {
@@ -132,10 +153,13 @@
     "user_name": "@selfawarememe_x",
     "source_url": "https://x.com/selfawarememe_x/status/2048735301418320072",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364928_73400579.jpg"
+      "/local_images/gpt-image2-prompts/07_the_self-aware_meme_cycle.jpg"
     ],
     "local_images": [
       "07_the_self-aware_meme_cycle.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364928_73400579.jpg"
     ]
   },
   {
@@ -151,14 +175,19 @@
     "user_name": "@aichof21",
     "source_url": "https://x.com/aichof21/status/2048724140992205158",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364927_17467889.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364927_36055179.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364927_78896235.jpg"
+      "/local_images/gpt-image2-prompts/08_magazine_style_apparel_showcase_1.jpg",
+      "/local_images/gpt-image2-prompts/08_magazine_style_apparel_showcase_2.jpg",
+      "/local_images/gpt-image2-prompts/08_magazine_style_apparel_showcase_3.jpg"
     ],
     "local_images": [
       "08_magazine_style_apparel_showcase_1.jpg",
       "08_magazine_style_apparel_showcase_2.jpg",
       "08_magazine_style_apparel_showcase_3.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364927_17467889.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364927_36055179.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364927_78896235.jpg"
     ]
   },
   {
@@ -174,10 +203,13 @@
     "user_name": "@0x00_Krypt",
     "source_url": "https://x.com/0x00_Krypt/status/2048725458733462015",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364927_59106191.jpg"
+      "/local_images/gpt-image2-prompts/09_dunhuang_murals_paper_cut_diorama.jpg"
     ],
     "local_images": [
       "09_dunhuang_murals_paper_cut_diorama.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364927_59106191.jpg"
     ]
   },
   {
@@ -193,10 +225,13 @@
     "user_name": "@Naonekozamurai",
     "source_url": "https://x.com/Naonekozamurai/status/2048673503885525201",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364926_89365451.jpg"
+      "/local_images/gpt-image2-prompts/10_chibi_angel_in_mystical_forest.jpg"
     ],
     "local_images": [
       "10_chibi_angel_in_mystical_forest.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364926_89365451.jpg"
     ]
   },
   {
@@ -212,10 +247,13 @@
     "user_name": "@amynys",
     "source_url": "https://x.com/amynys/status/2048718801760383197",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364925_59243414.jpg"
+      "/local_images/gpt-image2-prompts/11_the_clumsy_superhero_magazine_cover.jpg"
     ],
     "local_images": [
       "11_the_clumsy_superhero_magazine_cover.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364925_59243414.jpg"
     ]
   },
   {
@@ -231,10 +269,13 @@
     "user_name": "@AIwithAliya",
     "source_url": "https://x.com/AIwithAliya/status/2048711890281595179",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364923_52804443.jpg"
+      "/local_images/gpt-image2-prompts/12_noiré_luxury_fashion_editorial_poster.jpg"
     ],
     "local_images": [
       "12_noiré_luxury_fashion_editorial_poster.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364923_52804443.jpg"
     ]
   },
   {
@@ -250,10 +291,13 @@
     "user_name": "@anirole_jp",
     "source_url": "https://x.com/anirole_jp/status/2048694484821787038",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364917_65911016.jpg"
+      "/local_images/gpt-image2-prompts/13_light_novel_bookstore_display_guide.jpg"
     ],
     "local_images": [
       "13_light_novel_bookstore_display_guide.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364917_65911016.jpg"
     ]
   },
   {
@@ -269,10 +313,13 @@
     "user_name": "@qisi_ai",
     "source_url": "https://x.com/qisi_ai/status/2048686704224272468",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364916_25597086.jpg"
+      "/local_images/gpt-image2-prompts/14_substance_concept_graphic_poster.jpg"
     ],
     "local_images": [
       "14_substance_concept_graphic_poster.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364916_25597086.jpg"
     ]
   },
   {
@@ -288,12 +335,16 @@
     "user_name": "@FlatoAI",
     "source_url": "https://x.com/FlatoAI/status/2048679494563844120",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364914_18330411.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364914_72243684.jpg"
+      "/local_images/gpt-image2-prompts/15_stanley_x_jellycat_campaign_concept_1.jpg",
+      "/local_images/gpt-image2-prompts/15_stanley_x_jellycat_campaign_concept_2.jpg"
     ],
     "local_images": [
       "15_stanley_x_jellycat_campaign_concept_1.jpg",
       "15_stanley_x_jellycat_campaign_concept_2.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364914_18330411.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364914_72243684.jpg"
     ]
   },
   {
@@ -309,14 +360,19 @@
     "user_name": "@Shinning1010",
     "source_url": "https://x.com/Shinning1010/status/2048655674918461832",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364911_54392611.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364913_43442166.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364913_79047580.jpg"
+      "/local_images/gpt-image2-prompts/16_blockbuster_black_and_gold_city_poster_1.jpg",
+      "/local_images/gpt-image2-prompts/16_blockbuster_black_and_gold_city_poster_2.jpg",
+      "/local_images/gpt-image2-prompts/16_blockbuster_black_and_gold_city_poster_3.jpg"
     ],
     "local_images": [
       "16_blockbuster_black_and_gold_city_poster_1.jpg",
       "16_blockbuster_black_and_gold_city_poster_2.jpg",
       "16_blockbuster_black_and_gold_city_poster_3.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364911_54392611.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364913_43442166.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364913_79047580.jpg"
     ]
   },
   {
@@ -332,10 +388,13 @@
     "user_name": "@Just_sharon7",
     "source_url": "https://x.com/Just_sharon7/status/2048674104035975506",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364914_93796986.jpg"
+      "/local_images/gpt-image2-prompts/17_motion_to_form_design_process.jpg"
     ],
     "local_images": [
       "17_motion_to_form_design_process.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364914_93796986.jpg"
     ]
   },
   {
@@ -351,10 +410,13 @@
     "user_name": "@BubbleBrain",
     "source_url": "https://x.com/BubbleBrain/status/2048667387503796519",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364913_62992274.jpg"
+      "/local_images/gpt-image2-prompts/18_poetic_japanese_laundry_silhouette.jpg"
     ],
     "local_images": [
       "18_poetic_japanese_laundry_silhouette.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364913_62992274.jpg"
     ]
   },
   {
@@ -370,10 +432,13 @@
     "user_name": "@Shinning1010",
     "source_url": "https://x.com/Shinning1010/status/2048663549413921103",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364912_76757870.jpg"
+      "/local_images/gpt-image2-prompts/19_hyper-realistic_gen-z_luxury_fashion_portrait.jpg"
     ],
     "local_images": [
       "19_hyper-realistic_gen-z_luxury_fashion_portrait.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364912_76757870.jpg"
     ]
   },
   {
@@ -389,10 +454,13 @@
     "user_name": "@HairnetNation",
     "source_url": "https://x.com/HairnetNation/status/2048664205570818368",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364912_13529098.jpg"
+      "/local_images/gpt-image2-prompts/20_ultramarines_vs_tyranids_twilight_battle.jpg"
     ],
     "local_images": [
       "20_ultramarines_vs_tyranids_twilight_battle.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364912_13529098.jpg"
     ]
   },
   {
@@ -408,10 +476,13 @@
     "user_name": "@Just_sharon7",
     "source_url": "https://x.com/Just_sharon7/status/2048653887608078681",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364911_64714678.jpg"
+      "/local_images/gpt-image2-prompts/21_gen-z_luxury_streetwear_portrait.jpg"
     ],
     "local_images": [
       "21_gen-z_luxury_streetwear_portrait.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364911_64714678.jpg"
     ]
   },
   {
@@ -427,10 +498,13 @@
     "user_name": "@utomiabuoma565",
     "source_url": "https://x.com/utomiabuoma565/status/2048643398224015388",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364910_76142492.jpg"
+      "/local_images/gpt-image2-prompts/22_cinematic_luxury_sports_fashion_collage.jpg"
     ],
     "local_images": [
       "22_cinematic_luxury_sports_fashion_collage.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364910_76142492.jpg"
     ]
   },
   {
@@ -446,10 +520,13 @@
     "user_name": "@MrDasOnX",
     "source_url": "https://x.com/MrDasOnX/status/2048643867222962518",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364909_92382340.jpg"
+      "/local_images/gpt-image2-prompts/23_minimalist_smartwatch_commercial_ad.jpg"
     ],
     "local_images": [
       "23_minimalist_smartwatch_commercial_ad.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364909_92382340.jpg"
     ]
   },
   {
@@ -465,10 +542,13 @@
     "user_name": "@elliotarledge",
     "source_url": "https://x.com/elliotarledge/status/2048644499770065135",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364909_52760681.jpg"
+      "/local_images/gpt-image2-prompts/24_nanogpt_architecture_technical_diagram.jpg"
     ],
     "local_images": [
       "24_nanogpt_architecture_technical_diagram.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364909_52760681.jpg"
     ]
   },
   {
@@ -484,10 +564,13 @@
     "user_name": "@john_my07",
     "source_url": "https://x.com/john_my07/status/2048641686994407474",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364909_68546619.jpg"
+      "/local_images/gpt-image2-prompts/25_premium_wireless_earbud_ad_campaign.jpg"
     ],
     "local_images": [
       "25_premium_wireless_earbud_ad_campaign.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364909_68546619.jpg"
     ]
   },
   {
@@ -503,12 +586,16 @@
     "user_name": "@kingofdairyque",
     "source_url": "https://x.com/kingofdairyque/status/2048635669338304869",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364908_69244617.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364908_23748502.jpg"
+      "/local_images/gpt-image2-prompts/26_luxury_streetwear_editorial_poster_1.jpg",
+      "/local_images/gpt-image2-prompts/26_luxury_streetwear_editorial_poster_2.jpg"
     ],
     "local_images": [
       "26_luxury_streetwear_editorial_poster_1.jpg",
       "26_luxury_streetwear_editorial_poster_2.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364908_69244617.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364908_23748502.jpg"
     ]
   },
   {
@@ -524,10 +611,13 @@
     "user_name": "@mirochill",
     "source_url": "https://x.com/mirochill/status/2044366023122464816",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260417/1776389418_40975601.jpg"
+      "/local_images/gpt-image2-prompts/27_discord_mod_simulator_game_cover.jpg"
     ],
     "local_images": [
       "27_discord_mod_simulator_game_cover.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260417/1776389418_40975601.jpg"
     ]
   },
   {
@@ -543,12 +633,16 @@
     "user_name": "@songguoxiansen",
     "source_url": "https://x.com/songguoxiansen/status/2046795105802289214",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260423/1776907301_81445622.jpg",
-      "https://cdn-images.toolify.ai/x/20260423/1776907303_90465155.jpg"
+      "/local_images/gpt-image2-prompts/28_dark_wuxia_ssr_character_cards_1.jpg",
+      "/local_images/gpt-image2-prompts/28_dark_wuxia_ssr_character_cards_2.jpg"
     ],
     "local_images": [
       "28_dark_wuxia_ssr_character_cards_1.jpg",
       "28_dark_wuxia_ssr_character_cards_2.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260423/1776907301_81445622.jpg",
+      "https://cdn-images.toolify.ai/x/20260423/1776907303_90465155.jpg"
     ]
   },
   {
@@ -564,10 +658,13 @@
     "user_name": "@liyue_ai",
     "source_url": "https://x.com/liyue_ai/status/2045873940883808523",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260420/1776649161_18727755.jpg"
+      "/local_images/gpt-image2-prompts/29_oriental_ink_cityscape_creative_poster.jpg"
     ],
     "local_images": [
       "29_oriental_ink_cityscape_creative_poster.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260420/1776649161_18727755.jpg"
     ]
   },
   {
@@ -583,12 +680,16 @@
     "user_name": "@FixlationAI",
     "source_url": "https://x.com/FixlationAI/status/2046272578705068476",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260421/1776738146_22697897.jpg",
-      "https://cdn-images.toolify.ai/x/20260421/1776738146_74206782.jpg"
+      "/local_images/gpt-image2-prompts/30_hyper-realistic_rust_game_screenshot_1.jpg",
+      "/local_images/gpt-image2-prompts/30_hyper-realistic_rust_game_screenshot_2.jpg"
     ],
     "local_images": [
       "30_hyper-realistic_rust_game_screenshot_1.jpg",
       "30_hyper-realistic_rust_game_screenshot_2.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260421/1776738146_22697897.jpg",
+      "https://cdn-images.toolify.ai/x/20260421/1776738146_74206782.jpg"
     ]
   },
   {
@@ -604,12 +705,16 @@
     "user_name": "@patrickassale",
     "source_url": "https://x.com/patrickassale/status/2043755728624562398",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260417/1776389421_86934964.jpg",
-      "https://cdn-images.toolify.ai/x/20260417/1776389422_22916157.jpg"
+      "/local_images/gpt-image2-prompts/31_gpt_image_2_magazine_feature_1.jpg",
+      "/local_images/gpt-image2-prompts/31_gpt_image_2_magazine_feature_2.jpg"
     ],
     "local_images": [
       "31_gpt_image_2_magazine_feature_1.jpg",
       "31_gpt_image_2_magazine_feature_2.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260417/1776389421_86934964.jpg",
+      "https://cdn-images.toolify.ai/x/20260417/1776389422_22916157.jpg"
     ]
   },
   {
@@ -625,14 +730,19 @@
     "user_name": "@Shinning1010",
     "source_url": "https://x.com/Shinning1010/status/2048737823294152824",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364931_71887246.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364933_72147681.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364934_98799821.jpg"
+      "/local_images/gpt-image2-prompts/32_urban_fashion_meets_classic_cartoons_1.jpg",
+      "/local_images/gpt-image2-prompts/32_urban_fashion_meets_classic_cartoons_2.jpg",
+      "/local_images/gpt-image2-prompts/32_urban_fashion_meets_classic_cartoons_3.jpg"
     ],
     "local_images": [
       "32_urban_fashion_meets_classic_cartoons_1.jpg",
       "32_urban_fashion_meets_classic_cartoons_2.jpg",
       "32_urban_fashion_meets_classic_cartoons_3.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364931_71887246.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364933_72147681.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364934_98799821.jpg"
     ]
   },
   {
@@ -648,10 +758,13 @@
     "user_name": "@jaimie_008",
     "source_url": "https://x.com/jaimie_008/status/2048734019152662857",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364930_40485289.jpg"
+      "/local_images/gpt-image2-prompts/33_fashion_model_beside_oversized_sneakers.jpg"
     ],
     "local_images": [
       "33_fashion_model_beside_oversized_sneakers.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364930_40485289.jpg"
     ]
   },
   {
@@ -667,10 +780,13 @@
     "user_name": "@0x00_Krypt",
     "source_url": "https://x.com/0x00_Krypt/status/2048728261937791458",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364928_81281694.jpg"
+      "/local_images/gpt-image2-prompts/34_3d_layered_dunhuang_papercut_art.jpg"
     ],
     "local_images": [
       "34_3d_layered_dunhuang_papercut_art.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364928_81281694.jpg"
     ]
   },
   {
@@ -686,10 +802,13 @@
     "user_name": "@GeorgeBornAgain",
     "source_url": "https://x.com/GeorgeBornAgain/status/2048728281864917034",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364927_65749197.jpg"
+      "/local_images/gpt-image2-prompts/35_nostalgic_sanya_summer_love_story.jpg"
     ],
     "local_images": [
       "35_nostalgic_sanya_summer_love_story.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364927_65749197.jpg"
     ]
   },
   {
@@ -705,10 +824,13 @@
     "user_name": "@0x00_Krypt",
     "source_url": "https://x.com/0x00_Krypt/status/2048720833707966727",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364926_45780646.jpg"
+      "/local_images/gpt-image2-prompts/36_sunlight_and_clay_miniature_universe.jpg"
     ],
     "local_images": [
       "36_sunlight_and_clay_miniature_universe.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364926_45780646.jpg"
     ]
   },
   {
@@ -724,14 +846,19 @@
     "user_name": "@CamikaApp",
     "source_url": "https://x.com/CamikaApp/status/2048703702479905170",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364919_83573822.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364920_46514162.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364922_87027736.jpg"
+      "/local_images/gpt-image2-prompts/37_flame_guardian_caldias_core_overload_1.jpg",
+      "/local_images/gpt-image2-prompts/37_flame_guardian_caldias_core_overload_2.jpg",
+      "/local_images/gpt-image2-prompts/37_flame_guardian_caldias_core_overload_3.jpg"
     ],
     "local_images": [
       "37_flame_guardian_caldias_core_overload_1.jpg",
       "37_flame_guardian_caldias_core_overload_2.jpg",
       "37_flame_guardian_caldias_core_overload_3.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364919_83573822.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364920_46514162.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364922_87027736.jpg"
     ]
   },
   {
@@ -747,10 +874,13 @@
     "user_name": "@rsalimx",
     "source_url": "https://x.com/rsalimx/status/2048711603277717652",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364923_89900046.jpg"
+      "/local_images/gpt-image2-prompts/38_natural_glam_lifestyle_influencer_portrait.jpg"
     ],
     "local_images": [
       "38_natural_glam_lifestyle_influencer_portrait.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364923_89900046.jpg"
     ]
   },
   {
@@ -766,10 +896,13 @@
     "user_name": "@meng_dagg695",
     "source_url": "https://x.com/meng_dagg695/status/2048684297465569616",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364923_20568005.jpg"
+      "/local_images/gpt-image2-prompts/39_mountain_bike_flight_action_sequence.jpg"
     ],
     "local_images": [
       "39_mountain_bike_flight_action_sequence.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364923_20568005.jpg"
     ]
   },
   {
@@ -785,10 +918,13 @@
     "user_name": "@medyen0",
     "source_url": "https://x.com/medyen0/status/2048695679984251084",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364917_66336153.jpg"
+      "/local_images/gpt-image2-prompts/40_dark_fantasy_warrior_in_mist.jpg"
     ],
     "local_images": [
       "40_dark_fantasy_warrior_in_mist.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364917_66336153.jpg"
     ]
   },
   {
@@ -804,10 +940,13 @@
     "user_name": "@ohmuyi",
     "source_url": "https://x.com/ohmuyi/status/2048683618651037929",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364915_11863953.jpg"
+      "/local_images/gpt-image2-prompts/41_historical_events_reimagined_through_ai.jpg"
     ],
     "local_images": [
       "41_historical_events_reimagined_through_ai.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364915_11863953.jpg"
     ]
   },
   {
@@ -823,10 +962,13 @@
     "user_name": "@harboriis",
     "source_url": "https://x.com/harboriis/status/2048684741428429066",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364915_16167976.jpg"
+      "/local_images/gpt-image2-prompts/42_bold_creatine_campaign_poster.jpg"
     ],
     "local_images": [
       "42_bold_creatine_campaign_poster.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364915_16167976.jpg"
     ]
   },
   {
@@ -842,10 +984,13 @@
     "user_name": "@D_studioproject",
     "source_url": "https://x.com/D_studioproject/status/2048681637035291123",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364914_25822970.jpg"
+      "/local_images/gpt-image2-prompts/43_animated_ui_and_landing_page_design.jpg"
     ],
     "local_images": [
       "43_animated_ui_and_landing_page_design.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364914_25822970.jpg"
     ]
   },
   {
@@ -861,10 +1006,13 @@
     "user_name": "@HairnetNation",
     "source_url": "https://x.com/HairnetNation/status/2048670311214928294",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364913_70580501.jpg"
+      "/local_images/gpt-image2-prompts/44_salamanders_vs_drukhari_battle.jpg"
     ],
     "local_images": [
       "44_salamanders_vs_drukhari_battle.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364913_70580501.jpg"
     ]
   },
   {
@@ -880,10 +1028,13 @@
     "user_name": "@yoyuanivy",
     "source_url": "https://x.com/yoyuanivy/status/2048666118911574028",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364913_85626706.jpg"
+      "/local_images/gpt-image2-prompts/45_stylized_global_travel_poster_collage.jpg"
     ],
     "local_images": [
       "45_stylized_global_travel_poster_collage.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364913_85626706.jpg"
     ]
   },
   {
@@ -899,14 +1050,19 @@
     "user_name": "@Ciri_ai",
     "source_url": "https://x.com/Ciri_ai/status/2048652190651420978",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364911_89328134.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364911_14477495.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364912_72585463.jpg"
+      "/local_images/gpt-image2-prompts/46_sns_magazine_handwriting_design_1.jpg",
+      "/local_images/gpt-image2-prompts/46_sns_magazine_handwriting_design_2.jpg",
+      "/local_images/gpt-image2-prompts/46_sns_magazine_handwriting_design_3.jpg"
     ],
     "local_images": [
       "46_sns_magazine_handwriting_design_1.jpg",
       "46_sns_magazine_handwriting_design_2.jpg",
       "46_sns_magazine_handwriting_design_3.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364911_89328134.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364911_14477495.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364912_72585463.jpg"
     ]
   },
   {
@@ -922,10 +1078,13 @@
     "user_name": "@Strength04_X",
     "source_url": "https://x.com/Strength04_X/status/2048660308160561562",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364911_74374609.jpg"
+      "/local_images/gpt-image2-prompts/47_ember_coffee_brand_advertisement.jpg"
     ],
     "local_images": [
       "47_ember_coffee_brand_advertisement.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364911_74374609.jpg"
     ]
   },
   {
@@ -941,12 +1100,16 @@
     "user_name": "@IqraSaifiii",
     "source_url": "https://x.com/IqraSaifiii/status/2048647582625509723",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364910_25379928.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364910_23153443.jpg"
+      "/local_images/gpt-image2-prompts/48_3d_paper_quilling_samurai_warrior_1.jpg",
+      "/local_images/gpt-image2-prompts/48_3d_paper_quilling_samurai_warrior_2.jpg"
     ],
     "local_images": [
       "48_3d_paper_quilling_samurai_warrior_1.jpg",
       "48_3d_paper_quilling_samurai_warrior_2.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364910_25379928.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364910_23153443.jpg"
     ]
   },
   {
@@ -962,10 +1125,13 @@
     "user_name": "@utomiabuoma565",
     "source_url": "https://x.com/utomiabuoma565/status/2048644163290206261",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364909_91319008.jpg"
+      "/local_images/gpt-image2-prompts/49_luxury_footballer_studio_editorial.jpg"
     ],
     "local_images": [
       "49_luxury_footballer_studio_editorial.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364909_91319008.jpg"
     ]
   },
   {
@@ -981,10 +1147,13 @@
     "user_name": "@utomiabuoma565",
     "source_url": "https://x.com/utomiabuoma565/status/2048645165657583671",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364909_28934945.jpg"
+      "/local_images/gpt-image2-prompts/50_cinematic_luxury_fitness_strength_campaign.jpg"
     ],
     "local_images": [
       "50_cinematic_luxury_fitness_strength_campaign.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364909_28934945.jpg"
     ]
   },
   {
@@ -1000,12 +1169,16 @@
     "user_name": "@oggii_0",
     "source_url": "https://x.com/oggii_0/status/2048614158699217302",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364907_74434413.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364907_91921946.jpg"
+      "/local_images/gpt-image2-prompts/51_technical_3d_character_reference_sheet_1.jpg",
+      "/local_images/gpt-image2-prompts/51_technical_3d_character_reference_sheet_2.jpg"
     ],
     "local_images": [
       "51_technical_3d_character_reference_sheet_1.jpg",
       "51_technical_3d_character_reference_sheet_2.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364907_74434413.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364907_91921946.jpg"
     ]
   },
   {
@@ -1021,10 +1194,13 @@
     "user_name": "@meng_dagg695",
     "source_url": "https://x.com/meng_dagg695/status/2048636069349138568",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364908_79309169.jpg"
+      "/local_images/gpt-image2-prompts/52_blush_pink_instax_infographic_ad.jpg"
     ],
     "local_images": [
       "52_blush_pink_instax_infographic_ad.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364908_79309169.jpg"
     ]
   },
   {
@@ -1040,10 +1216,13 @@
     "user_name": "@popgalaxy512026",
     "source_url": "https://x.com/popgalaxy512026/status/2048624296495570972",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364907_12896198.jpg"
+      "/local_images/gpt-image2-prompts/53_dance_of_chaos_and_beauty.jpg"
     ],
     "local_images": [
       "53_dance_of_chaos_and_beauty.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364907_12896198.jpg"
     ]
   },
   {
@@ -1059,12 +1238,16 @@
     "user_name": "@XShreyaYadav",
     "source_url": "https://x.com/XShreyaYadav/status/2047905235822334035",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364714_23144439.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364714_37642113.jpg"
+      "/local_images/gpt-image2-prompts/54_cozy_bedroom_mirror_selfie_1.jpg",
+      "/local_images/gpt-image2-prompts/54_cozy_bedroom_mirror_selfie_2.jpg"
     ],
     "local_images": [
       "54_cozy_bedroom_mirror_selfie_1.jpg",
       "54_cozy_bedroom_mirror_selfie_2.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364714_23144439.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364714_37642113.jpg"
     ]
   },
   {
@@ -1080,12 +1263,16 @@
     "user_name": "@YLJLumi",
     "source_url": "https://x.com/YLJLumi/status/2046789483761430589",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260423/1776907295_54551830.jpg",
-      "https://cdn-images.toolify.ai/x/20260423/1776907296_75475238.jpg"
+      "/local_images/gpt-image2-prompts/55_creative_poster_design_1.jpg",
+      "/local_images/gpt-image2-prompts/55_creative_poster_design_2.jpg"
     ],
     "local_images": [
       "55_creative_poster_design_1.jpg",
       "55_creative_poster_design_2.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260423/1776907295_54551830.jpg",
+      "https://cdn-images.toolify.ai/x/20260423/1776907296_75475238.jpg"
     ]
   },
   {
@@ -1101,10 +1288,13 @@
     "user_name": "@ankoku_othello",
     "source_url": "https://x.com/ankoku_othello/status/2045966217354301476",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260420/1776649163_87478234.jpg"
+      "/local_images/gpt-image2-prompts/56_emaki_style_character_layout.jpg"
     ],
     "local_images": [
       "56_emaki_style_character_layout.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260420/1776649163_87478234.jpg"
     ]
   },
   {
@@ -1120,10 +1310,13 @@
     "user_name": "@blanplan",
     "source_url": "https://x.com/blanplan/status/2045190582453350748",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260418/1776524830_75977628.jpg"
+      "/local_images/gpt-image2-prompts/57_minimalist_ai_builder_doodle_sketch.jpg"
     ],
     "local_images": [
       "57_minimalist_ai_builder_doodle_sketch.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260418/1776524830_75977628.jpg"
     ]
   },
   {
@@ -1139,10 +1332,13 @@
     "user_name": "@patrickassale",
     "source_url": "https://x.com/patrickassale/status/2044492063752794239",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260417/1776389416_77385723.jpg"
+      "/local_images/gpt-image2-prompts/58_chatgpt_music_generator_interface.jpg"
     ],
     "local_images": [
       "58_chatgpt_music_generator_interface.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260417/1776389416_77385723.jpg"
     ]
   },
   {
@@ -1158,10 +1354,13 @@
     "user_name": "@YukinobuKurata",
     "source_url": "https://x.com/YukinobuKurata/status/2048736408760946989",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364931_91278310.jpg"
+      "/local_images/gpt-image2-prompts/59_chibi_rider_anime_movie_poster.jpg"
     ],
     "local_images": [
       "59_chibi_rider_anime_movie_poster.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364931_91278310.jpg"
     ]
   },
   {
@@ -1177,14 +1376,19 @@
     "user_name": "@SPEEDAI07",
     "source_url": "https://x.com/SPEEDAI07/status/2048733913133048002",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364930_78957388.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364930_44131099.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364930_36693624.jpg"
+      "/local_images/gpt-image2-prompts/60_avant-garde_sports_fashion_editorial_1.jpg",
+      "/local_images/gpt-image2-prompts/60_avant-garde_sports_fashion_editorial_2.jpg",
+      "/local_images/gpt-image2-prompts/60_avant-garde_sports_fashion_editorial_3.jpg"
     ],
     "local_images": [
       "60_avant-garde_sports_fashion_editorial_1.jpg",
       "60_avant-garde_sports_fashion_editorial_2.jpg",
       "60_avant-garde_sports_fashion_editorial_3.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364930_78957388.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364930_44131099.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364930_36693624.jpg"
     ]
   },
   {
@@ -1200,10 +1404,13 @@
     "user_name": "@iamsofiaijaz",
     "source_url": "https://x.com/iamsofiaijaz/status/2048727332987588809",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364928_11852955.jpg"
+      "/local_images/gpt-image2-prompts/61_golden_hour_urban_athletic_style.jpg"
     ],
     "local_images": [
       "61_golden_hour_urban_athletic_style.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364928_11852955.jpg"
     ]
   },
   {
@@ -1219,10 +1426,13 @@
     "user_name": "@hospirin_",
     "source_url": "https://x.com/hospirin_/status/2048729286463619102",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364927_94429695.jpg"
+      "/local_images/gpt-image2-prompts/62_interlocking_fingers_and_intimate_connection.jpg"
     ],
     "local_images": [
       "62_interlocking_fingers_and_intimate_connection.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364927_94429695.jpg"
     ]
   },
   {
@@ -1238,10 +1448,13 @@
     "user_name": "@Strength04_X",
     "source_url": "https://x.com/Strength04_X/status/2048721636799750635",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364925_53235378.jpg"
+      "/local_images/gpt-image2-prompts/63_elite_single_malt_whiskey_advertisement.jpg"
     ],
     "local_images": [
       "63_elite_single_malt_whiskey_advertisement.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364925_53235378.jpg"
     ]
   },
   {
@@ -1257,14 +1470,19 @@
     "user_name": "@stark_nico99",
     "source_url": "https://x.com/stark_nico99/status/2048719821865472116",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364924_30982528.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364924_42931138.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364924_35469472.jpg"
+      "/local_images/gpt-image2-prompts/64_modern_engineering_sketch_style_1.jpg",
+      "/local_images/gpt-image2-prompts/64_modern_engineering_sketch_style_2.jpg",
+      "/local_images/gpt-image2-prompts/64_modern_engineering_sketch_style_3.jpg"
     ],
     "local_images": [
       "64_modern_engineering_sketch_style_1.jpg",
       "64_modern_engineering_sketch_style_2.jpg",
       "64_modern_engineering_sketch_style_3.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364924_30982528.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364924_42931138.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364924_35469472.jpg"
     ]
   },
   {
@@ -1280,10 +1498,13 @@
     "user_name": "@CBwjkd",
     "source_url": "https://x.com/CBwjkd/status/2048709731880140890",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364920_37831529.jpg"
+      "/local_images/gpt-image2-prompts/65_minimalist_ai_palm_reading_guide.jpg"
     ],
     "local_images": [
       "65_minimalist_ai_palm_reading_guide.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364920_37831529.jpg"
     ]
   },
   {
@@ -1299,12 +1520,16 @@
     "user_name": "@Tz_2022",
     "source_url": "https://x.com/Tz_2022/status/2048706455935574477",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364918_22717512.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364918_36974704.jpg"
+      "/local_images/gpt-image2-prompts/66_character_time_machine_aging_effect_1.jpg",
+      "/local_images/gpt-image2-prompts/66_character_time_machine_aging_effect_2.jpg"
     ],
     "local_images": [
       "66_character_time_machine_aging_effect_1.jpg",
       "66_character_time_machine_aging_effect_2.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364918_22717512.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364918_36974704.jpg"
     ]
   },
   {
@@ -1320,10 +1545,13 @@
     "user_name": "@SPEEDAI07",
     "source_url": "https://x.com/SPEEDAI07/status/2048682941077950665",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364915_98687777.jpg"
+      "/local_images/gpt-image2-prompts/67_avant-garde_luxury_sportswear_campaign.jpg"
     ],
     "local_images": [
       "67_avant-garde_luxury_sportswear_campaign.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364915_98687777.jpg"
     ]
   },
   {
@@ -1339,10 +1567,13 @@
     "user_name": "@minima_ai",
     "source_url": "https://x.com/minima_ai/status/2048684802015170693",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364914_52203931.jpg"
+      "/local_images/gpt-image2-prompts/68_inseparable_blue_urban_memory_poster.jpg"
     ],
     "local_images": [
       "68_inseparable_blue_urban_memory_poster.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364914_52203931.jpg"
     ]
   },
   {
@@ -1358,10 +1589,13 @@
     "user_name": "@servasyy_ai",
     "source_url": "https://x.com/servasyy_ai/status/2048670770461815115",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364914_35381693.jpg"
+      "/local_images/gpt-image2-prompts/69_nostalgic_vacation_selfie_grid.jpg"
     ],
     "local_images": [
       "69_nostalgic_vacation_selfie_grid.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364914_35381693.jpg"
     ]
   },
   {
@@ -1377,14 +1611,19 @@
     "user_name": "@suu2u33",
     "source_url": "https://x.com/suu2u33/status/2048665171397341421",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364912_71079192.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364913_71594206.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364913_56634908.jpg"
+      "/local_images/gpt-image2-prompts/70_spring_beauty_in_nemophila_field_1.jpg",
+      "/local_images/gpt-image2-prompts/70_spring_beauty_in_nemophila_field_2.jpg",
+      "/local_images/gpt-image2-prompts/70_spring_beauty_in_nemophila_field_3.jpg"
     ],
     "local_images": [
       "70_spring_beauty_in_nemophila_field_1.jpg",
       "70_spring_beauty_in_nemophila_field_2.jpg",
       "70_spring_beauty_in_nemophila_field_3.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364912_71079192.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364913_71594206.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364913_56634908.jpg"
     ]
   },
   {
@@ -1400,12 +1639,16 @@
     "user_name": "@64bitcoinkr_",
     "source_url": "https://x.com/64bitcoinkr_/status/2048659002272498076",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364912_76786308.png",
-      "https://cdn-images.toolify.ai/x/20260428/1777364913_64706105.png"
+      "/local_images/gpt-image2-prompts/71_2009_korean_school_trip_nostalgia_1.png",
+      "/local_images/gpt-image2-prompts/71_2009_korean_school_trip_nostalgia_2.png"
     ],
     "local_images": [
       "71_2009_korean_school_trip_nostalgia_1.png",
       "71_2009_korean_school_trip_nostalgia_2.png"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364912_76786308.png",
+      "https://cdn-images.toolify.ai/x/20260428/1777364913_64706105.png"
     ]
   },
   {
@@ -1421,10 +1664,13 @@
     "user_name": "@AIWithRay",
     "source_url": "https://x.com/AIWithRay/status/2048650026520625526",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364910_66790940.jpg"
+      "/local_images/gpt-image2-prompts/72_urban_fashion_meets_cartoon_fusion.jpg"
     ],
     "local_images": [
       "72_urban_fashion_meets_cartoon_fusion.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364910_66790940.jpg"
     ]
   },
   {
@@ -1440,10 +1686,13 @@
     "user_name": "@hoshi122221",
     "source_url": "https://x.com/hoshi122221/status/2048653175767581041",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364911_48261609.jpg"
+      "/local_images/gpt-image2-prompts/73_stylized_illustrator_eye_design_collection.jpg"
     ],
     "local_images": [
       "73_stylized_illustrator_eye_design_collection.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364911_48261609.jpg"
     ]
   },
   {
@@ -1459,10 +1708,13 @@
     "user_name": "@utomiabuoma565",
     "source_url": "https://x.com/utomiabuoma565/status/2048643746024030409",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364910_88860476.jpg"
+      "/local_images/gpt-image2-prompts/74_emerald_elegance_magazine_cover.jpg"
     ],
     "local_images": [
       "74_emerald_elegance_magazine_cover.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364910_88860476.jpg"
     ]
   },
   {
@@ -1478,10 +1730,13 @@
     "user_name": "@utomiabuoma565",
     "source_url": "https://x.com/utomiabuoma565/status/2048644687087489410",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364909_54394088.jpg"
+      "/local_images/gpt-image2-prompts/75_epic_terra_mountain_boot_advertisement.jpg"
     ],
     "local_images": [
       "75_epic_terra_mountain_boot_advertisement.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364909_54394088.jpg"
     ]
   },
   {
@@ -1497,10 +1752,13 @@
     "user_name": "@bmx_ai13",
     "source_url": "https://x.com/bmx_ai13/status/2048644310665715817",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364909_16385219.jpg"
+      "/local_images/gpt-image2-prompts/76_the_long_way_forward.jpg"
     ],
     "local_images": [
       "76_the_long_way_forward.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364909_16385219.jpg"
     ]
   },
   {
@@ -1516,10 +1774,13 @@
     "user_name": "@harboriis",
     "source_url": "https://x.com/harboriis/status/2048640206157549586",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364908_97444477.jpg"
+      "/local_images/gpt-image2-prompts/77_bigger_moves_premium_streetwear_campaign.jpg"
     ],
     "local_images": [
       "77_bigger_moves_premium_streetwear_campaign.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364908_97444477.jpg"
     ]
   },
   {
@@ -1535,12 +1796,16 @@
     "user_name": "@SimplyAnnisa",
     "source_url": "https://x.com/SimplyAnnisa/status/2048630455214465345",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364907_43010000.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364907_10188461.jpg"
+      "/local_images/gpt-image2-prompts/78_vintage_1960s_art-house_film_poster_1.jpg",
+      "/local_images/gpt-image2-prompts/78_vintage_1960s_art-house_film_poster_2.jpg"
     ],
     "local_images": [
       "78_vintage_1960s_art-house_film_poster_1.jpg",
       "78_vintage_1960s_art-house_film_poster_2.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364907_43010000.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364907_10188461.jpg"
     ]
   },
   {
@@ -1556,12 +1821,16 @@
     "user_name": "@commanderdgr8",
     "source_url": "https://x.com/commanderdgr8/status/2048636257786302691",
     "images": [
-      "https://cdn-images.toolify.ai/x/20260428/1777364907_28443213.jpg",
-      "https://cdn-images.toolify.ai/x/20260428/1777364908_97496524.jpg"
+      "/local_images/gpt-image2-prompts/79_ethereal_peony_double_exposure_film_1.jpg",
+      "/local_images/gpt-image2-prompts/79_ethereal_peony_double_exposure_film_2.jpg"
     ],
     "local_images": [
       "79_ethereal_peony_double_exposure_film_1.jpg",
       "79_ethereal_peony_double_exposure_film_2.jpg"
+    ],
+    "remote_images": [
+      "https://cdn-images.toolify.ai/x/20260428/1777364907_28443213.jpg",
+      "https://cdn-images.toolify.ai/x/20260428/1777364908_97496524.jpg"
     ]
   },
   {
@@ -1577,6 +1846,12 @@
     "user_name": "@Strength04_X",
     "source_url": "https://x.com/Strength04_X/status/2048625965618889104",
     "images": [
+      "/local_images/gpt-image2-prompts/80_epic-terra-footwear-mountain-adventure.jpg"
+    ],
+    "local_images": [
+      "80_epic-terra-footwear-mountain-adventure.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260428/1777364907_60893262.jpg"
     ]
   },
@@ -1593,6 +1868,12 @@
     "user_name": "@hive_echo",
     "source_url": "https://x.com/hive_echo/status/2048626491811115357",
     "images": [
+      "/local_images/gpt-image2-prompts/81_einstein-s-teenage-room-vision.jpg"
+    ],
+    "local_images": [
+      "81_einstein-s-teenage-room-vision.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260428/1777364907_49466016.jpg"
     ]
   },
@@ -1609,6 +1890,12 @@
     "user_name": "@qwtel",
     "source_url": "https://x.com/qwtel/status/2048622266037195096",
     "images": [
+      "/local_images/gpt-image2-prompts/82_y2k-aesthetic-graphic-design-explainer.jpg"
+    ],
+    "local_images": [
+      "82_y2k-aesthetic-graphic-design-explainer.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260428/1777364900_36396471.jpg"
     ]
   },
@@ -1625,6 +1912,12 @@
     "user_name": "@RizwanAly07",
     "source_url": "https://x.com/RizwanAly07/status/2048610196302250019",
     "images": [
+      "/local_images/gpt-image2-prompts/83_premium-beard-style-analysis-poster.jpg"
+    ],
+    "local_images": [
+      "83_premium-beard-style-analysis-poster.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260428/1777364898_14058136.jpg"
     ]
   },
@@ -1641,6 +1934,12 @@
     "user_name": "@bixxs",
     "source_url": "https://x.com/bixxs/status/2048476605723402413",
     "images": [
+      "/local_images/gpt-image2-prompts/84_magical-forest-transformation.jpg"
+    ],
+    "local_images": [
+      "84_magical-forest-transformation.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260428/1777364895_77178348.jpg"
     ]
   },
@@ -1657,6 +1956,12 @@
     "user_name": "@tetumemo",
     "source_url": "https://x.com/tetumemo/status/2048600170557059156",
     "images": [
+      "/local_images/gpt-image2-prompts/85_ai-hairstyle-analysis-comparison.jpg"
+    ],
+    "local_images": [
+      "85_ai-hairstyle-analysis-comparison.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260428/1777364893_78660428.jpg"
     ]
   },
@@ -1673,6 +1978,14 @@
     "user_name": "@k_matsumaru",
     "source_url": "https://x.com/k_matsumaru/status/2048603197582024861",
     "images": [
+      "/local_images/gpt-image2-prompts/86_ai-generated-character-reference-sheet_1.jpg",
+      "/local_images/gpt-image2-prompts/86_ai-generated-character-reference-sheet_2.jpg"
+    ],
+    "local_images": [
+      "86_ai-generated-character-reference-sheet_1.jpg",
+      "86_ai-generated-character-reference-sheet_2.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260428/1777364896_82745112.jpg",
       "https://cdn-images.toolify.ai/x/20260428/1777364906_89666349.jpg"
     ]
@@ -1690,6 +2003,12 @@
     "user_name": "@SPEEDAI07",
     "source_url": "https://x.com/SPEEDAI07/status/2048622494232539515",
     "images": [
+      "/local_images/gpt-image2-prompts/87_cinematic-strength-fitness-campaign.jpg"
+    ],
+    "local_images": [
+      "87_cinematic-strength-fitness-campaign.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260428/1777364899_82024465.jpg"
     ]
   },
@@ -1706,6 +2025,12 @@
     "user_name": "@Just_sharon7",
     "source_url": "https://x.com/Just_sharon7/status/2048603689187959126",
     "images": [
+      "/local_images/gpt-image2-prompts/88_dynamic-dance-movement-sheet-guide.jpg"
+    ],
+    "local_images": [
+      "88_dynamic-dance-movement-sheet-guide.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260428/1777364898_46684500.jpg"
     ]
   },
@@ -1722,6 +2047,12 @@
     "user_name": "@DouglasWannb",
     "source_url": "https://x.com/DouglasWannb/status/2048603417371877609",
     "images": [
+      "/local_images/gpt-image2-prompts/89_japanese-shinto-style-female-portrait.jpg"
+    ],
+    "local_images": [
+      "89_japanese-shinto-style-female-portrait.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260428/1777364895_20079605.jpg"
     ]
   },
@@ -1834,6 +2165,98 @@
     "user_name": "@mirochill",
     "source_url": "https://x.com/mirochill/status/2044366023122464816",
     "images": [
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_1.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_2.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_3.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_4.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_5.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_6.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_7.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_8.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_9.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_10.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_11.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_12.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_13.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_14.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_15.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_16.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_17.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_18.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_19.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_20.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_21.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_22.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_23.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_24.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_25.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_26.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_27.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_28.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_29.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_30.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_31.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_32.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_33.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_34.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_35.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_36.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_37.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_38.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_39.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_40.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_41.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_42.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_43.jpg",
+      "/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_44.jpg"
+    ],
+    "local_images": [
+      "90_a-day-in-1980s-nostalgia_1.jpg",
+      "90_a-day-in-1980s-nostalgia_2.jpg",
+      "90_a-day-in-1980s-nostalgia_3.jpg",
+      "90_a-day-in-1980s-nostalgia_4.jpg",
+      "90_a-day-in-1980s-nostalgia_5.jpg",
+      "90_a-day-in-1980s-nostalgia_6.jpg",
+      "90_a-day-in-1980s-nostalgia_7.jpg",
+      "90_a-day-in-1980s-nostalgia_8.jpg",
+      "90_a-day-in-1980s-nostalgia_9.jpg",
+      "90_a-day-in-1980s-nostalgia_10.jpg",
+      "90_a-day-in-1980s-nostalgia_11.jpg",
+      "90_a-day-in-1980s-nostalgia_12.jpg",
+      "90_a-day-in-1980s-nostalgia_13.jpg",
+      "90_a-day-in-1980s-nostalgia_14.jpg",
+      "90_a-day-in-1980s-nostalgia_15.jpg",
+      "90_a-day-in-1980s-nostalgia_16.jpg",
+      "90_a-day-in-1980s-nostalgia_17.jpg",
+      "90_a-day-in-1980s-nostalgia_18.jpg",
+      "90_a-day-in-1980s-nostalgia_19.jpg",
+      "90_a-day-in-1980s-nostalgia_20.jpg",
+      "90_a-day-in-1980s-nostalgia_21.jpg",
+      "90_a-day-in-1980s-nostalgia_22.jpg",
+      "90_a-day-in-1980s-nostalgia_23.jpg",
+      "90_a-day-in-1980s-nostalgia_24.jpg",
+      "90_a-day-in-1980s-nostalgia_25.jpg",
+      "90_a-day-in-1980s-nostalgia_26.jpg",
+      "90_a-day-in-1980s-nostalgia_27.jpg",
+      "90_a-day-in-1980s-nostalgia_28.jpg",
+      "90_a-day-in-1980s-nostalgia_29.jpg",
+      "90_a-day-in-1980s-nostalgia_30.jpg",
+      "90_a-day-in-1980s-nostalgia_31.jpg",
+      "90_a-day-in-1980s-nostalgia_32.jpg",
+      "90_a-day-in-1980s-nostalgia_33.jpg",
+      "90_a-day-in-1980s-nostalgia_34.jpg",
+      "90_a-day-in-1980s-nostalgia_35.jpg",
+      "90_a-day-in-1980s-nostalgia_36.jpg",
+      "90_a-day-in-1980s-nostalgia_37.jpg",
+      "90_a-day-in-1980s-nostalgia_38.jpg",
+      "90_a-day-in-1980s-nostalgia_39.jpg",
+      "90_a-day-in-1980s-nostalgia_40.jpg",
+      "90_a-day-in-1980s-nostalgia_41.jpg",
+      "90_a-day-in-1980s-nostalgia_42.jpg",
+      "90_a-day-in-1980s-nostalgia_43.jpg",
+      "90_a-day-in-1980s-nostalgia_44.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260417/1776389418_40975601.jpg",
       "https://cdn-images.toolify.ai/x/20260423/1776907301_81445622.jpg",
       "https://cdn-images.toolify.ai/x/20260423/1776907303_90465155.jpg",
@@ -1893,6 +2316,12 @@
     "user_name": "@Zahor24552439",
     "source_url": "https://x.com/Zahor24552439/status/2048599840113017278",
     "images": [
+      "/local_images/gpt-image2-prompts/91_dynamic-multidimensional-biographical-infographic.jpg"
+    ],
+    "local_images": [
+      "91_dynamic-multidimensional-biographical-infographic.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260428/1777364894_20410387.jpg"
     ]
   },
@@ -1909,6 +2338,12 @@
     "user_name": "@AIwithAliya",
     "source_url": "https://x.com/AIwithAliya/status/2048626954681885098",
     "images": [
+      "/local_images/gpt-image2-prompts/92_elite-football-e-commerce-infographic.jpg"
+    ],
+    "local_images": [
+      "92_elite-football-e-commerce-infographic.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260428/1777364901_53173611.jpg"
     ]
   },
@@ -2024,6 +2459,108 @@
     "user_name": "@XShreyaYadav",
     "source_url": "https://x.com/XShreyaYadav/status/2047905235822334035",
     "images": [
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_1.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_2.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_3.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_4.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_5.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_6.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_7.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_8.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_9.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_10.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_11.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_12.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_13.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_14.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_15.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_16.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_17.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_18.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_19.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_20.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_21.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_22.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_23.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_24.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_25.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_26.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_27.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_28.png",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_29.png",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_30.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_31.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_32.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_33.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_34.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_35.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_36.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_37.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_38.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_39.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_40.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_41.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_42.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_43.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_44.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_45.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_46.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_47.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_48.jpg",
+      "/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_49.jpg"
+    ],
+    "local_images": [
+      "93_retro-pixel-art-game-scene_1.jpg",
+      "93_retro-pixel-art-game-scene_2.jpg",
+      "93_retro-pixel-art-game-scene_3.jpg",
+      "93_retro-pixel-art-game-scene_4.jpg",
+      "93_retro-pixel-art-game-scene_5.jpg",
+      "93_retro-pixel-art-game-scene_6.jpg",
+      "93_retro-pixel-art-game-scene_7.jpg",
+      "93_retro-pixel-art-game-scene_8.jpg",
+      "93_retro-pixel-art-game-scene_9.jpg",
+      "93_retro-pixel-art-game-scene_10.jpg",
+      "93_retro-pixel-art-game-scene_11.jpg",
+      "93_retro-pixel-art-game-scene_12.jpg",
+      "93_retro-pixel-art-game-scene_13.jpg",
+      "93_retro-pixel-art-game-scene_14.jpg",
+      "93_retro-pixel-art-game-scene_15.jpg",
+      "93_retro-pixel-art-game-scene_16.jpg",
+      "93_retro-pixel-art-game-scene_17.jpg",
+      "93_retro-pixel-art-game-scene_18.jpg",
+      "93_retro-pixel-art-game-scene_19.jpg",
+      "93_retro-pixel-art-game-scene_20.jpg",
+      "93_retro-pixel-art-game-scene_21.jpg",
+      "93_retro-pixel-art-game-scene_22.jpg",
+      "93_retro-pixel-art-game-scene_23.jpg",
+      "93_retro-pixel-art-game-scene_24.jpg",
+      "93_retro-pixel-art-game-scene_25.jpg",
+      "93_retro-pixel-art-game-scene_26.jpg",
+      "93_retro-pixel-art-game-scene_27.jpg",
+      "93_retro-pixel-art-game-scene_28.png",
+      "93_retro-pixel-art-game-scene_29.png",
+      "93_retro-pixel-art-game-scene_30.jpg",
+      "93_retro-pixel-art-game-scene_31.jpg",
+      "93_retro-pixel-art-game-scene_32.jpg",
+      "93_retro-pixel-art-game-scene_33.jpg",
+      "93_retro-pixel-art-game-scene_34.jpg",
+      "93_retro-pixel-art-game-scene_35.jpg",
+      "93_retro-pixel-art-game-scene_36.jpg",
+      "93_retro-pixel-art-game-scene_37.jpg",
+      "93_retro-pixel-art-game-scene_38.jpg",
+      "93_retro-pixel-art-game-scene_39.jpg",
+      "93_retro-pixel-art-game-scene_40.jpg",
+      "93_retro-pixel-art-game-scene_41.jpg",
+      "93_retro-pixel-art-game-scene_42.jpg",
+      "93_retro-pixel-art-game-scene_43.jpg",
+      "93_retro-pixel-art-game-scene_44.jpg",
+      "93_retro-pixel-art-game-scene_45.jpg",
+      "93_retro-pixel-art-game-scene_46.jpg",
+      "93_retro-pixel-art-game-scene_47.jpg",
+      "93_retro-pixel-art-game-scene_48.jpg",
+      "93_retro-pixel-art-game-scene_49.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260428/1777364714_23144439.jpg",
       "https://cdn-images.toolify.ai/x/20260428/1777364714_37642113.jpg",
       "https://cdn-images.toolify.ai/x/20260423/1776907295_54551830.jpg",
@@ -2088,6 +2625,16 @@
     "user_name": "@ryanpp27",
     "source_url": "https://x.com/ryanpp27/status/2048602248524214542",
     "images": [
+      "/local_images/gpt-image2-prompts/94_doodle-style-football-player-stats-poster_1.jpg",
+      "/local_images/gpt-image2-prompts/94_doodle-style-football-player-stats-poster_2.jpg",
+      "/local_images/gpt-image2-prompts/94_doodle-style-football-player-stats-poster_3.jpg"
+    ],
+    "local_images": [
+      "94_doodle-style-football-player-stats-poster_1.jpg",
+      "94_doodle-style-football-player-stats-poster_2.jpg",
+      "94_doodle-style-football-player-stats-poster_3.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260428/1777364894_42434953.jpg",
       "https://cdn-images.toolify.ai/x/20260428/1777364894_42065709.jpg",
       "https://cdn-images.toolify.ai/x/20260428/1777364896_79221671.jpg"
@@ -2106,6 +2653,12 @@
     "user_name": "@MugLab3",
     "source_url": "https://x.com/MugLab3/status/2048611685347516721",
     "images": [
+      "/local_images/gpt-image2-prompts/95_joyful-discussion-on-fusion-nodes.jpg"
+    ],
+    "local_images": [
+      "95_joyful-discussion-on-fusion-nodes.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260428/1777364898_18441909.jpg"
     ]
   },
@@ -2122,6 +2675,16 @@
     "user_name": "@Luxe_Note",
     "source_url": "https://x.com/Luxe_Note/status/2048605974546841668",
     "images": [
+      "/local_images/gpt-image2-prompts/96_stalins-return-fictional-movie-poster_1.jpg",
+      "/local_images/gpt-image2-prompts/96_stalins-return-fictional-movie-poster_2.jpg",
+      "/local_images/gpt-image2-prompts/96_stalins-return-fictional-movie-poster_3.jpg"
+    ],
+    "local_images": [
+      "96_stalins-return-fictional-movie-poster_1.jpg",
+      "96_stalins-return-fictional-movie-poster_2.jpg",
+      "96_stalins-return-fictional-movie-poster_3.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260428/1777364895_84673107.jpg",
       "https://cdn-images.toolify.ai/x/20260428/1777364895_99102660.jpg",
       "https://cdn-images.toolify.ai/x/20260428/1777364895_57164420.jpg"
@@ -2140,6 +2703,12 @@
     "user_name": "@AIwithSynthia",
     "source_url": "https://x.com/AIwithSynthia/status/2048601383545577614",
     "images": [
+      "/local_images/gpt-image2-prompts/97_bold-cinematic-fitness-strength-campaign.jpg"
+    ],
+    "local_images": [
+      "97_bold-cinematic-fitness-strength-campaign.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260428/1777364894_65256098.jpg"
     ]
   },
@@ -2156,6 +2725,12 @@
     "user_name": "@saniaspeaks_",
     "source_url": "https://x.com/saniaspeaks_/status/2048600674473324762",
     "images": [
+      "/local_images/gpt-image2-prompts/98_high-tech-lab-combat-scene.jpg"
+    ],
+    "local_images": [
+      "98_high-tech-lab-combat-scene.jpg"
+    ],
+    "remote_images": [
       "https://cdn-images.toolify.ai/x/20260428/1777364893_46678403.jpg"
     ]
   }

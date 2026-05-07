@@ -2,6 +2,8 @@
 
 一个开源的 Prompt 模板画廊 + AI 图像生成工作台。
 
+- GitHub： [rudy2steiner/open-prompts](https://github.com/rudy2steiner/open-prompts)
+
 - `/${locale}/gallery` 浏览模板
 - 点击 “Generate” 跳转到 `/${locale}/create` 并自动选择该模板
 - 支持多 Provider（可选在浏览器里保存每个 provider 的 API Key 覆盖）
