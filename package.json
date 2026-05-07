@@ -1,0 +1,51 @@
+{
+  "name": "sora-webui",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 3001",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@formatjs/intl-localematcher": "^0.5.4",
+    "@headlessui/react": "^1.7.18",
+    "@heroicons/react": "^2.1.1",
+    "@monaco-editor/react": "^4.6.0",
+    "@nextui-org/react": "^2.4.6",
+    "@tailwindcss/typography": "^0.5.10",
+    "@vercel/analytics": "^1.3.1",
+    "ahooks": "^3.7.10",
+    "clsx": "^2.1.0",
+    "date-fns": "^2.28.0",
+    "formik": "^2.2.9",
+    "framer-motion": "^11.3.24",
+    "moment": "^2.30.1",
+    "monaco-editor": "0.43.0",
+    "next": "14.1.0",
+    "negotiator": "^1.0.0",
+    "next-intl": "^3.9.1",
+    "rc-picker": "^4.6.12",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hot-toast": "^2.4.1",
+    "react-icons": "^4.3.1",
+    "styled-components": "^6.1.12",
+    "undici": "^6.6.2",
+    "uuid": "^9.0.1",
+    "vanilla-jsoneditor": "0.23.8",
+    "@fluentui/react": "^8.114.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.0.1",
+    "daisyui": "^4.12.10",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.0",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
+  }
+}
