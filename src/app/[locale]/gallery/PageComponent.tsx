@@ -9,6 +9,7 @@ import { CoverImage } from '~/components/prompt-gallery/CoverImage';
 import { PromptGalleryCard } from '~/components/prompt-gallery/PromptGalleryCard';
 import { languages, locales } from '~/config';
 import {useTranslations} from 'next-intl';
+import { FaGithub } from 'react-icons/fa';
 
 type Props = {
   locale: string;
@@ -373,6 +374,16 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
               ))}
             </nav>
             <div className="flex items-center gap-2">
+              <a
+                href="https://github.com/rudy2steiner/open-prompts"
+                target="_blank"
+                rel="noreferrer"
+                className="grid h-9 w-9 place-items-center rounded-xl border border-[var(--ctl-border)] bg-[var(--ctl-bg)] text-[var(--text2)] shadow-sm hover:bg-[var(--ctl-hover)] hover:text-[var(--text)]"
+                aria-label="GitHub repository"
+                title="GitHub"
+              >
+                <FaGithub className="h-4 w-4" aria-hidden="true" />
+              </a>
               <button
                 className="grid h-9 w-9 place-items-center rounded-xl border border-[var(--ctl-border)] bg-[var(--ctl-bg)] text-[var(--text2)] shadow-sm hover:bg-[var(--ctl-hover)] hover:text-[var(--text)]"
                 title={theme === 'dark' ? t('header.themeToLight') : t('header.themeToDark')}
@@ -604,7 +615,14 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
                   target={href.startsWith('http') ? '_blank' : undefined}
                   rel={href.startsWith('http') ? 'noreferrer' : undefined}
                 >
-                  {label}
+                  {href.startsWith('http') ? (
+                    <span className="inline-flex items-center gap-1.5">
+                      <FaGithub className="h-4 w-4" aria-hidden="true" />
+                      <span>{label}</span>
+                    </span>
+                  ) : (
+                    label
+                  )}
                 </a>
               ))}
             </div>

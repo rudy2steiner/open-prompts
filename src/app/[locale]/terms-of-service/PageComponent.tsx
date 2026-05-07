@@ -1,5 +1,6 @@
 import Header from '~/components/Header';
 import HeadInfo from "~/components/HeadInfo";
+import { FaGithub } from "react-icons/fa";
 
 const PageComponent = ({
                          locale = '',
@@ -62,7 +63,10 @@ const PageComponent = ({
               target="_blank"
               rel="noreferrer"
             >
-              GitHub
+              <span className="inline-flex items-center gap-1.5">
+                <FaGithub className="h-4 w-4" aria-hidden="true" />
+                <span>GitHub</span>
+              </span>
             </a>
             <a href={`/${locale}/terms-of-service`} className="hover:text-[var(--text2)]">
               Terms

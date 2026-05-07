@@ -7,7 +7,9 @@ import { useTranslations } from 'next-intl';
 import { PROMPT_GALLERY } from '~/data/promptGallery';
 import { CoverImage } from '~/components/prompt-gallery/CoverImage';
 import { PromptGalleryCard } from '~/components/prompt-gallery/PromptGalleryCard';
+import { languages, locales } from '~/config';
 import { PROVIDER_CAPABILITIES } from '~/lib/generation/capabilities';
+import { FaGithub } from 'react-icons/fa';
 
 type Props = { locale: string };
 type UiState = 'idle' | 'queued' | 'running' | 'succeeded' | 'failed';
@@ -533,6 +535,16 @@ export default function PageComponent({ locale }: Props) {
               ))}
             </nav>
             <div className="flex items-center gap-2">
+              <a
+                href="https://github.com/rudy2steiner/open-prompts"
+                target="_blank"
+                rel="noreferrer"
+                className="grid h-9 w-9 place-items-center rounded-xl border border-[var(--ctl-border)] bg-[var(--ctl-bg)] text-[var(--text2)] shadow-sm hover:bg-[var(--ctl-hover)] hover:text-[var(--text)]"
+                aria-label="GitHub repository"
+                title="GitHub"
+              >
+                <FaGithub className="h-4 w-4" aria-hidden="true" />
+              </a>
               <button
                 className="grid h-9 w-9 place-items-center rounded-xl border border-[var(--ctl-border)] bg-[var(--ctl-bg)] text-[var(--text2)] shadow-sm hover:bg-[var(--ctl-hover)] hover:text-[var(--text)]"
                 title={theme === 'dark' ? t('header.themeToLight') : t('header.themeToDark')}
@@ -551,13 +563,19 @@ export default function PageComponent({ locale }: Props) {
                 </button>
                 {langOpen ? (
                   <div className="absolute right-0 mt-2 w-44 overflow-hidden rounded-xl border border-[var(--ctl-border)] bg-[var(--panel-bg)] p-1 shadow-xl">
-                    {(['en', 'zh', 'ja'] as const).map((l) => {
-                      const label = l === 'en' ? 'English' : l === 'zh' ? '中文' : '日本語';
+                    {locales.map((l) => {
+                      const meta = languages.find((x) => x.lang === l) ?? { lang: l, language: l.toUpperCase() };
+                      const label =
+                        l === 'en' ? 'English' : l === 'zh' ? '中文' : l === 'ja' ? '日本語' : meta.language;
                       return (
                         <a
                           key={l}
                           href={`/${l}/create`}
-                          className="flex items-center justify-between rounded-lg px-3 py-2 text-sm text-[var(--text)] hover:bg-[var(--surface2)]"
+                          className={`flex items-center justify-between rounded-lg px-3 py-2 text-sm transition ${
+                            l === locale
+                              ? 'text-[var(--text)]'
+                              : 'text-[var(--text)] hover:bg-[var(--surface2)]'
+                          }`}
                         >
                           <span>{label}</span>
                           {l === locale ? <span className="text-[12px] text-[var(--amber)]">✓</span> : null}
@@ -1215,14 +1233,27 @@ export default function PageComponent({ locale }: Props) {
             <div className="text-sm text-[var(--text2)]">{t('footer.tagline')}</div>
             <div className="flex flex-wrap gap-5 text-xs text-[var(--text3)]">
               {[
-                t('footer.links.github'),
-                t('footer.links.docs'),
-                t('footer.links.deploy'),
-                t('footer.links.pricing'),
-                t('footer.links.privacy'),
-              ].map((label) => (
-                <a key={label} href="#" className="hover:text-[var(--text2)]">
-                  {label}
+                { label: t('footer.links.github'), href: 'https://github.com/rudy2steiner/open-prompts' },
+                { label: t('footer.links.docs'), href: '#' },
+                { label: t('footer.links.deploy'), href: '#' },
+                { label: t('footer.links.pricing'), href: '#' },
+                { label: t('footer.links.privacy'), href: `/${locale}/privacy-policy` },
+              ].map(({ label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="hover:text-[var(--text2)]"
+                  target={href.startsWith('http') ? '_blank' : undefined}
+                  rel={href.startsWith('http') ? 'noreferrer' : undefined}
+                >
+                  {href.startsWith('http') ? (
+                    <span className="inline-flex items-center gap-1.5">
+                      <FaGithub className="h-4 w-4" aria-hidden="true" />
+                      <span>{label}</span>
+                    </span>
+                  ) : (
+                    label
+                  )}
                 </a>
               ))}
             </div>
