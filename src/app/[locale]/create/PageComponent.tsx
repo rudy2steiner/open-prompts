@@ -10,6 +10,7 @@ import { PromptGalleryCard } from '~/components/prompt-gallery/PromptGalleryCard
 import { languages, locales } from '~/config';
 import { PROVIDER_CAPABILITIES } from '~/lib/generation/capabilities';
 import { FaGithub } from 'react-icons/fa';
+import { getOrCreateUserId } from '~/lib/credits/fingerprint';
 
 type Props = { locale: string };
 type UiState = 'idle' | 'queued' | 'running' | 'succeeded' | 'failed';
@@ -440,7 +441,7 @@ export default function PageComponent({ locale }: Props) {
     try {
       const res = await fetch(`/${locale}/api/generations`, {
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
+        headers: { 'content-type': 'application/json', 'x-op-user-id': getOrCreateUserId() },
         body: JSON.stringify({
           provider: provider === 'internal' ? undefined : provider,
           prompt: p,

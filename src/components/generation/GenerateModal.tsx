@@ -6,6 +6,7 @@ import { PROMPT_TEMPLATES } from '~/data/promptTemplates';
 import { renderPromptTemplate, TemplateValidationError } from '~/lib/templates/render';
 import { PROVIDER_CAPABILITIES } from '~/lib/generation/capabilities';
 import {useTranslations} from 'next-intl';
+import { getOrCreateUserId } from '~/lib/credits/fingerprint';
 
 type Props = {
   open: boolean;
@@ -117,7 +118,7 @@ export function GenerateModal({ open, onClose, locale, item }: Props) {
     try {
       const res = await fetch(`/${locale}/api/generations`, {
         method: 'POST',
-        headers: { 'content-type': 'application/json' },
+        headers: { 'content-type': 'application/json', 'x-op-user-id': getOrCreateUserId() },
         body: JSON.stringify({
           provider,
           prompt: rendered.prompt,
