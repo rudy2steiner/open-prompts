@@ -69,7 +69,7 @@ export default async function LocaleLayout({
               --panel-bg:rgba(31,29,24,0.98);
             }
             [data-theme='light']{
-              --bg:#f7f5f0;
+              --bg:#ffffff;
               --surface:#ffffff;
               --surface2:rgba(0,0,0,0.05);
               --border:rgba(0,0,0,0.12);

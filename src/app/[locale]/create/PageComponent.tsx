@@ -424,7 +424,7 @@ export default function PageComponent({ locale }: Props) {
           --panel-bg: rgba(31, 29, 24, 0.98);
         }
         [data-theme='light'] {
-          --bg: #f7f5f0;
+          --bg: #ffffff;
           --surface: #ffffff;
           --surface2: rgba(0, 0, 0, 0.05);
           --border: rgba(0, 0, 0, 0.1);
@@ -447,7 +447,7 @@ export default function PageComponent({ locale }: Props) {
       `}</style>
 
       <div className="flex h-screen w-full flex-col bg-[var(--bg)] text-[var(--text)]">
-        <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[var(--bg)]/80 backdrop-blur-xl">
+        <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[var(--bg)]">
           <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-6">
             <a href={`/${locale}`} className="flex items-center gap-2 text-sm font-semibold tracking-wide">
               <span className="relative grid h-8 w-8 place-items-center overflow-hidden rounded-lg">

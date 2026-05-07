@@ -1,82 +1,40 @@
-# SoraWebui
-SoraWebui は、ユーザーがテキストを使って OpenAI の Sora モデルでオンラインビデオを生成できるようにすることで、ビデオ作成を簡素化するオープンソースプロジェクトです。
-👉 [SoraWebui](https://sorawebui.com)
+# Open Prompts
 
-[English](https://github.com/SoraWebui/SoraWebui/blob/main/README.md) | [简体中文](https://github.com/SoraWebui/SoraWebui/blob/main/README.zh-CN.md) | 日本語
+オープンソースの Prompt テンプレートギャラリー + 画像生成ワークスペースです。
 
+- `/${locale}/gallery` でテンプレートを閲覧
+- “Generate” から `/${locale}/create` に移動し、そのテンプレートを自動選択
+- Provider 切り替え対応（必要に応じてブラウザに API Key の上書きを保存）
+- DB 不要（MVP）、履歴は `localStorage` に保存
 
-# プロジェクトプラン
-- ✅ 単語で動画を生成 ([FakeSoraAPI](https://github.com/SoraWebui/FakeSoraAPI) を使用):
+詳細は英語版 `README.md` を参照してください。
 
-  この機能は、👉 [main](https://github.com/SoraWebui/SoraWebui/tree/main) または 👉 [version-0.1](https://github.com/SoraWebui/SoraWebui/tree/version-0.1) で見ることができます
-
-- ✅ Google でログイン:
-
-  この機能は、👉 [login](https://github.com/SoraWebui/SoraWebui/tree/login) または 👉 [version-0.2](https://github.com/SoraWebui/SoraWebui/tree/version-0.2) で見ることができます
-
-- ✅ Google ワンクリックログイン:
-
-  この機能は、👉 [login](https://github.com/SoraWebui/SoraWebui/tree/login) または 👉 [version-0.3](https://github.com/SoraWebui/SoraWebui/tree/version-0.3) で見ることができます
-
-- [ ] Stripe 決済：
-
-  準備中
-
-- [ ] OpenAI の Sora API を追加する：
-
-  OpenAI が Sora の API を起動するのを待ってから、この機能を起動します。
-
-
-## クイックスタート
-
-### Vercel でデプロイ
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSoraWebui%2FSoraWebui&project-name=SoraWebui&repository-name=SoraWebui&external-id=https%3A%2F%2Fgithub.com%2FSoraWebui%2FSoraWebui%2Ftree%2Fmain)
-
-### 1. プロジェクトをクローン
+## ローカル起動
 
 ```bash
-git clone git@github.com:SoraWebui/SoraWebui.git
-```
-
-### 2. 依存関係をインストール
-
-```bash
-cd SoraWebui && yarn
-#もしくは
-cd SoraWebui && npm install
-#もしくは
-cd SoraWebui && pnpm install
-```
-
-### 3. .env.example をコピーし、.env.local にリネームする
-
-```bash
-# web サイト URL
-NEXT_PUBLIC_SITE_URL=http://localhost
-
-# openai 設定
-OPENAI_API_KEY=sk-XXXXXX
-OPENAI_API_BASE_URL=http://localhost:8081
-OPENAI_API_MODEL=sora-1.0-turbo
-```
-
-### 4. 実行
-
-```bash
-yarn dev
-#もしくは
+npm install
+cp .env.example .env.local
 npm run dev
-#もしくは
-pnpm dev
 ```
 
-### 5. [http://localhost](http://localhost) をブラウザで開いてご覧ください。
-![success_deploy.jpg](https://sorawebui.com/success_deploy.jpg)
+デフォルトは **3001** ポートです。`http://localhost:3001/en` を開いてください。
 
+## テストモード（実 API を呼ばない）
 
-# 重要
-SoraWebui が正しく機能するには [FakeSoraAPI](https://github.com/SoraWebui/FakeSoraAPI) が必要です。
+`.env.local` に設定：
 
-## Star History
+- `USE_TEST_MODE=true`
+- `TEST_IMAGE_URL=<任意の画像URL>`
 
-[![Star History Chart](https://api.star-history.com/svg?repos=SoraWebui/SoraWebui&type=Date)](https://star-history.com/#SoraWebui/SoraWebui&Date)
+## Providers & API Key 取得リンク
+
+- **現在は AtlasCloud のみ対応（supported）**
+  - サインアップ：`https://www.atlascloud.ai?ref=7METWL`
+  - Dashboard：`https://www.atlascloud.ai/zh/console/dashboard?ref=7METWL`
+  - API Key 作成：`https://www.atlascloud.ai/console/api-keys?ref=7METWL`（Docs：`https://atlascloud.ai/docs/api-keys?ref=7METWL`）
+
+予定 / 作業中（まだ完全対応していません）：
+
+- **OpenAI（internal）**：`https://platform.openai.com/api-keys`
+- **Replicate**：`https://replicate.com/account/api-tokens`（Docs：`https://replicate.com/docs/reference/http`）
+

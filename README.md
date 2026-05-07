@@ -1,107 +1,98 @@
+# Open Prompts
 
-# JSON Home
-JSON Home is an open-source project that simplifies video creation by allowing users to generate videos online with OpenAI's Sora model using text, featuring easy one-click website deployment.
-👉 [SoraWebui](https://jsonhome.com) 
+An open-source prompt gallery + template-based AI image generation workspace.
 
-English | [简体中文](https://github.com/rudy2steiner/SoraWebui/blob/main/README.zh-CN.md) | [日本語](https://github.com/SoraWebui/SoraWebui/blob/main/README.ja-JP.md)
+- Browse prompt templates in `/${locale}/gallery`
+- Click “Generate” to jump into `/${locale}/create` and use that template
+- Generate images via pluggable providers
+- No database required for MVP; generation history is persisted in `localStorage`
 
+## Languages
 
-# Project Plan
-- ✅ Generate video by words(Use [FakeSoraAPI](https://github.com/rudy2steiner/FakeSoraAPI)):
+- English
+- [简体中文](./README.zh-CN.md)
+- [日本語](./README.ja-JP.md)
 
-  You can see this feature in 👉 [main](https://github.com/rudy2steiner/SoraWebui/tree/main) or 👉 [version-0.1](https://github.com/SoraWebui/SoraWebui/tree/version-0.1)
+## Tech stack
 
-- ✅ Login with Google:
+- Next.js (App Router)
+- Tailwind CSS + daisyUI
+- `next-intl` (i18n)
 
-  You can see this feature in 👉 [login](https://github.com/rudy2steiner/SoraWebui/tree/login) or 👉 [version-0.2](https://github.com/SoraWebui/SoraWebui/tree/version-0.2)
+## Get started (local)
 
-- ✅ Google One Tap Login:
-
-  You can see this feature in 👉 [login](https://github.com/rudy2steiner/SoraWebui/tree/login) or 👉 [version-0.3](https://github.com/SoraWebui/SoraWebui/tree/version-0.3)
-
-- [ ] Stripe payment：
-
-  Coming soon
-
-- [ ] Add OpenAI’s Sora API：
-
-  Waiting for OpenAI launch Sora's API, then we will launch this feature.
-
-
-## Quick Started
-
-### Deploy on Vercel
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FSoraWebui%2FSoraWebui&project-name=SoraWebui&repository-name=SoraWebui&external-id=https%3A%2F%2Fgithub.com%2FSoraWebui%2FSoraWebui%2Ftree%2Fmain)
-
-### 1. Clone project
+### 1) Install
 
 ```bash
-git clone git@github.com:rudy2steiner/jsonhome.git
+npm install
 ```
 
-### 2. Install dependencies
+### 2) Configure env
+
+Copy `.env.example` to `.env.local` and fill what you need:
 
 ```bash
-cd SoraWebui && yarn
-#or
-cd SoraWebui && npm install
-#or
-cd SoraWebui && pnpm install
+cp .env.example .env.local
 ```
 
-### 3. copy .env.example and rename it to .env.local
+### 3) Run dev server
+
+This project runs on port **3001** by default:
 
 ```bash
-# website URL
-NEXT_PUBLIC_SITE_URL=http://localhost
-
-# openai config
-OPENAI_API_KEY=sk-XXXXXX
-OPENAI_API_BASE_URL=http://localhost:8081
-OPENAI_API_MODEL=sora-1.0-turbo
-```
-
-### 4. Run it
-
-```bash
-yarn dev
-#or
 npm run dev
-#or
-pnpm dev
 ```
-### Monaco editor
-```agsl
-https://www.npmjs.com/package/@monaco-editor/react
-loader.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.21.1/min/vs' } })
-loader.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.43.0/min/vs' } });
-```
-### timestamp
-``` 
 
-```
-### i18n
-``` 
-IN
-US
-BR
-UK
-VN
-DE
-```
-#### add lang 
-* translate messages
-* config.ts
-* middleware
-### 5. Open [http://localhost](http://localhost) with your browser to see it.
-![success_deploy.jpg](https://sorawebui.com/success_deploy.jpg)
+Open `http://localhost:3001/en`.
 
+## Providers & API keys
 
-# Important
-SoraWebui requires [FakeSoraAPI](https://github.com/SoraWebui/FakeSoraAPI) to function properly.
+Currently supported:
 
+- **atlascloud**: Atlas Cloud image generation API (**supported**)
+  - Sign up: `https://www.atlascloud.ai?ref=7METWL`
+  - Dashboard: `https://www.atlascloud.ai/zh/console/dashboard?ref=7METWL`
+  - Create API key: `https://www.atlascloud.ai/console/api-keys?ref=7METWL`
+  - Docs: `https://atlascloud.ai/docs/api-keys?ref=7METWL`
 
-## Star History
+Planned / WIP:
 
-[![Star History Chart](https://api.star-history.com/svg?repos=SoraWebui/SoraWebui&type=Date)](https://star-history.com/#SoraWebui/SoraWebui&Date)
-# open-prompts
+- **internal**: server-side provider (keys stay on the server)
+  - OpenAI keys: `https://platform.openai.com/api-keys`
+
+- **replicate**: Replicate image generation API
+  - Get a Replicate API token: `https://replicate.com/account/api-tokens`
+  - Docs: `https://replicate.com/docs/reference/http`
+
+Environment variables are listed in `.env.example`.
+
+### Client-side API key overrides (Create page modal)
+
+When selecting a provider on the Create page, you can optionally enter an API key override (where available).
+
+- Stored in your browser `localStorage` (per provider)
+- Sent to `/api/generations` and used server-side for that request
+
+Security note: anyone with access to your browser profile can read `localStorage`. Prefer server-side env keys for production.
+
+## Test mode (no real API calls)
+
+Set:
+
+- `USE_TEST_MODE=true`
+- `TEST_IMAGE_URL=<any image url>`
+
+Then `/api/generations` will return mocked jobs and polling will always succeed with the `TEST_IMAGE_URL`.
+
+## Project structure
+
+- `src/app/[locale]/gallery/`: prompt gallery
+- `src/app/[locale]/create/`: generator workspace
+- `src/app/[locale]/api/generations/*`: create + poll generation jobs
+- `src/lib/generation/providers/*`: provider adapters
+- `src/components/prompt-gallery/*`: shared gallery UI components
+- `messages/*`: i18n messages
+
+## Contributing
+
+Issues and PRs are welcome.
