@@ -2,7 +2,16 @@ import { decodeProviderJobId, getProviderRegistry } from '~/lib/generation/regis
 import { createAtlascloudProviderWithOptions } from '~/lib/generation/providers/atlascloud';
 import { createReplicateProviderWithOptions } from '~/lib/generation/providers/replicate';
 
+function safeId() {
+  return (
+    // Node 18+ / modern runtimes
+    (globalThis as any).crypto?.randomUUID?.() || `req_${Date.now()}_${Math.random().toString(16).slice(2)}`
+  );
+}
+
 export async function GET(req: Request, { params }: { params: { providerJobId: string } }) {
+  const requestId = safeId();
+  const startedAt = Date.now();
   const useTestMode = String(process.env.USE_TEST_MODE || '').toLowerCase() === 'true';
   const testImageUrl = String(process.env.TEST_IMAGE_URL || '').trim();
 
@@ -10,6 +19,14 @@ export async function GET(req: Request, { params }: { params: { providerJobId: s
   const { provider: providerName, providerJobId } = decodeProviderJobId(encoded);
 
   if (useTestMode) {
+    console.info('[op:generation:poll]', {
+      requestId,
+      provider: 'test',
+      providerJobId,
+      status: 'succeeded',
+      images: testImageUrl ? 1 : 0,
+      elapsedMs: Date.now() - startedAt,
+    });
     return new Response(
       JSON.stringify({
         provider: 'test',
@@ -23,6 +40,12 @@ export async function GET(req: Request, { params }: { params: { providerJobId: s
 
   const headerKey = req.headers.get('x-op-api-key') || '';
   const apiKey = headerKey.trim();
+  console.info('[op:generation:poll:start]', {
+    requestId,
+    provider: providerName,
+    providerJobId,
+    hasApiKeyOverride: Boolean(apiKey),
+  });
   const provider =
     apiKey && providerName === 'atlascloud'
       ? createAtlascloudProviderWithOptions({ apiKey })
@@ -37,6 +60,15 @@ export async function GET(req: Request, { params }: { params: { providerJobId: s
   }
 
   const res = await provider.poll(providerJobId);
+  console.info('[op:generation:poll:done]', {
+    requestId,
+    provider: providerName,
+    providerJobId,
+    status: res.status,
+    images: Array.isArray(res.images) ? res.images.length : 0,
+    hasError: Boolean(res.error),
+    elapsedMs: Date.now() - startedAt,
+  });
   return new Response(JSON.stringify({ provider: providerName, ...res }), {
     status: 200,
     headers: { 'content-type': 'application/json' },

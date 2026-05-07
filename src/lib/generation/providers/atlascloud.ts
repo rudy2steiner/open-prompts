@@ -91,6 +91,13 @@ export function createAtlascloudProviderWithOptions(opts?: { baseUrl?: string; a
       const size = pickAtlasSize(params.aspectRatio);
       const quality = coerceQuality(params.quality);
 
+      const startedAt = Date.now();
+      console.info('[op:provider:atlascloud:create:start]', {
+        model: modelSlug,
+        aspectRatio: params.aspectRatio,
+        quality: params.quality,
+        pickedSize: size || null,
+      });
       const res = await fetch(createUrl, {
         method: 'POST',
         headers: {
@@ -110,21 +117,38 @@ export function createAtlascloudProviderWithOptions(opts?: { baseUrl?: string; a
 
       if (!res.ok) {
         const txt = await res.text().catch(() => '');
+        console.error('[op:provider:atlascloud:create:error]', {
+          status: res.status,
+          elapsedMs: Date.now() - startedAt,
+          bodyPreview: txt.slice(0, 800),
+        });
         throw new Error(`atlascloud create failed: ${res.status} ${txt}`);
       }
 
       const json = (await res.json()) as AtlascloudCreateResponse;
       const id = json.data?.id || json.id;
       if (!id) throw new Error('atlascloud create: missing id');
+      console.info('[op:provider:atlascloud:create:done]', {
+        status: json.data?.status || json.status,
+        providerJobId: id,
+        elapsedMs: Date.now() - startedAt,
+      });
       return { providerJobId: id, status: mapStatus(json.data?.status || json.status) };
     },
     async poll(providerJobId: string): Promise<GenerationPollResult> {
+      const startedAt = Date.now();
       const res = await fetch(`${pollUrlBase}/${providerJobId}`, {
         headers: { authorization: `Bearer ${apiKey}` },
         cache: 'no-store',
       });
       if (!res.ok) {
         const txt = await res.text().catch(() => '');
+        console.error('[op:provider:atlascloud:poll:error]', {
+          providerJobId,
+          status: res.status,
+          elapsedMs: Date.now() - startedAt,
+          bodyPreview: txt.slice(0, 800),
+        });
         return { providerJobId, status: 'failed', error: `atlascloud poll failed: ${res.status} ${txt}` };
       }
       const json = (await res.json()) as AtlascloudPollResponse;
@@ -137,6 +161,14 @@ export function createAtlascloudProviderWithOptions(opts?: { baseUrl?: string; a
             (Array.isArray((json.data as any)?.output?.images) ? ((json.data as any).output.images as string[]) : undefined)
           : undefined;
       const error = status === 'failed' ? String(json.data?.error ?? json.error ?? 'failed') : undefined;
+      console.info('[op:provider:atlascloud:poll:done]', {
+        providerJobId,
+        rawStatus: json.data?.status || json.status,
+        status,
+        images: Array.isArray(images) ? images.length : 0,
+        hasError: Boolean(error),
+        elapsedMs: Date.now() - startedAt,
+      });
       return { providerJobId, status, images, error };
     },
   };

@@ -68,6 +68,7 @@ export default function PageComponent({ locale }: Props) {
 
   const [provider, setProvider] = useState<string>('internal');
   const [aspectRatio, setAspectRatio] = useState<string>('9:16');
+  const [aspectTouched, setAspectTouched] = useState(false);
   const [quality, setQuality] = useState<string>('1k');
   const [count, setCount] = useState<number>(1);
   const [apiKeyByProvider, setApiKeyByProvider] = useState<Record<string, string>>({});
@@ -87,6 +88,60 @@ export default function PageComponent({ locale }: Props) {
     const maxCount = Math.max(1, ...all.map((c: any) => Number(c.maxCount || 1)));
     return { aspectRatios, qualities, maxCount } as (typeof PROVIDER_CAPABILITIES)[keyof typeof PROVIDER_CAPABILITIES];
   }, [provider]);
+
+  const pickClosestAspect = (w: number, h: number, options: string[]) => {
+    const ratio = w > 0 && h > 0 ? w / h : 1;
+    const parse = (s: string) => {
+      const [a, b] = String(s).split(':').map((x) => Number(x));
+      if (!a || !b) return 1;
+      return a / b;
+    };
+    let best = options[0] || '1:1';
+    let bestScore = Number.POSITIVE_INFINITY;
+    for (const opt of options) {
+      const r = parse(opt);
+      // Use log distance so 1/2 and 2/1 are symmetric.
+      const score = Math.abs(Math.log(ratio / r));
+      if (score < bestScore) {
+        bestScore = score;
+        best = opt;
+      }
+    }
+    return best;
+  };
+
+  useEffect(() => {
+    // When template changes, auto-pick aspect ratio from the first image (unless user manually changed it).
+    setAspectTouched(false);
+  }, [selectedId]);
+
+  useEffect(() => {
+    if (aspectTouched) return;
+    const src = item?.images?.[0];
+    if (!src) return;
+
+    let cancelled = false;
+    const img = new (globalThis as any).Image();
+    img.decoding = 'async';
+    img.loading = 'eager';
+    img.onload = () => {
+      if (cancelled) return;
+      const w = Number(img.naturalWidth || 0);
+      const h = Number(img.naturalHeight || 0);
+      if (!w || !h) return;
+      const next = pickClosestAspect(w, h, capabilities.aspectRatios);
+      setAspectRatio((prev) => (prev === next ? prev : next));
+    };
+    img.onerror = () => {
+      // ignore
+    };
+    img.src = src;
+
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [item?.id, item?.images, capabilities.aspectRatios, aspectTouched]);
 
   const [uiState, setUiState] = useState<UiState>('idle');
   const [providerJobId, setProviderJobId] = useState<string | null>(null);
@@ -714,7 +769,10 @@ export default function PageComponent({ locale }: Props) {
                   <select
                     className="h-9 rounded-full border border-[var(--ctl-border)] bg-[var(--ctl-bg)] px-3 text-[12px] text-[var(--text2)] outline-none hover:bg-[var(--ctl-hover)]"
                     value={aspectRatio}
-                    onChange={(e) => setAspectRatio(e.target.value)}
+                    onChange={(e) => {
+                      setAspectTouched(true);
+                      setAspectRatio(e.target.value);
+                    }}
                     title={t('gen.aspectRatio')}
                   >
                     {capabilities.aspectRatios.map((v) => (

@@ -29,12 +29,12 @@ npm run dev
 ## Providers & API Key 申请链接
 
 - **当前仅支持 AtlasCloud（已支持）**
-  - 注册：`https://www.atlascloud.ai?ref=7METWL`
-  - Dashboard：`https://www.atlascloud.ai/zh/console/dashboard?ref=7METWL`
-  - 创建 API Key：`https://www.atlascloud.ai/console/api-keys?ref=7METWL`（文档：`https://atlascloud.ai/docs/api-keys?ref=7METWL`）
+  - 注册：[atlascloud.ai](https://www.atlascloud.ai?ref=7METWL)
+  - Dashboard：[Atlas Cloud Console](https://www.atlascloud.ai/zh/console/dashboard?ref=7METWL)
+  - 创建 API Key：[API Keys](https://www.atlascloud.ai/console/api-keys?ref=7METWL)（文档：[API Keys docs](https://atlascloud.ai/docs/api-keys?ref=7METWL)）
 
 规划中 / 开发中（暂未完全支持）：
 
-- **OpenAI（internal）**：`https://platform.openai.com/api-keys`
-- **Replicate**：`https://replicate.com/account/api-tokens`（文档：`https://replicate.com/docs/reference/http`）
+- **OpenAI（internal）**：[platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+- **Replicate**：[replicate.com/account/api-tokens](https://replicate.com/account/api-tokens)（文档：[HTTP API reference](https://replicate.com/docs/reference/http)）
 

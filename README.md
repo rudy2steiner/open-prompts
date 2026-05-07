@@ -50,19 +50,19 @@ Open `http://localhost:3001/en`.
 Currently supported:
 
 - **atlascloud**: Atlas Cloud image generation API (**supported**)
-  - Sign up: `https://www.atlascloud.ai?ref=7METWL`
-  - Dashboard: `https://www.atlascloud.ai/zh/console/dashboard?ref=7METWL`
-  - Create API key: `https://www.atlascloud.ai/console/api-keys?ref=7METWL`
-  - Docs: `https://atlascloud.ai/docs/api-keys?ref=7METWL`
+  - Sign up: [atlascloud.ai](https://www.atlascloud.ai?ref=7METWL)
+  - Dashboard: [Atlas Cloud Console](https://www.atlascloud.ai/zh/console/dashboard?ref=7METWL)
+  - Create API key: [API Keys](https://www.atlascloud.ai/console/api-keys?ref=7METWL)
+  - Docs: [API Keys docs](https://atlascloud.ai/docs/api-keys?ref=7METWL)
 
 Planned / WIP:
 
 - **internal**: server-side provider (keys stay on the server)
-  - OpenAI keys: `https://platform.openai.com/api-keys`
+  - OpenAI keys: [platform.openai.com/api-keys](https://platform.openai.com/api-keys)
 
 - **replicate**: Replicate image generation API
-  - Get a Replicate API token: `https://replicate.com/account/api-tokens`
-  - Docs: `https://replicate.com/docs/reference/http`
+  - Get a Replicate API token: [replicate.com/account/api-tokens](https://replicate.com/account/api-tokens)
+  - Docs: [HTTP API reference](https://replicate.com/docs/reference/http)
 
 Environment variables are listed in `.env.example`.
 

@@ -29,12 +29,12 @@ npm run dev
 ## Providers & API Key 取得リンク
 
 - **現在は AtlasCloud のみ対応（supported）**
-  - サインアップ：`https://www.atlascloud.ai?ref=7METWL`
-  - Dashboard：`https://www.atlascloud.ai/zh/console/dashboard?ref=7METWL`
-  - API Key 作成：`https://www.atlascloud.ai/console/api-keys?ref=7METWL`（Docs：`https://atlascloud.ai/docs/api-keys?ref=7METWL`）
+  - サインアップ：[atlascloud.ai](https://www.atlascloud.ai?ref=7METWL)
+  - Dashboard：[Atlas Cloud Console](https://www.atlascloud.ai/zh/console/dashboard?ref=7METWL)
+  - API Key 作成：[API Keys](https://www.atlascloud.ai/console/api-keys?ref=7METWL)（Docs：[API Keys docs](https://atlascloud.ai/docs/api-keys?ref=7METWL)）
 
 予定 / 作業中（まだ完全対応していません）：
 
-- **OpenAI（internal）**：`https://platform.openai.com/api-keys`
-- **Replicate**：`https://replicate.com/account/api-tokens`（Docs：`https://replicate.com/docs/reference/http`）
+- **OpenAI（internal）**：[platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+- **Replicate**：[replicate.com/account/api-tokens](https://replicate.com/account/api-tokens)（Docs：[HTTP API reference](https://replicate.com/docs/reference/http)）
 
