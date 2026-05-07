@@ -461,6 +461,61 @@ export default function PageComponent({ locale }: Props) {
     }
   };
 
+  const internalConfigHint = useMemo(() => {
+    if (provider !== 'internal') return null;
+    const msg = String(error || '');
+    if (!msg) return null;
+
+    const looksLikeMissingKey =
+      msg.includes('Missing ATLASCLOUD_BASE_URL') ||
+      msg.includes('Missing ATLASCLOUD_API_KEY') ||
+      msg.includes('Missing REPLICATE_API_TOKEN') ||
+      msg.includes('Missing REPLICATE_MODEL') ||
+      msg.includes('Missing REPLICATE_VERSION') ||
+      msg.toLowerCase().includes('unknown provider');
+
+    if (!looksLikeMissingKey) return null;
+
+    return {
+      title:
+        locale === 'zh'
+          ? '未检测到服务端 API Key 配置'
+          : locale === 'ja'
+            ? 'サーバー側の API キー設定が見つかりません'
+            : 'No server-side API key configured',
+      body:
+        locale === 'zh'
+          ? '当前使用的是 internal 模式：需要在服务端环境变量里配置生图 Provider 的 Key。'
+          : locale === 'ja'
+            ? 'internal モードでは、サーバー側の環境変数に Provider のキー設定が必要です。'
+            : 'Internal mode requires provider keys in server environment variables.',
+      steps:
+        locale === 'zh'
+          ? [
+              '复制 `.env.example` → `.env.local`（本地开发）',
+              '配置至少一套 Provider：',
+              '- AtlasCloud: `ATLASCLOUD_BASE_URL` + `ATLASCLOUD_API_KEY`',
+              '- Replicate: `REPLICATE_API_TOKEN` + (`REPLICATE_MODEL` 或 `REPLICATE_VERSION`)',
+              '重启 `npm run dev` 后再试',
+            ]
+          : locale === 'ja'
+            ? [
+                'ローカル開発では `.env.example` を `.env.local` にコピー',
+                '少なくとも 1 つの Provider を設定:',
+                '- AtlasCloud: `ATLASCLOUD_BASE_URL` + `ATLASCLOUD_API_KEY`',
+                '- Replicate: `REPLICATE_API_TOKEN` + (`REPLICATE_MODEL` または `REPLICATE_VERSION`)',
+                '`npm run dev` を再起動して再試行',
+              ]
+            : [
+                'For local dev, copy `.env.example` → `.env.local`',
+                'Configure at least one provider:',
+                '- AtlasCloud: `ATLASCLOUD_BASE_URL` + `ATLASCLOUD_API_KEY`',
+                '- Replicate: `REPLICATE_API_TOKEN` + (`REPLICATE_MODEL` or `REPLICATE_VERSION`)',
+                'Restart `npm run dev` and retry',
+              ],
+    };
+  }, [provider, error, locale]);
+
   return (
     <>
       <style jsx global>{`
@@ -841,6 +896,19 @@ export default function PageComponent({ locale }: Props) {
                 <div className="mt-4 rounded-xl border border-red-500/20 bg-red-500/10 p-4 text-sm text-red-400">
                   {t('gen.failedPrefix')}
                   {error || t('gen.tryAgain')}
+                  {internalConfigHint ? (
+                    <div className="mt-3 rounded-lg border border-[var(--border)] bg-[color-mix(in_oklab,var(--bg)_70%,transparent)] p-3 text-[12px] text-[var(--text2)]">
+                      <div className="font-semibold text-[var(--text)]">{internalConfigHint.title}</div>
+                      <div className="mt-1">{internalConfigHint.body}</div>
+                      <ul className="mt-2 list-disc space-y-1 pl-5">
+                        {internalConfigHint.steps.map((s) => (
+                          <li key={s} className="whitespace-pre-wrap">
+                            {s}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
                 </div>
               ) : null}
 
