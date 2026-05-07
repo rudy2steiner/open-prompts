@@ -1,5 +1,4 @@
 import Header from '~/components/Header';
-import Footer from '~/components/Footer';
 import HeadInfo from "~/components/HeadInfo";
 
 const PageComponent = ({
@@ -53,11 +52,27 @@ const PageComponent = ({
           </p>
         </div>
       </main>
-      <Footer
-        locale={locale}
-        description={indexLanguageText.description}
-        footerText={footerLanguageText}
-      />
+      <footer className="mt-10 border-t border-[var(--border)] px-6 py-8">
+        <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+          <div className="text-sm text-[var(--text2)]">{footerLanguageText?.title}</div>
+          <div className="flex flex-wrap gap-5 text-xs text-[var(--text3)]">
+            <a
+              href="https://github.com/rudy2steiner/open-prompts"
+              className="hover:text-[var(--text2)]"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
+            <a href={`/${locale}/terms-of-service`} className="hover:text-[var(--text2)]">
+              Terms
+            </a>
+            <a href={`/${locale}/privacy-policy`} className="hover:text-[var(--text2)]">
+              Privacy
+            </a>
+          </div>
+        </div>
+      </footer>
     </>
   )
 

@@ -591,13 +591,19 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
             <div className="text-sm text-[var(--text2)]">{t('footer.tagline')}</div>
             <div className="flex flex-wrap gap-5 text-xs text-[var(--text3)]">
               {[
-                t('footer.links.github'),
-                t('footer.links.docs'),
-                t('footer.links.deploy'),
-                t('footer.links.pricing'),
-                t('footer.links.privacy'),
-              ].map((label) => (
-                <a key={label} href="#" className="hover:text-[var(--text2)]">
+                { label: t('footer.links.github'), href: 'https://github.com/rudy2steiner/open-prompts' },
+                { label: t('footer.links.docs'), href: '#' },
+                { label: t('footer.links.deploy'), href: '#' },
+                { label: t('footer.links.pricing'), href: '#' },
+                { label: t('footer.links.privacy'), href: `/${locale}/privacy-policy` },
+              ].map(({ label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="hover:text-[var(--text2)]"
+                  target={href.startsWith('http') ? '_blank' : undefined}
+                  rel={href.startsWith('http') ? 'noreferrer' : undefined}
+                >
                   {label}
                 </a>
               ))}
