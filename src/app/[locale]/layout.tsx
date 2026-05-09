@@ -99,7 +99,7 @@ export default async function LocaleLayout({
                   `,
         }}
       />
-    <script defer data-domain="unixtimeconverter.org" src="https://app.pageview.app/js/script.js"></script>
+    <script defer data-domain="open-prompts.com" src="https://app.pageview.app/js/script.js"></script>
     </head>
     <body
       suppressHydrationWarning={true}

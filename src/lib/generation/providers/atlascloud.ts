@@ -48,8 +48,11 @@ function pickAtlasSize(aspectRatio?: string): { width: number; height: number } 
   // AtlasCloud doc highlights common fixed sizes:
   // 1024×1024, 1024×1536, 1536×1024
   if (norm === '1:1' || norm === '1/1') return { width: 1024, height: 1024 };
-  if (norm === '9:16' || norm === '2:3' || norm === '3:4') return { width: 1024, height: 1536 };
-  if (norm === '16:9' || norm === '3:2' || norm === '4:3') return { width: 1536, height: 1024 };
+  // Portrait-like ratios
+  if (norm === '9:16' || norm === '2:3' || norm === '3:4' || norm === '4:5') return { width: 1024, height: 1536 };
+  // Landscape-like ratios
+  if (norm === '16:9' || norm === '3:2' || norm === '4:3' || norm === '5:4' || norm === '2:1')
+    return { width: 1536, height: 1024 };
   return undefined;
 }
 

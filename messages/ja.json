@@ -378,6 +378,107 @@
       "generationFailed": "生成に失敗しました",
       "pollingFailed": "ポーリングに失敗しました",
       "createFailed": "作成に失敗しました"
+    },
+    "createPage": {
+      "brandPill": "Open Prompts",
+      "templatesLabel": "テンプレート",
+      "myTemplatesLink": "+ マイテンプレート",
+      "searchTemplatesPlaceholder": "テンプレートを検索…",
+      "originalPromptLabel": "元のプロンプト",
+      "promptSectionLabel": "プロンプト",
+      "enhanceButton": "✨ 強化",
+      "promptPlaceholder": "生成したい画像を説明…",
+      "carouselApplyTitle": "クリックしてテンプレートを適用",
+      "carouselPromptBadge": "プロンプト",
+      "modelTitle": "モデル",
+      "selectModel": "モデルを選択",
+      "selectImageRatio": "画像比率を選択",
+      "qualityPopoverTitle": "品質",
+      "qualityDefaultSuffix": "（デフォルト）",
+      "qualityActive": "有効",
+      "generateCountTitle": "生成枚数",
+      "moreOptions": "その他",
+      "moreMenuAriaLabel": "その他のオプション",
+      "providerSection": "プロバイダー",
+      "providerInternal": "デフォルト",
+      "popularTitle": "人気テンプレート",
+      "popularSubtitle": "テンプレートから素早く開始。クリックで生成器に適用。",
+      "allTemplatesLink": "すべて →",
+      "allTemplatesTitle": "すべてのテンプレート",
+      "resultHistoryLabel": "結果と履歴",
+      "currentLabel": "現在",
+      "historyLabel": "履歴",
+      "railCurrentEmpty": "まだ結果がありません。プロンプトを入力して「生成」を押すと、ここに表示されます。",
+      "railCurrentJump": "生成へ",
+      "railHistoryEmpty": "履歴はまだありません。成功した生成はここに保存されます（このブラウザのみ）。",
+      "railJobIdle": "ジョブなし",
+      "fullscreenTitle": "全画面",
+      "downloadTitle": "ダウンロード",
+      "deleteTitle": "削除",
+      "viewerClose": "閉じる",
+      "viewerPrev": "← 前へ",
+      "viewerNext": "次へ →",
+      "keyDialogTitle": "{provider} の API キー",
+      "keyDialogHint": "空欄のままにするとサーバー側のキーを使います。",
+      "keyDialogPlaceholder": "API キーを貼り付け（任意）",
+      "keyDialogCancel": "キャンセル",
+      "keyDialogUseInternal": "内部キーを使う",
+      "keyDialogSave": "保存",
+      "ratioSquare": "正方形（{ratio}）",
+      "ratioUltraWide": "超ワイド（{ratio}）",
+      "ratioLandscape": "横長（{ratio}）",
+      "ratioPortrait": "縦長（{ratio}）",
+      "githubRepoAriaLabel": "GitHub リポジトリ",
+      "githubTitle": "GitHub",
+      "hero": {
+        "title": "より良いプロンプト より良い画像",
+        "titleLine1": "より良いプロンプト",
+        "titleLine2Before": "より良い",
+        "titleLine2Em": "画像",
+        "titleLine2After": "",
+        "subtitle": "テンプレから始めて、あなたの意図に合わせて調整し、生成して反復。",
+        "featuresTitle": "機能",
+        "features": [
+          { "t": "テンプレで加速", "d": "実績ある構造から始めて、重要な部分だけ置き換え。" },
+          { "t": "パラメータ簡単", "d": "比率・品質・枚数・プロバイダを一行で切り替え。" },
+          { "t": "結果をすぐ再利用", "d": "右側で結果と履歴を確認し、クリックで回復して反復。" }
+        ],
+        "howTitle": "使い方",
+        "howSteps": [
+          "テンプレを選ぶ",
+          "被写体/場所/スタイルを追加",
+          "比率/品質/枚数を選んで生成",
+          "履歴で素早く比較・改善"
+        ],
+        "whyTitle": "Open Prompts が選ばれる理由",
+        "whyPoints": ["ゼロから書かなくていい", "構造が安定しやすい", "編集・生成・比較・再利用が1画面"],
+        "sayTitle": "ユーザーの声",
+        "says": [
+          { "q": "テンプレがあるだけで書くスピードが段違い。", "a": "クリエイター" },
+          { "q": "パラメータが整理されていて迷わない。", "a": "デザイナー" },
+          { "q": "履歴を使って微調整→比較がとても楽。", "a": "チーム" }
+        ],
+        "faqTitle": "よくある質問",
+        "faqs": [
+          { "q": "まず何をすればいい？", "a": "左から近いテンプレを選び、被写体/場所/スタイルだけ置き換えます。" },
+          { "q": "プロンプトはどれくらい書く？", "a": "被写体とスタイルを明確にして、光・質感・背景を少し足すのがコツ。" },
+          { "q": "スタイルを安定させるには？", "a": "テンプレ構造と重要なスタイル語を固定し、変数だけ変更。" }
+        ],
+        "ctaTitle": "さあ、作り始めよう",
+        "ctaSubtitle": "入力して生成ボタンを押すだけ。",
+        "ctaButton": "生成へ"
+      },
+      "internalConfig": {
+        "title": "サーバー側の API キー設定が見つかりません",
+        "body": "internal モードでは、サーバー側の環境変数に Provider のキー設定が必要です。",
+        "steps": [
+          "ローカル開発では `.env.example` を `.env.local` にコピー",
+          "少なくとも 1 つの Provider を設定:",
+          "- AtlasCloud: `ATLASCLOUD_BASE_URL` + `ATLASCLOUD_API_KEY`",
+          "- Replicate: `REPLICATE_API_TOKEN` + (`REPLICATE_MODEL` または `REPLICATE_VERSION`)",
+          "`npm run dev` を再起動して再試行"
+        ]
+      }
     }
   }
 }

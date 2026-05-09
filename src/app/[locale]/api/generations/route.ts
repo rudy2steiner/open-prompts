@@ -161,7 +161,7 @@ export async function POST(req: Request) {
       negativePrompt: json.negativePrompt,
       model: json.model,
       aspectRatio: json.aspectRatio,
-      quality: json.quality,
+      quality: 'medium',
       count: json.count,
     });
     console.info('[op:generation:create:done]', {

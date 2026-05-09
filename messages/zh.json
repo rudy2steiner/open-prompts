@@ -362,6 +362,107 @@
       "generationFailed": "生成失败",
       "pollingFailed": "轮询失败",
       "createFailed": "创建失败"
+    },
+    "createPage": {
+      "brandPill": "Open Prompts",
+      "templatesLabel": "模板",
+      "myTemplatesLink": "+ 我的模板",
+      "searchTemplatesPlaceholder": "搜索模板…",
+      "originalPromptLabel": "原始提示词",
+      "promptSectionLabel": "提示词",
+      "enhanceButton": "✨ 增强",
+      "promptPlaceholder": "描述你想生成的图片…",
+      "carouselApplyTitle": "点击套用模板",
+      "carouselPromptBadge": "提示词",
+      "modelTitle": "模型",
+      "selectModel": "选择模型",
+      "selectImageRatio": "选择图片比例",
+      "qualityPopoverTitle": "质量",
+      "qualityDefaultSuffix": "（默认）",
+      "qualityActive": "启用中",
+      "generateCountTitle": "生成数量",
+      "moreOptions": "更多选项",
+      "moreMenuAriaLabel": "更多选项",
+      "providerSection": "提供方",
+      "providerInternal": "默认",
+      "popularTitle": "热门模板",
+      "popularSubtitle": "用模板更快开始，点击即可套用到生成器。",
+      "allTemplatesLink": "全部模板 →",
+      "allTemplatesTitle": "全部模板",
+      "resultHistoryLabel": "结果与历史",
+      "currentLabel": "当前",
+      "historyLabel": "历史",
+      "railCurrentEmpty": "还没有生成结果。写好提示词后点击「生成」，图片会出现在这里。",
+      "railCurrentJump": "前往生成",
+      "railHistoryEmpty": "暂无历史记录。成功的生成会保存在这里（仅本机浏览器）。",
+      "railJobIdle": "暂无任务",
+      "fullscreenTitle": "全屏查看",
+      "downloadTitle": "下载",
+      "deleteTitle": "删除",
+      "viewerClose": "关闭",
+      "viewerPrev": "← 上一张",
+      "viewerNext": "下一张 →",
+      "keyDialogTitle": "{provider} 的 API Key",
+      "keyDialogHint": "留空则使用服务端内置 Key。",
+      "keyDialogPlaceholder": "粘贴你的 API Key（可选）",
+      "keyDialogCancel": "取消",
+      "keyDialogUseInternal": "使用内置",
+      "keyDialogSave": "保存",
+      "ratioSquare": "正方形（{ratio}）",
+      "ratioUltraWide": "超宽（{ratio}）",
+      "ratioLandscape": "横图（{ratio}）",
+      "ratioPortrait": "竖图（{ratio}）",
+      "githubRepoAriaLabel": "GitHub 仓库",
+      "githubTitle": "GitHub",
+      "hero": {
+        "title": "更好的提示词 更好的出图",
+        "titleLine1": "更好的提示词",
+        "titleLine2Before": "更好的",
+        "titleLine2Em": "出图",
+        "titleLine2After": "",
+        "subtitle": "从模板开始，快速改成你的版本，然后生成并迭代。",
+        "featuresTitle": "功能亮点",
+        "features": [
+          { "t": "模板加速", "d": "用成熟结构起步，只改主体/场景/风格等关键信息。" },
+          { "t": "参数更省心", "d": "比例、质量、数量、提供方集中在一行快速切换。" },
+          { "t": "结果即刻复用", "d": "右侧展示结果与历史，点一下就能回填继续迭代。" }
+        ],
+        "howTitle": "如何使用",
+        "howSteps": [
+          "从左侧选一个接近目标的模板",
+          "补充主体/场景/风格等信息",
+          "选择比例/质量/数量并生成",
+          "在右侧用历史快速对比迭代"
+        ],
+        "whyTitle": "为什么选择 Open Prompts",
+        "whyPoints": ["减少空白页时间", "模板结构更稳定，出图更一致", "编辑、生成、对比、复用都在一页完成"],
+        "sayTitle": "用户怎么说",
+        "says": [
+          { "q": "模板帮我把 prompt 写得更像“专业配方”。", "a": "创作者" },
+          { "q": "参数一行搞定，生成完还能直接回填对比。", "a": "设计师" },
+          { "q": "历史记录太好用了，改两句话就能出一套风格。", "a": "产品团队" }
+        ],
+        "faqTitle": "常见问题",
+        "faqs": [
+          { "q": "我应该从哪里开始？", "a": "从左侧选一个接近你需求的模板，然后只替换主体/场景/风格。" },
+          { "q": "提示词写多长合适？", "a": "先写清楚主体与风格，再补充光照、材质、镜头与背景即可。" },
+          { "q": "如何更稳定地复现风格？", "a": "尽量复用模板结构与关键风格词，只改变量部分。" }
+        ],
+        "ctaTitle": "准备好开始创作了吗？",
+        "ctaSubtitle": "把想法写进输入框，点击生成。",
+        "ctaButton": "去生成"
+      },
+      "internalConfig": {
+        "title": "未检测到服务端 API Key 配置",
+        "body": "当前使用的是 internal 模式：需要在服务端环境变量里配置生图 Provider 的 Key。",
+        "steps": [
+          "复制 `.env.example` → `.env.local`（本地开发）",
+          "配置至少一套 Provider：",
+          "- AtlasCloud: `ATLASCLOUD_BASE_URL` + `ATLASCLOUD_API_KEY`",
+          "- Replicate: `REPLICATE_API_TOKEN` + (`REPLICATE_MODEL` 或 `REPLICATE_VERSION`)",
+          "重启 `npm run dev` 后再试"
+        ]
+      }
     }
   }
 }

@@ -2,7 +2,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 
 const DEFAULT_INPUT =
-  "/Users/xuandu/.qoderwork/workspace/molmwhbpiuhabtq8/outputs/gpt-image2-prompts/prompts_data.json";
+  "/Users/xxx/.qoderwork/workspace/molmwhbpiuhabtq8/outputs/gpt-image2-prompts/prompts_data.json";
 
 const args = process.argv.slice(2);
 const argInput = args.find((a) => a && !a.startsWith("-"));

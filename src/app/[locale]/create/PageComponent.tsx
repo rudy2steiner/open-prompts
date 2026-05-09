@@ -10,10 +10,37 @@ import { PromptGalleryCard } from '~/components/prompt-gallery/PromptGalleryCard
 import { languages, locales } from '~/config';
 import { PROVIDER_CAPABILITIES } from '~/lib/generation/capabilities';
 import { FaGithub } from 'react-icons/fa';
+import { HiDotsHorizontal } from 'react-icons/hi';
+import { LuCheck, LuChevronDown, LuHash, LuLayers, LuShield, LuSquare } from 'react-icons/lu';
+import { FaCubes } from 'react-icons/fa';
+import { TbCloud } from 'react-icons/tb';
 import { getOrCreateUserId } from '~/lib/credits/fingerprint';
 
 type Props = { locale: string };
 type UiState = 'idle' | 'queued' | 'running' | 'succeeded' | 'failed';
+type CreateHeroBlock = {
+  /** Full headline for reference / accessibility */
+  title: string;
+  titleLine1: string;
+  titleLine2Before: string;
+  titleLine2Em: string;
+  titleLine2After: string;
+  subtitle: string;
+  featuresTitle: string;
+  features: { t: string; d: string }[];
+  howTitle: string;
+  howSteps: string[];
+  whyTitle: string;
+  whyPoints: string[];
+  sayTitle: string;
+  says: { q: string; a: string }[];
+  faqTitle: string;
+  faqs: { q: string; a: string }[];
+  ctaTitle: string;
+  ctaSubtitle: string;
+  ctaButton: string;
+};
+type InternalConfigCopy = { title: string; body: string; steps: string[] };
 type HistoryEntry = {
   id: string;
   createdAt: number;
@@ -36,6 +63,8 @@ export default function PageComponent({ locale }: Props) {
 
   const [query, setQuery] = useState('');
   const [selectedId, setSelectedId] = useState<string>(PROMPT_GALLERY[0]?.id ?? '');
+  const [heroCarouselIdx, setHeroCarouselIdx] = useState(0);
+  const [reduceMotion, setReduceMotion] = useState(false);
   const [ratioById, setRatioById] = useState<Record<string, string>>({});
   const item = useMemo(() => {
     const found = PROMPT_GALLERY.find((p) => p.id === selectedId);
@@ -66,17 +95,28 @@ export default function PageComponent({ locale }: Props) {
     });
   }, [query]);
 
+  const heroCarouselItems = useMemo(() => {
+    // Keep it short and stable so the Hero feels intentional.
+    const picked = PROMPT_GALLERY.slice(0, 8).filter((p) => p?.id && p?.title);
+    return picked.length ? picked : PROMPT_GALLERY.slice(0, 1);
+  }, []);
+
   const [promptText, setPromptText] = useState('');
   const [error, setError] = useState<string | null>(null);
 
   const [provider, setProvider] = useState<string>('internal');
   const [aspectRatio, setAspectRatio] = useState<string>('9:16');
   const [aspectTouched, setAspectTouched] = useState(false);
+  const [model, setModel] = useState<string>('');
   const [quality, setQuality] = useState<string>('1k');
   const [count, setCount] = useState<number>(1);
   const [apiKeyByProvider, setApiKeyByProvider] = useState<Record<string, string>>({});
   const apiKeyByProviderRef = useRef<Record<string, string>>({});
   const prevProviderRef = useRef<string>(provider);
+  /** null = closed; non-null = open at fixed viewport position */
+  const [moreMenu, setMoreMenu] = useState<{ top: number; left: number } | null>(null);
+  const moreWrapRef = useRef<HTMLDivElement | null>(null);
+  const [openPopover, setOpenPopover] = useState<null | 'model' | 'ratio' | 'quality' | 'count'>(null);
   const [keyDialogOpen, setKeyDialogOpen] = useState(false);
   const [keyDialogProvider, setKeyDialogProvider] = useState<string>(provider);
   const [keyDraft, setKeyDraft] = useState('');
@@ -89,8 +129,47 @@ export default function PageComponent({ locale }: Props) {
     const aspectRatios = Array.from(new Set(all.flatMap((c: any) => c.aspectRatios || [])));
     const qualities = Array.from(new Set(all.flatMap((c: any) => c.qualities || [])));
     const maxCount = Math.max(1, ...all.map((c: any) => Number(c.maxCount || 1)));
+    const models = Array.from(
+      new Map(
+        all
+          .flatMap((c: any) => (Array.isArray(c.models) ? c.models : []))
+          .map((m: any) => [String(m?.value ?? m?.label ?? ''), { label: String(m?.label ?? ''), value: m?.value }])
+      ).values()
+    ).filter((m) => m.label);
     return { aspectRatios, qualities, maxCount } as (typeof PROVIDER_CAPABILITIES)[keyof typeof PROVIDER_CAPABILITIES];
   }, [provider]);
+
+  const modelOptions = useMemo(() => {
+    if (provider !== 'internal') {
+      const opts = PROVIDER_CAPABILITIES[provider]?.models;
+      return Array.isArray(opts) && opts.length ? opts : [{ label: item?.model ?? 'Default', value: item?.model ?? 'Default' }];
+    }
+    const base = PROVIDER_CAPABILITIES.internal?.models;
+    const opts =
+      Array.isArray(base) && base.length
+        ? base
+        : [{ label: item?.model ?? 'GPT Image 2', value: item?.model ?? 'GPT Image 2' }];
+    // If template has a specific model, make sure it remains selectable.
+    const templateLabel = String(item?.model || '').trim();
+    if (templateLabel) {
+      const key = templateLabel;
+      const exists = opts.some((m) => String(m.value ?? m.label) === key);
+      if (!exists) return [{ label: templateLabel, value: templateLabel }, ...opts];
+    }
+    return opts;
+  }, [provider, item?.model]);
+
+  useEffect(() => {
+    // Keep selected model valid when provider/template changes.
+    const values = modelOptions.map((o) => String(o.value ?? o.label));
+    const preferred = String(item?.model || '').trim();
+    const next =
+      (preferred && values.includes(preferred) ? preferred : '') ||
+      (model && values.includes(model) ? model : '') ||
+      (values[0] || '');
+    setModel((prev) => (prev === next ? prev : next));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [provider, selectedId, item?.model, modelOptions]);
 
   const pickClosestAspect = (w: number, h: number, options: string[]) => {
     const ratio = w > 0 && h > 0 ? w / h : 1;
@@ -152,16 +231,69 @@ export default function PageComponent({ locale }: Props) {
   const [ratioByUrl, setRatioByUrl] = useState<Record<string, string>>({});
   const [copied, setCopied] = useState(false);
   const [history, setHistory] = useState<HistoryEntry[]>([]);
+  /** First persist effect run is skipped so we don't overwrite localStorage with [] before hydrate runs. */
+  const historyHydrateSaveSkipRef = useRef(true);
   const lastSavedJobRef = useRef<string | null>(null);
   const [viewerOpen, setViewerOpen] = useState(false);
   const [viewerImages, setViewerImages] = useState<string[]>([]);
   const [viewerIndex, setViewerIndex] = useState(0);
 
+  useEffect(() => {
+    if (uiState !== 'succeeded') return;
+    const src = images?.[0];
+    if (!src) return;
+
+    let cancelled = false;
+    const img = new (globalThis as any).Image();
+    img.decoding = 'async';
+    img.loading = 'eager';
+    img.onload = () => {
+      if (cancelled) return;
+      const w = Number(img.naturalWidth || 0);
+      const h = Number(img.naturalHeight || 0);
+      if (!w || !h) return;
+      const next = pickClosestAspect(w, h, capabilities.aspectRatios);
+      setAspectRatio((prev) => (prev === next ? prev : next));
+    };
+    img.onerror = () => {
+      // ignore
+    };
+    img.src = src;
+
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [uiState, images?.[0], capabilities.aspectRatios]);
+
   const openViewer = (list: string[], idx: number) => {
-    setViewerImages(list);
+    const proxied = list.map((u) => {
+      const s = String(u || '');
+      if (/^https?:\/\//i.test(s)) return `/${locale}/api/image-proxy?url=${encodeURIComponent(s)}`;
+      return s;
+    });
+    setViewerImages(proxied);
     setViewerIndex(Math.max(0, Math.min(idx, Math.max(0, list.length - 1))));
     setViewerOpen(true);
   };
+
+  useEffect(() => {
+    const mq = globalThis?.window?.matchMedia?.('(prefers-reduced-motion: reduce)');
+    if (!mq) return;
+    const apply = () => setReduceMotion(Boolean(mq.matches));
+    apply();
+    mq.addEventListener?.('change', apply);
+    return () => mq.removeEventListener?.('change', apply);
+  }, []);
+
+  useEffect(() => {
+    if (reduceMotion) return;
+    if (heroCarouselItems.length <= 1) return;
+    const id = window.setInterval(() => {
+      setHeroCarouselIdx((i) => (i + 1) % heroCarouselItems.length);
+    }, 2600);
+    return () => window.clearInterval(id);
+  }, [reduceMotion, heroCarouselItems.length]);
 
   useEffect(() => {
     const saved = (localStorage.getItem('op_theme') || 'light') as 'light' | 'dark';
@@ -192,6 +324,34 @@ export default function PageComponent({ locale }: Props) {
 
   const getApiKeyOverride = (p: string) => (apiKeyByProviderRef.current[p] || '').trim();
 
+  const providerMeta = useMemo(() => {
+    const map: Record<string, { label: string; Icon: any }> = {
+      internal: { label: 'internal', Icon: LuShield },
+      atlascloud: { label: 'atlascloud', Icon: TbCloud },
+      replicate: { label: 'replicate', Icon: FaCubes },
+    };
+    return map;
+  }, []);
+
+  const providerLabel = (p: string) => {
+    if (p === 'internal') return t('createPage.providerInternal');
+    return p;
+  };
+
+  const selectProvider = (next: string) => {
+    if (next === provider) return;
+    if (next === 'internal') {
+      setKeyDialogOpen(false);
+      setProvider('internal');
+      return;
+    }
+    prevProviderRef.current = provider;
+    setProvider(next);
+    setKeyDialogProvider(next);
+    setKeyDraft(apiKeyByProviderRef.current[next] || '');
+    setKeyDialogOpen(true);
+  };
+
   useEffect(() => {
     try {
       const raw = localStorage.getItem('op_create_history');
@@ -221,6 +381,10 @@ export default function PageComponent({ locale }: Props) {
   }, []);
 
   useEffect(() => {
+    if (historyHydrateSaveSkipRef.current) {
+      historyHydrateSaveSkipRef.current = false;
+      return;
+    }
     try {
       localStorage.setItem('op_create_history', JSON.stringify(history.slice(0, 30)));
     } catch {
@@ -251,6 +415,31 @@ export default function PageComponent({ locale }: Props) {
   }, []);
 
   useEffect(() => {
+    const onPointerDown = (e: PointerEvent) => {
+      const target = e.target as Node | null;
+      if (!target) return;
+      const el = moreWrapRef.current;
+      if (el?.contains(target)) return;
+      if ((e.target as HTMLElement | null)?.closest?.('[data-op-more-menu]')) return;
+      setMoreMenu(null);
+    };
+    document.addEventListener('pointerdown', onPointerDown);
+    return () => document.removeEventListener('pointerdown', onPointerDown);
+  }, []);
+
+  useEffect(() => {
+    const onPointerDown = (e: PointerEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+      // Keep popovers open when interacting inside them.
+      if (target.closest('[data-op-popover]')) return;
+      setOpenPopover(null);
+    };
+    document.addEventListener('pointerdown', onPointerDown);
+    return () => document.removeEventListener('pointerdown', onPointerDown);
+  }, []);
+
+  useEffect(() => {
     // reset when switching prompt
     setPromptText(item?.prompt ?? '');
     setError(null);
@@ -271,7 +460,7 @@ export default function PageComponent({ locale }: Props) {
       createdAt: Date.now(),
       providerJobId,
       prompt: promptText,
-      model: item?.model ?? 'GPT Image 2',
+      model: model || item?.model || 'GPT Image 2',
       provider,
       aspectRatio,
       quality,
@@ -335,99 +524,7 @@ export default function PageComponent({ locale }: Props) {
 
   const canGenerate = uiState === 'idle' || uiState === 'failed' || uiState === 'succeeded';
 
-  const hero = useMemo(() => {
-    if (locale === 'zh') {
-      return {
-        title: '用模板快速生成更好的图片提示词',
-        subtitle: '选模板 → 改描述 → 点生成。结果与历史都在同一个工作台。',
-        featuresTitle: 'Features',
-        features: [
-          { t: '模板驱动', d: '先锁定结构，再替换变量（人物/场景/风格）。' },
-          { t: '参数胶囊条', d: '比例、质量、数量、提供方一行完成。' },
-          { t: '结果 + 历史', d: '右侧即时预览，点击历史一键回填复用。' },
-        ],
-        howTitle: 'How it works',
-        howSteps: ['从左侧选择模板', '在中间输入框微调描述', '选择比例/质量/数量并生成', '在右侧查看结果并复用历史'],
-        whyTitle: 'Why users choose Open Prompts',
-        whyPoints: ['不需要从零写 prompt', '结构更稳定，出图更一致', '一页完成：编辑、生成、对比、复用'],
-        sayTitle: 'What users say',
-        says: [
-          { q: '模板帮我把 prompt 写得更像“专业配方”。', a: '创作者' },
-          { q: '参数一行搞定，生成完还能直接回填对比。', a: '设计师' },
-          { q: '历史记录太好用了，改两句话就能出一套风格。', a: '产品团队' },
-        ],
-        faqTitle: 'FAQs',
-        faqs: [
-          { q: '我应该从哪里开始？', a: '从左侧选一个接近你需求的模板，然后只替换主体/场景/风格。' },
-          { q: '提示词写多长合适？', a: '先写清楚主体与风格，再补充光照、材质、镜头与背景即可。' },
-          { q: '如何更稳定地复现风格？', a: '尽量复用模板结构与关键风格词，只改变量部分。' },
-        ],
-        ctaTitle: '准备好开始创作了吗？',
-        ctaSubtitle: '把想法写进输入框，点击生成。',
-        ctaButton: '去生成',
-      };
-    }
-    if (locale === 'ja') {
-      return {
-        title: 'テンプレートで画像プロンプトを素早く作成',
-        subtitle: 'テンプレ → 調整 → 生成。結果と履歴を1つのワークスペースで。',
-        featuresTitle: 'Features',
-        features: [
-          { t: 'テンプレート駆動', d: '骨格を固定して、変数だけ差し替え。' },
-          { t: 'パラメータが一行', d: '比率・品質・枚数・プロバイダを集約。' },
-          { t: '結果 + 履歴', d: '右側で確認し、履歴クリックで即再利用。' },
-        ],
-        howTitle: 'How it works',
-        howSteps: ['左のテンプレートを選ぶ', '中央で説明を調整', '比率/品質/枚数を選んで生成', '右側で結果を見て履歴から復元'],
-        whyTitle: 'Why users choose Open Prompts',
-        whyPoints: ['ゼロから書かなくていい', '構造が安定しやすい', '編集・生成・比較・再利用が1画面'],
-        sayTitle: 'What users say',
-        says: [
-          { q: 'テンプレがあるだけで書くスピードが段違い。', a: 'クリエイター' },
-          { q: 'パラメータが整理されていて迷わない。', a: 'デザイナー' },
-          { q: '履歴を使って微調整→比較がとても楽。', a: 'チーム' },
-        ],
-        faqTitle: 'FAQs',
-        faqs: [
-          { q: 'まず何をすればいい？', a: '左から近いテンプレを選び、被写体/場所/スタイルだけ置き換えます。' },
-          { q: 'プロンプトはどれくらい書く？', a: '被写体とスタイルを明確にして、光・質感・背景を少し足すのがコツ。' },
-          { q: 'スタイルを安定させるには？', a: 'テンプレ構造と重要なスタイル語を固定し、変数だけ変更。' },
-        ],
-        ctaTitle: 'さあ、作り始めよう',
-        ctaSubtitle: '入力して生成ボタンを押すだけ。',
-        ctaButton: '生成へ',
-      };
-    }
-    return {
-      title: 'Create better image prompts, fast',
-      subtitle: 'Pick a template, tweak the description, then generate. Results and history live in one workspace.',
-      featuresTitle: 'Features',
-      features: [
-        { t: 'Template-first', d: 'Start with a proven structure, then swap variables.' },
-        { t: 'One-line params', d: 'Provider, ratio, quality, count in a compact pill bar.' },
-        { t: 'Results + history', d: 'Preview outputs and rehydrate any run with one click.' },
-      ],
-      howTitle: 'How it works',
-      howSteps: ['Select a template', 'Refine the description', 'Choose ratio/quality/count and generate', 'Review results and reuse from history'],
-      whyTitle: 'Why users choose Open Prompts',
-      whyPoints: ['Less blank-page time', 'More consistent structure', 'Edit, generate, compare, reuse in one screen'],
-      sayTitle: 'What users say',
-      says: [
-        { q: 'Templates made my prompts look like a recipe.', a: 'Creator' },
-        { q: 'Everything I need is in one line—super fast.', a: 'Designer' },
-        { q: 'History saves me hours when iterating styles.', a: 'Team' },
-      ],
-      faqTitle: 'FAQs',
-      faqs: [
-        { q: 'Where should I start?', a: 'Pick the closest template and replace subject/location/style first.' },
-        { q: 'How long should a prompt be?', a: 'Be specific about subject and style, then add lighting/composition details.' },
-        { q: 'How do I keep results consistent?', a: 'Keep the template structure and key style terms stable; change variables only.' },
-      ],
-      ctaTitle: 'Ready to create?',
-      ctaSubtitle: 'Write your idea and hit Generate.',
-      ctaButton: 'Generate',
-    };
-  }, [locale]);
+  const hero = useMemo(() => t.raw('createPage.hero' as any) as CreateHeroBlock, [t]);
 
   const onGenerate = async () => {
     const p = promptText.trim();
@@ -446,7 +543,7 @@ export default function PageComponent({ locale }: Props) {
           provider: provider === 'internal' ? undefined : provider,
           prompt: p,
           apiKey: provider === 'internal' ? undefined : getApiKeyOverride(provider) || undefined,
-          model: item?.model ?? 'GPT Image 2',
+          model: model || item?.model || 'GPT Image 2',
           aspectRatio,
           quality,
           count,
@@ -477,45 +574,76 @@ export default function PageComponent({ locale }: Props) {
 
     if (!looksLikeMissingKey) return null;
 
-    return {
-      title:
-        locale === 'zh'
-          ? '未检测到服务端 API Key 配置'
-          : locale === 'ja'
-            ? 'サーバー側の API キー設定が見つかりません'
-            : 'No server-side API key configured',
-      body:
-        locale === 'zh'
-          ? '当前使用的是 internal 模式：需要在服务端环境变量里配置生图 Provider 的 Key。'
-          : locale === 'ja'
-            ? 'internal モードでは、サーバー側の環境変数に Provider のキー設定が必要です。'
-            : 'Internal mode requires provider keys in server environment variables.',
-      steps:
-        locale === 'zh'
-          ? [
-              '复制 `.env.example` → `.env.local`（本地开发）',
-              '配置至少一套 Provider：',
-              '- AtlasCloud: `ATLASCLOUD_BASE_URL` + `ATLASCLOUD_API_KEY`',
-              '- Replicate: `REPLICATE_API_TOKEN` + (`REPLICATE_MODEL` 或 `REPLICATE_VERSION`)',
-              '重启 `npm run dev` 后再试',
-            ]
-          : locale === 'ja'
-            ? [
-                'ローカル開発では `.env.example` を `.env.local` にコピー',
-                '少なくとも 1 つの Provider を設定:',
-                '- AtlasCloud: `ATLASCLOUD_BASE_URL` + `ATLASCLOUD_API_KEY`',
-                '- Replicate: `REPLICATE_API_TOKEN` + (`REPLICATE_MODEL` または `REPLICATE_VERSION`)',
-                '`npm run dev` を再起動して再試行',
-              ]
-            : [
-                'For local dev, copy `.env.example` → `.env.local`',
-                'Configure at least one provider:',
-                '- AtlasCloud: `ATLASCLOUD_BASE_URL` + `ATLASCLOUD_API_KEY`',
-                '- Replicate: `REPLICATE_API_TOKEN` + (`REPLICATE_MODEL` or `REPLICATE_VERSION`)',
-                'Restart `npm run dev` and retry',
-              ],
+    return t.raw('createPage.internalConfig' as any) as InternalConfigCopy;
+  }, [provider, error, t]);
+
+  const formatTimeAgo = (ts: number) => {
+    const now = Date.now();
+    const diffMs = now - Number(ts || 0);
+    if (!Number.isFinite(diffMs) || diffMs < 0) return '';
+
+    const diffSec = Math.floor(diffMs / 1000);
+    const diffMin = Math.floor(diffSec / 60);
+    const diffHr = Math.floor(diffMin / 60);
+    const diffDay = Math.floor(diffHr / 24);
+    const diffWeek = Math.floor(diffDay / 7);
+
+    const rtf =
+      typeof Intl !== 'undefined' && (Intl as any).RelativeTimeFormat
+        ? new Intl.RelativeTimeFormat(locale, { numeric: 'auto' })
+        : null;
+
+    const fmt = (value: number, unit: Intl.RelativeTimeFormatUnit) => {
+      if (rtf) return rtf.format(-value, unit);
+      // fallback (en-ish)
+      const u = value === 1 ? unit : `${unit}s`;
+      return `${value} ${u} ago`;
     };
-  }, [provider, error, locale]);
+
+    if (diffSec < 60) return fmt(Math.max(1, diffSec), 'second');
+    if (diffMin < 60) return fmt(diffMin, 'minute');
+    if (diffHr < 24) return fmt(diffHr, 'hour');
+    if (diffDay < 7) return fmt(diffDay, 'day');
+    return fmt(diffWeek, 'week');
+  };
+
+  const downloadWithRandomName = async (url: string) => {
+    const original = String(url || '').trim();
+    if (!original) return;
+    const src = /^https?:\/\//i.test(original) ? `/${locale}/api/image-proxy?url=${encodeURIComponent(original)}` : original;
+
+    const extFromUrl = (u: string) => {
+      try {
+        const parsed = new URL(u, 'http://local');
+        const p = parsed.pathname || '';
+        const m = p.match(/\.(png|jpg|jpeg|webp|gif)$/i);
+        if (m?.[1]) return m[1].toLowerCase() === 'jpeg' ? 'jpg' : m[1].toLowerCase();
+      } catch {
+        // ignore
+      }
+      return 'png';
+    };
+
+    const randomId =
+      (globalThis as any).crypto?.randomUUID?.() || `${Date.now()}_${Math.random().toString(16).slice(2)}`;
+    const filename = `op_${randomId}.${extFromUrl(original)}`;
+
+    const res = await fetch(src, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`download failed: ${res.status}`);
+    const blob = await res.blob();
+    const blobUrl = URL.createObjectURL(blob);
+    try {
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = filename;
+      a.rel = 'noreferrer';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    } finally {
+      URL.revokeObjectURL(blobUrl);
+    }
+  };
 
   return (
     <>
@@ -560,7 +688,7 @@ export default function PageComponent({ locale }: Props) {
       `}</style>
 
       <div className="flex h-screen w-full flex-col bg-[var(--bg)] text-[var(--text)]">
-        <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[var(--bg)]">
+        <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]">
           <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-6">
             <a href={`/${locale}`} className="flex items-center gap-2 text-sm font-semibold tracking-wide">
               <span className="relative grid h-8 w-8 place-items-center overflow-hidden rounded-lg">
@@ -596,8 +724,8 @@ export default function PageComponent({ locale }: Props) {
                 target="_blank"
                 rel="noreferrer"
                 className="grid h-9 w-9 place-items-center rounded-xl border border-[var(--ctl-border)] bg-[var(--ctl-bg)] text-[var(--text2)] shadow-sm hover:bg-[var(--ctl-hover)] hover:text-[var(--text)]"
-                aria-label="GitHub repository"
-                title="GitHub"
+                aria-label={t('createPage.githubRepoAriaLabel')}
+                title={t('createPage.githubTitle')}
               >
                 <FaGithub className="h-4 w-4" aria-hidden="true" />
               </a>
@@ -618,7 +746,7 @@ export default function PageComponent({ locale }: Props) {
                   <span className="text-[12px] font-semibold tracking-tight leading-none">文A</span>
                 </button>
                 {langOpen ? (
-                  <div className="absolute right-0 mt-2 w-44 overflow-hidden rounded-xl border border-[var(--ctl-border)] bg-[var(--panel-bg)] p-1 shadow-xl">
+                  <div className="absolute right-0 z-50 mt-2 w-44 overflow-hidden rounded-xl border border-[var(--ctl-border)] bg-[var(--panel-bg)] p-1 shadow-xl">
                     {locales.map((l) => {
                       const meta = languages.find((x) => x.lang === l) ?? { lang: l, language: l.toUpperCase() };
                       const label =
@@ -650,20 +778,22 @@ export default function PageComponent({ locale }: Props) {
         </header>
 
         <div className="mx-auto min-h-0 h-[calc(100vh-56px-73px)] w-full max-w-7xl overflow-hidden rounded-none border-x border-[var(--border2)] shadow-[0_0_0_1px_rgba(0,0,0,0.05)]">
-          <div className="grid min-h-0 h-full w-full grid-cols-1 overflow-hidden md:grid-cols-[320px_1fr] lg:grid-cols-[320px_1fr_360px]">
+          <div className="grid min-h-0 h-full w-full grid-cols-1 overflow-hidden md:grid-cols-[260px_1fr] lg:grid-cols-[260px_1fr_300px]">
             {/* Left rail */}
-            <aside className="hidden min-h-0 flex-col border-r border-[var(--border2)] bg-[color-mix(in_oklab,var(--bg)_70%,var(--surface))] md:flex shadow-[inset_-1px_0_0_rgba(255,255,255,0.04)]">
+            <aside className="relative z-30 hidden min-h-0 flex-col border-r border-[var(--border2)] bg-[color-mix(in_oklab,var(--bg)_70%,var(--surface))] md:flex shadow-[inset_-1px_0_0_rgba(255,255,255,0.04)]">
             <div className="flex items-center justify-between border-b border-[var(--border)] px-4 py-3">
-              <div className="text-[11px] font-medium tracking-[0.08em] text-[var(--text2)]">TEMPLATES</div>
+              <div className="text-[11px] font-medium tracking-[0.08em] text-[var(--text2)]">
+                {t('createPage.templatesLabel')}
+              </div>
               <a href={`/${locale}`} className="text-[11px] text-[var(--amber)] hover:underline">
-                + My templates
+                {t('createPage.myTemplatesLink')}
               </a>
             </div>
             <div className="border-b border-[var(--border)] p-3">
               <input
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search templates…"
+                placeholder={t('createPage.searchTemplatesPlaceholder')}
                 className="w-full rounded-lg border border-[var(--border2)] bg-[var(--surface)] px-3 py-2 text-sm text-[var(--text)] outline-none placeholder:text-[var(--text3)] focus:border-[var(--amber)]"
               />
             </div>
@@ -715,7 +845,9 @@ export default function PageComponent({ locale }: Props) {
             <div className="border-t border-[var(--border)] p-3">
               <div className="mb-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-3">
                 <div className="flex items-center justify-between">
-                  <div className="text-[11px] font-medium tracking-[0.08em] text-[var(--text2)]">ORIGINAL PROMPT</div>
+                  <div className="text-[11px] font-medium tracking-[0.08em] text-[var(--text2)]">
+                    {t('createPage.originalPromptLabel')}
+                  </div>
                   <button
                     className="text-[11px] text-[var(--text3)] hover:text-[var(--amber)]"
                     onClick={async () => {
@@ -738,43 +870,63 @@ export default function PageComponent({ locale }: Props) {
             </aside>
 
             {/* Center */}
-            <main className="flex min-h-0 flex-col overflow-hidden bg-[var(--surface)]">
+            <main className="relative z-10 flex min-h-0 flex-col overflow-hidden bg-[var(--surface)]">
             <div className="min-h-0 flex-1 overflow-y-auto p-4">
               <section className="py-6">
                 <div className="mx-auto max-w-3xl text-center">
-                  <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-[color-mix(in_oklab,var(--amber)_30%,transparent)] bg-[color-mix(in_oklab,var(--amber)_10%,transparent)] px-3 py-1 text-[11px] font-medium tracking-[0.18em] text-[var(--amber)]">
-                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--amber)]" />
-                    {locale === 'zh' ? 'WORKSPACE' : locale === 'ja' ? 'WORKSPACE' : 'WORKSPACE'}
+                  <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface2)] px-3 py-1 text-[11px] font-medium text-[var(--text2)]">
+                    <span className="grid h-4 w-4 place-items-center rounded-full bg-[color-mix(in_oklab,var(--amber)_18%,transparent)] text-[var(--amber2)]">
+                      ✦
+                    </span>
+                    <span>{t('createPage.brandPill')}</span>
                   </div>
-                  <div className="mx-auto mt-5 grid h-16 w-16 place-items-center rounded-full border border-dashed border-[var(--border2)] bg-[var(--surface2)] text-xl text-[var(--text3)]">
-                    ✦
-                  </div>
-                  <h1 className="mt-5 text-3xl font-semibold tracking-tight text-[var(--text)] sm:text-4xl">
-                    {hero.title}
+
+                  <h1 className="mt-6 text-4xl font-semibold tracking-tight leading-[1.06] text-[var(--text)] sm:text-5xl md:text-6xl">
+                    <span className="block">{hero.titleLine1}</span>
+                    <span className="block">
+                      {hero.titleLine2Before}
+                      <span className="italic">{hero.titleLine2Em}</span>
+                      {hero.titleLine2After}
+                    </span>
                   </h1>
-                  <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-[var(--text2)] sm:text-base">
+                  <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-[var(--text2)] sm:text-lg">
                     {hero.subtitle}
                   </p>
-
-                  <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-                    {PROMPT_GALLERY.slice(0, 4).map((p) => (
-                      <button
-                        key={p.id}
-                        className="rounded-full border border-[var(--border)] bg-[var(--surface2)] px-3 py-1.5 text-xs text-[var(--text2)] hover:border-[var(--border2)] hover:text-[var(--text)]"
-                        onClick={() => setSelectedId(p.id)}
-                        title={p.title}
+                  <div className="mt-3 flex items-center justify-center">
+                    <button
+                      type="button"
+                      className="group inline-flex max-w-[min(520px,92vw)] items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface2)] px-4 py-2 text-[12px] text-[var(--text2)] hover:border-[var(--border2)] hover:text-[var(--text)]"
+                      title={t('createPage.carouselApplyTitle')}
+                      onClick={() => {
+                        const p = heroCarouselItems[heroCarouselIdx];
+                        if (!p?.id) return;
+                        setSelectedId(p.id);
+                        const el = document.getElementById('op-create-prompt');
+                        el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                      }}
+                    >
+                      <span className="shrink-0 rounded-full border border-[color-mix(in_oklab,var(--amber)_25%,transparent)] bg-[color-mix(in_oklab,var(--amber)_12%,transparent)] px-2 py-0.5 text-[10px] font-medium tracking-[0.12em] text-[var(--amber2)]">
+                        {t('createPage.carouselPromptBadge')}
+                      </span>
+                      <span
+                        key={heroCarouselItems[heroCarouselIdx]?.id || heroCarouselIdx}
+                        className="truncate"
                       >
-                        {p.title}
-                      </button>
-                    ))}
+                        {heroCarouselItems[heroCarouselIdx]?.title || ''}
+                      </span>
+                      <span className="shrink-0 text-[var(--text3)] group-hover:text-[var(--amber)]">→</span>
+                    </button>
                   </div>
+                 
                 </div>
               </section>
 
               <div className="rounded-2xl border border-[var(--border2)] bg-[color-mix(in_oklab,var(--bg)_70%,var(--surface))] shadow-sm">
                 <div className="border-b border-[var(--border)] p-4">
                   <div className="mb-2 flex items-center justify-between">
-                    <div className="text-[11px] font-medium tracking-[0.08em] text-[var(--text2)]">PROMPT</div>
+                    <div className="text-[11px] font-medium tracking-[0.08em] text-[var(--text2)]">
+                      {t('createPage.promptSectionLabel')}
+                    </div>
                     <div className="flex items-center gap-2">
                       <button
                         className="rounded-lg border border-[var(--border2)] bg-[var(--surface)] px-3 py-1.5 text-[11px] text-[var(--text2)] hover:text-[var(--text)]"
@@ -793,7 +945,7 @@ export default function PageComponent({ locale }: Props) {
                         className="rounded-lg border border-[color-mix(in_oklab,var(--amber)_35%,transparent)] bg-[color-mix(in_oklab,var(--amber)_12%,transparent)] px-3 py-1.5 text-[11px] text-[var(--amber2)]"
                         onClick={() => setPromptText((x) => x.trim() + (x.includes('highly detailed') ? '' : ', highly detailed'))}
                       >
-                        ✨ Enhance
+                        {t('createPage.enhanceButton')}
                       </button>
                     </div>
                   </div>
@@ -803,7 +955,7 @@ export default function PageComponent({ locale }: Props) {
                     className="h-48 w-full resize-none rounded-xl border border-[var(--border2)] bg-[var(--surface)] p-4 text-[12.5px] leading-relaxed text-[var(--text)] outline-none placeholder:text-[var(--text3)] focus:border-[var(--amber)]"
                     value={promptText}
                     onChange={(e) => setPromptText(e.target.value)}
-                    placeholder={locale === 'zh' ? '描述你想生成的图片…' : locale === 'ja' ? '生成したい画像を説明…' : 'Describe the image you want to generate…'}
+                    placeholder={t('createPage.promptPlaceholder')}
                   />
 
                   <div className="mt-2 flex items-center justify-between text-[10px] text-[var(--text3)]">
@@ -813,74 +965,232 @@ export default function PageComponent({ locale }: Props) {
 
                 <div className="p-3">
                   <div className="flex flex-wrap items-center gap-2">
-                    <select
-                      className="h-9 rounded-full border border-[var(--ctl-border)] bg-[var(--ctl-bg)] px-3 text-[12px] text-[var(--text2)] outline-none hover:bg-[var(--ctl-hover)]"
-                      value={provider}
-                      onChange={(e) => {
-                        const next = e.target.value;
-                        if (next === 'internal') {
-                          setKeyDialogOpen(false);
-                          setProvider('internal');
-                          return;
-                        }
-                        prevProviderRef.current = provider;
-                        setProvider(next);
-                        setKeyDialogProvider(next);
-                        setKeyDraft(apiKeyByProviderRef.current[next] || '');
-                        setKeyDialogOpen(true);
-                      }}
-                      title={t('gen.provider')}
+                  <div className="relative" data-op-popover>
+                    <button
+                      type="button"
+                      className="inline-flex h-9 items-center gap-2 rounded-full border border-[var(--ctl-border)] bg-[var(--ctl-bg)] px-3 text-[12px] text-[var(--text2)] hover:bg-[var(--ctl-hover)]"
+                      onClick={() => setOpenPopover((v) => (v === 'model' ? null : 'model'))}
+                      title={t('createPage.modelTitle')}
                     >
-                      <option value="internal">internal</option>
-                      <option value="atlascloud">atlascloud</option>
-                      <option value="replicate">replicate</option>
-                    </select>
+                      <span className="grid h-5 w-5 place-items-center rounded-md bg-[color-mix(in_oklab,var(--ctl-bg)_70%,transparent)] text-[var(--text3)]">
+                        ✦
+                      </span>
+                      <span className="max-w-[180px] truncate text-[var(--text)]">
+                        {modelOptions.find((m) => String(m.value ?? m.label) === model)?.label ||
+                          modelOptions[0]?.label ||
+                          model ||
+                          item?.model ||
+                          'GPT Image 2'}
+                      </span>
+                      <LuChevronDown className="h-4 w-4 text-[var(--text3)]" aria-hidden="true" />
+                    </button>
+                    {openPopover === 'model' ? (
+                      <div className="absolute left-0 z-20 mt-2 w-72 overflow-hidden rounded-xl border border-[var(--ctl-border)] bg-[var(--panel-bg)] shadow-xl">
+                        <div className="border-b border-[var(--border)] px-4 py-3 text-xs font-medium text-[var(--text2)]">
+                          {t('createPage.selectModel')}
+                        </div>
+                        <div className="p-1">
+                          {modelOptions.map((m) => {
+                            const v = String(m.value ?? m.label);
+                            const active = v === model;
+                            return (
+                              <button
+                                key={v}
+                                type="button"
+                                className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm ${
+                                  active ? 'bg-[var(--surface2)] text-[var(--text)]' : 'text-[var(--text)] hover:bg-[var(--surface2)]'
+                                }`}
+                                onClick={() => {
+                                  setModel(v);
+                                  setOpenPopover(null);
+                                }}
+                              >
+                                <span className="truncate">{m.label}</span>
+                                {active ? <LuCheck className="h-4 w-4 text-[var(--amber)]" aria-hidden="true" /> : null}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ) : null}
+                  </div>
 
-                  <span className="rounded-full border border-[var(--ctl-border)] bg-[var(--ctl-bg)] px-3 py-2 text-[12px] text-[var(--text2)]">
-                    {item?.model ?? 'GPT Image 2'}
-                  </span>
+                  {(() => {
+                    const labelForRatio = (ar: string) => {
+                      const s = String(ar);
+                      if (s === '1:1') return t('createPage.ratioSquare', { ratio: s });
+                      if (s === '2:1') return t('createPage.ratioUltraWide', { ratio: s });
+                      if (s === '16:9' || s === '4:3' || s === '3:2' || s === '5:4')
+                        return t('createPage.ratioLandscape', { ratio: s });
+                      if (s === '9:16' || s === '3:4' || s === '2:3' || s === '4:5')
+                        return t('createPage.ratioPortrait', { ratio: s });
+                      return s;
+                    };
+                    const shortRatio = (ar: string) => String(ar || '').trim();
+                    const RatioGlyph = ({ ar }: { ar: string }) => {
+                      const s = String(ar || '').trim();
+                      const [aRaw, bRaw] = s.split(':');
+                      const a = Number(aRaw);
+                      const b = Number(bRaw);
+                      const ratio = a > 0 && b > 0 ? a / b : 1;
+                      // Fit a ratio box into a 18x18 container.
+                      const max = 14;
+                      const w = ratio >= 1 ? max : Math.max(6, Math.round(max * ratio));
+                      const h = ratio >= 1 ? Math.max(6, Math.round(max / ratio)) : max;
+                      return (
+                        <span className="grid h-5 w-5 place-items-center rounded-md border border-[var(--border)] bg-[var(--surface2)]">
+                          <span
+                            className="block rounded-[3px] border border-[var(--border2)] bg-[color-mix(in_oklab,var(--surface)_70%,transparent)]"
+                            style={{ width: `${w}px`, height: `${h}px` }}
+                          />
+                        </span>
+                      );
+                    };
+                    return (
+                      <div className="relative" data-op-popover>
+                        <button
+                          type="button"
+                          className="inline-flex h-9 items-center gap-2 rounded-full border border-[var(--ctl-border)] bg-[var(--ctl-bg)] px-3 text-[12px] text-[var(--text2)] hover:bg-[var(--ctl-hover)]"
+                          onClick={() => setOpenPopover((v) => (v === 'ratio' ? null : 'ratio'))}
+                          title={t('gen.aspectRatio')}
+                        >
+                          <RatioGlyph ar={aspectRatio} />
+                          <span className="text-[var(--text)]">{shortRatio(aspectRatio)}</span>
+                          <LuChevronDown className="h-4 w-4 text-[var(--text3)]" aria-hidden="true" />
+                        </button>
+                        {openPopover === 'ratio' ? (
+                          <div className="absolute left-1/2 z-20 mt-2 w-72 -translate-x-1/2 overflow-hidden rounded-xl border border-[var(--ctl-border)] bg-[var(--panel-bg)] shadow-xl">
+                            <div className="border-b border-[var(--border)] px-4 py-3 text-xs font-medium text-[var(--text2)]">
+                              {t('createPage.selectImageRatio')}
+                            </div>
+                            <div className="max-h-[320px] overflow-y-auto p-1">
+                              {capabilities.aspectRatios.map((v) => {
+                                const active = v === aspectRatio;
+                                return (
+                                  <button
+                                    key={v}
+                                    type="button"
+                                    className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm ${
+                                      active
+                                        ? 'bg-[var(--surface2)] text-[var(--text)]'
+                                        : 'text-[var(--text)] hover:bg-[var(--surface2)]'
+                                    }`}
+                                    onClick={() => {
+                                      setAspectTouched(true);
+                                      setAspectRatio(v);
+                                      setOpenPopover(null);
+                                    }}
+                                  >
+                                    <span className="inline-flex items-center gap-2">
+                                      <RatioGlyph ar={v} />
+                                      <span>{labelForRatio(v)}</span>
+                                    </span>
+                                    {active ? <LuCheck className="h-4 w-4 text-[var(--amber)]" aria-hidden="true" /> : null}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        ) : null}
+                      </div>
+                    );
+                  })()}
 
-                  <select
-                    className="h-9 rounded-full border border-[var(--ctl-border)] bg-[var(--ctl-bg)] px-3 text-[12px] text-[var(--text2)] outline-none hover:bg-[var(--ctl-hover)]"
-                    value={aspectRatio}
-                    onChange={(e) => {
-                      setAspectTouched(true);
-                      setAspectRatio(e.target.value);
-                    }}
-                    title={t('gen.aspectRatio')}
-                  >
-                    {capabilities.aspectRatios.map((v) => (
-                      <option key={v} value={v}>
-                        {v}
-                      </option>
-                    ))}
-                  </select>
+                  <div className="relative" data-op-popover>
+                    <button
+                      type="button"
+                      className="inline-flex h-9 items-center gap-2 rounded-full border border-[var(--ctl-border)] bg-[var(--ctl-bg)] px-3 text-[12px] text-[var(--text2)] hover:bg-[var(--ctl-hover)]"
+                      onClick={() => setOpenPopover((v) => (v === 'quality' ? null : 'quality'))}
+                      title={t('gen.quality')}
+                    >
+                      <LuLayers className="h-4 w-4 text-[var(--text3)]" aria-hidden="true" />
+                      <span className="text-[var(--text)]">{quality}</span>
+                      <LuChevronDown className="h-4 w-4 text-[var(--text3)]" aria-hidden="true" />
+                    </button>
+                    {openPopover === 'quality' ? (
+                      <div className="absolute left-0 z-20 mt-2 w-72 overflow-hidden rounded-xl border border-[var(--ctl-border)] bg-[var(--panel-bg)] shadow-xl">
+                        <div className="border-b border-[var(--border)] px-4 py-3 text-xs font-medium text-[var(--text2)]">
+                          {t('createPage.qualityPopoverTitle')}
+                        </div>
+                        <div className="p-1">
+                          {capabilities.qualities.map((q) => {
+                            const active = q === quality;
+                            return (
+                              <button
+                                key={q}
+                                type="button"
+                                className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm ${
+                                  active ? 'bg-[var(--surface2)] text-[var(--text)]' : 'text-[var(--text)] hover:bg-[var(--surface2)]'
+                                }`}
+                                onClick={() => {
+                                  setQuality(q);
+                                  setOpenPopover(null);
+                                }}
+                              >
+                                <span className="inline-flex items-center gap-2">
+                                  {active ? (
+                                    <LuCheck className="h-4 w-4 text-[var(--amber)]" aria-hidden="true" />
+                                  ) : (
+                                    <span className="h-4 w-4" />
+                                  )}
+                                  <span>
+                                    {q}
+                                    {q === '1k' ? t('createPage.qualityDefaultSuffix') : ''}
+                                  </span>
+                                </span>
+                                {active ? (
+                                  <span className="text-xs text-[var(--text3)]">
+                                    {t('createPage.qualityActive')}
+                                  </span>
+                                ) : null}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ) : null}
+                  </div>
 
-                  <select
-                    className="h-9 rounded-full border border-[var(--ctl-border)] bg-[var(--ctl-bg)] px-3 text-[12px] text-[var(--text2)] outline-none hover:bg-[var(--ctl-hover)]"
-                    value={quality}
-                    onChange={(e) => setQuality(e.target.value)}
-                    title={t('gen.quality')}
-                  >
-                    {capabilities.qualities.map((q) => (
-                      <option key={q} value={q}>
-                        {q}
-                      </option>
-                    ))}
-                  </select>
-
-                  <select
-                    className="h-9 rounded-full border border-[var(--ctl-border)] bg-[var(--ctl-bg)] px-3 text-[12px] text-[var(--text2)] outline-none hover:bg-[var(--ctl-hover)]"
-                    value={String(count)}
-                    onChange={(e) => setCount(Number(e.target.value))}
-                    title={t('gen.count')}
-                  >
-                    {Array.from({ length: capabilities.maxCount }, (_, i) => String(i + 1)).map((v) => (
-                      <option key={v} value={v}>
-                        {v}
-                      </option>
-                    ))}
-                  </select>
+                  <div className="relative" data-op-popover>
+                    <button
+                      type="button"
+                      className="inline-flex h-9 items-center gap-2 rounded-full border border-[var(--ctl-border)] bg-[var(--ctl-bg)] px-3 text-[12px] text-[var(--text2)] hover:bg-[var(--ctl-hover)]"
+                      onClick={() => setOpenPopover((v) => (v === 'count' ? null : 'count'))}
+                      title={t('gen.count')}
+                    >
+                      <LuHash className="h-4 w-4 text-[var(--text3)]" aria-hidden="true" />
+                      <span className="text-[var(--text)]">{count}</span>
+                      <LuChevronDown className="h-4 w-4 text-[var(--text3)]" aria-hidden="true" />
+                    </button>
+                    {openPopover === 'count' ? (
+                      <div className="absolute right-0 z-20 mt-2 w-40 overflow-hidden rounded-xl border border-[var(--ctl-border)] bg-[var(--panel-bg)] shadow-xl">
+                        <div className="border-b border-[var(--border)] px-4 py-3 text-xs font-medium text-[var(--text2)]">
+                          {t('createPage.generateCountTitle')}
+                        </div>
+                        <div className="max-h-[320px] overflow-y-auto p-1">
+                          {Array.from({ length: capabilities.maxCount }, (_, i) => i + 1).map((n) => {
+                            const active = n === count;
+                            return (
+                              <button
+                                key={n}
+                                type="button"
+                                className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm ${
+                                  active ? 'bg-[var(--surface2)] text-[var(--text)]' : 'text-[var(--text)] hover:bg-[var(--surface2)]'
+                                }`}
+                                onClick={() => {
+                                  setCount(n);
+                                  setOpenPopover(null);
+                                }}
+                              >
+                                <span>{n}</span>
+                                {active ? <LuCheck className="h-4 w-4 text-[var(--amber)]" aria-hidden="true" /> : null}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ) : null}
+                  </div>
 
                   <button
                     disabled={!canGenerate}
@@ -889,6 +1199,73 @@ export default function PageComponent({ locale }: Props) {
                   >
                     {uiState === 'queued' || uiState === 'running' ? t('gen.generating') : t('gen.generate')}
                   </button>
+
+                  <div className="relative" ref={moreWrapRef}>
+                    <button
+                      type="button"
+                      className="grid h-9 w-9 place-items-center rounded-full border border-[var(--ctl-border)] bg-[var(--ctl-bg)] text-[var(--text2)] hover:bg-[var(--ctl-hover)]"
+                      title={t('createPage.moreOptions')}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (moreMenu) {
+                          setMoreMenu(null);
+                          return;
+                        }
+                        const rect = (e.currentTarget as HTMLButtonElement).getBoundingClientRect();
+                        const menuW = 224; // w-56
+                        const pad = 8;
+                        const left = Math.max(pad, Math.min(rect.right - menuW, window.innerWidth - menuW - pad));
+                        const top = Math.min(window.innerHeight - pad, rect.bottom + 8);
+                        setMoreMenu({ top, left });
+                      }}
+                      aria-haspopup="menu"
+                      aria-expanded={Boolean(moreMenu)}
+                    >
+                      <HiDotsHorizontal className="h-4 w-4" aria-hidden="true" />
+                    </button>
+
+                  </div>
+                  {moreMenu ? (
+                    <div
+                      data-op-more-menu
+                      className="fixed z-[60] w-56 overflow-hidden rounded-xl border border-[var(--ctl-border)] bg-[var(--panel-bg)] p-1 shadow-xl"
+                      style={{ top: moreMenu.top, left: moreMenu.left }}
+                      role="menu"
+                      aria-label={t('createPage.moreMenuAriaLabel')}
+                      onPointerDown={(e) => e.stopPropagation()}
+                    >
+                      <div className="px-3 py-2 text-[10px] font-medium tracking-[0.12em] text-[var(--text3)]">
+                        {t('createPage.providerSection')}
+                      </div>
+                      {['internal', 'atlascloud', 'replicate'].map((p) => {
+                        const meta = providerMeta[p] || { label: p, Icon: TbCloud };
+                        const Icon = meta.Icon;
+                        const active = p === provider;
+                        return (
+                          <button
+                            key={p}
+                            type="button"
+                            role="menuitem"
+                            className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm transition ${
+                              active
+                                ? 'bg-[var(--surface2)] text-[var(--text)]'
+                                : 'text-[var(--text)] hover:bg-[var(--surface2)]'
+                            }`}
+                            onClick={() => {
+                              setMoreMenu(null);
+                              selectProvider(p);
+                            }}
+                          >
+                            <span className="inline-flex items-center gap-2">
+                              <Icon className="h-4 w-4 text-[var(--text3)]" aria-hidden="true" />
+                              <span className="text-sm">{providerLabel(meta.label)}</span>
+                            </span>
+                            {active ? <span className="text-[12px] text-[var(--amber)]">✓</span> : null}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  ) : null}
                   </div>
                 </div>
               </div>
@@ -917,22 +1294,16 @@ export default function PageComponent({ locale }: Props) {
                 <div className="flex items-end justify-between gap-3">
                   <div>
                     <div className="text-sm font-semibold tracking-tight text-[var(--text)]">
-                      {locale === 'zh' ? '热门模板' : locale === 'ja' ? '人気テンプレート' : 'Popular AI Templates'}
+                      {t('createPage.popularTitle')}
                     </div>
-                    <div className="mt-1 text-xs text-[var(--text2)]">
-                      {locale === 'zh'
-                        ? '用模板更快开始，点击即可套用到生成器。'
-                        : locale === 'ja'
-                          ? 'テンプレートから素早く開始。クリックで生成器に適用。'
-                          : 'Start faster with a template. Click to apply.'}
-                    </div>
+                    <div className="mt-1 text-xs text-[var(--text2)]">{t('createPage.popularSubtitle')}</div>
                   </div>
                   <a
                     href={`/${locale}`}
                     className="text-xs text-[var(--text3)] hover:text-[var(--amber)]"
-                    title="All Templates"
+                    title={t('createPage.allTemplatesTitle')}
                   >
-                    {locale === 'zh' ? '全部模板 →' : locale === 'ja' ? 'すべて →' : 'All Templates →'}
+                    {t('createPage.allTemplatesLink')}
                   </a>
                 </div>
 
@@ -1066,232 +1437,288 @@ export default function PageComponent({ locale }: Props) {
             </main>
 
             {/* Right rail */}
-            <aside className="hidden min-h-0 flex-col border-l border-[var(--border2)] bg-[color-mix(in_oklab,var(--bg)_70%,var(--surface))] lg:flex shadow-[inset_1px_0_0_rgba(255,255,255,0.04)]">
+            <aside className="relative z-30 hidden min-h-0 flex-col border-l border-[var(--border2)] bg-[color-mix(in_oklab,var(--bg)_70%,var(--surface))] lg:flex shadow-[inset_1px_0_0_rgba(255,255,255,0.04)]">
             <div className="flex items-center justify-between border-b border-[var(--border)] p-4">
-              <div className="text-[11px] font-medium tracking-[0.08em] text-[var(--text2)]">RESULT & HISTORY</div>
+              <div className="text-[11px] font-medium tracking-[0.08em] text-[var(--text2)]">
+                {t('createPage.resultHistoryLabel')}
+              </div>
             </div>
 
             <div className="min-h-0 flex-1 overflow-y-auto p-4">
-              <div className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-3">
-                <div className="flex items-center justify-between text-[10px] tracking-[0.08em] text-[var(--text3)]">
-                  <span>CURRENT</span>
-                  <span className="font-mono text-[10px] text-[var(--text3)]">{providerJobId ?? '—'}</span>
-                </div>
-                <div className="mt-2">
-                  {uiState === 'queued' || uiState === 'running' ? (
-                    <div className="flex flex-col gap-2">
-                      {Array.from({ length: 3 }).map((_, i) => (
-                        <div key={i} className="h-32 w-full animate-pulse rounded-lg bg-[var(--surface2)]" />
-                      ))}
+              {(() => {
+                const proxify = (u: string) => {
+                  const s = String(u || '');
+                  if (/^https?:\/\//i.test(s)) return `/${locale}/api/image-proxy?url=${encodeURIComponent(s)}`;
+                  return s;
+                };
+
+                const railCopy = {
+                  currentEmpty: t('createPage.railCurrentEmpty'),
+                  currentJump: t('createPage.railCurrentJump'),
+                  historyEmpty: t('createPage.railHistoryEmpty'),
+                  jobIdle: t('createPage.railJobIdle'),
+                };
+
+                const emptyHintCard = (body: string, showJump?: boolean) => (
+                  <div className="rounded-xl border border-dashed border-[var(--border2)] bg-[var(--surface2)] p-4 text-center">
+                    <div className="mx-auto mb-2 grid h-10 w-10 place-items-center rounded-xl border border-[var(--border)] bg-[var(--surface)] text-lg text-[var(--text3)]">
+                      ✦
                     </div>
-                  ) : images.length ? (
-                    <div className="flex flex-col gap-2">
-                      {images.map((u, idx) => (
-                        <div key={u} className="w-full">
-                          <button
-                            type="button"
-                            onClick={() => openViewer(images, idx)}
-                            className="group relative w-full overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface2)] text-left"
-                            title="Fullscreen"
-                            style={{ aspectRatio: ratioByUrl[u] ?? '4 / 3' }}
+                    <p className="text-[11px] leading-relaxed text-[var(--text3)]">{body}</p>
+                    {showJump ? (
+                      <button
+                        type="button"
+                        className="mt-3 text-[11px] font-medium text-[var(--amber)] hover:underline"
+                        onClick={() => {
+                          document.getElementById('op-create-prompt')?.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center',
+                          });
+                        }}
+                      >
+                        {railCopy.currentJump}
+                      </button>
+                    ) : null}
+                  </div>
+                );
+
+                return (
+                  <>
+                    <div className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-3">
+                      <div className="flex items-center justify-between gap-2 text-[10px] tracking-[0.08em] text-[var(--text3)]">
+                        <span>{t('createPage.currentLabel')}</span>
+                        {providerJobId ? (
+                          <span
+                            className="max-w-[min(160px,45%)] truncate font-mono text-[10px] text-[var(--text3)]"
+                            title={providerJobId}
                           >
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={u}
-                              alt=""
-                              className="h-full w-full object-contain"
-                              onLoad={(e) => {
-                                const img = e.currentTarget;
-                                const w = img.naturalWidth || 0;
-                                const h = img.naturalHeight || 0;
-                                if (w > 0 && h > 0) {
-                                  const ar = `${w} / ${h}`;
-                                  setRatioByUrl((prev) => (prev[u] === ar ? prev : { ...prev, [u]: ar }));
-                                }
-                              }}
-                            />
-                            <div className="absolute inset-0 bg-black/0 transition group-hover:bg-black/20" />
-                            <div className="absolute right-2 top-2 flex items-center gap-1 opacity-0 transition group-hover:opacity-100">
-                              <a
-                                href={u}
-                                target="_blank"
-                                rel="noreferrer"
-                                download
-                                className="grid h-7 w-7 place-items-center rounded-md bg-black/55 text-white/90 hover:bg-black/70"
-                                title="Download"
-                                onClick={(e) => e.stopPropagation()}
-                              >
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                  <path
-                                    d="M12 3v10m0 0l4-4m-4 4l-4-4M4 17v3h16v-3"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                </svg>
-                              </a>
-                              <span className="grid h-7 w-7 place-items-center rounded-md bg-black/55 text-white/90">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                  <path
-                                    d="M9 3H3v6m18 0V3h-6M3 15v6h6m12-6v6h-6"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                  />
-                                </svg>
-                              </span>
-                            </div>
-                          </button>
-                          <div className="mt-1 text-[10px] text-[var(--text3)]">
-                            {idx + 1}/{images.length}
+                            {providerJobId}
+                          </span>
+                        ) : (
+                          <span className="text-[10px] font-normal normal-case tracking-normal text-[var(--text3)]">
+                            {railCopy.jobIdle}
+                          </span>
+                        )}
+                      </div>
+                      <div className="mt-2">
+                        {uiState === 'queued' || uiState === 'running' ? (
+                          <div className="flex flex-col gap-2">
+                            {Array.from({ length: Math.max(1, count) }).map((_, i) => (
+                              <div key={i} className="h-32 w-full animate-pulse rounded-lg bg-[var(--surface2)]" />
+                            ))}
                           </div>
-                        </div>
-                      ))}
+                        ) : images.length ? (
+                          <div className="flex flex-col gap-2">
+                            {images.map((u, idx) => {
+                              const src = proxify(u);
+                              return (
+                                <div key={`${u}_${idx}`} className="w-full">
+                                  <button
+                                    type="button"
+                                    onClick={() => openViewer(images, idx)}
+                                    className="group relative w-full overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface2)] text-left"
+                                    title={t('createPage.fullscreenTitle')}
+                                    style={{ aspectRatio: ratioByUrl[src] ?? '4 / 3' }}
+                                  >
+                                    <CoverImage
+                                      src={src}
+                                      alt=""
+                                      sizes="360px"
+                                      className="object-contain"
+                                      errorText="—"
+                                      onMeta={({ width, height }) => {
+                                        const ar = `${width} / ${height}`;
+                                        setRatioByUrl((prev) => (prev[src] === ar ? prev : { ...prev, [src]: ar }));
+                                      }}
+                                    />
+                                    <div className="absolute inset-0 bg-black/0 transition group-hover:bg-black/20" />
+                                    <div className="absolute right-2 top-2 flex items-center gap-1 opacity-0 transition group-hover:opacity-100">
+                                      <button
+                                        type="button"
+                                        className="grid h-7 w-7 place-items-center rounded-md bg-black/55 text-white/90 hover:bg-black/70"
+                                        title={t('createPage.downloadTitle')}
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          downloadWithRandomName(u).catch(() => {});
+                                        }}
+                                      >
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                          <path
+                                            d="M12 3v10m0 0l4-4m-4 4l-4-4M4 17v3h16v-3"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                          />
+                                        </svg>
+                                      </button>
+                                      <span className="grid h-7 w-7 place-items-center rounded-md bg-black/55 text-white/90">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                          <path
+                                            d="M9 3H3v6m18 0V3h-6M3 15v6h6m12-6v6h-6"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                          />
+                                        </svg>
+                                      </span>
+                                    </div>
+                                  </button>
+                                  <div className="mt-1 text-[10px] text-[var(--text3)]">
+                                    {idx + 1}/{images.length}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        ) : uiState === 'failed' ? (
+                          emptyHintCard(t('gen.tryAgain'), true)
+                        ) : (
+                          emptyHintCard(railCopy.currentEmpty, true)
+                        )}
+                      </div>
                     </div>
-                  ) : (
-                    <div className="rounded-lg border border-[var(--border)] bg-[var(--surface2)] p-3 text-xs text-[var(--text3)]">
-                      {uiState === 'failed' ? t('gen.tryAgain') : '—'}
-                    </div>
-                  )}
-                </div>
-              </div>
 
-              <div className="mt-4">
-                <div className="mb-2 text-[10px] font-medium tracking-[0.08em] text-[var(--text3)]">HISTORY</div>
-                {history.length ? (
-                  <div className="flex flex-col gap-3">
-                    {history.map((h) => (
-                      <div key={h.id} className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] p-3">
-                        <div className="flex items-start justify-between gap-3">
-                          <button
-                            className="min-w-0 flex-1 text-left"
-                            onClick={() => {
-                              setProvider(h.provider);
-                              setAspectRatio(h.aspectRatio);
-                              setQuality(h.quality);
-                              setCount(h.count);
-                              setPromptText(h.prompt);
-                              setImages(h.images);
-                              setProviderJobId(h.providerJobId);
-                              setUiState(h.images.length ? 'succeeded' : 'idle');
-                            }}
-                            title={new Date(h.createdAt).toLocaleString()}
-                          >
-                            <div className="mt-1 line-clamp-2 text-[11px] leading-snug text-[var(--text2)]">{h.prompt}</div>
-                            <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-[var(--text3)]">
-                              <span className="rounded-full border border-[var(--border)] bg-[var(--surface2)] px-2 py-0.5">
-                                {h.provider}
-                              </span>
-                              <span className="rounded-full border border-[var(--border)] bg-[var(--surface2)] px-2 py-0.5">
-                                {h.model}
-                              </span>
-                              <span className="rounded-full border border-[var(--border)] bg-[var(--surface2)] px-2 py-0.5">
-                                {h.aspectRatio}
-                              </span>
-                              <span className="rounded-full border border-[var(--border)] bg-[var(--surface2)] px-2 py-0.5">
-                                {h.quality}
-                              </span>
-                              <span className="rounded-full border border-[var(--border)] bg-[var(--surface2)] px-2 py-0.5">
-                                ×{h.count}
-                              </span>
-                            </div>
-                          </button>
-                          <button
-                            type="button"
-                            className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-[var(--border)] bg-[var(--surface2)] text-[var(--text3)] hover:border-[var(--border2)] hover:text-red-400"
-                            title="Delete"
-                            onClick={() => setHistory((prev) => prev.filter((x) => x.id !== h.id))}
-                          >
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                              <path
-                                d="M4 7h16M10 11v6m4-6v6M9 7l1-2h4l1 2m-9 0l1 14h10l1-14"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                          </button>
-                        </div>
-
-                        {h.images?.length ? (
-                          <div className="mt-3 flex flex-col gap-2">
-                            {h.images.map((u, idx) => (
-                              <div key={u} className="w-full">
+                    <div className="mt-4">
+                      <div className="mb-2 text-[10px] font-medium tracking-[0.08em] text-[var(--text3)]">
+                        {t('createPage.historyLabel')}
+                      </div>
+                      {history.length ? (
+                        <div className="flex flex-col gap-3">
+                          {history.map((h) => (
+                            <div key={h.id} className="w-full rounded-xl border border-[var(--border)] bg-[var(--surface)] p-3">
+                              <div className="flex items-start justify-between gap-3">
                                 <button
-                                  type="button"
-                                  onClick={() => openViewer(h.images, idx)}
-                                  className="group relative w-full overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface2)] text-left"
-                                  title="Fullscreen"
-                                  style={{ aspectRatio: ratioByUrl[u] ?? '4 / 3' }}
+                                  className="min-w-0 flex-1 text-left"
+                                  onClick={() => {
+                                    setProvider(h.provider);
+                                    setAspectRatio(h.aspectRatio);
+                                    setQuality(h.quality);
+                                    setCount(h.count);
+                                    setModel(h.model);
+                                    setPromptText(h.prompt);
+                                    setImages(h.images);
+                                    setProviderJobId(h.providerJobId);
+                                    setUiState(h.images.length ? 'succeeded' : 'idle');
+                                  }}
+                                  title={new Date(h.createdAt).toLocaleString()}
                                 >
-                                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                                  <img
-                                    src={u}
-                                    alt=""
-                                    className="h-full w-full object-contain"
-                                    onLoad={(e) => {
-                                      const img = e.currentTarget;
-                                      const w = img.naturalWidth || 0;
-                                      const h2 = img.naturalHeight || 0;
-                                      if (w > 0 && h2 > 0) {
-                                        const ar = `${w} / ${h2}`;
-                                        setRatioByUrl((prev) => (prev[u] === ar ? prev : { ...prev, [u]: ar }));
-                                      }
-                                    }}
-                                  />
-                                  <div className="absolute inset-0 bg-black/0 transition group-hover:bg-black/20" />
-                                  <div className="absolute right-2 top-2 flex items-center gap-1 opacity-0 transition group-hover:opacity-100">
-                                    <a
-                                      href={u}
-                                      target="_blank"
-                                      rel="noreferrer"
-                                      download
-                                      className="grid h-7 w-7 place-items-center rounded-md bg-black/55 text-white/90 hover:bg-black/70"
-                                      title="Download"
-                                      onClick={(e) => e.stopPropagation()}
-                                    >
-                                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                        <path
-                                          d="M12 3v10m0 0l4-4m-4 4l-4-4M4 17v3h16v-3"
-                                          stroke="currentColor"
-                                          strokeWidth="2"
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                        />
-                                      </svg>
-                                    </a>
-                                    <span className="grid h-7 w-7 place-items-center rounded-md bg-black/55 text-white/90">
-                                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                        <path
-                                          d="M9 3H3v6m18 0V3h-6M3 15v6h6m12-6v6h-6"
-                                          stroke="currentColor"
-                                          strokeWidth="2"
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                        />
-                                      </svg>
+                                  <div className="mt-1 line-clamp-2 text-[11px] leading-snug text-[var(--text2)]">
+                                    {h.prompt}
+                                  </div>
+                                  <div className="mt-2 flex flex-wrap gap-1 text-[10px] text-[var(--text3)]">
+                                    <span className="rounded-full border border-[var(--border)] bg-[var(--surface2)] px-2 py-0.5">
+                                      {h.provider}
+                                    </span>
+                                    <span className="rounded-full border border-[var(--border)] bg-[var(--surface2)] px-2 py-0.5">
+                                      {h.model}
+                                    </span>
+                                    <span className="rounded-full border border-[var(--border)] bg-[var(--surface2)] px-2 py-0.5">
+                                      {h.aspectRatio}
+                                    </span>
+                                    <span className="rounded-full border border-[var(--border)] bg-[var(--surface2)] px-2 py-0.5">
+                                      {h.quality}
+                                    </span>
+                                    <span className="rounded-full border border-[var(--border)] bg-[var(--surface2)] px-2 py-0.5">
+                                      ×{h.count}
                                     </span>
                                   </div>
                                 </button>
-                                <div className="mt-1 text-[10px] text-[var(--text3)]">
-                                  {idx + 1}/{h.images.length}
-                                </div>
+                                <button
+                                  type="button"
+                                  className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-[var(--border)] bg-[var(--surface2)] text-[var(--text3)] hover:border-[var(--border2)] hover:text-red-400"
+                                  title={t('createPage.deleteTitle')}
+                                  onClick={() => setHistory((prev) => prev.filter((x) => x.id !== h.id))}
+                                >
+                                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path
+                                      d="M4 7h16M10 11v6m4-6v6M9 7l1-2h4l1 2m-9 0l1 14h10l1-14"
+                                      stroke="currentColor"
+                                      strokeWidth="2"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                    />
+                                  </svg>
+                                </button>
                               </div>
-                            ))}
-                          </div>
-                        ) : null}
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="rounded-xl border border-[var(--border)] bg-[var(--surface2)] p-3 text-xs text-[var(--text3)]">
-                    No history yet.
-                  </div>
-                )}
-              </div>
+
+                              {h.images?.length ? (
+                                <div className="mt-3 flex flex-col gap-2">
+                                  {h.images.map((u, idx) => {
+                                    const src = proxify(u);
+                                    return (
+                                      <div key={`${u}_${idx}`} className="w-full">
+                                        <button
+                                          type="button"
+                                          onClick={() => openViewer(h.images, idx)}
+                                          className="group relative w-full overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface2)] text-left"
+                                          title={t('createPage.fullscreenTitle')}
+                                          style={{ aspectRatio: ratioByUrl[src] ?? '4 / 3' }}
+                                        >
+                                          <CoverImage
+                                            src={src}
+                                            alt=""
+                                            sizes="360px"
+                                            className="object-contain"
+                                            errorText="—"
+                                            onMeta={({ width, height }) => {
+                                              const ar = `${width} / ${height}`;
+                                              setRatioByUrl((prev) => (prev[src] === ar ? prev : { ...prev, [src]: ar }));
+                                            }}
+                                          />
+                                          <div className="absolute inset-0 bg-black/0 transition group-hover:bg-black/20" />
+                                          <div className="absolute right-2 top-2 flex items-center gap-1 opacity-0 transition group-hover:opacity-100">
+                                            <button
+                                              type="button"
+                                              className="grid h-7 w-7 place-items-center rounded-md bg-black/55 text-white/90 hover:bg-black/70"
+                                              title={t('createPage.downloadTitle')}
+                                              onClick={(e) => {
+                                                e.stopPropagation();
+                                                downloadWithRandomName(u).catch(() => {});
+                                              }}
+                                            >
+                                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                <path
+                                                  d="M12 3v10m0 0l4-4m-4 4l-4-4M4 17v3h16v-3"
+                                                  stroke="currentColor"
+                                                  strokeWidth="2"
+                                                  strokeLinecap="round"
+                                                  strokeLinejoin="round"
+                                                />
+                                              </svg>
+                                            </button>
+                                            <span className="grid h-7 w-7 place-items-center rounded-md bg-black/55 text-white/90">
+                                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                <path
+                                                  d="M9 3H3v6m18 0V3h-6M3 15v6h6m12-6v6h-6"
+                                                  stroke="currentColor"
+                                                  strokeWidth="2"
+                                                  strokeLinecap="round"
+                                                  strokeLinejoin="round"
+                                                />
+                                              </svg>
+                                            </span>
+                                          </div>
+                                        </button>
+                                        <div className="mt-1 text-[10px] text-[var(--text3)]">
+                                          {idx + 1}/{h.images.length}
+                                        </div>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              ) : null}
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        emptyHintCard(railCopy.historyEmpty, true)
+                      )}
+                    </div>
+                  </>
+                );
+              })()}
             </div>
             </aside>
           </div>
@@ -1352,7 +1779,7 @@ export default function PageComponent({ locale }: Props) {
                   rel="noreferrer"
                   download
                   className="grid h-9 w-9 place-items-center rounded-lg bg-white/10 hover:bg-white/15"
-                  title="Download"
+                  title={t('createPage.downloadTitle')}
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path
@@ -1367,7 +1794,7 @@ export default function PageComponent({ locale }: Props) {
                 <button
                   className="grid h-9 w-9 place-items-center rounded-lg bg-white/10 hover:bg-white/15"
                   onClick={() => setViewerOpen(false)}
-                  title="Close"
+                  title={t('createPage.viewerClose')}
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path
@@ -1398,14 +1825,14 @@ export default function PageComponent({ locale }: Props) {
                   disabled={viewerIndex <= 0}
                   onClick={() => setViewerIndex((i) => Math.max(0, i - 1))}
                 >
-                  ← Prev
+                  {t('createPage.viewerPrev')}
                 </button>
                 <button
                   className="rounded-lg bg-white/10 px-3 py-1.5 text-xs hover:bg-white/15 disabled:opacity-40"
                   disabled={viewerIndex >= viewerImages.length - 1}
                   onClick={() => setViewerIndex((i) => Math.min(viewerImages.length - 1, i + 1))}
                 >
-                  Next →
+                  {t('createPage.viewerNext')}
                 </button>
               </div>
             ) : null}
@@ -1428,10 +1855,10 @@ export default function PageComponent({ locale }: Props) {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="border-b border-[var(--border)] p-4">
-              <div className="text-sm font-semibold text-[var(--text)]">API Key for {keyDialogProvider}</div>
-              <div className="mt-1 text-xs text-[var(--text2)]">
-                Leave empty to use the internal server key.
+              <div className="text-sm font-semibold text-[var(--text)]">
+                {t('createPage.keyDialogTitle', { provider: keyDialogProvider })}
               </div>
+              <div className="mt-1 text-xs text-[var(--text2)]">{t('createPage.keyDialogHint')}</div>
             </div>
 
             <div className="p-4">
@@ -1440,7 +1867,7 @@ export default function PageComponent({ locale }: Props) {
                 type="password"
                 value={keyDraft}
                 onChange={(e) => setKeyDraft(e.target.value)}
-                placeholder="Paste your API key (optional)"
+                placeholder={t('createPage.keyDialogPlaceholder')}
                 className="h-10 w-full rounded-xl border border-[var(--border2)] bg-[var(--surface)] px-3 text-sm text-[var(--text)] outline-none placeholder:text-[var(--text3)] focus:border-[var(--amber)]"
               />
               <div className="mt-4 flex items-center justify-end gap-2">
@@ -1451,7 +1878,7 @@ export default function PageComponent({ locale }: Props) {
                     setProvider(prevProviderRef.current);
                   }}
                 >
-                  Cancel
+                  {t('createPage.keyDialogCancel')}
                 </button>
                 <button
                   className="h-9 rounded-xl border border-[var(--border2)] px-4 text-sm text-[var(--text2)] hover:text-[var(--text)]"
@@ -1466,7 +1893,7 @@ export default function PageComponent({ locale }: Props) {
                     setKeyDialogOpen(false);
                   }}
                 >
-                  Use internal
+                  {t('createPage.keyDialogUseInternal')}
                 </button>
                 <button
                   className="h-9 rounded-xl bg-[var(--amber)] px-4 text-sm font-semibold text-[var(--bg)]"
@@ -1483,7 +1910,7 @@ export default function PageComponent({ locale }: Props) {
                     setKeyDialogOpen(false);
                   }}
                 >
-                  Save
+                  {t('createPage.keyDialogSave')}
                 </button>
               </div>
             </div>

@@ -816,7 +816,6 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
 
           <div
             className="flex h-full w-full flex-col"
-            onClick={(e) => e.stopPropagation()}
           >
             <div
               ref={viewerStripRef}
@@ -837,6 +836,7 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
                     <div
                       className="relative mx-auto h-[56vh] max-h-[520px] w-auto"
                       style={{ aspectRatio: ar }}
+                      onClick={(e) => e.stopPropagation()}
                     >
                       <CoverImage
                         src={src}
@@ -862,7 +862,7 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
             </div>
 
             {active.images.length > 1 ? (
-              <div className="-mt-2 pb-4">
+              <div className="-mt-2 pb-4" onClick={(e) => e.stopPropagation()}>
                 <div
                   ref={viewerThumbRef}
                   className="mx-auto flex max-w-3xl items-center justify-center gap-2 overflow-x-auto px-6 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"

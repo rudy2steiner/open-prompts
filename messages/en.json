@@ -363,6 +363,120 @@
       "generationFailed": "Generation failed",
       "pollingFailed": "Polling failed",
       "createFailed": "Create failed"
+    },
+    "createPage": {
+      "brandPill": "Open Prompts",
+      "templatesLabel": "TEMPLATES",
+      "myTemplatesLink": "+ My templates",
+      "searchTemplatesPlaceholder": "Search templates…",
+      "originalPromptLabel": "ORIGINAL PROMPT",
+      "promptSectionLabel": "PROMPT",
+      "enhanceButton": "✨ Enhance",
+      "promptPlaceholder": "Describe the image you want to generate…",
+      "carouselApplyTitle": "Click to apply template",
+      "carouselPromptBadge": "PROMPT",
+      "modelTitle": "Model",
+      "selectModel": "Select Model",
+      "selectImageRatio": "Select Image Ratio",
+      "qualityPopoverTitle": "Quality",
+      "qualityDefaultSuffix": " (default)",
+      "qualityActive": "Active",
+      "generateCountTitle": "Generate Count",
+      "moreOptions": "More options",
+      "moreMenuAriaLabel": "More options",
+      "providerSection": "PROVIDER",
+      "providerInternal": "Default",
+      "popularTitle": "Popular Templates",
+      "popularSubtitle": "Start faster with a template. Click to apply.",
+      "allTemplatesLink": "All Templates →",
+      "allTemplatesTitle": "All Templates",
+      "resultHistoryLabel": "RESULT & HISTORY",
+      "currentLabel": "CURRENT",
+      "historyLabel": "HISTORY",
+      "railCurrentEmpty": "No output yet. Write a prompt and click Generate — results will show up here.",
+      "railCurrentJump": "Go to generator",
+      "railHistoryEmpty": "No history yet. Successful runs are saved here in this browser only.",
+      "railJobIdle": "No active job",
+      "fullscreenTitle": "Fullscreen",
+      "downloadTitle": "Download",
+      "deleteTitle": "Delete",
+      "viewerClose": "Close",
+      "viewerPrev": "← Prev",
+      "viewerNext": "Next →",
+      "keyDialogTitle": "API Key for {provider}",
+      "keyDialogHint": "Leave empty to use the internal server key.",
+      "keyDialogPlaceholder": "Paste your API key (optional)",
+      "keyDialogCancel": "Cancel",
+      "keyDialogUseInternal": "Use internal",
+      "keyDialogSave": "Save",
+      "ratioSquare": "Square ({ratio})",
+      "ratioUltraWide": "Ultra-wide ({ratio})",
+      "ratioLandscape": "Landscape ({ratio})",
+      "ratioPortrait": "Portrait ({ratio})",
+      "githubRepoAriaLabel": "GitHub repository",
+      "githubTitle": "GitHub",
+      "hero": {
+        "title": "Better prompts Better images",
+        "titleLine1": "Better prompts",
+        "titleLine2Before": "Better ",
+        "titleLine2Em": "images",
+        "titleLine2After": "",
+        "subtitle": "Pick a template, tweak it to your vision, and generate — then iterate fast from history.",
+        "featuresTitle": "Features",
+        "features": [
+          { "t": "Template-first", "d": "Start from a proven structure and only change the essentials." },
+          { "t": "Quick controls", "d": "Provider, ratio, quality, and count in one compact bar." },
+          { "t": "Instant iteration", "d": "Review outputs and reuse any run from history with one click." }
+        ],
+        "howTitle": "How it works",
+        "howSteps": [
+          "Pick a template",
+          "Add subject/location/style details",
+          "Choose ratio/quality/count and generate",
+          "Compare and iterate from history"
+        ],
+        "whyTitle": "Why users choose Open Prompts",
+        "whyPoints": [
+          "Less blank-page time",
+          "More consistent structure",
+          "Edit, generate, compare, reuse in one screen"
+        ],
+        "sayTitle": "What users say",
+        "says": [
+          { "q": "Templates made my prompts look like a recipe.", "a": "Creator" },
+          { "q": "Everything I need is in one line—super fast.", "a": "Designer" },
+          { "q": "History saves me hours when iterating styles.", "a": "Team" }
+        ],
+        "faqTitle": "FAQs",
+        "faqs": [
+          {
+            "q": "Where should I start?",
+            "a": "Pick the closest template and replace subject/location/style first."
+          },
+          {
+            "q": "How long should a prompt be?",
+            "a": "Be specific about subject and style, then add lighting/composition details."
+          },
+          {
+            "q": "How do I keep results consistent?",
+            "a": "Keep the template structure and key style terms stable; change variables only."
+          }
+        ],
+        "ctaTitle": "Ready to create?",
+        "ctaSubtitle": "Write your idea and hit Generate.",
+        "ctaButton": "Generate"
+      },
+      "internalConfig": {
+        "title": "No server-side API key configured",
+        "body": "Internal mode requires provider keys in server environment variables.",
+        "steps": [
+          "For local dev, copy `.env.example` → `.env.local`",
+          "Configure at least one provider:",
+          "- AtlasCloud: `ATLASCLOUD_BASE_URL` + `ATLASCLOUD_API_KEY`",
+          "- Replicate: `REPLICATE_API_TOKEN` + (`REPLICATE_MODEL` or `REPLICATE_VERSION`)",
+          "Restart `npm run dev` and retry"
+        ]
+      }
     }
   }
 }

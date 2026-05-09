@@ -16,7 +16,7 @@ type Props = {
 export function CoverImage({ src, alt, sizes, priority, className, errorText, onMeta }: Props) {
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
-  const isRemote = /^https?:\/\//i.test(src);
+  const isRemote = /^https?:\/\//i.test(src) || src.includes('/api/image-proxy');
 
   return (
     <div className="relative h-full w-full overflow-hidden bg-transparent">
