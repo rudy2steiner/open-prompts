@@ -34,14 +34,8 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
   const [ratioById, setRatioById] = useState<Record<string, string>>({});
   const [ratioMetaById, setRatioMetaById] = useState<Record<string, { w: number; h: number }>>({});
   const [ratioByImageKey, setRatioByImageKey] = useState<Record<string, string>>({});
-  const [theme, setTheme] = useState<'dark' | 'light'>(() => {
-    try {
-      const saved = localStorage.getItem('op_theme') || 'light';
-      return saved === 'dark' ? 'dark' : 'light';
-    } catch {
-      return 'light';
-    }
-  });
+  const [theme, setTheme] = useState<'dark' | 'light'>('light');
+  const themeEffectPass = useRef(0);
   const [langOpen, setLangOpen] = useState(false);
   const langWrapRef = useRef<HTMLDivElement | null>(null);
 
@@ -258,8 +252,25 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
   }, [limit, query, model, tag]);
 
   useEffect(() => {
+    try {
+      const saved = localStorage.getItem('op_theme') || 'light';
+      const next = saved === 'dark' ? 'dark' : 'light';
+      setTheme(next);
+      document.documentElement.setAttribute('data-theme', next);
+    } catch {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  }, []);
+
+  useEffect(() => {
+    themeEffectPass.current += 1;
+    if (themeEffectPass.current === 1) return;
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('op_theme', theme);
+    try {
+      localStorage.setItem('op_theme', theme);
+    } catch {
+      // ignore
+    }
   }, [theme]);
 
   useEffect(() => {

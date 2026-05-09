@@ -58,6 +58,7 @@ export default function PageComponent({ locale }: Props) {
   const t = useTranslations('OpenPrompts');
   const searchParams = useSearchParams();
   const [theme, setTheme] = useState<'dark' | 'light'>('light');
+  const themeEffectPass = useRef(0);
   const [langOpen, setLangOpen] = useState(false);
   const langWrapRef = useRef<HTMLDivElement | null>(null);
 
@@ -296,15 +297,26 @@ export default function PageComponent({ locale }: Props) {
   }, [reduceMotion, heroCarouselItems.length]);
 
   useEffect(() => {
-    const saved = (localStorage.getItem('op_theme') || 'light') as 'light' | 'dark';
-    const next = saved === 'dark' ? 'dark' : 'light';
-    setTheme(next);
-    document.documentElement.setAttribute('data-theme', next);
+    try {
+      const saved = localStorage.getItem('op_theme') || 'light';
+      const next = saved === 'dark' ? 'dark' : 'light';
+      setTheme(next);
+      document.documentElement.setAttribute('data-theme', next);
+    } catch {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
   }, []);
 
   useEffect(() => {
+    themeEffectPass.current += 1;
+    // Skip the first run (still the SSR default) so we don't write `light` over saved prefs.
+    if (themeEffectPass.current === 1) return;
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('op_theme', theme);
+    try {
+      localStorage.setItem('op_theme', theme);
+    } catch {
+      // ignore
+    }
   }, [theme]);
 
   useEffect(() => {
@@ -781,13 +793,10 @@ export default function PageComponent({ locale }: Props) {
           <div className="grid min-h-0 h-full w-full grid-cols-1 overflow-hidden md:grid-cols-[260px_1fr] lg:grid-cols-[260px_1fr_300px]">
             {/* Left rail */}
             <aside className="relative z-30 hidden min-h-0 flex-col border-r border-[var(--border2)] bg-[color-mix(in_oklab,var(--bg)_70%,var(--surface))] md:flex shadow-[inset_-1px_0_0_rgba(255,255,255,0.04)]">
-            <div className="flex items-center justify-between border-b border-[var(--border)] px-4 py-3">
+            <div className="border-b border-[var(--border)] px-4 py-3">
               <div className="text-[11px] font-medium tracking-[0.08em] text-[var(--text2)]">
                 {t('createPage.templatesLabel')}
               </div>
-              <a href={`/${locale}`} className="text-[11px] text-[var(--amber)] hover:underline">
-                {t('createPage.myTemplatesLink')}
-              </a>
             </div>
             <div className="border-b border-[var(--border)] p-3">
               <input

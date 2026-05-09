@@ -365,9 +365,12 @@
       "createFailed": "Create failed"
     },
     "createPage": {
+      "seo": {
+        "title": "AI image studio — prompt templates & generation | Open Prompts",
+        "description": "Ship consistent visuals faster: curated image prompt templates, multi-model generation, aspect ratio and quality controls, and local run history in one focused workspace."
+      },
       "brandPill": "Open Prompts",
       "templatesLabel": "TEMPLATES",
-      "myTemplatesLink": "+ My templates",
       "searchTemplatesPlaceholder": "Search templates…",
       "originalPromptLabel": "ORIGINAL PROMPT",
       "promptSectionLabel": "PROMPT",
@@ -421,45 +424,71 @@
         "titleLine2Before": "Better ",
         "titleLine2Em": "images",
         "titleLine2After": "",
-        "subtitle": "Pick a template, tweak it to your vision, and generate — then iterate fast from history.",
+        "subtitle": "Turn curated templates into production-ready images. Tune model, aspect ratio, quality, and batch size—then refine from session history without leaving the canvas.",
         "featuresTitle": "Features",
         "features": [
-          { "t": "Template-first", "d": "Start from a proven structure and only change the essentials." },
-          { "t": "Quick controls", "d": "Provider, ratio, quality, and count in one compact bar." },
-          { "t": "Instant iteration", "d": "Review outputs and reuse any run from history with one click." }
+          {
+            "t": "Structured prompt scaffolds",
+            "d": "Start from vetted templates and swap the variables that matter—subject, scene, palette, and style cues stay aligned run to run."
+          },
+          {
+            "t": "Unified control surface",
+            "d": "Provider, aspect ratio, output quality, and image count live in one strip so configuration stays fast and predictable."
+          },
+          {
+            "t": "Session-scoped history",
+            "d": "Successful runs are retained locally for instant recall, side-by-side comparison, and one-click prompt reuse."
+          }
         ],
         "howTitle": "How it works",
         "howSteps": [
-          "Pick a template",
-          "Add subject/location/style details",
-          "Choose ratio/quality/count and generate",
-          "Compare and iterate from history"
+          "Select a template that matches your creative direction.",
+          "Edit the prompt: keep the scaffold; personalize subject, lighting, and composition.",
+          "Set model parameters and run generation.",
+          "Review outputs and iterate from history in the same view."
         ],
         "whyTitle": "Why users choose Open Prompts",
         "whyPoints": [
-          "Less blank-page time",
-          "More consistent structure",
-          "Edit, generate, compare, reuse in one screen"
+          "Reduces time-to-first-frame with reusable, opinionated prompt structures.",
+          "Improves stylistic consistency by locking structure and changing only deltas.",
+          "Consolidates authoring, generation, and review in a single focused surface."
         ],
         "sayTitle": "What users say",
         "says": [
-          { "q": "Templates made my prompts look like a recipe.", "a": "Creator" },
-          { "q": "Everything I need is in one line—super fast.", "a": "Designer" },
-          { "q": "History saves me hours when iterating styles.", "a": "Team" }
+          {
+            "q": "The templates read like briefs—my prompts stopped drifting once I locked the scaffold.",
+            "a": "Independent creator"
+          },
+          {
+            "q": "Having provider, ratio, and quality in one row keeps reviews moving during tight deadlines.",
+            "a": "Brand designer"
+          },
+          {
+            "q": "Local history lets us A/B phrasing and roll back to a winning prompt in seconds.",
+            "a": "Product marketing"
+          }
         ],
         "faqTitle": "FAQs",
         "faqs": [
           {
-            "q": "Where should I start?",
-            "a": "Pick the closest template and replace subject/location/style first."
+            "q": "What is Open Prompts?",
+            "a": "Open Prompts combines a curated prompt gallery with an in-browser studio for image generation—so you can start from proven structures, run against supported models, and iterate without switching tools."
           },
           {
-            "q": "How long should a prompt be?",
-            "a": "Be specific about subject and style, then add lighting/composition details."
+            "q": "Where should I begin?",
+            "a": "Choose the template closest to your intent, then replace subject, setting, and style cues first while preserving the overall structure."
           },
           {
-            "q": "How do I keep results consistent?",
-            "a": "Keep the template structure and key style terms stable; change variables only."
+            "q": "How detailed should my prompt be?",
+            "a": "Lead with subject and style, then layer lighting, lens or composition, materials, and background. Add constraints only when they materially affect the output."
+          },
+          {
+            "q": "How do I keep outputs consistent?",
+            "a": "Hold the template skeleton and anchor vocabulary steady; vary only the parameters you intend to test. Reuse history entries as baselines between runs."
+          },
+          {
+            "q": "Can I use my own API key or provider?",
+            "a": "Yes. You can route requests through supported providers and supply your own credentials where the product allows it, or rely on server-side configuration for internal mode."
           }
         ],
         "ctaTitle": "Ready to create?",
