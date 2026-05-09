@@ -8,6 +8,7 @@ import { PROMPT_GALLERY, type PromptGalleryItem } from '~/data/promptGallery';
 import { CoverImage } from '~/components/prompt-gallery/CoverImage';
 import { PromptGalleryCard } from '~/components/prompt-gallery/PromptGalleryCard';
 import { languages, locales } from '~/config';
+import { applyOpThemeToDocument, getOpDocumentTheme } from '~/lib/op-theme';
 import {useTranslations} from 'next-intl';
 import { FaGithub } from 'react-icons/fa';
 
@@ -23,6 +24,18 @@ function uniq<T>(arr: T[]) {
   return Array.from(new Set(arr));
 }
 
+/** Model filter pills — theme accent */
+const MODEL_FILTER_CHIP = {
+  base: 'whitespace-nowrap rounded-full border px-4 py-1.5 text-xs transition',
+  selected:
+    'border-[color-mix(in_oklab,var(--amber)_40%,transparent)] bg-[color-mix(in_oklab,var(--amber)_12%,transparent)] text-[var(--amber2)]',
+  idle: 'border-[var(--border)] text-[var(--text2)] hover:border-[var(--border2)] hover:text-[var(--text)]',
+} as const;
+
+/** Inline tag/model labels in modal — neutral chips (not the filter bar) */
+const TAG_META_CHIP =
+  'rounded-md border border-[var(--border)] bg-[var(--surface2)] px-3 py-1 text-xs text-[var(--text2)]';
+
 export default function PageComponent({ locale, indexLanguageText, footerLanguageText }: Props) {
   const t = useTranslations('OpenPrompts');
   const router = useRouter();
@@ -34,8 +47,6 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
   const [ratioById, setRatioById] = useState<Record<string, string>>({});
   const [ratioMetaById, setRatioMetaById] = useState<Record<string, { w: number; h: number }>>({});
   const [ratioByImageKey, setRatioByImageKey] = useState<Record<string, string>>({});
-  const [theme, setTheme] = useState<'dark' | 'light'>('light');
-  const themeEffectPass = useRef(0);
   const [langOpen, setLangOpen] = useState(false);
   const langWrapRef = useRef<HTMLDivElement | null>(null);
 
@@ -252,28 +263,6 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
   }, [limit, query, model, tag]);
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem('op_theme') || 'light';
-      const next = saved === 'dark' ? 'dark' : 'light';
-      setTheme(next);
-      document.documentElement.setAttribute('data-theme', next);
-    } catch {
-      document.documentElement.setAttribute('data-theme', 'light');
-    }
-  }, []);
-
-  useEffect(() => {
-    themeEffectPass.current += 1;
-    if (themeEffectPass.current === 1) return;
-    document.documentElement.setAttribute('data-theme', theme);
-    try {
-      localStorage.setItem('op_theme', theme);
-    } catch {
-      // ignore
-    }
-  }, [theme]);
-
-  useEffect(() => {
     const onPointerDown = (e: PointerEvent) => {
       const el = langWrapRef.current;
       if (!el) return;
@@ -315,41 +304,6 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
         locale={locale}
         page=""
       />
-
-      <style jsx global>{`
-        :root {
-          --bg: #0e0d0b;
-          --surface: #1f1d18;
-          --surface2: rgba(255, 255, 255, 0.05);
-          --border: rgba(255, 255, 255, 0.1);
-          --border2: rgba(255, 255, 255, 0.15);
-          --text: #f0ebe0;
-          --text2: #a09a8e;
-          --text3: #6b6560;
-          --amber: #e8a020;
-          --amber2: #f0b840;
-          --ctl-bg: rgba(255, 255, 255, 0.06);
-          --ctl-border: rgba(255, 255, 255, 0.14);
-          --ctl-hover: rgba(255, 255, 255, 0.1);
-          --panel-bg: rgba(31, 29, 24, 0.98);
-        }
-        [data-theme='light'] {
-          --bg: #ffffff;
-          --surface: #ffffff;
-          --surface2: rgba(0, 0, 0, 0.05);
-          --border: rgba(0, 0, 0, 0.1);
-          --border2: rgba(0, 0, 0, 0.14);
-          --text: #1a1814;
-          --text2: #5a5650;
-          --text3: #9a9590;
-          --amber: #c87010;
-          --amber2: #d98020;
-          --ctl-bg: rgba(0, 0, 0, 0.04);
-          --ctl-border: rgba(0, 0, 0, 0.12);
-          --ctl-hover: rgba(0, 0, 0, 0.07);
-          --panel-bg: rgba(255, 255, 255, 0.98);
-        }
-      `}</style>
 
       <div className="min-h-screen w-full bg-[var(--bg)] text-[var(--text)]">
         <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[var(--bg)]">
@@ -396,18 +350,25 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
                 <FaGithub className="h-4 w-4" aria-hidden="true" />
               </a>
               <button
-                className="grid h-9 w-9 place-items-center rounded-xl border border-[var(--ctl-border)] bg-[var(--ctl-bg)] text-[var(--text2)] shadow-sm hover:bg-[var(--ctl-hover)] hover:text-[var(--text)]"
-                title={theme === 'dark' ? t('header.themeToLight') : t('header.themeToDark')}
+                className="grid h-9 w-9 grid-cols-1 grid-rows-1 place-items-center rounded-xl border border-[var(--ctl-border)] bg-[var(--ctl-bg)] text-[var(--text2)] shadow-sm hover:bg-[var(--ctl-hover)] hover:text-[var(--text)]"
+                title={t('header.themeToggle')}
                 onClick={() => {
-                  const next = theme === 'dark' ? 'light' : 'dark';
-                  setTheme(next);
+                  const cur = getOpDocumentTheme();
+                  const next = cur === 'dark' ? 'light' : 'dark';
+                  applyOpThemeToDocument(next);
                   try {
                     localStorage.setItem('op_theme', next);
-                  } catch {}
-                  document.documentElement.setAttribute('data-theme', next);
+                  } catch {
+                    // ignore
+                  }
                 }}
               >
-                {theme === 'dark' ? '☾' : '☀︎'}
+                <span className="op-theme-toggle-moon" aria-hidden="true">
+                  ☾
+                </span>
+                <span className="op-theme-toggle-sun" aria-hidden="true">
+                  ☀︎
+                </span>
               </button>
 
               <div className="relative" ref={langWrapRef}>
@@ -509,11 +470,7 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
                     setModel(m);
                     setLimit(PAGE_SIZE);
                   }}
-                  className={`whitespace-nowrap rounded-full border px-4 py-1.5 text-xs transition ${
-                    model === m
-                      ? 'border-[color-mix(in_oklab,var(--amber)_40%,transparent)] bg-[color-mix(in_oklab,var(--amber)_12%,transparent)] text-[var(--amber2)]'
-                      : 'border-[var(--border)] text-[var(--text2)] hover:border-[var(--border2)] hover:text-[var(--text)]'
-                  }`}
+                  className={`${MODEL_FILTER_CHIP.base} ${model === m ? MODEL_FILTER_CHIP.selected : MODEL_FILTER_CHIP.idle}`}
                 >
                   {m === 'all' ? t('filters.allModels') : m}
                 </button>
@@ -533,11 +490,7 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
                       setTag(tagLabel);
                       setLimit(PAGE_SIZE);
                     }}
-                    className={`rounded-lg border px-3 py-1.5 text-xs transition ${
-                      tag === tagLabel
-                        ? 'border-emerald-400/30 bg-emerald-400/10 text-emerald-300'
-                        : 'border-[var(--border)] text-[var(--text2)] hover:border-[var(--border2)] hover:text-[var(--text)]'
-                    }`}
+                    className={`${MODEL_FILTER_CHIP.base} ${tag === tagLabel ? MODEL_FILTER_CHIP.selected : MODEL_FILTER_CHIP.idle}`}
                   >
                     {tagLabel === 'all' ? t('filters.allTags') : tagLabel}
                   </button>
@@ -750,8 +703,9 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
               </div>
 
               <div className="mt-4 flex flex-wrap gap-2">
+                {active.model ? <span className={TAG_META_CHIP}>{active.model}</span> : null}
                 {active.tags.map((t) => (
-                  <span key={t} className="rounded-md bg-orange-50 px-2 py-1 text-xs text-orange-700">
+                  <span key={t} className={TAG_META_CHIP}>
                     {t}
                   </span>
                 ))}
@@ -764,7 +718,12 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
                     <>
                       {' '}
                       ·{' '}
-                      <a className="text-orange-700 underline" href={active.sourceUrl} target="_blank" rel="noreferrer">
+                      <a
+                        className="text-[var(--text2)] underline decoration-[var(--border2)] underline-offset-2 hover:text-[var(--text)]"
+                        href={active.sourceUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         {t('modal.viewSource')} ↗
                       </a>
                     </>

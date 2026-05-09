@@ -15,6 +15,7 @@ import { LuCheck, LuChevronDown, LuHash, LuLayers, LuShield, LuSquare } from 're
 import { FaCubes } from 'react-icons/fa';
 import { TbCloud } from 'react-icons/tb';
 import { getOrCreateUserId } from '~/lib/credits/fingerprint';
+import { applyOpThemeToDocument, getOpDocumentTheme } from '~/lib/op-theme';
 
 type Props = { locale: string };
 type UiState = 'idle' | 'queued' | 'running' | 'succeeded' | 'failed';
@@ -57,8 +58,6 @@ type HistoryEntry = {
 export default function PageComponent({ locale }: Props) {
   const t = useTranslations('OpenPrompts');
   const searchParams = useSearchParams();
-  const [theme, setTheme] = useState<'dark' | 'light'>('light');
-  const themeEffectPass = useRef(0);
   const [langOpen, setLangOpen] = useState(false);
   const langWrapRef = useRef<HTMLDivElement | null>(null);
 
@@ -295,29 +294,6 @@ export default function PageComponent({ locale }: Props) {
     }, 2600);
     return () => window.clearInterval(id);
   }, [reduceMotion, heroCarouselItems.length]);
-
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem('op_theme') || 'light';
-      const next = saved === 'dark' ? 'dark' : 'light';
-      setTheme(next);
-      document.documentElement.setAttribute('data-theme', next);
-    } catch {
-      document.documentElement.setAttribute('data-theme', 'light');
-    }
-  }, []);
-
-  useEffect(() => {
-    themeEffectPass.current += 1;
-    // Skip the first run (still the SSR default) so we don't write `light` over saved prefs.
-    if (themeEffectPass.current === 1) return;
-    document.documentElement.setAttribute('data-theme', theme);
-    try {
-      localStorage.setItem('op_theme', theme);
-    } catch {
-      // ignore
-    }
-  }, [theme]);
 
   useEffect(() => {
     try {
@@ -660,38 +636,6 @@ export default function PageComponent({ locale }: Props) {
   return (
     <>
       <style jsx global>{`
-        :root {
-          --bg: #0e0d0b;
-          --surface: #1f1d18;
-          --surface2: rgba(255, 255, 255, 0.05);
-          --border: rgba(255, 255, 255, 0.1);
-          --border2: rgba(255, 255, 255, 0.15);
-          --text: #f0ebe0;
-          --text2: #a09a8e;
-          --text3: #6b6560;
-          --amber: #e8a020;
-          --amber2: #f0b840;
-          --ctl-bg: rgba(255, 255, 255, 0.06);
-          --ctl-border: rgba(255, 255, 255, 0.14);
-          --ctl-hover: rgba(255, 255, 255, 0.1);
-          --panel-bg: rgba(31, 29, 24, 0.98);
-        }
-        [data-theme='light'] {
-          --bg: #ffffff;
-          --surface: #ffffff;
-          --surface2: rgba(0, 0, 0, 0.05);
-          --border: rgba(0, 0, 0, 0.1);
-          --border2: rgba(0, 0, 0, 0.14);
-          --text: #1a1814;
-          --text2: #5a5650;
-          --text3: #9a9590;
-          --amber: #c87010;
-          --amber2: #d98020;
-          --ctl-bg: rgba(0, 0, 0, 0.04);
-          --ctl-border: rgba(0, 0, 0, 0.12);
-          --ctl-hover: rgba(0, 0, 0, 0.07);
-          --panel-bg: rgba(255, 255, 255, 0.98);
-        }
         html,
         body {
           height: 100%;
@@ -742,11 +686,25 @@ export default function PageComponent({ locale }: Props) {
                 <FaGithub className="h-4 w-4" aria-hidden="true" />
               </a>
               <button
-                className="grid h-9 w-9 place-items-center rounded-xl border border-[var(--ctl-border)] bg-[var(--ctl-bg)] text-[var(--text2)] shadow-sm hover:bg-[var(--ctl-hover)] hover:text-[var(--text)]"
-                title={theme === 'dark' ? t('header.themeToLight') : t('header.themeToDark')}
-                onClick={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
+                className="grid h-9 w-9 grid-cols-1 grid-rows-1 place-items-center rounded-xl border border-[var(--ctl-border)] bg-[var(--ctl-bg)] text-[var(--text2)] shadow-sm hover:bg-[var(--ctl-hover)] hover:text-[var(--text)]"
+                title={t('header.themeToggle')}
+                onClick={() => {
+                  const cur = getOpDocumentTheme();
+                  const next = cur === 'dark' ? 'light' : 'dark';
+                  applyOpThemeToDocument(next);
+                  try {
+                    localStorage.setItem('op_theme', next);
+                  } catch {
+                    // ignore
+                  }
+                }}
               >
-                {theme === 'dark' ? '☾' : '☀︎'}
+                <span className="op-theme-toggle-moon" aria-hidden="true">
+                  ☾
+                </span>
+                <span className="op-theme-toggle-sun" aria-hidden="true">
+                  ☀︎
+                </span>
               </button>
 
               <div className="relative" ref={langWrapRef}>

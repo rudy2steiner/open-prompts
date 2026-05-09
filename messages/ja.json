@@ -294,6 +294,7 @@
   "OpenPrompts": {
     "header": {
       "language": "言語",
+      "themeToggle": "ライト/ダークを切り替え",
       "themeToLight": "ライトモードへ",
       "themeToDark": "ダークモードへ"
     },

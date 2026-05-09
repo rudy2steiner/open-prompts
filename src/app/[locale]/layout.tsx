@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import {Inter} from 'next/font/google';
 import {notFound} from 'next/navigation';
 import {getMessages, unstable_setRequestLocale} from 'next-intl/server';
+import {cookies} from 'next/headers';
 import {NextIntlClientProvider} from 'next-intl';
 import {ReactNode} from 'react';
 import {locales} from '~/config';
@@ -31,19 +32,64 @@ export default async function LocaleLayout({
   unstable_setRequestLocale(locale);
 
   const messages = await getMessages();
+  const themeCookie = (await cookies()).get('op_theme')?.value;
+  const initialDataTheme =
+    themeCookie === 'light' || themeCookie === 'dark' ? themeCookie : undefined;
 
   return (
-    <html className="h-full" lang={locale}>
+    <html
+      className="h-full"
+      lang={locale}
+      suppressHydrationWarning
+      {...(initialDataTheme ? {'data-theme': initialDataTheme} : {})}
+    >
     <head>
       <script
         dangerouslySetInnerHTML={{
           __html: `
             (function () {
-              try {
-                var t = localStorage.getItem('op_theme') || 'light';
-                t = (t === 'dark') ? 'dark' : 'light';
-                document.documentElement.setAttribute('data-theme', t);
-              } catch (e) {}
+              /* Keep in sync with src/lib/op-theme.ts OP_THEME_BG */
+              var DARK_BG = '#0e0d0b';
+              var LIGHT_BG = '#ffffff';
+              function applyThemeFromStorage() {
+                try {
+                  var t = localStorage.getItem('op_theme') || 'light';
+                  t = (t === 'dark') ? 'dark' : 'light';
+                  var bg = (t === 'dark') ? DARK_BG : LIGHT_BG;
+                  var d = document.documentElement;
+                  d.setAttribute('data-theme', t);
+                  d.style.backgroundColor = bg;
+                  if (document.body) document.body.style.backgroundColor = bg;
+                  try {
+                    document.cookie = 'op_theme=' + encodeURIComponent(t) + ';path=/;max-age=31536000;SameSite=Lax';
+                  } catch (e3) {}
+                } catch (e) {
+                  try {
+                    var t0 = document.documentElement.getAttribute('data-theme');
+                    if (t0 === 'dark' || t0 === 'light') {
+                      var bg0 = (t0 === 'dark') ? DARK_BG : LIGHT_BG;
+                      document.documentElement.style.backgroundColor = bg0;
+                      if (document.body) document.body.style.backgroundColor = bg0;
+                    }
+                  } catch (e2) {}
+                }
+              }
+              applyThemeFromStorage();
+              function paintBody() {
+                try {
+                  var t = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+                  var bg = (t === 'dark') ? DARK_BG : LIGHT_BG;
+                  if (document.body) document.body.style.backgroundColor = bg;
+                } catch (e) {}
+              }
+              if (document.body) paintBody();
+              else document.addEventListener('DOMContentLoaded', paintBody);
+              document.addEventListener('visibilitychange', function () {
+                if (document.visibilityState === 'visible') applyThemeFromStorage();
+              });
+              window.addEventListener('pageshow', function (e) {
+                if (e.persisted) applyThemeFromStorage();
+              });
             })();
           `,
         }}
@@ -53,6 +99,7 @@ export default async function LocaleLayout({
         dangerouslySetInnerHTML={{
           __html: `
             :root{
+              color-scheme: dark;
               --bg:#0e0d0b;
               --surface:#1f1d18;
               --surface2:rgba(255,255,255,0.05);
@@ -69,6 +116,7 @@ export default async function LocaleLayout({
               --panel-bg:rgba(31,29,24,0.98);
             }
             [data-theme='light']{
+              color-scheme: light;
               --bg:#ffffff;
               --surface:#ffffff;
               --surface2:rgba(0,0,0,0.05);
@@ -85,6 +133,14 @@ export default async function LocaleLayout({
               --panel-bg:rgba(255,255,255,0.98);
             }
             html,body{ height:100%; background:var(--bg); color:var(--text); }
+            /* Theme toggle glyphs follow <html data-theme> (no React sync — avoids tab/hydration flicker). */
+            .op-theme-toggle-moon,.op-theme-toggle-sun{ grid-area:1/1; line-height:1; }
+            html:not([data-theme='light']) .op-theme-toggle-sun,
+            html[data-theme='dark'] .op-theme-toggle-sun{ display:none !important; }
+            html:not([data-theme='light']) .op-theme-toggle-moon,
+            html[data-theme='dark'] .op-theme-toggle-moon{ display:inline !important; }
+            html[data-theme='light'] .op-theme-toggle-moon{ display:none !important; }
+            html[data-theme='light'] .op-theme-toggle-sun{ display:inline !important; }
           `,
         }}
       />

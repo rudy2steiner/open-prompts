@@ -279,6 +279,7 @@
   "OpenPrompts": {
     "header": {
       "language": "Language",
+      "themeToggle": "Toggle light/dark mode",
       "themeToLight": "Switch to light mode",
       "themeToDark": "Switch to dark mode"
     },

@@ -278,6 +278,7 @@
   "OpenPrompts": {
     "header": {
       "language": "切换语言",
+      "themeToggle": "切换浅色/深色模式",
       "themeToLight": "切换亮色模式",
       "themeToDark": "切换暗色模式"
     },
