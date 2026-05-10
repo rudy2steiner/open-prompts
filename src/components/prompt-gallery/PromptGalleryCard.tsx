@@ -1,3 +1,4 @@
+import { LuMaximize2 } from 'react-icons/lu';
 import { CoverImage } from '~/components/prompt-gallery/CoverImage';
 import type { PromptGalleryItem } from '~/data/promptGallery';
 
@@ -20,6 +21,9 @@ type Props = {
   onMeta?: (meta: { width: number; height: number }) => void;
   onCardClick?: () => void;
   onImageClick?: () => void;
+  /** Opens fullscreen/lightbox for the cover only (e.g. create page); avoids nesting buttons inside the cover hit target. */
+  onCoverFullscreen?: () => void;
+  coverFullscreenTitle?: string;
   onCtaClick?: () => void;
   coverErrorText?: string;
 };
@@ -43,6 +47,8 @@ export function PromptGalleryCard({
   onMeta,
   onCardClick,
   onImageClick,
+  onCoverFullscreen,
+  coverFullscreenTitle,
   onCtaClick,
   coverErrorText,
 }: Props) {
@@ -63,16 +69,7 @@ export function PromptGalleryCard({
       }
       className="group relative z-0 mb-4 inline-block w-full break-inside-avoid overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] text-left transition hover:z-10 hover:border-[var(--border2)]"
     >
-      <button
-        type="button"
-        className="relative block w-full bg-black/20"
-        style={{ aspectRatio: coverAspectRatio }}
-        onClick={(e) => {
-          if (!onImageClick) return;
-          e.stopPropagation();
-          onImageClick();
-        }}
-      >
+      <div className="relative block w-full bg-black/20" style={{ aspectRatio: coverAspectRatio }}>
         {coverSrc ? (
           <CoverImage
             src={coverSrc}
@@ -86,11 +83,37 @@ export function PromptGalleryCard({
           <div className="grid h-full w-full place-items-center text-xs text-[var(--text3)]">—</div>
         )}
         {showModelBadge && modelBadge ? (
-          <div className="absolute left-3 top-3 rounded-md bg-black/55 px-2 py-1 text-[10px] text-white">
+          <div className="pointer-events-none absolute left-3 top-3 rounded-md bg-black/55 px-2 py-1 text-[10px] text-white">
             {modelBadge}
           </div>
         ) : null}
-      </button>
+        {onImageClick || onCardClick ? (
+          <button
+            type="button"
+            className="absolute inset-0 z-[1] cursor-pointer bg-transparent"
+            aria-label={item.title}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (onImageClick) onImageClick();
+              else onCardClick?.();
+            }}
+          />
+        ) : null}
+        {onCoverFullscreen && coverSrc ? (
+          <button
+            type="button"
+            className="absolute right-2 top-2 z-[2] grid h-8 w-8 place-items-center rounded-lg bg-black/55 text-white/90 opacity-90 shadow-sm transition hover:bg-black/70 md:opacity-0 md:group-hover:opacity-100"
+            title={coverFullscreenTitle}
+            aria-label={coverFullscreenTitle}
+            onClick={(e) => {
+              e.stopPropagation();
+              onCoverFullscreen();
+            }}
+          >
+            <LuMaximize2 className="h-4 w-4" aria-hidden="true" />
+          </button>
+        ) : null}
+      </div>
 
       <div className="p-4">
         <div className="truncate text-sm font-semibold text-[var(--text)]">{item.title}</div>

@@ -7,17 +7,26 @@ import { useTranslations } from 'next-intl';
 import { PROMPT_GALLERY } from '~/data/promptGallery';
 import { CoverImage } from '~/components/prompt-gallery/CoverImage';
 import { PromptGalleryCard } from '~/components/prompt-gallery/PromptGalleryCard';
+import { PromptGallerySwipeViewer } from '~/components/prompt-gallery/PromptGallerySwipeViewer';
 import { languages, locales } from '~/config';
 import { PROVIDER_CAPABILITIES } from '~/lib/generation/capabilities';
 import { FaGithub } from 'react-icons/fa';
 import { HiDotsHorizontal } from 'react-icons/hi';
-import { LuCheck, LuChevronDown, LuHash, LuLayers, LuShield, LuSquare } from 'react-icons/lu';
+import { LuCheck, LuChevronDown, LuHash, LuLayers, LuMaximize2, LuShield, LuSquare } from 'react-icons/lu';
 import { FaCubes } from 'react-icons/fa';
 import { TbCloud } from 'react-icons/tb';
 import { getOrCreateUserId } from '~/lib/credits/fingerprint';
 import { applyOpThemeToDocument, getOpDocumentTheme } from '~/lib/op-theme';
 
 type Props = { locale: string };
+
+type SwipeViewerState = {
+  images: string[];
+  initialIndex: number;
+  title: string;
+  imageKeyPrefix: string;
+  showDownload: boolean;
+};
 type UiState = 'idle' | 'queued' | 'running' | 'succeeded' | 'failed';
 type CreateHeroBlock = {
   /** Full headline for reference / accessibility */
@@ -234,9 +243,7 @@ export default function PageComponent({ locale }: Props) {
   /** First persist effect run is skipped so we don't overwrite localStorage with [] before hydrate runs. */
   const historyHydrateSaveSkipRef = useRef(true);
   const lastSavedJobRef = useRef<string | null>(null);
-  const [viewerOpen, setViewerOpen] = useState(false);
-  const [viewerImages, setViewerImages] = useState<string[]>([]);
-  const [viewerIndex, setViewerIndex] = useState(0);
+  const [swipeViewer, setSwipeViewer] = useState<SwipeViewerState | null>(null);
 
   useEffect(() => {
     if (uiState !== 'succeeded') return;
@@ -266,15 +273,28 @@ export default function PageComponent({ locale }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uiState, images?.[0], capabilities.aspectRatios]);
 
-  const openViewer = (list: string[], idx: number) => {
-    const proxied = list.map((u) => {
+  const proxifyImageList = (list: string[]) =>
+    list.map((u) => {
       const s = String(u || '');
       if (/^https?:\/\//i.test(s)) return `/${locale}/api/image-proxy?url=${encodeURIComponent(s)}`;
       return s;
     });
-    setViewerImages(proxied);
-    setViewerIndex(Math.max(0, Math.min(idx, Math.max(0, list.length - 1))));
-    setViewerOpen(true);
+
+  const openViewer = (
+    list: string[],
+    idx: number,
+    opts?: { title?: string; prefix?: string; showDownload?: boolean }
+  ) => {
+    const proxied = proxifyImageList(list.filter(Boolean));
+    if (!proxied.length) return;
+    const maxIdx = proxied.length - 1;
+    setSwipeViewer({
+      images: proxied,
+      initialIndex: Math.max(0, Math.min(idx, maxIdx)),
+      title: opts?.title ?? '',
+      imageKeyPrefix: opts?.prefix ?? 'output',
+      showDownload: opts?.showDownload ?? true,
+    });
   };
 
   useEffect(() => {
@@ -379,17 +399,6 @@ export default function PageComponent({ locale }: Props) {
       // ignore
     }
   }, [history]);
-
-  useEffect(() => {
-    if (!viewerOpen) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setViewerOpen(false);
-      if (e.key === 'ArrowLeft') setViewerIndex((i) => Math.max(0, i - 1));
-      if (e.key === 'ArrowRight') setViewerIndex((i) => Math.min(viewerImages.length - 1, i + 1));
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [viewerOpen, viewerImages.length]);
 
   useEffect(() => {
     const onPointerDown = (e: PointerEvent) => {
@@ -770,17 +779,23 @@ export default function PageComponent({ locale }: Props) {
                   const selected = p.id === selectedId;
                   const src = p.images?.[0];
                   return (
-                    <button
+                    <div
                       key={p.id}
-                      onClick={() => {
-                        setSelectedId(p.id);
+                      role="button"
+                      tabIndex={0}
+                      title={p.title}
+                      onClick={() => setSelectedId(p.id)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setSelectedId(p.id);
+                        }
                       }}
-                      className={`group relative w-full overflow-hidden rounded-lg border transition ${
+                      className={`group relative w-full cursor-pointer overflow-hidden rounded-lg border transition outline-none focus-visible:ring-2 focus-visible:ring-[var(--amber)] ${
                         selected
                           ? 'border-[var(--amber)] shadow-[0_0_0_2px_color-mix(in_oklab,var(--amber)_30%,transparent)]'
                           : 'border-[var(--border)] hover:border-[var(--border2)]'
                       }`}
-                      title={p.title}
                     >
                       <div
                         className="w-full bg-[var(--surface2)]"
@@ -803,7 +818,25 @@ export default function PageComponent({ locale }: Props) {
                         )}
                       </div>
                       <div className="pointer-events-none absolute inset-0 bg-black/0 transition group-hover:bg-black/10" />
-                    </button>
+                      {src ? (
+                        <button
+                          type="button"
+                          className="absolute right-2 top-2 z-10 grid h-7 w-7 place-items-center rounded-md bg-black/55 text-white/90 opacity-90 shadow-sm transition hover:bg-black/70 md:opacity-0 md:group-hover:opacity-100"
+                          title={t('createPage.fullscreenTitle')}
+                          aria-label={t('createPage.fullscreenTitle')}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            openViewer(p.images, 0, {
+                              title: p.title,
+                              prefix: p.id,
+                              showDownload: false,
+                            });
+                          }}
+                        >
+                          <LuMaximize2 className="h-4 w-4" aria-hidden="true" />
+                        </button>
+                      ) : null}
+                    </div>
                   );
                 })}
               </div>
@@ -1295,6 +1328,17 @@ export default function PageComponent({ locale }: Props) {
                         authorLabel={null}
                         authorUrl={null}
                         coverErrorText={t('gallery.coverLoadFailed')}
+                        coverFullscreenTitle={t('createPage.fullscreenTitle')}
+                        onCoverFullscreen={
+                          p.images?.length
+                            ? () =>
+                                openViewer(p.images, 0, {
+                                  title: p.title,
+                                  prefix: p.id,
+                                  showDownload: false,
+                                })
+                            : undefined
+                        }
                         onMeta={({ width, height }) => {
                           const ar = `${width} / ${height}`;
                           setRatioById((prev) => (prev[p.id] === ar ? prev : { ...prev, [p.id]: ar }));
@@ -1618,7 +1662,7 @@ export default function PageComponent({ locale }: Props) {
                                       <div key={`${u}_${idx}`} className="w-full">
                                         <button
                                           type="button"
-                                          onClick={() => openViewer(h.images, idx)}
+                                          onClick={() => openViewer(h.images, idx, { prefix: `hist-${h.id}` })}
                                           className="group relative w-full overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface2)] text-left"
                                           title={t('createPage.fullscreenTitle')}
                                           style={{ aspectRatio: ratioByUrl[src] ?? '4 / 3' }}
@@ -1724,87 +1768,22 @@ export default function PageComponent({ locale }: Props) {
         </footer>
       </div>
 
-      {viewerOpen && viewerImages.length ? (
-        <div
-          className="fixed inset-0 z-50 bg-black/80"
-          role="dialog"
-          aria-modal="true"
-          onClick={() => setViewerOpen(false)}
-        >
-          <div
-            className="relative flex h-full w-full flex-col"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between gap-2 px-4 py-3 text-white">
-              <div className="text-xs text-white/70">
-                {viewerIndex + 1}/{viewerImages.length}
-              </div>
-              <div className="flex items-center gap-2">
-                <a
-                  href={viewerImages[viewerIndex]}
-                  target="_blank"
-                  rel="noreferrer"
-                  download
-                  className="grid h-9 w-9 place-items-center rounded-lg bg-white/10 hover:bg-white/15"
-                  title={t('createPage.downloadTitle')}
-                >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path
-                      d="M12 3v10m0 0l4-4m-4 4l-4-4M4 17v3h16v-3"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </a>
-                <button
-                  className="grid h-9 w-9 place-items-center rounded-lg bg-white/10 hover:bg-white/15"
-                  onClick={() => setViewerOpen(false)}
-                  title={t('createPage.viewerClose')}
-                >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path
-                      d="M18 6L6 18M6 6l12 12"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            <div className="grid flex-1 place-items-center px-4 pb-4">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={viewerImages[viewerIndex]}
-                alt=""
-                className="max-h-[calc(100vh-56px-56px)] w-auto max-w-[100vw] object-contain"
-              />
-            </div>
-
-            {viewerImages.length > 1 ? (
-              <div className="flex items-center justify-between gap-2 px-4 py-3 text-white">
-                <button
-                  className="rounded-lg bg-white/10 px-3 py-1.5 text-xs hover:bg-white/15 disabled:opacity-40"
-                  disabled={viewerIndex <= 0}
-                  onClick={() => setViewerIndex((i) => Math.max(0, i - 1))}
-                >
-                  {t('createPage.viewerPrev')}
-                </button>
-                <button
-                  className="rounded-lg bg-white/10 px-3 py-1.5 text-xs hover:bg-white/15 disabled:opacity-40"
-                  disabled={viewerIndex >= viewerImages.length - 1}
-                  onClick={() => setViewerIndex((i) => Math.min(viewerImages.length - 1, i + 1))}
-                >
-                  {t('createPage.viewerNext')}
-                </button>
-              </div>
-            ) : null}
-          </div>
-        </div>
+      {swipeViewer ? (
+        <PromptGallerySwipeViewer
+          open
+          onClose={() => setSwipeViewer(null)}
+          images={swipeViewer.images}
+          title={swipeViewer.title}
+          imageKeyPrefix={swipeViewer.imageKeyPrefix}
+          initialIndex={swipeViewer.initialIndex}
+          coverLoadFailedText={t('gallery.coverLoadFailed')}
+          showDownloadButton={swipeViewer.showDownload}
+          downloadTitle={t('createPage.downloadTitle')}
+          closeLabel={t('createPage.viewerClose')}
+          prevLabel={t('createPage.viewerPrev')}
+          nextLabel={t('createPage.viewerNext')}
+          overlayClassName="bg-black/80"
+        />
       ) : null}
 
       {keyDialogOpen ? (

@@ -7,6 +7,7 @@ import HeadInfo from '~/components/HeadInfo';
 import { PROMPT_GALLERY, type PromptGalleryItem } from '~/data/promptGallery';
 import { CoverImage } from '~/components/prompt-gallery/CoverImage';
 import { PromptGalleryCard } from '~/components/prompt-gallery/PromptGalleryCard';
+import { PromptGallerySwipeViewer } from '~/components/prompt-gallery/PromptGallerySwipeViewer';
 import { languages, locales } from '~/config';
 import { applyOpThemeToDocument, getOpDocumentTheme } from '~/lib/op-theme';
 import {useTranslations} from 'next-intl';
@@ -81,10 +82,7 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
   const [detailOpen, setDetailOpen] = useState(false);
   const [promptCopied, setPromptCopied] = useState(false);
   const [viewerOpen, setViewerOpen] = useState(false);
-  const [viewerIndex, setViewerIndex] = useState(0);
-  const viewerStripRef = useRef<HTMLDivElement | null>(null);
-  const viewerThumbRef = useRef<HTMLDivElement | null>(null);
-  const viewerProgrammaticScrollRef = useRef(false);
+  const [viewerInitialIndex, setViewerInitialIndex] = useState(0);
 
   const imgKey = (promptId: string, src: string) => `${promptId}::${src}`;
 
@@ -171,49 +169,9 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
   const openViewer = (item: PromptGalleryItem, idx: number) => {
     setActive(item);
     setDetailOpen(false);
-    setViewerIndex(idx);
+    setViewerInitialIndex(idx);
     setViewerOpen(true);
-    viewerProgrammaticScrollRef.current = true;
   };
-
-  useEffect(() => {
-    if (!viewerOpen) return;
-    const el = viewerStripRef.current;
-    if (!el) return;
-    if (!viewerProgrammaticScrollRef.current) return;
-    viewerProgrammaticScrollRef.current = false;
-    const w = el.clientWidth || 1;
-    el.scrollTo({ left: viewerIndex * w, behavior: 'smooth' });
-  }, [viewerOpen, viewerIndex]);
-
-  useEffect(() => {
-    if (!viewerOpen) return;
-    const el = viewerThumbRef.current;
-    if (!el) return;
-    const child = el.children.item(viewerIndex) as HTMLElement | null;
-    if (!child) return;
-    child.scrollIntoView({ behavior: 'auto', inline: 'center', block: 'nearest' });
-  }, [viewerOpen, viewerIndex]);
-
-  useEffect(() => {
-    if (!viewerOpen) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setViewerOpen(false);
-        return;
-      }
-      if (!active || active.images.length <= 1) return;
-      if (e.key === 'ArrowLeft') {
-        viewerProgrammaticScrollRef.current = true;
-        setViewerIndex((v) => Math.max(0, v - 1));
-      } else if (e.key === 'ArrowRight') {
-        viewerProgrammaticScrollRef.current = true;
-        setViewerIndex((v) => Math.min(active.images.length - 1, v + 1));
-      }
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [viewerOpen, active]);
 
   useEffect(() => {
     if (!detailOpen) return;
@@ -744,137 +702,18 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
       ) : null}
 
       {active && viewerOpen ? (
-        <div
-          className="fixed inset-0 z-50 bg-black/55"
-          role="dialog"
-          aria-modal="true"
-          onClick={() => setViewerOpen(false)}
-        >
-          <button
-            className="absolute right-4 top-4 z-20 grid h-10 w-10 place-items-center rounded-full bg-black/35 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-black/50"
-            onClick={() => setViewerOpen(false)}
-          >
-            ✕
-          </button>
-
-          {active.images.length > 1 ? (
-            <>
-              <button
-                className="absolute left-4 top-1/2 z-20 -translate-y-1/2 grid h-10 w-10 place-items-center rounded-full bg-black/35 text-white ring-1 ring-white/20 hover:bg-black/50"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  viewerProgrammaticScrollRef.current = true;
-                  setViewerIndex((v) => Math.max(0, v - 1));
-                }}
-                aria-label="Previous image"
-              >
-                ‹
-              </button>
-              <button
-                className="absolute right-4 top-1/2 z-20 -translate-y-1/2 grid h-10 w-10 place-items-center rounded-full bg-black/35 text-white ring-1 ring-white/20 hover:bg-black/50"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  viewerProgrammaticScrollRef.current = true;
-                  setViewerIndex((v) => Math.min(active.images.length - 1, v + 1));
-                }}
-                aria-label="Next image"
-              >
-                ›
-              </button>
-            </>
-          ) : null}
-
-          <div
-            className="flex h-full w-full flex-col"
-          >
-            <div
-              ref={viewerStripRef}
-              className="flex w-full flex-1 snap-x snap-mandatory items-center overflow-x-auto scroll-smooth px-6 pt-6 pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-              onScroll={(e) => {
-                const el = e.currentTarget;
-                const w = el.clientWidth || 1;
-                const next = Math.round(el.scrollLeft / w);
-                viewerProgrammaticScrollRef.current = false;
-                if (next !== viewerIndex) setViewerIndex(next);
-              }}
-            >
-              {active.images.map((src, idx) => {
-                const key = imgKey(active.id, src);
-                const ar = ratioByImageKey[key] ?? '16 / 9';
-                return (
-                  <div key={src} className="flex w-full shrink-0 snap-center items-center justify-center">
-                    <div
-                      className="relative mx-auto h-[56vh] max-h-[520px] w-auto"
-                      style={{ aspectRatio: ar }}
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <CoverImage
-                        src={src}
-                        alt={`${active.title} view ${idx + 1}`}
-                        sizes="(max-width: 1024px) 100vw, 1024px"
-                        className="object-contain"
-                        priority={idx === viewerIndex}
-                        errorText={t('gallery.coverLoadFailed')}
-                        onMeta={({ width, height }) => {
-                          const nextAr = `${width} / ${height}`;
-                          setRatioByImageKey((prev) =>
-                            prev[key] === nextAr ? prev : { ...prev, [key]: nextAr }
-                          );
-                        }}
-                      />
-                      <div className="pointer-events-none absolute left-1/2 top-4 -translate-x-1/2 rounded-full bg-black/50 px-2.5 py-1 text-xs text-white">
-                        {idx + 1}/{active.images.length}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-
-            {active.images.length > 1 ? (
-              <div className="-mt-2 pb-4" onClick={(e) => e.stopPropagation()}>
-                <div
-                  ref={viewerThumbRef}
-                  className="mx-auto flex max-w-3xl items-center justify-center gap-2 overflow-x-auto px-6 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-                >
-                  {active.images.map((src, idx) => {
-                    const key = imgKey(active.id, src);
-                    const ar = ratioByImageKey[key] ?? '16 / 9';
-                    const activeThumb = idx === viewerIndex;
-                    return (
-                      <button
-                        key={src}
-                        type="button"
-                        className={`relative h-12 w-auto shrink-0 overflow-hidden rounded-none bg-black/25 ring-2 transition ${
-                          activeThumb ? 'ring-white/90' : 'ring-white/25 hover:ring-white/45'
-                        }`}
-                        style={{ aspectRatio: ar }}
-                        onClick={() => {
-                          viewerProgrammaticScrollRef.current = true;
-                          setViewerIndex(idx);
-                        }}
-                      >
-                        <CoverImage
-                          src={src}
-                          alt={`${active.title} thumb ${idx + 1}`}
-                          sizes="64px"
-                          className="object-contain"
-                          errorText={t('gallery.coverLoadFailed')}
-                          onMeta={({ width, height }) => {
-                            const nextAr = `${width} / ${height}`;
-                            setRatioByImageKey((prev) =>
-                              prev[key] === nextAr ? prev : { ...prev, [key]: nextAr }
-                            );
-                          }}
-                        />
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            ) : null}
-          </div>
-        </div>
+        <PromptGallerySwipeViewer
+          open
+          onClose={() => setViewerOpen(false)}
+          images={active.images}
+          title={active.title}
+          imageKeyPrefix={active.id}
+          initialIndex={viewerInitialIndex}
+          coverLoadFailedText={t('gallery.coverLoadFailed')}
+          closeLabel={t('createPage.viewerClose')}
+          prevLabel={t('createPage.viewerPrev')}
+          nextLabel={t('createPage.viewerNext')}
+        />
       ) : null}
     </>
   );
