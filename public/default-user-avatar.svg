@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="bg" x1="10" y1="6" x2="70" y2="74" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f8fafc"/>
+      <stop offset="0.5" stop-color="#eef2f6"/>
+      <stop offset="1" stop-color="#cbd5e1"/>
+    </linearGradient>
+    <linearGradient id="fg" x1="40" y1="18" x2="40" y2="78" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#94a3b8"/>
+      <stop offset="1" stop-color="#475569"/>
+    </linearGradient>
+  </defs>
+  <circle cx="40" cy="40" r="40" fill="url(#bg)"/>
+  <circle cx="40" cy="40" r="39" stroke="#fff" stroke-width="1" fill="none" opacity="0.45"/>
+  <!-- shoulders -->
+  <rect x="14" y="42" width="52" height="38" rx="20" fill="url(#fg)"/>
+  <!-- head (overlaps shoulders) -->
+  <circle cx="40" cy="30" r="13" fill="url(#fg)"/>
+</svg>

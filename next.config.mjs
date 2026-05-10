@@ -4,6 +4,10 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    experimental: {
+        // Required for root `instrumentation.ts` (e.g. bootstrap-admin on server start).
+        instrumentationHook: true,
+    },
     eslint: {
         ignoreDuringBuilds: true,
     },

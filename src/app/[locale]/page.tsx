@@ -1,18 +1,14 @@
 import {unstable_setRequestLocale} from 'next-intl/server';
-import {getIndexLanguageText, getFooterLanguageText} from "~/configs/languageText";
+import { getPromptGallery } from '~/lib/prompts/get-prompt-gallery';
 import PageComponent from "./gallery/PageComponent";
 
 export default async function HomePage({params: {locale = ''}}) {
   unstable_setRequestLocale(locale);
-  const [indexLanguageText, footerLanguageText] = await Promise.all([
-    getIndexLanguageText(),
-    getFooterLanguageText(),
-  ]);
+  const prompts = await getPromptGallery();
   return (
     <PageComponent
       locale={locale}
-      indexLanguageText={indexLanguageText}
-      footerLanguageText={footerLanguageText}
+      prompts={prompts}
     />
   );
 }

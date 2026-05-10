@@ -2,21 +2,18 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 import HeadInfo from '~/components/HeadInfo';
-import { PROMPT_GALLERY, type PromptGalleryItem } from '~/data/promptGallery';
+import type { PromptGalleryItem } from '~/data/promptGallery';
 import { CoverImage } from '~/components/prompt-gallery/CoverImage';
 import { PromptGalleryCard } from '~/components/prompt-gallery/PromptGalleryCard';
 import { PromptGallerySwipeViewer } from '~/components/prompt-gallery/PromptGallerySwipeViewer';
-import { languages, locales } from '~/config';
-import { applyOpThemeToDocument, getOpDocumentTheme } from '~/lib/op-theme';
+import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
+import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
 import {useTranslations} from 'next-intl';
-import { FaGithub } from 'react-icons/fa';
 
 type Props = {
   locale: string;
-  indexLanguageText: any;
-  footerLanguageText: any;
+  prompts: PromptGalleryItem[];
 };
 
 const PAGE_SIZE = 18;
@@ -37,7 +34,7 @@ const MODEL_FILTER_CHIP = {
 const TAG_META_CHIP =
   'rounded-md border border-[var(--border)] bg-[var(--surface2)] px-3 py-1 text-xs text-[var(--text2)]';
 
-export default function PageComponent({ locale, indexLanguageText, footerLanguageText }: Props) {
+export default function PageComponent({ locale, prompts }: Props) {
   const t = useTranslations('OpenPrompts');
   const router = useRouter();
   const [query, setQuery] = useState('');
@@ -48,21 +45,18 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
   const [ratioById, setRatioById] = useState<Record<string, string>>({});
   const [ratioMetaById, setRatioMetaById] = useState<Record<string, { w: number; h: number }>>({});
   const [ratioByImageKey, setRatioByImageKey] = useState<Record<string, string>>({});
-  const [langOpen, setLangOpen] = useState(false);
-  const langWrapRef = useRef<HTMLDivElement | null>(null);
-
   const models = useMemo(
-    () => ['all', ...uniq(PROMPT_GALLERY.map((p) => p.model)).sort((a, b) => a.localeCompare(b))],
-    []
+    () => ['all', ...uniq(prompts.map((p) => p.model)).sort((a, b) => a.localeCompare(b))],
+    [prompts]
   );
   const tags = useMemo(
-    () => ['all', ...uniq(PROMPT_GALLERY.flatMap((p) => p.tags)).sort((a, b) => a.localeCompare(b))],
-    []
+    () => ['all', ...uniq(prompts.flatMap((p) => p.tags)).sort((a, b) => a.localeCompare(b))],
+    [prompts]
   );
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return PROMPT_GALLERY.filter((p) => {
+    return prompts.filter((p) => {
       if (model !== 'all' && p.model !== model) return false;
       if (tag !== 'all' && !p.tags.includes(tag)) return false;
       if (!q) return true;
@@ -73,7 +67,7 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
         p.tags.some((t) => t.toLowerCase().includes(q))
       );
     });
-  }, [query, model, tag]);
+  }, [query, model, tag, prompts]);
 
   const visible = useMemo(() => filtered.slice(0, limit), [filtered, limit]);
   const hasMore = visible.length < filtered.length;
@@ -220,39 +214,6 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
     setAutoLoading(false);
   }, [limit, query, model, tag]);
 
-  useEffect(() => {
-    const onPointerDown = (e: PointerEvent) => {
-      const el = langWrapRef.current;
-      if (!el) return;
-      if (el.contains(e.target as Node)) return;
-      setLangOpen(false);
-    };
-    document.addEventListener('pointerdown', onPointerDown);
-    return () => document.removeEventListener('pointerdown', onPointerDown);
-  }, []);
-
-  const localeMeta = useMemo(() => {
-    const l = languages.find((x) => x.lang === locale);
-    return l ?? { lang: locale, language: locale.toUpperCase() };
-  }, [locale]);
-
-  const navItems = useMemo(() => {
-    return [
-      {
-        key: 'gallery',
-        label: t('nav.gallery'),
-        href: `/${locale}`,
-      },
-      {
-        key: 'create',
-        label: t('nav.create'),
-        href: `/${locale}/create`,
-      },
-      { key: 'rank', label: t('nav.rank'), href: '#' },
-      { key: 'docs', label: t('nav.docs'), href: '#' },
-    ] as const;
-  }, [t, locale]);
-
   return (
     <>
       <HeadInfo
@@ -264,114 +225,7 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
       />
 
       <div className="min-h-screen w-full bg-[var(--bg)] text-[var(--text)]">
-        <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[var(--bg)]">
-          <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-6">
-            <a href={`/${locale}`} className="flex items-center gap-2 text-sm font-semibold tracking-wide">
-              <span className="relative grid h-8 w-8 place-items-center overflow-hidden rounded-lg">
-                <Image
-                  src="/logo.png"
-                  alt="Open Prompts"
-                  fill
-                  sizes="32px"
-                  className="object-contain"
-                  priority
-                />
-              </span>
-              <span>
-                Open <span className="italic text-[var(--amber2)]">Prompts</span>
-              </span>
-            </a>
-            <nav className="hidden items-center gap-1 md:flex">
-              {navItems.map((item) => (
-                <a
-                  key={item.key}
-                  href={item.href}
-                  className={`rounded-lg px-3 py-1.5 text-xs transition ${
-                    item.key === 'gallery'
-                      ? 'bg-[color-mix(in_oklab,var(--amber)_12%,transparent)] text-[var(--amber2)]'
-                      : 'text-[var(--text2)] hover:bg-[var(--surface2)] hover:text-[var(--text)]'
-                  }`}
-                >
-                  {item.key === 'create' ? `✦ ${item.label}` : item.label}
-                </a>
-              ))}
-            </nav>
-            <div className="flex items-center gap-2">
-              <a
-                href="https://github.com/rudy2steiner/open-prompts"
-                target="_blank"
-                rel="noreferrer"
-                className="grid h-9 w-9 place-items-center rounded-xl border border-[var(--ctl-border)] bg-[var(--ctl-bg)] text-[var(--text2)] shadow-sm hover:bg-[var(--ctl-hover)] hover:text-[var(--text)]"
-                aria-label="GitHub repository"
-                title="GitHub"
-              >
-                <FaGithub className="h-4 w-4" aria-hidden="true" />
-              </a>
-              <button
-                className="grid h-9 w-9 grid-cols-1 grid-rows-1 place-items-center rounded-xl border border-[var(--ctl-border)] bg-[var(--ctl-bg)] text-[var(--text2)] shadow-sm hover:bg-[var(--ctl-hover)] hover:text-[var(--text)]"
-                title={t('header.themeToggle')}
-                onClick={() => {
-                  const cur = getOpDocumentTheme();
-                  const next = cur === 'dark' ? 'light' : 'dark';
-                  applyOpThemeToDocument(next);
-                  try {
-                    localStorage.setItem('op_theme', next);
-                  } catch {
-                    // ignore
-                  }
-                }}
-              >
-                <span className="op-theme-toggle-moon" aria-hidden="true">
-                  ☾
-                </span>
-                <span className="op-theme-toggle-sun" aria-hidden="true">
-                  ☀︎
-                </span>
-              </button>
-
-              <div className="relative" ref={langWrapRef}>
-                <button
-                  className="grid h-9 w-9 place-items-center rounded-xl border border-[var(--ctl-border)] bg-[var(--ctl-bg)] text-[var(--text2)] shadow-sm hover:bg-[var(--ctl-hover)] hover:text-[var(--text)]"
-                  onClick={(e) => {
-                    setLangOpen((v) => !v);
-                  }}
-                  title={t('header.language')}
-                >
-                  <span className="text-[12px] font-semibold tracking-tight leading-none">文A</span>
-                </button>
-                {langOpen ? (
-                  <div
-                    className="absolute right-0 mt-2 w-44 overflow-hidden rounded-xl border border-[var(--ctl-border)] bg-[var(--panel-bg)] p-1 shadow-xl"
-                  >
-                    {locales.map((l) => {
-                      const meta = languages.find((x) => x.lang === l) ?? { lang: l, language: l.toUpperCase() };
-                      const label =
-                        l === 'en' ? 'English' : l === 'zh' ? '中文' : l === 'ja' ? '日本語' : meta.language;
-                      return (
-                        <a
-                          key={l}
-                          href={`/${l}`}
-                          className={`flex items-center justify-between rounded-lg px-3 py-2 text-sm transition ${
-                            l === locale
-                              ? 'text-[var(--text)]'
-                              : 'text-[var(--text)] hover:bg-[var(--surface2)]'
-                          }`}
-                        >
-                          <span>{label}</span>
-                          {l === locale ? <span className="text-[12px] text-[var(--amber)]">✓</span> : null}
-                        </a>
-                      );
-                    })}
-                  </div>
-                ) : null}
-              </div>
-
-              <button className="rounded-lg border border-[var(--border2)] px-3 py-1.5 text-xs text-[var(--text2)] hover:bg-[var(--surface2)] hover:text-[var(--text)]">
-                {t('nav.submitCta')}
-              </button>
-            </div>
-          </div>
-        </header>
+        <OpenPromptsSiteHeader locale={locale} activeNav="gallery" langPathSuffix="" />
 
         <main className="w-full">
           <section className="px-6 pb-10 pt-16 text-center">
@@ -519,37 +373,7 @@ export default function PageComponent({ locale, indexLanguageText, footerLanguag
           </section>
         </main>
 
-        <footer className="mt-10 border-t border-[var(--border)] px-6 py-8">
-          <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-4 md:flex-row md:items-center">
-            <div className="text-sm text-[var(--text2)]">{t('footer.tagline')}</div>
-            <div className="flex flex-wrap gap-5 text-xs text-[var(--text3)]">
-              {[
-                { label: t('footer.links.github'), href: 'https://github.com/rudy2steiner/open-prompts' },
-                { label: t('footer.links.docs'), href: '#' },
-                { label: t('footer.links.deploy'), href: '#' },
-                { label: t('footer.links.pricing'), href: '#' },
-                { label: t('footer.links.privacy'), href: `/${locale}/privacy-policy` },
-              ].map(({ label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  className="hover:text-[var(--text2)]"
-                  target={href.startsWith('http') ? '_blank' : undefined}
-                  rel={href.startsWith('http') ? 'noreferrer' : undefined}
-                >
-                  {href.startsWith('http') ? (
-                    <span className="inline-flex items-center gap-1.5">
-                      <FaGithub className="h-4 w-4" aria-hidden="true" />
-                      <span>{label}</span>
-                    </span>
-                  ) : (
-                    label
-                  )}
-                </a>
-              ))}
-            </div>
-          </div>
-        </footer>
+        <OpenPromptsSiteFooter locale={locale} />
       </div>
 
       {active && detailOpen && !viewerOpen ? (

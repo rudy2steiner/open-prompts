@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import {Inter} from 'next/font/google';
 import {notFound} from 'next/navigation';
 import {getMessages, unstable_setRequestLocale} from 'next-intl/server';
 import {cookies} from 'next/headers';
@@ -8,8 +7,7 @@ import {ReactNode} from 'react';
 import {locales} from '~/config';
 import { CommonProvider } from '~/context/common-context';
 import { Analytics } from "@vercel/analytics/react";
-
-const inter = Inter({subsets: ['latin']});
+import { AuthSessionProvider } from '~/components/auth/AuthSessionProvider';
 
 type Props = {
   children: ReactNode;
@@ -159,12 +157,12 @@ export default async function LocaleLayout({
     </head>
     <body
       suppressHydrationWarning={true}
-      className={clsx(inter.className, 'flex h-full flex-col bg-[var(--bg)] text-[var(--text)]')}
+      className={clsx('font-sans flex h-full flex-col bg-[var(--bg)] text-[var(--text)]')}
     >
     <NextIntlClientProvider messages={messages}>
-      <CommonProvider>
-        {children}
-      </CommonProvider>
+      <AuthSessionProvider>
+        <CommonProvider>{children}</CommonProvider>
+      </AuthSessionProvider>
     </NextIntlClientProvider>
     <Analytics />
     </body>

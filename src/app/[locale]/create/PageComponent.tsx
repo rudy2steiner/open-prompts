@@ -2,23 +2,21 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { PROMPT_GALLERY } from '~/data/promptGallery';
+import type { PromptGalleryItem } from '~/data/promptGallery';
 import { CoverImage } from '~/components/prompt-gallery/CoverImage';
 import { PromptGalleryCard } from '~/components/prompt-gallery/PromptGalleryCard';
 import { PromptGallerySwipeViewer } from '~/components/prompt-gallery/PromptGallerySwipeViewer';
-import { languages, locales } from '~/config';
+import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
+import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
 import { PROVIDER_CAPABILITIES } from '~/lib/generation/capabilities';
-import { FaGithub } from 'react-icons/fa';
 import { HiDotsHorizontal } from 'react-icons/hi';
 import { LuCheck, LuChevronDown, LuHash, LuLayers, LuMaximize2, LuShield, LuSquare } from 'react-icons/lu';
 import { FaCubes } from 'react-icons/fa';
 import { TbCloud } from 'react-icons/tb';
 import { getOrCreateUserId } from '~/lib/credits/fingerprint';
-import { applyOpThemeToDocument, getOpDocumentTheme } from '~/lib/op-theme';
 
-type Props = { locale: string };
+type Props = { locale: string; prompts: PromptGalleryItem[] };
 
 type SwipeViewerState = {
   images: string[];
@@ -64,37 +62,34 @@ type HistoryEntry = {
   images: string[];
 };
 
-export default function PageComponent({ locale }: Props) {
+export default function PageComponent({ locale, prompts }: Props) {
   const t = useTranslations('OpenPrompts');
   const searchParams = useSearchParams();
-  const [langOpen, setLangOpen] = useState(false);
-  const langWrapRef = useRef<HTMLDivElement | null>(null);
-
   const [query, setQuery] = useState('');
-  const [selectedId, setSelectedId] = useState<string>(PROMPT_GALLERY[0]?.id ?? '');
+  const [selectedId, setSelectedId] = useState<string>(prompts[0]?.id ?? '');
   const [heroCarouselIdx, setHeroCarouselIdx] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [ratioById, setRatioById] = useState<Record<string, string>>({});
   const item = useMemo(() => {
-    const found = PROMPT_GALLERY.find((p) => p.id === selectedId);
-    return found ?? PROMPT_GALLERY[0];
-  }, [selectedId]);
+    const found = prompts.find((p) => p.id === selectedId);
+    return found ?? prompts[0];
+  }, [selectedId, prompts]);
 
   useEffect(() => {
     if (!searchParams) return;
     const idFromUrl = searchParams.get('template') || searchParams.get('templateId') || searchParams.get('id');
     if (!idFromUrl) return;
-    const exists = PROMPT_GALLERY.some((p) => p.id === idFromUrl);
+    const exists = prompts.some((p) => p.id === idFromUrl);
     if (!exists) return;
     setSelectedId(idFromUrl);
     const el = document.getElementById('op-create-prompt');
     el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, [searchParams]);
+  }, [searchParams, prompts]);
 
   const filteredTemplates = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return PROMPT_GALLERY;
-    return PROMPT_GALLERY.filter((p) => {
+    if (!q) return prompts;
+    return prompts.filter((p) => {
       return (
         p.title.toLowerCase().includes(q) ||
         p.description.toLowerCase().includes(q) ||
@@ -102,13 +97,13 @@ export default function PageComponent({ locale }: Props) {
         p.tags.some((x) => x.toLowerCase().includes(q))
       );
     });
-  }, [query]);
+  }, [query, prompts]);
 
   const heroCarouselItems = useMemo(() => {
     // Keep it short and stable so the Hero feels intentional.
-    const picked = PROMPT_GALLERY.slice(0, 8).filter((p) => p?.id && p?.title);
-    return picked.length ? picked : PROMPT_GALLERY.slice(0, 1);
-  }, []);
+    const picked = prompts.slice(0, 8).filter((p) => p?.id && p?.title);
+    return picked.length ? picked : prompts.slice(0, 1);
+  }, [prompts]);
 
   const [promptText, setPromptText] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -402,17 +397,6 @@ export default function PageComponent({ locale }: Props) {
 
   useEffect(() => {
     const onPointerDown = (e: PointerEvent) => {
-      const el = langWrapRef.current;
-      if (!el) return;
-      if (el.contains(e.target as Node)) return;
-      setLangOpen(false);
-    };
-    document.addEventListener('pointerdown', onPointerDown);
-    return () => document.removeEventListener('pointerdown', onPointerDown);
-  }, []);
-
-  useEffect(() => {
-    const onPointerDown = (e: PointerEvent) => {
       const target = e.target as Node | null;
       if (!target) return;
       const el = moreWrapRef.current;
@@ -653,108 +637,15 @@ export default function PageComponent({ locale }: Props) {
       `}</style>
 
       <div className="flex h-screen w-full flex-col bg-[var(--bg)] text-[var(--text)]">
-        <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]">
-          <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-6">
-            <a href={`/${locale}`} className="flex items-center gap-2 text-sm font-semibold tracking-wide">
-              <span className="relative grid h-8 w-8 place-items-center overflow-hidden rounded-lg">
-                <Image src="/logo.png" alt="Open Prompts" fill sizes="32px" className="object-contain" priority />
-              </span>
-              <span>
-                Open <span className="italic text-[var(--amber2)]">Prompts</span>
-              </span>
-            </a>
-            <nav className="hidden items-center gap-1 md:flex">
-              {[
-                { key: 'gallery', label: t('nav.gallery'), href: `/${locale}` },
-                { key: 'create', label: t('nav.create'), href: `/${locale}/create` },
-                { key: 'rank', label: t('nav.rank'), href: '#' },
-                { key: 'docs', label: t('nav.docs'), href: '#' },
-              ].map((item) => (
-                <a
-                  key={item.key}
-                  href={item.href}
-                  className={`rounded-lg px-3 py-1.5 text-xs transition ${
-                    item.key === 'create'
-                      ? 'bg-[color-mix(in_oklab,var(--amber)_12%,transparent)] text-[var(--amber2)]'
-                      : 'text-[var(--text2)] hover:bg-[var(--surface2)] hover:text-[var(--text)]'
-                  }`}
-                >
-                  {item.key === 'create' ? `✦ ${item.label}` : item.label}
-                </a>
-              ))}
-            </nav>
-            <div className="flex items-center gap-2">
-              <a
-                href="https://github.com/rudy2steiner/open-prompts"
-                target="_blank"
-                rel="noreferrer"
-                className="grid h-9 w-9 place-items-center rounded-xl border border-[var(--ctl-border)] bg-[var(--ctl-bg)] text-[var(--text2)] shadow-sm hover:bg-[var(--ctl-hover)] hover:text-[var(--text)]"
-                aria-label={t('createPage.githubRepoAriaLabel')}
-                title={t('createPage.githubTitle')}
-              >
-                <FaGithub className="h-4 w-4" aria-hidden="true" />
-              </a>
-              <button
-                className="grid h-9 w-9 grid-cols-1 grid-rows-1 place-items-center rounded-xl border border-[var(--ctl-border)] bg-[var(--ctl-bg)] text-[var(--text2)] shadow-sm hover:bg-[var(--ctl-hover)] hover:text-[var(--text)]"
-                title={t('header.themeToggle')}
-                onClick={() => {
-                  const cur = getOpDocumentTheme();
-                  const next = cur === 'dark' ? 'light' : 'dark';
-                  applyOpThemeToDocument(next);
-                  try {
-                    localStorage.setItem('op_theme', next);
-                  } catch {
-                    // ignore
-                  }
-                }}
-              >
-                <span className="op-theme-toggle-moon" aria-hidden="true">
-                  ☾
-                </span>
-                <span className="op-theme-toggle-sun" aria-hidden="true">
-                  ☀︎
-                </span>
-              </button>
-
-              <div className="relative" ref={langWrapRef}>
-                <button
-                  className="grid h-9 w-9 place-items-center rounded-xl border border-[var(--ctl-border)] bg-[var(--ctl-bg)] text-[var(--text2)] shadow-sm hover:bg-[var(--ctl-hover)] hover:text-[var(--text)]"
-                  onClick={() => setLangOpen((v) => !v)}
-                  title={t('header.language')}
-                >
-                  <span className="text-[12px] font-semibold tracking-tight leading-none">文A</span>
-                </button>
-                {langOpen ? (
-                  <div className="absolute right-0 z-50 mt-2 w-44 overflow-hidden rounded-xl border border-[var(--ctl-border)] bg-[var(--panel-bg)] p-1 shadow-xl">
-                    {locales.map((l) => {
-                      const meta = languages.find((x) => x.lang === l) ?? { lang: l, language: l.toUpperCase() };
-                      const label =
-                        l === 'en' ? 'English' : l === 'zh' ? '中文' : l === 'ja' ? '日本語' : meta.language;
-                      return (
-                        <a
-                          key={l}
-                          href={`/${l}/create`}
-                          className={`flex items-center justify-between rounded-lg px-3 py-2 text-sm transition ${
-                            l === locale
-                              ? 'text-[var(--text)]'
-                              : 'text-[var(--text)] hover:bg-[var(--surface2)]'
-                          }`}
-                        >
-                          <span>{label}</span>
-                          {l === locale ? <span className="text-[12px] text-[var(--amber)]">✓</span> : null}
-                        </a>
-                      );
-                    })}
-                  </div>
-                ) : null}
-              </div>
-
-              <button className="rounded-lg border border-[var(--border2)] px-3 py-1.5 text-xs text-[var(--text2)] hover:bg-[var(--surface2)] hover:text-[var(--text)]">
-                {t('nav.submitCta')} →
-              </button>
-            </div>
-          </div>
-        </header>
+        <OpenPromptsSiteHeader
+          locale={locale}
+          activeNav="create"
+          langPathSuffix="/create"
+          stickyZClass="z-50"
+          githubAriaLabel={t('createPage.githubRepoAriaLabel')}
+          githubTitle={t('createPage.githubTitle')}
+          submitCtaSuffix=" →"
+        />
 
         <div className="mx-auto min-h-0 h-[calc(100vh-56px-73px)] w-full max-w-7xl overflow-hidden rounded-none border-x border-[var(--border2)] shadow-[0_0_0_1px_rgba(0,0,0,0.05)]">
           <div className="grid min-h-0 h-full w-full grid-cols-1 overflow-hidden md:grid-cols-[260px_1fr] lg:grid-cols-[260px_1fr_300px]">
@@ -1308,7 +1199,7 @@ export default function PageComponent({ locale }: Props) {
                 </div>
 
                 <div className="mt-4 columns-1 gap-4 sm:columns-2">
-                  {PROMPT_GALLERY.slice(0, 50).map((p) => {
+                  {prompts.slice(0, 50).map((p) => {
                     const src = p.images?.[0];
                     return (
                       <PromptGalleryCard
@@ -1735,37 +1626,7 @@ export default function PageComponent({ locale }: Props) {
           </div>
         </div>
 
-        <footer className="border-t border-[var(--border)] px-6 py-6">
-          <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-4 md:flex-row md:items-center">
-            <div className="text-sm text-[var(--text2)]">{t('footer.tagline')}</div>
-            <div className="flex flex-wrap gap-5 text-xs text-[var(--text3)]">
-              {[
-                { label: t('footer.links.github'), href: 'https://github.com/rudy2steiner/open-prompts' },
-                { label: t('footer.links.docs'), href: '#' },
-                { label: t('footer.links.deploy'), href: '#' },
-                { label: t('footer.links.pricing'), href: '#' },
-                { label: t('footer.links.privacy'), href: `/${locale}/privacy-policy` },
-              ].map(({ label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  className="hover:text-[var(--text2)]"
-                  target={href.startsWith('http') ? '_blank' : undefined}
-                  rel={href.startsWith('http') ? 'noreferrer' : undefined}
-                >
-                  {href.startsWith('http') ? (
-                    <span className="inline-flex items-center gap-1.5">
-                      <FaGithub className="h-4 w-4" aria-hidden="true" />
-                      <span>{label}</span>
-                    </span>
-                  ) : (
-                    label
-                  )}
-                </a>
-              ))}
-            </div>
-          </div>
-        </footer>
+        <OpenPromptsSiteFooter locale={locale} spacing="flush" />
       </div>
 
       {swipeViewer ? (

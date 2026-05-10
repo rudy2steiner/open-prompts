@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type Props = {
   src: string;
@@ -16,7 +16,13 @@ type Props = {
 export function CoverImage({ src, alt, sizes, priority, className, errorText, onMeta }: Props) {
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
-  const isRemote = /^https?:\/\//i.test(src) || src.includes('/api/image-proxy');
+  const isRemote =
+    /^https?:\/\//i.test(src) || src.startsWith('data:') || src.includes('/api/image-proxy');
+
+  useEffect(() => {
+    setLoaded(false);
+    setErrored(false);
+  }, [src]);
 
   return (
     <div className="relative h-full w-full overflow-hidden bg-transparent">
@@ -32,6 +38,7 @@ export function CoverImage({ src, alt, sizes, priority, className, errorText, on
         </div>
       ) : (
         <Image
+          key={src}
           src={src}
           alt={alt}
           fill

@@ -280,7 +280,10 @@
       "language": "切换语言",
       "themeToggle": "切换浅色/深色模式",
       "themeToLight": "切换亮色模式",
-      "themeToDark": "切换暗色模式"
+      "themeToDark": "切换暗色模式",
+      "signIn": "登录",
+      "signOut": "退出",
+      "displayNameFallback": "用户"
     },
     "nav": {
       "gallery": "画廊",
@@ -290,6 +293,222 @@
       "rank": "排行榜",
       "docs": "文档",
       "submitCta": "提交提示词"
+    },
+    "submitPage": {
+      "seo": {
+        "title": "提交提示词 | Open Prompts",
+        "description": "分享提示词模板：标题、模型、分类、标签与正文，审核后公开展示。"
+      },
+      "xImport": {
+        "title": "从 X 快筛导入",
+        "desc": "粘贴公开推文链接（x.com / twitter.com），自动填充标题、描述、正文、配图 URL、来源链接及作者 @（若接口返回）。",
+        "placeholder": "https://x.com/username/status/…",
+        "button": "解析推文",
+        "busy": "解析中…",
+        "success": "已从推文导入，请检查各字段后继续。",
+        "errorGeneric": "无法导入该链接。",
+        "errorNotTweet": "请使用推文地址，例如 x.com/用户/status/数字ID。"
+      },
+      "wizard": {
+        "eyebrow": "提交提示词",
+        "title": "分享你的创意",
+        "titleEm": "提示词",
+        "subtitle": "完成两步填写，提交后经审核即可在画廊公开展示。",
+        "subtitleSimple": "单页填写 — 只保留模板必要信息，填完即可提交。"
+      },
+      "info": {
+        "body": "提示词请使用英文，效果最佳。支持参数语法如 {ar}、{v} 等。",
+        "ar": "--ar 16:9",
+        "v": "--v 6",
+        "link": "提示词写作指南 →"
+      },
+      "labels": {
+        "templateTitle": "模板名称",
+        "shortDesc": "简短描述",
+        "model": "适配模型",
+        "prompt": "提示词正文",
+        "category": "风格分类",
+        "aspectRatio": "画幅比例",
+        "quality": "风格强度",
+        "tags": "标签",
+        "visibility": "可见性",
+        "sourceUrl": "来源链接",
+        "author": "作者 / 提交者",
+        "upload": "上传效果预览图",
+        "imageUrls": "或填入图片 URL"
+      },
+      "hints": {
+        "title": "25 字以内，简洁有力",
+        "desc": "一句话说明效果",
+        "promptCount": "{count} / 800",
+        "tags": "2–8 个，回车确认",
+        "source": "X/Twitter、Reddit、个人网站等",
+        "author": "选填，致谢原创作者",
+        "upload": "最多 4 张，PNG / JPG，≤10MB",
+        "urls": "多个用逗号分隔"
+      },
+      "placeholders": {
+        "title": "例：Cinematic Sunset Portrait",
+        "desc": "例：A dramatic portrait at golden hour with cinematic depth…",
+        "prompt": "A breathtaking cinematic portrait at golden hour…",
+        "source": "https://x.com/username/status/…",
+        "author": "@username 或 真实姓名",
+        "urls": "https://cdn.example.com/img1.jpg, https://…",
+        "tagInput": "输入后回车…",
+        "category": "选择主分类…"
+      },
+      "models": {
+        "gptImage2": { "name": "GPT Image 2", "tag": "OpenAI" },
+        "midjourney": { "name": "Midjourney", "tag": "v6" },
+        "dalle3": { "name": "DALL·E 3", "tag": "OpenAI" },
+        "flux": { "name": "Flux 1.1 Pro", "tag": "BFL" },
+        "sd": { "name": "Stable Diffusion", "tag": "XL" },
+        "ideogram": { "name": "Ideogram", "tag": "v3" }
+      },
+      "modelValues": {
+        "gptImage2": "GPT Image 2",
+        "midjourney": "Midjourney v6",
+        "dalle3": "DALL·E 3",
+        "flux": "Flux 1.1 Pro",
+        "sd": "Stable Diffusion",
+        "ideogram": "Ideogram v3"
+      },
+      "categories": {
+        "landscape": "🌅 风景 · Landscape",
+        "portrait": "🧑‍🎨 人物 · Portrait",
+        "architecture": "🏙️ 建筑 · Architecture",
+        "animal": "🐾 动物 · Animal",
+        "illustration": "✏️ 插画 · Illustration",
+        "realism": "📸 写实摄影 · Realism",
+        "game": "🎮 游戏像素 · Game Art",
+        "cinematic": "🎬 电影场景 · Cinematic",
+        "scifi": "🧬 科幻概念 · Sci-Fi",
+        "abstract": "✦ 抽象艺术 · Abstract"
+      },
+      "ratios": {
+        "1_1": "1:1 方形",
+        "16_9": "16:9 横屏",
+        "9_16": "9:16 竖屏",
+        "4_3": "4:3 标准",
+        "3_2": "3:2 摄影",
+        "21_9": "21:9 宽幅",
+        "custom": "自定义"
+      },
+      "qualities": {
+        "fast": "⚡ 快速预览",
+        "standard": "✦ 标准质量",
+        "high": "💎 高精细度"
+      },
+      "visibility": {
+        "publicTitle": "🌐 公开发布",
+        "publicDesc": "所有人可见，参与社区推荐",
+        "privateTitle": "🔒 仅自己",
+        "privateDesc": "私有保存，不出现在画廊"
+      },
+      "quickTags": ["Portrait", "Golden Hour", "Photorealistic", "Dark Mood", "Fantasy", "Editorial", "Anime", "Vintage"],
+      "buttons": {
+        "nextTags": "下一步：分类、标签与提交",
+        "back": "← 上一步",
+        "submit": "🚀 提交审核",
+        "submitting": "提交中…",
+        "browseGallery": "浏览画廊 →",
+        "submitAnother": "再提交一条",
+        "myTemplates": "查看我的模板",
+        "detectSource": "自动识别",
+        "copyPrompt": "复制",
+        "copied": "✓ 已复制"
+      },
+      "stepHint": "第 {n} 步 / 共 {total} 步",
+      "preview": {
+        "paneTitle": "卡片预览",
+        "live": "实时同步",
+        "titleEmpty": "模板标题将显示在这里",
+        "descEmpty": "简短描述…",
+        "promptEmpty": "在左侧填写提示词后显示…",
+        "uploadPlaceholder": "上传效果图后显示",
+        "categoryFallback": "分类",
+        "generateCta": "生图 →"
+      },
+      "qualityCheck": "质量检查",
+      "validation": {
+        "needTitle": "请填写模板标题。",
+        "needPrompt": "提示词至少需要 10 个字符。",
+        "needCategory": "请选择风格分类。",
+        "needTags": "请使用 2–8 个标签。",
+        "submitFailed": "提交保存失败，请稍后重试。",
+        "submitUnavailable": "暂时无法提交（数据库未配置）。"
+      },
+      "rules": {
+        "promptLen": "提示词长度 ≥ 10 字符",
+        "title": "模板标题已填写",
+        "model": "已选择适配模型",
+        "category": "已选择风格分类",
+        "tags": "标签数量 2–8 个",
+        "images": "至少 1 张效果图"
+      },
+      "guidelines": {
+        "dividerSubmit": "提交须知",
+        "dividerImages": "效果图片",
+        "requirementsTitle": "提交要求",
+        "requirementsList": [
+          "提示词须为英文，长度 10–800 字符",
+          "需附带至少 1 张使用该提示词生成的效果图",
+          "标题和描述应准确反映效果，不得误导",
+          "每位用户每天最多提交 20 条"
+        ],
+        "rejectedTitle": "不受理内容",
+        "rejectedList": [
+          "含有色情、暴力、仇恨等违规内容",
+          "侵犯他人版权或商标的提示词",
+          "重复提交已存在的相同内容",
+          "故意生成虚假信息或深伪内容"
+        ]
+      },
+      "success": {
+        "title": "提交",
+        "titleEm": "成功",
+        "body": "你的提示词已进入审核队列，通常在 24 小时内完成审核。审核通过后将自动出现在画廊并通知你。",
+        "idLabel": "提交编号 · #OP-{id}"
+      }
+    },
+    "login": {
+      "seoTitle": "登录 | Open Prompts",
+      "seoDescription": "使用 GitHub、Google 或邮箱登录，收藏提示词并管理生图记录。",
+      "backGallery": "返回画廊",
+      "welcomeLine1": "欢迎回到",
+      "welcomeBrandOpen": "Open",
+      "welcomeBrandEm": "Prompts",
+      "welcomeSubtitle": "登录后可收藏提示词、投递作品、管理你的生图记录。",
+      "tabLogin": "登录",
+      "tabRegister": "注册",
+      "oauthGithub": "使用 GitHub 继续",
+      "oauthGoogle": "使用 Google 继续",
+      "oauthDisabledHint": "服务器未配置该登录方式",
+      "dividerEmail": "或使用邮箱",
+      "labelUsername": "用户名 / 显示名",
+      "usernamePlaceholder": "your_username",
+      "labelEmail": "邮箱地址",
+      "emailPlaceholder": "you@example.com",
+      "labelPassword": "密码",
+      "passwordPlaceholder": "••••••••",
+      "remember": "保持登录",
+      "forgot": "忘记密码？",
+      "submitLogin": "登录账户",
+      "submitRegister": "创建账户",
+      "submitBusy": "处理中…",
+      "switchToRegister": "还没有账户？",
+      "switchToRegisterLink": "立即注册",
+      "switchToLogin": "已有账户？",
+      "switchToLoginLink": "返回登录",
+      "disclaimer": "继续即代表你同意服务条款与隐私政策。",
+      "errorCredentials": "邮箱或密码不正确。",
+      "errorGeneric": "出错了，请稍后再试。",
+      "errorRegister": "无法创建账户。",
+      "magicTitle": "查收你的邮件",
+      "magicBody": "若该邮箱已注册，你将很快收到重置说明。",
+      "magicResend": "重新发送",
+      "magicResent": "已发送",
+      "registerSuccess": "账户已创建，正在登录…"
     },
     "hero": {
       "eyebrow": "社区精选 · 持续更新",

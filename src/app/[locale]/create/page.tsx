@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Suspense } from 'react';
+import { getPromptGallery } from '~/lib/prompts/get-prompt-gallery';
 import PageComponent from './PageComponent';
 
 function normalizeLocale(raw: string) {
@@ -32,9 +33,10 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   const { locale: raw } = await params;
   const locale = normalizeLocale(raw);
   setRequestLocale(locale);
+  const prompts = await getPromptGallery();
   return (
     <Suspense fallback={null}>
-      <PageComponent locale={locale} />
+      <PageComponent locale={locale} prompts={prompts} />
     </Suspense>
   );
 }

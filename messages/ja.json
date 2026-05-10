@@ -296,7 +296,10 @@
       "language": "言語",
       "themeToggle": "ライト/ダークを切り替え",
       "themeToLight": "ライトモードへ",
-      "themeToDark": "ダークモードへ"
+      "themeToDark": "ダークモードへ",
+      "signIn": "ログイン",
+      "signOut": "ログアウト",
+      "displayNameFallback": "ユーザー"
     },
     "nav": {
       "gallery": "ギャラリー",
@@ -306,6 +309,222 @@
       "rank": "ランキング",
       "docs": "ドキュメント",
       "submitCta": "プロンプトを投稿"
+    },
+    "submitPage": {
+      "seo": {
+        "title": "プロンプトを投稿 | Open Prompts",
+        "description": "テンプレートの要点（タイトル・モデル・カテゴリ・タグ・本文）を投稿。公開前に審査。"
+      },
+      "xImport": {
+        "title": "X からクイック取り込み",
+        "desc": "公開ツイートの URL（x.com / twitter.com）を貼ると、タイトル・説明・本文・画像 URL・出典・@作者（取得できる場合）を自動入力します。",
+        "placeholder": "https://x.com/username/status/…",
+        "button": "ツイートを解析",
+        "busy": "解析中…",
+        "success": "ツイートから取り込みました。内容を確認して続行してください。",
+        "errorGeneric": "このリンクは取り込めませんでした。",
+        "errorNotTweet": "ツイートの URL（例: x.com/user/status/123…）を入力してください。"
+      },
+      "wizard": {
+        "eyebrow": "プロンプト投稿",
+        "title": "クリエイティブな",
+        "titleEm": "プロンプト",
+        "subtitle": "2ステップで入力。審査後にギャラリーへ掲載できます。",
+        "subtitleSimple": "1ページで入力 — テンプレに必要な項目だけ。準備ができたら提出。"
+      },
+      "info": {
+        "body": "英語のプロンプトが最も安定します。{ar} や {v} などのパラメータ記法に対応。",
+        "ar": "--ar 16:9",
+        "v": "--v 6",
+        "link": "執筆ガイド →"
+      },
+      "labels": {
+        "templateTitle": "テンプレート名",
+        "shortDesc": "短い説明",
+        "model": "対象モデル",
+        "prompt": "プロンプト本文",
+        "category": "スタイル分類",
+        "aspectRatio": "アスペクト比",
+        "quality": "品質プリセット",
+        "tags": "タグ",
+        "visibility": "公開範囲",
+        "sourceUrl": "出典リンク",
+        "author": "作者 / 投稿者",
+        "upload": "プレビュー画像をアップロード",
+        "imageUrls": "または画像 URL"
+      },
+      "hints": {
+        "title": "25文字程度で簡潔に",
+        "desc": "効果を一言で",
+        "promptCount": "{count} / 800",
+        "tags": "2〜8個、Enter で確定",
+        "source": "X、Reddit、個人サイトなど",
+        "author": "任意、クレジット表示",
+        "upload": "最大4枚、PNG/JPG、各10MB以下",
+        "urls": "カンマ区切り"
+      },
+      "placeholders": {
+        "title": "例：Cinematic sunset portrait",
+        "desc": "例：ゴールデンアワーのドラマチックな肖像…",
+        "prompt": "A breathtaking cinematic portrait…",
+        "source": "https://x.com/…",
+        "author": "@username または氏名",
+        "urls": "https://cdn.example.com/img1.jpg, …",
+        "tagInput": "入力して Enter…",
+        "category": "カテゴリを選択…"
+      },
+      "models": {
+        "gptImage2": { "name": "GPT Image 2", "tag": "OpenAI" },
+        "midjourney": { "name": "Midjourney", "tag": "v6" },
+        "dalle3": { "name": "DALL·E 3", "tag": "OpenAI" },
+        "flux": { "name": "Flux 1.1 Pro", "tag": "BFL" },
+        "sd": { "name": "Stable Diffusion", "tag": "XL" },
+        "ideogram": { "name": "Ideogram", "tag": "v3" }
+      },
+      "modelValues": {
+        "gptImage2": "GPT Image 2",
+        "midjourney": "Midjourney v6",
+        "dalle3": "DALL·E 3",
+        "flux": "Flux 1.1 Pro",
+        "sd": "Stable Diffusion",
+        "ideogram": "Ideogram v3"
+      },
+      "categories": {
+        "landscape": "🌅 風景",
+        "portrait": "🧑‍🎨 人物",
+        "architecture": "🏙️ 建築",
+        "animal": "🐾 動物",
+        "illustration": "✏️ イラスト",
+        "realism": "📸 実写",
+        "game": "🎮 ゲーム",
+        "cinematic": "🎬 シネマ",
+        "scifi": "🧬 SF",
+        "abstract": "✦ 抽象"
+      },
+      "ratios": {
+        "1_1": "1:1",
+        "16_9": "16:9",
+        "9_16": "9:16",
+        "4_3": "4:3",
+        "3_2": "3:2",
+        "21_9": "21:9",
+        "custom": "カスタム"
+      },
+      "qualities": {
+        "fast": "⚡ 高速プレビュー",
+        "standard": "✦ 標準",
+        "high": "💎 高品質"
+      },
+      "visibility": {
+        "publicTitle": "🌐 公開",
+        "publicDesc": "全員に表示",
+        "privateTitle": "🔒 自分のみ",
+        "privateDesc": "ギャラリーに出さない"
+      },
+      "quickTags": ["Portrait", "Golden Hour", "Photorealistic", "Dark Mood", "Fantasy", "Editorial", "Anime", "Vintage"],
+      "buttons": {
+        "nextTags": "次へ：カテゴリ・タグ・投稿",
+        "back": "戻る",
+        "submit": "審査に提出",
+        "submitting": "送信中…",
+        "browseGallery": "ギャラリーへ →",
+        "submitAnother": "もう一件投稿",
+        "myTemplates": "マイテンプレート",
+        "detectSource": "自動検出",
+        "copyPrompt": "コピー",
+        "copied": "コピー済み"
+      },
+      "stepHint": "ステップ {n} / {total}",
+      "preview": {
+        "paneTitle": "カードプレビュー",
+        "live": "ライブ同期",
+        "titleEmpty": "タイトルがここに表示",
+        "descEmpty": "短い説明…",
+        "promptEmpty": "左側にプロンプトを入力…",
+        "uploadPlaceholder": "画像をアップロードすると表示",
+        "categoryFallback": "カテゴリ",
+        "generateCta": "生成 →"
+      },
+      "qualityCheck": "品質チェック",
+      "validation": {
+        "needTitle": "テンプレート名を入力してください。",
+        "needPrompt": "プロンプトは10文字以上にしてください。",
+        "needCategory": "スタイル分類を選んでください。",
+        "needTags": "タグは2〜8個にしてください。",
+        "submitFailed": "保存に失敗しました。しばらくしてから再度お試しください。",
+        "submitUnavailable": "現在投稿を受け付けられません（データベース未設定）。"
+      },
+      "rules": {
+        "promptLen": "プロンプト 10文字以上",
+        "title": "タイトル入力済み",
+        "model": "モデル選択済み",
+        "category": "カテゴリ選択済み",
+        "tags": "タグ 2〜8 個",
+        "images": "画像 1 枚以上"
+      },
+      "guidelines": {
+        "dividerSubmit": "投稿について",
+        "dividerImages": "結果画像",
+        "requirementsTitle": "要件",
+        "requirementsList": [
+          "英語、10〜800文字",
+          "生成結果の画像を1枚以上",
+          "正確なタイトルと説明",
+          "1日あたり最大20件まで"
+        ],
+        "rejectedTitle": "受け付けない内容",
+        "rejectedList": [
+          "不適切・暴力的・ヘイトな内容",
+          "著作権・商標の侵害",
+          "既存と重複する投稿",
+          "虚偽情報や悪用目的のディープフェイク"
+        ]
+      },
+      "success": {
+        "title": "送信",
+        "titleEm": "完了",
+        "body": "審査キューに入りました。通常24時間以内に確認します。承認後ギャラリーに表示されます。",
+        "idLabel": "参照番号 #OP-{id}"
+      }
+    },
+    "login": {
+      "seoTitle": "ログイン | Open Prompts",
+      "seoDescription": "GitHub、Google、またはメールでログインしてお気に入りや生成履歴を管理します。",
+      "backGallery": "ギャラリーへ戻る",
+      "welcomeLine1": "おかえりなさい",
+      "welcomeBrandOpen": "Open",
+      "welcomeBrandEm": "Prompts",
+      "welcomeSubtitle": "ログインするとプロンプトの保存、投稿、画像生成の管理ができます。",
+      "tabLogin": "ログイン",
+      "tabRegister": "新規登録",
+      "oauthGithub": "GitHub で続行",
+      "oauthGoogle": "Google で続行",
+      "oauthDisabledHint": "このサーバーでは未設定です",
+      "dividerEmail": "またはメールで",
+      "labelUsername": "表示名",
+      "usernamePlaceholder": "your_name",
+      "labelEmail": "メール",
+      "emailPlaceholder": "you@example.com",
+      "labelPassword": "パスワード",
+      "passwordPlaceholder": "••••••••",
+      "remember": "ログイン状態を保持",
+      "forgot": "パスワードをお忘れですか？",
+      "submitLogin": "ログイン",
+      "submitRegister": "アカウントを作成",
+      "submitBusy": "処理中…",
+      "switchToRegister": "アカウントをお持ちでないですか？",
+      "switchToRegisterLink": "登録",
+      "switchToLogin": "すでにアカウントがありますか？",
+      "switchToLoginLink": "ログインへ",
+      "disclaimer": "続行すると利用規約とプライバシーポリシーに同意したことになります。",
+      "errorCredentials": "メールまたはパスワードが正しくありません。",
+      "errorGeneric": "エラーが発生しました。もう一度お試しください。",
+      "errorRegister": "アカウントを作成できませんでした。",
+      "magicTitle": "メールを確認",
+      "magicBody": "このアドレスで登録がある場合、まもなくリセット手順をお送りします。",
+      "magicResend": "再送信",
+      "magicResent": "送信済み",
+      "registerSuccess": "アカウントを作成しました。ログインしています…"
     },
     "hero": {
       "eyebrow": "厳選 · 継続更新",

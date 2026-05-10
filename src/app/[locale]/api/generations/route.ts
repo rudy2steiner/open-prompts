@@ -44,10 +44,13 @@ export async function POST(req: Request) {
     });
   }
 
-  // Credits: only enforce when using internal config (no per-user apiKey override).
-  // If user provides their own key, do NOT limit.
+  // Credits: only enforce when the server pays (registry keys), not BYOK.
+  // BYOK is only atlascloud/replicate when the client sends apiKey (see provider wiring below).
   const apiKey = typeof json.apiKey === 'string' ? json.apiKey.trim() : '';
-  const isInternalModeRequest = !json.provider && !apiKey;
+  const providerName = (json.provider || getDefaultProviderName()).toLowerCase();
+  const usesClientApiKey =
+    Boolean(apiKey) && (providerName === 'atlascloud' || providerName === 'replicate');
+  const isInternalModeRequest = !usesClientApiKey;
   const userId = (req.headers.get('x-op-user-id') || '').trim();
   const requestedCount =
     typeof json.count === 'number' && Number.isFinite(json.count) ? Math.max(1, Math.floor(json.count)) : 1;
@@ -129,7 +132,6 @@ export async function POST(req: Request) {
     );
   }
 
-  const providerName = (json.provider || getDefaultProviderName()).toLowerCase();
   console.info('[op:generation:create:start]', {
     requestId,
     provider: providerName,

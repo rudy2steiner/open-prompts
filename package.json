@@ -1,13 +1,23 @@
 {
-  "name": "sora-webui",
+  "name": "open-prompts",
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "install:cnpm": "cnpm install",
+    "supabase:start": "npx --yes supabase start",
+    "supabase:stop": "npx --yes supabase stop",
+    "supabase:status": "npx --yes supabase status",
+    "supabase:db:reset": "npx --yes supabase db reset",
     "dev": "next dev --port 3000",
     "build": "next build",
+    "seed:prompts": "tsx scripts/seed-prompts.ts",
+    "seed:admin": "tsx scripts/seed-admin.ts",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
     "start": "next start"
   },
   "dependencies": {
+    "@fluentui/react": "^8.114.0",
     "@formatjs/intl-localematcher": "^0.5.4",
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
@@ -18,13 +28,17 @@
     "ahooks": "^3.7.10",
     "clsx": "^2.1.0",
     "date-fns": "^2.28.0",
+    "drizzle-orm": "^0.45.2",
     "formik": "^2.2.9",
     "framer-motion": "^11.3.24",
+    "bcryptjs": "2.4.3",
     "moment": "^2.30.1",
     "monaco-editor": "0.43.0",
-    "next": "14.1.0",
     "negotiator": "^1.0.0",
+    "next": "14.1.0",
+    "next-auth": "4.24.11",
     "next-intl": "^3.9.1",
+    "postgres": "^3.4.9",
     "rc-picker": "^4.6.12",
     "react": "^18",
     "react-dom": "^18",
@@ -33,19 +47,22 @@
     "styled-components": "^6.1.12",
     "undici": "^6.6.2",
     "uuid": "^9.0.1",
-    "vanilla-jsoneditor": "0.23.8",
-    "@fluentui/react": "^8.114.0"
+    "vanilla-jsoneditor": "0.23.8"
   },
   "devDependencies": {
+    "@types/bcryptjs": "2.4.6",
     "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
     "daisyui": "^4.12.10",
+    "dotenv": "^17.4.2",
+    "drizzle-kit": "^0.31.10",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

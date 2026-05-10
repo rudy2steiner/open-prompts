@@ -281,7 +281,10 @@
       "language": "Language",
       "themeToggle": "Toggle light/dark mode",
       "themeToLight": "Switch to light mode",
-      "themeToDark": "Switch to dark mode"
+      "themeToDark": "Switch to dark mode",
+      "signIn": "Sign in",
+      "signOut": "Sign out",
+      "displayNameFallback": "User"
     },
     "nav": {
       "gallery": "Gallery",
@@ -291,6 +294,222 @@
       "rank": "Leaderboard",
       "docs": "Docs",
       "submitCta": "Submit a prompt"
+    },
+    "submitPage": {
+      "seo": {
+        "title": "Submit a prompt | Open Prompts",
+        "description": "Share prompt templates: title, model, category, tags, and prompt body. Review before publishing."
+      },
+      "xImport": {
+        "title": "Quick import from X",
+        "desc": "Paste a public x.com / twitter.com tweet URL — we fill title, description, prompt text, image URLs, source link, and @author when available.",
+        "placeholder": "https://x.com/username/status/…",
+        "button": "Parse tweet",
+        "busy": "Parsing…",
+        "success": "Imported from tweet. Review the fields and continue.",
+        "errorGeneric": "Could not import this link.",
+        "errorNotTweet": "Use a tweet URL like x.com/user/status/1234567890."
+      },
+      "wizard": {
+        "eyebrow": "Submit prompt",
+        "title": "Share your creative ",
+        "titleEm": "prompt",
+        "subtitle": "Complete two steps; after review your prompt can appear in the gallery.",
+        "subtitleSimple": "One page — only the template fields that matter. Submit when ready."
+      },
+      "info": {
+        "body": "Prompts work best in English. Parameter syntax like {ar} and {v} is supported.",
+        "ar": "--ar 16:9",
+        "v": "--v 6",
+        "link": "Prompt writing guide →"
+      },
+      "labels": {
+        "templateTitle": "Template title",
+        "shortDesc": "Short description",
+        "model": "Target model",
+        "prompt": "Prompt body",
+        "category": "Style category",
+        "aspectRatio": "Aspect ratio",
+        "quality": "Render quality",
+        "tags": "Tags",
+        "visibility": "Visibility",
+        "sourceUrl": "Source link",
+        "author": "Author / submitter",
+        "upload": "Upload preview images",
+        "imageUrls": "Or paste image URLs"
+      },
+      "hints": {
+        "title": "Up to 25 characters, concise",
+        "desc": "One line on the effect",
+        "promptCount": "{count} / 800",
+        "tags": "2–8 tags, press Enter",
+        "source": "X/Twitter, Reddit, personal site…",
+        "author": "Optional credit",
+        "upload": "Up to 4 images, PNG / JPG, ≤10MB each",
+        "urls": "Comma-separated URLs"
+      },
+      "placeholders": {
+        "title": "e.g. Cinematic sunset portrait",
+        "desc": "e.g. A dramatic portrait at golden hour with cinematic depth…",
+        "prompt": "A breathtaking cinematic portrait at golden hour…",
+        "source": "https://x.com/username/status/…",
+        "author": "@username or real name",
+        "urls": "https://cdn.example.com/img1.jpg, https://…",
+        "tagInput": "Type and press Enter…",
+        "category": "Choose a category…"
+      },
+      "models": {
+        "gptImage2": { "name": "GPT Image 2", "tag": "OpenAI" },
+        "midjourney": { "name": "Midjourney", "tag": "v6" },
+        "dalle3": { "name": "DALL·E 3", "tag": "OpenAI" },
+        "flux": { "name": "Flux 1.1 Pro", "tag": "BFL" },
+        "sd": { "name": "Stable Diffusion", "tag": "XL" },
+        "ideogram": { "name": "Ideogram", "tag": "v3" }
+      },
+      "modelValues": {
+        "gptImage2": "GPT Image 2",
+        "midjourney": "Midjourney v6",
+        "dalle3": "DALL·E 3",
+        "flux": "Flux 1.1 Pro",
+        "sd": "Stable Diffusion",
+        "ideogram": "Ideogram v3"
+      },
+      "categories": {
+        "landscape": "🌅 Landscape",
+        "portrait": "🧑‍🎨 Portrait",
+        "architecture": "🏙️ Architecture",
+        "animal": "🐾 Animal",
+        "illustration": "✏️ Illustration",
+        "realism": "📸 Realism",
+        "game": "🎮 Game art",
+        "cinematic": "🎬 Cinematic",
+        "scifi": "🧬 Sci-Fi",
+        "abstract": "✦ Abstract"
+      },
+      "ratios": {
+        "1_1": "1:1 square",
+        "16_9": "16:9 landscape",
+        "9_16": "9:16 portrait",
+        "4_3": "4:3 standard",
+        "3_2": "3:2 photo",
+        "21_9": "21:9 ultrawide",
+        "custom": "Custom"
+      },
+      "qualities": {
+        "fast": "⚡ Fast preview",
+        "standard": "✦ Standard",
+        "high": "💎 High detail"
+      },
+      "visibility": {
+        "publicTitle": "🌐 Public",
+        "publicDesc": "Visible to everyone",
+        "privateTitle": "🔒 Private",
+        "privateDesc": "Not listed in gallery"
+      },
+      "quickTags": ["Portrait", "Golden Hour", "Photorealistic", "Dark Mood", "Fantasy", "Editorial", "Anime", "Vintage"],
+      "buttons": {
+        "nextTags": "Next: category, tags & submit",
+        "back": "Back",
+        "submit": "Submit for review",
+        "submitting": "Submitting…",
+        "browseGallery": "Browse gallery →",
+        "submitAnother": "Submit another",
+        "myTemplates": "My templates",
+        "detectSource": "Detect",
+        "copyPrompt": "Copy",
+        "copied": "Copied"
+      },
+      "stepHint": "Step {n} of {total}",
+      "preview": {
+        "paneTitle": "Card preview",
+        "live": "Live sync",
+        "titleEmpty": "Title appears here",
+        "descEmpty": "Short description…",
+        "promptEmpty": "Enter a prompt on the left…",
+        "uploadPlaceholder": "Upload result images to preview",
+        "categoryFallback": "Category",
+        "generateCta": "Generate →"
+      },
+      "qualityCheck": "Quality checklist",
+      "validation": {
+        "needTitle": "Add a template title.",
+        "needPrompt": "Prompt must be at least 10 characters.",
+        "needCategory": "Choose a style category.",
+        "needTags": "Use between 2 and 8 tags.",
+        "submitFailed": "Could not save your submission. Try again.",
+        "submitUnavailable": "Submissions are temporarily unavailable (database not configured)."
+      },
+      "rules": {
+        "promptLen": "Prompt length ≥ 10 characters",
+        "title": "Title filled in",
+        "model": "Model selected",
+        "category": "Category selected",
+        "tags": "2–8 tags",
+        "images": "At least one result image"
+      },
+      "guidelines": {
+        "dividerSubmit": "Submission notes",
+        "dividerImages": "Result images",
+        "requirementsTitle": "Requirements",
+        "requirementsList": [
+          "Prompt in English, 10–800 characters",
+          "At least one generated preview image",
+          "Accurate title and description",
+          "Up to 20 submissions per user per day"
+        ],
+        "rejectedTitle": "Not accepted",
+        "rejectedList": [
+          "NSFW, violence, or hate content",
+          "Copyright or trademark infringement",
+          "Duplicate of existing entries",
+          "Misinformation or deceptive deepfakes"
+        ]
+      },
+      "success": {
+        "title": "Submitted",
+        "titleEm": "successfully",
+        "body": "Your prompt is in the review queue. We usually respond within 24 hours. Once approved it will appear in the gallery.",
+        "idLabel": "Reference #OP-{id}"
+      }
+    },
+    "login": {
+      "seoTitle": "Sign in | Open Prompts",
+      "seoDescription": "Sign in with GitHub, Google, or email to save favorites and manage generations.",
+      "backGallery": "Back to gallery",
+      "welcomeLine1": "Welcome back to",
+      "welcomeBrandOpen": "Open",
+      "welcomeBrandEm": "Prompts",
+      "welcomeSubtitle": "Sign in to save prompts, submit work, and manage your image generations.",
+      "tabLogin": "Log in",
+      "tabRegister": "Register",
+      "oauthGithub": "Continue with GitHub",
+      "oauthGoogle": "Continue with Google",
+      "oauthDisabledHint": "Not configured on this server",
+      "dividerEmail": "Or use email",
+      "labelUsername": "Display name",
+      "usernamePlaceholder": "your_name",
+      "labelEmail": "Email",
+      "emailPlaceholder": "you@example.com",
+      "labelPassword": "Password",
+      "passwordPlaceholder": "••••••••",
+      "remember": "Stay signed in",
+      "forgot": "Forgot password?",
+      "submitLogin": "Sign in",
+      "submitRegister": "Create account",
+      "submitBusy": "Working…",
+      "switchToRegister": "No account yet?",
+      "switchToRegisterLink": "Register",
+      "switchToLogin": "Already have an account?",
+      "switchToLoginLink": "Back to log in",
+      "disclaimer": "By continuing you agree to the terms of service and privacy policy.",
+      "errorCredentials": "Invalid email or password.",
+      "errorGeneric": "Something went wrong. Try again.",
+      "errorRegister": "Could not create account.",
+      "magicTitle": "Check your email",
+      "magicBody": "If an account exists for this address, you will receive reset instructions shortly.",
+      "magicResend": "Resend",
+      "magicResent": "Sent",
+      "registerSuccess": "Account created. Signing you in…"
     },
     "hero": {
       "eyebrow": "Curated · Always updating",

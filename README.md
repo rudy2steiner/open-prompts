@@ -21,7 +21,7 @@ Below are examples from the built-in dataset (first image + prompt excerpt).
 
 <img src="public/local_images/gpt-image2-prompts/01_gta_6_style_urban_realism.jpg" alt="GTA 6 Style Urban Realism" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 GTA 6 style cinematic scene, urban environment, high fidelity, hyper-realistic lighting --ar 1915:821
@@ -31,7 +31,7 @@ GTA 6 style cinematic scene, urban environment, high fidelity, hyper-realistic l
 
 <img src="public/local_images/gpt-image2-prompts/02_k-pop_fashion_album_cover_art_1.jpg" alt="K-pop Fashion Album Cover Art" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 K-pop group fashion album cover
@@ -41,7 +41,7 @@ K-pop group fashion album cover
 
 <img src="public/local_images/gpt-image2-prompts/03_rich_informational_advertising_image.jpg" alt="Rich Informational Advertising Image" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Professional advertisement image, high information density, rich details, high resolution polish
@@ -51,7 +51,7 @@ Professional advertisement image, high information density, rich details, high r
 
 <img src="public/local_images/gpt-image2-prompts/04_cctv_alien_sighting.jpg" alt="CCTV Alien Sighting" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 CCTV footage style alien sighting
@@ -61,7 +61,7 @@ CCTV footage style alien sighting
 
 <img src="public/local_images/gpt-image2-prompts/05_technical_movement_reference_sheet_1.jpg" alt="Dark Wuxia SSR Character Cards" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 A series of high-quality character illustration cards, in a dark wuxia-themed SSR style.
@@ -71,7 +71,7 @@ A series of high-quality character illustration cards, in a dark wuxia-themed SS
 
 <img src="public/local_images/gpt-image2-prompts/06_ai_hairstyle_analysis_graphic.jpg" alt="The Clumsy Superhero Magazine Cover" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Magazine cover featuring a superhero who looks clumsy, humorous tone, bold headline typography
@@ -81,7 +81,7 @@ Magazine cover featuring a superhero who looks clumsy, humorous tone, bold headl
 
 <img src="public/local_images/gpt-image2-prompts/07_the_self-aware_meme_cycle.jpg" alt="Hyper-Realistic Gen-Z Luxury Fashion" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Hyper-realistic Gen-Z luxury fashion editorial portrait, glossy magazine cover look
@@ -91,7 +91,7 @@ Hyper-realistic Gen-Z luxury fashion editorial portrait, glossy magazine cover l
 
 <img src="public/local_images/gpt-image2-prompts/08_magazine_style_apparel_showcase_1.jpg" alt="Minimalist Product Shot with Bold Typography" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Minimalist product hero shot, studio lighting, bold clean typography layout
@@ -101,7 +101,7 @@ Minimalist product hero shot, studio lighting, bold clean typography layout
 
 <img src="public/local_images/gpt-image2-prompts/09_dunhuang_murals_paper_cut_diorama.jpg" alt="High-End Beverage Poster Design" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 High-end beverage poster, premium look, crisp highlights, reflective surfaces
@@ -111,7 +111,7 @@ High-end beverage poster, premium look, crisp highlights, reflective surfaces
 
 <img src="public/local_images/gpt-image2-prompts/10_chibi_angel_in_mystical_forest.jpg" alt="Cinematic Cyberpunk Street Portrait" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Cinematic cyberpunk street portrait, neon lights, shallow depth of field
@@ -121,7 +121,7 @@ Cinematic cyberpunk street portrait, neon lights, shallow depth of field
 
 <img src="public/local_images/gpt-image2-prompts/11_the_clumsy_superhero_magazine_cover.jpg" alt="Stylized Vintage Travel Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Stylized vintage travel poster, bold shapes, retro color palette, clean typography
@@ -131,7 +131,7 @@ Stylized vintage travel poster, bold shapes, retro color palette, clean typograp
 
 <img src="public/local_images/gpt-image2-prompts/12_noiré_luxury_fashion_editorial_poster.jpg" alt="Creative Typography Sports Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Creative sports poster with strong typography hierarchy and dynamic composition
@@ -144,7 +144,7 @@ Creative sports poster with strong typography hierarchy and dynamic composition
 
 <img src="public/local_images/gpt-image2-prompts/13_light_novel_bookstore_display_guide.jpg" alt="Minimalist Luxury Watch Ad" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Minimalist luxury watch advertisement, clean layout, premium lighting
@@ -154,7 +154,7 @@ Minimalist luxury watch advertisement, clean layout, premium lighting
 
 <img src="public/local_images/gpt-image2-prompts/14_substance_concept_graphic_poster.jpg" alt="High-Impact Cinematic Poster Design" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 High-impact cinematic poster design, dramatic lighting, bold typography
@@ -164,7 +164,7 @@ High-impact cinematic poster design, dramatic lighting, bold typography
 
 <img src="public/local_images/gpt-image2-prompts/15_stanley_x_jellycat_campaign_concept_1.jpg" alt="Bold Streetwear Lookbook Cover" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Bold streetwear lookbook cover, modern layout, high fashion styling
@@ -174,7 +174,7 @@ Bold streetwear lookbook cover, modern layout, high fashion styling
 
 <img src="public/local_images/gpt-image2-prompts/16_blockbuster_black_and_gold_city_poster_1.jpg" alt="Anime Character Portrait Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Anime character portrait poster, clean composition, stylized shading
@@ -184,7 +184,7 @@ Anime character portrait poster, clean composition, stylized shading
 
 <img src="public/local_images/gpt-image2-prompts/17_motion_to_form_design_process.jpg" alt="Elegant Jewelry Editorial Cover" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Elegant jewelry editorial cover, glossy magazine vibe, premium lighting
@@ -194,7 +194,7 @@ Elegant jewelry editorial cover, glossy magazine vibe, premium lighting
 
 <img src="public/local_images/gpt-image2-prompts/18_poetic_japanese_laundry_silhouette.jpg" alt="Futuristic Sci-Fi Character Card" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Futuristic sci-fi character card, high detail illustration, dramatic mood
@@ -204,7 +204,7 @@ Futuristic sci-fi character card, high detail illustration, dramatic mood
 
 <img src="public/local_images/gpt-image2-prompts/19_hyper-realistic_gen-z_luxury_fashion_portrait.jpg" alt="Classic Noir Movie Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Classic noir movie poster, high contrast, moody lighting, vintage typography
@@ -214,7 +214,7 @@ Classic noir movie poster, high contrast, moody lighting, vintage typography
 
 <img src="public/local_images/gpt-image2-prompts/20_ultramarines_vs_tyranids_twilight_battle.jpg" alt="Photorealistic Skincare Ad Layout" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Photorealistic skincare ad layout, clean composition, product hero shot
@@ -224,7 +224,7 @@ Photorealistic skincare ad layout, clean composition, product hero shot
 
 <img src="public/local_images/gpt-image2-prompts/21_gen-z_luxury_streetwear_portrait.jpg" alt="Dramatic Fantasy Character Illustration" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Dramatic fantasy character illustration, cinematic lighting, rich textures
@@ -234,7 +234,7 @@ Dramatic fantasy character illustration, cinematic lighting, rich textures
 
 <img src="public/local_images/gpt-image2-prompts/22_cinematic_luxury_sports_fashion_collage.jpg" alt="Modern Minimal Restaurant Menu Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Modern minimal restaurant menu poster, clean typography and layout
@@ -244,7 +244,7 @@ Modern minimal restaurant menu poster, clean typography and layout
 
 <img src="public/local_images/gpt-image2-prompts/23_minimalist_smartwatch_commercial_ad.jpg" alt="Bold Product Launch Banner Design" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Bold product launch banner design, dynamic composition, strong typography
@@ -254,7 +254,7 @@ Bold product launch banner design, dynamic composition, strong typography
 
 <img src="public/local_images/gpt-image2-prompts/24_nanogpt_architecture_technical_diagram.jpg" alt="Cute 3D Character Toy Packaging" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Cute 3D character toy packaging, playful design, clean product render
@@ -264,7 +264,7 @@ Cute 3D character toy packaging, playful design, clean product render
 
 <img src="public/local_images/gpt-image2-prompts/25_premium_wireless_earbud_ad_campaign.jpg" alt="Luxury Real Estate Poster Layout" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Luxury real estate poster layout, premium photography, crisp typography
@@ -274,7 +274,7 @@ Luxury real estate poster layout, premium photography, crisp typography
 
 <img src="public/local_images/gpt-image2-prompts/26_luxury_streetwear_editorial_poster_1.jpg" alt="Stylish Music Event Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Stylish music event poster, bold type, modern graphic composition
@@ -284,7 +284,7 @@ Stylish music event poster, bold type, modern graphic composition
 
 <img src="public/local_images/gpt-image2-prompts/27_discord_mod_simulator_game_cover.jpg" alt="Futuristic Tech Product Ad" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Futuristic tech product ad, sleek lighting, high-end design
@@ -294,7 +294,7 @@ Futuristic tech product ad, sleek lighting, high-end design
 
 <img src="public/local_images/gpt-image2-prompts/28_dark_wuxia_ssr_character_cards_1.jpg" alt="Editorial Fashion Portrait Cover" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Editorial fashion portrait cover, clean layout, premium magazine aesthetic
@@ -304,7 +304,7 @@ Editorial fashion portrait cover, clean layout, premium magazine aesthetic
 
 <img src="public/local_images/gpt-image2-prompts/29_oriental_ink_cityscape_creative_poster.jpg" alt="Cinematic Nature Landscape Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Cinematic nature landscape poster, dramatic sky, wide composition, bold title
@@ -314,7 +314,7 @@ Cinematic nature landscape poster, dramatic sky, wide composition, bold title
 
 <img src="public/local_images/gpt-image2-prompts/30_hyper-realistic_rust_game_screenshot_1.jpg" alt="Minimal Product Promotion Banner" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Minimal product promotion banner, clean typography, product-centric design
@@ -324,7 +324,7 @@ Minimal product promotion banner, clean typography, product-centric design
 
 <img src="public/local_images/gpt-image2-prompts/31_gpt_image_2_magazine_feature_1.jpg" alt="Modern UI/UX App Promo Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Modern UI/UX app promo poster, crisp layout, minimal colors, bold headline
@@ -334,7 +334,7 @@ Modern UI/UX app promo poster, crisp layout, minimal colors, bold headline
 
 <img src="public/local_images/gpt-image2-prompts/32_urban_fashion_meets_classic_cartoons_1.jpg" alt="Anime Poster with Dynamic Composition" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Anime poster with dynamic composition, vivid colors, stylized motion
@@ -344,7 +344,7 @@ Anime poster with dynamic composition, vivid colors, stylized motion
 
 <img src="public/local_images/gpt-image2-prompts/33_fashion_model_beside_oversized_sneakers.jpg" alt="Product Banner with Strong Type Hierarchy" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Product banner with strong type hierarchy, clean spacing, modern design
@@ -354,7 +354,7 @@ Product banner with strong type hierarchy, clean spacing, modern design
 
 <img src="public/local_images/gpt-image2-prompts/34_3d_layered_dunhuang_papercut_art.jpg" alt="Modern Fitness Campaign Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Modern fitness campaign poster, bold headline, energetic composition
@@ -364,7 +364,7 @@ Modern fitness campaign poster, bold headline, energetic composition
 
 <img src="public/local_images/gpt-image2-prompts/35_nostalgic_sanya_summer_love_story.jpg" alt="Elegant Cosmetics Product Layout" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Elegant cosmetics product layout, premium lighting, clean typography
@@ -374,7 +374,7 @@ Elegant cosmetics product layout, premium lighting, clean typography
 
 <img src="public/local_images/gpt-image2-prompts/36_sunlight_and_clay_miniature_universe.jpg" alt="High-End Car Ad Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 High-end car ad poster, dramatic studio lighting, sleek design
@@ -384,7 +384,7 @@ High-end car ad poster, dramatic studio lighting, sleek design
 
 <img src="public/local_images/gpt-image2-prompts/37_flame_guardian_caldias_core_overload_1.jpg" alt="Dynamic Sports Event Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Dynamic sports event poster, bold typography, motion-inspired composition
@@ -394,7 +394,7 @@ Dynamic sports event poster, bold typography, motion-inspired composition
 
 <img src="public/local_images/gpt-image2-prompts/38_natural_glam_lifestyle_photo_portrait.jpg" alt="Luxury Perfume Poster Design" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Luxury perfume poster design, moody lighting, premium brand aesthetic
@@ -404,7 +404,7 @@ Luxury perfume poster design, moody lighting, premium brand aesthetic
 
 <img src="public/local_images/gpt-image2-prompts/39_2000s_korean_sunset_school_trip_1.jpg" alt="Artistic Abstract Poster Layout" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Artistic abstract poster layout, modern typography, balanced composition
@@ -414,7 +414,7 @@ Artistic abstract poster layout, modern typography, balanced composition
 
 <img src="public/local_images/gpt-image2-prompts/40_urban_blue_nostalgia_campaign_poster_1.jpg" alt="Minimal Product Marketing Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Minimal product marketing poster, crisp layout, strong focus on product
@@ -424,7 +424,7 @@ Minimal product marketing poster, crisp layout, strong focus on product
 
 <img src="public/local_images/gpt-image2-prompts/41_gucci_style_bakery_magazine_cover.jpg" alt="Bold Typography Magazine Cover" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Bold typography magazine cover, clean grid, modern editorial feel
@@ -434,7 +434,7 @@ Bold typography magazine cover, clean grid, modern editorial feel
 
 <img src="public/local_images/gpt-image2-prompts/42_modern_beverage_hero_poster.jpg" alt="Cinematic Portrait Poster with Text Overlay" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Cinematic portrait poster with text overlay, dramatic lighting, premium look
@@ -444,7 +444,7 @@ Cinematic portrait poster with text overlay, dramatic lighting, premium look
 
 <img src="public/local_images/gpt-image2-prompts/43_metallic_sneaker_street_campaign.jpg" alt="Luxury Fashion Product Banner" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Luxury fashion product banner, editorial layout, high-end styling
@@ -454,7 +454,7 @@ Luxury fashion product banner, editorial layout, high-end styling
 
 <img src="public/local_images/gpt-image2-prompts/44_premium_smartphone_advertisement_concept.jpg" alt="Movie Poster with Strong Composition" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Movie poster with strong composition, cinematic lighting, bold title type
@@ -464,7 +464,7 @@ Movie poster with strong composition, cinematic lighting, bold title type
 
 <img src="public/local_images/gpt-image2-prompts/45_minimal_product_launch_poster_1.jpg" alt="Minimal App Landing Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Minimal app landing poster, clean layout, modern UI mock, bold headline
@@ -474,7 +474,7 @@ Minimal app landing poster, clean layout, modern UI mock, bold headline
 
 <img src="public/local_images/gpt-image2-prompts/46_warhammer_battle_scene_editorial.jpg" alt="Elegant Interior Design Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Elegant interior design poster, spacious layout, minimal color palette
@@ -484,7 +484,7 @@ Elegant interior design poster, spacious layout, minimal color palette
 
 <img src="public/local_images/gpt-image2-prompts/47_neo_gothic_luxury_street_poster.jpg" alt="Modern Brand Campaign Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Modern brand campaign poster, bold typography, clean composition
@@ -494,7 +494,7 @@ Modern brand campaign poster, bold typography, clean composition
 
 <img src="public/local_images/gpt-image2-prompts/48_kpop_fashion_album_cover_art.jpg" alt="Futuristic Robotics Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Futuristic robotics poster, high-tech visual language, crisp typography
@@ -504,7 +504,7 @@ Futuristic robotics poster, high-tech visual language, crisp typography
 
 <img src="public/local_images/gpt-image2-prompts/49_hyper-detailed_advertising_image.jpg" alt="Minimal Cosmetic Ad Banner" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Minimal cosmetic ad banner, premium lighting, clean white space
@@ -514,7 +514,7 @@ Minimal cosmetic ad banner, premium lighting, clean white space
 
 <img src="public/local_images/gpt-image2-prompts/50_ghost_in_the_shell_3d_poster.jpg" alt="Stylish Travel Destination Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Stylish travel destination poster, bold title, clean composition
@@ -524,7 +524,7 @@ Stylish travel destination poster, bold title, clean composition
 
 <img src="public/local_images/gpt-image2-prompts/51_moody_monochrome_bridal_photo_1.jpg" alt="Movie Poster with Dark Mood" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Movie poster with dark mood, cinematic lighting, strong contrast
@@ -534,7 +534,7 @@ Movie poster with dark mood, cinematic lighting, strong contrast
 
 <img src="public/local_images/gpt-image2-prompts/52_mystical_indoor_y2k_photo.jpg" alt="Clean Minimal Product Banner" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Clean minimal product banner, strong spacing, modern typography
@@ -544,7 +544,7 @@ Clean minimal product banner, strong spacing, modern typography
 
 <img src="public/local_images/gpt-image2-prompts/53_high-end_beauty_editorial_poster.jpg" alt="High-End Jewelry Poster Layout" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 High-end jewelry poster layout, premium photography, elegant typography
@@ -554,7 +554,7 @@ High-end jewelry poster layout, premium photography, elegant typography
 
 <img src="public/local_images/gpt-image2-prompts/54_modern_minimal_restaurant_menu_poster.jpg" alt="Modern Snack Product Promo" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Modern snack product promo, clean layout, bold headline, product focus
@@ -564,7 +564,7 @@ Modern snack product promo, clean layout, bold headline, product focus
 
 <img src="public/local_images/gpt-image2-prompts/55_mountain_cinematic_posters.jpg" alt="Futuristic Hologram Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Futuristic hologram poster, neon glow, high-tech aesthetic, clean type
@@ -574,7 +574,7 @@ Futuristic hologram poster, neon glow, high-tech aesthetic, clean type
 
 <img src="public/local_images/gpt-image2-prompts/56_high-end_beauty_poster_layout.jpg" alt="Luxury Hotel Promo Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Luxury hotel promo poster, premium photography, clean composition
@@ -584,7 +584,7 @@ Luxury hotel promo poster, premium photography, clean composition
 
 <img src="public/local_images/gpt-image2-prompts/57_cinematic_chibi_angel_in_forest.jpg" alt="Minimal Fashion Product Banner" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Minimal fashion product banner, editorial layout, premium styling
@@ -594,7 +594,7 @@ Minimal fashion product banner, editorial layout, premium styling
 
 <img src="public/local_images/gpt-image2-prompts/58_detailed_wolverine_character_render.jpg" alt="High-End Camera Product Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 High-end camera product poster, studio lighting, clean typography layout
@@ -604,7 +604,7 @@ High-end camera product poster, studio lighting, clean typography layout
 
 <img src="public/local_images/gpt-image2-prompts/59_korean_winter_profile_shot.jpg" alt="Stylish Coffee Poster Design" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Stylish coffee poster design, warm lighting, clean layout, bold type
@@ -614,7 +614,7 @@ Stylish coffee poster design, warm lighting, clean layout, bold type
 
 <img src="public/local_images/gpt-image2-prompts/60_retro_manga_dot_poster.jpg" alt="Modern Sneakers Product Ad" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Modern sneakers product ad, premium photography, clean layout and type
@@ -624,7 +624,7 @@ Modern sneakers product ad, premium photography, clean layout and type
 
 <img src="public/local_images/gpt-image2-prompts/61_hyper-realistic_rust_game_screenshot.jpg" alt="Dramatic Cinematic Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Dramatic cinematic poster, moody lighting, bold title typography
@@ -634,7 +634,7 @@ Dramatic cinematic poster, moody lighting, bold title typography
 
 <img src="public/local_images/gpt-image2-prompts/62_interlocking_fingers_and_intimate_connection.jpg" alt="Minimalist Tech Conference Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Minimalist tech conference poster, clean grid, modern typography
@@ -644,7 +644,7 @@ Minimalist tech conference poster, clean grid, modern typography
 
 <img src="public/local_images/gpt-image2-prompts/63_elite_single_malt_whiskey_advertisement.jpg" alt="Luxury Food Photography Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Luxury food photography poster, premium lighting, clean typography
@@ -654,7 +654,7 @@ Luxury food photography poster, premium lighting, clean typography
 
 <img src="public/local_images/gpt-image2-prompts/64_modern_engineering_sketch_style_1.jpg" alt="Modern Gaming Poster Layout" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Modern gaming poster layout, bold type hierarchy, dynamic composition
@@ -664,7 +664,7 @@ Modern gaming poster layout, bold type hierarchy, dynamic composition
 
 <img src="public/local_images/gpt-image2-prompts/65_minimalist_ai_palm_reading_guide.jpg" alt="Minimalist Music Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Minimalist music poster, clean typography, balanced white space
@@ -674,7 +674,7 @@ Minimalist music poster, clean typography, balanced white space
 
 <img src="public/local_images/gpt-image2-prompts/66_character_time_machine_aging_effect_1.jpg" alt="Premium Smartphone Product Banner" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Premium smartphone product banner, studio lighting, clean layout
@@ -684,7 +684,7 @@ Premium smartphone product banner, studio lighting, clean layout
 
 <img src="public/local_images/gpt-image2-prompts/67_avant-garde_luxury_sportswear_campaign.jpg" alt="Elegant Floral Poster Design" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Elegant floral poster design, soft lighting, refined typography
@@ -694,7 +694,7 @@ Elegant floral poster design, soft lighting, refined typography
 
 <img src="public/local_images/gpt-image2-prompts/68_inseparable_blue_urban_memory_poster.jpg" alt="Bold Marketing Poster with Product" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Bold marketing poster with product, strong headline, clean layout
@@ -704,7 +704,7 @@ Bold marketing poster with product, strong headline, clean layout
 
 <img src="public/local_images/gpt-image2-prompts/69_nostalgic_vacation_selfie_grid.jpg" alt="Minimal Luxury Beauty Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Minimal luxury beauty poster, premium lighting, clean typography and layout
@@ -714,7 +714,7 @@ Minimal luxury beauty poster, premium lighting, clean typography and layout
 
 <img src="public/local_images/gpt-image2-prompts/70_spring_beauty_in_nemophila_field_1.jpg" alt="Modern Poster with Strong Type" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Modern poster with strong type, clean grid, bold hierarchy
@@ -724,7 +724,7 @@ Modern poster with strong type, clean grid, bold hierarchy
 
 <img src="public/local_images/gpt-image2-prompts/71_2009_korean_school_trip_nostalgia_1.png" alt="Elegant Restaurant Promo Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Elegant restaurant promo poster, premium food photo, clean layout
@@ -734,7 +734,7 @@ Elegant restaurant promo poster, premium food photo, clean layout
 
 <img src="public/local_images/gpt-image2-prompts/72_urban_fashion_meets_cartoon_fusion.jpg" alt="Luxury Fashion Poster Banner" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Luxury fashion poster banner, editorial layout, premium styling
@@ -744,7 +744,7 @@ Luxury fashion poster banner, editorial layout, premium styling
 
 <img src="public/local_images/gpt-image2-prompts/73_stylized_illustrator_eye_design_collection.jpg" alt="Minimalist Furniture Product Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Minimalist furniture product poster, clean composition, premium lighting
@@ -754,7 +754,7 @@ Minimalist furniture product poster, clean composition, premium lighting
 
 <img src="public/local_images/gpt-image2-prompts/74_emerald_elegance_magazine_cover.jpg" alt="Bold Event Poster Design" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Bold event poster design, dynamic composition, strong typography
@@ -764,7 +764,7 @@ Bold event poster design, dynamic composition, strong typography
 
 <img src="public/local_images/gpt-image2-prompts/75_epic_terra_mountain_boot_advertisement.jpg" alt="Luxury Skincare Product Banner" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Luxury skincare product banner, clean layout, premium lighting and typography
@@ -774,7 +774,7 @@ Luxury skincare product banner, clean layout, premium lighting and typography
 
 <img src="public/local_images/gpt-image2-prompts/76_the_long_way_forward.jpg" alt="Modern Product Poster with Minimal Type" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Modern product poster with minimal type, crisp lighting, clean spacing
@@ -784,7 +784,7 @@ Modern product poster with minimal type, crisp lighting, clean spacing
 
 <img src="public/local_images/gpt-image2-prompts/77_bigger_moves_premium_streetwear_campaign.jpg" alt="Stylish Cocktail Poster Design" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Stylish cocktail poster design, premium lighting, clean typography
@@ -794,7 +794,7 @@ Stylish cocktail poster design, premium lighting, clean typography
 
 <img src="public/local_images/gpt-image2-prompts/78_vintage_1960s_art-house_film_poster_1.jpg" alt="Minimalist Tech Product Layout" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Minimalist tech product layout, crisp lighting, clean typography
@@ -804,7 +804,7 @@ Minimalist tech product layout, crisp lighting, clean typography
 
 <img src="public/local_images/gpt-image2-prompts/79_ethereal_peony_double_exposure_film_1.jpg" alt="Realistic Close-Up Food Photography" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Realistic close-up food photography, premium lighting, clean layout
@@ -814,7 +814,7 @@ Realistic close-up food photography, premium lighting, clean layout
 
 <img src="public/local_images/gpt-image2-prompts/80_epic-terra-footwear-mountain-adventure.jpg" alt="Minimal Luxury Skincare Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Minimal luxury skincare poster, premium photography, clean type hierarchy
@@ -824,7 +824,7 @@ Minimal luxury skincare poster, premium photography, clean type hierarchy
 
 <img src="public/local_images/gpt-image2-prompts/81_einstein-s-teenage-room-vision.jpg" alt="Bold Typography Poster Layout" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Bold typography poster layout, clean grid, modern editorial aesthetic
@@ -834,7 +834,7 @@ Bold typography poster layout, clean grid, modern editorial aesthetic
 
 <img src="public/local_images/gpt-image2-prompts/82_y2k-aesthetic-graphic-design-explainer.jpg" alt="Cinematic Portrait Poster with Soft Light" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Cinematic portrait poster with soft light, clean layout, premium look
@@ -844,7 +844,7 @@ Cinematic portrait poster with soft light, clean layout, premium look
 
 <img src="public/local_images/gpt-image2-prompts/83_premium-beard-style-analysis-poster.jpg" alt="Minimalist Product Poster with Large Type" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Minimalist product poster with large type, clean spacing, premium lighting
@@ -854,7 +854,7 @@ Minimalist product poster with large type, clean spacing, premium lighting
 
 <img src="public/local_images/gpt-image2-prompts/84_magical-forest-transformation.jpg" alt="Modern Banner Design with Product Focus" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Modern banner design with product focus, strong typography, clean layout
@@ -864,7 +864,7 @@ Modern banner design with product focus, strong typography, clean layout
 
 <img src="public/local_images/gpt-image2-prompts/85_ai-hairstyle-analysis-comparison.jpg" alt="Modern Product Poster with Clean Grid" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Modern product poster with clean grid, premium lighting, minimal design
@@ -874,7 +874,7 @@ Modern product poster with clean grid, premium lighting, minimal design
 
 <img src="public/local_images/gpt-image2-prompts/86_ai-generated-character-reference-sheet_1.jpg" alt="Minimal Tech Product Banner with Bold Headline" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Minimal tech product banner with bold headline, clean layout, crisp lighting
@@ -884,7 +884,7 @@ Minimal tech product banner with bold headline, clean layout, crisp lighting
 
 <img src="public/local_images/gpt-image2-prompts/87_cinematic-strength-fitness-campaign.jpg" alt="Editorial Fashion Banner with Clean Type" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Editorial fashion banner with clean type, premium portrait photography, modern layout
@@ -894,7 +894,7 @@ Editorial fashion banner with clean type, premium portrait photography, modern l
 
 <img src="public/local_images/gpt-image2-prompts/88_dynamic-dance-movement-sheet-guide.jpg" alt="Modern Poster with Product and Big Type" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Modern poster with product and big type, clean grid, premium lighting
@@ -904,7 +904,7 @@ Modern poster with product and big type, clean grid, premium lighting
 
 <img src="public/local_images/gpt-image2-prompts/89_japanese-shinto-style-female-portrait.jpg" alt="Minimalist Skincare Product Poster with Clean Layout" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Minimalist skincare product poster with clean layout, premium lighting, modern typography
@@ -914,7 +914,7 @@ Minimalist skincare product poster with clean layout, premium lighting, modern t
 
 <img src="public/local_images/gpt-image2-prompts/90_a-day-in-1980s-nostalgia_1.jpg" alt="Bold Product Poster with Strong Typography" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Bold product poster with strong typography, clean grid, premium lighting
@@ -924,7 +924,7 @@ Bold product poster with strong typography, clean grid, premium lighting
 
 <img src="public/local_images/gpt-image2-prompts/91_dynamic-multidimensional-biographical-infographic.jpg" alt="Dynamic Football Poster Design" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 A professional high-impact vertical infographic featuring a luxury sports style with an oversized hyper-realistic football and a stylish model.
@@ -934,7 +934,7 @@ A professional high-impact vertical infographic featuring a luxury sports style 
 
 <img src="public/local_images/gpt-image2-prompts/92_elite-football-e-commerce-infographic.jpg" alt="Retro Pixel Art Game Scene" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 A professional and aesthetic poster design created to showcase artistic vision.
@@ -944,7 +944,7 @@ A professional and aesthetic poster design created to showcase artistic vision.
 
 <img src="public/local_images/gpt-image2-prompts/93_retro-pixel-art-game-scene_1.jpg" alt="Doodle-Style Football Player Stats Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 A modern football poster combining realistic player photography with vibrant, scrapbook-style doodles and detailed career statistics.
@@ -954,7 +954,7 @@ A modern football poster combining realistic player photography with vibrant, sc
 
 <img src="public/local_images/gpt-image2-prompts/94_doodle-style-football-player-stats-poster_1.jpg" alt="Joyful Discussion on Fusion Nodes" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 fusionについて楽しそうに語ってる画像作って
@@ -964,7 +964,7 @@ fusionについて楽しそうに語ってる画像作って
 
 <img src="public/local_images/gpt-image2-prompts/95_joyful-discussion-on-fusion-nodes.jpg" alt="Stalin's Return Fictional Movie Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Fictional movie poster titled "The Return of Stalin" with text in Japanese, English, and Russian, high quality, accurate typography
@@ -974,7 +974,7 @@ Fictional movie poster titled "The Return of Stalin" with text in Japanese, Engl
 
 <img src="public/local_images/gpt-image2-prompts/96_stalins-return-fictional-movie-poster_1.jpg" alt="Bold Cinematic Fitness Strength Campaign" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Cinematic fitness campaign, oversized dumbbell placed diagonally like a statement prop, female model in red performance wear and white shorts seated on one side of the dumbbell, one leg bent, one extended, minimal black studio, reflective floor, bold word “STR…
@@ -984,7 +984,7 @@ Cinematic fitness campaign, oversized dumbbell placed diagonally like a statemen
 
 <img src="public/local_images/gpt-image2-prompts/97_bold-cinematic-fitness-strength-campaign.jpg" alt="High-Tech Lab Combat Scene" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 A gritty fast paced hand to hand combat scene in a high tech laboratory. Two female agents using environment objects (chairs, tablets) to fight. Shaky cam style for realism, quick grappling moves, and powerful strikes. High speed action, emergency red lights f…
@@ -994,7 +994,7 @@ A gritty fast paced hand to hand combat scene in a high tech laboratory. Two fem
 
 <img src="public/local_images/gpt-image2-prompts/98_high-tech-lab-combat-scene.jpg" alt="Hyper-Realistic Football Player Poster" width="240" loading="lazy" />
 
-**Prompt (excerpt)**
+**Prompt**
 
 ```
 Hyper-realistic football player poster, premium lighting, bold typography, clean layout

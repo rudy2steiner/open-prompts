@@ -3,7 +3,17 @@ module.exports = {
   content: ['./src/**/*.{tsx,css}'],
   theme: {
     fontFamily: {
-      sans: ['Inter', 'sans-serif'],
+      /* Avoid next/font Google fetch at build time (offline / restricted networks). */
+      sans: [
+        'ui-sans-serif',
+        'system-ui',
+        '-apple-system',
+        'Segoe UI',
+        'Roboto',
+        'Helvetica Neue',
+        'Arial',
+        'sans-serif',
+      ],
       mono: [
         'Monaco',
         'ui-monospace',
