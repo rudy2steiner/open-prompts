@@ -32,8 +32,10 @@ function submitHref(locale: string) {
   return locale === 'en' ? '/submit' : `/${locale}/submit`;
 }
 
+type DisplayStatusKey = 'pub' | 'draft' | 'priv' | 'pending' | 'rejected';
+
 /** UI badge: review `status` + `visibility` (see resolveStatusForVisibility on create). */
-function displayStatus(item: TemplateRecord): 'pub' | 'draft' | 'priv' | 'pending' | 'rejected' {
+function displayStatus(item: TemplateRecord): DisplayStatusKey {
   if (item.status === 'rejected') return 'rejected';
   if (item.status === 'pending') return 'pending';
   if (item.visibility === 'draft') return 'draft';
@@ -68,11 +70,13 @@ export default function PageComponent({ locale, isAdmin, user }: Props) {
   const [detailOpen, setDetailOpen] = useState(false);
   const [detailItem, setDetailItem] = useState<PromptDetailItem | null>(null);
   const [detailMeta, setDetailMeta] = useState<{
-    statusKey: string;
+    statusKey: DisplayStatusKey;
     owner?: string | null;
     admin?: boolean;
     source?: TemplateRecord | AdminTemplateRecord;
   } | null>(null);
+
+  const statusLabel = (key: DisplayStatusKey) => t(`status.${key}`);
 
   const panelTitle = useMemo(() => {
     const map: Record<Panel, string> = {
@@ -346,7 +350,7 @@ export default function PageComponent({ locale, isAdmin, user }: Props) {
                     </td>
                   ) : null}
                   <td>
-                    <span className={`op-account-status ${st}`}>{t(`status.${st}`)}</span>
+                    <span className={`op-account-status ${st}`}>{statusLabel(st)}</span>
                   </td>
                   <td className="text-[var(--text2)]">{item.model}</td>
                   <td className="text-[11px] text-[var(--text3)]">
@@ -669,7 +673,7 @@ export default function PageComponent({ locale, isAdmin, user }: Props) {
           detailMeta ? (
             <>
               <span className={`op-account-status ${detailMeta.statusKey}`}>
-                {t(`status.${detailMeta.statusKey}`)}
+                {statusLabel(detailMeta.statusKey)}
               </span>
               {detailMeta.owner ? (
                 <span className="text-xs text-stone-600">

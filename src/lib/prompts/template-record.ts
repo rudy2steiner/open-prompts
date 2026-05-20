@@ -199,7 +199,7 @@ function buildListConditions(opts: {
 export async function listTemplates(db: Db, opts: ListTemplatesOpts) {
   const limit = Math.min(Math.max(opts.limit ?? 20, 1), 100);
   const offset = Math.max(opts.offset ?? 0, 0);
-  const conditions = [];
+  const conditions: SQL[] = [];
 
   if (!opts.admin && opts.userId) {
     conditions.push(eq(prompts.submittedBy, opts.userId));
@@ -209,7 +209,11 @@ export async function listTemplates(db: Db, opts: ListTemplatesOpts) {
   if (opts.q?.trim()) {
     const pattern = `%${opts.q.trim().replace(/%/g, '\\%')}%`;
     conditions.push(
-      or(ilike(prompts.title, pattern), ilike(prompts.prompt, pattern), ilike(prompts.description, pattern)),
+      or(
+        ilike(prompts.title, pattern),
+        ilike(prompts.prompt, pattern),
+        ilike(prompts.description, pattern),
+      ) as SQL,
     );
   }
 
