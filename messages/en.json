@@ -291,6 +291,7 @@
       "create": "Create",
       "favorites": "Favorites",
       "submit": "Submit",
+      "account": "Account",
       "rank": "Leaderboard",
       "docs": "Docs",
       "submitCta": "Submit a prompt"
@@ -341,12 +342,14 @@
       "hints": {
         "title": "Up to 25 characters, concise",
         "desc": "One line on the effect",
-        "promptCount": "{count} / 800",
+        "promptCount": "{count} characters",
         "tags": "2–8 tags, press Enter",
         "source": "X/Twitter, Reddit, personal site…",
         "author": "Optional credit",
         "upload": "Up to 4 images, PNG / JPG, ≤10MB each",
-        "urls": "Comma-separated URLs"
+        "uploadFull": "Maximum reached — remove an image to add more",
+        "urls": "One URL per line · Enter or Add",
+        "imageCount": "{count} / {max}"
       },
       "placeholders": {
         "title": "e.g. Cinematic sunset portrait",
@@ -354,7 +357,7 @@
         "prompt": "A breathtaking cinematic portrait at golden hour…",
         "source": "https://x.com/username/status/…",
         "author": "@username or real name",
-        "urls": "https://cdn.example.com/img1.jpg, https://…",
+        "urls": "https://cdn.example.com/preview.jpg",
         "tagInput": "Type and press Enter…",
         "category": "Choose a category…"
       },
@@ -417,7 +420,9 @@
         "myTemplates": "My templates",
         "detectSource": "Detect",
         "copyPrompt": "Copy",
-        "copied": "Copied"
+        "copied": "Copied",
+        "addUrl": "Add",
+        "removeImage": "Remove image"
       },
       "stepHint": "Step {n} of {total}",
       "preview": {
@@ -437,7 +442,10 @@
         "needCategory": "Choose a style category.",
         "needTags": "Use between 2 and 8 tags.",
         "submitFailed": "Could not save your submission. Try again.",
-        "submitUnavailable": "Submissions are temporarily unavailable (database not configured)."
+        "submitUnavailable": "Submissions are temporarily unavailable (database not configured).",
+        "invalidImageUrl": "Enter a valid http(s) image URL.",
+        "duplicateImageUrl": "This image URL is already added.",
+        "imageLimit": "You can add up to 4 images."
       },
       "rules": {
         "promptLen": "Prompt length ≥ 10 characters",
@@ -452,7 +460,7 @@
         "dividerImages": "Result images",
         "requirementsTitle": "Requirements",
         "requirementsList": [
-          "Prompt in English, 10–800 characters",
+          "Prompt in English, at least 10 characters (no max length)",
           "At least one generated preview image",
           "Accurate title and description",
           "Up to 20 submissions per user per day"
@@ -470,6 +478,120 @@
         "titleEm": "successfully",
         "body": "Your prompt is in the review queue. We usually respond within 24 hours. Once approved it will appear in the gallery.",
         "idLabel": "Reference #OP-{id}"
+      }
+    },
+    "accountPage": {
+      "seo": {
+        "title": "Account | Open Prompts",
+        "description": "Manage your prompt templates, review queue, and account settings."
+      },
+      "sidebar": {
+        "overview": "Overview",
+        "content": "Content",
+        "account": "Account",
+        "adminBadge": "Admin"
+      },
+      "nav": {
+        "overview": "Dashboard",
+        "prompts": "My templates",
+        "adminReview": "Review queue",
+        "credits": "Credits",
+        "subscription": "Subscription"
+      },
+      "panels": {
+        "overview": "Dashboard",
+        "prompts": "Prompt templates",
+        "admin": "Moderation",
+        "credits": "Credit history",
+        "subscription": "Subscription"
+      },
+      "topbar": {
+        "gallery": "Back to gallery",
+        "newTemplate": "New template",
+        "signOut": "Sign out"
+      },
+      "metrics": {
+        "templates": "Templates",
+        "pending": "Pending review",
+        "credits": "Credits left",
+        "generations": "Generations"
+      },
+      "overview": {
+        "hint": "Create and manage your prompt templates. Public templates go through review before appearing in the gallery.",
+        "manage": "Manage templates",
+        "submit": "Submit new prompt"
+      },
+      "toolbar": {
+        "search": "Search by title or prompt…",
+        "allStatus": "All statuses",
+        "refresh": "Refresh"
+      },
+      "table": {
+        "template": "Template",
+        "owner": "Owner",
+        "ownerAnonymous": "Anonymous / catalog",
+        "status": "Status",
+        "model": "Model",
+        "updated": "Updated",
+        "actions": "Actions",
+        "view": "View",
+        "edit": "Edit",
+        "delete": "Delete",
+        "approve": "Approve",
+        "reject": "Reject",
+        "revoke": "Revoke",
+        "reapprove": "Re-approve",
+        "empty": "No templates yet. Create your first one.",
+        "confirmDelete": "Delete this template?"
+      },
+      "status": {
+        "pub": "Published",
+        "draft": "Draft",
+        "priv": "Private",
+        "pending": "In review",
+        "rejected": "Rejected"
+      },
+      "visibility": {
+        "public": "Public (review)",
+        "private": "Private",
+        "draft": "Draft"
+      },
+      "admin": {
+        "hint": "Approve or reject submissions. Only approved public templates appear in the gallery.",
+        "hintAllUsers": "Templates from every account (not only yours). Use scope “User templates” for account-owned rows, or “All rows” to include legacy gallery catalog.",
+        "hintActions": "Approve/Reject only appear for items in review. Published items can be revoked; rejected items can be re-approved.",
+        "scopeUser": "User templates",
+        "scopeAll": "All rows (incl. catalog)",
+        "empty": "No templates match this filter.",
+        "emptyPending": "Nothing awaiting review. Use “All statuses” to see published or rejected items, or create a public template to queue one for review.",
+        "loadError": "Could not load moderation queue: {message}",
+        "loadTimeout": "Request timed out. Check DATABASE_URL (use port 5432 for admin queries, not pooler 6543) and stop long-running dev queries on p_prompts.",
+        "pagination": {
+          "pageSize": "Per page",
+          "prev": "Previous",
+          "next": "Next",
+          "total": "{count} items",
+          "totalUnknown": "Total unavailable",
+          "pageOf": "Page {page} of {total}",
+          "pageOnly": "Page {page}"
+        }
+      },
+      "placeholders": {
+        "credits": "Credit billing and usage charts coming soon.",
+        "subscription": "Subscription management coming soon."
+      },
+      "loading": "Loading…",
+      "modal": {
+        "createTitle": "New template",
+        "editTitle": "Edit template",
+        "model": "Model",
+        "visibility": "Visibility",
+        "coverUrl": "Cover image URL",
+        "cancel": "Cancel",
+        "save": "Save",
+        "saving": "Saving…",
+        "validation": "Fill title, prompt (10+ chars), category, and 2–8 tags.",
+        "saveFailed": "Could not save template."
       }
     },
     "login": {

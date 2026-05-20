@@ -82,7 +82,7 @@ export default function PageComponent({ locale, authProviders, previewPrompts }:
           return;
         }
         const signInRes = await signIn('credentials', {
-          email,
+          email: email.trim().toLowerCase(),
           password,
           callbackUrl,
           redirect: false,
@@ -98,7 +98,7 @@ export default function PageComponent({ locale, authProviders, previewPrompts }:
       }
 
       const signInRes = await signIn('credentials', {
-        email,
+        email: email.trim().toLowerCase(),
         password,
         callbackUrl,
         redirect: false,

@@ -290,6 +290,7 @@
       "create": "创作",
       "favorites": "收藏",
       "submit": "提交",
+      "account": "用户中心",
       "rank": "排行榜",
       "docs": "文档",
       "submitCta": "提交提示词"
@@ -340,12 +341,14 @@
       "hints": {
         "title": "25 字以内，简洁有力",
         "desc": "一句话说明效果",
-        "promptCount": "{count} / 800",
+        "promptCount": "{count} 字符",
         "tags": "2–8 个，回车确认",
         "source": "X/Twitter、Reddit、个人网站等",
         "author": "选填，致谢原创作者",
         "upload": "最多 4 张，PNG / JPG，≤10MB",
-        "urls": "多个用逗号分隔"
+        "uploadFull": "已达上限，删除一张后可继续添加",
+        "urls": "每次一条 · 回车或点添加",
+        "imageCount": "{count} / {max} 张"
       },
       "placeholders": {
         "title": "例：Cinematic Sunset Portrait",
@@ -353,7 +356,7 @@
         "prompt": "A breathtaking cinematic portrait at golden hour…",
         "source": "https://x.com/username/status/…",
         "author": "@username 或 真实姓名",
-        "urls": "https://cdn.example.com/img1.jpg, https://…",
+        "urls": "https://cdn.example.com/preview.jpg",
         "tagInput": "输入后回车…",
         "category": "选择主分类…"
       },
@@ -416,7 +419,9 @@
         "myTemplates": "查看我的模板",
         "detectSource": "自动识别",
         "copyPrompt": "复制",
-        "copied": "✓ 已复制"
+        "copied": "✓ 已复制",
+        "addUrl": "添加",
+        "removeImage": "移除图片"
       },
       "stepHint": "第 {n} 步 / 共 {total} 步",
       "preview": {
@@ -436,7 +441,10 @@
         "needCategory": "请选择风格分类。",
         "needTags": "请使用 2–8 个标签。",
         "submitFailed": "提交保存失败，请稍后重试。",
-        "submitUnavailable": "暂时无法提交（数据库未配置）。"
+        "submitUnavailable": "暂时无法提交（数据库未配置）。",
+        "invalidImageUrl": "请输入有效的 http(s) 图片链接。",
+        "duplicateImageUrl": "该图片链接已添加。",
+        "imageLimit": "最多添加 4 张图片。"
       },
       "rules": {
         "promptLen": "提示词长度 ≥ 10 字符",
@@ -451,7 +459,7 @@
         "dividerImages": "效果图片",
         "requirementsTitle": "提交要求",
         "requirementsList": [
-          "提示词须为英文，长度 10–800 字符",
+          "提示词须为英文，至少 10 字符（无上限）",
           "需附带至少 1 张使用该提示词生成的效果图",
           "标题和描述应准确反映效果，不得误导",
           "每位用户每天最多提交 20 条"
@@ -469,6 +477,120 @@
         "titleEm": "成功",
         "body": "你的提示词已进入审核队列，通常在 24 小时内完成审核。审核通过后将自动出现在画廊并通知你。",
         "idLabel": "提交编号 · #OP-{id}"
+      }
+    },
+    "accountPage": {
+      "seo": {
+        "title": "用户中心 | Open Prompts",
+        "description": "管理提示词模板、审核队列与账户设置。"
+      },
+      "sidebar": {
+        "overview": "概览",
+        "content": "内容管理",
+        "account": "账户",
+        "adminBadge": "管理员"
+      },
+      "nav": {
+        "overview": "控制台",
+        "prompts": "提示词模板",
+        "adminReview": "审核队列",
+        "credits": "Credit 流水",
+        "subscription": "订阅管理"
+      },
+      "panels": {
+        "overview": "控制台",
+        "prompts": "提示词模板",
+        "admin": "内容审核",
+        "credits": "Credit 流水",
+        "subscription": "订阅管理"
+      },
+      "topbar": {
+        "gallery": "返回画廊",
+        "newTemplate": "新建模板",
+        "signOut": "退出登录"
+      },
+      "metrics": {
+        "templates": "模板数",
+        "pending": "待审核",
+        "credits": "剩余 Credits",
+        "generations": "生图次数"
+      },
+      "overview": {
+        "hint": "在此创建与管理提示词模板。公开发布需审核通过后才会出现在画廊。",
+        "manage": "管理模板",
+        "submit": "去提交页"
+      },
+      "toolbar": {
+        "search": "搜索标题或提示词…",
+        "allStatus": "全部状态",
+        "refresh": "刷新"
+      },
+      "table": {
+        "template": "模板",
+        "owner": "所有者",
+        "ownerAnonymous": "匿名 / 目录",
+        "status": "状态",
+        "model": "模型",
+        "updated": "更新时间",
+        "actions": "操作",
+        "view": "查看",
+        "edit": "编辑",
+        "delete": "删除",
+        "approve": "通过",
+        "reject": "拒绝",
+        "revoke": "下架",
+        "reapprove": "重新通过",
+        "empty": "还没有模板，点击新建开始。",
+        "confirmDelete": "确定删除该模板？"
+      },
+      "status": {
+        "pub": "已发布",
+        "draft": "草稿",
+        "priv": "私有",
+        "pending": "审核中",
+        "rejected": "已拒绝"
+      },
+      "visibility": {
+        "public": "公开发布（需审核）",
+        "private": "私有",
+        "draft": "草稿"
+      },
+      "admin": {
+        "hint": "审核用户提交的模板，通过后公开展示在画廊。",
+        "hintAllUsers": "显示所有账号的模板（不仅是你的）。范围选「用户模板」查看有所有者的记录；选「全部」含历史画廊目录数据。",
+        "hintActions": "仅「审核中」显示通过/拒绝；已发布可下架；已拒绝可重新通过。",
+        "scopeUser": "用户模板",
+        "scopeAll": "全部（含目录）",
+        "empty": "当前筛选条件下没有模板。",
+        "emptyPending": "暂无待审核项。选择「全部状态」可查看已发布/已拒绝；创建「公开」模板会进入审核队列。",
+        "loadError": "无法加载审核列表：{message}",
+        "loadTimeout": "请求超时。请检查 DATABASE_URL（管理查询建议用 5432 直连，不要用 6543 pooler），并停止 dev 对 p_prompts 的长时间查询。",
+        "pagination": {
+          "pageSize": "每页",
+          "prev": "上一页",
+          "next": "下一页",
+          "total": "共 {count} 条",
+          "totalUnknown": "总数暂不可用",
+          "pageOf": "第 {page} / {total} 页",
+          "pageOnly": "第 {page} 页"
+        }
+      },
+      "placeholders": {
+        "credits": "Credit 流水与图表即将上线。",
+        "subscription": "订阅管理即将上线。"
+      },
+      "loading": "加载中…",
+      "modal": {
+        "createTitle": "新建提示词模板",
+        "editTitle": "编辑模板",
+        "model": "适配模型",
+        "visibility": "可见性",
+        "coverUrl": "封面图片 URL",
+        "cancel": "取消",
+        "save": "保存",
+        "saving": "保存中…",
+        "validation": "请填写标题、提示词（≥10 字）、分类和 2–8 个标签。",
+        "saveFailed": "保存失败，请重试。"
       }
     },
     "login": {

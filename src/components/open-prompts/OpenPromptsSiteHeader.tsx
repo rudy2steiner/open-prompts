@@ -10,7 +10,7 @@ import { languages, locales } from '~/config';
 import { resolveUserAvatarUrl } from '~/lib/auth/default-user-avatar';
 import { applyOpThemeToDocument, getOpDocumentTheme } from '~/lib/op-theme';
 
-export type OpenPromptsSiteNavKey = 'gallery' | 'create' | 'submit' | 'rank' | 'docs' | 'login';
+export type OpenPromptsSiteNavKey = 'gallery' | 'create' | 'submit' | 'rank' | 'docs' | 'login' | 'account';
 
 export type OpenPromptsSiteHeaderProps = {
   locale: string;
@@ -166,9 +166,22 @@ export function OpenPromptsSiteHeader({
           </div>
 
           {status === 'authenticated' && session?.user ? (
-            <div className="flex max-w-[220px] items-center gap-2">
+            <div className="flex max-w-[280px] items-center gap-2">
+              <Link
+                href={locale === 'en' ? '/account' : `/${locale}/account`}
+                className={`hidden rounded-lg border px-3 py-1.5 text-xs sm:inline ${
+                  activeNav === 'account'
+                    ? 'border-[var(--amber)] bg-[var(--amber-dim)] text-[var(--amber)]'
+                    : 'border-[var(--border2)] text-[var(--text2)] hover:bg-[var(--surface2)] hover:text-[var(--text)]'
+                }`}
+              >
+                {t('nav.account')}
+              </Link>
               <img
-                src={resolveUserAvatarUrl(session.user.image)}
+                src={resolveUserAvatarUrl(
+                  session.user.image,
+                  session.user.email ?? session.user.id,
+                )}
                 alt={displayName}
                 width={32}
                 height={32}
@@ -177,7 +190,7 @@ export function OpenPromptsSiteHeader({
                 referrerPolicy="no-referrer"
                 title={displayName}
               />
-              <span className="hidden truncate text-xs text-[var(--text2)] sm:inline" title={displayName}>
+              <span className="hidden truncate text-xs text-[var(--text2)] md:inline" title={displayName}>
                 {displayName}
               </span>
               <button

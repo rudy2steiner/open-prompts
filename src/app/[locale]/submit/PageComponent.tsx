@@ -6,6 +6,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
+import { localeApiPath } from '~/lib/locale-api-path';
 import { parseXStatusUrl } from '~/lib/x-import/parse-x-status-url';
 import { SubmitPreviewImageStrip } from './SubmitPreviewImageStrip';
 
@@ -21,6 +22,13 @@ const CATEGORY_KEYS = [
   'scifi',
   'abstract',
 ] as const;
+
+const MAX_RESULT_IMAGES = 4;
+
+function isValidImageSrc(value: string): boolean {
+  const v = value.trim();
+  return /^https?:\/\//i.test(v) || v.startsWith('data:');
+}
 
 const MODEL_IDS = ['gptImage2', 'midjourney', 'dalle3', 'flux', 'sd', 'ideogram'] as const;
 const MODEL_EMOJI: Record<(typeof MODEL_IDS)[number], string> = {
@@ -49,8 +57,9 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
   const [category, setCategory] = useState('');
   const [tags, setTags] = useState<string[]>(['Cinematic', 'Portrait']);
   const [tagInput, setTagInput] = useState('');
-  const [imgUrls, setImgUrls] = useState('');
-  const [uploadedImages, setUploadedImages] = useState<string[]>([]);
+  const [resultImages, setResultImages] = useState<string[]>([]);
+  const [urlDraft, setUrlDraft] = useState('');
+  const [urlError, setUrlError] = useState<string | null>(null);
   const [uploadDrag, setUploadDrag] = useState(false);
   const [xImportUrl, setXImportUrl] = useState('');
   const [xImportBusy, setXImportBusy] = useState(false);
@@ -90,17 +99,8 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
   const categoryOk = Boolean(category);
   const tagsOk = tags.length >= 2 && tags.length <= 8;
 
-  const previewImageUrls = useMemo(() => {
-    const max = 4;
-    if (uploadedImages.length > 0) return uploadedImages.slice(0, max);
-    const parts = imgUrls.split(/[\s,;]+/).map((s) => s.trim()).filter(Boolean);
-    const urls: string[] = [];
-    for (const p of parts) {
-      if (urls.length >= max) break;
-      if (/^https?:\/\//i.test(p) || p.startsWith('data:')) urls.push(p);
-    }
-    return urls;
-  }, [uploadedImages, imgUrls]);
+  const previewImageUrls = useMemo(() => resultImages.slice(0, MAX_RESULT_IMAGES), [resultImages]);
+  const imagesFull = resultImages.length >= MAX_RESULT_IMAGES;
 
   const validateForm = () => {
     if (!title.trim()) {
@@ -160,7 +160,7 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
       const incoming = Array.from(files);
       const dataUrls: string[] = [];
       for (const file of incoming) {
-        if (dataUrls.length >= 4) break;
+        if (dataUrls.length >= MAX_RESULT_IMAGES) break;
         try {
           // eslint-disable-next-line no-await-in-loop
           dataUrls.push(await readFileAsDataUrl(file));
@@ -168,13 +168,45 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
           break;
         }
       }
-      setUploadedImages((cur) => [...cur, ...dataUrls].slice(0, 4));
+      if (dataUrls.length === 0) return;
+      setResultImages((cur) => {
+        const room = MAX_RESULT_IMAGES - cur.length;
+        if (room <= 0) return cur;
+        return [...cur, ...dataUrls.slice(0, room)];
+      });
     })();
     setUploadDrag(false);
   };
 
-  const removeUploaded = (i: number) => {
-    setUploadedImages((prev) => prev.filter((_, idx) => idx !== i));
+  const removeImage = (index: number) => {
+    setResultImages((prev) => prev.filter((_, idx) => idx !== index));
+    setUrlError(null);
+  };
+
+  const addImageUrl = useCallback(() => {
+    const raw = urlDraft.trim();
+    if (!raw) return;
+    if (imagesFull) {
+      setUrlError(t('validation.imageLimit'));
+      return;
+    }
+    if (!isValidImageSrc(raw)) {
+      setUrlError(t('validation.invalidImageUrl'));
+      return;
+    }
+    if (resultImages.includes(raw)) {
+      setUrlError(t('validation.duplicateImageUrl'));
+      return;
+    }
+    setResultImages((prev) => [...prev, raw].slice(0, MAX_RESULT_IMAGES));
+    setUrlDraft('');
+    setUrlError(null);
+  }, [imagesFull, resultImages, t, urlDraft]);
+
+  const onUrlKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== 'Enter') return;
+    e.preventDefault();
+    addImageUrl();
   };
 
   const runXImport = useCallback(async () => {
@@ -188,7 +220,7 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
     }
     setXImportBusy(true);
     try {
-      const res = await fetch(`/${locale}/api/x-import`, {
+      const res = await fetch(localeApiPath(locale, '/api/x-import'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url: u }),
@@ -207,10 +239,10 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
       }
       if (typeof data.title === 'string') setTitle(data.title.slice(0, 60));
       if (typeof data.description === 'string') setDesc(data.description.slice(0, 120));
-      if (typeof data.prompt === 'string') setPrompt(data.prompt.slice(0, 800));
+      if (typeof data.prompt === 'string') setPrompt(data.prompt);
       if (Array.isArray(data.imageUrls) && data.imageUrls.length > 0) {
-        setImgUrls(data.imageUrls.slice(0, 4).join(', '));
-        setUploadedImages([]);
+        const imported = data.imageUrls.filter(isValidImageSrc).slice(0, MAX_RESULT_IMAGES);
+        if (imported.length > 0) setResultImages(imported);
       }
       setXImportOk(true);
     } catch {
@@ -239,7 +271,7 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
     setBlockedHint(null);
     setSubmitting(true);
     try {
-      const res = await fetch(`/${locale}/api/prompts`, {
+      const res = await fetch(localeApiPath(locale, '/api/prompts'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -281,8 +313,9 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
     setCategory('');
     setTags(['Cinematic', 'Portrait']);
     setTagInput('');
-    setImgUrls('');
-    setUploadedImages([]);
+    setResultImages([]);
+    setUrlDraft('');
+    setUrlError(null);
     setXImportUrl('');
     setXImportError(null);
     setXImportOk(false);
@@ -478,7 +511,6 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
                       <textarea
                         id="f-prompt"
                         className={`op-sp-textarea${shakeId === 'f-prompt' ? ' op-shake' : ''}`}
-                        maxLength={800}
                         value={prompt}
                         onChange={(e) => setPrompt(e.target.value)}
                         placeholder={t('placeholders.prompt')}
@@ -488,14 +520,20 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
                     <div className="op-sp-divider">{t('guidelines.dividerImages')}</div>
 
                     <div className="op-sp-form-group">
-                      <label className="op-sp-label">
-                        {t('labels.upload')}
-                        <span className="op-hint">{t('hints.upload')}</span>
-                      </label>
+                      <div className="mb-2 flex items-baseline justify-between gap-2">
+                        <label className="op-sp-label !mb-0">
+                          {t('labels.upload')}
+                          <span className="op-hint">{t('hints.upload')}</span>
+                        </label>
+                        <span className="shrink-0 font-mono text-[10px] text-[var(--text3)]">
+                          {t('hints.imageCount', { count: resultImages.length, max: MAX_RESULT_IMAGES })}
+                        </span>
+                      </div>
                       <div
                         id="upload-zone"
-                        className={`op-sp-upload${uploadDrag ? ' op-drag' : ''}`}
+                        className={`op-sp-upload${uploadDrag ? ' op-drag' : ''}${imagesFull ? ' op-sp-upload--full' : ''}`}
                         onDragOver={(e) => {
+                          if (imagesFull) return;
                           e.preventDefault();
                           setUploadDrag(true);
                         }}
@@ -506,23 +544,65 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
                           handleFiles(e.dataTransfer.files);
                         }}
                       >
-                        <input type="file" accept="image/*" multiple onChange={(e) => handleFiles(e.target.files)} />
-                        <div className="text-sm font-medium text-[var(--text)]">↑</div>
-                        <div className="mt-1 text-xs text-[var(--text3)]">{t('hints.upload')}</div>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          multiple
+                          disabled={imagesFull}
+                          onChange={(e) => handleFiles(e.target.files)}
+                        />
+                        <div className="text-sm font-medium text-[var(--text)]">{imagesFull ? '✓' : '↑'}</div>
+                        <div className="mt-1 text-xs text-[var(--text3)]">
+                          {imagesFull ? t('hints.uploadFull') : t('hints.upload')}
+                        </div>
                       </div>
-                      {uploadedImages.length > 0 ? (
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {uploadedImages.map((src, i) => (
+
+                      <div className="mt-4">
+                        <label className="op-sp-label" htmlFor="f-img-url">
+                          {t('labels.imageUrls')}
+                          <span className="op-hint">{t('hints.urls')}</span>
+                        </label>
+                        <div className="op-sp-source-row">
+                          <input
+                            id="f-img-url"
+                            className="op-sp-input"
+                            value={urlDraft}
+                            disabled={imagesFull}
+                            onChange={(e) => {
+                              setUrlDraft(e.target.value);
+                              setUrlError(null);
+                            }}
+                            onKeyDown={onUrlKeyDown}
+                            placeholder={t('placeholders.urls')}
+                          />
+                          <button
+                            type="button"
+                            className="op-sp-btn-next shrink-0 px-4 py-2 text-xs"
+                            disabled={imagesFull || !urlDraft.trim()}
+                            onClick={addImageUrl}
+                          >
+                            {t('buttons.addUrl')}
+                          </button>
+                        </div>
+                        {urlError ? (
+                          <p className="mt-1.5 text-xs text-[var(--coral)]">{urlError}</p>
+                        ) : null}
+                      </div>
+
+                      {resultImages.length > 0 ? (
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {resultImages.map((src, i) => (
                             <div
-                              key={i}
-                              className="relative h-14 w-[4.75rem] overflow-hidden rounded-md border border-[var(--border2)]"
+                              key={`${i}-${src.slice(0, 32)}`}
+                              className="relative h-16 w-[5.5rem] overflow-hidden rounded-md border border-[var(--border2)] bg-[var(--surface2)]"
                             >
                               {/* eslint-disable-next-line @next/next/no-img-element */}
                               <img src={src} alt="" className="h-full w-full object-cover" />
                               <button
                                 type="button"
-                                className="absolute right-0.5 top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-black/70 text-[10px] text-white"
-                                onClick={() => removeUploaded(i)}
+                                className="absolute right-0.5 top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-black/70 text-[10px] text-white hover:bg-black/90"
+                                aria-label={t('buttons.removeImage')}
+                                onClick={() => removeImage(i)}
                               >
                                 ×
                               </button>
@@ -530,20 +610,6 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
                           ))}
                         </div>
                       ) : null}
-                    </div>
-
-                    <div className="op-sp-form-group">
-                      <label className="op-sp-label" htmlFor="f-img-url">
-                        {t('labels.imageUrls')}
-                        <span className="op-hint">{t('hints.urls')}</span>
-                      </label>
-                      <input
-                        id="f-img-url"
-                        className="op-sp-input"
-                        value={imgUrls}
-                        onChange={(e) => setImgUrls(e.target.value)}
-                        placeholder={t('placeholders.urls')}
-                      />
                     </div>
 
                     <div className="op-sp-form-group rounded-lg border border-[var(--border2)] bg-[var(--surface2)] p-4">

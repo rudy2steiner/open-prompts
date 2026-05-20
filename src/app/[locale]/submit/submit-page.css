@@ -506,6 +506,21 @@
   background: var(--amber-dim);
 }
 
+.op-sp-upload input[type='file']:disabled {
+  cursor: not-allowed;
+}
+
+.op-sp-upload--full {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.op-sp-upload--full:hover,
+.op-sp-upload--full.op-drag {
+  border-color: var(--border2);
+  background: var(--surface);
+}
+
 .op-sp-source-row {
   display: flex;
   gap: 8px;

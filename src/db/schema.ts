@@ -14,6 +14,9 @@ import {
 export const promptReviewStatuses = ['pending', 'approved', 'rejected'] as const;
 export type PromptReviewStatus = (typeof promptReviewStatuses)[number];
 
+export const promptVisibilities = ['draft', 'private', 'public'] as const;
+export type PromptVisibility = (typeof promptVisibilities)[number];
+
 export const prompts = pgTable('p_prompts', {
   id: bigint('id', { mode: 'number' }).primaryKey().generatedAlwaysAsIdentity(),
   slug: text('slug').notNull().unique(),
@@ -28,6 +31,9 @@ export const prompts = pgTable('p_prompts', {
   images: text('images').array().notNull().default(sql`'{}'::text[]`),
   /** Gallery shows `approved` only; new user submissions typically start as `pending`. */
   status: text('status').notNull().default('approved'),
+  /** Owner user id; no DB FK — enforced in API (avoids DDL lock / pooler issues). */
+  submittedBy: uuid('submitted_by'),
+  visibility: text('visibility').notNull().default('public'),
   sortOrder: integer('sort_order').notNull().default(0),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),

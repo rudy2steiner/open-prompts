@@ -4,9 +4,9 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import HeadInfo from '~/components/HeadInfo';
 import type { PromptGalleryItem } from '~/data/promptGallery';
-import { CoverImage } from '~/components/prompt-gallery/CoverImage';
 import { PromptGalleryCard } from '~/components/prompt-gallery/PromptGalleryCard';
 import { PromptGallerySwipeViewer } from '~/components/prompt-gallery/PromptGallerySwipeViewer';
+import { PromptTemplateDetailDialog } from '~/components/prompt-gallery/PromptTemplateDetailDialog';
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
 import {useTranslations} from 'next-intl';
@@ -30,10 +30,6 @@ const MODEL_FILTER_CHIP = {
   idle: 'border-[var(--border)] text-[var(--text2)] hover:border-[var(--border2)] hover:text-[var(--text)]',
 } as const;
 
-/** Inline tag/model labels in modal — neutral chips (not the filter bar) */
-const TAG_META_CHIP =
-  'rounded-md border border-[var(--border)] bg-[var(--surface2)] px-3 py-1 text-xs text-[var(--text2)]';
-
 export default function PageComponent({ locale, prompts }: Props) {
   const t = useTranslations('OpenPrompts');
   const router = useRouter();
@@ -44,7 +40,6 @@ export default function PageComponent({ locale, prompts }: Props) {
   const [autoLoading, setAutoLoading] = useState(false);
   const [ratioById, setRatioById] = useState<Record<string, string>>({});
   const [ratioMetaById, setRatioMetaById] = useState<Record<string, { w: number; h: number }>>({});
-  const [ratioByImageKey, setRatioByImageKey] = useState<Record<string, string>>({});
   const models = useMemo(
     () => ['all', ...uniq(prompts.map((p) => p.model)).sort((a, b) => a.localeCompare(b))],
     [prompts]
@@ -74,11 +69,8 @@ export default function PageComponent({ locale, prompts }: Props) {
 
   const [active, setActive] = useState<PromptGalleryItem | null>(null);
   const [detailOpen, setDetailOpen] = useState(false);
-  const [promptCopied, setPromptCopied] = useState(false);
   const [viewerOpen, setViewerOpen] = useState(false);
   const [viewerInitialIndex, setViewerInitialIndex] = useState(0);
-
-  const imgKey = (promptId: string, src: string) => `${promptId}::${src}`;
 
   const getAuthorUrl = (item: PromptGalleryItem): string | undefined => {
     if (item.sourceUrl) return item.sourceUrl;
@@ -166,24 +158,6 @@ export default function PageComponent({ locale, prompts }: Props) {
     setViewerInitialIndex(idx);
     setViewerOpen(true);
   };
-
-  useEffect(() => {
-    if (!detailOpen) return;
-    if (viewerOpen) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key !== 'Escape') return;
-      setDetailOpen(false);
-      setActive(null);
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [detailOpen, viewerOpen]);
-
-  useEffect(() => {
-    if (!promptCopied) return;
-    const t = window.setTimeout(() => setPromptCopied(false), 1200);
-    return () => window.clearTimeout(t);
-  }, [promptCopied]);
 
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   // Infinite scroll: auto-load when sentinel becomes visible.
@@ -376,154 +350,15 @@ export default function PageComponent({ locale, prompts }: Props) {
         <OpenPromptsSiteFooter locale={locale} />
       </div>
 
-      {active && detailOpen && !viewerOpen ? (
-        <div
-          className="fixed inset-0 z-40 flex items-center justify-center bg-black/60 p-4"
-          onClick={() => {
-            setDetailOpen(false);
-            setActive(null);
-          }}
-          role="dialog"
-          aria-modal="true"
-        >
-          <div
-            className="flex w-full max-w-2xl max-h-[calc(100vh-32px)] flex-col overflow-hidden rounded-2xl bg-white shadow-xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="relative border-b border-stone-200 bg-stone-50">
-              <button
-                className="absolute right-3 top-3 z-10 rounded-lg bg-white/90 px-3 py-1 text-sm font-semibold text-stone-800"
-                onClick={() => {
-                  setDetailOpen(false);
-                  setActive(null);
-                }}
-              >
-                ✕
-              </button>
-              <div className="p-3 sm:p-4">
-                <div className="flex w-full snap-x snap-mandatory items-center overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                  {active.images.map((src, idx) => {
-                    const key = imgKey(active.id, src);
-                    const ar = ratioByImageKey[key] ?? '16 / 9';
-                    return (
-                      <div key={src} className="flex w-full shrink-0 snap-center items-center justify-center px-2">
-                        <div
-                          id={`img-${encodeURIComponent(key)}`}
-                          className="relative h-[48vh] max-h-[420px] w-auto overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-stone-200"
-                          style={{ aspectRatio: ar }}
-                        >
-                          <CoverImage
-                            src={src}
-                            alt={`${active.title} ${idx + 1}`}
-                            sizes="(max-width: 1024px) 100vw, 768px"
-                            className="object-contain"
-                            priority={idx === 0}
-                            errorText={t('gallery.coverLoadFailed')}
-                            onMeta={({ width, height }) => {
-                              const nextAr = `${width} / ${height}`;
-                              setRatioByImageKey((prev) =>
-                                prev[key] === nextAr ? prev : { ...prev, [key]: nextAr }
-                              );
-                              if (idx === 0) {
-                                setRatioById((prev) =>
-                                  prev[active.id] === nextAr ? prev : { ...prev, [active.id]: nextAr }
-                                );
-                              }
-                            }}
-                          />
-                          {active.images.length > 1 ? (
-                            <div className="absolute left-3 top-3 rounded-md bg-black/55 px-2 py-1 text-[10px] text-white">
-                              {idx + 1}/{active.images.length}
-                            </div>
-                          ) : null}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-            <div className="flex-1 overflow-y-auto p-5">
-              <div className="text-lg font-semibold text-stone-900">{active.title}</div>
-              <div className="mt-1 text-sm text-stone-600">{active.description}</div>
-
-              <div className="mt-4 rounded-xl border border-stone-200 bg-stone-50 p-4">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="text-[11px] font-semibold tracking-wide text-stone-500">{t('modal.promptLabel')}</div>
-                  <button
-                    className="rounded-md border border-stone-200 bg-white px-2 py-1 text-[11px] font-semibold text-stone-700 hover:bg-stone-50"
-                    onClick={async () => {
-                      const text = active.prompt ?? '';
-                      try {
-                        await navigator.clipboard.writeText(text);
-                        setPromptCopied(true);
-                      } catch {
-                        try {
-                          const ta = document.createElement('textarea');
-                          ta.value = text;
-                          ta.style.position = 'fixed';
-                          ta.style.left = '-9999px';
-                          document.body.appendChild(ta);
-                          ta.focus();
-                          ta.select();
-                          document.execCommand('copy');
-                          document.body.removeChild(ta);
-                          setPromptCopied(true);
-                        } catch {
-                          // no-op
-                        }
-                      }
-                    }}
-                    title={t('modal.copy')}
-                  >
-                    {promptCopied ? t('modal.copied') : t('modal.copy')}
-                  </button>
-                </div>
-                <div className="mt-2 max-h-32 overflow-y-auto whitespace-pre-wrap text-sm leading-relaxed text-stone-800">
-                  {active.prompt}
-                </div>
-              </div>
-
-              <div className="mt-4 flex flex-wrap gap-2">
-                {active.model ? <span className={TAG_META_CHIP}>{active.model}</span> : null}
-                {active.tags.map((t) => (
-                  <span key={t} className={TAG_META_CHIP}>
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                <div className="text-xs text-stone-500">
-                  {active.authorHandle ? `${t('modal.from')} ${active.authorHandle}` : null}
-                  {active.sourceUrl ? (
-                    <>
-                      {' '}
-                      ·{' '}
-                      <a
-                        className="text-[var(--text2)] underline decoration-[var(--border2)] underline-offset-2 hover:text-[var(--text)]"
-                        href={active.sourceUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        {t('modal.viewSource')} ↗
-                      </a>
-                    </>
-                  ) : null}
-                </div>
-                <button
-                  className="rounded-lg bg-[var(--amber)] px-4 py-2 text-sm font-semibold text-[var(--bg)] hover:bg-[var(--amber2)]"
-                  onClick={() => {
-                    router.push(`/${locale}/create?template=${encodeURIComponent(active.id)}`);
-                  }}
-                >
-                  🚀 {t('modal.generateNow')}
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      ) : null}
+      <PromptTemplateDetailDialog
+        open={Boolean(active && detailOpen && !viewerOpen)}
+        item={active}
+        locale={locale}
+        onClose={() => {
+          setDetailOpen(false);
+          setActive(null);
+        }}
+      />
 
       {active && viewerOpen ? (
         <PromptGallerySwipeViewer

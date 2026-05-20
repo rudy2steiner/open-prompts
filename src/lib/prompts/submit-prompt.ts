@@ -36,7 +36,6 @@ const MODEL_LABELS: Record<string, string> = {
 
 const MAX_TITLE = 200;
 const MAX_DESC = 2000;
-const MAX_PROMPT = 100_000;
 const MAX_TAG_LEN = 48;
 const MAX_TAGS = 10;
 const MAX_IMAGES = 4;
@@ -102,7 +101,7 @@ export function parseSubmitPromptBody(
 
   const promptRaw = typeof o.prompt === 'string' ? o.prompt.trim() : '';
   if (promptRaw.length < 10) return { ok: false, error: 'Prompt must be at least 10 characters' };
-  const prompt = promptRaw.slice(0, MAX_PROMPT);
+  const prompt = promptRaw;
 
   const description =
     typeof o.description === 'string' ? o.description.trim().slice(0, MAX_DESC) : '';
@@ -139,6 +138,7 @@ export function parseSubmitPromptBody(
 export async function insertSubmittedPrompt(
   db: Db,
   value: ParsedSubmitPrompt,
+  submittedBy?: string | null,
 ): Promise<{ id: number; slug: string }> {
   const base = slugify(value.title);
 
@@ -159,6 +159,8 @@ export async function insertSubmittedPrompt(
           authorHandle: null,
           images: value.images,
           status: 'pending',
+          visibility: 'public',
+          submittedBy: submittedBy ?? null,
           sortOrder: 0,
         })
         .returning({ id: prompts.id, slug: prompts.slug });

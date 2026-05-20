@@ -7,6 +7,7 @@ import { renderPromptTemplate, TemplateValidationError } from '~/lib/templates/r
 import { PROVIDER_CAPABILITIES } from '~/lib/generation/capabilities';
 import {useTranslations} from 'next-intl';
 import { getOrCreateUserId } from '~/lib/credits/fingerprint';
+import { localeApiPath } from '~/lib/locale-api-path';
 
 type Props = {
   open: boolean;
@@ -75,7 +76,7 @@ export function GenerateModal({ open, onClose, locale, item }: Props) {
     let cancelled = false;
     const tick = async () => {
       try {
-        const res = await fetch(`/${locale}/api/generations/${encodeURIComponent(providerJobId)}`, {
+        const res = await fetch(localeApiPath(locale, `/api/generations/${encodeURIComponent(providerJobId)}`), {
           cache: 'no-store',
         }).then((r) => r.json());
         if (cancelled) return;
@@ -116,7 +117,7 @@ export function GenerateModal({ open, onClose, locale, item }: Props) {
     setUiState('queued');
     setImages([]);
     try {
-      const res = await fetch(`/${locale}/api/generations`, {
+      const res = await fetch(localeApiPath(locale, '/api/generations'), {
         method: 'POST',
         headers: { 'content-type': 'application/json', 'x-op-user-id': getOrCreateUserId() },
         body: JSON.stringify({

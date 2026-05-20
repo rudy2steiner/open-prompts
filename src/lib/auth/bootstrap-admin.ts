@@ -22,15 +22,30 @@ export async function bootstrapAdminIfConfigured(): Promise<void> {
     return;
   }
 
-  const [existing] = await db.select({ id: users.id }).from(users).where(eq(users.email, email)).limit(1);
-  if (existing) return;
-
   const name = process.env.ADMIN_NAME?.trim() || 'Admin';
   const passwordHash = await bcrypt.hash(password, 12);
+
+  const [existing] = await db
+    .select({ id: users.id, passwordHash: users.passwordHash })
+    .from(users)
+    .where(eq(users.email, email))
+    .limit(1);
+
+  if (existing) {
+    if (existing.passwordHash) return;
+    await db
+      .update(users)
+      .set({ name, passwordHash, emailVerified: new Date(), updatedAt: new Date() })
+      .where(eq(users.email, email));
+    console.info('[bootstrap-admin] Set password for existing user without credentials:', email);
+    return;
+  }
+
   await db.insert(users).values({
     email,
     name,
     passwordHash,
     emailVerified: new Date(),
   });
+  console.info('[bootstrap-admin] Created admin user:', email);
 }

@@ -306,6 +306,7 @@
       "create": "作成",
       "favorites": "お気に入り",
       "submit": "投稿",
+      "account": "アカウント",
       "rank": "ランキング",
       "docs": "ドキュメント",
       "submitCta": "プロンプトを投稿"
@@ -356,12 +357,14 @@
       "hints": {
         "title": "25文字程度で簡潔に",
         "desc": "効果を一言で",
-        "promptCount": "{count} / 800",
+        "promptCount": "{count} 文字",
         "tags": "2〜8個、Enter で確定",
         "source": "X、Reddit、個人サイトなど",
         "author": "任意、クレジット表示",
         "upload": "最大4枚、PNG/JPG、各10MB以下",
-        "urls": "カンマ区切り"
+        "uploadFull": "上限に達しました — 削除してから追加",
+        "urls": "1件ずつ · Enter または追加",
+        "imageCount": "{count} / {max} 枚"
       },
       "placeholders": {
         "title": "例：Cinematic sunset portrait",
@@ -369,7 +372,7 @@
         "prompt": "A breathtaking cinematic portrait…",
         "source": "https://x.com/…",
         "author": "@username または氏名",
-        "urls": "https://cdn.example.com/img1.jpg, …",
+        "urls": "https://cdn.example.com/preview.jpg",
         "tagInput": "入力して Enter…",
         "category": "カテゴリを選択…"
       },
@@ -432,7 +435,9 @@
         "myTemplates": "マイテンプレート",
         "detectSource": "自動検出",
         "copyPrompt": "コピー",
-        "copied": "コピー済み"
+        "copied": "コピー済み",
+        "addUrl": "追加",
+        "removeImage": "画像を削除"
       },
       "stepHint": "ステップ {n} / {total}",
       "preview": {
@@ -452,7 +457,10 @@
         "needCategory": "スタイル分類を選んでください。",
         "needTags": "タグは2〜8個にしてください。",
         "submitFailed": "保存に失敗しました。しばらくしてから再度お試しください。",
-        "submitUnavailable": "現在投稿を受け付けられません（データベース未設定）。"
+        "submitUnavailable": "現在投稿を受け付けられません（データベース未設定）。",
+        "invalidImageUrl": "有効な http(s) 画像 URL を入力してください。",
+        "duplicateImageUrl": "この URL は既に追加されています。",
+        "imageLimit": "画像は最大4枚までです。"
       },
       "rules": {
         "promptLen": "プロンプト 10文字以上",
@@ -467,7 +475,7 @@
         "dividerImages": "結果画像",
         "requirementsTitle": "要件",
         "requirementsList": [
-          "英語、10〜800文字",
+          "英語・10文字以上（上限なし）",
           "生成結果の画像を1枚以上",
           "正確なタイトルと説明",
           "1日あたり最大20件まで"
@@ -485,6 +493,120 @@
         "titleEm": "完了",
         "body": "審査キューに入りました。通常24時間以内に確認します。承認後ギャラリーに表示されます。",
         "idLabel": "参照番号 #OP-{id}"
+      }
+    },
+    "accountPage": {
+      "seo": {
+        "title": "アカウント | Open Prompts",
+        "description": "テンプレート管理、審査キュー、アカウント設定。"
+      },
+      "sidebar": {
+        "overview": "概要",
+        "content": "コンテンツ",
+        "account": "アカウント",
+        "adminBadge": "管理者"
+      },
+      "nav": {
+        "overview": "ダッシュボード",
+        "prompts": "マイテンプレート",
+        "adminReview": "審査キュー",
+        "credits": "クレジット",
+        "subscription": "サブスク"
+      },
+      "panels": {
+        "overview": "ダッシュボード",
+        "prompts": "テンプレート",
+        "admin": "モデレーション",
+        "credits": "クレジット履歴",
+        "subscription": "サブスクリプション"
+      },
+      "topbar": {
+        "gallery": "ギャラリーへ",
+        "newTemplate": "新規テンプレート",
+        "signOut": "ログアウト"
+      },
+      "metrics": {
+        "templates": "テンプレート",
+        "pending": "審査待ち",
+        "credits": "残クレジット",
+        "generations": "生成回数"
+      },
+      "overview": {
+        "hint": "テンプレートの作成・管理。公開は審査通過後にギャラリーへ表示されます。",
+        "manage": "テンプレート管理",
+        "submit": "新規投稿"
+      },
+      "toolbar": {
+        "search": "タイトル・プロンプトで検索…",
+        "allStatus": "すべての状態",
+        "refresh": "更新"
+      },
+      "table": {
+        "template": "テンプレート",
+        "owner": "所有者",
+        "ownerAnonymous": "匿名 / カタログ",
+        "status": "状態",
+        "model": "モデル",
+        "updated": "更新日",
+        "actions": "操作",
+        "view": "詳細",
+        "edit": "編集",
+        "delete": "削除",
+        "approve": "承認",
+        "reject": "却下",
+        "revoke": "公開取り消し",
+        "reapprove": "再承認",
+        "empty": "テンプレートがありません。",
+        "confirmDelete": "このテンプレートを削除しますか？"
+      },
+      "status": {
+        "pub": "公開中",
+        "draft": "下書き",
+        "priv": "非公開",
+        "pending": "審査中",
+        "rejected": "却下"
+      },
+      "visibility": {
+        "public": "公開（審査あり）",
+        "private": "非公開",
+        "draft": "下書き"
+      },
+      "admin": {
+        "hint": "投稿を承認・却下します。承認された公開テンプレートのみギャラリーに表示されます。",
+        "hintAllUsers": "全アカウントのテンプレートを表示します（自分のみではありません）。「ユーザーテンプレート」は所有者あり、「すべての行」は従来のギャラリーカタログを含みます。",
+        "hintActions": "承認/却下は審査中のみ。公開中は取り消し、却下済みは再承認できます。",
+        "scopeUser": "ユーザーテンプレート",
+        "scopeAll": "すべて（カタログ含む）",
+        "empty": "この条件に一致するテンプレートはありません。",
+        "emptyPending": "審査待ちはありません。「すべての状態」で公開・却下済みを表示できます。公開テンプレートを作成すると審査キューに入ります。",
+        "loadError": "モデレーション一覧の読み込みに失敗しました: {message}",
+        "loadTimeout": "タイムアウトしました。DATABASE_URL を確認してください（管理用は 5432 直結、6543 プーラーは避ける）。dev の p_prompts 長時間クエリを停止してください。",
+        "pagination": {
+          "pageSize": "件数",
+          "prev": "前へ",
+          "next": "次へ",
+          "total": "全 {count} 件",
+          "totalUnknown": "合計件数不明",
+          "pageOf": "{page} / {total} ページ",
+          "pageOnly": "{page} ページ"
+        }
+      },
+      "placeholders": {
+        "credits": "クレジット履歴は近日公開。",
+        "subscription": "サブスク管理は近日公開。"
+      },
+      "loading": "読み込み中…",
+      "modal": {
+        "createTitle": "新規テンプレート",
+        "editTitle": "テンプレート編集",
+        "model": "モデル",
+        "visibility": "公開範囲",
+        "coverUrl": "カバー画像 URL",
+        "cancel": "キャンセル",
+        "save": "保存",
+        "saving": "保存中…",
+        "validation": "タイトル・プロンプト（10文字以上）・カテゴリ・タグ2〜8個を入力してください。",
+        "saveFailed": "保存に失敗しました。"
       }
     },
     "login": {

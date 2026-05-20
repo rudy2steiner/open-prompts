@@ -1,7 +1,8 @@
-import { asc, eq } from 'drizzle-orm';
+import { asc } from 'drizzle-orm';
 import type { PromptGalleryItem } from '~/data/promptGallery';
 import { getDb } from '~/db/client';
 import { prompts } from '~/db/schema';
+import { galleryPublicFilter } from '~/lib/prompts/template-record';
 
 function rowToItem(row: {
   slug: string;
@@ -57,7 +58,7 @@ export async function fetchPromptGalleryFromDb(): Promise<PromptGalleryItem[] | 
         images: prompts.images,
       })
       .from(prompts)
-      .where(eq(prompts.status, 'approved'))
+      .where(galleryPublicFilter())
       .orderBy(asc(prompts.sortOrder), asc(prompts.createdAt));
 
     if (!rows.length) return null;

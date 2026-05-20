@@ -79,6 +79,10 @@ export const authOptions: NextAuthOptions = {
   session: { strategy: 'jwt' },
   secret: process.env.NEXTAUTH_SECRET,
   providers: buildProviders(),
+  pages: {
+    signIn: '/login',
+    error: '/login',
+  },
   callbacks: {
     async signIn({ user, account }) {
       if (account?.provider === 'github' && !user?.email) {
@@ -125,7 +129,12 @@ export const authOptions: NextAuthOptions = {
         if (typeof token.email === 'string') session.user.email = token.email;
         session.user.name = (token.name as string | null | undefined) ?? session.user.name;
         const picture = (token.picture as string | null | undefined) ?? session.user.image;
-        session.user.image = resolveUserAvatarUrl(picture);
+        const seed =
+          (typeof token.email === 'string' && token.email) ||
+          (typeof token.sub === 'string' && token.sub) ||
+          session.user.email ||
+          session.user.id;
+        session.user.image = resolveUserAvatarUrl(picture, seed);
       }
       return session;
     },

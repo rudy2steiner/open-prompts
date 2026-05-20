@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getDb } from '~/db/client';
+import { getAuthSession } from '~/lib/auth/session';
 import { getPromptGallery } from '~/lib/prompts/get-prompt-gallery';
 import { insertSubmittedPrompt, parseSubmitPromptBody } from '~/lib/prompts/submit-prompt';
 
@@ -34,7 +35,8 @@ export async function POST(req: Request) {
   }
 
   try {
-    const row = await insertSubmittedPrompt(db, parsed.value);
+    const session = await getAuthSession();
+    const row = await insertSubmittedPrompt(db, parsed.value, session?.user?.id ?? null);
     return NextResponse.json({ ok: true, id: row.id, slug: row.slug });
   } catch (e: unknown) {
     const message = e instanceof Error ? e.message : 'Insert failed';

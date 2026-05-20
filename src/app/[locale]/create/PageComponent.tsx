@@ -15,6 +15,7 @@ import { LuCheck, LuChevronDown, LuHash, LuLayers, LuMaximize2, LuShield, LuSqua
 import { FaCubes } from 'react-icons/fa';
 import { TbCloud } from 'react-icons/tb';
 import { getOrCreateUserId } from '~/lib/credits/fingerprint';
+import { localeApiPath } from '~/lib/locale-api-path';
 
 type Props = { locale: string; prompts: PromptGalleryItem[] };
 
@@ -271,7 +272,9 @@ export default function PageComponent({ locale, prompts }: Props) {
   const proxifyImageList = (list: string[]) =>
     list.map((u) => {
       const s = String(u || '');
-      if (/^https?:\/\//i.test(s)) return `/${locale}/api/image-proxy?url=${encodeURIComponent(s)}`;
+      if (/^https?:\/\//i.test(s)) {
+        return `${localeApiPath(locale, '/api/image-proxy')}?url=${encodeURIComponent(s)}`;
+      }
       return s;
     });
 
@@ -472,7 +475,7 @@ export default function PageComponent({ locale, prompts }: Props) {
         const encoded = providerJobId || '';
         const p = encoded.includes(':') ? encoded.slice(0, encoded.indexOf(':')) : provider;
         const key = getApiKeyOverride(p);
-        const res = await fetch(`/${locale}/api/generations/${encodeURIComponent(providerJobId)}`, {
+        const res = await fetch(localeApiPath(locale, `/api/generations/${encodeURIComponent(providerJobId)}`), {
           cache: 'no-store',
           headers: key ? { 'x-op-api-key': key } : undefined,
         }).then((r) => r.json());
@@ -517,7 +520,7 @@ export default function PageComponent({ locale, prompts }: Props) {
     setUiState('queued');
     setImages([]);
     try {
-      const res = await fetch(`/${locale}/api/generations`, {
+      const res = await fetch(localeApiPath(locale, '/api/generations'), {
         method: 'POST',
         headers: { 'content-type': 'application/json', 'x-op-user-id': getOrCreateUserId() },
         body: JSON.stringify({
@@ -591,7 +594,9 @@ export default function PageComponent({ locale, prompts }: Props) {
   const downloadWithRandomName = async (url: string) => {
     const original = String(url || '').trim();
     if (!original) return;
-    const src = /^https?:\/\//i.test(original) ? `/${locale}/api/image-proxy?url=${encodeURIComponent(original)}` : original;
+    const src = /^https?:\/\//i.test(original)
+      ? `${localeApiPath(locale, '/api/image-proxy')}?url=${encodeURIComponent(original)}`
+      : original;
 
     const extFromUrl = (u: string) => {
       try {
@@ -1350,7 +1355,9 @@ export default function PageComponent({ locale, prompts }: Props) {
               {(() => {
                 const proxify = (u: string) => {
                   const s = String(u || '');
-                  if (/^https?:\/\//i.test(s)) return `/${locale}/api/image-proxy?url=${encodeURIComponent(s)}`;
+                  if (/^https?:\/\//i.test(s)) {
+        return `${localeApiPath(locale, '/api/image-proxy')}?url=${encodeURIComponent(s)}`;
+      }
                   return s;
                 };
 
