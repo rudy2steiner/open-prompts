@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Suspense } from 'react';
+import { getOAuthProviderFlags } from '~/lib/auth/oauth-providers';
 import { getPromptGallery } from '~/lib/prompts/get-prompt-gallery';
 import PageComponent from './PageComponent';
 
@@ -34,10 +35,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   const { locale: raw } = await params;
   const locale = normalizeLocale(raw);
   setRequestLocale(locale);
-  const authProviders = {
-    github: !!(process.env.GITHUB_ID && process.env.GITHUB_SECRET),
-    google: !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET),
-  };
+  const authProviders = getOAuthProviderFlags();
   const prompts = await getPromptGallery();
   const previewPrompts = prompts
     .filter((p) => p.images?.[0])

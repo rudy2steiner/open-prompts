@@ -45,11 +45,19 @@ export default function PageComponent({ locale, authProviders, previewPrompts }:
   const [magicSent, setMagicSent] = useState(false);
   const [resendLabel, setResendLabel] = useState<'idle' | 'sent'>('idle');
 
-  const callbackUrl = useMemo(() => homeHref(locale), [locale]);
+  const callbackUrl = useMemo(() => {
+    const raw = searchParams?.get('callbackUrl');
+    if (raw && raw.startsWith('/') && !raw.startsWith('//')) return raw;
+    return homeHref(locale);
+  }, [locale, searchParams]);
   const stackPrompts = useMemo(() => stackThree(previewPrompts), [previewPrompts]);
 
   const mapAuthError = useCallback(() => {
     if (errorCode === 'CredentialsSignin') return t('errorCredentials');
+    if (errorCode === 'Configuration') return t('errorConfiguration');
+    if (errorCode === 'AccessDenied') return t('errorAccessDenied');
+    if (errorCode === 'OAuthAccountNotLinked') return t('errorOAuthAccountNotLinked');
+    if (errorCode === 'OAuthSignin' || errorCode === 'OAuthCallback') return t('errorOAuth');
     if (errorCode) return t('errorGeneric');
     return null;
   }, [errorCode, t]);
@@ -340,6 +348,12 @@ export default function PageComponent({ locale, authProviders, previewPrompts }:
                   {t('tabRegister')}
                 </button>
               </div>
+
+              {!authProviders.github && !authProviders.google ? (
+                <p className="mb-4 rounded-lg border border-[var(--border2)] bg-[var(--surface2)] px-3 py-2 text-xs text-[var(--text2)]">
+                  {t('oauthSetupHint')}
+                </p>
+              ) : null}
 
               <div className="mb-6 flex flex-col rounded-none border border-[var(--border2)]">
                 <button

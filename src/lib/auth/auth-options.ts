@@ -1,7 +1,5 @@
 import type { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import GitHubProvider from 'next-auth/providers/github';
-import GoogleProvider from 'next-auth/providers/google';
 import bcrypt from 'bcryptjs';
 import { eq } from 'drizzle-orm';
 import { getDb } from '~/db/client';
@@ -9,28 +7,11 @@ import { users } from '~/db/schema';
 import { resolveUserAvatarUrl } from '~/lib/auth/default-user-avatar';
 import { isAdminEmail } from '~/lib/auth/session';
 import { bootstrapAdminIfConfigured } from '~/lib/auth/bootstrap-admin';
+import { buildOAuthProviders } from '~/lib/auth/oauth-providers';
 import { ensureOAuthUser } from '~/lib/auth/sync-oauth-user';
 
 function buildProviders() {
-  const list: NextAuthOptions['providers'] = [];
-
-  if (process.env.GITHUB_ID && process.env.GITHUB_SECRET) {
-    list.push(
-      GitHubProvider({
-        clientId: process.env.GITHUB_ID,
-        clientSecret: process.env.GITHUB_SECRET,
-      })
-    );
-  }
-
-  if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
-    list.push(
-      GoogleProvider({
-        clientId: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      })
-    );
-  }
+  const list: NextAuthOptions['providers'] = [...buildOAuthProviders()];
 
   list.push(
     CredentialsProvider({
@@ -86,9 +67,24 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async signIn({ user, account }) {
-      if (account?.provider === 'github' && !user?.email) {
+      if (!account || account.provider === 'credentials') return true;
+
+      const email = user?.email?.trim();
+      if (!email) {
+        if (process.env.NODE_ENV === 'development') {
+          console.warn(`[auth] ${account.provider} sign-in missing email`);
+        }
         return false;
       }
+
+      const db = getDb();
+      if (!db) {
+        if (process.env.NODE_ENV === 'development') {
+          console.warn('[auth] DATABASE_URL not set; OAuth sign-in cannot persist user');
+        }
+        return false;
+      }
+
       return true;
     },
     async jwt({ token, user, account }) {
