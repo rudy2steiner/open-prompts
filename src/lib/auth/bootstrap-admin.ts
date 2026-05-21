@@ -5,8 +5,9 @@ import { users } from '~/db/schema';
 import { getAdminEmails } from '~/lib/auth/session';
 
 /**
- * Creates the credentials admin user once if `ADMIN_EMAIL` + `ADMIN_PASSWORD` are set
- * and no row exists for that email. Does not overwrite an existing user (use `npm run seed:admin`).
+ * Ensures each `ADMIN_EMAIL` has a credentials password matching `ADMIN_PASSWORD`.
+ * Creates missing users; always re-syncs password hash for listed admin emails so
+ * production env stays the source of truth (OAuth-only rows get a password too).
  */
 export async function bootstrapAdminIfConfigured(): Promise<void> {
   const emails = getAdminEmails();
@@ -28,18 +29,26 @@ export async function bootstrapAdminIfConfigured(): Promise<void> {
 
   for (const email of emails) {
     const [existing] = await db
-      .select({ id: users.id, passwordHash: users.passwordHash })
+      .select({
+        id: users.id,
+        passwordHash: users.passwordHash,
+        emailVerified: users.emailVerified,
+      })
       .from(users)
       .where(eq(users.email, email))
       .limit(1);
 
     if (existing) {
-      if (existing.passwordHash) continue;
       await db
         .update(users)
-        .set({ name, passwordHash, emailVerified: new Date(), updatedAt: new Date() })
+        .set({
+          name,
+          passwordHash,
+          emailVerified: existing.emailVerified ?? new Date(),
+          updatedAt: new Date(),
+        })
         .where(eq(users.email, email));
-      console.info('[bootstrap-admin] Set password for existing user without credentials:', email);
+      console.info('[bootstrap-admin] Synced admin credentials for:', email);
       continue;
     }
 

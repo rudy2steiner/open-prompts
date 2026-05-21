@@ -651,6 +651,7 @@
       "switchToLoginLink": "返回登录",
       "disclaimer": "继续即代表你同意服务条款与隐私政策。",
       "errorCredentials": "邮箱或密码不正确。",
+      "errorCredentialsHint": "请使用 ADMIN_EMAIL 中的完整邮箱。线上环境也需在部署平台配置 DATABASE_URL 与 ADMIN_PASSWORD（不能只在本地 .env）。若先用 GitHub/Google 登录过，请用对应方式登录，或设置 ADMIN_PASSWORD 后重启服务以同步管理员密码。",
       "errorConfiguration": "服务器登录配置有误（检查 NEXTAUTH_URL、NEXTAUTH_SECRET 与 OAuth 回调地址）。",
       "errorAccessDenied": "已取消或拒绝授权登录。",
       "errorOAuth": "无法通过该方式登录。GitHub 需允许读取邮箱，或使用公开邮箱。",

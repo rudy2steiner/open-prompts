@@ -667,6 +667,7 @@
       "switchToLoginLink": "ログインへ",
       "disclaimer": "続行すると利用規約とプライバシーポリシーに同意したことになります。",
       "errorCredentials": "メールまたはパスワードが正しくありません。",
+      "errorCredentialsHint": "ADMIN_EMAIL に登録したメールアドレスをそのまま入力してください。本番ホストにも DATABASE_URL と ADMIN_PASSWORD が必要です（ローカルの .env だけでは不十分）。GitHub/Google で先に登録した場合はそちらでログインするか、ADMIN_PASSWORD 設定後に再起動して同期してください。",
       "errorConfiguration": "サーバーのログイン設定に問題があります（NEXTAUTH_URL、NEXTAUTH_SECRET、OAuth コールバック URL を確認）。",
       "errorAccessDenied": "ログインがキャンセルまたは拒否されました。",
       "errorOAuth": "プロバイダーでログインできませんでした。GitHub ではメールアクセスを許可するか、公開メールを設定してください。",

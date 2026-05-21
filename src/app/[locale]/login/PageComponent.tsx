@@ -35,8 +35,6 @@ export default function PageComponent({ locale, authProviders, previewPrompts }:
   const searchParams = useSearchParams();
   const errorCode = searchParams?.get('error') ?? null;
 
-  const [mode, setMode] = useState<'login' | 'register'>('login');
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [pwVisible, setPwVisible] = useState(false);
@@ -78,33 +76,6 @@ export default function PageComponent({ locale, authProviders, previewPrompts }:
     setFormError(null);
     setBusy(true);
     try {
-      if (mode === 'register') {
-        const res = await fetch('/api/auth/register', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, password, name: name || undefined }),
-        });
-        const data = (await res.json().catch(() => ({}))) as { error?: string };
-        if (!res.ok) {
-          setFormError(data.error || t('errorRegister'));
-          return;
-        }
-        const signInRes = await signIn('credentials', {
-          email: email.trim().toLowerCase(),
-          password,
-          callbackUrl,
-          redirect: false,
-        });
-        if (signInRes?.error) {
-          setFormError(t('errorCredentials'));
-          return;
-        }
-        if (signInRes?.ok && signInRes.url) {
-          window.location.assign(signInRes.url);
-        }
-        return;
-      }
-
       const signInRes = await signIn('credentials', {
         email: email.trim().toLowerCase(),
         password,
@@ -316,39 +287,6 @@ export default function PageComponent({ locale, authProviders, previewPrompts }:
                 <p className="mt-1.5 text-[13px] font-light leading-relaxed text-[var(--text2)]">{t('welcomeSubtitle')}</p>
               </div>
 
-              <div className="mb-7 flex rounded-none border border-[var(--border)] bg-[var(--surface)]">
-                <button
-                  type="button"
-                  className={`flex-1 rounded-none border-0 border-r border-[var(--border)] py-2 text-[13px] transition ${
-                    mode === 'login'
-                      ? 'bg-[var(--surface2)] text-[var(--text)]'
-                      : 'text-[var(--text2)]'
-                  }`}
-                  onClick={() => {
-                    setMode('login');
-                    setMagicSent(false);
-                    setFormError(null);
-                  }}
-                >
-                  {t('tabLogin')}
-                </button>
-                <button
-                  type="button"
-                  className={`flex-1 rounded-none border-0 py-2 text-[13px] transition ${
-                    mode === 'register'
-                      ? 'bg-[var(--surface2)] text-[var(--text)]'
-                      : 'text-[var(--text2)]'
-                  }`}
-                  onClick={() => {
-                    setMode('register');
-                    setMagicSent(false);
-                    setFormError(null);
-                  }}
-                >
-                  {t('tabRegister')}
-                </button>
-              </div>
-
               {!authProviders.github && !authProviders.google ? (
                 <p className="mb-4 rounded-lg border border-[var(--border2)] bg-[var(--surface2)] px-3 py-2 text-xs text-[var(--text2)]">
                   {t('oauthSetupHint')}
@@ -427,23 +365,13 @@ export default function PageComponent({ locale, authProviders, previewPrompts }:
               ) : (
                 <div>
                   {combinedError ? (
-                    <p className="mb-3 rounded-none border border-[color-mix(in_oklab,var(--amber)_35%,transparent)] bg-[color-mix(in_oklab,var(--amber)_10%,transparent)] px-3 py-2 text-center text-xs text-[var(--text)]">
-                      {combinedError}
-                    </p>
-                  ) : null}
-
-                  {mode === 'register' ? (
-                    <div className="mb-3.5">
-                      <label className="mb-1.5 block text-[11px] uppercase tracking-wide text-[var(--text2)]">
-                        {t('labelUsername')}
-                      </label>
-                      <input
-                        className="w-full rounded-none border border-[var(--border2)] bg-[var(--surface)] px-3.5 py-2.5 text-[13px] text-[var(--text)] outline-none transition focus:border-[var(--amber)]"
-                        placeholder={t('usernamePlaceholder')}
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        autoComplete="name"
-                      />
+                    <div className="mb-3 rounded-none border border-[color-mix(in_oklab,var(--amber)_35%,transparent)] bg-[color-mix(in_oklab,var(--amber)_10%,transparent)] px-3 py-2 text-center text-xs text-[var(--text)]">
+                      <p>{combinedError}</p>
+                      {errorCode === 'CredentialsSignin' || formError ? (
+                        <p className="mt-2 text-left text-[11px] leading-relaxed text-[var(--text2)]">
+                          {t('errorCredentialsHint')}
+                        </p>
+                      ) : null}
                     </div>
                   ) : null}
 
@@ -472,7 +400,7 @@ export default function PageComponent({ locale, authProviders, previewPrompts }:
                         placeholder={t('passwordPlaceholder')}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        autoComplete={mode === 'register' ? 'new-password' : 'current-password'}
+                        autoComplete="current-password"
                       />
                       <button
                         type="button"
@@ -486,19 +414,15 @@ export default function PageComponent({ locale, authProviders, previewPrompts }:
                     </div>
                   </div>
 
-                  {mode === 'login' ? (
-                    <div className="mb-5 flex items-center justify-between">
-                      <label className="flex cursor-pointer items-center text-xs text-[var(--text2)]">
-                        <input type="checkbox" defaultChecked className="mr-2 accent-[var(--amber)]" />
-                        {t('remember')}
-                      </label>
-                      <button type="button" className="text-xs text-[var(--amber)] hover:underline" onClick={showForgot}>
-                        {t('forgot')}
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="mb-5" />
-                  )}
+                  <div className="mb-5 flex items-center justify-between">
+                    <label className="flex cursor-pointer items-center text-xs text-[var(--text2)]">
+                      <input type="checkbox" defaultChecked className="mr-2 accent-[var(--amber)]" />
+                      {t('remember')}
+                    </label>
+                    <button type="button" className="text-xs text-[var(--amber)] hover:underline" onClick={showForgot}>
+                      {t('forgot')}
+                    </button>
+                  </div>
 
                   <button
                     type="button"
@@ -506,34 +430,8 @@ export default function PageComponent({ locale, authProviders, previewPrompts }:
                     onClick={onSubmit}
                     className="w-full rounded-none bg-[var(--amber)] py-3 text-sm font-medium text-[#0e0d0b] transition hover:bg-[var(--amber2)] active:scale-[0.99] disabled:opacity-70"
                   >
-                    {busy ? t('submitBusy') : mode === 'login' ? t('submitLogin') : t('submitRegister')}
+                    {busy ? t('submitBusy') : t('submitLogin')}
                   </button>
-
-                  <p className="mt-5 text-center text-xs text-[var(--text2)]">
-                    {mode === 'login' ? (
-                      <>
-                        {t('switchToRegister')}{' '}
-                        <button
-                          type="button"
-                          className="text-[var(--amber)] hover:underline"
-                          onClick={() => setMode('register')}
-                        >
-                          {t('switchToRegisterLink')}
-                        </button>
-                      </>
-                    ) : (
-                      <>
-                        {t('switchToLogin')}{' '}
-                        <button
-                          type="button"
-                          className="text-[var(--amber)] hover:underline"
-                          onClick={() => setMode('login')}
-                        >
-                          {t('switchToLoginLink')}
-                        </button>
-                      </>
-                    )}
-                  </p>
                 </div>
               )}
 
