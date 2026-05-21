@@ -1,6 +1,6 @@
 import { randomBytes } from 'node:crypto';
 
-import { and, count, desc, eq, ilike, isNotNull, or, sql, type SQL } from 'drizzle-orm';
+import { and, count, desc, eq, ilike, or, sql, type SQL } from 'drizzle-orm';
 import type { Db } from '~/db/client';
 import { prompts, users } from '~/db/schema';
 import type { AdminTemplateRecord } from '~/lib/prompts/template-types';
@@ -157,14 +157,10 @@ export type ListTemplatesOpts = {
   offset?: number;
 };
 
-export type AdminListScope = 'all' | 'user';
-
 export type ListAdminTemplatesOpts = {
   q?: string;
   status?: PromptReviewStatus;
   visibility?: PromptVisibility;
-  /** `user` = rows with `submitted_by` (all accounts). `all` = entire table incl. legacy catalog. */
-  scope?: AdminListScope;
   limit?: number;
   offset?: number;
 };
@@ -173,14 +169,8 @@ function buildListConditions(opts: {
   q?: string;
   status?: PromptReviewStatus;
   visibility?: PromptVisibility;
-  scope?: AdminListScope;
 }) {
   const conditions: SQL[] = [];
-  if (opts.scope === 'user') {
-    conditions.push(
-      or(isNotNull(prompts.submittedBy), eq(prompts.status, 'pending')) as SQL,
-    );
-  }
   if (opts.status) conditions.push(eq(prompts.status, opts.status));
   if (opts.visibility) conditions.push(eq(prompts.visibility, opts.visibility));
   if (opts.q?.trim()) {
@@ -240,8 +230,7 @@ export async function listTemplates(db: Db, opts: ListTemplatesOpts) {
 export async function listTemplatesForAdmin(db: Db, opts: ListAdminTemplatesOpts) {
   const limit = Math.min(Math.max(opts.limit ?? 50, 1), 200);
   const offset = Math.max(opts.offset ?? 0, 0);
-  const scope = opts.scope ?? 'user';
-  const where = buildListConditions({ ...opts, scope });
+  const where = buildListConditions(opts);
 
   const rows = await db
     .select({
@@ -273,7 +262,6 @@ export async function listTemplatesForAdmin(db: Db, opts: ListAdminTemplatesOpts
     total,
     limit,
     offset,
-    scope,
     hasMore: items.length >= limit,
   };
 }

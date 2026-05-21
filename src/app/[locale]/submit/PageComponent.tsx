@@ -2,8 +2,16 @@
 
 import './submit-page.css';
 import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import {
+  modelLabelToId,
+  type PromptVisibility,
+  type TemplateRecord,
+} from '~/lib/prompts/template-types';
+import { parseSubmitEditId, submitEditorHref } from '~/lib/prompts/submit-editor-path';
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
 import { localeApiPath } from '~/lib/locale-api-path';
@@ -45,10 +53,37 @@ export type SubmitPageProps = {
   quickTags: string[];
 };
 
+function accountHref(locale: string) {
+  return locale === 'en' ? '/account?panel=prompts' : `/${locale}/account?panel=prompts`;
+}
+
+function loginHref(locale: string, returnPath: string) {
+  const base = locale === 'en' ? '/login' : `/${locale}/login`;
+  return `${base}?callbackUrl=${encodeURIComponent(returnPath)}`;
+}
+
 export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
   const t = useTranslations('OpenPrompts.submitPage');
   const tGallery = useTranslations('OpenPrompts.gallery');
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const { status: authStatus } = useSession();
   const galleryHref = locale === 'en' ? '/' : `/${locale}`;
+  const submitPrivatePath = submitEditorHref(locale, { visibility: 'private' });
+
+  const editId = parseSubmitEditId(searchParams?.get('edit'));
+  const isEditMode = editId !== null;
+  const isPrivateMode = !isEditMode && searchParams?.get('visibility') === 'private';
+
+  const [templateVisibility, setTemplateVisibility] = useState<PromptVisibility>('public');
+  const [loadingTemplate, setLoadingTemplate] = useState(false);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  const saveVisibility: PromptVisibility = isEditMode
+    ? templateVisibility
+    : isPrivateMode
+      ? 'private'
+      : 'public';
 
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
@@ -80,6 +115,58 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
   useEffect(() => {
     setBlockedHint(null);
   }, [title, desc, prompt, category, tags]);
+
+  const authReturnPath =
+    isEditMode && editId
+      ? submitEditorHref(locale, { editId })
+      : isPrivateMode
+        ? submitPrivatePath
+        : '';
+
+  useEffect(() => {
+    if ((!isPrivateMode && !isEditMode) || authStatus !== 'unauthenticated') return;
+    router.replace(loginHref(locale, authReturnPath));
+  }, [isPrivateMode, isEditMode, authStatus, locale, router, authReturnPath]);
+
+  const applyTemplateToForm = useCallback((item: TemplateRecord) => {
+    const cat =
+      item.tags.find((tag) => (CATEGORY_KEYS as readonly string[]).includes(tag as (typeof CATEGORY_KEYS)[number])) ??
+      '';
+    setTitle(item.title);
+    setDesc(item.description);
+    setPrompt(item.prompt);
+    setModelId(modelLabelToId(item.model) as (typeof MODEL_IDS)[number]);
+    setCategory(cat);
+    setTags(item.tags.filter((tag) => tag !== cat));
+    setResultImages(item.images.filter(isValidImageSrc).slice(0, MAX_RESULT_IMAGES));
+    setXImportUrl(item.sourceUrl ?? '');
+    setTemplateVisibility(item.visibility);
+    setSubmissionId(String(item.id));
+  }, []);
+
+  const loadEditTemplate = useCallback(async () => {
+    if (!editId) return;
+    setLoadingTemplate(true);
+    setLoadError(null);
+    try {
+      const res = await fetch(localeApiPath(locale, `/api/my/templates/${editId}`), { cache: 'no-store' });
+      const data = (await res.json().catch(() => ({}))) as { item?: TemplateRecord; error?: string };
+      if (!res.ok || !data.item) {
+        setLoadError(data.error ?? `HTTP ${res.status}`);
+        return;
+      }
+      applyTemplateToForm(data.item);
+    } catch {
+      setLoadError(t('editMode.loadFailed'));
+    } finally {
+      setLoadingTemplate(false);
+    }
+  }, [applyTemplateToForm, editId, locale, t]);
+
+  useEffect(() => {
+    if (!isEditMode || authStatus !== 'authenticated') return;
+    void loadEditTemplate();
+  }, [isEditMode, authStatus, loadEditTemplate]);
 
   const shake = useCallback((id: string) => {
     setShakeId(id);
@@ -270,23 +357,39 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
     if (!validateForm()) return;
     setBlockedHint(null);
     setSubmitting(true);
+    const payload = {
+      title: title.trim(),
+      description: desc.trim(),
+      prompt: prompt.trim(),
+      modelId,
+      category,
+      tags,
+      images: previewImageUrls,
+      sourceUrl: xImportUrl.trim() || undefined,
+      visibility: saveVisibility,
+    };
     try {
-      const res = await fetch(localeApiPath(locale, '/api/prompts'), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          title: title.trim(),
-          description: desc.trim(),
-          prompt: prompt.trim(),
-          modelId,
-          category,
-          tags,
-          images: previewImageUrls,
-          sourceUrl: xImportUrl.trim() || undefined,
-        }),
-      });
-      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; id?: number; error?: string };
+      const res = await fetch(
+        isEditMode && editId
+          ? localeApiPath(locale, `/api/my/templates/${editId}`)
+          : localeApiPath(locale, '/api/prompts'),
+        {
+          method: isEditMode ? 'PATCH' : 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        },
+      );
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        id?: number;
+        item?: TemplateRecord;
+        error?: string;
+      };
       if (!res.ok) {
+        if (res.status === 401 && (isPrivateMode || isEditMode)) {
+          router.replace(loginHref(locale, authReturnPath));
+          return;
+        }
         if (res.status === 503) {
           setBlockedHint(t('validation.submitUnavailable'));
         } else {
@@ -295,7 +398,8 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
         return;
       }
       setSuccess(true);
-      setSubmissionId(String(data.id ?? ''));
+      const id = data.item?.id ?? data.id ?? editId;
+      if (id) setSubmissionId(String(id));
     } catch {
       setBlockedHint(t('validation.submitFailed'));
     } finally {
@@ -306,6 +410,10 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
   const resetForm = () => {
     setSuccess(false);
     setBlockedHint(null);
+    if (isEditMode) {
+      void loadEditTemplate();
+      return;
+    }
     setTitle('');
     setDesc('');
     setModelId('dalle3');
@@ -338,13 +446,60 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
                 {!success ? (
                   <>
                     <header className="mb-8">
-                      <div className="op-sp-wizard-eyebrow">{t('wizard.eyebrow')}</div>
+                      <div className="op-sp-wizard-eyebrow">
+                        {isEditMode
+                          ? t('editMode.eyebrow')
+                          : isPrivateMode
+                            ? t('privateMode.eyebrow')
+                            : t('wizard.eyebrow')}
+                      </div>
                       <h1 className="op-sp-wizard-title">
-                        {t('wizard.title')}
-                        <em>{t('wizard.titleEm')}</em>
+                        {isEditMode ? (
+                          <>
+                            {t('editMode.title')}
+                            <em>{t('editMode.titleEm')}</em>
+                          </>
+                        ) : isPrivateMode ? (
+                          <>
+                            {t('privateMode.title')}
+                            <em>{t('privateMode.titleEm')}</em>
+                          </>
+                        ) : (
+                          <>
+                            {t('wizard.title')}
+                            <em>{t('wizard.titleEm')}</em>
+                          </>
+                        )}
                       </h1>
-                      <p className="op-sp-wizard-sub">{t('wizard.subtitleSimple')}</p>
+                      <p className="op-sp-wizard-sub">
+                        {isEditMode
+                          ? t('editMode.subtitle')
+                          : isPrivateMode
+                            ? t('privateMode.subtitle')
+                            : t('wizard.subtitleSimple')}
+                      </p>
                     </header>
+
+                    {isEditMode && loadError ? (
+                      <div className="op-sp-info mb-6 border-[var(--coral)]/40">
+                        <p className="text-[var(--coral)]">{loadError}</p>
+                        <Link href={accountHref(locale)} className="mt-2 inline-block text-sm text-[var(--amber)]">
+                          {t('editMode.backToTemplates')}
+                        </Link>
+                      </div>
+                    ) : null}
+
+                    {isEditMode && loadingTemplate ? (
+                      <p className="mb-6 text-sm text-[var(--text2)]">{t('editMode.loading')}</p>
+                    ) : null}
+
+                    {isEditMode && (loadingTemplate || loadError) ? null : (
+                      <>
+                    {isPrivateMode ? (
+                      <div className="op-sp-info mb-6 border-[var(--amber)]/30 bg-[color-mix(in_oklab,var(--amber)_8%,transparent)]">
+                        <p>{t('privateMode.hint')}</p>
+                      </div>
+                    ) : null}
 
                     <div className="op-sp-info mb-6">
                       <p>
@@ -660,9 +815,17 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
                         aria-busy={submitting}
                         onClick={() => void doSubmit()}
                       >
-                        {submitting ? t('buttons.submitting') : t('buttons.submit')}
+                        {submitting
+                          ? t('buttons.submitting')
+                          : isEditMode
+                            ? t('editMode.save')
+                            : isPrivateMode
+                              ? t('privateMode.submit')
+                              : t('buttons.submit')}
                       </button>
                     </div>
+                      </>
+                    )}
                   </>
                 ) : (
                   <div className="op-sp-success op-show">
@@ -670,26 +833,52 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
                       🎉
                     </div>
                     <h2 className="mb-2 text-2xl font-semibold">
-                      {t('success.title')}
-                      <em className="italic text-[var(--teal)]">{t('success.titleEm')}</em>
+                      {isEditMode
+                        ? t('editMode.successTitle')
+                        : isPrivateMode
+                          ? t('privateMode.successTitle')
+                          : t('success.title')}
+                      <em className="italic text-[var(--teal)]">
+                        {isEditMode
+                          ? t('editMode.successTitleEm')
+                          : isPrivateMode
+                            ? t('privateMode.successTitleEm')
+                            : t('success.titleEm')}
+                      </em>
                     </h2>
                     <p className="mx-auto mb-6 max-w-[340px] text-sm font-light leading-relaxed text-[var(--text2)]">
-                      {t('success.body')}
+                      {isEditMode
+                        ? t('editMode.successBody')
+                        : isPrivateMode
+                          ? t('privateMode.successBody')
+                          : t('success.body')}
                     </p>
                     <p className="mb-4 text-center text-[11px] text-[var(--text3)]">
                       {modelLabel}
                       {categoryLabel ? ` · ${categoryLabel}` : null}
                     </p>
                     <div className="flex flex-wrap justify-center gap-2">
-                      <Link href={galleryHref} className="op-sp-btn-next">
-                        {t('buttons.browseGallery')}
-                      </Link>
+                      {isEditMode || isPrivateMode ? (
+                        <Link href={accountHref(locale)} className="op-sp-btn-next">
+                          {t('privateMode.goToMyTemplates')}
+                        </Link>
+                      ) : (
+                        <Link href={galleryHref} className="op-sp-btn-next">
+                          {t('buttons.browseGallery')}
+                        </Link>
+                      )}
                       <button type="button" className="op-sp-btn-back" onClick={resetForm}>
-                        {t('buttons.submitAnother')}
+                        {isEditMode
+                          ? t('editMode.continueEdit')
+                          : isPrivateMode
+                            ? t('privateMode.createAnother')
+                            : t('buttons.submitAnother')}
                       </button>
-                      <Link href={galleryHref} className="op-sp-btn-back">
-                        {t('buttons.myTemplates')}
-                      </Link>
+                      {!isEditMode && !isPrivateMode ? (
+                        <Link href={accountHref(locale)} className="op-sp-btn-back">
+                          {t('buttons.myTemplates')}
+                        </Link>
+                      ) : null}
                     </div>
                     <p className="mt-4 font-mono text-[11px] text-[var(--text3)]">
                       {t('success.idLabel', { id: submissionId })}
@@ -698,7 +887,7 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
                 )}
               </div>
 
-              {!success ? (
+              {!success && !(isEditMode && (loadingTemplate || loadError)) ? (
                 <aside className="op-sp-preview-pane">
                   <div className="op-sp-pane-h">
                     <span className="text-xs font-medium tracking-wide text-[var(--text2)]">{t('preview.paneTitle')}</span>

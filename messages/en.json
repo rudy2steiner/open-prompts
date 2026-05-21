@@ -284,6 +284,8 @@
       "themeToDark": "Switch to dark mode",
       "signIn": "Sign in",
       "signOut": "Sign out",
+      "userMenu": "Account menu",
+      "userMenuSection": "Dashboard",
       "displayNameFallback": "User"
     },
     "nav": {
@@ -317,6 +319,33 @@
         "titleEm": "prompt",
         "subtitle": "Complete two steps; after review your prompt can appear in the gallery.",
         "subtitleSimple": "One page — only the template fields that matter. Submit when ready."
+      },
+      "privateMode": {
+        "eyebrow": "New template",
+        "title": "Create a ",
+        "titleEm": "private template",
+        "subtitle": "Same submit form as the gallery flow — saved as private only (not listed, no review queue).",
+        "hint": "Only you can see this template in My templates. To publish to the gallery later, edit visibility or use Submit for a public entry.",
+        "submit": "Save private template",
+        "successTitle": "Private template ",
+        "successTitleEm": "saved",
+        "successBody": "It is in your account under My templates. It will not appear in the public gallery.",
+        "goToMyTemplates": "My templates →",
+        "createAnother": "Create another"
+      },
+      "editMode": {
+        "eyebrow": "Edit template",
+        "title": "Update your ",
+        "titleEm": "template",
+        "subtitle": "Same editor as submit. Visibility stays as saved (change in account if needed).",
+        "loading": "Loading template…",
+        "loadFailed": "Could not load this template.",
+        "backToTemplates": "← My templates",
+        "save": "Save changes",
+        "successTitle": "Template ",
+        "successTitleEm": "updated",
+        "successBody": "Your changes are saved. Private and draft templates stay off the gallery unless you publish.",
+        "continueEdit": "Keep editing"
       },
       "info": {
         "body": "Prompts work best in English. Parameter syntax like {ar} and {v} is supported.",
@@ -557,11 +586,8 @@
         "draft": "Draft"
       },
       "admin": {
-        "hint": "Approve or reject submissions. Only approved public templates appear in the gallery.",
-        "hintAllUsers": "Templates from every account (not only yours). Use scope “User templates” for account-owned rows, or “All rows” to include legacy gallery catalog.",
+        "hint": "All templates in the database (every account and legacy catalog). Approve or reject submissions; only approved public items appear in the gallery.",
         "hintActions": "Approve/Reject only appear for items in review. Published items can be revoked; rejected items can be re-approved.",
-        "scopeUser": "User templates",
-        "scopeAll": "All rows (incl. catalog)",
         "empty": "No templates match this filter.",
         "emptyPending": "Nothing awaiting review. Use “All statuses” to see published or rejected items, or create a public template to queue one for review.",
         "loadError": "Could not load moderation queue: {message}",

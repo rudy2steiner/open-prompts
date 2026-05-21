@@ -2,6 +2,11 @@ import { randomBytes } from 'node:crypto';
 
 import type { Db } from '~/db/client';
 import { prompts } from '~/db/schema';
+import {
+  parseVisibility,
+  resolveStatusForVisibility,
+  type PromptVisibility,
+} from '~/lib/prompts/template-types';
 
 const CATEGORY_KEYS = new Set([
   'landscape',
@@ -49,6 +54,7 @@ export type ParsedSubmitPrompt = {
   tags: string[];
   images: string[];
   sourceUrl: string | null;
+  visibility: PromptVisibility;
 };
 
 function slugify(input: string): string {
@@ -129,9 +135,11 @@ export function parseSubmitPromptBody(
     if (/^https:\/\/(x\.com|twitter\.com)\//i.test(u)) sourceUrl = u;
   }
 
+  const visibility = parseVisibility(o.visibility) ?? 'public';
+
   return {
     ok: true,
-    value: { title, description, prompt, modelLabel, tags, images, sourceUrl },
+    value: { title, description, prompt, modelLabel, tags, images, sourceUrl, visibility },
   };
 }
 
@@ -158,8 +166,8 @@ export async function insertSubmittedPrompt(
           sourceUrl: value.sourceUrl,
           authorHandle: null,
           images: value.images,
-          status: 'pending',
-          visibility: 'public',
+          status: resolveStatusForVisibility(value.visibility),
+          visibility: value.visibility,
           submittedBy: submittedBy ?? null,
           sortOrder: 0,
         })

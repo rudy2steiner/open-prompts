@@ -5,10 +5,22 @@ export async function getAuthSession() {
   return getServerSession(authOptions);
 }
 
+/** Comma- or semicolon-separated list from `ADMIN_EMAIL`. */
+export function getAdminEmails(): string[] {
+  const raw = process.env.ADMIN_EMAIL?.trim();
+  if (!raw) return [];
+  return raw
+    .split(/[,;]+/)
+    .map((e) => e.trim().toLowerCase())
+    .filter(Boolean);
+}
+
 export function isAdminEmail(email: string | null | undefined): boolean {
-  const admin = process.env.ADMIN_EMAIL?.trim().toLowerCase();
-  if (!admin || !email) return false;
-  return email.toLowerCase().trim() === admin;
+  if (!email) return false;
+  const normalized = email.toLowerCase().trim();
+  const admins = getAdminEmails();
+  if (admins.length === 0) return false;
+  return admins.includes(normalized);
 }
 
 export async function requireAuthSession() {

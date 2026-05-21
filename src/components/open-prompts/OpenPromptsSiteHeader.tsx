@@ -12,6 +12,8 @@ import { applyOpThemeToDocument, getOpDocumentTheme } from '~/lib/op-theme';
 
 export type OpenPromptsSiteNavKey = 'gallery' | 'create' | 'submit' | 'rank' | 'docs' | 'login' | 'account';
 
+type AccountPanelKey = 'overview' | 'prompts' | 'admin' | 'credits' | 'subscription';
+
 export type OpenPromptsSiteHeaderProps = {
   locale: string;
   activeNav: OpenPromptsSiteNavKey;
@@ -25,6 +27,12 @@ export type OpenPromptsSiteHeaderProps = {
   submitCtaSuffix?: string;
 };
 
+function accountHref(locale: string, panel?: AccountPanelKey): string {
+  const base = locale === 'en' ? '/account' : `/${locale}/account`;
+  if (!panel || panel === 'overview') return base;
+  return `${base}?panel=${panel}`;
+}
+
 export function OpenPromptsSiteHeader({
   locale,
   activeNav,
@@ -35,9 +43,12 @@ export function OpenPromptsSiteHeader({
   submitCtaSuffix = '',
 }: OpenPromptsSiteHeaderProps) {
   const t = useTranslations('OpenPrompts');
+  const ta = useTranslations('OpenPrompts.accountPage');
   const { data: session, status } = useSession();
   const [langOpen, setLangOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const langWrapRef = useRef<HTMLDivElement | null>(null);
+  const userMenuRef = useRef<HTMLDivElement | null>(null);
 
   const ghAria = githubAriaLabel ?? 'GitHub repository';
   const ghTitle = githubTitle ?? 'GitHub';
@@ -50,11 +61,32 @@ export function OpenPromptsSiteHeader({
     return t('header.displayNameFallback');
   }, [session?.user, t]);
 
+  const isAdmin = Boolean(session?.user?.isAdmin);
+
+  const dashboardMenuItems = useMemo(() => {
+    const items: { panel: AccountPanelKey; label: string; href: string }[] = [
+      { panel: 'overview', label: ta('nav.overview'), href: accountHref(locale, 'overview') },
+      { panel: 'prompts', label: ta('nav.prompts'), href: accountHref(locale, 'prompts') },
+    ];
+    if (isAdmin) {
+      items.push({
+        panel: 'admin',
+        label: ta('nav.adminReview'),
+        href: accountHref(locale, 'admin'),
+      });
+    }
+    items.push(
+      { panel: 'credits', label: ta('nav.credits'), href: accountHref(locale, 'credits') },
+      { panel: 'subscription', label: ta('nav.subscription'), href: accountHref(locale, 'subscription') },
+    );
+    return items;
+  }, [locale, isAdmin, ta]);
+
   const navItems = useMemo(
     () =>
       [
-        { key: 'gallery' as const, label: t('nav.gallery'), href: `/${locale}` },
-        { key: 'create' as const, label: t('nav.create'), href: `/${locale}/create` },
+        { key: 'gallery' as const, label: t('nav.gallery'), href: locale === 'en' ? '/' : `/${locale}` },
+        { key: 'create' as const, label: t('nav.create'), href: locale === 'en' ? '/create' : `/${locale}/create` },
         { key: 'submit' as const, label: t('nav.submit'), href: locale === 'en' ? '/submit' : `/${locale}/submit` },
         { key: 'rank' as const, label: t('nav.rank'), href: '#' },
         { key: 'docs' as const, label: t('nav.docs'), href: '#' },
@@ -64,19 +96,28 @@ export function OpenPromptsSiteHeader({
 
   useEffect(() => {
     const onPointerDown = (e: PointerEvent) => {
-      const el = langWrapRef.current;
-      if (!el) return;
-      if (el.contains(e.target as Node)) return;
-      setLangOpen(false);
+      const target = e.target as Node;
+      if (langWrapRef.current && !langWrapRef.current.contains(target)) setLangOpen(false);
+      if (userMenuRef.current && !userMenuRef.current.contains(target)) setUserMenuOpen(false);
     };
     document.addEventListener('pointerdown', onPointerDown);
     return () => document.removeEventListener('pointerdown', onPointerDown);
   }, []);
 
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setUserMenuOpen(false);
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, []);
+
+  const signOutCallback = locale === 'en' ? '/' : `/${locale}`;
+
   return (
     <header className={`sticky top-0 ${stickyZClass} border-b border-[var(--border)] bg-[var(--bg)]`}>
       <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-6">
-        <a href={`/${locale}`} className="flex items-center gap-2 text-sm font-semibold tracking-wide">
+        <a href={locale === 'en' ? '/' : `/${locale}`} className="flex items-center gap-2 text-sm font-semibold tracking-wide">
           <span className="relative grid h-8 w-8 place-items-center overflow-hidden rounded-lg">
             <Image src="/logo.png" alt="Open Prompts" fill sizes="32px" className="object-contain" priority />
           </span>
@@ -166,42 +207,71 @@ export function OpenPromptsSiteHeader({
           </div>
 
           {status === 'authenticated' && session?.user ? (
-            <div className="flex max-w-[280px] items-center gap-2">
-              <Link
-                href={locale === 'en' ? '/account' : `/${locale}/account`}
-                className={`hidden rounded-lg border px-3 py-1.5 text-xs sm:inline ${
-                  activeNav === 'account'
-                    ? 'border-[var(--amber)] bg-[var(--amber-dim)] text-[var(--amber)]'
-                    : 'border-[var(--border2)] text-[var(--text2)] hover:bg-[var(--surface2)] hover:text-[var(--text)]'
-                }`}
-              >
-                {t('nav.account')}
-              </Link>
-              <img
-                src={resolveUserAvatarUrl(
-                  session.user.image,
-                  session.user.email ?? session.user.id,
-                )}
-                alt={displayName}
-                width={32}
-                height={32}
-                className="h-8 w-8 shrink-0 rounded-full border border-[var(--border2)] bg-[var(--surface2)] object-cover text-[var(--text2)]"
-                decoding="async"
-                referrerPolicy="no-referrer"
-                title={displayName}
-              />
-              <span className="hidden truncate text-xs text-[var(--text2)] md:inline" title={displayName}>
-                {displayName}
-              </span>
+            <div className="relative flex items-center gap-2" ref={userMenuRef}>
               <button
                 type="button"
-                className="shrink-0 rounded-lg border border-[var(--border2)] px-3 py-1.5 text-xs text-[var(--text2)] hover:bg-[var(--surface2)] hover:text-[var(--text)]"
-                onClick={() =>
-                  signOut({ callbackUrl: locale === 'en' ? '/' : `/${locale}` })
-                }
+                className="rounded-full ring-offset-2 ring-offset-[var(--bg)] transition hover:ring-2 hover:ring-[var(--amber)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--amber)]"
+                aria-expanded={userMenuOpen}
+                aria-haspopup="menu"
+                aria-label={t('header.userMenu')}
+                onClick={() => {
+                  setUserMenuOpen((v) => !v);
+                  setLangOpen(false);
+                }}
               >
-                {t('header.signOut')}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={resolveUserAvatarUrl(session.user.image, session.user.email ?? session.user.id)}
+                  alt=""
+                  width={32}
+                  height={32}
+                  className="h-8 w-8 shrink-0 rounded-full border border-[var(--border2)] bg-[var(--surface2)] object-cover"
+                  decoding="async"
+                  referrerPolicy="no-referrer"
+                />
               </button>
+              {userMenuOpen ? (
+                <div
+                  role="menu"
+                  className="absolute right-0 top-full z-50 mt-2 w-52 overflow-hidden rounded-xl border border-[var(--ctl-border)] bg-[var(--panel-bg)] py-1 shadow-xl"
+                >
+                  <div className="border-b border-[var(--border)] px-3 py-2.5">
+                    <div className="truncate text-sm font-medium text-[var(--text)]">{displayName}</div>
+                    {session.user.email ? (
+                      <div className="truncate text-[11px] text-[var(--text3)]">{session.user.email}</div>
+                    ) : null}
+                  </div>
+                  <div className="px-1 py-1">
+                    <div className="px-2 py-1.5 text-[10px] font-medium uppercase tracking-wide text-[var(--text3)]">
+                      {t('header.userMenuSection')}
+                    </div>
+                    {dashboardMenuItems.map((item) => (
+                      <Link
+                        key={item.panel}
+                        role="menuitem"
+                        href={item.href}
+                        className="block rounded-lg px-3 py-2 text-sm text-[var(--text)] transition hover:bg-[var(--surface2)]"
+                        onClick={() => setUserMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="border-t border-[var(--border)] p-1">
+                    <button
+                      type="button"
+                      role="menuitem"
+                      className="w-full rounded-lg px-3 py-2 text-left text-sm text-[var(--coral)] transition hover:bg-[var(--surface2)]"
+                      onClick={() => {
+                        setUserMenuOpen(false);
+                        void signOut({ callbackUrl: signOutCallback });
+                      }}
+                    >
+                      {t('header.signOut')}
+                    </button>
+                  </div>
+                </div>
+              ) : null}
             </div>
           ) : (
             <Link

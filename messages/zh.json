@@ -283,6 +283,8 @@
       "themeToDark": "切换暗色模式",
       "signIn": "登录",
       "signOut": "退出",
+      "userMenu": "账户菜单",
+      "userMenuSection": "控制台",
       "displayNameFallback": "用户"
     },
     "nav": {
@@ -316,6 +318,33 @@
         "titleEm": "提示词",
         "subtitle": "完成两步填写，提交后经审核即可在画廊公开展示。",
         "subtitleSimple": "单页填写 — 只保留模板必要信息，填完即可提交。"
+      },
+      "privateMode": {
+        "eyebrow": "新建模板",
+        "title": "创建",
+        "titleEm": "私有模板",
+        "subtitle": "与提交画廊相同的表单，仅保存为私有（不上架、不进审核队列）。",
+        "hint": "仅你在「我的模板」中可见。若要公开到画廊，请稍后修改可见性或使用公开提交。",
+        "submit": "保存私有模板",
+        "successTitle": "私有模板",
+        "successTitleEm": "已保存",
+        "successBody": "可在账户「我的模板」中查看，不会出现在公开画廊。",
+        "goToMyTemplates": "我的模板 →",
+        "createAnother": "再创建一个"
+      },
+      "editMode": {
+        "eyebrow": "编辑模板",
+        "title": "更新",
+        "titleEm": "模板",
+        "subtitle": "与提交页相同的编辑器。可见性保持原设置（需在账户中另行修改可见性）。",
+        "loading": "正在加载模板…",
+        "loadFailed": "无法加载该模板。",
+        "backToTemplates": "← 我的模板",
+        "save": "保存修改",
+        "successTitle": "模板",
+        "successTitleEm": "已更新",
+        "successBody": "修改已保存。私有与草稿不会进入画廊，除非改为公开并过审。",
+        "continueEdit": "继续编辑"
       },
       "info": {
         "body": "提示词请使用英文，效果最佳。支持参数语法如 {ar}、{v} 等。",
@@ -556,11 +585,8 @@
         "draft": "草稿"
       },
       "admin": {
-        "hint": "审核用户提交的模板，通过后公开展示在画廊。",
-        "hintAllUsers": "显示所有账号的模板（不仅是你的）。范围选「用户模板」查看有所有者的记录；选「全部」含历史画廊目录数据。",
+        "hint": "数据库中的全部模板（所有账号及历史目录）。审核通过/拒绝；仅已通过且公开的条目会出现在画廊。",
         "hintActions": "仅「审核中」显示通过/拒绝；已发布可下架；已拒绝可重新通过。",
-        "scopeUser": "用户模板",
-        "scopeAll": "全部（含目录）",
         "empty": "当前筛选条件下没有模板。",
         "emptyPending": "暂无待审核项。选择「全部状态」可查看已发布/已拒绝；创建「公开」模板会进入审核队列。",
         "loadError": "无法加载审核列表：{message}",

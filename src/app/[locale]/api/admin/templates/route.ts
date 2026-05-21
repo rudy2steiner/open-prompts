@@ -6,12 +6,7 @@ import {
   listTemplatesForAdmin,
   parseReviewStatus,
   parseVisibility,
-  type AdminListScope,
 } from '~/lib/prompts/template-record';
-
-function parseAdminScope(raw: string | null): AdminListScope {
-  return raw === 'all' ? 'all' : 'user';
-}
 
 export const dynamic = 'force-dynamic';
 
@@ -28,13 +23,12 @@ export async function GET(req: Request) {
   const q = url.searchParams.get('q') ?? undefined;
   const status = parseReviewStatus(url.searchParams.get('status') ?? '') ?? undefined;
   const visibility = parseVisibility(url.searchParams.get('visibility') ?? '') ?? undefined;
-  const scope = parseAdminScope(url.searchParams.get('scope'));
   const limit = Number(url.searchParams.get('limit') ?? 50);
   const offset = Number(url.searchParams.get('offset') ?? 0);
 
   try {
     const [result, pendingCount] = await Promise.all([
-      listTemplatesForAdmin(db, { q, status, visibility, scope, limit, offset }),
+      listTemplatesForAdmin(db, { q, status, visibility, limit, offset }),
       countPendingReview(db),
     ]);
     return NextResponse.json({ ...result, pendingCount });

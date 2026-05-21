@@ -7,6 +7,7 @@ import { eq } from 'drizzle-orm';
 import { getDb } from '~/db/client';
 import { users } from '~/db/schema';
 import { resolveUserAvatarUrl } from '~/lib/auth/default-user-avatar';
+import { isAdminEmail } from '~/lib/auth/session';
 import { bootstrapAdminIfConfigured } from '~/lib/auth/bootstrap-admin';
 import { ensureOAuthUser } from '~/lib/auth/sync-oauth-user';
 
@@ -121,6 +122,10 @@ export const authOptions: NextAuthOptions = {
         }
       }
 
+      if (typeof token.email === 'string') {
+        token.isAdmin = isAdminEmail(token.email);
+      }
+
       return token;
     },
     async session({ session, token }) {
@@ -128,6 +133,7 @@ export const authOptions: NextAuthOptions = {
         session.user.id = token.sub;
         if (typeof token.email === 'string') session.user.email = token.email;
         session.user.name = (token.name as string | null | undefined) ?? session.user.name;
+        session.user.isAdmin = Boolean(token.isAdmin);
         const picture = (token.picture as string | null | undefined) ?? session.user.image;
         const seed =
           (typeof token.email === 'string' && token.email) ||

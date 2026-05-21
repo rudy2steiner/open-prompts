@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getAuthSession, isAdminEmail } from '~/lib/auth/session';
 import PageComponent from './PageComponent';
@@ -40,15 +41,17 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   const isAdmin = isAdminEmail(session.user.email);
 
   return (
-    <PageComponent
-      locale={locale}
-      isAdmin={isAdmin}
-      user={{
-        id: session.user.id,
-        email: session.user.email ?? '',
-        name: session.user.name ?? null,
-        image: session.user.image ?? null,
-      }}
-    />
+    <Suspense fallback={null}>
+      <PageComponent
+        locale={locale}
+        isAdmin={isAdmin}
+        user={{
+          id: session.user.id,
+          email: session.user.email ?? '',
+          name: session.user.name ?? null,
+          image: session.user.image ?? null,
+        }}
+      />
+    </Suspense>
   );
 }

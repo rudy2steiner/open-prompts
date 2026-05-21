@@ -36,6 +36,9 @@ export async function POST(req: Request) {
 
   try {
     const session = await getAuthSession();
+    if (parsed.value.visibility === 'private' && !session?.user?.id) {
+      return NextResponse.json({ error: 'Sign in required for private templates' }, { status: 401 });
+    }
     const row = await insertSubmittedPrompt(db, parsed.value, session?.user?.id ?? null);
     return NextResponse.json({ ok: true, id: row.id, slug: row.slug });
   } catch (e: unknown) {

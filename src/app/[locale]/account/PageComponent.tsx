@@ -3,6 +3,7 @@
 import './account-page.css';
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
@@ -14,9 +15,19 @@ import {
   type PromptDetailItem,
 } from '~/components/prompt-gallery/PromptTemplateDetailDialog';
 import type { AdminTemplateRecord, TemplateRecord } from '~/lib/prompts/template-types';
-import { TemplateModal } from './TemplateModal';
+import { submitEditorHref } from '~/lib/prompts/submit-editor-path';
 
 type Panel = 'overview' | 'prompts' | 'admin' | 'credits' | 'subscription';
+
+const PANELS = new Set<Panel>(['overview', 'prompts', 'admin', 'credits', 'subscription']);
+
+function panelFromSearchParam(raw: string | null, isAdmin: boolean): Panel {
+  if (raw && PANELS.has(raw as Panel)) {
+    if (raw === 'admin' && !isAdmin) return 'overview';
+    return raw as Panel;
+  }
+  return 'overview';
+}
 
 type Props = {
   locale: string;
@@ -28,9 +39,6 @@ function homeHref(locale: string) {
   return locale === 'en' ? '/' : `/${locale}`;
 }
 
-function submitHref(locale: string) {
-  return locale === 'en' ? '/submit' : `/${locale}/submit`;
-}
 
 type DisplayStatusKey = 'pub' | 'draft' | 'priv' | 'pending' | 'rejected';
 
@@ -45,8 +53,12 @@ function displayStatus(item: TemplateRecord): DisplayStatusKey {
 
 export default function PageComponent({ locale, isAdmin, user }: Props) {
   const t = useTranslations('OpenPrompts.accountPage');
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const [panel, setPanel] = useState<Panel>('overview');
+  const [panel, setPanel] = useState<Panel>(() =>
+    panelFromSearchParam(searchParams?.get('panel') ?? null, isAdmin),
+  );
   const [templates, setTemplates] = useState<TemplateRecord[]>([]);
   const [adminItems, setAdminItems] = useState<AdminTemplateRecord[]>([]);
   const [templateCount, setTemplateCount] = useState(0);
@@ -56,7 +68,6 @@ export default function PageComponent({ locale, isAdmin, user }: Props) {
   const [adminSearch, setAdminSearch] = useState('');
   const [myStatusFilter, setMyStatusFilter] = useState('');
   const [adminStatusFilter, setAdminStatusFilter] = useState('');
-  const [adminScope, setAdminScope] = useState<'user' | 'all'>('all');
   const [adminPage, setAdminPage] = useState(1);
   const [adminPageSize, setAdminPageSize] = useState(20);
   const [adminTotal, setAdminTotal] = useState<number | null>(null);
@@ -65,8 +76,6 @@ export default function PageComponent({ locale, isAdmin, user }: Props) {
   const [adminLoadError, setAdminLoadError] = useState<string | null>(null);
 
   const ADMIN_PAGE_SIZES = [10, 20, 50, 100] as const;
-  const [modalOpen, setModalOpen] = useState(false);
-  const [editItem, setEditItem] = useState<TemplateRecord | null>(null);
   const [detailOpen, setDetailOpen] = useState(false);
   const [detailItem, setDetailItem] = useState<PromptDetailItem | null>(null);
   const [detailMeta, setDetailMeta] = useState<{
@@ -125,7 +134,6 @@ export default function PageComponent({ locale, isAdmin, user }: Props) {
       const q = new URLSearchParams();
       if (adminSearch.trim()) q.set('q', adminSearch.trim());
       if (adminStatusFilter) q.set('status', adminStatusFilter);
-      q.set('scope', adminScope);
       q.set('limit', String(adminPageSize));
       q.set('offset', String((adminPage - 1) * adminPageSize));
       const res = await fetch(localeApiPath(locale, `/api/admin/templates?${q}`), {
@@ -162,11 +170,15 @@ export default function PageComponent({ locale, isAdmin, user }: Props) {
       window.clearTimeout(timeoutId);
       setAdminLoading(false);
     }
-  }, [locale, adminSearch, adminStatusFilter, adminScope, adminPage, adminPageSize, t]);
+  }, [locale, adminSearch, adminStatusFilter, adminPage, adminPageSize, t]);
 
   useEffect(() => {
     setAdminPage(1);
-  }, [adminSearch, adminStatusFilter, adminScope, adminPageSize]);
+  }, [adminSearch, adminStatusFilter, adminPageSize]);
+
+  useEffect(() => {
+    setPanel(panelFromSearchParam(searchParams?.get('panel') ?? null, isAdmin));
+  }, [searchParams, isAdmin]);
 
   useEffect(() => {
     void loadStats();
@@ -181,8 +193,7 @@ export default function PageComponent({ locale, isAdmin, user }: Props) {
   }, [panel, isAdmin, loadAdminTemplates]);
 
   const openEdit = (item: TemplateRecord) => {
-    setEditItem(item);
-    setModalOpen(true);
+    router.push(submitEditorHref(locale, { editId: item.id }));
   };
 
   const openDetail = (
@@ -513,9 +524,6 @@ export default function PageComponent({ locale, isAdmin, user }: Props) {
               <div className="op-account-main">
                 <header className="op-account-topbar">
                   <div className="op-account-topbar-title">{panelTitle}</div>
-                  <Link href={submitHref(locale)} className="op-account-btn primary">
-                    {t('topbar.newTemplate')}
-                  </Link>
                 </header>
 
           <div className="op-account-content">
@@ -544,7 +552,7 @@ export default function PageComponent({ locale, isAdmin, user }: Props) {
                   <button type="button" className="op-account-btn primary" onClick={() => setPanel('prompts')}>
                     {t('overview.manage')}
                   </button>
-                  <Link href={submitHref(locale)} className="op-account-btn">
+                  <Link href={submitEditorHref(locale)} className="op-account-btn">
                     {t('overview.submit')}
                   </Link>
                 </div>
@@ -575,7 +583,7 @@ export default function PageComponent({ locale, isAdmin, user }: Props) {
                 <button type="button" className="op-account-btn" onClick={() => void loadMyTemplates()}>
                   {t('toolbar.refresh')}
                 </button>
-                <Link href={submitHref(locale)} className="op-account-btn primary">
+                <Link href={submitEditorHref(locale, { visibility: 'private' })} className="op-account-btn primary">
                   {t('topbar.newTemplate')}
                 </Link>
               </div>
@@ -584,7 +592,7 @@ export default function PageComponent({ locale, isAdmin, user }: Props) {
 
             {isAdmin ? (
               <div className={`op-account-panel${panel === 'admin' ? ' active' : ''}`}>
-                <p className="mb-3 text-sm text-[var(--text2)]">{t('admin.hintAllUsers')}</p>
+                <p className="mb-3 text-sm text-[var(--text2)]">{t('admin.hint')}</p>
                 <p className="mb-3 text-xs text-[var(--text3)]">{t('admin.hintActions')}</p>
                 {adminLoadError ? (
                   <p className="mb-3 text-sm text-[var(--coral)]">{t('admin.loadError', { message: adminLoadError })}</p>
@@ -599,14 +607,6 @@ export default function PageComponent({ locale, isAdmin, user }: Props) {
                       if (e.key === 'Enter') void loadAdminTemplates();
                     }}
                   />
-                  <select
-                    className="op-account-select"
-                    value={adminScope}
-                    onChange={(e) => setAdminScope(e.target.value as 'user' | 'all')}
-                  >
-                    <option value="user">{t('admin.scopeUser')}</option>
-                    <option value="all">{t('admin.scopeAll')}</option>
-                  </select>
                   <select
                     className="op-account-select"
                     value={adminStatusFilter}
@@ -650,18 +650,6 @@ export default function PageComponent({ locale, isAdmin, user }: Props) {
       </main>
 
       <OpenPromptsSiteFooter locale={locale} />
-
-      <TemplateModal
-        locale={locale}
-        open={modalOpen}
-        initial={editItem}
-        onClose={() => setModalOpen(false)}
-        onSaved={() => {
-          void loadMyTemplates();
-          void loadStats();
-          if (isAdmin) void loadAdminTemplates();
-        }}
-      />
 
       <PromptTemplateDetailDialog
         open={detailOpen}
