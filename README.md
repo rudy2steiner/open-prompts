@@ -8,6 +8,8 @@ Licensed under the [Apache License, Version 2.0](LICENSE).
 
 **Languages:** English · [简体中文](./README.zh-CN.md) · [日本語](./README.ja-JP.md)
 
+**Live demo:** [open-prompts.com](https://www.open-prompts.com)
+
 ---
 
 ## Introduction
@@ -37,6 +39,51 @@ The app is built with **Next.js**, **next-intl** (English, Chinese, Japanese), *
 | **i18n** | Locale routes: `/` (en), `/zh`, `/ja` for main pages; shared site header and footer. |
 | **Self-host** | Apache 2.0; env-driven providers and database; deploy to Vercel or any Node host. |
 
+---
+
+## Community picks
+
+A few templates from the built-in gallery (community / X). Try them on [open-prompts.com](https://www.open-prompts.com) or run locally and click **Generate** in the gallery.
+
+### K-pop Fashion Album Cover
+
+<img src="https://pbs.twimg.com/media/HGaa7B2a0AAkDM9.jpg?name=orig" alt="K-pop Fashion Album Cover" width="280" />
+
+```
+K-pop group fashion album cover
+```
+
+### Urban Fashion Meets Classic Cartoons
+
+<img src="https://pic.tuseka.com/cartoon.webp" alt="Urban Fashion Meets Classic Cartoons" width="280" />
+
+```
+A high-end fashion editorial featuring a young woman in an urban setting, seamlessly blended with iconic cartoon characters and vibrant graphic doodles.
+```
+
+### Surrounded by Beautiful Women（我被美女包围）
+
+<img src="https://pbs.twimg.com/amplify_video_thumb/2049313393686040576/img/YzqTGMfuh-dd9Ich.jpg" alt="Surrounded by Beautiful Women" width="280" />
+
+```
+帮我做一个身临其境的360度全景图，场景四周环绕不同性格类型 装束的 年轻 性感 或 知性 小姐姐，给我递过水果、伸手牵手等
+```
+
+### Dunhuang Murals Paper Cut Diorama
+
+<img src="https://pic.tuseka.com/09_dunhuang_murals_paper_cut_diorama.webp" alt="Dunhuang Murals Paper Cut Diorama" width="280" />
+
+```
+Eye-level straight-on view, 3D layered paper cut-out diorama. Vermillion red, lapis lazuli blue, ochre gold. Flying apsaras with ribbon silk scarves, blooming lotus, swirling auspicious clouds, ornate medallion patterns. Deep drop shadows, matte paper texture, octane render, 8k --ar 3:4
+```
+
+### Cozy Bedroom Mirror Selfie
+
+<img src="https://cdn-images.toolify.ai/x/20260428/1777364714_23144439.jpg" alt="Cozy Bedroom Mirror Selfie" width="280" />
+
+```
+A casual and confident social media style selfie featuring a woman in an oversized knit sweater within a soft-lit bedroom setting.
+```
 
 ---
 

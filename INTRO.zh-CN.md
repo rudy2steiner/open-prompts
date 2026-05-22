@@ -57,6 +57,14 @@ A high-end fashion editorial featuring a young woman in an urban setting, seamle
 Eye-level straight-on view, 3D layered paper cut-out diorama. Vermillion red, lapis lazuli blue, ochre gold. Flying apsaras with ribbon silk scarves, blooming lotus, swirling auspicious clouds, ornate medallion patterns. Deep drop shadows, matte paper texture, octane render, 8k --ar 3:4
 ```
 
+### 温馨卧室镜前自拍（Cozy Bedroom Mirror Selfie）
+
+<img src="https://cdn-images.toolify.ai/x/20260428/1777364714_23144439.jpg" alt="温馨卧室镜前自拍" width="280" />
+
+```
+A casual and confident social media style selfie featuring a woman in an oversized knit sweater within a soft-lit bedroom setting.
+```
+
 ---
 
 - 仓库：[github.com/rudy2steiner/open-prompts](https://github.com/rudy2steiner/open-prompts)

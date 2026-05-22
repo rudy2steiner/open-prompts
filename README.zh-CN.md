@@ -8,6 +8,8 @@
 
 **语言：** [English](./README.md) · 简体中文 · [日本語](./README.ja-JP.md)
 
+**在线体验：** [open-prompts.com](https://www.open-prompts.com)
+
 ---
 
 ## 简介
@@ -36,6 +38,52 @@
 | **X 导入** | 在提交页粘贴公开推文链接，预填标题、描述、提示词与图片。 |
 | **多语言** | 语言路由：`/`（英文）、`/zh`、`/ja`；统一的站点页眉与页脚。 |
 | **自托管** | Apache 2.0；通过环境变量配置服务商与数据库；可部署到 Vercel 或任意 Node 主机。 |
+
+---
+
+## 社区精选示例
+
+以下为内置画廊中的部分模板（来源社区 / X，节选展示）。可在 [open-prompts.com](https://www.open-prompts.com) 在线体验，或克隆仓库后在画廊中点击「生成」试用。
+
+### K-pop 时尚专辑封面
+
+<img src="https://pbs.twimg.com/media/HGaa7B2a0AAkDM9.jpg?name=orig" alt="K-pop 时尚专辑封面" width="280" />
+
+```
+K-pop group fashion album cover
+```
+
+### Urban Fashion Meets Classic Cartoons
+
+<img src="https://pic.tuseka.com/cartoon.webp" alt="Urban Fashion Meets Classic Cartoons" width="280" />
+
+```
+A high-end fashion editorial featuring a young woman in an urban setting, seamlessly blended with iconic cartoon characters and vibrant graphic doodles.
+```
+
+### 我被美女包围
+
+<img src="https://pbs.twimg.com/amplify_video_thumb/2049313393686040576/img/YzqTGMfuh-dd9Ich.jpg" alt="我被美女包围" width="280" />
+
+```
+帮我做一个身临其境的360度全景图，场景四周环绕不同性格类型 装束的 年轻 性感 或 知性 小姐姐，给我递过水果、伸手牵手等
+```
+
+### 敦煌壁画剪纸立体场景
+
+<img src="https://pic.tuseka.com/09_dunhuang_murals_paper_cut_diorama.webp" alt="敦煌壁画剪纸立体场景" width="280" />
+
+```
+Eye-level straight-on view, 3D layered paper cut-out diorama. Vermillion red, lapis lazuli blue, ochre gold. Flying apsaras with ribbon silk scarves, blooming lotus, swirling auspicious clouds, ornate medallion patterns. Deep drop shadows, matte paper texture, octane render, 8k --ar 3:4
+```
+
+### 温馨卧室镜前自拍（Cozy Bedroom Mirror Selfie）
+
+<img src="https://cdn-images.toolify.ai/x/20260428/1777364714_23144439.jpg" alt="温馨卧室镜前自拍" width="280" />
+
+```
+A casual and confident social media style selfie featuring a woman in an oversized knit sweater within a soft-lit bedroom setting.
+```
 
 ---
 
