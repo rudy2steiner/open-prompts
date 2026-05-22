@@ -51,7 +51,7 @@ A high-end fashion editorial featuring a young woman in an urban setting, seamle
 
 ### 敦煌壁画剪纸立体场景
 
-<img src="public/local_images/gpt-image2-prompts/09_dunhuang_murals_paper_cut_diorama.jpg" alt="敦煌壁画剪纸立体场景" width="280" />
+<img src="https://pic.tuseka.com/09_dunhuang_murals_paper_cut_diorama.webp" alt="敦煌壁画剪纸立体场景" width="280" />
 
 ```
 Eye-level straight-on view, 3D layered paper cut-out diorama. Vermillion red, lapis lazuli blue, ochre gold. Flying apsaras with ribbon silk scarves, blooming lotus, swirling auspicious clouds, ornate medallion patterns. Deep drop shadows, matte paper texture, octane render, 8k --ar 3:4
