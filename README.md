@@ -19,7 +19,7 @@ Most teams collect prompts in docs, threads, or spreadsheets. **Open Prompts** t
 - **Submit** new public prompts for review, or create **private** templates from the account dashboard
 - Sign in with **GitHub**, **Google**, or **email** (admin credentials for operators)
 
-The app is built with **Next.js**, **next-intl** (English, Chinese, Japanese), **NextAuth**, and **Postgres** (e.g. Supabase). Image generation is routed through server APIs with optional **Atlas Cloud** or **Replicate** backends, plus a **test mode** for development without paid API calls.
+The app is built with **Next.js**, **next-intl** (English, Chinese, Japanese), **NextAuth**, and **Postgres** (e.g. Supabase). Image generation is routed through server APIs with **Atlas Cloud** today (**Replicate** is planned, not yet supported), plus a **test mode** for development without paid API calls.
 
 ---
 
@@ -37,26 +37,17 @@ The app is built with **Next.js**, **next-intl** (English, Chinese, Japanese), *
 | **i18n** | Locale routes: `/` (en), `/zh`, `/ja` for main pages; shared site header and footer. |
 | **Self-host** | Apache 2.0; env-driven providers and database; deploy to Vercel or any Node host. |
 
-**Routes (English defaults)**
-
-| Path | Purpose |
-|------|---------|
-| `/` | Prompt gallery |
-| `/create` | Image generation studio |
-| `/submit` | Submit or edit templates (`?edit=<id>`, `?visibility=private`) |
-| `/login` | Sign in |
-| `/account` | User dashboard & admin review |
 
 ---
 
-## Get started (local)
+## Get started
 
 ### Prerequisites
 
 - **Node.js** 18+ (20 LTS recommended)
 - **npm** (or pnpm/yarn)
 - **Postgres** database ([Supabase](https://supabase.com) works well)
-- Optional: **Atlas Cloud** or **Replicate** API key for real generations
+- Optional: **Atlas Cloud** API key for real generations
 
 ### 1. Clone and install
 
@@ -90,13 +81,12 @@ For sign-in and admin:
 | `ADMIN_EMAIL` | Comma-separated admin emails (must match login email exactly) |
 | `ADMIN_PASSWORD` | Min 8 characters; synced to DB on boot / admin login |
 
-For image generation (pick one or use test mode):
+For image generation (Atlas Cloud or test mode):
 
 | Variable | Purpose |
 |----------|---------|
-| `DEFAULT_IMAGE_PROVIDER` | `atlascloud` or `replicate` |
+| `DEFAULT_IMAGE_PROVIDER` | `atlascloud` (Replicate is not supported yet) |
 | `ATLASCLOUD_API_KEY` | [Atlas Cloud](https://www.atlascloud.ai) API key |
-| `REPLICATE_API_TOKEN` | [Replicate](https://replicate.com/account/api-tokens) token |
 | `USE_TEST_MODE` | `true` to skip real API calls |
 | `TEST_IMAGE_URL` | Image URL returned in test mode |
 
@@ -126,12 +116,6 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) (default port **3000**).
-
-- Gallery: `/`
-- Create: `/create`
-- Submit: `/submit`
-- Login: `/login`
-- Account: `/account`
 
 ### 5. Production build (optional)
 
@@ -178,8 +162,8 @@ In **Project → Settings → Environment Variables**, set the same keys as `.en
 
 | Variable | Notes |
 |----------|--------|
-| `DEFAULT_IMAGE_PROVIDER` | `atlascloud` or `replicate` |
-| `ATLASCLOUD_API_KEY` or `REPLICATE_API_TOKEN` | At least one for real generations |
+| `DEFAULT_IMAGE_PROVIDER` | `atlascloud` |
+| `ATLASCLOUD_API_KEY` | Required for real generations (unless using test mode) |
 | Or `USE_TEST_MODE=true` + `TEST_IMAGE_URL` | Demo without paid APIs |
 
 Redeploy after changing env vars.
@@ -210,26 +194,10 @@ Redeploy after changing env vars.
 | Provider | Status | Configuration |
 |----------|--------|----------------|
 | **Atlas Cloud** | Supported | `ATLASCLOUD_API_KEY`, `ATLASCLOUD_BASE_URL` |
-| **Replicate** | Supported | `REPLICATE_API_TOKEN`, `REPLICATE_MODEL` or `REPLICATE_VERSION` |
+| **Replicate** | Planned (not supported) | Env keys exist in `.env.example` for future use; do not set `DEFAULT_IMAGE_PROVIDER=replicate` yet |
 | **Test mode** | Dev / demo | `USE_TEST_MODE=true`, `TEST_IMAGE_URL` |
 
 On the Create page, users can optionally override the API key in the browser (`localStorage`); prefer server-side keys in production.
-
----
-
-## Project structure
-
-```
-src/app/[locale]/gallery/     # Public gallery
-src/app/[locale]/create/      # Generation studio
-src/app/[locale]/submit/      # Submit / edit templates
-src/app/[locale]/account/     # Dashboard & admin
-src/app/api/auth/             # NextAuth (not locale-prefixed)
-src/lib/generation/           # Provider adapters
-src/lib/prompts/              # Template CRUD & submit parsing
-messages/                     # en / zh / ja copy
-supabase/migrations/          # SQL migrations
-```
 
 ---
 
