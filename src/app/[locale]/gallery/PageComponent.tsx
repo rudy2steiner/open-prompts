@@ -191,9 +191,9 @@ export default function PageComponent({ locale, prompts }: Props) {
   return (
     <>
       <HeadInfo
-        title="Open Prompts"
-        description="Prompt gallery + template image generation"
-        keywords="prompts,gpt image"
+        title={t('galleryPage.seo.title')}
+        description={t('galleryPage.seo.description')}
+        keywords={t('galleryPage.seo.keywords')}
         locale={locale}
         page=""
       />

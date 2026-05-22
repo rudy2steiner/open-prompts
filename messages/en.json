@@ -665,6 +665,13 @@
       "magicResent": "Sent",
       "registerSuccess": "Account created. Signing you in…"
     },
+    "galleryPage": {
+      "seo": {
+        "title": "Curated AI Image Prompts From Community | Open Prompts",
+        "description": "Discover curated AI image prompts on Open Prompts. Copy templates, filter by model, and generate with GPT Image, Midjourney, DALL·E, and more.",
+        "keywords": "prompts,image prompts,gpt image,midjourney,dalle,gallery,open prompts"
+      }
+    },
     "hero": {
       "eyebrow": "Curated · Always updating",
       "h1Prefix": "Explore · Reuse ·",
@@ -740,8 +747,8 @@
     },
     "createPage": {
       "seo": {
-        "title": "AI image studio — prompt templates & generation | Open Prompts",
-        "description": "Ship consistent visuals faster: curated image prompt templates, multi-model generation, aspect ratio and quality controls, and local run history in one focused workspace."
+        "title": "AI Image Generation Studio | Open Prompts",
+        "description": "Create with Open Prompts: start from curated templates, choose model and aspect ratio, generate with GPT Image, Midjourney, DALL·E, Flux, and more—session history in one studio."
       },
       "brandPill": "Open Prompts",
       "templatesLabel": "TEMPLATES",

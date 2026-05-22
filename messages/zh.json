@@ -300,7 +300,7 @@
     "submitPage": {
       "seo": {
         "title": "提交提示词 | Open Prompts",
-        "description": "分享提示词模板：标题、模型、分类、标签与正文，审核后公开展示。"
+        "description": "在 Open Prompts 分享提示词模板：标题、模型、分类、标签与正文，审核通过后在画廊展示。"
       },
       "xImport": {
         "title": "从 X 快筛导入",
@@ -390,12 +390,30 @@
         "category": "选择主分类…"
       },
       "models": {
-        "gptImage2": { "name": "GPT Image 2", "tag": "OpenAI" },
-        "midjourney": { "name": "Midjourney", "tag": "v6" },
-        "dalle3": { "name": "DALL·E 3", "tag": "OpenAI" },
-        "flux": { "name": "Flux 1.1 Pro", "tag": "BFL" },
-        "sd": { "name": "Stable Diffusion", "tag": "XL" },
-        "ideogram": { "name": "Ideogram", "tag": "v3" }
+        "gptImage2": {
+          "name": "GPT Image 2",
+          "tag": "OpenAI"
+        },
+        "midjourney": {
+          "name": "Midjourney",
+          "tag": "v6"
+        },
+        "dalle3": {
+          "name": "DALL·E 3",
+          "tag": "OpenAI"
+        },
+        "flux": {
+          "name": "Flux 1.1 Pro",
+          "tag": "BFL"
+        },
+        "sd": {
+          "name": "Stable Diffusion",
+          "tag": "XL"
+        },
+        "ideogram": {
+          "name": "Ideogram",
+          "tag": "v3"
+        }
       },
       "modelValues": {
         "gptImage2": "GPT Image 2",
@@ -437,7 +455,16 @@
         "privateTitle": "🔒 仅自己",
         "privateDesc": "私有保存，不出现在画廊"
       },
-      "quickTags": ["Portrait", "Golden Hour", "Photorealistic", "Dark Mood", "Fantasy", "Editorial", "Anime", "Vintage"],
+      "quickTags": [
+        "Portrait",
+        "Golden Hour",
+        "Photorealistic",
+        "Dark Mood",
+        "Fantasy",
+        "Editorial",
+        "Anime",
+        "Vintage"
+      ],
       "buttons": {
         "nextTags": "下一步：分类、标签与提交",
         "back": "← 上一步",
@@ -511,7 +538,7 @@
     "accountPage": {
       "seo": {
         "title": "用户中心 | Open Prompts",
-        "description": "管理提示词模板、审核队列与账户设置。"
+        "description": "在 Open Prompts 管理提示词模板、审核队列与账户设置。"
       },
       "sidebar": {
         "overview": "概览",
@@ -621,19 +648,19 @@
     },
     "login": {
       "seoTitle": "登录 | Open Prompts",
-      "seoDescription": "使用 GitHub、Google 或邮箱登录，收藏提示词并管理生图记录。",
+      "seoDescription": "使用 GitHub、Google 或邮箱登录 Open Prompts，收藏提示词并管理生图与模板。",
       "backGallery": "返回画廊",
       "welcomeLine1": "欢迎回到",
       "welcomeBrandOpen": "Open",
       "welcomeBrandEm": "Prompts",
-      "welcomeSubtitle": "登录后可收藏提示词、投递作品、管理你的生图记录。",
+      "welcomeSubtitle": "使用 GitHub、Google 或邮箱登录，保存提示词并管理你的作品。",
       "tabLogin": "登录",
       "tabRegister": "注册",
       "oauthGithub": "使用 GitHub 继续",
       "oauthGoogle": "使用 Google 继续",
       "oauthDisabledHint": "服务器未配置该登录方式",
       "oauthSetupHint": "GitHub / Google 登录需在 .env.local 中配置 GITHUB_ID、GITHUB_SECRET、GOOGLE_CLIENT_ID、GOOGLE_CLIENT_SECRET（见 .env.example），然后重启开发服务器。",
-      "dividerEmail": "或使用邮箱",
+      "dividerEmail": "或使用邮箱登录",
       "labelUsername": "用户名 / 显示名",
       "usernamePlaceholder": "your_username",
       "labelEmail": "邮箱地址",
@@ -663,6 +690,13 @@
       "magicResend": "重新发送",
       "magicResent": "已发送",
       "registerSuccess": "账户已创建，正在登录…"
+    },
+    "galleryPage": {
+      "seo": {
+        "title": "社区精选 AI 生图提示词 | Open Prompts",
+        "description": "在 Open Prompts 发现精选 AI 图像提示词与模板，按模型筛选、复制模板，并用 GPT Image、Midjourney、DALL·E 等生成。",
+        "keywords": "提示词,生图,AI绘画,画廊,Midjourney,DALL·E,Open Prompts"
+      }
     },
     "hero": {
       "eyebrow": "社区精选 · 持续更新",
@@ -739,8 +773,8 @@
     },
     "createPage": {
       "seo": {
-        "title": "AI 图像工作室｜提示词模板与生成 — Open Prompts",
-        "description": "更快产出风格一致的视觉方案：精选图像提示词模板、多模型生成、比例与质量控制，以及本会话内的运行历史，集中在一套专业工作流中。"
+        "title": "AI 图像生成工作室 | Open Prompts",
+        "description": "在 Open Prompts 创作：从精选模板出发，选择模型与画幅比例，用 GPT Image、Midjourney、DALL·E、Flux 等生成，会话历史集中在一个工作室。"
       },
       "brandPill": "Open Prompts",
       "templatesLabel": "模板",

@@ -96,7 +96,13 @@
     "h2_2_p2": "これは、動画作成プロセスを簡素化し、簡単な展開と使用ができるようにします。",
     "h2_2_p3": "SoraWebuiを使用すると、誰でもテキストを入力するだけで動画を作成できるため、動画制作とAI技術の両方において専門家や愛好家にとってアクセスしやすいツールになります。",
     "h2_2_p4a": "詳細については、SoraWebuiのウェブサイトをご覧ください ",
-    "h2_2_p4b": " またはGitHubリポジトリ "
+    "h2_2_p4b": " またはGitHubリポジトリ ",
+    "h2_0": "FAQs",
+    "h2_2_p3a": "Human-readable: JSON is written in a format that is easy for humans to understand and edit.",
+    "h2_2_p3b": "Language-independent: JSON is not tied to any specific programming language, making it suitable for use with a variety of technologies.",
+    "h2_2_p3c": "Data types: JSON supports a variety of data types, including strings, numbers, booleans, arrays, and objects. ",
+    "h2_2_p3d": "Hierarchical structure: JSON can be organized into hierarchical structures using objects and arrays. ",
+    "h2_2_p3e": "Lightweight: JSON is a compact data format that is efficient to transmit and store. "
   },
   "videosPage": {
     "title": "動画：Soraによって生成されたサンプル動画、Soraによって生成された最新動画。",
@@ -315,8 +321,8 @@
     },
     "submitPage": {
       "seo": {
-        "title": "プロンプトを投稿 | Open Prompts",
-        "description": "テンプレートの要点（タイトル・モデル・カテゴリ・タグ・本文）を投稿。公開前に審査。"
+        "title": "プロンプト投稿 | Open Prompts",
+        "description": "Open Prompts でプロンプトテンプレートを共有。タイトル・モデル・カテゴリ・タグ・本文を入力し、審査後にギャラリーへ掲載。"
       },
       "xImport": {
         "title": "X からクイック取り込み",
@@ -406,12 +412,30 @@
         "category": "カテゴリを選択…"
       },
       "models": {
-        "gptImage2": { "name": "GPT Image 2", "tag": "OpenAI" },
-        "midjourney": { "name": "Midjourney", "tag": "v6" },
-        "dalle3": { "name": "DALL·E 3", "tag": "OpenAI" },
-        "flux": { "name": "Flux 1.1 Pro", "tag": "BFL" },
-        "sd": { "name": "Stable Diffusion", "tag": "XL" },
-        "ideogram": { "name": "Ideogram", "tag": "v3" }
+        "gptImage2": {
+          "name": "GPT Image 2",
+          "tag": "OpenAI"
+        },
+        "midjourney": {
+          "name": "Midjourney",
+          "tag": "v6"
+        },
+        "dalle3": {
+          "name": "DALL·E 3",
+          "tag": "OpenAI"
+        },
+        "flux": {
+          "name": "Flux 1.1 Pro",
+          "tag": "BFL"
+        },
+        "sd": {
+          "name": "Stable Diffusion",
+          "tag": "XL"
+        },
+        "ideogram": {
+          "name": "Ideogram",
+          "tag": "v3"
+        }
       },
       "modelValues": {
         "gptImage2": "GPT Image 2",
@@ -453,7 +477,16 @@
         "privateTitle": "🔒 自分のみ",
         "privateDesc": "ギャラリーに出さない"
       },
-      "quickTags": ["Portrait", "Golden Hour", "Photorealistic", "Dark Mood", "Fantasy", "Editorial", "Anime", "Vintage"],
+      "quickTags": [
+        "Portrait",
+        "Golden Hour",
+        "Photorealistic",
+        "Dark Mood",
+        "Fantasy",
+        "Editorial",
+        "Anime",
+        "Vintage"
+      ],
       "buttons": {
         "nextTags": "次へ：カテゴリ・タグ・投稿",
         "back": "戻る",
@@ -527,7 +560,7 @@
     "accountPage": {
       "seo": {
         "title": "アカウント | Open Prompts",
-        "description": "テンプレート管理、審査キュー、アカウント設定。"
+        "description": "Open Prompts でテンプレート管理、審査キュー、アカウント設定。"
       },
       "sidebar": {
         "overview": "概要",
@@ -637,19 +670,19 @@
     },
     "login": {
       "seoTitle": "ログイン | Open Prompts",
-      "seoDescription": "GitHub、Google、またはメールでログインしてお気に入りや生成履歴を管理します。",
+      "seoDescription": "GitHub、Google、またはメールで Open Prompts にログイン。お気に入りや生成・テンプレートを管理。",
       "backGallery": "ギャラリーへ戻る",
       "welcomeLine1": "おかえりなさい",
       "welcomeBrandOpen": "Open",
       "welcomeBrandEm": "Prompts",
-      "welcomeSubtitle": "ログインするとプロンプトの保存、投稿、画像生成の管理ができます。",
+      "welcomeSubtitle": "GitHub、Google、またはメールでログインし、プロンプトを保存して作品を管理。",
       "tabLogin": "ログイン",
       "tabRegister": "新規登録",
       "oauthGithub": "GitHub で続行",
       "oauthGoogle": "Google で続行",
       "oauthDisabledHint": "このサーバーでは未設定です",
       "oauthSetupHint": "GitHub / Google ログインには .env.local に GITHUB_ID、GITHUB_SECRET、GOOGLE_CLIENT_ID、GOOGLE_CLIENT_SECRET が必要です（.env.example 参照）。設定後に dev サーバーを再起動してください。",
-      "dividerEmail": "またはメールで",
+      "dividerEmail": "またはメールでログイン",
       "labelUsername": "表示名",
       "usernamePlaceholder": "your_name",
       "labelEmail": "メール",
@@ -679,6 +712,13 @@
       "magicResend": "再送信",
       "magicResent": "送信済み",
       "registerSuccess": "アカウントを作成しました。ログインしています…"
+    },
+    "galleryPage": {
+      "seo": {
+        "title": "コミュニティ厳選 AI 画像プロンプト | Open Prompts",
+        "description": "Open Prompts で厳選 AI 画像プロンプトとテンプレートを探索。モデルで絞り込み、テンプレートをコピーし、GPT Image・Midjourney・DALL·E などで生成。",
+        "keywords": "プロンプト,画像生成,AI,ギャラリー,Midjourney,DALL·E,Open Prompts"
+      }
     },
     "hero": {
       "eyebrow": "厳選 · 継続更新",
@@ -755,8 +795,8 @@
     },
     "createPage": {
       "seo": {
-        "title": "AI画像スタジオ｜プロンプトテンプレートと生成 — Open Prompts",
-        "description": "一貫したビジュアルをより速く：厳選プロンプトテンプレート、マルチモデル生成、アスペクト比と品質の制御、同一セッション内の履歴を、ひとつのプロフェッショナルなワークフローに集約。"
+        "title": "AI 画像生成スタジオ | Open Prompts",
+        "description": "Open Prompts で制作：厳選テンプレートから、モデルとアスペクト比を選び、GPT Image・Midjourney・DALL·E・Flux などで生成。セッション履歴はひとつのスタジオに。"
       },
       "brandPill": "Open Prompts",
       "templatesLabel": "テンプレート",
