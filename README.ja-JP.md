@@ -116,75 +116,16 @@ npm run dev
 
 [http://localhost:3000](http://localhost:3000) を開きます（デフォルトポート **3000**）。
 
-### 5. 本番ビルド（任意）
-
-```bash
-npm run build
-npm run start
-```
-
----
-
-## Vercel へのデプロイ
+### 5. Vercel にデプロイ
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frudy2steiner%2Fopen-prompts&env=NEXTAUTH_SECRET,ADMIN_EMAIL,ADMIN_PASSWORD&envDescription=Required%20secrets%20(minimum)&project-name=open-prompts)
 
-### 1. プロジェクトをインポート
+1. [Vercel](https://vercel.com) でリポジトリをインポート（Next.js プリセット、ビルド `npm run build`）。
+2. 手順 2 と同じ環境変数を設定。`NEXTAUTH_URL` と `NEXT_PUBLIC_SITE_URL` は `https://your-app.vercel.app` にする。
+3. Supabase で `supabase/migrations/` を実行し、ローカルでその `DATABASE_URL` に対して `npm run seed:prompts` と `npm run seed:admin` を実行。
+4. OAuth コールバックを登録：`…/api/auth/callback/github` と `…/api/auth/callback/google`（Vercel のドメインに置き換え）。
 
-1. このリポジトリを GitHub に push（または fork）。
-2. [Vercel](https://vercel.com) → **Add New Project** → リポジトリをインポート。
-3. フレームワーク：**Next.js**（デフォルト）。ビルド：`npm run build`。出力：デフォルト。
-
-### 2. 環境変数
-
-**Project → Settings → Environment Variables** で、`.env.local` と同じキーを **Production** に設定（Preview でも OAuth を使う場合は同様）。
-
-**動作に必要な最低限**
-
-| 変数 | 例 / メモ |
-|------|-----------|
-| `DATABASE_URL` | Supabase pooler URI（ポート **5432**、ユーザー `postgres.<project-ref>`） |
-| `NEXTAUTH_URL` | `https://your-app.vercel.app`（末尾スラッシュなし） |
-| `NEXTAUTH_SECRET` | 強力なランダム文字列 |
-| `NEXT_PUBLIC_SITE_URL` | `NEXTAUTH_URL` と同じ |
-| `ADMIN_EMAIL` | 運用者メール（カンマ区切り可） |
-| `ADMIN_PASSWORD` | 強力なパスワード。ログイン失敗時は同一 DB に対してローカルで `npm run seed:admin` |
-
-**OAuth（推奨）**
-
-| 変数 | 登録するコールバック URL |
-|------|-------------------------|
-| `GITHUB_ID` / `GITHUB_SECRET` | `https://your-app.vercel.app/api/auth/callback/github` |
-| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | `https://your-app.vercel.app/api/auth/callback/google` |
-
-**画像生成**
-
-| 変数 | メモ |
-|------|------|
-| `DEFAULT_IMAGE_PROVIDER` | `atlascloud` |
-| `ATLASCLOUD_API_KEY` | 実生成に必要（テストモードを除く） |
-| または `USE_TEST_MODE=true` + `TEST_IMAGE_URL` | 有料 API なしのデモ |
-
-環境変数変更後は再デプロイしてください。
-
-### 3. Supabase 上のデータベース
-
-1. Supabase プロジェクトを作成し、**Session mode** 接続文字列（ポート **5432**）をコピー。
-2. SQL エディタで `supabase/migrations/` を順に実行。
-3. ローカル（`DATABASE_URL` がその DB を指す状態）で：
-
-   ```bash
-   npm run seed:prompts
-   npm run seed:admin
-   ```
-
-### 4. 動作確認
-
-- `https://your-app.vercel.app` を開く — ギャラリーにテンプレートが表示されること。
-- GitHub / Google または管理者メール・パスワードでサインイン。
-- 管理者として `/account` を開き、審査キューを利用。
-
-**メモ：** `ADMIN_EMAIL` と `ADMIN_PASSWORD` が設定されている場合、`instrumentation.ts` がサーバー起動時に管理者ユーザーを初期化します。パスワードリセットは本番の `DATABASE_URL` に対して `npm run seed:admin` を実行してください。
+環境変数変更後は再デプロイ。管理者ログインに失敗したら、本番の `DATABASE_URL` で `npm run seed:admin` を実行。
 
 ---
 

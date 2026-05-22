@@ -116,75 +116,16 @@ npm run dev
 
 打开 [http://localhost:3000](http://localhost:3000)（默认端口 **3000**）。
 
-### 5. 生产构建（可选）
-
-```bash
-npm run build
-npm run start
-```
-
----
-
-## 部署到 Vercel
+### 5. 部署到 Vercel
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frudy2steiner%2Fopen-prompts&env=NEXTAUTH_SECRET,ADMIN_EMAIL,ADMIN_PASSWORD&envDescription=Required%20secrets%20(minimum)&project-name=open-prompts)
 
-### 1. 导入项目
+1. 在 [Vercel](https://vercel.com) 导入仓库（Next.js 预设，构建命令 `npm run build`）。
+2. 配置与步骤 2 相同的环境变量；将 `NEXTAUTH_URL`、`NEXT_PUBLIC_SITE_URL` 设为 `https://your-app.vercel.app`。
+3. 在 Supabase 执行 `supabase/migrations/`，本地用该 `DATABASE_URL` 运行 `npm run seed:prompts` 与 `npm run seed:admin`。
+4. 在 GitHub / Google OAuth 中注册回调：`…/api/auth/callback/github` 与 `…/api/auth/callback/google`（替换为你的 Vercel 域名）。
 
-1. 将本仓库推送到 GitHub（或 Fork）。
-2. 打开 [Vercel](https://vercel.com) → **Add New Project** → 导入仓库。
-3. 框架预设：**Next.js**（默认）。构建命令：`npm run build`。输出目录：默认即可。
-
-### 2. 环境变量
-
-在 **Project → Settings → Environment Variables** 中，为 **Production**（若 Preview 环境也使用 OAuth，则一并配置）设置与 `.env.local` 相同的键。
-
-**部署所需最低配置**
-
-| 变量 | 示例 / 说明 |
-|------|-------------|
-| `DATABASE_URL` | Supabase pooler URI（端口 **5432**，用户 `postgres.<project-ref>`） |
-| `NEXTAUTH_URL` | `https://your-app.vercel.app`（末尾不要加 `/`） |
-| `NEXTAUTH_SECRET` | 强随机字符串 |
-| `NEXT_PUBLIC_SITE_URL` | 与 `NEXTAUTH_URL` 相同 |
-| `ADMIN_EMAIL` | 运营邮箱，多个用逗号分隔 |
-| `ADMIN_PASSWORD` | 强密码；若登录失败，在本地对同一数据库执行 `npm run seed:admin` |
-
-**OAuth（推荐）**
-
-| 变量 | 需在服务商注册的回调地址 |
-|------|--------------------------|
-| `GITHUB_ID` / `GITHUB_SECRET` | `https://your-app.vercel.app/api/auth/callback/github` |
-| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | `https://your-app.vercel.app/api/auth/callback/google` |
-
-**图像生成**
-
-| 变量 | 说明 |
-|------|------|
-| `DEFAULT_IMAGE_PROVIDER` | `atlascloud` |
-| `ATLASCLOUD_API_KEY` | 真实出图所需（测试模式除外） |
-| 或 `USE_TEST_MODE=true` + `TEST_IMAGE_URL` | 演示环境，无需付费 API |
-
-修改环境变量后请重新部署。
-
-### 3. Supabase 数据库
-
-1. 创建 Supabase 项目，复制 **Session mode** 连接串（端口 **5432**）。
-2. 在 SQL 编辑器中按顺序执行 `supabase/migrations/` 下的迁移。
-3. 在本地机器上（`DATABASE_URL` 指向该库）执行：
-
-   ```bash
-   npm run seed:prompts
-   npm run seed:admin
-   ```
-
-### 4. 验证
-
-- 打开 `https://your-app.vercel.app` — 画廊应能加载模板。
-- 使用 GitHub / Google 或管理员邮箱密码登录。
-- 以管理员身份打开 `/account` 使用审核队列。
-
-**说明：** 设置 `ADMIN_EMAIL` 与 `ADMIN_PASSWORD` 后，`instrumentation.ts` 会在服务启动时初始化管理员用户。重置密码请对生产环境的 `DATABASE_URL` 执行 `npm run seed:admin`。
+修改环境变量后需重新部署。管理员登录失败时，对生产 `DATABASE_URL` 执行 `npm run seed:admin`。
 
 ---
 

@@ -117,75 +117,16 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) (default port **3000**).
 
-### 5. Production build (optional)
-
-```bash
-npm run build
-npm run start
-```
-
----
-
-## Deploy on Vercel
+### 5. Deploy on Vercel
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frudy2steiner%2Fopen-prompts&env=NEXTAUTH_SECRET,ADMIN_EMAIL,ADMIN_PASSWORD&envDescription=Required%20secrets%20(minimum)&project-name=open-prompts)
 
-### 1. Import the project
+1. Import the repo on [Vercel](https://vercel.com) (Next.js preset, `npm run build`).
+2. Add the same env vars as step 2; set `NEXTAUTH_URL` and `NEXT_PUBLIC_SITE_URL` to `https://your-app.vercel.app`.
+3. Run `supabase/migrations/` on your Supabase DB, then `npm run seed:prompts` and `npm run seed:admin` locally with that `DATABASE_URL`.
+4. Register OAuth callbacks: `…/api/auth/callback/github` and `…/api/auth/callback/google` on your Vercel domain.
 
-1. Push this repo to GitHub (or fork it).
-2. In [Vercel](https://vercel.com) → **Add New Project** → import the repository.
-3. Framework preset: **Next.js** (default). Build command: `npm run build`. Output: default.
-
-### 2. Environment variables
-
-In **Project → Settings → Environment Variables**, set the same keys as `.env.local` for **Production** (and Preview if you use OAuth there).
-
-**Required for a working deploy**
-
-| Variable | Example / notes |
-|----------|-----------------|
-| `DATABASE_URL` | Supabase pooler URI (port **5432**, user `postgres.<project-ref>`) |
-| `NEXTAUTH_URL` | `https://your-app.vercel.app` (no trailing slash) |
-| `NEXTAUTH_SECRET` | Strong random string |
-| `NEXT_PUBLIC_SITE_URL` | Same as `NEXTAUTH_URL` |
-| `ADMIN_EMAIL` | Your operator email(s), comma-separated |
-| `ADMIN_PASSWORD` | Strong password; run `npm run seed:admin` locally against the same DB if login fails |
-
-**OAuth (recommended)**
-
-| Variable | Callback URL to register |
-|----------|-------------------------|
-| `GITHUB_ID` / `GITHUB_SECRET` | `https://your-app.vercel.app/api/auth/callback/github` |
-| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | `https://your-app.vercel.app/api/auth/callback/google` |
-
-**Image generation**
-
-| Variable | Notes |
-|----------|--------|
-| `DEFAULT_IMAGE_PROVIDER` | `atlascloud` |
-| `ATLASCLOUD_API_KEY` | Required for real generations (unless using test mode) |
-| Or `USE_TEST_MODE=true` + `TEST_IMAGE_URL` | Demo without paid APIs |
-
-Redeploy after changing env vars.
-
-### 3. Database on Supabase
-
-1. Create a Supabase project and copy the **Session mode** connection string (port **5432**).
-2. Run migrations from `supabase/migrations/` in the SQL editor (in order).
-3. From your machine (with `DATABASE_URL` pointing at that DB):
-
-   ```bash
-   npm run seed:prompts
-   npm run seed:admin
-   ```
-
-### 4. Verify
-
-- Open `https://your-app.vercel.app` — gallery should load templates.
-- Sign in via GitHub/Google or admin email/password.
-- Open `/account` as admin to use the review queue.
-
-**Note:** `instrumentation.ts` bootstraps the admin user on server start when `ADMIN_EMAIL` and `ADMIN_PASSWORD` are set. For password resets, use `npm run seed:admin` against production `DATABASE_URL`.
+Redeploy after env changes. If admin login fails, run `npm run seed:admin` against production `DATABASE_URL`.
 
 ---
 
