@@ -25,36 +25,28 @@
 
 以下为内置画廊中的部分模板（来源社区 / X，节选展示）。克隆仓库后可在站点画廊中点击「生成」直接试用。
 
-### GTA 6 风格都市写实
-
-<img src="public/local_images/gpt-image2-prompts/01_gta_6_style_urban_realism.jpg" alt="GTA 6 风格都市写实" width="280" />
-
-```
-GTA 6 style cinematic scene, urban environment, high fidelity, hyper-realistic lighting --ar 1915:821
-```
-
 ### K-pop 时尚专辑封面
 
-<img src="public/local_images/gpt-image2-prompts/02_k-pop_fashion_album_cover_art_1.jpg" alt="K-pop 时尚专辑封面" width="280" />
+<img src="https://pbs.twimg.com/media/HGaa7B2a0AAkDM9.jpg?name=orig" alt="K-pop 时尚专辑封面" width="280" />
 
 ```
 K-pop group fashion album cover
 ```
 
-### 高信息密度广告图
+### Urban Fashion Meets Classic Cartoons
 
-<img src="public/local_images/gpt-image2-prompts/03_rich_informational_advertising_image.jpg" alt="高信息密度广告图" width="280" />
-
-```
-Professional advertisement image, high information density, rich details, high resolution polish
-```
-
-### 监控镜头「外星目击」
-
-<img src="public/local_images/gpt-image2-prompts/04_cctv_alien_sighting.jpg" alt="监控镜头外星目击" width="280" />
+<img src="https://pic.tuseka.com/cartoon.webp" alt="Urban Fashion Meets Classic Cartoons" width="280" />
 
 ```
-low quality photo of an alien being caught by a gas station camera, black and white image
+A high-end fashion editorial featuring a young woman in an urban setting, seamlessly blended with iconic cartoon characters and vibrant graphic doodles.
+```
+
+### 我被美女包围
+
+<img src="https://pbs.twimg.com/amplify_video_thumb/2049313393686040576/img/YzqTGMfuh-dd9Ich.jpg" alt="我被美女包围" width="280" />
+
+```
+帮我做一个身临其境的360度全景图，场景四周环绕不同性格类型 装束的 年轻 性感 或 知性 小姐姐，给我递过水果、伸手牵手等
 ```
 
 ### 敦煌壁画剪纸立体场景
@@ -64,6 +56,7 @@ low quality photo of an alien being caught by a gas station camera, black and wh
 ```
 Eye-level straight-on view, 3D layered paper cut-out diorama. Vermillion red, lapis lazuli blue, ochre gold. Flying apsaras with ribbon silk scarves, blooming lotus, swirling auspicious clouds, ornate medallion patterns. Deep drop shadows, matte paper texture, octane render, 8k --ar 3:4
 ```
+
 
 > 更多模板见运行后的画廊，或执行 `npm run seed:prompts` 导入完整数据集。
 
