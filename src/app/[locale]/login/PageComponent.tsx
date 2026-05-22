@@ -40,8 +40,6 @@ export default function PageComponent({ locale, authProviders, previewPrompts }:
   const [pwVisible, setPwVisible] = useState(false);
   const [busy, setBusy] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
-  const [magicSent, setMagicSent] = useState(false);
-  const [resendLabel, setResendLabel] = useState<'idle' | 'sent'>('idle');
 
   const callbackUrl = useMemo(() => {
     const raw = searchParams?.get('callbackUrl');
@@ -92,11 +90,6 @@ export default function PageComponent({ locale, authProviders, previewPrompts }:
     } finally {
       setBusy(false);
     }
-  };
-
-  const showForgot = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setMagicSent(true);
   };
 
   const combinedError = formError || urlError;
@@ -207,42 +200,30 @@ export default function PageComponent({ locale, authProviders, previewPrompts }:
 
               <div className="relative z-[1]">
                 <h2 className="font-serif text-2xl leading-tight tracking-tight text-[var(--text)] md:text-[28px]">
-                  {locale === 'zh' ? (
-                    <>
-                      社区精选提示词
-                      <br />
-                      一键<span className="italic text-[var(--amber2)]">生图</span>，开箱即用
-                    </>
-                  ) : (
-                    <>
-                      Curated prompts.
-                      <br />
-                      <span className="italic text-[var(--amber2)]">Generate</span> in one click.
-                    </>
-                  )}
+                  {t('promoTitleLine1')}
+                  <br />
+                  <span className="italic text-[var(--amber2)]">{t('promoTitleLine2')}</span> {t('promoTitleLine2Suffix')}
                 </h2>
                 <p className="mt-2.5 max-w-[340px] text-[13px] font-light leading-relaxed text-[var(--text2)]">
-                  {locale === 'zh'
-                    ? '汇聚来自 X、社区投递的高质量 AI 生图提示词，支持多模型，开源可私有部署。'
-                    : 'High-quality image prompts from the community and social feeds. Multi-model support, MIT licensed.'}
+                  {t('promoDesc')}
                 </p>
                 <div className="mt-4 flex">
                   <div className="pr-6">
                     <div className="font-serif text-lg text-[var(--amber2)]">12,400+</div>
                     <div className="mt-0.5 text-[10px] uppercase tracking-wider text-[var(--text3)]">
-                      {locale === 'zh' ? '提示词' : 'Prompts'}
+                      {t('promoStatPrompts')}
                     </div>
                   </div>
                   <div className="border-l border-[var(--border)] px-6">
                     <div className="font-serif text-lg text-[var(--amber2)]">38</div>
                     <div className="mt-0.5 text-[10px] uppercase tracking-wider text-[var(--text3)]">
-                      {locale === 'zh' ? '支持模型' : 'Models'}
+                      {t('promoStatModels')}
                     </div>
                   </div>
                   <div className="border-l border-[var(--border)] pl-6">
-                    <div className="font-serif text-lg text-[var(--amber2)]">MIT</div>
+                    <div className="font-serif text-lg text-[var(--amber2)]">{t('promoLicenseName')}</div>
                     <div className="mt-0.5 text-[10px] uppercase tracking-wider text-[var(--text3)]">
-                      {locale === 'zh' ? '开源协议' : 'License'}
+                      {t('promoStatLicense')}
                     </div>
                   </div>
                 </div>
@@ -341,29 +322,7 @@ export default function PageComponent({ locale, authProviders, previewPrompts }:
                 <div className="h-px flex-1 bg-[var(--border)]" />
               </div>
 
-              {magicSent ? (
-                <div className="animate-[fadeUp_0.4s_ease_both] py-5 text-center">
-                  <div className="mx-auto mb-4 flex h-[52px] w-[52px] items-center justify-center rounded-none border border-[color-mix(in_oklab,var(--amber)_25%,transparent)] bg-[color-mix(in_oklab,var(--amber)_12%,transparent)] text-[22px]">
-                    ✉️
-                  </div>
-                  <h3 className="mb-2 font-serif text-xl text-[var(--text)]">{t('magicTitle')}</h3>
-                  <p className="text-[13px] font-light leading-relaxed text-[var(--text2)]">{t('magicBody')}</p>
-                  <div className="mt-4 text-xs text-[var(--text3)]">
-                    <button
-                      type="button"
-                      className="text-[var(--amber)] hover:underline disabled:opacity-60"
-                      disabled={resendLabel === 'sent'}
-                      onClick={() => {
-                        setResendLabel('sent');
-                        setTimeout(() => setResendLabel('idle'), 4000);
-                      }}
-                    >
-                      {resendLabel === 'sent' ? t('magicResent') : t('magicResend')}
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div>
+              <div>
                   {combinedError ? (
                     <div className="mb-3 rounded-none border border-[color-mix(in_oklab,var(--amber)_35%,transparent)] bg-[color-mix(in_oklab,var(--amber)_10%,transparent)] px-3 py-2 text-center text-xs text-[var(--text)]">
                       <p>{combinedError}</p>
@@ -414,14 +373,11 @@ export default function PageComponent({ locale, authProviders, previewPrompts }:
                     </div>
                   </div>
 
-                  <div className="mb-5 flex items-center justify-between">
+                  <div className="mb-5">
                     <label className="flex cursor-pointer items-center text-xs text-[var(--text2)]">
                       <input type="checkbox" defaultChecked className="mr-2 accent-[var(--amber)]" />
                       {t('remember')}
                     </label>
-                    <button type="button" className="text-xs text-[var(--amber)] hover:underline" onClick={showForgot}>
-                      {t('forgot')}
-                    </button>
                   </div>
 
                   <button
@@ -432,8 +388,7 @@ export default function PageComponent({ locale, authProviders, previewPrompts }:
                   >
                     {busy ? t('submitBusy') : t('submitLogin')}
                   </button>
-                </div>
-              )}
+              </div>
 
               <p className="mt-6 text-center text-[11px] leading-relaxed text-[var(--text3)]">
                 {t('disclaimer')}
