@@ -1,10 +1,10 @@
 # Open Prompts 简介
 
-**Open Prompts** 是一个开源的 **AI 图像提示词** 平台：把散落在文档和社群里的提示词整理成可复用的 **模板**（含预览图、标签、模型与公开范围），在画廊里发现、在创作页一键出图、也可提交或管理自己的模板。
+**Open Prompts** 是一个开源的 **AI 图像提示词** 平台：把散落在文档和社群里的提示词整理成可复用的 **模板**（含预览图、标签、模型与公开范围），在画廊里发现、在创作页一键出图、也可提交或管理自己的模板。适合需要 统一沉淀提示词、团队共享、公开画廊 + 私有草稿 的创作者与小型团队。
 
 - 仓库：[github.com/rudy2steiner/open-prompts](https://github.com/rudy2steiner/open-prompts)
 - 许可：[Apache 2.0](LICENSE)
-- 完整文档：[README.zh-CN.md](./README.zh-CN.md)
+- 在线体验地址: [www.open-prompts.com](https://www.open-prompts.com)
 
 ---
 
@@ -57,9 +57,11 @@ A high-end fashion editorial featuring a young woman in an urban setting, seamle
 Eye-level straight-on view, 3D layered paper cut-out diorama. Vermillion red, lapis lazuli blue, ochre gold. Flying apsaras with ribbon silk scarves, blooming lotus, swirling auspicious clouds, ornate medallion patterns. Deep drop shadows, matte paper texture, octane render, 8k --ar 3:4
 ```
 
-
-> 更多模板见运行后的画廊，或执行 `npm run seed:prompts` 导入完整数据集。
-
 ---
 
-适合需要 **统一沉淀提示词、团队共享、公开画廊 + 私有草稿** 的创作者与小型团队。部署与环境变量说明见 [README.zh-CN.md](./README.zh-CN.md)。
+- 仓库：[github.com/rudy2steiner/open-prompts](https://github.com/rudy2steiner/open-prompts)
+- 许可：[Apache 2.0](LICENSE)
+- 在线体验地址: [www.open-prompts.com](https://www.open-prompts.com)
+
+适合需要 **统一沉淀提示词、团队共享、公开画廊 + 私有草稿** 的创作者与小型团队,一起来共建开源的提示词平台吧！喜欢的点个star 
+
