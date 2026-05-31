@@ -144,6 +144,19 @@ export async function deleteUserTemplate(
   return true;
 }
 
+export async function bulkDeleteUserTemplates(
+  db: Db,
+  ids: number[],
+  userId: string,
+): Promise<number> {
+  if (!ids.length) return 0;
+  const rows = await db
+    .delete(prompts)
+    .where(and(inArray(prompts.id, ids), eq(prompts.submittedBy, userId)))
+    .returning({ id: prompts.id });
+  return rows.length;
+}
+
 export async function getTemplateById(db: Db, id: number): Promise<TemplateRecord | null> {
   const [row] = await db.select().from(prompts).where(eq(prompts.id, id)).limit(1);
   return row ? rowToRecord(row) : null;
