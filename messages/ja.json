@@ -422,7 +422,7 @@
         "step4Code": "--ar 16:9",
         "step4DescAfter": " などモデル固有のフラグを含めましょう。英語プロンプトが最も効果的です。プレビュー画像はクリック率を大きく向上させます。",
         "fieldsTitle": "各投稿に含める内容",
-        "field1": "タイトル — 短く検索しやすい名前（25 文字以内）。",
+        "field1": "タイトル — 短く検索しやすい名前（30 文字以内）。",
         "field2": "説明 — ビジュアルスタイルや用途を 1 行で。",
         "field3": "プロンプト本文 — 画像モデルで使う全文（アスペクト比などのパラメータ含む）。",
         "field4": "プレビュー画像 — 出力例の URL またはアップロード（審査とクリック率向上に有効）。",
@@ -500,13 +500,13 @@
         "imageUrls": "または画像 URL"
       },
       "hints": {
-        "title": "25文字程度で簡潔に",
+        "title": "30文字以内で簡潔に",
         "desc": "効果を一言で",
         "promptCount": "{count} 文字",
         "tags": "2〜8個、Enter で確定",
         "source": "X、Reddit、個人サイトなど",
         "author": "任意、クレジット表示",
-        "upload": "最大4枚、PNG/JPG、各10MB以下",
+        "upload": "最大8枚、PNG/JPG、各10MB以下",
         "uploadFull": "上限に達しました — 削除してから追加",
         "urls": "1件ずつ · Enter または追加",
         "imageCount": "{count} / {max} 枚"
@@ -632,7 +632,7 @@
         "submitUnavailable": "現在投稿を受け付けられません（データベース未設定）。",
         "invalidImageUrl": "有効な http(s) 画像 URL を入力してください。",
         "duplicateImageUrl": "この URL は既に追加されています。",
-        "imageLimit": "画像は最大4枚までです。"
+        "imageLimit": "画像は最大8枚までです。"
       },
       "rules": {
         "promptLen": "プロンプト 10文字以上",
