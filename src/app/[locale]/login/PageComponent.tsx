@@ -28,9 +28,17 @@ export type LoginPageProps = {
   locale: string;
   authProviders: { github: boolean; google: boolean };
   previewPrompts: LoginPreviewPrompt[];
+  promptCountLabel: string;
+  modelCountLabel: string;
 };
 
-export default function PageComponent({ locale, authProviders, previewPrompts }: LoginPageProps) {
+export default function PageComponent({
+  locale,
+  authProviders,
+  previewPrompts,
+  promptCountLabel,
+  modelCountLabel,
+}: LoginPageProps) {
   const t = useTranslations('OpenPrompts.login');
   const searchParams = useSearchParams();
   const errorCode = searchParams?.get('error') ?? null;
@@ -209,13 +217,13 @@ export default function PageComponent({ locale, authProviders, previewPrompts }:
                 </p>
                 <div className="mt-4 flex">
                   <div className="pr-6">
-                    <div className="font-serif text-lg text-[var(--amber2)]">12,400+</div>
+                    <div className="font-serif text-lg text-[var(--amber2)]">{promptCountLabel}</div>
                     <div className="mt-0.5 text-[10px] uppercase tracking-wider text-[var(--text3)]">
                       {t('promoStatPrompts')}
                     </div>
                   </div>
                   <div className="border-l border-[var(--border)] px-6">
-                    <div className="font-serif text-lg text-[var(--amber2)]">38</div>
+                    <div className="font-serif text-lg text-[var(--amber2)]">{modelCountLabel}</div>
                     <div className="mt-0.5 text-[10px] uppercase tracking-wider text-[var(--text3)]">
                       {t('promoStatModels')}
                     </div>

@@ -1,4 +1,4 @@
-import { asc } from 'drizzle-orm';
+import { desc } from 'drizzle-orm';
 import type { PromptGalleryItem } from '~/data/promptGallery';
 import { getDb } from '~/db/client';
 import { prompts } from '~/db/schema';
@@ -15,6 +15,7 @@ function rowToItem(row: {
   sourceUrl: string | null;
   authorHandle: string | null;
   images: string[] | null;
+  createdAt: Date;
 }): PromptGalleryItem {
   const tags = Array.isArray(row.tags) ? row.tags.filter((t) => typeof t === 'string' && t.trim()) : [];
   const images = Array.isArray(row.images)
@@ -35,6 +36,7 @@ function rowToItem(row: {
   if (su) item.sourceUrl = su;
   const ah = row.authorHandle?.trim();
   if (ah) item.authorHandle = ah;
+  item.createdAt = row.createdAt.toISOString();
   return item;
 }
 
@@ -56,10 +58,11 @@ export async function fetchPromptGalleryFromDb(): Promise<PromptGalleryItem[] | 
         sourceUrl: prompts.sourceUrl,
         authorHandle: prompts.authorHandle,
         images: prompts.images,
+        createdAt: prompts.createdAt,
       })
       .from(prompts)
       .where(galleryPublicFilter())
-      .orderBy(asc(prompts.sortOrder), asc(prompts.createdAt));
+      .orderBy(desc(prompts.createdAt), desc(prompts.id));
 
     if (!rows.length) return null;
     return rows.map(rowToItem);

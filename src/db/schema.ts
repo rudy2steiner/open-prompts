@@ -48,6 +48,8 @@ export const users = pgTable('p_users', {
   passwordHash: text('password_hash'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+  /** Last authenticated activity; used for admin DAU (UTC calendar day). */
+  lastActiveAt: timestamp('last_active_at', { withTimezone: true }),
 });
 
 export const accounts = pgTable(

@@ -7,6 +7,7 @@ import {
   getTemplateById,
   updateUserTemplate,
 } from '~/lib/prompts/template-record';
+import { checkXSourceDuplicate } from '~/lib/x-import/x-source-duplicate';
 
 export const dynamic = 'force-dynamic';
 
@@ -67,6 +68,10 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
   const v = parsed.value;
   const isAdmin = isAdminEmail(session.user.email);
   try {
+    const duplicate = await checkXSourceDuplicate(db, v.sourceUrl, id);
+    if (duplicate) {
+      return NextResponse.json({ error: 'duplicate_x_source', duplicate }, { status: 409 });
+    }
     const item = await updateUserTemplate(
       db,
       id,
@@ -80,6 +85,7 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
         images: v.images,
         visibility: v.visibility,
         sourceUrl: v.sourceUrl,
+        authorHandle: v.authorHandle,
       },
       isAdmin,
     );

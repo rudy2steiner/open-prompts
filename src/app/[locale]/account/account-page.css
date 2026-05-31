@@ -44,7 +44,7 @@
 
 .op-account-sidebar-user {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
   padding: 16px 16px 14px;
   border-bottom: 1px solid var(--border);
@@ -245,6 +245,89 @@
   color: var(--text);
 }
 
+.op-account-trend-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.op-account-trend-grid-single {
+  grid-template-columns: 1fr;
+}
+
+@media (max-width: 640px) {
+  .op-account-trend-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.op-account-trend-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px 12px;
+}
+
+.op-account-trend-title {
+  font-size: 11px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+}
+
+.op-account-trend-range-btn {
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--text2);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.op-account-trend-range-btn:hover {
+  background: var(--ctl-hover);
+  color: var(--text);
+}
+
+.op-account-trend-range-btn.active {
+  border-color: var(--amber);
+  color: var(--amber);
+  background: rgba(232, 160, 32, 0.08);
+}
+
+.op-account-trend-line-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.op-account-trend-axis {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.op-account-trend-line {
+  stroke: var(--amber);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.op-account-trend-dot {
+  fill: var(--amber);
+  stroke: var(--surface);
+  stroke-width: 1;
+}
+
+.op-account-trend-xlabel {
+  font-size: 8px;
+  fill: var(--text3);
+}
+
 .op-account-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -338,13 +421,220 @@
 }
 
 .op-account-table-wrap {
-  padding: 0;
+  padding: 14px 16px 16px;
   overflow: hidden;
+}
+
+.op-account-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.op-account-table-wrap .op-account-table thead th {
+  padding-top: 2px;
+  padding-bottom: 12px;
+}
+
+.op-account-table-wrap .op-account-table tbody tr:last-child td {
+  border-bottom: none;
 }
 
 .op-account-table {
   width: 100%;
   border-collapse: collapse;
+}
+
+.op-account-table-admin {
+  table-layout: fixed;
+  min-width: 640px;
+}
+
+.op-account-table-admin .op-account-col-check {
+  width: 44px;
+}
+
+.op-account-table-admin .op-account-col-template {
+  width: 42%;
+}
+
+.op-account-table-admin .op-account-col-status {
+  width: 96px;
+}
+
+.op-account-table-admin .op-account-col-date {
+  width: 72px;
+}
+
+.op-account-table-admin .op-account-col-actions {
+  width: 168px;
+}
+
+.op-account-table-admin th,
+.op-account-table-admin td {
+  padding: 10px 12px;
+}
+
+.op-account-table-admin .op-account-th-check,
+.op-account-table-admin .op-account-td-check {
+  padding-left: 4px !important;
+  padding-right: 0 !important;
+}
+
+.op-account-table-admin .op-account-th-actions,
+.op-account-table-admin .op-account-td-actions {
+  padding-right: 4px !important;
+}
+
+.op-account-th-actions {
+  text-align: left;
+}
+
+.op-account-table:not(.op-account-table-admin) .op-account-th-actions,
+.op-account-table:not(.op-account-table-admin) .op-account-td-actions {
+  padding-right: 4px;
+}
+
+.op-account-table:not(.op-account-table-admin) .op-account-td-actions {
+  text-align: left;
+}
+
+.op-account-td-actions {
+  text-align: left;
+}
+
+.op-account-table-admin .op-account-td-actions {
+  position: sticky;
+  right: 0;
+  z-index: 1;
+  background: var(--surface);
+  box-shadow: -10px 0 14px -12px rgba(0, 0, 0, 0.45);
+}
+
+.op-account-td-template {
+  max-width: 0;
+}
+
+.op-account-cell-template {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.op-account-cell-template-body {
+  min-width: 0;
+  flex: 1;
+}
+
+.op-account-cell-title {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.op-account-cell-title:hover {
+  color: var(--amber2);
+}
+
+.op-account-cell-template-meta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+  min-width: 0;
+  font-size: 10px;
+  line-height: 1.3;
+  color: var(--text3);
+}
+
+.op-account-cell-owner,
+.op-account-cell-model {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.op-account-cell-owner {
+  flex: 1 1 40%;
+  max-width: 140px;
+}
+
+.op-account-cell-model {
+  flex: 0 1 auto;
+  max-width: 88px;
+}
+
+.op-account-cell-sep {
+  flex-shrink: 0;
+  opacity: 0.55;
+}
+
+.op-account-td-status {
+  white-space: nowrap;
+}
+
+.op-account-td-date {
+  font-size: 11px;
+  color: var(--text3);
+  white-space: nowrap;
+}
+
+.op-account-table-admin tr:hover .op-account-td-actions {
+  background: color-mix(in oklab, var(--surface) 92%, white 8%);
+}
+
+.op-account-table-admin tr.op-account-row-selected .op-account-td-actions {
+  background: color-mix(in oklab, var(--amber) 6%, var(--surface));
+}
+
+.op-account-table-admin tr.op-account-row-selected:hover .op-account-td-actions {
+  background: color-mix(in oklab, var(--amber) 10%, var(--surface));
+}
+
+.op-account-row-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 4px;
+  width: 100%;
+}
+
+.op-account-table-admin .op-account-row-btn {
+  font-size: 10px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+.op-account-table-admin .op-account-thumb {
+  width: 44px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .op-account-table-admin {
+    min-width: 580px;
+  }
+
+  .op-account-table-admin .op-account-col-actions {
+    width: 148px;
+  }
+
+  .op-account-cell-model,
+  .op-account-cell-sep-model {
+    display: none;
+  }
 }
 
 .op-account-table th {
@@ -358,11 +648,19 @@
   border-bottom: 1px solid var(--border);
 }
 
+.op-account-table th.op-account-th-actions {
+  text-align: left;
+}
+
 .op-account-table td {
   padding: 12px;
   border-bottom: 1px solid var(--border);
   font-size: 13px;
   vertical-align: middle;
+}
+
+.op-account-table td.op-account-td-actions {
+  text-align: left;
 }
 
 .op-account-table tr:last-child td {
@@ -452,6 +750,52 @@
 
 .op-account-row-btn.reject {
   color: var(--coral);
+}
+
+.op-account-bulk-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(232, 160, 32, 0.25);
+  background: var(--amber-dim);
+}
+
+.op-account-btn.reject {
+  color: var(--coral);
+  border-color: rgba(224, 96, 80, 0.3);
+}
+
+.op-account-btn.reject:hover {
+  background: var(--coral-dim);
+  color: var(--coral);
+}
+
+.op-account-th-check,
+.op-account-td-check {
+  width: 36px;
+  padding-left: 4px !important;
+  padding-right: 0 !important;
+  vertical-align: middle;
+}
+
+.op-account-check {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--amber);
+  cursor: pointer;
+}
+
+.op-account-row-selected {
+  background: color-mix(in oklab, var(--amber) 6%, var(--surface));
+}
+
+.op-account-row-selected:hover {
+  background: color-mix(in oklab, var(--amber) 10%, var(--surface));
 }
 
 .op-account-empty {

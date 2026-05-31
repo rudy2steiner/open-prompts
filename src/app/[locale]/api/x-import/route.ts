@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
+import { getDb } from '~/db/client';
 import { parseXStatusUrl } from '~/lib/x-import/parse-x-status-url';
+import { findPromptByXStatusUrl } from '~/lib/x-import/x-source-duplicate';
 
 export const dynamic = 'force-dynamic';
 
@@ -86,6 +88,18 @@ export async function POST(req: Request) {
     statusId: parsed.statusId,
     isIStatusUrl: parsed.screenName === '_',
   });
+
+  const db = getDb();
+  if (db) {
+    const duplicate = await findPromptByXStatusUrl(db, url);
+    if (duplicate) {
+      console.info('[op:x-import:duplicate]', { requestId, statusId: parsed.statusId, id: duplicate.id });
+      return NextResponse.json(
+        { error: 'duplicate_x_source', duplicate },
+        { status: 409 },
+      );
+    }
+  }
 
   const apiUrl = `https://api.fxtwitter.com/${encodeURIComponent(parsed.screenName)}/status/${parsed.statusId}`;
 

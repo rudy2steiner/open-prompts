@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { Suspense } from 'react';
 import PageComponent from './PageComponent';
+import './submit-page.css';
 
 function normalizeLocale(raw: string) {
   const lower = (raw || 'en').toLowerCase();
@@ -25,11 +26,13 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'OpenPrompts.submitPage' });
   const title = t('seo.title');
   const description = t('seo.description');
+  const keywords = t('seo.keywords').split(',').map((k) => k.trim()).filter(Boolean);
   return {
     title,
     description,
+    keywords,
     openGraph: { title, description, type: 'website' },
-    twitter: { card: 'summary', title, description },
+    twitter: { card: 'summary_large_image', title, description },
   };
 }
 

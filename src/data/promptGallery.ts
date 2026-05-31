@@ -8,6 +8,8 @@ export type PromptGalleryItem = {
   tags: string[];
   sourceUrl?: string;
   authorHandle?: string;
+  /** ISO 8601 — shown on card footer as MM-DD after the source label. */
+  createdAt?: string;
   images: string[];
 };
 
@@ -41,6 +43,15 @@ function asStringArray(value: unknown): string[] {
 
 const IMPORTED = imported as ImportedPrompt[];
 
+function inferCreatedAtFromImport(item: ImportedPrompt): string | undefined {
+  const remotes = asStringArray(item.remote_images);
+  for (const url of remotes) {
+    const m = url.match(/\/x\/(\d{4})(\d{2})(\d{2})\//);
+    if (m) return `${m[1]}-${m[2]}-${m[3]}T12:00:00.000Z`;
+  }
+  return undefined;
+}
+
 export const PROMPT_GALLERY: PromptGalleryItem[] = IMPORTED.map((item, idx) => {
   const title = typeof item.title === "string" ? item.title : `Untitled ${idx + 1}`;
   const description = typeof item.description === "string" ? item.description : "";
@@ -50,6 +61,7 @@ export const PROMPT_GALLERY: PromptGalleryItem[] = IMPORTED.map((item, idx) => {
 
   const authorHandle = typeof item.user_name === "string" ? item.user_name : undefined;
   const sourceUrl = typeof item.source_url === "string" ? item.source_url : undefined;
+  const createdAt = inferCreatedAtFromImport(item);
 
   const base = slugify(title) || `prompt-${idx + 1}`;
   const id = `${base}-${idx + 1}`;
@@ -64,7 +76,8 @@ export const PROMPT_GALLERY: PromptGalleryItem[] = IMPORTED.map((item, idx) => {
     tags,
     authorHandle,
     sourceUrl,
+    ...(createdAt ? { createdAt } : {}),
     images,
   };
-});
+}).reverse();
 

@@ -15,8 +15,11 @@ import { parseSubmitEditId, submitEditorHref } from '~/lib/prompts/submit-editor
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
 import { localeApiPath } from '~/lib/locale-api-path';
+import { accountPanelHref } from '~/lib/account/account-path';
 import { parseXStatusUrl } from '~/lib/x-import/parse-x-status-url';
+import type { XSourceDuplicate } from '~/lib/x-import/x-source-duplicate';
 import { SubmitPreviewImageStrip } from './SubmitPreviewImageStrip';
+import { SubmitLanding } from './SubmitLanding';
 
 const CATEGORY_KEYS = [
   'landscape',
@@ -54,7 +57,7 @@ export type SubmitPageProps = {
 };
 
 function accountHref(locale: string) {
-  return locale === 'en' ? '/account?panel=prompts' : `/${locale}/account?panel=prompts`;
+  return accountPanelHref(locale, 'prompts');
 }
 
 function loginHref(locale: string, returnPath: string) {
@@ -69,11 +72,16 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
   const searchParams = useSearchParams();
   const { status: authStatus } = useSession();
   const galleryHref = locale === 'en' ? '/' : `/${locale}`;
+  const submitPublicPath = submitEditorHref(locale, { visibility: 'public' });
   const submitPrivatePath = submitEditorHref(locale, { visibility: 'private' });
+  const submitChooserPath = submitEditorHref(locale);
 
   const editId = parseSubmitEditId(searchParams?.get('edit'));
   const isEditMode = editId !== null;
-  const isPrivateMode = !isEditMode && searchParams?.get('visibility') === 'private';
+  const visibilityParam = searchParams?.get('visibility');
+  const isPublicMode = !isEditMode && visibilityParam === 'public';
+  const isPrivateMode = !isEditMode && visibilityParam === 'private';
+  const isChooserMode = !isEditMode && !isPublicMode && !isPrivateMode;
 
   const [templateVisibility, setTemplateVisibility] = useState<PromptVisibility>('public');
   const [loadingTemplate, setLoadingTemplate] = useState(false);
@@ -97,9 +105,11 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
   const [urlError, setUrlError] = useState<string | null>(null);
   const [uploadDrag, setUploadDrag] = useState(false);
   const [xImportUrl, setXImportUrl] = useState('');
+  const [authorHandle, setAuthorHandle] = useState('');
   const [xImportBusy, setXImportBusy] = useState(false);
   const [xImportError, setXImportError] = useState<string | null>(null);
   const [xImportOk, setXImportOk] = useState(false);
+  const [xDuplicate, setXDuplicate] = useState<XSourceDuplicate | null>(null);
   const [success, setSuccess] = useState(false);
   const [submissionId, setSubmissionId] = useState('');
   const [submitting, setSubmitting] = useState(false);
@@ -116,12 +126,72 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
     setBlockedHint(null);
   }, [title, desc, prompt, category, tags]);
 
+  useEffect(() => {
+    const u = xImportUrl.trim();
+    if (!parseXStatusUrl(u)) {
+      setXDuplicate(null);
+      return;
+    }
+    const ac = new AbortController();
+    const timer = window.setTimeout(() => {
+      const q = new URLSearchParams({ url: u });
+      if (isEditMode && editId) q.set('excludeId', String(editId));
+      void fetch(localeApiPath(locale, `/api/x-import/check?${q}`), {
+        cache: 'no-store',
+        signal: ac.signal,
+      })
+        .then(async (res) => {
+          const data = (await res.json()) as { duplicate?: XSourceDuplicate | null };
+          if (res.ok) setXDuplicate(data.duplicate ?? null);
+        })
+        .catch(() => {
+          /* debounced check — ignore abort */
+        });
+    }, 450);
+    return () => {
+      window.clearTimeout(timer);
+      ac.abort();
+    };
+  }, [xImportUrl, locale, isEditMode, editId]);
+
+  const xDuplicateStatusLabel = useCallback(
+    (status: string) => {
+      const known = ['approved', 'pending', 'rejected', 'draft'] as const;
+      if ((known as readonly string[]).includes(status)) {
+        return t(`xImport.duplicateStatus.${status}` as 'xImport.duplicateStatus.approved');
+      }
+      return status;
+    },
+    [t],
+  );
+
+  const renderXDuplicateHint = () => {
+    if (!xDuplicate) return null;
+    return (
+      <div className="op-sp-info mt-2 border-[var(--amber)]/30 bg-[color-mix(in_oklab,var(--amber)_8%,transparent)]">
+        <p className="text-xs leading-relaxed text-[var(--text2)]">
+          {t('xImport.duplicateHint', {
+            title: xDuplicate.title,
+            status: xDuplicateStatusLabel(xDuplicate.status),
+          })}{' '}
+          {xDuplicate.sourceUrl ? (
+            <a href={xDuplicate.sourceUrl} target="_blank" rel="noopener noreferrer">
+              {t('xImport.duplicateLink')}
+            </a>
+          ) : null}
+        </p>
+      </div>
+    );
+  };
+
   const authReturnPath =
     isEditMode && editId
       ? submitEditorHref(locale, { editId })
       : isPrivateMode
         ? submitPrivatePath
-        : '';
+        : isPublicMode
+          ? submitPublicPath
+          : submitChooserPath;
 
   useEffect(() => {
     if ((!isPrivateMode && !isEditMode) || authStatus !== 'unauthenticated') return;
@@ -140,6 +210,7 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
     setTags(item.tags.filter((tag) => tag !== cat));
     setResultImages(item.images.filter(isValidImageSrc).slice(0, MAX_RESULT_IMAGES));
     setXImportUrl(item.sourceUrl ?? '');
+    setAuthorHandle(item.authorHandle ?? '');
     setTemplateVisibility(item.visibility);
     setSubmissionId(String(item.id));
   }, []);
@@ -315,11 +386,19 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
       const data = (await res.json().catch(() => ({}))) as {
         ok?: boolean;
         error?: string;
+        duplicate?: XSourceDuplicate;
         title?: string;
         description?: string;
         prompt?: string;
         imageUrls?: string[];
+        sourceUrl?: string;
+        authorHandle?: string;
       };
+      if (res.status === 409 && data.error === 'duplicate_x_source' && data.duplicate) {
+        setXDuplicate(data.duplicate);
+        setXImportError(t('xImport.errorDuplicate'));
+        return;
+      }
       if (!res.ok) {
         setXImportError(data.error || t('xImport.errorGeneric'));
         return;
@@ -331,6 +410,9 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
         const imported = data.imageUrls.filter(isValidImageSrc).slice(0, MAX_RESULT_IMAGES);
         if (imported.length > 0) setResultImages(imported);
       }
+      if (typeof data.sourceUrl === 'string' && data.sourceUrl.trim()) setXImportUrl(data.sourceUrl.trim());
+      if (typeof data.authorHandle === 'string') setAuthorHandle(data.authorHandle.trim());
+      setXDuplicate(null);
       setXImportOk(true);
     } catch {
       setXImportError(t('xImport.errorGeneric'));
@@ -366,28 +448,38 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
       tags,
       images: previewImageUrls,
       sourceUrl: xImportUrl.trim() || undefined,
+      authorHandle: authorHandle.trim() || undefined,
       visibility: saveVisibility,
     };
     try {
-      const res = await fetch(
+      const submitPath =
         isEditMode && editId
           ? localeApiPath(locale, `/api/my/templates/${editId}`)
-          : localeApiPath(locale, '/api/prompts'),
-        {
-          method: isEditMode ? 'PATCH' : 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        },
-      );
+          : authStatus === 'authenticated'
+            ? localeApiPath(locale, '/api/my/templates')
+            : localeApiPath(locale, '/api/prompts');
+      const res = await fetch(submitPath, {
+        method: isEditMode ? 'PATCH' : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
       const data = (await res.json().catch(() => ({}))) as {
         ok?: boolean;
         id?: number;
         item?: TemplateRecord;
         error?: string;
+        duplicate?: XSourceDuplicate;
       };
       if (!res.ok) {
         if (res.status === 401 && (isPrivateMode || isEditMode)) {
           router.replace(loginHref(locale, authReturnPath));
+          return;
+        }
+        if (res.status === 409 && data.error === 'duplicate_x_source' && data.duplicate) {
+          setXDuplicate(data.duplicate);
+          setBlockedHint(
+            t('xImport.duplicateSubmitBlocked', { title: data.duplicate.title }),
+          );
           return;
         }
         if (res.status === 503) {
@@ -425,6 +517,7 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
     setUrlDraft('');
     setUrlError(null);
     setXImportUrl('');
+    setAuthorHandle('');
     setXImportError(null);
     setXImportOk(false);
   };
@@ -439,6 +532,11 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
     <div className="min-h-screen w-full bg-[var(--bg)] text-[var(--text)]">
       <OpenPromptsSiteHeader locale={locale} activeNav="submit" langPathSuffix="/submit" />
       <main className="w-full">
+        {isChooserMode && !success ? (
+          <div className="op-submit-shell relative">
+            <SubmitLanding publicHref={submitPublicPath} privateHref={submitPrivatePath} />
+          </div>
+        ) : (
         <div className="op-submit-shell relative">
           <div className="mx-auto w-full max-w-7xl px-6">
             <div className={`op-sp-page${success ? ' op-sp-page--simple' : ''}`}>
@@ -446,6 +544,11 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
                 {!success ? (
                   <>
                     <header className="mb-8">
+                      {!isEditMode ? (
+                        <Link href={submitChooserPath} className="mb-4 inline-block text-xs text-[var(--text3)] hover:text-[var(--amber)]">
+                          {t('chooser.back')}
+                        </Link>
+                      ) : null}
                       <div className="op-sp-wizard-eyebrow">
                         {isEditMode
                           ? t('editMode.eyebrow')
@@ -521,6 +624,7 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
                             setXImportUrl(e.target.value);
                             setXImportError(null);
                             setXImportOk(false);
+                            setXDuplicate(null);
                           }}
                           placeholder={t('xImport.placeholder')}
                           onKeyDown={(e) => {
@@ -540,7 +644,42 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
                         </button>
                       </div>
                       {xImportError ? <p className="mt-2 text-xs text-[var(--coral)]">{xImportError}</p> : null}
+                      {renderXDuplicateHint()}
                       {xImportOk ? <p className="mt-2 text-xs text-[var(--teal)]">{t('xImport.success')}</p> : null}
+                    </div>
+
+                    <div className="op-sp-form-group op-sp-two">
+                      <div>
+                        <label className="op-sp-label" htmlFor="f-source">
+                          {t('labels.sourceUrl')}
+                        </label>
+                        <input
+                          id="f-source"
+                          className="op-sp-input"
+                          type="url"
+                          inputMode="url"
+                          value={xImportUrl}
+                          onChange={(e) => {
+                            setXImportUrl(e.target.value);
+                            setXDuplicate(null);
+                          }}
+                          placeholder={t('placeholders.source')}
+                        />
+                        <p className="op-sp-label op-hint">{t('hints.source')}</p>
+                      </div>
+                      <div>
+                        <label className="op-sp-label" htmlFor="f-author">
+                          {t('labels.author')}
+                        </label>
+                        <input
+                          id="f-author"
+                          className="op-sp-input"
+                          value={authorHandle}
+                          onChange={(e) => setAuthorHandle(e.target.value)}
+                          placeholder={t('placeholders.author')}
+                        />
+                        <p className="op-sp-label op-hint">{t('hints.author')}</p>
+                      </div>
                     </div>
 
                     <div className="op-sp-form-group">
@@ -851,7 +990,9 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
                         ? t('editMode.successBody')
                         : isPrivateMode
                           ? t('privateMode.successBody')
-                          : t('success.body')}
+                          : authStatus === 'authenticated'
+                            ? t('success.body')
+                            : t('success.bodySignedOut')}
                     </p>
                     <p className="mb-4 text-center text-[11px] text-[var(--text3)]">
                       {modelLabel}
@@ -962,6 +1103,7 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
             </div>
           </div>
         </div>
+        )}
       </main>
       <OpenPromptsSiteFooter locale={locale} />
     </div>

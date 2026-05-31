@@ -73,6 +73,15 @@ export default async function LocaleLayout({
                 }
               }
               applyThemeFromStorage();
+              function syncLocaleCookie() {
+                try {
+                  var l = localStorage.getItem('op_locale');
+                  if (l === 'en' || l === 'zh' || l === 'ja') {
+                    document.cookie = 'NEXT_LOCALE=' + encodeURIComponent(l) + ';path=/;max-age=31536000;SameSite=Lax';
+                  }
+                } catch (e4) {}
+              }
+              syncLocaleCookie();
               function paintBody() {
                 try {
                   var t = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';

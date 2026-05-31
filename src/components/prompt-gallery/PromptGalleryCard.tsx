@@ -1,6 +1,7 @@
 import { LuMaximize2 } from 'react-icons/lu';
 import { CoverImage } from '~/components/prompt-gallery/CoverImage';
 import type { PromptGalleryItem } from '~/data/promptGallery';
+import { formatGalleryCardDate } from '~/lib/prompts/gallery-attribution';
 
 type Props = {
   item: PromptGalleryItem;
@@ -26,6 +27,9 @@ type Props = {
   coverFullscreenTitle?: string;
   onCtaClick?: () => void;
   coverErrorText?: string;
+  /** `columns` = CSS column masonry; `masonry` = JS shortest-column; `flow` = flex wrap. */
+  layout?: 'columns' | 'masonry' | 'flow';
+  coverFit?: 'contain' | 'cover';
 };
 
 export function PromptGalleryCard({
@@ -51,9 +55,16 @@ export function PromptGalleryCard({
   coverFullscreenTitle,
   onCtaClick,
   coverErrorText,
+  layout = 'columns',
+  coverFit = 'contain',
 }: Props) {
   const showCta = Boolean(onCtaClick && primaryCtaLabel && primaryCtaLabel.trim().length > 0);
-  const showFooterLeft = showAuthor && Boolean(authorLabel);
+  const dateLabel = formatGalleryCardDate(item.createdAt);
+  const showFooterLeft = showAuthor && Boolean(authorLabel || dateLabel);
+  const shellClass =
+    layout === 'flow' || layout === 'masonry'
+      ? 'group relative w-full overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] text-left transition hover:border-[var(--border2)] hover:shadow-md'
+      : 'group relative z-0 mb-4 inline-block w-full break-inside-avoid overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] text-left transition hover:z-10 hover:border-[var(--border2)]';
 
   return (
     <div
@@ -67,15 +78,15 @@ export function PromptGalleryCard({
             }
           : undefined
       }
-      className="group relative z-0 mb-4 inline-block w-full break-inside-avoid overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] text-left transition hover:z-10 hover:border-[var(--border2)]"
+      className={shellClass}
     >
-      <div className="relative block w-full bg-black/20" style={{ aspectRatio: coverAspectRatio }}>
+      <div className="relative block w-full bg-[var(--surface2)]" style={{ aspectRatio: coverAspectRatio }}>
         {coverSrc ? (
           <CoverImage
             src={coverSrc}
             alt={item.title}
             sizes={coverSizes}
-            className="object-contain"
+            className={coverFit === 'cover' ? 'object-cover' : 'object-contain'}
             errorText={coverErrorText}
             onMeta={onMeta}
           />
@@ -142,20 +153,26 @@ export function PromptGalleryCard({
         {showFooterLeft || showCta ? (
           <div className="mt-4 flex items-center justify-between">
             {showFooterLeft ? (
-              authorUrl ? (
-                <a
-                  href={authorUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-[11px] text-[var(--text3)] hover:text-[var(--text2)] hover:underline"
-                  onClick={(e) => e.stopPropagation()}
-                  title={authorLabel ?? undefined}
-                >
-                  {authorLabel}
-                </a>
-              ) : (
-                <span className="text-[11px] text-[var(--text3)]">{authorLabel}</span>
-              )
+              <span className="text-[11px] text-[var(--text3)]">
+                {authorLabel ? (
+                  authorUrl ? (
+                    <a
+                      href={authorUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="hover:text-[var(--text2)] hover:underline"
+                      onClick={(e) => e.stopPropagation()}
+                      title={authorLabel}
+                    >
+                      {authorLabel}
+                    </a>
+                  ) : (
+                    <span>{authorLabel}</span>
+                  )
+                ) : null}
+                {authorLabel && dateLabel ? <span> · </span> : null}
+                {dateLabel ? <span>{dateLabel}</span> : null}
+              </span>
             ) : (
               <span />
             )}
