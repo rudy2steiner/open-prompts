@@ -712,7 +712,9 @@
         "empty": "还没有你提交的模板，点击新建开始。",
         "emptyFiltered": "当前筛选状态下没有模板。",
         "emptyAdminHint": "此列表仅显示你本人提交的模板，不包含全站目录。要审核全部模板，请用管理员账号登录后打开「内容审核」。",
-        "confirmDelete": "确定删除该模板？"
+        "confirmDelete": "确定删除该模板？",
+        "deleteSelected": "删除所选",
+        "bulkConfirmDelete": "确定删除所选的 {count} 个模板？"
       },
       "status": {
         "pub": "已发布",

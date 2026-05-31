@@ -686,7 +686,9 @@
         "empty": "No templates yet. Create your first one.",
         "emptyFiltered": "No templates match this status filter.",
         "emptyAdminHint": "This list only shows templates you submitted. The full moderation queue (all users + catalog) is under Content review and requires an admin account.",
-        "confirmDelete": "Delete this template?"
+        "confirmDelete": "Delete this template?",
+        "deleteSelected": "Delete selected",
+        "bulkConfirmDelete": "Delete {count} selected template(s)?"
       },
       "status": {
         "pub": "Published",

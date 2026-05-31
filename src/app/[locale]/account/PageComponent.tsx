@@ -173,7 +173,9 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
   const [adminLoading, setAdminLoading] = useState(false);
   const [adminLoadError, setAdminLoadError] = useState<string | null>(null);
   const [selectedAdminIds, setSelectedAdminIds] = useState<Set<number>>(() => new Set());
+  const [selectedMyIds, setSelectedMyIds] = useState<Set<number>>(() => new Set());
   const [bulkReviewBusy, setBulkReviewBusy] = useState(false);
+  const [bulkMyDeleteBusy, setBulkMyDeleteBusy] = useState(false);
   const [userItems, setUserItems] = useState<AdminUserSummary[]>([]);
   const [usersSearch, setUsersSearch] = useState('');
   const [usersPage, setUsersPage] = useState(1);
@@ -466,6 +468,10 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
   }, [adminPage, adminPageSize, adminStatusFilter, adminSearch]);
 
   useEffect(() => {
+    setSelectedMyIds(new Set());
+  }, [myPage, myPageSize, myStatusFilter, search]);
+
+  useEffect(() => {
     if (panel === 'users' && isAdmin) void loadAdminUsers();
   }, [panel, isAdmin, loadAdminUsers]);
 
@@ -500,8 +506,36 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
   const removeTemplate = async (id: number) => {
     if (!window.confirm(t('table.confirmDelete'))) return;
     await fetch(localeApiPath(locale, `/api/my/templates/${id}`), { method: 'DELETE' });
+    setSelectedMyIds((prev) => {
+      if (!prev.has(id)) return prev;
+      const next = new Set(prev);
+      next.delete(id);
+      return next;
+    });
     void loadMyTemplates();
     void loadStats();
+  };
+
+  const bulkDeleteMyTemplates = async () => {
+    const ids = Array.from(selectedMyIds);
+    if (!ids.length) return;
+    if (!window.confirm(t('table.bulkConfirmDelete', { count: ids.length }))) return;
+
+    setBulkMyDeleteBusy(true);
+    try {
+      const res = await fetch(localeApiPath(locale, '/api/my/templates/bulk'), {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ids }),
+      });
+      if (res.ok) {
+        setSelectedMyIds(new Set());
+        void loadMyTemplates();
+        void loadStats();
+      }
+    } finally {
+      setBulkMyDeleteBusy(false);
+    }
   };
 
   const review = async (id: number, status: 'approved' | 'rejected') => {
@@ -556,6 +590,29 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
     const pageIds = items.map((item) => item.id);
     const allSelected = pageIds.length > 0 && pageIds.every((id) => selectedAdminIds.has(id));
     setSelectedAdminIds((prev) => {
+      const next = new Set(prev);
+      if (allSelected) {
+        for (const id of pageIds) next.delete(id);
+      } else {
+        for (const id of pageIds) next.add(id);
+      }
+      return next;
+    });
+  };
+
+  const toggleMySelection = (id: number) => {
+    setSelectedMyIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const toggleMySelectAll = (items: TemplateRecord[]) => {
+    const pageIds = items.map((item) => item.id);
+    const allSelected = pageIds.length > 0 && pageIds.every((id) => selectedMyIds.has(id));
+    setSelectedMyIds((prev) => {
       const next = new Set(prev);
       if (allSelected) {
         for (const id of pageIds) next.delete(id);
@@ -904,7 +961,7 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
       selection?: {
         selected: Set<number>;
         onToggle: (id: number) => void;
-        onToggleAll: (items: AdminTemplateRecord[]) => void;
+        onToggleAll: (items: TemplateRecord[] | AdminTemplateRecord[]) => void;
       };
     },
   ) => {
@@ -920,8 +977,8 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
       return <div className="op-account-empty">{emptyMsg}</div>;
     }
 
-    const adminItemsOnPage = opts.admin ? (items as AdminTemplateRecord[]) : [];
-    const pageIds = adminItemsOnPage.map((item) => item.id);
+    const pageItems = items;
+    const pageIds = pageItems.map((item) => item.id);
     const allPageSelected =
       opts.selection && pageIds.length > 0 && pageIds.every((id) => opts.selection!.selected.has(id));
     const somePageSelected =
@@ -994,7 +1051,7 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
                       if (el) el.indeterminate = Boolean(somePageSelected && !allPageSelected);
                     }}
                     aria-label={t('admin.selectAll')}
-                    onChange={() => opts.selection!.onToggleAll(adminItemsOnPage)}
+                    onChange={() => opts.selection!.onToggleAll(pageItems)}
                   />
                 </th>
                 <th>{t('table.template')}</th>
@@ -1098,7 +1155,7 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
                       if (el) el.indeterminate = Boolean(somePageSelected && !allPageSelected);
                     }}
                     aria-label={t('admin.selectAll')}
-                    onChange={() => opts.selection!.onToggleAll(adminItemsOnPage)}
+                    onChange={() => opts.selection!.onToggleAll(pageItems)}
                   />
                 </th>
               ) : null}
@@ -1433,8 +1490,38 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
                 </Link>
               </div>
               {renderMyPagination()}
+              {selectedMyIds.size > 0 ? (
+                <div className="op-account-bulk-bar">
+                  <span className="text-xs text-[var(--text2)]">
+                    {t('admin.selectedCount', { count: selectedMyIds.size })}
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      type="button"
+                      className="op-account-btn reject"
+                      disabled={bulkMyDeleteBusy}
+                      onClick={() => void bulkDeleteMyTemplates()}
+                    >
+                      {t('table.deleteSelected')}
+                    </button>
+                    <button
+                      type="button"
+                      className="op-account-btn"
+                      disabled={bulkMyDeleteBusy}
+                      onClick={() => setSelectedMyIds(new Set())}
+                    >
+                      {t('admin.clearSelection')}
+                    </button>
+                  </div>
+                </div>
+              ) : null}
               {renderTable(templates, {
                 loading: myLoading,
+                selection: {
+                  selected: selectedMyIds,
+                  onToggle: toggleMySelection,
+                  onToggleAll: toggleMySelectAll,
+                },
                 emptyMessage:
                   myStatusFilter.trim() !== ''
                     ? t('table.emptyFiltered')
