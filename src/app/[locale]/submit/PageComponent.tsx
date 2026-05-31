@@ -17,6 +17,7 @@ import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSite
 import { localeApiPath } from '~/lib/locale-api-path';
 import { accountPanelHref } from '~/lib/account/account-path';
 import { parseXStatusUrl } from '~/lib/x-import/parse-x-status-url';
+import { authorHandleFromXUrl, resolveXAuthorHandle } from '~/lib/x-import/x-author-handle';
 import type { XSourceDuplicate } from '~/lib/x-import/x-source-duplicate';
 import { SubmitPreviewImageStrip } from './SubmitPreviewImageStrip';
 import { SubmitLanding } from './SubmitLanding';
@@ -128,10 +129,13 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
 
   useEffect(() => {
     const u = xImportUrl.trim();
-    if (!parseXStatusUrl(u)) {
+    const parsed = parseXStatusUrl(u);
+    if (!parsed) {
       setXDuplicate(null);
       return;
     }
+    const fromUrl = authorHandleFromXUrl(u);
+    if (fromUrl) setAuthorHandle(fromUrl);
     const ac = new AbortController();
     const timer = window.setTimeout(() => {
       const q = new URLSearchParams({ url: u });
@@ -376,6 +380,8 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
       setXImportError(t('xImport.errorNotTweet'));
       return;
     }
+    const preHandle = authorHandleFromXUrl(u);
+    if (preHandle) setAuthorHandle(preHandle);
     setXImportBusy(true);
     try {
       const res = await fetch(localeApiPath(locale, '/api/x-import'), {
@@ -411,7 +417,13 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
         if (imported.length > 0) setResultImages(imported);
       }
       if (typeof data.sourceUrl === 'string' && data.sourceUrl.trim()) setXImportUrl(data.sourceUrl.trim());
-      if (typeof data.authorHandle === 'string') setAuthorHandle(data.authorHandle.trim());
+      setAuthorHandle(
+        resolveXAuthorHandle({
+          sourceUrl: typeof data.sourceUrl === 'string' ? data.sourceUrl : u,
+          screenName:
+            typeof data.authorHandle === 'string' ? data.authorHandle.replace(/^@+/, '') : null,
+        }) || preHandle || '',
+      );
       setXDuplicate(null);
       setXImportOk(true);
     } catch {

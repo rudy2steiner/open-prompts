@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getDb } from '~/db/client';
 import { parseXStatusUrl } from '~/lib/x-import/parse-x-status-url';
 import { findPromptByXStatusUrl } from '~/lib/x-import/x-source-duplicate';
+import { resolveXAuthorHandle } from '~/lib/x-import/x-author-handle';
 
 export const dynamic = 'force-dynamic';
 
@@ -191,12 +192,13 @@ export async function POST(req: Request) {
   const title = titleBase.length > 60 ? `${titleBase.slice(0, 57)}…` : titleBase;
   const description = raw.length > 120 ? `${raw.slice(0, 117)}…` : raw;
 
-  const screen = tweet.author?.screen_name;
-  const authorHandle = screen ? `@${screen}` : '';
-
-  const imageUrls = collectImageUrls(tweet.media);
-
   const sourceUrl = tweet.url || url;
+  const authorHandle = resolveXAuthorHandle({
+    sourceUrl,
+    screenName:
+      tweet.author?.screen_name ?? (parsed.screenName !== '_' ? parsed.screenName : null),
+  });
+  const imageUrls = collectImageUrls(tweet.media);
   const rawPreview = raw.length > 400 ? `${raw.slice(0, 400)}…` : raw;
 
   console.info('[op:x-import:result]', {
