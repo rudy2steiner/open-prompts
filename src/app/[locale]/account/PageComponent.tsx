@@ -158,6 +158,10 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
     initialAdmin?.pendingCount ?? null,
   );
   const [myLoading, setMyLoading] = useState(false);
+  const [myPage, setMyPage] = useState(1);
+  const [myPageSize, setMyPageSize] = useState(20);
+  const [myTotal, setMyTotal] = useState<number | null>(null);
+  const [myHasMore, setMyHasMore] = useState(false);
   const [search, setSearch] = useState('');
   const [adminSearch, setAdminSearch] = useState('');
   const [myStatusFilter, setMyStatusFilter] = useState('');
@@ -253,16 +257,34 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
       const q = new URLSearchParams();
       if (search.trim()) q.set('q', search.trim());
       if (myStatusFilter) q.set('status', myStatusFilter);
-      q.set('limit', '50');
+      q.set('limit', String(myPageSize));
+      q.set('offset', String((myPage - 1) * myPageSize));
       const res = await fetch(localeApiPath(locale, `/api/my/templates?${q}`), { cache: 'no-store' });
-      const data = (await res.json()) as { items?: TemplateRecord[] };
-      if (res.ok) setTemplates(data.items ?? []);
+      const data = (await res.json()) as {
+        items?: TemplateRecord[];
+        total?: number;
+        offset?: number;
+      };
+      if (res.ok) {
+        const items = data.items ?? [];
+        setTemplates(items);
+        const total = typeof data.total === 'number' ? data.total : null;
+        setMyTotal(total);
+        const offset = typeof data.offset === 'number' ? data.offset : (myPage - 1) * myPageSize;
+        setMyHasMore(total != null ? offset + items.length < total : items.length >= myPageSize);
+      } else {
+        setTemplates([]);
+        setMyTotal(null);
+        setMyHasMore(false);
+      }
     } catch {
       setTemplates([]);
+      setMyTotal(null);
+      setMyHasMore(false);
     } finally {
       setMyLoading(false);
     }
-  }, [locale, search, myStatusFilter]);
+  }, [locale, search, myStatusFilter, myPage, myPageSize]);
 
   const loadAdminTemplates = useCallback(async () => {
     const gen = ++adminLoadGen.current;
@@ -400,6 +422,10 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
   useEffect(() => {
     setAdminPage(1);
   }, [adminSearch, adminStatusFilter, adminPageSize, adminTrendDays]);
+
+  useEffect(() => {
+    setMyPage(1);
+  }, [search, myStatusFilter, myPageSize]);
 
   useEffect(() => {
     setUsersPage(1);
@@ -653,6 +679,17 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
       total: usersTotal,
       hasMore: usersHasMore,
       loading: usersLoading,
+    });
+
+  const renderMyPagination = () =>
+    renderPagination({
+      page: myPage,
+      setPage: setMyPage,
+      pageSize: myPageSize,
+      setPageSize: setMyPageSize,
+      total: myTotal,
+      hasMore: myHasMore,
+      loading: myLoading,
     });
 
   const renderTrendLineChart = (title: string, points: DailyCountPoint[]) => {
@@ -1395,7 +1432,9 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
                   {t('topbar.newTemplate')}
                 </Link>
               </div>
+              {renderMyPagination()}
               {renderTable(templates, {
+                loading: myLoading,
                 emptyMessage:
                   myStatusFilter.trim() !== ''
                     ? t('table.emptyFiltered')
