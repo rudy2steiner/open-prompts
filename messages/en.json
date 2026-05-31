@@ -401,7 +401,7 @@
         "step4Code": "--ar 16:9",
         "step4DescAfter": ". English prompts perform best. Add a preview image — it significantly boosts click-through.",
         "fieldsTitle": "What to include in each submission",
-        "field1": "Title — short, searchable name (under 25 characters).",
+        "field1": "Title — short, searchable name (under 30 characters).",
         "field2": "Description — one line explaining the visual style or use case.",
         "field3": "Prompt body — the full text you use with your image model, including parameters like aspect ratio.",
         "field4": "Preview images — URLs or uploads showing example outputs (helps reviewers and improves click-through).",
@@ -479,13 +479,13 @@
         "imageUrls": "Or paste image URLs"
       },
       "hints": {
-        "title": "Up to 25 characters, concise",
+        "title": "Up to 30 characters, concise",
         "desc": "One line on the effect",
         "promptCount": "{count} characters",
         "tags": "2–8 tags, press Enter",
         "source": "X/Twitter, Reddit, personal site…",
         "author": "Optional credit",
-        "upload": "Up to 4 images, PNG / JPG, ≤10MB each",
+        "upload": "Up to 8 images, PNG / JPG, ≤10MB each",
         "uploadFull": "Maximum reached — remove an image to add more",
         "urls": "One URL per line · Enter or Add",
         "imageCount": "{count} / {max}"
@@ -584,7 +584,7 @@
         "submitUnavailable": "Submissions are temporarily unavailable (database not configured).",
         "invalidImageUrl": "Enter a valid http(s) image URL.",
         "duplicateImageUrl": "This image URL is already added.",
-        "imageLimit": "You can add up to 4 images."
+        "imageLimit": "You can add up to 8 images."
       },
       "rules": {
         "promptLen": "Prompt length ≥ 10 characters",

@@ -189,7 +189,7 @@ export async function POST(req: Request) {
   const prompt = raw;
   const firstLine = raw.split('\n')[0]?.trim() || raw;
   const titleBase = firstLine.length > 0 ? firstLine : `X ${parsed.statusId}`;
-  const title = titleBase.length > 60 ? `${titleBase.slice(0, 57)}…` : titleBase;
+  const title = titleBase;
   const description = raw.length > 120 ? `${raw.slice(0, 117)}…` : raw;
 
   const sourceUrl = tweet.url || url;

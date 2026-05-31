@@ -400,7 +400,7 @@
         "step4Code": "--ar 16:9",
         "step4DescAfter": "。英文提示词效果更好。添加预览图可显著提升点击率。",
         "fieldsTitle": "每次提交应包含的内容",
-        "field1": "标题 — 简短、可搜索的名称（25 字以内）。",
+        "field1": "标题 — 简短、可搜索的名称（30 字以内）。",
         "field2": "描述 — 一行说明视觉风格或使用场景。",
         "field3": "提示词正文 — 你在图像模型中使用的完整文本，含画幅比例等参数。",
         "field4": "预览图 — URL 或上传的示例输出（帮助审核并提升点击率）。",
@@ -478,13 +478,13 @@
         "imageUrls": "或填入图片 URL"
       },
       "hints": {
-        "title": "25 字以内，简洁有力",
+        "title": "30 字以内，简洁有力",
         "desc": "一句话说明效果",
         "promptCount": "{count} 字符",
         "tags": "2–8 个，回车确认",
         "source": "X/Twitter、Reddit、个人网站等",
         "author": "选填，致谢原创作者",
-        "upload": "最多 4 张，PNG / JPG，≤10MB",
+        "upload": "最多 8 张，PNG / JPG，≤10MB",
         "uploadFull": "已达上限，删除一张后可继续添加",
         "urls": "每次一条 · 回车或点添加",
         "imageCount": "{count} / {max} 张"
@@ -610,7 +610,7 @@
         "submitUnavailable": "暂时无法提交（数据库未配置）。",
         "invalidImageUrl": "请输入有效的 http(s) 图片链接。",
         "duplicateImageUrl": "该图片链接已添加。",
-        "imageLimit": "最多添加 4 张图片。"
+        "imageLimit": "最多添加 8 张图片。"
       },
       "rules": {
         "promptLen": "提示词长度 ≥ 10 字符",

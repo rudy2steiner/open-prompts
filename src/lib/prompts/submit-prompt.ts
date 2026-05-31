@@ -7,6 +7,7 @@ import {
   resolveStatusForVisibility,
   type PromptVisibility,
 } from '~/lib/prompts/template-types';
+import { MAX_TITLE } from '~/lib/prompts/template-limits';
 
 const CATEGORY_KEYS = new Set([
   'landscape',
@@ -39,11 +40,10 @@ const MODEL_LABELS: Record<string, string> = {
   ideogram: 'Ideogram',
 };
 
-const MAX_TITLE = 200;
 const MAX_DESC = 2000;
 const MAX_TAG_LEN = 48;
 const MAX_TAGS = 10;
-const MAX_IMAGES = 4;
+const MAX_IMAGES = 8;
 const MAX_IMAGE_CHARS = 600_000;
 
 export type ParsedSubmitPrompt = {

@@ -11,6 +11,7 @@ import {
   type PromptVisibility,
   type TemplateRecord,
 } from '~/lib/prompts/template-types';
+import { MAX_TITLE } from '~/lib/prompts/template-limits';
 import { parseSubmitEditId, submitEditorHref } from '~/lib/prompts/submit-editor-path';
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
@@ -35,7 +36,7 @@ const CATEGORY_KEYS = [
   'abstract',
 ] as const;
 
-const MAX_RESULT_IMAGES = 4;
+const MAX_RESULT_IMAGES = 8;
 
 function isValidImageSrc(value: string): boolean {
   const v = value.trim();
@@ -96,7 +97,7 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
 
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
-  const [modelId, setModelId] = useState<(typeof MODEL_IDS)[number]>('dalle3');
+  const [modelId, setModelId] = useState<(typeof MODEL_IDS)[number]>('gptImage2');
   const [prompt, setPrompt] = useState('');
   const [category, setCategory] = useState('');
   const [tags, setTags] = useState<string[]>(['Cinematic', 'Portrait']);
@@ -409,7 +410,7 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
         setXImportError(data.error || t('xImport.errorGeneric'));
         return;
       }
-      if (typeof data.title === 'string') setTitle(data.title.slice(0, 60));
+      if (typeof data.title === 'string') setTitle(data.title.slice(0, MAX_TITLE));
       if (typeof data.description === 'string') setDesc(data.description.slice(0, 120));
       if (typeof data.prompt === 'string') setPrompt(data.prompt);
       if (Array.isArray(data.imageUrls) && data.imageUrls.length > 0) {
@@ -520,7 +521,7 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
     }
     setTitle('');
     setDesc('');
-    setModelId('dalle3');
+    setModelId('gptImage2');
     setPrompt('');
     setCategory('');
     setTags(['Cinematic', 'Portrait']);
@@ -702,7 +703,7 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
                       <input
                         id="f-title"
                         className={`op-sp-input${shakeId === 'f-title' ? ' op-shake' : ''}`}
-                        maxLength={60}
+                        maxLength={MAX_TITLE}
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder={t('placeholders.title')}
