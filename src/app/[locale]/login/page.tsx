@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Suspense } from 'react';
 import { getOAuthProviderFlags } from '~/lib/auth/oauth-providers';
+import { countGalleryModels, formatGalleryStatCount } from '~/lib/prompts/gallery-stats';
 import { getPromptGallery } from '~/lib/prompts/get-prompt-gallery';
 import PageComponent from './PageComponent';
 
@@ -47,7 +48,13 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
     }));
   return (
     <Suspense fallback={null}>
-      <PageComponent locale={locale} authProviders={authProviders} previewPrompts={previewPrompts} />
+      <PageComponent
+        locale={locale}
+        authProviders={authProviders}
+        previewPrompts={previewPrompts}
+        promptCountLabel={formatGalleryStatCount(prompts.length, locale)}
+        modelCountLabel={formatGalleryStatCount(countGalleryModels(prompts), locale)}
+      />
     </Suspense>
   );
 }

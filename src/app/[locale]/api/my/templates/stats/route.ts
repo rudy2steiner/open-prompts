@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getDb } from '~/db/client';
 import { requireAuthSession } from '~/lib/auth/session';
-import { countPendingReview, countUserTemplates } from '~/lib/prompts/template-record';
+import { countUserPendingReview, countUserTemplates } from '~/lib/prompts/template-record';
 
 export const dynamic = 'force-dynamic';
 
@@ -16,7 +16,7 @@ export async function GET() {
 
   try {
     const templateCount = await countUserTemplates(db, session.user.id);
-    const pendingCount = await countPendingReview(db);
+    const pendingCount = await countUserPendingReview(db, session.user.id);
     return NextResponse.json({ templateCount, pendingCount });
   } catch (e: unknown) {
     const message = e instanceof Error ? e.message : 'Stats failed';

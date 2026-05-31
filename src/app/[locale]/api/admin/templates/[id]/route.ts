@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getDb } from '~/db/client';
-import { isAdminEmail, requireAuthSession } from '~/lib/auth/session';
+import { requireAdminSession } from '~/lib/auth/session';
 import { adminSetReviewStatus, getTemplateById, parseReviewStatus } from '~/lib/prompts/template-record';
 
 export const dynamic = 'force-dynamic';
@@ -11,8 +11,8 @@ function parseId(raw: string): number | null {
 }
 
 export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
-  const session = await requireAuthSession();
-  if (!session?.user?.email || !isAdminEmail(session.user.email)) {
+  const session = await requireAdminSession();
+  if (!session) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
 
@@ -47,8 +47,8 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
 }
 
 export async function GET(_req: Request, { params }: { params: Promise<{ id: string }> }) {
-  const session = await requireAuthSession();
-  if (!session?.user?.email || !isAdminEmail(session.user.email)) {
+  const session = await requireAdminSession();
+  if (!session) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
   }
 

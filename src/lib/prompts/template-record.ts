@@ -1,6 +1,6 @@
 import { randomBytes } from 'node:crypto';
 
-import { and, count, desc, eq, ilike, or, sql, type SQL } from 'drizzle-orm';
+import { and, count, desc, eq, ilike, inArray, or, sql, type SQL } from 'drizzle-orm';
 import type { Db } from '~/db/client';
 import { prompts, users } from '~/db/schema';
 import type { AdminTemplateRecord } from '~/lib/prompts/template-types';
@@ -74,6 +74,7 @@ export async function insertUserTemplate(
           tags: input.tags,
           images: input.images,
           sourceUrl: input.sourceUrl ?? null,
+          authorHandle: input.authorHandle ?? null,
           submittedBy: userId,
           visibility: input.visibility,
           status,
@@ -112,6 +113,7 @@ export async function updateUserTemplate(
   if (input.tags !== undefined) patch.tags = input.tags;
   if (input.images !== undefined) patch.images = input.images;
   if (input.sourceUrl !== undefined) patch.sourceUrl = input.sourceUrl;
+  if (input.authorHandle !== undefined) patch.authorHandle = input.authorHandle;
   if (input.visibility !== undefined) {
     patch.visibility = input.visibility;
     if (!isAdmin && input.visibility === 'public' && existing.status === 'approved') {
@@ -279,11 +281,34 @@ export async function adminSetReviewStatus(
   return row ? rowToRecord(row) : null;
 }
 
+export async function adminBulkSetReviewStatus(
+  db: Db,
+  ids: number[],
+  status: Extract<PromptReviewStatus, 'approved' | 'rejected'>,
+): Promise<number> {
+  const unique = Array.from(new Set(ids.filter((id) => Number.isFinite(id) && id > 0)));
+  if (!unique.length) return 0;
+  const rows = await db
+    .update(prompts)
+    .set({ status, updatedAt: new Date() })
+    .where(inArray(prompts.id, unique))
+    .returning({ id: prompts.id });
+  return rows.length;
+}
+
 export async function countUserTemplates(db: Db, userId: string) {
   const [row] = await db
     .select({ n: count() })
     .from(prompts)
     .where(eq(prompts.submittedBy, userId));
+  return Number(row?.n ?? 0);
+}
+
+export async function countUserPendingReview(db: Db, userId: string) {
+  const [row] = await db
+    .select({ n: count() })
+    .from(prompts)
+    .where(and(eq(prompts.submittedBy, userId), eq(prompts.status, 'pending')));
   return Number(row?.n ?? 0);
 }
 

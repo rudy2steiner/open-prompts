@@ -73,4 +73,5 @@ export type TemplateWriteInput = {
   images: string[];
   visibility: PromptVisibility;
   sourceUrl?: string | null;
+  authorHandle?: string | null;
 };

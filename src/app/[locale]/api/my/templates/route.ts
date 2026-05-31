@@ -8,6 +8,7 @@ import {
   parseReviewStatus,
   parseVisibility,
 } from '~/lib/prompts/template-record';
+import { checkXSourceDuplicate } from '~/lib/x-import/x-source-duplicate';
 
 export const dynamic = 'force-dynamic';
 
@@ -67,6 +68,10 @@ export async function POST(req: Request) {
 
   const v = parsed.value;
   try {
+    const duplicate = await checkXSourceDuplicate(db, v.sourceUrl);
+    if (duplicate) {
+      return NextResponse.json({ error: 'duplicate_x_source', duplicate }, { status: 409 });
+    }
     const item = await insertUserTemplate(db, session.user.id, {
       title: v.title,
       description: v.description,
@@ -76,6 +81,7 @@ export async function POST(req: Request) {
       images: v.images,
       visibility: v.visibility,
       sourceUrl: v.sourceUrl,
+      authorHandle: v.authorHandle,
     });
     return NextResponse.json({ ok: true, item });
   } catch (e: unknown) {

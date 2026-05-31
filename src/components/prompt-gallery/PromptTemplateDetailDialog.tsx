@@ -4,6 +4,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { CoverImage } from '~/components/prompt-gallery/CoverImage';
+import { galleryAuthorLabel } from '~/lib/prompts/gallery-attribution';
 
 export type PromptDetailItem = {
   /** Slug or gallery id used for `?template=` on the create page. */
@@ -199,20 +200,30 @@ export function PromptTemplateDetailDialog({
 
           <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
             <div className="text-xs text-stone-500">
-              {item.authorHandle ? `${t('modal.from')} ${item.authorHandle}` : null}
-              {item.sourceUrl ? (
-                <>
-                  {item.authorHandle ? ' · ' : null}
-                  <a
-                    className="text-[var(--text2)] underline decoration-[var(--border2)] underline-offset-2 hover:text-[var(--text)]"
-                    href={item.sourceUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {t('modal.viewSource')} ↗
-                  </a>
-                </>
-              ) : null}
+              {(() => {
+                const credit = galleryAuthorLabel(item, '');
+                const hasCredit = Boolean(credit);
+                const hasSource = Boolean(item.sourceUrl?.trim());
+                if (!hasCredit && !hasSource) return null;
+                return (
+                  <>
+                    {hasCredit ? `${t('modal.from')} ${credit}` : null}
+                    {hasSource ? (
+                      <>
+                        {hasCredit ? ' · ' : null}
+                        <a
+                          className="text-[var(--text2)] underline decoration-[var(--border2)] underline-offset-2 hover:text-[var(--text)]"
+                          href={item.sourceUrl!}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          {t('modal.viewSource')} ↗
+                        </a>
+                      </>
+                    ) : null}
+                  </>
+                );
+              })()}
             </div>
             {showGenerate ? (
               <button

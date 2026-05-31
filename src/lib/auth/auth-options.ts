@@ -9,6 +9,7 @@ import { isAdminEmail } from '~/lib/auth/session';
 import { bootstrapAdminIfConfigured } from '~/lib/auth/bootstrap-admin';
 import { buildOAuthProviders } from '~/lib/auth/oauth-providers';
 import { ensureOAuthUser } from '~/lib/auth/sync-oauth-user';
+import { touchUserActivity } from '~/lib/users/touch-user-activity';
 
 function buildProviders() {
   const list: NextAuthOptions['providers'] = [...buildOAuthProviders()];
@@ -97,6 +98,7 @@ export const authOptions: NextAuthOptions = {
           if (user.email) token.email = user.email;
           token.name = user.name;
           token.picture = user.image;
+          void touchUserActivity(user.id);
         } else if (user.email) {
           const u = await ensureOAuthUser(db, {
             email: user.email,
@@ -115,6 +117,7 @@ export const authOptions: NextAuthOptions = {
           token.email = u.email;
           token.name = u.name;
           token.picture = u.image;
+          void touchUserActivity(u.id);
         }
       }
 

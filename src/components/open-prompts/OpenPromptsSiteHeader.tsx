@@ -9,10 +9,18 @@ import { FaGithub } from 'react-icons/fa';
 import { languages, locales } from '~/config';
 import { resolveUserAvatarUrl } from '~/lib/auth/default-user-avatar';
 import { applyOpThemeToDocument, getOpDocumentTheme } from '~/lib/op-theme';
+import {
+  buildLocaleHref,
+  parseOpLocale,
+  persistOpLocale,
+  type OpLocale,
+} from '~/lib/op-locale';
+import {
+  accountPanelHref,
+  type AccountPanel,
+} from '~/lib/account/account-path';
 
 export type OpenPromptsSiteNavKey = 'gallery' | 'create' | 'submit' | 'rank' | 'docs' | 'login' | 'account';
-
-type AccountPanelKey = 'overview' | 'prompts' | 'admin' | 'credits' | 'subscription';
 
 export type OpenPromptsSiteHeaderProps = {
   locale: string;
@@ -27,10 +35,8 @@ export type OpenPromptsSiteHeaderProps = {
   submitCtaSuffix?: string;
 };
 
-function accountHref(locale: string, panel?: AccountPanelKey): string {
-  const base = locale === 'en' ? '/account' : `/${locale}/account`;
-  if (!panel || panel === 'overview') return base;
-  return `${base}?panel=${panel}`;
+function accountHref(locale: string, panel?: AccountPanel): string {
+  return accountPanelHref(locale, panel ?? 'overview');
 }
 
 export function OpenPromptsSiteHeader({
@@ -64,7 +70,7 @@ export function OpenPromptsSiteHeader({
   const isAdmin = Boolean(session?.user?.isAdmin);
 
   const dashboardMenuItems = useMemo(() => {
-    const items: { panel: AccountPanelKey; label: string; href: string }[] = [
+    const items: { panel: AccountPanel; label: string; href: string }[] = [
       { panel: 'overview', label: ta('nav.overview'), href: accountHref(locale, 'overview') },
       { panel: 'prompts', label: ta('nav.prompts'), href: accountHref(locale, 'prompts') },
     ];
@@ -93,6 +99,11 @@ export function OpenPromptsSiteHeader({
       ] as const,
     [t, locale]
   );
+
+  useEffect(() => {
+    const parsed = parseOpLocale(locale);
+    if (parsed) persistOpLocale(parsed);
+  }, [locale]);
 
   useEffect(() => {
     const onPointerDown = (e: PointerEvent) => {
@@ -189,13 +200,15 @@ export function OpenPromptsSiteHeader({
                   const meta = languages.find((x) => x.lang === l) ?? { lang: l, language: l.toUpperCase() };
                   const label =
                     l === 'en' ? 'English' : l === 'zh' ? '中文' : l === 'ja' ? '日本語' : meta.language;
+                  const href = buildLocaleHref(l, langPathSuffix);
                   return (
                     <a
                       key={l}
-                      href={`/${l}${langPathSuffix}`}
+                      href={href}
                       className={`flex items-center justify-between rounded-lg px-3 py-2 text-sm transition ${
                         l === locale ? 'text-[var(--text)]' : 'text-[var(--text)] hover:bg-[var(--surface2)]'
                       }`}
+                      onClick={() => persistOpLocale(l as OpLocale)}
                     >
                       <span>{label}</span>
                       {l === locale ? <span className="text-[12px] text-[var(--amber)]">✓</span> : null}

@@ -8,8 +8,6 @@
 
 **语言：** [English](./README.md) · 简体中文 · [日本語](./README.ja-JP.md)
 
-**在线体验：** [open-prompts.com](https://www.open-prompts.com)
-
 ---
 
 ## 简介
@@ -27,63 +25,19 @@
 
 ## 主要功能
 
-| 模块 | 说明 |
-|------|------|
-| **画廊** | 按模型与标签搜索、筛选；查看详情并一键跳转创作页（提示词已预填）。 |
+
+| 模块        | 说明                                                            |
+| --------- | ------------------------------------------------------------- |
+| **画廊**    | 按模型与标签搜索、筛选；查看详情并一键跳转创作页（提示词已预填）。                             |
 | **创作工作台** | 模板轮播、提示词编辑器、宽高比 / 质量 / 批量控制、服务商选择与本次会话历史（浏览器 `localStorage`）。 |
-| **提交流程** | 单页向导：公开提交进入审核队列，或通过 `?visibility=private` 保存 **私有** 模板。 |
-| **账户中心** | 我的模板、管理员 **审核队列**（通过 / 拒绝）、积分与订阅占位 UI。 |
-| **登录** | GitHub 与 Google OAuth；为配置的管理员提供邮箱密码登录；无公开自助注册入口。 |
-| **管理员审核** | 审核队列覆盖全部模板；状态与可见性与画廊展示规则一致。 |
-| **X 导入** | 在提交页粘贴公开推文链接，预填标题、描述、提示词与图片。 |
-| **多语言** | 语言路由：`/`（英文）、`/zh`、`/ja`；统一的站点页眉与页脚。 |
-| **自托管** | Apache 2.0；通过环境变量配置服务商与数据库；可部署到 Vercel 或任意 Node 主机。 |
+| **提交流程**  | 单页向导：公开提交进入审核队列，或通过 `?visibility=private` 保存 **私有** 模板。       |
+| **账户中心**  | 我的模板、管理员 **审核队列**（通过 / 拒绝）、积分与订阅占位 UI。                        |
+| **登录**    | GitHub 与 Google OAuth；为配置的管理员提供邮箱密码登录；无公开自助注册入口。              |
+| **管理员审核** | 审核队列覆盖全部模板；状态与可见性与画廊展示规则一致。                                   |
+| **X 导入**  | 在提交页粘贴公开推文链接，预填标题、描述、提示词与图片。                                  |
+| **多语言**   | 语言路由：`/`（英文）、`/zh`、`/ja`；统一的站点页眉与页脚。                          |
+| **自托管**   | Apache 2.0；通过环境变量配置服务商与数据库；可部署到 Vercel 或任意 Node 主机。           |
 
----
-
-## 社区精选示例
-
-以下为内置画廊中的部分模板（来源社区 / X，节选展示）。可在 [open-prompts.com](https://www.open-prompts.com) 在线体验，或克隆仓库后在画廊中点击「生成」试用。
-
-### K-pop 时尚专辑封面
-
-<img src="https://pbs.twimg.com/media/HGaa7B2a0AAkDM9.jpg?name=orig" alt="K-pop 时尚专辑封面" width="280" />
-
-```
-K-pop group fashion album cover
-```
-
-### Urban Fashion Meets Classic Cartoons
-
-<img src="https://pic.tuseka.com/cartoon.webp" alt="Urban Fashion Meets Classic Cartoons" width="280" />
-
-```
-A high-end fashion editorial featuring a young woman in an urban setting, seamlessly blended with iconic cartoon characters and vibrant graphic doodles.
-```
-
-### 我被美女包围
-
-<img src="https://pbs.twimg.com/amplify_video_thumb/2049313393686040576/img/YzqTGMfuh-dd9Ich.jpg" alt="我被美女包围" width="280" />
-
-```
-帮我做一个身临其境的360度全景图，场景四周环绕不同性格类型 装束的 年轻 性感 或 知性 小姐姐，给我递过水果、伸手牵手等
-```
-
-### 敦煌壁画剪纸立体场景
-
-<img src="https://pic.tuseka.com/09_dunhuang_murals_paper_cut_diorama.webp" alt="敦煌壁画剪纸立体场景" width="280" />
-
-```
-Eye-level straight-on view, 3D layered paper cut-out diorama. Vermillion red, lapis lazuli blue, ochre gold. Flying apsaras with ribbon silk scarves, blooming lotus, swirling auspicious clouds, ornate medallion patterns. Deep drop shadows, matte paper texture, octane render, 8k --ar 3:4
-```
-
-### 温馨卧室镜前自拍（Cozy Bedroom Mirror Selfie）
-
-<img src="https://cdn-images.toolify.ai/x/20260428/1777364714_23144439.jpg" alt="温馨卧室镜前自拍" width="280" />
-
-```
-A casual and confident social media style selfie featuring a woman in an oversized knit sweater within a soft-lit bedroom setting.
-```
 
 ---
 
@@ -112,32 +66,38 @@ cp .env.example .env.local
 
 至少填写：
 
-| 变量 | 用途 |
-|------|------|
-| `DATABASE_URL` | Postgres 连接串（迁移与管理员查询建议使用 Supabase **Session pooler**，端口 **5432**） |
-| `NEXTAUTH_URL` | `http://localhost:3000` |
-| `NEXTAUTH_SECRET` | 执行 `openssl rand -base64 32` 生成 |
-| `NEXT_PUBLIC_SITE_URL` | 本地与 `NEXTAUTH_URL` 相同，用于 SEO 链接 |
+
+| 变量                     | 用途                                                                 |
+| ---------------------- | ------------------------------------------------------------------ |
+| `DATABASE_URL`         | Postgres 连接串（迁移与管理员查询建议使用 Supabase **Session pooler**，端口 **5432**） |
+| `NEXTAUTH_URL`         | `http://localhost:3000`                                            |
+| `NEXTAUTH_SECRET`      | 执行 `openssl rand -base64 32` 生成                                    |
+| `NEXT_PUBLIC_SITE_URL` | 本地与 `NEXTAUTH_URL` 相同，用于 SEO 链接                                    |
+
 
 登录与管理员：
 
-| 变量 | 用途 |
-|------|------|
-| `GITHUB_ID` / `GITHUB_SECRET` | GitHub OAuth 应用 |
-| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | Google OAuth 客户端 |
-| `ADMIN_EMAIL` | 管理员邮箱，多个用英文逗号分隔（须与登录邮箱完全一致） |
-| `ADMIN_PASSWORD` | 至少 8 位；在启动或管理员登录时同步到数据库 |
+
+| 变量                                          | 用途                          |
+| ------------------------------------------- | --------------------------- |
+| `GITHUB_ID` / `GITHUB_SECRET`               | GitHub OAuth 应用             |
+| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | Google OAuth 客户端            |
+| `ADMIN_EMAIL`                               | 管理员邮箱，多个用英文逗号分隔（须与登录邮箱完全一致） |
+| `ADMIN_PASSWORD`                            | 至少 8 位；在启动或管理员登录时同步到数据库     |
+
 
 图像生成（Atlas Cloud 或测试模式）：
 
-| 变量 | 用途 |
-|------|------|
-| `DEFAULT_IMAGE_PROVIDER` | `atlascloud`（Replicate 尚未支持） |
-| `ATLASCLOUD_API_KEY` | [Atlas Cloud](https://www.atlascloud.ai) API Key |
-| `USE_TEST_MODE` | 设为 `true` 可跳过真实 API 调用 |
-| `TEST_IMAGE_URL` | 测试模式下返回的图片 URL |
 
-积分上限与可选 OpenAI 配置见 [`.env.example`](.env.example)。
+| 变量                       | 用途                                               |
+| ------------------------ | ------------------------------------------------ |
+| `DEFAULT_IMAGE_PROVIDER` | `atlascloud`（Replicate 尚未支持）                     |
+| `ATLASCLOUD_API_KEY`     | [Atlas Cloud](https://www.atlascloud.ai) API Key |
+| `USE_TEST_MODE`          | 设为 `true` 可跳过真实 API 调用                           |
+| `TEST_IMAGE_URL`         | 测试模式下返回的图片 URL                                   |
+
+
+积分上限与可选 OpenAI 配置见 `[.env.example](.env.example)`。
 
 ### 3. 数据库
 
@@ -164,26 +124,92 @@ npm run dev
 
 打开 [http://localhost:3000](http://localhost:3000)（默认端口 **3000**）。
 
-### 5. 部署到 Vercel
+### 5. 生产构建（可选）
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frudy2steiner%2Fopen-prompts&env=NEXTAUTH_SECRET,ADMIN_EMAIL,ADMIN_PASSWORD&envDescription=Required%20secrets%20(minimum)&project-name=open-prompts)
+```bash
+npm run build
+npm run start
+```
 
-1. 在 [Vercel](https://vercel.com) 导入仓库（Next.js 预设，构建命令 `npm run build`）。
-2. 配置与步骤 2 相同的环境变量；将 `NEXTAUTH_URL`、`NEXT_PUBLIC_SITE_URL` 设为 `https://your-app.vercel.app`。
-3. 在 Supabase 执行 `supabase/migrations/`，本地用该 `DATABASE_URL` 运行 `npm run seed:prompts` 与 `npm run seed:admin`。
-4. 在 GitHub / Google OAuth 中注册回调：`…/api/auth/callback/github` 与 `…/api/auth/callback/google`（替换为你的 Vercel 域名）。
+---
 
-修改环境变量后需重新部署。管理员登录失败时，对生产 `DATABASE_URL` 执行 `npm run seed:admin`。
+## 部署到 Vercel
+
+[Deploy with Vercel](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frudy2steiner%2Fopen-prompts&env=NEXTAUTH_SECRET,ADMIN_EMAIL,ADMIN_PASSWORD&envDescription=Required%20secrets%20(minimum)&project-name=open-prompts)
+
+### 1. 导入项目
+
+1. 将本仓库推送到 GitHub（或 Fork）。
+2. 打开 [Vercel](https://vercel.com) → **Add New Project** → 导入仓库。
+3. 框架预设：**Next.js**（默认）。构建命令：`npm run build`。输出目录：默认即可。
+
+### 2. 环境变量
+
+在 **Project → Settings → Environment Variables** 中，为 **Production**（若 Preview 环境也使用 OAuth，则一并配置）设置与 `.env.local` 相同的键。
+
+**部署所需最低配置**
+
+
+| 变量                     | 示例 / 说明                                                      |
+| ---------------------- | ------------------------------------------------------------ |
+| `DATABASE_URL`         | Supabase pooler URI（端口 **5432**，用户 `postgres.<project-ref>`） |
+| `NEXTAUTH_URL`         | `https://your-app.vercel.app`（末尾不要加 `/`）                     |
+| `NEXTAUTH_SECRET`      | 强随机字符串                                                       |
+| `NEXT_PUBLIC_SITE_URL` | 与 `NEXTAUTH_URL` 相同                                          |
+| `ADMIN_EMAIL`          | 运营邮箱，多个用逗号分隔                                                 |
+| `ADMIN_PASSWORD`       | 强密码；若登录失败，在本地对同一数据库执行 `npm run seed:admin`                   |
+
+
+**OAuth（推荐）**
+
+
+| 变量                                          | 需在服务商注册的回调地址                                           |
+| ------------------------------------------- | ------------------------------------------------------ |
+| `GITHUB_ID` / `GITHUB_SECRET`               | `https://your-app.vercel.app/api/auth/callback/github` |
+| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | `https://your-app.vercel.app/api/auth/callback/google` |
+
+
+**图像生成**
+
+
+| 变量                                        | 说明             |
+| ----------------------------------------- | -------------- |
+| `DEFAULT_IMAGE_PROVIDER`                  | `atlascloud`   |
+| `ATLASCLOUD_API_KEY`                      | 真实出图所需（测试模式除外） |
+| 或 `USE_TEST_MODE=true` + `TEST_IMAGE_URL` | 演示环境，无需付费 API  |
+
+
+修改环境变量后请重新部署。
+
+### 3. Supabase 数据库
+
+1. 创建 Supabase 项目，复制 **Session mode** 连接串（端口 **5432**）。
+2. 在 SQL 编辑器中按顺序执行 `supabase/migrations/` 下的迁移。
+3. 在本地机器上（`DATABASE_URL` 指向该库）执行：
+  ```bash
+   npm run seed:prompts
+   npm run seed:admin
+  ```
+
+### 4. 验证
+
+- 打开 `https://your-app.vercel.app` — 画廊应能加载模板。
+- 使用 GitHub / Google 或管理员邮箱密码登录。
+- 以管理员身份打开 `/account` 使用审核队列。
+
+**说明：** 设置 `ADMIN_EMAIL` 与 `ADMIN_PASSWORD` 后，`instrumentation.ts` 会在服务启动时初始化管理员用户。重置密码请对生产环境的 `DATABASE_URL` 执行 `npm run seed:admin`。
 
 ---
 
 ## 图像服务商
 
-| 服务商 | 状态 | 配置 |
-|--------|------|------|
-| **Atlas Cloud** | 已支持 | `ATLASCLOUD_API_KEY`、`ATLASCLOUD_BASE_URL` |
-| **Replicate** | 规划中（尚未支持） | `.env.example` 中预留变量，暂勿设置 `DEFAULT_IMAGE_PROVIDER=replicate` |
-| **测试模式** | 开发 / 演示 | `USE_TEST_MODE=true`、`TEST_IMAGE_URL` |
+
+| 服务商             | 状态        | 配置                                                           |
+| --------------- | --------- | ------------------------------------------------------------ |
+| **Atlas Cloud** | 已支持       | `ATLASCLOUD_API_KEY`、`ATLASCLOUD_BASE_URL`                   |
+| **Replicate**   | 规划中（尚未支持） | `.env.example` 中预留变量，暂勿设置 `DEFAULT_IMAGE_PROVIDER=replicate` |
+| **测试模式**        | 开发 / 演示   | `USE_TEST_MODE=true`、`TEST_IMAGE_URL`                        |
+
 
 在创作页，用户可在浏览器中临时覆盖 API Key（`localStorage`）；生产环境建议使用服务端环境变量。
 
@@ -200,7 +226,7 @@ npm run dev
 
 ## 参与贡献
 
-欢迎提交 Issue 与 Pull Request。较大改动请先开 Issue 讨论方向。
+欢迎提交 Issue 与 Pull Request。较大改动请先开 Issue 讨论方向。~
 
 ---
 

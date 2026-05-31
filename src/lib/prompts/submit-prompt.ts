@@ -54,6 +54,7 @@ export type ParsedSubmitPrompt = {
   tags: string[];
   images: string[];
   sourceUrl: string | null;
+  authorHandle: string | null;
   visibility: PromptVisibility;
 };
 
@@ -96,6 +97,24 @@ function normalizeImages(value: unknown): string[] {
   return out;
 }
 
+function normalizeSourceUrl(raw: unknown): string | null {
+  if (typeof raw !== 'string' || !raw.trim()) return null;
+  const candidate = raw.trim().slice(0, 500);
+  if (!/^https?:\/\//i.test(candidate)) return null;
+  try {
+    const u = new URL(candidate);
+    if (u.protocol !== 'http:' && u.protocol !== 'https:') return null;
+    return u.toString();
+  } catch {
+    return null;
+  }
+}
+
+function normalizeAuthorHandle(raw: unknown): string | null {
+  if (typeof raw !== 'string' || !raw.trim()) return null;
+  return raw.trim().slice(0, 80);
+}
+
 export function parseSubmitPromptBody(
   body: unknown,
 ): { ok: true; value: ParsedSubmitPrompt } | { ok: false; error: string } {
@@ -129,17 +148,14 @@ export function parseSubmitPromptBody(
 
   const images = normalizeImages(o.images);
 
-  let sourceUrl: string | null = null;
-  if (typeof o.sourceUrl === 'string' && o.sourceUrl.trim()) {
-    const u = o.sourceUrl.trim().slice(0, 500);
-    if (/^https:\/\/(x\.com|twitter\.com)\//i.test(u)) sourceUrl = u;
-  }
+  const sourceUrl = normalizeSourceUrl(o.sourceUrl);
+  const authorHandle = normalizeAuthorHandle(o.authorHandle);
 
   const visibility = parseVisibility(o.visibility) ?? 'public';
 
   return {
     ok: true,
-    value: { title, description, prompt, modelLabel, tags, images, sourceUrl, visibility },
+    value: { title, description, prompt, modelLabel, tags, images, sourceUrl, authorHandle, visibility },
   };
 }
 
@@ -164,7 +180,7 @@ export async function insertSubmittedPrompt(
           model: value.modelLabel,
           tags: value.tags,
           sourceUrl: value.sourceUrl,
-          authorHandle: null,
+          authorHandle: value.authorHandle,
           images: value.images,
           status: resolveStatusForVisibility(value.visibility),
           visibility: value.visibility,

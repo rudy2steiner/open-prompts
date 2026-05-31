@@ -1,5 +1,5 @@
 'use client'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {Dialog} from '@headlessui/react'
 import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline'
 import {GlobeAltIcon} from '@heroicons/react/24/outline'
@@ -8,6 +8,7 @@ import {Menu, Transition} from '@headlessui/react'
 import {ChevronDownIcon} from '@heroicons/react/20/solid'
 import Link from "next/link";
 import {languages} from "~/config";
+import { buildLocaleHref, parseOpLocale, persistOpLocale, type OpLocale } from '~/lib/op-locale';
 import {useCommonContext} from '~/context/common-context'
 import LoadingModal from "./LoadingModal";
 import Image from "next/image";
@@ -37,6 +38,13 @@ export default function Header({
     }
   }
 
+  useEffect(() => {
+    const parsed = parseOpLocale(locale);
+    if (parsed) persistOpLocale(parsed);
+  }, [locale]);
+
+  const pageSuffix = page ? `/${page}` : '';
+
   return (
     <header className="sticky top-0 bg-[#44403C] z-20 w-full">
       <LoadingModal loadingText={indexLanguageText.loadingText}/>
@@ -44,7 +52,7 @@ export default function Header({
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex min-w-0 flex-1 items-center">
           <a
-            href={`/${locale}`}
+            href={buildLocaleHref(locale)}
             className="-m-1.5 flex min-w-0 items-center gap-2 p-1.5"
             onClick={() => setShowLoadingModal(true)}
           >
@@ -122,13 +130,16 @@ export default function Header({
               <div className="py-1">
                 {
                   languages.map((item) => {
-                    let hrefValue = `/${item.lang}`;
-                    if (page) {
-                      hrefValue = `/${item.lang}/${page}`;
-                    }
+                    const hrefValue = buildLocaleHref(item.lang, pageSuffix);
                     return (
                       <Menu.Item key={item.lang}>
-                        <Link href={hrefValue} onClick={() => checkLocalAndLoading(item.lang)}>
+                        <Link
+                          href={hrefValue}
+                          onClick={() => {
+                            persistOpLocale(item.lang as OpLocale);
+                            checkLocalAndLoading(item.lang);
+                          }}
+                        >
                               <span
                                 className={'text-gray-700 block px-4 py-2 text-sm hover:text-[#2d6ae0]'}
                               >
@@ -150,7 +161,7 @@ export default function Header({
           className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between gap-2">
             <a
-              href={`/${locale}`}
+              href={buildLocaleHref(locale)}
               className="-m-1.5 flex min-w-0 flex-1 items-center gap-2 p-1.5"
               onClick={() => setShowLoadingModal(true)}
             >

@@ -25,9 +25,28 @@ export function CoverImage({ src, alt, sizes, priority, className, errorText, on
   }, [src]);
 
   return (
-    <div className="relative h-full w-full overflow-hidden bg-transparent">
+    <div className="relative h-full w-full overflow-hidden bg-[var(--surface2)]">
+      <Image
+        key={src}
+        src={src}
+        alt={alt}
+        fill
+        sizes={sizes}
+        priority={priority}
+        unoptimized={isRemote}
+        className={`${className ?? ''} transition-opacity duration-300 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+        onLoad={(e) => {
+          setLoaded(true);
+          const img = e.currentTarget;
+          const width = img?.naturalWidth ?? 0;
+          const height = img?.naturalHeight ?? 0;
+          if (width > 0 && height > 0) onMeta?.({ width, height });
+        }}
+        onError={() => setErrored(true)}
+      />
+
       {!loaded && !errored ? (
-        <div className="absolute inset-0 animate-pulse bg-[var(--surface2)]" />
+        <div className="pointer-events-none absolute inset-0 animate-pulse bg-[var(--surface2)]" aria-hidden />
       ) : null}
 
       {errored ? (
@@ -36,26 +55,7 @@ export function CoverImage({ src, alt, sizes, priority, className, errorText, on
             {errorText || 'Image failed to load'}
           </div>
         </div>
-      ) : (
-        <Image
-          key={src}
-          src={src}
-          alt={alt}
-          fill
-          sizes={sizes}
-          priority={priority}
-          unoptimized={isRemote}
-          className={className}
-          onLoad={(e) => {
-            setLoaded(true);
-            const img = e.currentTarget;
-            const width = img?.naturalWidth ?? 0;
-            const height = img?.naturalHeight ?? 0;
-            if (width > 0 && height > 0) onMeta?.({ width, height });
-          }}
-          onError={() => setErrored(true)}
-        />
-      )}
+      ) : null}
     </div>
   );
 }

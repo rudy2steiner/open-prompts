@@ -5,11 +5,18 @@ import { useRouter } from 'next/navigation';
 import HeadInfo from '~/components/HeadInfo';
 import type { PromptGalleryItem } from '~/data/promptGallery';
 import { PromptGalleryCard } from '~/components/prompt-gallery/PromptGalleryCard';
+import { PromptGalleryMasonry } from '~/components/prompt-gallery/PromptGalleryMasonry';
 import { PromptGallerySwipeViewer } from '~/components/prompt-gallery/PromptGallerySwipeViewer';
 import { PromptTemplateDetailDialog } from '~/components/prompt-gallery/PromptTemplateDetailDialog';
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
-import {useTranslations} from 'next-intl';
+import { galleryAuthorLabel, galleryAuthorUrl } from '~/lib/prompts/gallery-attribution';
+import {
+  dimensionsToAspectRatio,
+  preloadCoverDimensionsByUrl,
+  type CoverDimensions,
+} from '~/lib/prompts/preload-cover-dimensions';
+import { useTranslations } from 'next-intl';
 
 type Props = {
   locale: string;
@@ -17,10 +24,20 @@ type Props = {
 };
 
 const PAGE_SIZE = 18;
+const DEFAULT_COVER_ASPECT = '1.6';
+
+function coverUrls(items: PromptGalleryItem[]): string[] {
+  return items.map((p) => p.images[0]).filter(Boolean);
+}
 
 function uniq<T>(arr: T[]) {
   return Array.from(new Set(arr));
 }
+
+import {
+  countGalleryModels,
+  formatGalleryStatCount,
+} from '~/lib/prompts/gallery-stats';
 
 /** Model filter pills — theme accent */
 const MODEL_FILTER_CHIP = {
@@ -38,7 +55,7 @@ export default function PageComponent({ locale, prompts }: Props) {
   const [tag, setTag] = useState<string>('all');
   const [limit, setLimit] = useState(PAGE_SIZE);
   const [autoLoading, setAutoLoading] = useState(false);
-  const [ratioById, setRatioById] = useState<Record<string, string>>({});
+  const [ratioByUrl, setRatioByUrl] = useState<Record<string, string>>({});
   const [ratioMetaById, setRatioMetaById] = useState<Record<string, { w: number; h: number }>>({});
   const models = useMemo(
     () => ['all', ...uniq(prompts.map((p) => p.model)).sort((a, b) => a.localeCompare(b))],
@@ -47,6 +64,14 @@ export default function PageComponent({ locale, prompts }: Props) {
   const tags = useMemo(
     () => ['all', ...uniq(prompts.flatMap((p) => p.tags)).sort((a, b) => a.localeCompare(b))],
     [prompts]
+  );
+  const promptCountLabel = useMemo(
+    () => formatGalleryStatCount(prompts.length, locale),
+    [prompts.length, locale],
+  );
+  const modelCountLabel = useMemo(
+    () => formatGalleryStatCount(countGalleryModels(prompts), locale),
+    [prompts, locale],
   );
 
   const filtered = useMemo(() => {
@@ -72,14 +97,62 @@ export default function PageComponent({ locale, prompts }: Props) {
   const [viewerOpen, setViewerOpen] = useState(false);
   const [viewerInitialIndex, setViewerInitialIndex] = useState(0);
 
-  const getAuthorUrl = (item: PromptGalleryItem): string | undefined => {
-    if (item.sourceUrl) return item.sourceUrl;
-    const h = item.authorHandle?.trim();
-    if (!h) return undefined;
-    const handle = h.startsWith('@') ? h.slice(1) : h;
-    if (!handle) return undefined;
-    // Default to X profile if only handle exists.
-    return `https://x.com/${encodeURIComponent(handle)}`;
+  const getAuthorUrl = (item: PromptGalleryItem): string | undefined => galleryAuthorUrl(item);
+
+  const getAuthorLabel = (item: PromptGalleryItem): string =>
+    galleryAuthorLabel(item, t('card.community'));
+
+  const applyDimensions = (items: PromptGalleryItem[], dims: Map<string, CoverDimensions>) => {
+    if (dims.size === 0) return;
+    const idByUrl = new Map<string, string>();
+    for (const p of items) {
+      const url = p.images[0]?.trim();
+      if (url) idByUrl.set(url, p.id);
+    }
+
+    setRatioByUrl((prev) => {
+      const ratio = { ...prev };
+      let changed = false;
+      dims.forEach(({ width, height }, url) => {
+        const ar = dimensionsToAspectRatio({ width, height });
+        if (ratio[url] !== ar) {
+          ratio[url] = ar;
+          changed = true;
+        }
+      });
+      return changed ? ratio : prev;
+    });
+
+    setRatioMetaById((prev) => {
+      const meta = { ...prev };
+      let changed = false;
+      dims.forEach(({ width, height }, url) => {
+        const id = idByUrl.get(url);
+        if (!id || (meta[id]?.w === width && meta[id]?.h === height)) return;
+        meta[id] = { w: width, h: height };
+        changed = true;
+      });
+      return changed ? meta : prev;
+    });
+  };
+
+  const coverAspectFor = (item: PromptGalleryItem) => {
+    const url = item.images[0]?.trim();
+    if (url && ratioByUrl[url]) return ratioByUrl[url];
+    return DEFAULT_COVER_ASPECT;
+  };
+
+  const rememberCoverMeta = (item: PromptGalleryItem, width: number, height: number) => {
+    const url = item.images[0]?.trim();
+    const ar = dimensionsToAspectRatio({ width, height });
+    if (url) {
+      setRatioByUrl((prev) => (prev[url] === ar ? prev : { ...prev, [url]: ar }));
+    }
+    setRatioMetaById((prev) =>
+      prev[item.id]?.w === width && prev[item.id]?.h === height
+        ? prev
+        : { ...prev, [item.id]: { w: width, h: height } },
+    );
   };
 
   const formatAspectTag = (id: string): string | null => {
@@ -160,7 +233,49 @@ export default function PageComponent({ locale, prompts }: Props) {
   };
 
   const sentinelRef = useRef<HTMLDivElement | null>(null);
-  // Infinite scroll: auto-load when sentinel becomes visible.
+  const loadMoreRef = useRef<() => void>(() => {});
+
+  loadMoreRef.current = () => {
+    if (autoLoading) return;
+    if (visible.length >= filtered.length) return;
+
+    setAutoLoading(true);
+    const nextBatch = filtered.slice(visible.length, visible.length + PAGE_SIZE);
+
+    void preloadCoverDimensionsByUrl(coverUrls(nextBatch)).then((dims) => {
+        applyDimensions(nextBatch, dims);
+        setLimit((v) => Math.min(filtered.length, v + PAGE_SIZE));
+      })
+      .finally(() => {
+        setAutoLoading(false);
+      });
+  };
+
+  // Preload cover dimensions for the visible batch (reduces first-paint jump).
+  useEffect(() => {
+    let cancelled = false;
+    const batch = filtered.slice(0, limit);
+    void preloadCoverDimensionsByUrl(coverUrls(batch)).then((dims) => {
+      if (!cancelled) applyDimensions(batch, dims);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [filtered, limit]);
+
+  // Lookahead: preload the next batch before the sentinel fires.
+  useEffect(() => {
+    if (visible.length >= filtered.length) return;
+    let cancelled = false;
+    const upcoming = filtered.slice(visible.length, visible.length + PAGE_SIZE);
+    void preloadCoverDimensionsByUrl(coverUrls(upcoming)).then((dims) => {
+      if (!cancelled) applyDimensions(upcoming, dims);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [filtered, visible.length]);
+
   useEffect(() => {
     const sentinel = sentinelRef.current;
     if (!sentinel) return;
@@ -170,23 +285,43 @@ export default function PageComponent({ locale, prompts }: Props) {
       (entries) => {
         const entry = entries[0];
         if (!entry?.isIntersecting) return;
-        if (!hasMore) return;
-        if (autoLoading) return;
-
-        setAutoLoading(true);
-        setLimit((v) => Math.min(filtered.length, v + PAGE_SIZE));
+        loadMoreRef.current();
       },
-      { root: null, rootMargin: '600px 0px', threshold: 0.01 }
+      { root: null, rootMargin: '600px 0px', threshold: 0.01 },
     );
 
     observer.observe(sentinel);
     return () => observer.disconnect();
-  }, [hasMore, autoLoading, filtered.length]);
+  }, [hasMore, autoLoading, filtered.length, visible.length]);
 
-  useEffect(() => {
-    // When new items are revealed or filters change, unlock next auto-load.
-    setAutoLoading(false);
-  }, [limit, query, model, tag]);
+  const renderGalleryCard = (p: PromptGalleryItem) => (
+    <PromptGalleryCard
+      layout="masonry"
+      coverFit="cover"
+      item={p}
+      coverSrc={p.images[0]}
+      coverSizes="(max-width: 1024px) 100vw, 33vw"
+      coverAspectRatio={coverAspectFor(p)}
+      modelBadge={p.model}
+      description={p.description}
+      tags={p.tags}
+      aspectTag={formatAspectTag(p.id)}
+      authorLabel={getAuthorLabel(p)}
+      authorUrl={getAuthorUrl(p) ?? null}
+      primaryCtaLabel={t('card.generate')}
+      coverErrorText={t('gallery.coverLoadFailed')}
+      onMeta={({ width, height }) => rememberCoverMeta(p, width, height)}
+      onCardClick={() => {
+        setActive(p);
+        setDetailOpen(true);
+        setViewerOpen(false);
+      }}
+      onImageClick={() => openViewer(p, 0)}
+      onCtaClick={() => {
+        router.push(`/${locale}/create?template=${encodeURIComponent(p.id)}`);
+      }}
+    />
+  );
 
   return (
     <>
@@ -232,8 +367,8 @@ export default function PageComponent({ locale, prompts }: Props) {
 
             <div className="mx-auto mt-8 flex max-w-3xl justify-center gap-8 text-center">
               {[
-                ['12,400+', t('stats.prompts')],
-                ['38', t('stats.models')],
+                [promptCountLabel, t('stats.prompts')],
+                [modelCountLabel, t('stats.models')],
                 ['6,200+', t('stats.members')],
                 [t('stats.daily'), t('stats.source')],
               ].map(([num, label]) => (
@@ -297,41 +432,12 @@ export default function PageComponent({ locale, prompts }: Props) {
               <span className="h-px flex-1 bg-[var(--border)]" />
             </div>
 
-            <div className="columns-1 gap-4 sm:columns-2 lg:columns-3 xl:columns-4">
-              {visible.map((p) => (
-                <PromptGalleryCard
-                  key={p.id}
-                  item={p}
-                  coverSrc={p.images[0]}
-                  coverSizes="(max-width: 1024px) 100vw, 33vw"
-                  coverAspectRatio={ratioById[p.id] ?? '16 / 10'}
-                  modelBadge={p.model}
-                  description={p.description}
-                  tags={p.tags}
-                  aspectTag={formatAspectTag(p.id)}
-                  authorLabel={p.authorHandle ?? t('card.community')}
-                  authorUrl={getAuthorUrl(p) ?? null}
-                  primaryCtaLabel={t('card.generate')}
-                  coverErrorText={t('gallery.coverLoadFailed')}
-                  onMeta={({ width, height }) => {
-                    const ar = `${width} / ${height}`;
-                    setRatioById((prev) => (prev[p.id] === ar ? prev : { ...prev, [p.id]: ar }));
-                    setRatioMetaById((prev) =>
-                      prev[p.id]?.w === width && prev[p.id]?.h === height ? prev : { ...prev, [p.id]: { w: width, h: height } }
-                    );
-                  }}
-                  onCardClick={() => {
-                    setActive(p);
-                    setDetailOpen(true);
-                    setViewerOpen(false);
-                  }}
-                  onImageClick={() => openViewer(p, 0)}
-                  onCtaClick={() => {
-                    router.push(`/${locale}/create?template=${encodeURIComponent(p.id)}`);
-                  }}
-                />
-              ))}
-            </div>
+            <PromptGalleryMasonry
+              items={visible}
+              itemKey={(p) => p.id}
+              layoutKey={Object.keys(ratioByUrl).join(',')}
+              renderItem={renderGalleryCard}
+            />
 
             <div ref={sentinelRef} className="mt-8 flex justify-center">
               {hasMore ? (
