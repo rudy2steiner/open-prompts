@@ -7,6 +7,8 @@ import {
 
 export type { PromptReviewStatus, PromptVisibility };
 
+import type { SubmitCategoryKey } from '~/lib/prompts/prompt-categories';
+
 export type TemplateRecord = {
   id: number;
   slug: string;
@@ -14,6 +16,7 @@ export type TemplateRecord = {
   description: string;
   prompt: string;
   model: string;
+  category: SubmitCategoryKey | null;
   tags: string[];
   images: string[];
   sourceUrl: string | null;
@@ -69,6 +72,7 @@ export type TemplateWriteInput = {
   description: string;
   prompt: string;
   modelLabel: string;
+  category: SubmitCategoryKey;
   tags: string[];
   images: string[];
   visibility: PromptVisibility;

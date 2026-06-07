@@ -1,3 +1,5 @@
+import type { SubmitCategoryKey } from '~/lib/prompts/prompt-categories';
+
 export type PromptGalleryItem = {
   id: string;
   title: string;
@@ -5,6 +7,7 @@ export type PromptGalleryItem = {
   prompt: string;
   templateId?: string;
   model: string;
+  category?: SubmitCategoryKey | null;
   tags: string[];
   sourceUrl?: string;
   authorHandle?: string;

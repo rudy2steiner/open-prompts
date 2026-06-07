@@ -8,19 +8,9 @@ import {
   type PromptVisibility,
 } from '~/lib/prompts/template-types';
 import { MAX_TITLE } from '~/lib/prompts/template-limits';
+import { SUBMIT_CATEGORY_KEYS, type SubmitCategoryKey } from '~/lib/prompts/prompt-categories';
 
-const CATEGORY_KEYS = new Set([
-  'landscape',
-  'portrait',
-  'architecture',
-  'animal',
-  'illustration',
-  'realism',
-  'game',
-  'cinematic',
-  'scifi',
-  'abstract',
-]);
+const CATEGORY_KEYS = new Set<string>(SUBMIT_CATEGORY_KEYS);
 
 const MODEL_IDS = new Set([
   'gptImage2',
@@ -51,6 +41,7 @@ export type ParsedSubmitPrompt = {
   description: string;
   prompt: string;
   modelLabel: string;
+  category: SubmitCategoryKey;
   tags: string[];
   images: string[];
   sourceUrl: string | null;
@@ -133,18 +124,18 @@ export function parseSubmitPromptBody(
 
   const category = typeof o.category === 'string' ? o.category.trim() : '';
   if (!CATEGORY_KEYS.has(category)) return { ok: false, error: 'Invalid category' };
+  const categoryKey = category as SubmitCategoryKey;
 
   const modelId = typeof o.modelId === 'string' ? o.modelId.trim() : '';
   if (!MODEL_IDS.has(modelId)) return { ok: false, error: 'Invalid model' };
   const modelLabel = MODEL_LABELS[modelId] ?? modelId;
 
-  const tagList = asTrimmedStrings(o.tags, MAX_TAGS);
+  const tagList = asTrimmedStrings(o.tags, MAX_TAGS).filter((t) => t !== categoryKey);
   if (tagList.length < 2 || tagList.length > 8) {
     return { ok: false, error: 'Use between 2 and 8 tags' };
   }
 
-  const mergedTags = [category, ...tagList.filter((t) => t !== category)];
-  const tags = mergedTags.slice(0, MAX_TAGS);
+  const tags = tagList.slice(0, MAX_TAGS);
 
   const images = normalizeImages(o.images);
 
@@ -155,7 +146,18 @@ export function parseSubmitPromptBody(
 
   return {
     ok: true,
-    value: { title, description, prompt, modelLabel, tags, images, sourceUrl, authorHandle, visibility },
+    value: {
+      title,
+      description,
+      prompt,
+      modelLabel,
+      category: categoryKey,
+      tags,
+      images,
+      sourceUrl,
+      authorHandle,
+      visibility,
+    },
   };
 }
 
@@ -178,6 +180,7 @@ export async function insertSubmittedPrompt(
           prompt: value.prompt,
           templateId: null,
           model: value.modelLabel,
+          category: value.category,
           tags: value.tags,
           sourceUrl: value.sourceUrl,
           authorHandle: value.authorHandle,

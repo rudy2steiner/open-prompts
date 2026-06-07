@@ -81,6 +81,7 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
         description: v.description,
         prompt: v.prompt,
         modelLabel: v.modelLabel,
+        category: v.category,
         tags: v.tags,
         images: v.images,
         visibility: v.visibility,

@@ -2,6 +2,10 @@ import { desc } from 'drizzle-orm';
 import type { PromptGalleryItem } from '~/data/promptGallery';
 import { getDb } from '~/db/client';
 import { prompts } from '~/db/schema';
+import {
+  normalizeSubmitCategoryKey,
+  type SubmitCategoryKey,
+} from '~/lib/prompts/prompt-categories';
 import { galleryPublicFilter } from '~/lib/prompts/template-record';
 
 function rowToItem(row: {
@@ -11,6 +15,7 @@ function rowToItem(row: {
   prompt: string | null;
   templateId: string | null;
   model: string | null;
+  category: string | null;
   tags: string[] | null;
   sourceUrl: string | null;
   authorHandle: string | null;
@@ -27,6 +32,7 @@ function rowToItem(row: {
     description: typeof row.description === 'string' ? row.description : '',
     prompt: typeof row.prompt === 'string' ? row.prompt : '',
     model: row.model?.trim() || 'GPT Image 2',
+    category: normalizeSubmitCategoryKey(row.category ?? ''),
     tags,
     images,
   };
@@ -54,6 +60,7 @@ export async function fetchPromptGalleryFromDb(): Promise<PromptGalleryItem[] | 
         prompt: prompts.prompt,
         templateId: prompts.templateId,
         model: prompts.model,
+        category: prompts.category,
         tags: prompts.tags,
         sourceUrl: prompts.sourceUrl,
         authorHandle: prompts.authorHandle,

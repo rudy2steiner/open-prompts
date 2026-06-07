@@ -25,6 +25,8 @@ export const prompts = pgTable('p_prompts', {
   prompt: text('prompt').notNull().default(''),
   templateId: text('template_id'),
   model: text('model').notNull().default('GPT Image 2'),
+  /** Submit primary category key — see `SUBMIT_CATEGORY_KEYS`. */
+  category: text('category'),
   tags: text('tags').array().notNull().default(sql`'{}'::text[]`),
   sourceUrl: text('source_url'),
   authorHandle: text('author_handle'),

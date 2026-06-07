@@ -1,11 +1,26 @@
 'use client';
 
+import './prompt-gallery-viewer.css';
 import { useEffect, useRef, useState } from 'react';
 import { CoverImage } from '~/components/prompt-gallery/CoverImage';
 
 function clampIdx(idx: number, len: number) {
   if (len <= 0) return 0;
   return Math.max(0, Math.min(idx, len - 1));
+}
+
+function ChevronIcon({ direction }: { direction: 'left' | 'right' }) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d={direction === 'left' ? 'M15 6l-6 6 6 6' : 'M9 6l6 6-6 6'}
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
 }
 
 export type PromptGallerySwipeViewerProps = {
@@ -40,7 +55,7 @@ export function PromptGallerySwipeViewer({
   closeLabel,
   prevLabel,
   nextLabel,
-  overlayClassName = 'bg-black/55',
+  overlayClassName = 'bg-black/75',
 }: PromptGallerySwipeViewerProps) {
   const [viewerIndex, setViewerIndex] = useState(0);
   const [ratioByImageKey, setRatioByImageKey] = useState<Record<string, string>>({});
@@ -72,8 +87,17 @@ export function PromptGallerySwipeViewer({
     if (!el) return;
     const child = el.children.item(viewerIndex) as HTMLElement | null;
     if (!child) return;
-    child.scrollIntoView({ behavior: 'auto', inline: 'center', block: 'nearest' });
+    child.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
   }, [open, viewerIndex]);
+
+  useEffect(() => {
+    if (!open) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -97,58 +121,25 @@ export function PromptGallerySwipeViewer({
 
   if (!open || images.length === 0) return null;
 
-  return (
-    <div
-      className={`fixed inset-0 z-50 ${overlayClassName}`}
-      role="dialog"
-      aria-modal="true"
-      onClick={onClose}
-    >
-      {!showDownloadButton ? (
-        <button
-          type="button"
-          className="absolute right-4 top-4 z-20 grid h-10 w-10 place-items-center rounded-full bg-black/35 text-sm font-semibold text-white ring-1 ring-white/20 hover:bg-black/50"
-          onClick={onClose}
-          aria-label={closeLabel ?? 'Close'}
-        >
-          ✕
-        </button>
-      ) : null}
+  const goPrev = () => {
+    viewerProgrammaticScrollRef.current = true;
+    setViewerIndex((v) => Math.max(0, v - 1));
+  };
 
-      {images.length > 1 ? (
-        <>
-          <button
-            type="button"
-            className="absolute left-4 top-1/2 z-20 -translate-y-1/2 grid h-10 w-10 place-items-center rounded-full bg-black/35 text-white ring-1 ring-white/20 hover:bg-black/50"
-            onClick={(e) => {
-              e.stopPropagation();
-              viewerProgrammaticScrollRef.current = true;
-              setViewerIndex((v) => Math.max(0, v - 1));
-            }}
-            aria-label={prevLabel ?? 'Previous image'}
-          >
-            ‹
-          </button>
-          <button
-            type="button"
-            className="absolute right-4 top-1/2 z-20 -translate-y-1/2 grid h-10 w-10 place-items-center rounded-full bg-black/35 text-white ring-1 ring-white/20 hover:bg-black/50"
-            onClick={(e) => {
-              e.stopPropagation();
-              viewerProgrammaticScrollRef.current = true;
-              setViewerIndex((v) => Math.min(images.length - 1, v + 1));
-            }}
-            aria-label={nextLabel ?? 'Next image'}
-          >
-            ›
-          </button>
-        </>
-      ) : null}
+  const goNext = () => {
+    viewerProgrammaticScrollRef.current = true;
+    setViewerIndex((v) => Math.min(images.length - 1, v + 1));
+  };
 
+  if (showDownloadButton) {
+    return (
       <div
-        className="flex h-full w-full flex-col"
-        onClick={showDownloadButton ? (e) => e.stopPropagation() : undefined}
+        className={`op-viewer-overlay fixed inset-0 z-50 ${overlayClassName}`}
+        role="dialog"
+        aria-modal="true"
+        onClick={onClose}
       >
-        {showDownloadButton ? (
+        <div className="flex h-full w-full flex-col" onClick={(e) => e.stopPropagation()}>
           <div className="flex shrink-0 items-center justify-between gap-2 px-4 py-3 text-white">
             <div className="text-xs text-white/70">
               {viewerIndex + 1}/{images.length}
@@ -161,7 +152,6 @@ export function PromptGallerySwipeViewer({
                 download
                 className="grid h-9 w-9 place-items-center rounded-lg bg-white/10 hover:bg-white/15"
                 title={downloadTitle}
-                onClick={(e) => e.stopPropagation()}
               >
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path
@@ -192,11 +182,172 @@ export function PromptGallerySwipeViewer({
               </button>
             </div>
           </div>
-        ) : null}
 
+          {images.length > 1 ? (
+            <>
+              <button
+                type="button"
+                className="op-viewer-nav absolute left-4 top-1/2 z-20 -translate-y-1/2"
+                onClick={goPrev}
+                aria-label={prevLabel ?? 'Previous image'}
+              >
+                <ChevronIcon direction="left" />
+              </button>
+              <button
+                type="button"
+                className="op-viewer-nav absolute right-4 top-1/2 z-20 -translate-y-1/2"
+                onClick={goNext}
+                aria-label={nextLabel ?? 'Next image'}
+              >
+                <ChevronIcon direction="right" />
+              </button>
+            </>
+          ) : null}
+
+          <div
+            ref={viewerStripRef}
+            className="op-viewer-strip flex w-full flex-1 snap-x snap-mandatory items-center overflow-x-auto scroll-smooth"
+            onScroll={(e) => {
+              const el = e.currentTarget;
+              const w = el.clientWidth || 1;
+              const next = Math.round(el.scrollLeft / w);
+              viewerProgrammaticScrollRef.current = false;
+              if (next !== viewerIndex) setViewerIndex(next);
+            }}
+          >
+            {images.map((src, idx) => {
+              const key = imgKey(src);
+              const ar = ratioByImageKey[key] ?? '16 / 9';
+              return (
+                <div key={`${key}-${idx}`} className="op-viewer-slide">
+                  <div className="op-viewer-frame">
+                    <CoverImage
+                      src={src}
+                      alt={title ? `${title} view ${idx + 1}` : `View ${idx + 1}`}
+                      sizes="(max-width: 1024px) 100vw, 1024px"
+                      className="object-contain"
+                      priority={idx === viewerIndex}
+                      errorText={coverLoadFailedText}
+                      onMeta={({ width, height }) => {
+                        const nextAr = `${width} / ${height}`;
+                        setRatioByImageKey((prev) => (prev[key] === nextAr ? prev : { ...prev, [key]: nextAr }));
+                      }}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {images.length > 1 ? (
+            <div className="pb-5 pt-2">
+              <div
+                ref={viewerThumbRef}
+                className="op-viewer-thumbs mx-auto flex max-w-3xl items-center justify-center gap-2.5 overflow-x-auto px-6"
+              >
+                {images.map((src, idx) => {
+                  const key = imgKey(src);
+                  const ar = ratioByImageKey[key] ?? '16 / 9';
+                  const activeThumb = idx === viewerIndex;
+                  return (
+                    <button
+                      key={`${key}-thumb-${idx}`}
+                      type="button"
+                      className={`op-viewer-thumb ${activeThumb ? 'active' : ''}`}
+                      style={{ aspectRatio: ar }}
+                      onClick={() => {
+                        viewerProgrammaticScrollRef.current = true;
+                        setViewerIndex(idx);
+                      }}
+                    >
+                      <CoverImage
+                        src={src}
+                        alt={title ? `${title} thumb ${idx + 1}` : `Thumb ${idx + 1}`}
+                        sizes="64px"
+                        className="object-cover"
+                        errorText={coverLoadFailedText}
+                        onMeta={({ width, height }) => {
+                          const nextAr = `${width} / ${height}`;
+                          setRatioByImageKey((prev) =>
+                            prev[key] === nextAr ? prev : { ...prev, [key]: nextAr },
+                          );
+                        }}
+                      />
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ) : null}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={`op-viewer-overlay fixed inset-0 z-50 ${overlayClassName} backdrop-blur-[2px]`}
+      role="dialog"
+      aria-modal="true"
+      onClick={onClose}
+    >
+      {images.length > 1 ? (
+        <div className="op-viewer-counter pointer-events-none absolute left-1/2 top-5 z-30 -translate-x-1/2">
+          {viewerIndex + 1} / {images.length}
+        </div>
+      ) : null}
+
+      <button
+        type="button"
+        className="op-viewer-close absolute right-5 top-5 z-30"
+        onClick={(e) => {
+          e.stopPropagation();
+          onClose();
+        }}
+        aria-label={closeLabel ?? 'Close'}
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M18 6L6 18M6 6l12 12"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+
+      {images.length > 1 ? (
+        <>
+          <button
+            type="button"
+            className="op-viewer-nav absolute left-5 top-1/2 z-30 -translate-y-1/2"
+            onClick={(e) => {
+              e.stopPropagation();
+              goPrev();
+            }}
+            aria-label={prevLabel ?? 'Previous image'}
+          >
+            <ChevronIcon direction="left" />
+          </button>
+          <button
+            type="button"
+            className="op-viewer-nav absolute right-5 top-1/2 z-30 -translate-y-1/2"
+            onClick={(e) => {
+              e.stopPropagation();
+              goNext();
+            }}
+            aria-label={nextLabel ?? 'Next image'}
+          >
+            <ChevronIcon direction="right" />
+          </button>
+        </>
+      ) : null}
+
+      <div className="flex h-full w-full flex-col" onClick={(e) => e.stopPropagation()}>
         <div
           ref={viewerStripRef}
-          className="flex w-full flex-1 snap-x snap-mandatory items-center overflow-x-auto scroll-smooth px-6 pt-6 pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="op-viewer-strip flex w-full flex-1 snap-x snap-mandatory items-center overflow-x-auto scroll-smooth"
           onScroll={(e) => {
             const el = e.currentTarget;
             const w = el.clientWidth || 1;
@@ -209,16 +360,12 @@ export function PromptGallerySwipeViewer({
             const key = imgKey(src);
             const ar = ratioByImageKey[key] ?? '16 / 9';
             return (
-              <div key={`${key}-${idx}`} className="flex w-full shrink-0 snap-center items-center justify-center">
-                <div
-                  className="relative mx-auto h-[56vh] max-h-[520px] w-auto"
-                  style={{ aspectRatio: ar }}
-                  onClick={(e) => e.stopPropagation()}
-                >
+              <div key={`${key}-${idx}`} className="op-viewer-slide">
+                <div className="op-viewer-frame">
                   <CoverImage
                     src={src}
                     alt={title ? `${title} view ${idx + 1}` : `View ${idx + 1}`}
-                    sizes="(max-width: 1024px) 100vw, 1024px"
+                    sizes="(max-width: 1024px) 100vw, 980px"
                     className="object-contain"
                     priority={idx === viewerIndex}
                     errorText={coverLoadFailedText}
@@ -227,11 +374,6 @@ export function PromptGallerySwipeViewer({
                       setRatioByImageKey((prev) => (prev[key] === nextAr ? prev : { ...prev, [key]: nextAr }));
                     }}
                   />
-                  {images.length > 1 ? (
-                    <div className="pointer-events-none absolute left-1/2 top-4 -translate-x-1/2 rounded-full bg-black/50 px-2.5 py-1 text-xs text-white">
-                      {idx + 1}/{images.length}
-                    </div>
-                  ) : null}
                 </div>
               </div>
             );
@@ -239,10 +381,10 @@ export function PromptGallerySwipeViewer({
         </div>
 
         {images.length > 1 ? (
-          <div className="-mt-2 pb-4">
+          <div className="shrink-0 pb-6 pt-2">
             <div
               ref={viewerThumbRef}
-              className="mx-auto flex max-w-3xl items-center justify-center gap-2 overflow-x-auto px-6 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="op-viewer-thumbs mx-auto flex max-w-4xl items-center justify-center gap-2.5 overflow-x-auto px-6"
             >
               {images.map((src, idx) => {
                 const key = imgKey(src);
@@ -252,9 +394,7 @@ export function PromptGallerySwipeViewer({
                   <button
                     key={`${key}-thumb-${idx}`}
                     type="button"
-                    className={`relative h-12 w-auto shrink-0 overflow-hidden rounded-none bg-black/25 ring-2 transition ${
-                      activeThumb ? 'ring-white/90' : 'ring-white/25 hover:ring-white/45'
-                    }`}
+                    className={`op-viewer-thumb ${activeThumb ? 'active' : ''}`}
                     style={{ aspectRatio: ar }}
                     onClick={() => {
                       viewerProgrammaticScrollRef.current = true;
@@ -264,13 +404,13 @@ export function PromptGallerySwipeViewer({
                     <CoverImage
                       src={src}
                       alt={title ? `${title} thumb ${idx + 1}` : `Thumb ${idx + 1}`}
-                      sizes="64px"
-                      className="object-contain"
+                      sizes="72px"
+                      className="object-cover"
                       errorText={coverLoadFailedText}
                       onMeta={({ width, height }) => {
                         const nextAr = `${width} / ${height}`;
                         setRatioByImageKey((prev) =>
-                          prev[key] === nextAr ? prev : { ...prev, [key]: nextAr }
+                          prev[key] === nextAr ? prev : { ...prev, [key]: nextAr },
                         );
                       }}
                     />

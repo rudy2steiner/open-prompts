@@ -26,6 +26,12 @@ import {
   type AdminUserTrendRange,
 } from '~/lib/users/admin-user-trend';
 import { submitEditorHref } from '~/lib/prompts/submit-editor-path';
+import {
+  buildMyTemplatesQuery,
+  myTemplatesPageKey,
+  parseMyTemplatesPage,
+  type MyTemplatesPage,
+} from '~/lib/account/my-templates-page';
 
 type Panel = ResolvedAccountPanel;
 
@@ -148,6 +154,8 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
   const adminLoadGen = useRef(0);
   const adminItemsCountRef = useRef(initialAdmin?.items.length ?? 0);
   const adminPrefetchedRef = useRef(Boolean(initialAdmin?.items.length));
+  const myTemplatesLoadGen = useRef(0);
+  const myTemplatesPrefetchRef = useRef<{ key: string; data: MyTemplatesPage } | null>(null);
 
   const [panel, setPanel] = useState<Panel>(initialPanel);
   const [templates, setTemplates] = useState<TemplateRecord[]>([]);
@@ -253,40 +261,78 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
     }
   }, [locale]);
 
+  const prefetchMyTemplatesPage = useCallback(
+    async (page: number, gen: number) => {
+      const key = myTemplatesPageKey(search, myStatusFilter, page, myPageSize);
+      if (myTemplatesPrefetchRef.current?.key === key) return;
+      try {
+        const q = buildMyTemplatesQuery(search, myStatusFilter, page, myPageSize);
+        const res = await fetch(localeApiPath(locale, `/api/my/templates?${q}`), {
+          cache: 'no-store',
+        });
+        const data = (await res.json()) as {
+          items?: TemplateRecord[];
+          total?: number;
+          offset?: number;
+        };
+        if (gen !== myTemplatesLoadGen.current || !res.ok) return;
+        if (myTemplatesPrefetchRef.current?.key === key) return;
+        myTemplatesPrefetchRef.current = {
+          key,
+          data: parseMyTemplatesPage(data, page, myPageSize),
+        };
+      } catch {
+        /* optional prefetch */
+      }
+    },
+    [locale, search, myStatusFilter, myPageSize],
+  );
+
   const loadMyTemplates = useCallback(async () => {
+    const pageKey = myTemplatesPageKey(search, myStatusFilter, myPage, myPageSize);
+    const cached = myTemplatesPrefetchRef.current;
+    if (cached?.key === pageKey) {
+      setTemplates(cached.data.items);
+      setMyTotal(cached.data.total);
+      setMyHasMore(cached.data.hasMore);
+      myTemplatesPrefetchRef.current = null;
+      if (cached.data.hasMore) {
+        void prefetchMyTemplatesPage(myPage + 1, myTemplatesLoadGen.current);
+      }
+      return;
+    }
+
+    const gen = ++myTemplatesLoadGen.current;
     setMyLoading(true);
     try {
-      const q = new URLSearchParams();
-      if (search.trim()) q.set('q', search.trim());
-      if (myStatusFilter) q.set('status', myStatusFilter);
-      q.set('limit', String(myPageSize));
-      q.set('offset', String((myPage - 1) * myPageSize));
+      const q = buildMyTemplatesQuery(search, myStatusFilter, myPage, myPageSize);
       const res = await fetch(localeApiPath(locale, `/api/my/templates?${q}`), { cache: 'no-store' });
       const data = (await res.json()) as {
         items?: TemplateRecord[];
         total?: number;
         offset?: number;
       };
+      if (gen !== myTemplatesLoadGen.current) return;
       if (res.ok) {
-        const items = data.items ?? [];
-        setTemplates(items);
-        const total = typeof data.total === 'number' ? data.total : null;
-        setMyTotal(total);
-        const offset = typeof data.offset === 'number' ? data.offset : (myPage - 1) * myPageSize;
-        setMyHasMore(total != null ? offset + items.length < total : items.length >= myPageSize);
+        const page = parseMyTemplatesPage(data, myPage, myPageSize);
+        setTemplates(page.items);
+        setMyTotal(page.total);
+        setMyHasMore(page.hasMore);
+        if (page.hasMore) void prefetchMyTemplatesPage(myPage + 1, gen);
       } else {
         setTemplates([]);
         setMyTotal(null);
         setMyHasMore(false);
       }
     } catch {
+      if (gen !== myTemplatesLoadGen.current) return;
       setTemplates([]);
       setMyTotal(null);
       setMyHasMore(false);
     } finally {
-      setMyLoading(false);
+      if (gen === myTemplatesLoadGen.current) setMyLoading(false);
     }
-  }, [locale, search, myStatusFilter, myPage, myPageSize]);
+  }, [locale, search, myStatusFilter, myPage, myPageSize, prefetchMyTemplatesPage]);
 
   const loadAdminTemplates = useCallback(async () => {
     const gen = ++adminLoadGen.current;
@@ -427,6 +473,7 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
 
   useEffect(() => {
     setMyPage(1);
+    myTemplatesPrefetchRef.current = null;
   }, [search, myStatusFilter, myPageSize]);
 
   useEffect(() => {
@@ -512,6 +559,7 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
       next.delete(id);
       return next;
     });
+    myTemplatesPrefetchRef.current = null;
     void loadMyTemplates();
     void loadStats();
   };
@@ -530,6 +578,7 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
       });
       if (res.ok) {
         setSelectedMyIds(new Set());
+        myTemplatesPrefetchRef.current = null;
         void loadMyTemplates();
         void loadStats();
       }

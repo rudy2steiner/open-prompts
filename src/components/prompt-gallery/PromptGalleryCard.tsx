@@ -61,6 +61,8 @@ export function PromptGalleryCard({
   const showCta = Boolean(onCtaClick && primaryCtaLabel && primaryCtaLabel.trim().length > 0);
   const dateLabel = formatGalleryCardDate(item.createdAt);
   const showFooterLeft = showAuthor && Boolean(authorLabel || dateLabel);
+  const imageCount = item.images.filter((src) => src.trim()).length;
+  const showImageCount = imageCount > 1;
   const shellClass =
     layout === 'flow' || layout === 'masonry'
       ? 'group relative w-full overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] text-left transition hover:border-[var(--border2)] hover:shadow-md'
@@ -93,8 +95,37 @@ export function PromptGalleryCard({
         ) : (
           <div className="grid h-full w-full place-items-center text-xs text-[var(--text3)]">—</div>
         )}
+        {showImageCount ? (
+          <div className="pointer-events-none absolute left-2.5 top-2.5 z-[2] flex items-center gap-1 rounded-full bg-black/55 px-2 py-1 text-[11px] font-medium leading-none text-white">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="6" width="13" height="13" rx="2" stroke="currentColor" strokeWidth="1.75" />
+              <path
+                d="M6.5 14.5l2.5-2.5 2 2 3.5-3.5"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <rect
+                x="8"
+                y="3"
+                width="13"
+                height="13"
+                rx="2"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                opacity="0.55"
+              />
+            </svg>
+            <span>{imageCount}</span>
+          </div>
+        ) : null}
         {showModelBadge && modelBadge ? (
-          <div className="pointer-events-none absolute left-3 top-3 rounded-md bg-black/55 px-2 py-1 text-[10px] text-white">
+          <div
+            className={`pointer-events-none absolute rounded-md bg-black/55 px-2 py-1 text-[10px] text-white ${
+              showImageCount ? 'bottom-3 left-3' : 'left-3 top-3'
+            }`}
+          >
             {modelBadge}
           </div>
         ) : null}
@@ -126,8 +157,13 @@ export function PromptGalleryCard({
         ) : null}
       </div>
 
-      <div className="p-4">
-        <div className="truncate text-sm font-semibold text-[var(--text)]">{item.title}</div>
+      <div className="min-w-0 overflow-hidden p-4">
+        <div
+          className="min-w-0 max-w-full truncate text-sm font-semibold text-[var(--text)]"
+          title={item.title}
+        >
+          {item.title}
+        </div>
         {showDescription && description ? (
           <div className="mt-1 line-clamp-2 text-xs leading-relaxed text-[var(--text3)]">{description}</div>
         ) : null}
