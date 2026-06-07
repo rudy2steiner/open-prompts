@@ -1,7 +1,7 @@
 'use client';
 
 import './gallery-page.css';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import HeadInfo from '~/components/HeadInfo';
 import type { PromptGalleryItem } from '~/data/promptGallery';
@@ -45,6 +45,7 @@ import {
   promptMatchesGalleryFilter,
   type SubmitCategoryKey,
 } from '~/lib/prompts/prompt-categories';
+import { formatSubTagLabel } from '~/lib/prompts/sub-tag-i18n';
 
 export default function PageComponent({ locale, prompts }: Props) {
   const t = useTranslations('OpenPrompts');
@@ -95,13 +96,17 @@ export default function PageComponent({ locale, prompts }: Props) {
   }, [query, model, categoryId, subTag, prompts]);
 
   const categoryLabel = (id: SubmitCategoryKey) => tSubmit(`categories.${id}`);
+  const subTagLabel = useCallback(
+    (tag: string) => formatSubTagLabel(tag, (key) => tSubmit(`subTags.${key}`)),
+    [tSubmit],
+  );
 
   const sectionLabel = useMemo(() => {
     if (categoryId === 'all') return t('section.latest');
     const catName = categoryLabel(categoryId);
     if (!subTag) return catName;
-    return t('section.categorySub', { category: catName, subTag });
-  }, [categoryId, subTag, t, tSubmit]);
+    return t('section.categorySub', { category: catName, subTag: subTagLabel(subTag) });
+  }, [categoryId, subTag, t, tSubmit, subTagLabel]);
 
   const resetPagination = () => setLimit(PAGE_SIZE);
 
@@ -466,6 +471,7 @@ export default function PageComponent({ locale, prompts }: Props) {
                 allModelsLabel={t('filters.allModels')}
                 allCategoriesLabel={t('filters.allCategories')}
                 categoryLabel={categoryLabel}
+                subTagLabel={subTagLabel}
                 showingLabel={t('gallery.showing', { shown: visible.length, total: filtered.length })}
               />
             </div>

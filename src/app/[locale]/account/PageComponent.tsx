@@ -11,7 +11,7 @@ import {
 } from '~/lib/account/account-path';
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
-import { resolveUserAvatarUrl } from '~/lib/auth/default-user-avatar';
+import { UserAvatar } from '~/components/open-prompts/UserAvatar';
 import { localeApiPath } from '~/lib/locale-api-path';
 import {
   PromptTemplateDetailDialog,
@@ -952,10 +952,10 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
                 <td>
                   <div className="flex items-center gap-2.5">
                     <div className="op-account-avatar h-8 w-8 shrink-0 overflow-hidden rounded-full">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={resolveUserAvatarUrl(item.image, item.email || item.id)}
-                        alt=""
+                      <UserAvatar
+                        image={item.image}
+                        seed={item.email || item.id}
+                        size={32}
                         className="h-full w-full object-cover"
                       />
                     </div>
@@ -1369,10 +1369,10 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
               <aside className="op-account-sidebar">
                 <div className="op-account-sidebar-user">
             <div className="op-account-avatar">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={resolveUserAvatarUrl(user.image, user.email || user.id)}
-                alt=""
+              <UserAvatar
+                image={user.image}
+                seed={user.email || user.id}
+                size={34}
                 className="h-full w-full object-cover"
               />
             </div>

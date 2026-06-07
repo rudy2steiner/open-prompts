@@ -7,7 +7,7 @@ import { signOut, useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import { FaGithub } from 'react-icons/fa';
 import { languages, locales } from '~/config';
-import { resolveUserAvatarUrl } from '~/lib/auth/default-user-avatar';
+import { UserAvatar } from '~/components/open-prompts/UserAvatar';
 import { applyOpThemeToDocument, getOpDocumentTheme } from '~/lib/op-theme';
 import {
   buildLocaleHref,
@@ -232,15 +232,11 @@ export function OpenPromptsSiteHeader({
                   setLangOpen(false);
                 }}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={resolveUserAvatarUrl(session.user.image, session.user.email ?? session.user.id)}
-                  alt=""
-                  width={32}
-                  height={32}
+                <UserAvatar
+                  image={session.user.image}
+                  seed={session.user.email ?? session.user.id}
+                  size={32}
                   className="h-8 w-8 shrink-0 rounded-full border border-[var(--border2)] bg-[var(--surface2)] object-cover"
-                  decoding="async"
-                  referrerPolicy="no-referrer"
                 />
               </button>
               {userMenuOpen ? (
