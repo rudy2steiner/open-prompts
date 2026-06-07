@@ -21,6 +21,7 @@ import {
   type SubmitCategoryKey,
 } from '~/lib/prompts/prompt-categories';
 import { PromptCategoryStrip } from '~/components/prompt-gallery/PromptCategoryStrip';
+import { formatSubTagLabel } from '~/lib/prompts/sub-tag-i18n';
 import { parseSubmitEditId, submitEditorHref } from '~/lib/prompts/submit-editor-path';
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
@@ -555,6 +556,7 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
   const modelLabel = useMemo(() => t(`modelValues.${modelId}`), [t, modelId]);
   const categoryLabel = categoryLabelFor;
   const categoryLabelFn = (id: SubmitCategoryKey) => t(`categories.${id}`);
+  const subTagLabelFn = (tag: string) => formatSubTagLabel(tag, (key) => t(`subTags.${key}`));
 
   return (
     <div className="min-h-screen w-full bg-[var(--bg)] text-[var(--text)]">
@@ -774,6 +776,7 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
                         subTag={null}
                         onSubTagChange={handleCategorySubTagPick}
                         categoryLabel={categoryLabelFn}
+                        subTagLabel={subTagLabelFn}
                         showAll={false}
                         selectedTags={tags}
                       />

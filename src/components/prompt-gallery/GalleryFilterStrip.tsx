@@ -15,6 +15,7 @@ type Props = {
   allModelsLabel: string;
   allCategoriesLabel: string;
   categoryLabel: (id: SubmitCategoryKey) => string;
+  subTagLabel?: (tag: string) => string;
   showingLabel?: string;
 };
 
@@ -30,6 +31,7 @@ export function GalleryFilterStrip({
   allModelsLabel,
   allCategoriesLabel,
   categoryLabel,
+  subTagLabel,
   showingLabel,
 }: Props) {
   return (
@@ -55,6 +57,7 @@ export function GalleryFilterStrip({
           subTag={subTag}
           onSubTagChange={onSubTagChange}
           categoryLabel={categoryLabel}
+          subTagLabel={subTagLabel}
           allCategoriesLabel={allCategoriesLabel}
           showAll
         />

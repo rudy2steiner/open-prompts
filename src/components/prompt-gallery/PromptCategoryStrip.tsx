@@ -13,6 +13,7 @@ type Props = {
   subTag: string | null;
   onSubTagChange: (tag: string) => void;
   categoryLabel: (id: SubmitCategoryKey) => string;
+  subTagLabel?: (tag: string) => string;
   allCategoriesLabel?: string;
   showAll?: boolean;
   /** Highlight sub-tags already chosen (submit form). */
@@ -26,6 +27,7 @@ export function PromptCategoryStrip({
   subTag,
   onSubTagChange,
   categoryLabel,
+  subTagLabel,
   allCategoriesLabel,
   showAll = true,
   selectedTags,
@@ -78,7 +80,7 @@ export function PromptCategoryStrip({
                   onClick={() => onSubTagChange(tag)}
                   className={`op-gallery-subtag-pill ${isActive ? 'active' : ''}`}
                 >
-                  {tag}
+                  {subTagLabel ? subTagLabel(tag) : tag}
                 </button>
               );
             })}

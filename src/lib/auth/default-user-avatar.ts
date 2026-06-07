@@ -1,13 +1,18 @@
 /**
  * Default avatars for users without OAuth/profile photos.
- * DiceBear illustrated portraits (stable per email / user id).
- * @see https://www.dicebear.com/styles/personas
+ * Served via same-origin `/api/avatar` (PNG, reliable in <img> tags).
+ * @see https://www.dicebear.com/styles/lorelei-neutral
  */
 
-/** Soft illustrated portraits — cleaner than adventurer; works at 32px. */
-export const DEFAULT_AVATAR_STYLE = 'personas';
+/** Modern line-art portraits — clean at 32px, works for any user. */
+export const DEFAULT_AVATAR_STYLE = 'lorelei-neutral';
 
-const DICEBEAR_VERSION = '9.x';
+export const DICEBEAR_VERSION = '10.x';
+
+export const AVATAR_RENDER_SIZE = 128;
+
+/** Warm neutrals aligned with Open Prompts (--bg, --amber). */
+export const AVATAR_BACKGROUNDS = 'f5f0e8,e8dfd0,ffd5bf,f0e6d8,d6e4ff,edd9c8';
 
 /** Fallback when no seed (offline / tests). */
 export const DEFAULT_USER_AVATAR_PATH = '/default-user-avatar.svg';
@@ -18,22 +23,18 @@ function avatarSeed(seed: string | null | undefined): string {
   return 'guest';
 }
 
-/** Deterministic illustrated avatar URL (same seed → same face). */
+/** Same-origin avatar URL (same seed → same face). */
 export function defaultUserAvatarUrl(seed: string | null | undefined): string {
-  const params = new URLSearchParams({
-    seed: avatarSeed(seed),
-    backgroundColor: 'f5f0e8,e8dfd0,edd9c8,d6e4ff,f0e6d8',
-    radius: '50',
-  });
-  return `https://api.dicebear.com/${DICEBEAR_VERSION}/${DEFAULT_AVATAR_STYLE}/svg?${params.toString()}`;
+  const params = new URLSearchParams({ seed: avatarSeed(seed) });
+  return `/api/avatar?${params.toString()}`;
 }
 
-function isCustomProfileImage(url: string): boolean {
-  if (url === DEFAULT_USER_AVATAR_PATH) return false;
-  if (url.startsWith('/default-')) return false;
-  // Regenerate when style changes (session may still store old DiceBear URLs).
-  if (url.includes('api.dicebear.com')) return false;
-  return true;
+function isGeneratedAvatarUrl(url: string): boolean {
+  if (url === DEFAULT_USER_AVATAR_PATH) return true;
+  if (url.startsWith('/default-')) return true;
+  if (url.includes('api.dicebear.com')) return true;
+  if (url.startsWith('/api/avatar')) return true;
+  return false;
 }
 
 export function resolveUserAvatarUrl(
@@ -41,6 +42,6 @@ export function resolveUserAvatarUrl(
   seed?: string | null,
 ): string {
   const s = image?.trim();
-  if (s && isCustomProfileImage(s)) return s;
+  if (s && !isGeneratedAvatarUrl(s)) return s;
   return defaultUserAvatarUrl(seed);
 }
