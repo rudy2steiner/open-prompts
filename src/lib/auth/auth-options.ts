@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 import { eq } from 'drizzle-orm';
 import { getDb } from '~/db/client';
 import { users } from '~/db/schema';
-import { resolveUserAvatarUrl } from '~/lib/auth/default-user-avatar';
+import { hasCustomProfileImage } from '~/lib/auth/default-user-avatar';
 import { isAdminEmail } from '~/lib/auth/session';
 import { bootstrapAdminIfConfigured } from '~/lib/auth/bootstrap-admin';
 import { buildOAuthProviders } from '~/lib/auth/oauth-providers';
@@ -134,12 +134,7 @@ export const authOptions: NextAuthOptions = {
         session.user.name = (token.name as string | null | undefined) ?? session.user.name;
         session.user.isAdmin = Boolean(token.isAdmin);
         const picture = (token.picture as string | null | undefined) ?? session.user.image;
-        const seed =
-          (typeof token.email === 'string' && token.email) ||
-          (typeof token.sub === 'string' && token.sub) ||
-          session.user.email ||
-          session.user.id;
-        session.user.image = resolveUserAvatarUrl(picture, seed);
+        session.user.image = hasCustomProfileImage(picture) ? picture.trim() : null;
       }
       return session;
     },

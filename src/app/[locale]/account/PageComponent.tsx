@@ -955,8 +955,8 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
                       <UserAvatar
                         image={item.image}
                         seed={item.email || item.id}
+                        name={item.name}
                         size={32}
-                        className="h-full w-full object-cover"
                       />
                     </div>
                     <div className="min-w-0">
@@ -1372,8 +1372,8 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
               <UserAvatar
                 image={user.image}
                 seed={user.email || user.id}
+                name={user.name}
                 size={34}
-                className="h-full w-full object-cover"
               />
             </div>
             <div className="min-w-0">
