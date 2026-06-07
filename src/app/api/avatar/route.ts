@@ -1,12 +1,11 @@
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { NextRequest, NextResponse } from 'next/server';
-import {
-  AVATAR_BACKGROUNDS,
-  AVATAR_RENDER_SIZE,
-  DEFAULT_AVATAR_STYLE,
-  DICEBEAR_VERSION,
-} from '~/lib/auth/default-user-avatar';
+
+/** Legacy proxy — app now uses initials avatars in `UserAvatar`. */
+const DICEBEAR_VERSION = '10.x';
+const DEFAULT_AVATAR_STYLE = 'glass';
+const AVATAR_RENDER_SIZE = 128;
 
 async function localFallback(): Promise<NextResponse> {
   const filePath = path.join(process.cwd(), 'public', 'default-user-avatar.svg');
@@ -23,10 +22,8 @@ function dicebearUpstreamUrl(seed: string): string {
   const q = new URLSearchParams({
     seed,
     size: String(AVATAR_RENDER_SIZE),
-    radius: '50',
   });
-  // DiceBear expects comma-separated hex list — URLSearchParams encodes commas and breaks validation.
-  return `https://api.dicebear.com/${DICEBEAR_VERSION}/${DEFAULT_AVATAR_STYLE}/png?${q.toString()}&backgroundColor=${AVATAR_BACKGROUNDS}`;
+  return `https://api.dicebear.com/${DICEBEAR_VERSION}/${DEFAULT_AVATAR_STYLE}/png?${q.toString()}`;
 }
 
 export async function GET(req: NextRequest) {

@@ -223,7 +223,7 @@ export function OpenPromptsSiteHeader({
             <div className="relative flex items-center gap-2" ref={userMenuRef}>
               <button
                 type="button"
-                className="rounded-full ring-offset-2 ring-offset-[var(--bg)] transition hover:ring-2 hover:ring-[var(--amber)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--amber)]"
+                className="rounded-full transition hover:opacity-90 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--amber)]"
                 aria-expanded={userMenuOpen}
                 aria-haspopup="menu"
                 aria-label={t('header.userMenu')}
@@ -235,8 +235,9 @@ export function OpenPromptsSiteHeader({
                 <UserAvatar
                   image={session.user.image}
                   seed={session.user.email ?? session.user.id}
+                  name={session.user.name}
                   size={32}
-                  className="h-8 w-8 shrink-0 rounded-full border border-[var(--border2)] bg-[var(--surface2)] object-cover"
+                  className="h-8 w-8"
                 />
               </button>
               {userMenuOpen ? (
