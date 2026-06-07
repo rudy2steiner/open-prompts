@@ -134,7 +134,8 @@ export const authOptions: NextAuthOptions = {
         session.user.name = (token.name as string | null | undefined) ?? session.user.name;
         session.user.isAdmin = Boolean(token.isAdmin);
         const picture = (token.picture as string | null | undefined) ?? session.user.image;
-        session.user.image = hasCustomProfileImage(picture) ? picture.trim() : null;
+        session.user.image =
+          picture && hasCustomProfileImage(picture) ? picture.trim() : null;
       }
       return session;
     },
