@@ -1,5 +1,6 @@
 'use client';
 
+import '../gallery/gallery-page.css';
 import './submit-page.css';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -12,6 +13,14 @@ import {
   type TemplateRecord,
 } from '~/lib/prompts/template-types';
 import { MAX_TITLE } from '~/lib/prompts/template-limits';
+import {
+  getSubmitCategoryTags,
+  isSubmitCategoryKey,
+  normalizeSubmitCategoryKey,
+  resolvePromptCategory,
+  type SubmitCategoryKey,
+} from '~/lib/prompts/prompt-categories';
+import { PromptCategoryStrip } from '~/components/prompt-gallery/PromptCategoryStrip';
 import { parseSubmitEditId, submitEditorHref } from '~/lib/prompts/submit-editor-path';
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
@@ -23,18 +32,6 @@ import type { XSourceDuplicate } from '~/lib/x-import/x-source-duplicate';
 import { SubmitPreviewImageStrip } from './SubmitPreviewImageStrip';
 import { SubmitLanding } from './SubmitLanding';
 
-const CATEGORY_KEYS = [
-  'landscape',
-  'portrait',
-  'architecture',
-  'animal',
-  'illustration',
-  'realism',
-  'game',
-  'cinematic',
-  'scifi',
-  'abstract',
-] as const;
 
 const MAX_RESULT_IMAGES = 8;
 
@@ -99,7 +96,7 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
   const [desc, setDesc] = useState('');
   const [modelId, setModelId] = useState<(typeof MODEL_IDS)[number]>('gptImage2');
   const [prompt, setPrompt] = useState('');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState<SubmitCategoryKey | ''>('');
   const [tags, setTags] = useState<string[]>(['Cinematic', 'Portrait']);
   const [tagInput, setTagInput] = useState('');
   const [resultImages, setResultImages] = useState<string[]>([]);
@@ -204,15 +201,15 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
   }, [isPrivateMode, isEditMode, authStatus, locale, router, authReturnPath]);
 
   const applyTemplateToForm = useCallback((item: TemplateRecord) => {
-    const cat =
-      item.tags.find((tag) => (CATEGORY_KEYS as readonly string[]).includes(tag as (typeof CATEGORY_KEYS)[number])) ??
-      '';
+    const cat = resolvePromptCategory(item.category, item.tags) ?? '';
     setTitle(item.title);
     setDesc(item.description);
     setPrompt(item.prompt);
     setModelId(modelLabelToId(item.model) as (typeof MODEL_IDS)[number]);
     setCategory(cat);
-    setTags(item.tags.filter((tag) => tag !== cat));
+    setTags(
+      item.tags.filter((tag) => !normalizeSubmitCategoryKey(tag)),
+    );
     setResultImages(item.images.filter(isValidImageSrc).slice(0, MAX_RESULT_IMAGES));
     setXImportUrl(item.sourceUrl ?? '');
     setAuthorHandle(item.authorHandle ?? '');
@@ -259,7 +256,27 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
   const promptLenOk = prompt.trim().length >= 10;
   const titleOk = title.trim().length > 0;
   const modelOk = !!modelId;
-  const categoryOk = Boolean(category);
+  const categoryOk = isSubmitCategoryKey(category);
+
+  const categorySubTags = useMemo(() => {
+    if (!isSubmitCategoryKey(category)) return [];
+    return getSubmitCategoryTags(category);
+  }, [category]);
+
+  const handleCategoryPick = (next: 'all' | SubmitCategoryKey) => {
+    if (next === 'all') return;
+    setCategory(next);
+  };
+
+  const handleCategorySubTagPick = (tag: string) => {
+    if (tags.includes(tag) || tags.length >= 8) return;
+    setTags((prev) => [...prev, tag]);
+  };
+
+  const categoryLabelFor =
+    category && isSubmitCategoryKey(category)
+      ? t(`categories.${category}`)
+      : '';
   const tagsOk = tags.length >= 2 && tags.length <= 8;
 
   const previewImageUrls = useMemo(() => resultImages.slice(0, MAX_RESULT_IMAGES), [resultImages]);
@@ -278,7 +295,7 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
       shake('f-prompt');
       return false;
     }
-    if (!category) {
+    if (!categoryOk) {
       setBlockedHint(t('validation.needCategory'));
       focusField('f-category');
       shake('f-category');
@@ -536,10 +553,8 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
   };
 
   const modelLabel = useMemo(() => t(`modelValues.${modelId}`), [t, modelId]);
-  const categoryLabel =
-    category && (CATEGORY_KEYS as readonly string[]).includes(category)
-      ? t(`categories.${category as (typeof CATEGORY_KEYS)[number]}`)
-      : '';
+  const categoryLabel = categoryLabelFor;
+  const categoryLabelFn = (id: SubmitCategoryKey) => t(`categories.${id}`);
 
   return (
     <div className="min-h-screen w-full bg-[var(--bg)] text-[var(--text)]">
@@ -745,25 +760,23 @@ export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
                       </div>
                     </div>
 
-                    <div className="op-sp-form-group">
-                      <label className="op-sp-label" htmlFor="f-category">
+                    <div
+                      id="f-category"
+                      className={`op-sp-form-group${shakeId === 'f-category' ? ' op-shake' : ''}`}
+                    >
+                      <label className="op-sp-label">
                         {t('labels.category')} <span className="op-req">*</span>
                       </label>
-                      <div className="op-sp-select-wrap">
-                        <select
-                          id="f-category"
-                          className={`op-sp-select${shakeId === 'f-category' ? ' op-shake' : ''}`}
-                          value={category}
-                          onChange={(e) => setCategory(e.target.value)}
-                        >
-                          <option value="">{t('placeholders.category')}</option>
-                          {CATEGORY_KEYS.map((k) => (
-                            <option key={k} value={k}>
-                              {t(`categories.${k}`)}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
+                      <PromptCategoryStrip
+                        categoryId={category}
+                        onCategoryChange={handleCategoryPick}
+                        subTags={categorySubTags}
+                        subTag={null}
+                        onSubTagChange={handleCategorySubTagPick}
+                        categoryLabel={categoryLabelFn}
+                        showAll={false}
+                        selectedTags={tags}
+                      />
                     </div>
 
                     <div className="op-sp-form-group">

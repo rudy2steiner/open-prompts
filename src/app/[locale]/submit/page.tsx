@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { Suspense } from 'react';
+import { SUBMIT_QUICK_TAGS } from '~/lib/prompts/prompt-categories';
 import PageComponent from './PageComponent';
 import './submit-page.css';
 
@@ -43,7 +44,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   const messages = await getMessages();
   const op = (messages as { OpenPrompts?: { submitPage?: SubmitMessages } }).OpenPrompts;
   const submitPage = op?.submitPage;
-  const quickTags = submitPage?.quickTags ?? [];
+  const quickTags = submitPage?.quickTags?.length ? submitPage.quickTags : [...SUBMIT_QUICK_TAGS];
 
   return (
     <Suspense fallback={null}>

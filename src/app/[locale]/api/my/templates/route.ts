@@ -77,6 +77,7 @@ export async function POST(req: Request) {
       description: v.description,
       prompt: v.prompt,
       modelLabel: v.modelLabel,
+      category: v.category,
       tags: v.tags,
       images: v.images,
       visibility: v.visibility,

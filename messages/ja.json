@@ -422,7 +422,7 @@
         "step4Code": "--ar 16:9",
         "step4DescAfter": " などモデル固有のフラグを含めましょう。英語プロンプトが最も効果的です。プレビュー画像はクリック率を大きく向上させます。",
         "fieldsTitle": "各投稿に含める内容",
-        "field1": "タイトル — 短く検索しやすい名前（30 文字以内）。",
+        "field1": "タイトル — 短く検索しやすい名前（50 文字以内）。",
         "field2": "説明 — ビジュアルスタイルや用途を 1 行で。",
         "field3": "プロンプト本文 — 画像モデルで使う全文（アスペクト比などのパラメータ含む）。",
         "field4": "プレビュー画像 — 出力例の URL またはアップロード（審査とクリック率向上に有効）。",
@@ -500,7 +500,7 @@
         "imageUrls": "または画像 URL"
       },
       "hints": {
-        "title": "30文字以内で簡潔に",
+        "title": "50文字以内で簡潔に",
         "desc": "効果を一言で",
         "promptCount": "{count} 文字",
         "tags": "2〜8個、Enter で確定",
@@ -556,16 +556,13 @@
         "ideogram": "Ideogram v3"
       },
       "categories": {
-        "landscape": "🌅 風景",
-        "portrait": "🧑‍🎨 人物",
-        "architecture": "🏙️ 建築",
-        "animal": "🐾 動物",
-        "illustration": "✏️ イラスト",
-        "realism": "📸 実写",
-        "game": "🎮 ゲーム",
-        "cinematic": "🎬 シネマ",
-        "scifi": "🧬 SF",
-        "abstract": "✦ 抽象"
+        "artStyles": "アートスタイル",
+        "portraitPhoto": "写真・ポートレート",
+        "designUi": "デザイン & UI",
+        "gameFantasy": "ゲーム & ファンタジー",
+        "scenes": "シーン & 環境",
+        "productCommercial": "プロダクト & 商用",
+        "styleEra": "スタイル & 時代"
       },
       "ratios": {
         "1_1": "1:1",
@@ -588,11 +585,11 @@
         "privateDesc": "ギャラリーに出さない"
       },
       "quickTags": [
+        "Illustration",
         "Portrait",
-        "Golden Hour",
         "Photorealistic",
-        "Dark Mood",
         "Fantasy",
+        "Cinematic",
         "Editorial",
         "Anime",
         "Vintage"
@@ -902,10 +899,12 @@
       "source": "X / コミュニティ同期"
     },
     "section": {
-      "latest": "最新投稿"
+      "latest": "最新投稿",
+      "categorySub": "{category} · {subTag}"
     },
     "filters": {
       "allModels": "すべてのモデル",
+      "allCategories": "すべて",
       "allTags": "すべて"
     },
     "gallery": {

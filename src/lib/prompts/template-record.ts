@@ -11,6 +11,7 @@ import {
   type TemplateWriteInput,
   resolveStatusForVisibility,
 } from '~/lib/prompts/template-types';
+import { isSubmitCategoryKey, type SubmitCategoryKey } from '~/lib/prompts/prompt-categories';
 
 export type { TemplateRecord, TemplateWriteInput, PromptReviewStatus, PromptVisibility };
 export {
@@ -40,6 +41,7 @@ function rowToRecord(row: typeof prompts.$inferSelect): TemplateRecord {
     description: row.description ?? '',
     prompt: row.prompt ?? '',
     model: row.model,
+    category: isSubmitCategoryKey(row.category ?? '') ? (row.category as SubmitCategoryKey) : null,
     tags: Array.isArray(row.tags) ? row.tags : [],
     images: Array.isArray(row.images) ? row.images : [],
     sourceUrl: row.sourceUrl,
@@ -71,6 +73,7 @@ export async function insertUserTemplate(
           description: input.description,
           prompt: input.prompt,
           model: input.modelLabel,
+          category: input.category,
           tags: input.tags,
           images: input.images,
           sourceUrl: input.sourceUrl ?? null,
@@ -110,6 +113,7 @@ export async function updateUserTemplate(
   if (input.description !== undefined) patch.description = input.description;
   if (input.prompt !== undefined) patch.prompt = input.prompt;
   if (input.modelLabel !== undefined) patch.model = input.modelLabel;
+  if (input.category !== undefined) patch.category = input.category;
   if (input.tags !== undefined) patch.tags = input.tags;
   if (input.images !== undefined) patch.images = input.images;
   if (input.sourceUrl !== undefined) patch.sourceUrl = input.sourceUrl;

@@ -401,7 +401,7 @@
         "step4Code": "--ar 16:9",
         "step4DescAfter": ". English prompts perform best. Add a preview image — it significantly boosts click-through.",
         "fieldsTitle": "What to include in each submission",
-        "field1": "Title — short, searchable name (under 30 characters).",
+        "field1": "Title — short, searchable name (under 50 characters).",
         "field2": "Description — one line explaining the visual style or use case.",
         "field3": "Prompt body — the full text you use with your image model, including parameters like aspect ratio.",
         "field4": "Preview images — URLs or uploads showing example outputs (helps reviewers and improves click-through).",
@@ -479,7 +479,7 @@
         "imageUrls": "Or paste image URLs"
       },
       "hints": {
-        "title": "Up to 30 characters, concise",
+        "title": "Up to 50 characters, concise",
         "desc": "One line on the effect",
         "promptCount": "{count} characters",
         "tags": "2–8 tags, press Enter",
@@ -517,16 +517,13 @@
         "ideogram": "Ideogram v3"
       },
       "categories": {
-        "landscape": "🌅 Landscape",
-        "portrait": "🧑‍🎨 Portrait",
-        "architecture": "🏙️ Architecture",
-        "animal": "🐾 Animal",
-        "illustration": "✏️ Illustration",
-        "realism": "📸 Realism",
-        "game": "🎮 Game art",
-        "cinematic": "🎬 Cinematic",
-        "scifi": "🧬 Sci-Fi",
-        "abstract": "✦ Abstract"
+        "artStyles": "Art styles",
+        "portraitPhoto": "Portrait & photo",
+        "designUi": "Design & UI",
+        "gameFantasy": "Games & fantasy",
+        "scenes": "Scenes & environments",
+        "productCommercial": "Product & commercial",
+        "styleEra": "Styles & eras"
       },
       "ratios": {
         "1_1": "1:1 square",
@@ -548,7 +545,7 @@
         "privateTitle": "🔒 Private",
         "privateDesc": "Not listed in gallery"
       },
-      "quickTags": ["Portrait", "Golden Hour", "Photorealistic", "Dark Mood", "Fantasy", "Editorial", "Anime", "Vintage"],
+      "quickTags": ["Illustration", "Portrait", "Photorealistic", "Fantasy", "Cinematic", "Editorial", "Anime", "Vintage"],
       "buttons": {
         "nextTags": "Next: category, tags & submit",
         "back": "Back",
@@ -854,10 +851,12 @@
       "source": "Synced from X / community"
     },
     "section": {
-      "latest": "Latest submissions"
+      "latest": "Latest submissions",
+      "categorySub": "{category} · {subTag}"
     },
     "filters": {
       "allModels": "All models",
+      "allCategories": "All",
       "allTags": "All"
     },
     "gallery": {

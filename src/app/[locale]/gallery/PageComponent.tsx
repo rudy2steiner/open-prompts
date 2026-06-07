@@ -1,10 +1,12 @@
 'use client';
 
+import './gallery-page.css';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import HeadInfo from '~/components/HeadInfo';
 import type { PromptGalleryItem } from '~/data/promptGallery';
 import { PromptGalleryCard } from '~/components/prompt-gallery/PromptGalleryCard';
+import { GalleryFilterStrip } from '~/components/prompt-gallery/GalleryFilterStrip';
 import { PromptGalleryMasonry } from '~/components/prompt-gallery/PromptGalleryMasonry';
 import { PromptGallerySwipeViewer } from '~/components/prompt-gallery/PromptGallerySwipeViewer';
 import { PromptTemplateDetailDialog } from '~/components/prompt-gallery/PromptTemplateDetailDialog';
@@ -38,32 +40,30 @@ import {
   countGalleryModels,
   formatGalleryStatCount,
 } from '~/lib/prompts/gallery-stats';
-
-/** Model filter pills — theme accent */
-const MODEL_FILTER_CHIP = {
-  base: 'whitespace-nowrap rounded-full border px-4 py-1.5 text-xs transition',
-  selected:
-    'border-[color-mix(in_oklab,var(--amber)_40%,transparent)] bg-[color-mix(in_oklab,var(--amber)_12%,transparent)] text-[var(--amber2)]',
-  idle: 'border-[var(--border)] text-[var(--text2)] hover:border-[var(--border2)] hover:text-[var(--text)]',
-} as const;
+import {
+  mergeCategoryTags,
+  promptMatchesGalleryFilter,
+  type SubmitCategoryKey,
+} from '~/lib/prompts/prompt-categories';
 
 export default function PageComponent({ locale, prompts }: Props) {
   const t = useTranslations('OpenPrompts');
+  const tSubmit = useTranslations('OpenPrompts.submitPage');
   const router = useRouter();
   const [query, setQuery] = useState('');
   const [model, setModel] = useState<string>('all');
-  const [tag, setTag] = useState<string>('all');
+  const [categoryId, setCategoryId] = useState<'all' | SubmitCategoryKey>('all');
+  const [subTag, setSubTag] = useState<string | null>(null);
   const [limit, setLimit] = useState(PAGE_SIZE);
   const [autoLoading, setAutoLoading] = useState(false);
+  const [enteringDelays, setEnteringDelays] = useState<Map<string, number>>(() => new Map());
+  const prevVisibleLenRef = useRef(0);
+  const prevFilteredLenRef = useRef(0);
   const [ratioByUrl, setRatioByUrl] = useState<Record<string, string>>({});
   const [ratioMetaById, setRatioMetaById] = useState<Record<string, { w: number; h: number }>>({});
   const models = useMemo(
     () => ['all', ...uniq(prompts.map((p) => p.model)).sort((a, b) => a.localeCompare(b))],
-    [prompts]
-  );
-  const tags = useMemo(
-    () => ['all', ...uniq(prompts.flatMap((p) => p.tags)).sort((a, b) => a.localeCompare(b))],
-    [prompts]
+    [prompts],
   );
   const promptCountLabel = useMemo(
     () => formatGalleryStatCount(prompts.length, locale),
@@ -74,23 +74,84 @@ export default function PageComponent({ locale, prompts }: Props) {
     [prompts, locale],
   );
 
+  const subTags = useMemo(() => {
+    if (categoryId === 'all') return [];
+    return mergeCategoryTags(categoryId, prompts);
+  }, [categoryId, prompts]);
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return prompts.filter((p) => {
       if (model !== 'all' && p.model !== model) return false;
-      if (tag !== 'all' && !p.tags.includes(tag)) return false;
+      if (!promptMatchesGalleryFilter(p, categoryId, subTag)) return false;
       if (!q) return true;
       return (
         p.title.toLowerCase().includes(q) ||
         p.description.toLowerCase().includes(q) ||
         p.prompt.toLowerCase().includes(q) ||
-        p.tags.some((t) => t.toLowerCase().includes(q))
+        p.tags.some((tag) => tag.toLowerCase().includes(q))
       );
     });
-  }, [query, model, tag, prompts]);
+  }, [query, model, categoryId, subTag, prompts]);
+
+  const categoryLabel = (id: SubmitCategoryKey) => tSubmit(`categories.${id}`);
+
+  const sectionLabel = useMemo(() => {
+    if (categoryId === 'all') return t('section.latest');
+    const catName = categoryLabel(categoryId);
+    if (!subTag) return catName;
+    return t('section.categorySub', { category: catName, subTag });
+  }, [categoryId, subTag, t, tSubmit]);
+
+  const resetPagination = () => setLimit(PAGE_SIZE);
+
+  const handleModelChange = (next: string) => {
+    setModel(next);
+    resetPagination();
+  };
+
+  const handleCategoryChange = (next: 'all' | SubmitCategoryKey) => {
+    setCategoryId(next);
+    resetPagination();
+    setSubTag(null);
+  };
+
+  const handleSubTagChange = (next: string) => {
+    setSubTag((prev) => (prev === next ? null : next));
+    resetPagination();
+  };
 
   const visible = useMemo(() => filtered.slice(0, limit), [filtered, limit]);
   const hasMore = visible.length < filtered.length;
+
+  useEffect(() => {
+    const isLoadMore =
+      visible.length > prevVisibleLenRef.current &&
+      filtered.length === prevFilteredLenRef.current;
+
+    if (isLoadMore) {
+      const batch = visible.slice(prevVisibleLenRef.current);
+      const delays = new Map<string, number>();
+      batch.forEach((item, index) => {
+        delays.set(item.id, index * 55);
+      });
+      setEnteringDelays(delays);
+      const timer = window.setTimeout(() => setEnteringDelays(new Map()), 900);
+      prevVisibleLenRef.current = visible.length;
+      prevFilteredLenRef.current = filtered.length;
+      return () => window.clearTimeout(timer);
+    }
+
+    if (
+      filtered.length !== prevFilteredLenRef.current ||
+      visible.length < prevVisibleLenRef.current
+    ) {
+      setEnteringDelays(new Map());
+    }
+
+    prevVisibleLenRef.current = visible.length;
+    prevFilteredLenRef.current = filtered.length;
+  }, [visible, filtered.length]);
 
   const [active, setActive] = useState<PromptGalleryItem | null>(null);
   const [detailOpen, setDetailOpen] = useState(false);
@@ -294,34 +355,44 @@ export default function PageComponent({ locale, prompts }: Props) {
     return () => observer.disconnect();
   }, [hasMore, autoLoading, filtered.length, visible.length]);
 
-  const renderGalleryCard = (p: PromptGalleryItem) => (
-    <PromptGalleryCard
-      layout="masonry"
-      coverFit="cover"
-      item={p}
-      coverSrc={p.images[0]}
-      coverSizes="(max-width: 1024px) 100vw, 33vw"
-      coverAspectRatio={coverAspectFor(p)}
-      modelBadge={p.model}
-      description={p.description}
-      tags={p.tags}
-      aspectTag={formatAspectTag(p.id)}
-      authorLabel={getAuthorLabel(p)}
-      authorUrl={getAuthorUrl(p) ?? null}
-      primaryCtaLabel={t('card.generate')}
-      coverErrorText={t('gallery.coverLoadFailed')}
-      onMeta={({ width, height }) => rememberCoverMeta(p, width, height)}
-      onCardClick={() => {
-        setActive(p);
-        setDetailOpen(true);
-        setViewerOpen(false);
-      }}
-      onImageClick={() => openViewer(p, 0)}
-      onCtaClick={() => {
-        router.push(`/${locale}/create?template=${encodeURIComponent(p.id)}`);
-      }}
-    />
-  );
+  const renderGalleryCard = (p: PromptGalleryItem) => {
+    const delay = enteringDelays.get(p.id);
+    const animate = delay !== undefined;
+
+    return (
+      <div
+        className={animate ? 'op-gallery-card-enter' : undefined}
+        style={animate ? { animationDelay: `${delay}ms` } : undefined}
+      >
+        <PromptGalleryCard
+          layout="masonry"
+          coverFit="cover"
+          item={p}
+          coverSrc={p.images[0]}
+          coverSizes="(max-width: 1024px) 100vw, 33vw"
+          coverAspectRatio={coverAspectFor(p)}
+          modelBadge={p.model}
+          description={p.description}
+          tags={p.tags}
+          aspectTag={formatAspectTag(p.id)}
+          authorLabel={getAuthorLabel(p)}
+          authorUrl={getAuthorUrl(p) ?? null}
+          primaryCtaLabel={t('card.generate')}
+          coverErrorText={t('gallery.coverLoadFailed')}
+          onMeta={({ width, height }) => rememberCoverMeta(p, width, height)}
+          onCardClick={() => {
+            setActive(p);
+            setDetailOpen(true);
+            setViewerOpen(false);
+          }}
+          onImageClick={() => openViewer(p, 0)}
+          onCtaClick={() => {
+            router.push(`/${locale}/create?template=${encodeURIComponent(p.id)}`);
+          }}
+        />
+      </div>
+    );
+  };
 
   return (
     <>
@@ -355,7 +426,7 @@ export default function PageComponent({ locale, prompts }: Props) {
                 value={query}
                 onChange={(e) => {
                   setQuery(e.target.value);
-                  setLimit(PAGE_SIZE);
+                  resetPagination();
                 }}
                 placeholder={t('hero.searchPlaceholder')}
                 className="w-full bg-transparent px-4 py-3 text-sm text-[var(--text)] outline-none placeholder:text-[var(--text3)]"
@@ -381,46 +452,22 @@ export default function PageComponent({ locale, prompts }: Props) {
             </div>
           </section>
 
-          <section className="px-6 pb-6">
-            <div className="mx-auto w-full max-w-7xl">
-            <div className="flex gap-2 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {models.map((m) => (
-                <button
-                  key={m}
-                  onClick={() => {
-                    setModel(m);
-                    setLimit(PAGE_SIZE);
-                  }}
-                  className={`${MODEL_FILTER_CHIP.base} ${model === m ? MODEL_FILTER_CHIP.selected : MODEL_FILTER_CHIP.idle}`}
-                >
-                  {m === 'all' ? t('filters.allModels') : m}
-                </button>
-              ))}
-            </div>
-            </div>
-          </section>
-
           <section className="px-6 pb-4">
             <div className="mx-auto w-full max-w-7xl">
-            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-              <div className="flex flex-wrap gap-2">
-                {tags.slice(0, 12).map((tagLabel) => (
-                  <button
-                    key={tagLabel}
-                    onClick={() => {
-                      setTag(tagLabel);
-                      setLimit(PAGE_SIZE);
-                    }}
-                    className={`${MODEL_FILTER_CHIP.base} ${tag === tagLabel ? MODEL_FILTER_CHIP.selected : MODEL_FILTER_CHIP.idle}`}
-                  >
-                    {tagLabel === 'all' ? t('filters.allTags') : tagLabel}
-                  </button>
-                ))}
-              </div>
-              <div className="text-xs text-[var(--text3)]">
-                {t('gallery.showing', {shown: visible.length, total: filtered.length})}
-              </div>
-            </div>
+              <GalleryFilterStrip
+                models={models}
+                model={model}
+                onModelChange={handleModelChange}
+                categoryId={categoryId}
+                onCategoryChange={handleCategoryChange}
+                subTag={subTag}
+                onSubTagChange={handleSubTagChange}
+                subTags={subTags}
+                allModelsLabel={t('filters.allModels')}
+                allCategoriesLabel={t('filters.allCategories')}
+                categoryLabel={categoryLabel}
+                showingLabel={t('gallery.showing', { shown: visible.length, total: filtered.length })}
+              />
             </div>
           </section>
 
@@ -428,7 +475,7 @@ export default function PageComponent({ locale, prompts }: Props) {
             <div className="mx-auto w-full max-w-7xl">
             <div className="mb-4 flex items-center gap-3 text-[11px] tracking-[0.18em] text-[var(--text3)]">
               <span className="h-1 w-1 rounded-full bg-[var(--amber)]" />
-              {t('section.latest')}
+              {sectionLabel}
               <span className="h-px flex-1 bg-[var(--border)]" />
             </div>
 
@@ -441,13 +488,20 @@ export default function PageComponent({ locale, prompts }: Props) {
 
             <div ref={sentinelRef} className="mt-8 flex justify-center">
               {hasMore ? (
-                <div className="flex items-center gap-2 text-xs text-[var(--text3)]">
-                  <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--amber)]" />
+                <div
+                  className={`op-gallery-load-more${autoLoading ? '' : ' done'}`}
+                  aria-busy={autoLoading}
+                >
+                  <span className="op-gallery-load-more-dots" aria-hidden>
+                    <span />
+                    <span />
+                    <span />
+                  </span>
                   <span>{t('gallery.loadMore')}</span>
                 </div>
-              ) : (
-                <div className="text-xs text-[var(--text3)]">{t('gallery.noMore')}</div>
-              )}
+              ) : visible.length > 0 ? (
+                <div className="op-gallery-load-more done">{t('gallery.noMore')}</div>
+              ) : null}
             </div>
             </div>
           </section>
