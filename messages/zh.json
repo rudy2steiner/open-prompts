@@ -1116,7 +1116,7 @@
           "sidebar": {
             "title": "你需要了解的一切",
             "desc": "关于在 Open Prompts 上查找、复制与生成图像的常见问题，涵盖 GPT Image 2 及其他 AI 图像模型。",
-            "contact": "还有疑问？欢迎在 GitHub 或 X @openpromptsapp 联系我们 — 通常一天内回复。"
+            "contact": "还有疑问？欢迎在 <githubLink>GitHub</githubLink> 或 X <xLink>@technoobgo</xLink> 联系我们 — 通常一天内回复。"
           },
           "items": [
             {

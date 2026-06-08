@@ -1138,7 +1138,7 @@
           "sidebar": {
             "title": "知っておくべきこと",
             "desc": "Open Prompts でプロンプトを見つけ、コピーし、生成する際のよくある質問。GPT Image 2 および他の AI 画像モデルについて。",
-            "contact": "まだ質問がありますか？GitHub または X @openpromptsapp まで — 通常 1 日以内に返信します。"
+            "contact": "まだ質問がありますか？<githubLink>GitHub</githubLink> または X <xLink>@technoobgo</xLink> まで — 通常 1 日以内に返信します。"
           },
           "items": [
             {

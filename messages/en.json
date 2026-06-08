@@ -1090,7 +1090,7 @@
           "sidebar": {
             "title": "Everything you need to know",
             "desc": "Common questions about using Open Prompts to find, copy, and generate with GPT Image 2 and other AI image models.",
-            "contact": "Still have questions? Reach us on GitHub or X @openpromptsapp — we reply within a day."
+            "contact": "Still have questions? Reach us on <githubLink>GitHub</githubLink> or X <xLink>@technoobgo</xLink> — we reply within a day."
           },
           "items": [
             {
