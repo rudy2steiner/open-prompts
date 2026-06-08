@@ -3,13 +3,10 @@
 import './gallery-page.css';
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
-import HeadInfo from '~/components/HeadInfo';
 import type { PromptGalleryItem } from '~/data/promptGallery';
 import { PromptGalleryCard } from '~/components/prompt-gallery/PromptGalleryCard';
 import { GalleryFilterStrip } from '~/components/prompt-gallery/GalleryFilterStrip';
 import { PromptGalleryMasonry } from '~/components/prompt-gallery/PromptGalleryMasonry';
-import { PromptGallerySwipeViewer } from '~/components/prompt-gallery/PromptGallerySwipeViewer';
-import { PromptTemplateDetailDialog } from '~/components/prompt-gallery/PromptTemplateDetailDialog';
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
 import { galleryAuthorLabel, galleryAuthorUrl } from '~/lib/prompts/gallery-attribution';
@@ -23,6 +20,8 @@ import { useTranslations } from 'next-intl';
 type Props = {
   locale: string;
   prompts: PromptGalleryItem[];
+  initialModel?: string;
+  initialCategory?: SubmitCategoryKey;
 };
 
 const PAGE_SIZE = 18;
@@ -37,23 +36,30 @@ function uniq<T>(arr: T[]) {
 }
 
 import {
-  countGalleryModels,
-  formatGalleryStatCount,
-} from '~/lib/prompts/gallery-stats';
-import {
   mergeCategoryTags,
   promptMatchesGalleryFilter,
   type SubmitCategoryKey,
 } from '~/lib/prompts/prompt-categories';
+import { promptHref } from '~/lib/prompts/seo-paths';
 import { formatSubTagLabel } from '~/lib/prompts/sub-tag-i18n';
 
-export default function PageComponent({ locale, prompts }: Props) {
+export default function PageComponent({
+  locale,
+  prompts,
+  initialModel,
+  initialCategory,
+}: Props) {
   const t = useTranslations('OpenPrompts');
   const tSubmit = useTranslations('OpenPrompts.submitPage');
   const router = useRouter();
   const [query, setQuery] = useState('');
-  const [model, setModel] = useState<string>('all');
-  const [categoryId, setCategoryId] = useState<'all' | SubmitCategoryKey>('all');
+  const [model, setModel] = useState<string>(() => {
+    if (!initialModel) return 'all';
+    return prompts.some((p) => p.model === initialModel) ? initialModel : 'all';
+  });
+  const [categoryId, setCategoryId] = useState<'all' | SubmitCategoryKey>(() =>
+    initialCategory ?? 'all',
+  );
   const [subTag, setSubTag] = useState<string | null>(null);
   const [limit, setLimit] = useState(PAGE_SIZE);
   const [autoLoading, setAutoLoading] = useState(false);
@@ -66,15 +72,6 @@ export default function PageComponent({ locale, prompts }: Props) {
     () => ['all', ...uniq(prompts.map((p) => p.model)).sort((a, b) => a.localeCompare(b))],
     [prompts],
   );
-  const promptCountLabel = useMemo(
-    () => formatGalleryStatCount(prompts.length, locale),
-    [prompts.length, locale],
-  );
-  const modelCountLabel = useMemo(
-    () => formatGalleryStatCount(countGalleryModels(prompts), locale),
-    [prompts, locale],
-  );
-
   const subTags = useMemo(() => {
     if (categoryId === 'all') return [];
     return mergeCategoryTags(categoryId, prompts);
@@ -157,11 +154,6 @@ export default function PageComponent({ locale, prompts }: Props) {
     prevVisibleLenRef.current = visible.length;
     prevFilteredLenRef.current = filtered.length;
   }, [visible, filtered.length]);
-
-  const [active, setActive] = useState<PromptGalleryItem | null>(null);
-  const [detailOpen, setDetailOpen] = useState(false);
-  const [viewerOpen, setViewerOpen] = useState(false);
-  const [viewerInitialIndex, setViewerInitialIndex] = useState(0);
 
   const getAuthorUrl = (item: PromptGalleryItem): string | undefined => galleryAuthorUrl(item);
 
@@ -291,13 +283,6 @@ export default function PageComponent({ locale, prompts }: Props) {
     return `${approx[0]}:${approx[1]}`;
   };
 
-  const openViewer = (item: PromptGalleryItem, idx: number) => {
-    setActive(item);
-    setDetailOpen(false);
-    setViewerInitialIndex(idx);
-    setViewerOpen(true);
-  };
-
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   const loadMoreRef = useRef<() => void>(() => {});
 
@@ -384,13 +369,8 @@ export default function PageComponent({ locale, prompts }: Props) {
           authorUrl={getAuthorUrl(p) ?? null}
           primaryCtaLabel={t('card.generate')}
           coverErrorText={t('gallery.coverLoadFailed')}
+          cardHref={promptHref(locale, p.id)}
           onMeta={({ width, height }) => rememberCoverMeta(p, width, height)}
-          onCardClick={() => {
-            setActive(p);
-            setDetailOpen(true);
-            setViewerOpen(false);
-          }}
-          onImageClick={() => openViewer(p, 0)}
           onCtaClick={() => {
             router.push(`/${locale}/create?template=${encodeURIComponent(p.id)}`);
           }}
@@ -401,59 +381,37 @@ export default function PageComponent({ locale, prompts }: Props) {
 
   return (
     <>
-      <HeadInfo
-        title={t('galleryPage.seo.title')}
-        description={t('galleryPage.seo.description')}
-        keywords={t('galleryPage.seo.keywords')}
-        locale={locale}
-        page=""
-      />
-
       <div className="min-h-screen w-full bg-[var(--bg)] text-[var(--text)]">
-        <OpenPromptsSiteHeader locale={locale} activeNav="gallery" langPathSuffix="" />
+        <OpenPromptsSiteHeader locale={locale} activeNav="gallery" langPathSuffix="/gallery" />
 
         <main className="w-full">
-          <section className="px-6 pb-10 pt-16 text-center">
+          <section className="px-6 pb-4 pt-8">
             <div className="mx-auto w-full max-w-7xl">
-            <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-[color-mix(in_oklab,var(--amber)_30%,transparent)] bg-[color-mix(in_oklab,var(--amber)_10%,transparent)] px-3 py-1 text-[11px] font-medium tracking-[0.18em] text-[var(--amber)]">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--amber)]" />
-              {t('hero.eyebrow')}
-            </div>
-            <h1 className="mt-6 text-4xl font-semibold tracking-tight sm:text-6xl">
-              {t('hero.h1Prefix')} <span className="italic text-[var(--amber2)]">{t('hero.h1Em')}</span>
-            </h1>
-            <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[var(--text2)] sm:text-base">
-              {t('hero.desc')}
-            </p>
-
-            <div className="mx-auto mt-8 flex max-w-xl overflow-hidden rounded-xl border border-[var(--border2)] bg-[var(--surface)]">
-              <input
-                value={query}
-                onChange={(e) => {
-                  setQuery(e.target.value);
-                  resetPagination();
-                }}
-                placeholder={t('hero.searchPlaceholder')}
-                className="w-full bg-transparent px-4 py-3 text-sm text-[var(--text)] outline-none placeholder:text-[var(--text3)]"
-              />
-              <button className="min-w-[92px] whitespace-nowrap bg-[var(--amber)] px-6 text-sm font-semibold text-[var(--bg)] hover:bg-[var(--amber2)]">
-                {t('hero.searchButton')}
-              </button>
-            </div>
-
-            <div className="mx-auto mt-8 flex max-w-3xl justify-center gap-8 text-center">
-              {[
-                [promptCountLabel, t('stats.prompts')],
-                [modelCountLabel, t('stats.models')],
-                ['6,200+', t('stats.members')],
-                [t('stats.daily'), t('stats.source')],
-              ].map(([num, label]) => (
-                <div key={label}>
-                  <div className="text-xl font-semibold text-[var(--amber2)]">{num}</div>
-                  <div className="mt-1 text-[11px] tracking-[0.14em] text-[var(--text3)]">{label}</div>
+              <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <h1 className="text-2xl font-semibold tracking-tight text-[var(--text)] sm:text-3xl">
+                    {t('galleryPage.title')}
+                  </h1>
+                  <p className="mt-1 text-sm text-[var(--text2)]">{t('galleryPage.subtitle')}</p>
                 </div>
-              ))}
-            </div>
+                <div className="flex max-w-md flex-1 overflow-hidden rounded-xl border border-[var(--border2)] bg-[var(--surface)] sm:max-w-sm">
+                  <input
+                    value={query}
+                    onChange={(e) => {
+                      setQuery(e.target.value);
+                      resetPagination();
+                    }}
+                    placeholder={t('hero.searchPlaceholder')}
+                    className="w-full bg-transparent px-4 py-2.5 text-sm text-[var(--text)] outline-none placeholder:text-[var(--text3)]"
+                  />
+                  <button
+                    type="button"
+                    className="min-w-[80px] whitespace-nowrap bg-[var(--amber)] px-4 text-sm font-semibold text-[var(--bg)] hover:bg-[var(--amber2)]"
+                  >
+                    {t('hero.searchButton')}
+                  </button>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -516,30 +474,6 @@ export default function PageComponent({ locale, prompts }: Props) {
         <OpenPromptsSiteFooter locale={locale} />
       </div>
 
-      <PromptTemplateDetailDialog
-        open={Boolean(active && detailOpen && !viewerOpen)}
-        item={active}
-        locale={locale}
-        onClose={() => {
-          setDetailOpen(false);
-          setActive(null);
-        }}
-      />
-
-      {active && viewerOpen ? (
-        <PromptGallerySwipeViewer
-          open
-          onClose={() => setViewerOpen(false)}
-          images={active.images}
-          title={active.title}
-          imageKeyPrefix={active.id}
-          initialIndex={viewerInitialIndex}
-          coverLoadFailedText={t('gallery.coverLoadFailed')}
-          closeLabel={t('createPage.viewerClose')}
-          prevLabel={t('createPage.viewerPrev')}
-          nextLabel={t('createPage.viewerNext')}
-        />
-      ) : null}
     </>
   );
 }

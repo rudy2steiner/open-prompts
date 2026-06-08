@@ -23,6 +23,11 @@ const nextConfig = {
                 hostname: 'api.dicebear.com',
                 pathname: '/**',
             },
+            {
+                protocol: 'https',
+                hostname: '**.twimg.com',
+                pathname: '/**',
+            },
         ],
     },
     async rewrites() {

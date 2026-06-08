@@ -15,12 +15,21 @@ import {
   persistOpLocale,
   type OpLocale,
 } from '~/lib/op-locale';
+import { galleryHref } from '~/lib/prompts/gallery-path';
 import {
   accountPanelHref,
   type AccountPanel,
 } from '~/lib/account/account-path';
 
-export type OpenPromptsSiteNavKey = 'gallery' | 'create' | 'submit' | 'rank' | 'docs' | 'login' | 'account';
+export type OpenPromptsSiteNavKey =
+  | 'home'
+  | 'gallery'
+  | 'create'
+  | 'submit'
+  | 'rank'
+  | 'docs'
+  | 'login'
+  | 'account';
 
 export type OpenPromptsSiteHeaderProps = {
   locale: string;
@@ -91,7 +100,8 @@ export function OpenPromptsSiteHeader({
   const navItems = useMemo(
     () =>
       [
-        { key: 'gallery' as const, label: t('nav.gallery'), href: locale === 'en' ? '/' : `/${locale}` },
+        { key: 'home' as const, label: t('nav.home'), href: buildLocaleHref(locale) },
+        { key: 'gallery' as const, label: t('nav.gallery'), href: galleryHref(locale) },
         { key: 'create' as const, label: t('nav.create'), href: locale === 'en' ? '/create' : `/${locale}/create` },
         { key: 'submit' as const, label: t('nav.submit'), href: locale === 'en' ? '/submit' : `/${locale}/submit` },
         { key: 'rank' as const, label: t('nav.rank'), href: '#' },

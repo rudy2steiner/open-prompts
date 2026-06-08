@@ -20,6 +20,8 @@ type Props = {
   showTags?: boolean;
   showAuthor?: boolean;
   onMeta?: (meta: { width: number; height: number }) => void;
+  /** When set, the card shell renders as a link to the prompt detail page. */
+  cardHref?: string;
   onCardClick?: () => void;
   onImageClick?: () => void;
   /** Opens fullscreen/lightbox for the cover only (e.g. create page); avoids nesting buttons inside the cover hit target. */
@@ -49,6 +51,7 @@ export function PromptGalleryCard({
   showTags = true,
   showAuthor = true,
   onMeta,
+  cardHref,
   onCardClick,
   onImageClick,
   onCoverFullscreen,
@@ -70,11 +73,11 @@ export function PromptGalleryCard({
 
   return (
     <div
-      role={onCardClick ? 'button' : undefined}
-      tabIndex={onCardClick ? 0 : undefined}
-      onClick={onCardClick}
+      role={!cardHref && onCardClick ? 'button' : undefined}
+      tabIndex={!cardHref && onCardClick ? 0 : undefined}
+      onClick={!cardHref ? onCardClick : undefined}
       onKeyDown={
-        onCardClick
+        !cardHref && onCardClick
           ? (e) => {
               if (e.key === 'Enter' || e.key === ' ') onCardClick?.();
             }
@@ -82,6 +85,11 @@ export function PromptGalleryCard({
       }
       className={shellClass}
     >
+      {cardHref ? (
+        <a href={cardHref} className="absolute inset-0 z-[1]" aria-label={item.title}>
+          <span className="sr-only">{item.title}</span>
+        </a>
+      ) : null}
       <div className="relative block w-full bg-[var(--surface2)]" style={{ aspectRatio: coverAspectRatio }}>
         {coverSrc ? (
           <CoverImage
@@ -129,15 +137,14 @@ export function PromptGalleryCard({
             {modelBadge}
           </div>
         ) : null}
-        {onImageClick || onCardClick ? (
+        {onImageClick ? (
           <button
             type="button"
             className="absolute inset-0 z-[1] cursor-pointer bg-transparent"
             aria-label={item.title}
             onClick={(e) => {
               e.stopPropagation();
-              if (onImageClick) onImageClick();
-              else onCardClick?.();
+              onImageClick();
             }}
           />
         ) : null}
@@ -196,7 +203,7 @@ export function PromptGalleryCard({
                       href={authorUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="hover:text-[var(--text2)] hover:underline"
+                      className="relative z-[2] hover:text-[var(--text2)] hover:underline"
                       onClick={(e) => e.stopPropagation()}
                       title={authorLabel}
                     >
@@ -220,7 +227,7 @@ export function PromptGalleryCard({
                   e.stopPropagation();
                   onCtaClick?.();
                 }}
-                className="rounded-md bg-[var(--amber)] px-2.5 py-1 text-[11px] font-semibold text-[var(--bg)]"
+                className="relative z-[2] rounded-md bg-[var(--amber)] px-2.5 py-1 text-[11px] font-semibold text-[var(--bg)]"
               >
                 {primaryCtaLabel}
               </button>

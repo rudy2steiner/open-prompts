@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getDb } from '~/db/client';
+import { buildPageMetadata, normalizeLocale } from '~/lib/seo/metadata';
 import {
   accountPanelFromLegacyQuery,
   accountPanelHref,
@@ -19,13 +20,6 @@ import PageComponent from '../PageComponent';
 
 export const dynamic = 'force-dynamic';
 
-function normalizeLocale(raw: string) {
-  const lower = (raw || 'en').toLowerCase();
-  const normalized =
-    lower === 'zh-cn' || lower === 'zh-hans' ? 'zh' : lower === 'ja-jp' ? 'ja' : lower;
-  return normalized === 'en' || normalized === 'zh' || normalized === 'ja' ? normalized : 'en';
-}
-
 function loginHref(locale: string) {
   return locale === 'en' ? '/login' : `/${locale}/login`;
 }
@@ -39,7 +33,13 @@ export async function generateMetadata({
   const locale = normalizeLocale(raw);
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'OpenPrompts.accountPage' });
-  return { title: t('seo.title'), description: t('seo.description') };
+  return buildPageMetadata({
+    locale,
+    path: '/account',
+    title: t('seo.title'),
+    description: t('seo.description'),
+    robots: { index: false, follow: false },
+  });
 }
 
 export default async function Page({

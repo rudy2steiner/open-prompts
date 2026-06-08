@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
+import { galleryHref } from '~/lib/prompts/gallery-path';
 
 const FAQ_KEYS = ['1', '2', '3', '4', '5'] as const;
 const STEP_KEYS = ['1', '2', '3'] as const;
@@ -7,10 +8,6 @@ const TIP_KEYS = ['1', '2', '3', '4'] as const;
 
 function submitHref(locale: string) {
   return locale === 'en' ? '/submit' : `/${locale}/submit`;
-}
-
-function galleryHref(locale: string) {
-  return locale === 'en' ? '/' : `/${locale}`;
 }
 
 type Props = { locale: string };

@@ -4,14 +4,8 @@ import { Suspense } from 'react';
 import { getOAuthProviderFlags } from '~/lib/auth/oauth-providers';
 import { countGalleryModels, formatGalleryStatCount } from '~/lib/prompts/gallery-stats';
 import { getPromptGallery } from '~/lib/prompts/get-prompt-gallery';
+import { buildPageMetadata, normalizeLocale } from '~/lib/seo/metadata';
 import PageComponent from './PageComponent';
-
-function normalizeLocale(raw: string) {
-  const lower = (raw || 'en').toLowerCase();
-  const normalized =
-    lower === 'zh-cn' || lower === 'zh-hans' ? 'zh' : lower === 'ja-jp' ? 'ja' : lower;
-  return normalized === 'en' || normalized === 'zh' || normalized === 'ja' ? normalized : 'en';
-}
 
 export async function generateMetadata({
   params,
@@ -24,12 +18,12 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'OpenPrompts.login' });
   const title = t('seoTitle');
   const description = t('seoDescription');
-  return {
+  return buildPageMetadata({
+    locale,
+    path: '/login',
     title,
     description,
-    openGraph: { title, description, type: 'website' },
-    twitter: { card: 'summary', title, description },
-  };
+  });
 }
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {

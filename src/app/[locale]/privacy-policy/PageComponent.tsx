@@ -1,5 +1,4 @@
 import Header from '~/components/Header';
-import HeadInfo from "~/components/HeadInfo";
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 
 const PageComponent = ({
@@ -11,12 +10,6 @@ const PageComponent = ({
 
   return (
     <>
-      <HeadInfo
-        title={privacyPolicyLanguageText.title}
-        description={privacyPolicyLanguageText.description}
-        locale={locale}
-        page={"/privacy-policy"}
-      />
       <Header
         locale={locale}
         page={'privacy-policy'}

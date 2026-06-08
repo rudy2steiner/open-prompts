@@ -10,8 +10,10 @@ import { CoverImage } from '~/components/prompt-gallery/CoverImage';
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
 
-function homeHref(locale: string) {
-  return locale === 'en' ? '/' : `/${locale}`;
+import { galleryHref } from '~/lib/prompts/gallery-path';
+
+function galleryHomeHref(locale: string) {
+  return galleryHref(locale);
 }
 
 /** Always three slots for the left stack; cycles prompts if fewer than three exist. */
@@ -52,7 +54,7 @@ export default function PageComponent({
   const callbackUrl = useMemo(() => {
     const raw = searchParams?.get('callbackUrl');
     if (raw && raw.startsWith('/') && !raw.startsWith('//')) return raw;
-    return homeHref(locale);
+    return galleryHomeHref(locale);
   }, [locale, searchParams]);
   const stackPrompts = useMemo(() => stackThree(previewPrompts), [previewPrompts]);
 
@@ -135,7 +137,7 @@ export default function PageComponent({
                   {stackPrompts.length > 0 ? (
                     <>
                       <Link
-                        href={homeHref(locale)}
+                        href={galleryHomeHref(locale)}
                         title={stackPrompts[0].title}
                         className="absolute left-1/2 top-1/2 z-[1] w-[240px] -translate-x-[calc(50%+60px)] -translate-y-1/2 rotate-[-6deg] rounded-none border border-[var(--border2)] bg-[var(--surface)] opacity-70 shadow-[0_24px_60px_rgba(0,0,0,0.5)] transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:opacity-90 group-hover/cardstack:-translate-x-[calc(50%+70px)] group-hover/cardstack:rotate-[-8deg]"
                       >
@@ -153,7 +155,7 @@ export default function PageComponent({
                         </div>
                       </Link>
                       <Link
-                        href={homeHref(locale)}
+                        href={galleryHomeHref(locale)}
                         title={stackPrompts[1].title}
                         className="absolute left-1/2 top-1/2 z-[3] w-[240px] -translate-x-1/2 -translate-y-1/2 rotate-[2deg] rounded-none border border-[var(--border2)] bg-[var(--surface)] shadow-[0_24px_60px_rgba(0,0,0,0.5)] transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/cardstack:scale-[1.02]"
                       >
@@ -170,7 +172,7 @@ export default function PageComponent({
                         </div>
                       </Link>
                       <Link
-                        href={homeHref(locale)}
+                        href={galleryHomeHref(locale)}
                         title={stackPrompts[2].title}
                         className="absolute left-1/2 top-1/2 z-[2] w-[240px] -translate-x-[calc(50%-55px)] -translate-y-1/2 rotate-[8deg] rounded-none border border-[var(--border2)] bg-[var(--surface)] opacity-65 shadow-[0_24px_60px_rgba(0,0,0,0.5)] transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:opacity-80 group-hover/cardstack:-translate-x-[calc(50%-65px)] group-hover/cardstack:rotate-[10deg]"
                       >
@@ -242,7 +244,7 @@ export default function PageComponent({
             <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-y-auto p-6 pt-14">
               <div className="absolute left-6 top-4 z-10">
                 <Link
-                  href={homeHref(locale)}
+                  href={galleryHomeHref(locale)}
                   className="inline-flex items-center rounded-none border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-xs text-[var(--text2)] transition hover:border-[var(--border2)] hover:text-[var(--text)]"
                 >
                   <span className="mr-1.5" aria-hidden>
