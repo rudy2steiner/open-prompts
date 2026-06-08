@@ -255,7 +255,24 @@ export async function HomeSeoSections({ locale, prompts }: Props) {
               <h3 className="op-faq-sidebar-title">{t('homePage.seoContent.faq.sidebar.title')}</h3>
               <p className="op-faq-sidebar-desc">{t('homePage.seoContent.faq.sidebar.desc')}</p>
               <div className="op-faq-contact-box">
-                <p>{t('homePage.seoContent.faq.sidebar.contact')}</p>
+                <p>
+                  {t.rich('homePage.seoContent.faq.sidebar.contact', {
+                    githubLink: (chunks) => (
+                      <a
+                        href="https://github.com/rudy2steiner/open-prompts"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {chunks}
+                      </a>
+                    ),
+                    xLink: (chunks) => (
+                      <a href="https://x.com/technoobgo" target="_blank" rel="noreferrer">
+                        {chunks}
+                      </a>
+                    ),
+                  })}
+                </p>
               </div>
             </aside>
             <div className="op-landing-faq-list">
