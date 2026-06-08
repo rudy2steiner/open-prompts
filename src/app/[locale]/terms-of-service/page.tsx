@@ -1,9 +1,31 @@
-import {unstable_setRequestLocale} from 'next-intl/server';
+import type { Metadata } from 'next';
+import { unstable_setRequestLocale } from 'next-intl/server';
 
 import PageComponent from './PageComponent';
-import {getIndexLanguageText,getFooterLanguageText, getTermsOfServiceLanguageText} from "~/configs/languageText";
+import {
+  getFooterLanguageText,
+  getIndexLanguageText,
+  getTermsOfServiceLanguageText,
+} from '~/configs/languageText';
+import { buildPageMetadata, normalizeLocale } from '~/lib/seo/metadata';
 
-export default async function PageContent({params: {locale = ''}}) {
+export async function generateMetadata({
+  params: { locale = 'en' },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const normalized = normalizeLocale(locale);
+  unstable_setRequestLocale(normalized);
+  const { title, description } = await getTermsOfServiceLanguageText();
+  return buildPageMetadata({
+    locale: normalized,
+    path: '/terms-of-service',
+    title,
+    description,
+  });
+}
+
+export default async function PageContent({ params: { locale = '' } }) {
   // Enable static rendering
   unstable_setRequestLocale(locale);
   const indexLanguageText = await getIndexLanguageText();

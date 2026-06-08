@@ -1,6 +1,8 @@
 import clsx from 'clsx';
+import type { Metadata } from 'next';
 import {notFound} from 'next/navigation';
 import {getMessages, unstable_setRequestLocale} from 'next-intl/server';
+import { getSiteUrl } from '~/lib/seo/metadata';
 import {cookies} from 'next/headers';
 import {NextIntlClientProvider} from 'next-intl';
 import {ReactNode} from 'react';
@@ -16,6 +18,26 @@ type Props = {
 
 export function generateStaticParams() {
   return locales.map((locale) => ({locale}));
+}
+
+export function generateMetadata(): Metadata {
+  const siteUrl = getSiteUrl();
+  return {
+    metadataBase: new URL(siteUrl.endsWith('/') ? siteUrl : `${siteUrl}/`),
+    title: {
+      default: 'Open Prompts',
+      template: '%s | Open Prompts',
+    },
+    openGraph: {
+      siteName: 'Open Prompts',
+      type: 'website',
+      images: [{ url: '/og-default.png', width: 1200, height: 630, alt: 'Open Prompts' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      images: ['/og-default.png'],
+    },
+  };
 }
 
 export default async function LocaleLayout({

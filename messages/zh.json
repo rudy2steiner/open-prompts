@@ -42,8 +42,8 @@
     "soraTip": "OpenAI has not released Sora's API yet."
   },
   "privacyPolicy": {
-    "title": "隐私政策 ｜ ",
-    "description": "",
+    "title": "隐私政策 | Open Prompts",
+    "description": "了解 Open Prompts 在您浏览、提交和分享 AI 图像提示词社区图库时如何收集、使用和保护您的信息。",
     "h1": "隐私政策",
     "date": "最后更新日期：2024年2月19日",
     "desc": "感谢您选择 SoraWebui！本隐私政策概述了您在使用我们位于的网站时我们如何收集、使用和保护您的信息",
@@ -62,8 +62,8 @@
     "h4_6_p": "如果您对我们的隐私政策有任何疑问或顾虑，请通过以下方式与我们联系："
   },
   "termsOfService": {
-    "title": "服务条款｜ ",
-    "description": "",
+    "title": "服务条款 | Open Prompts",
+    "description": "使用 Open Prompts（社区 AI 提示词图库，用于发现、提交和分享图像生成提示词）的服务条款。",
     "h1": "服务条款",
     "date": "最后更新日期：2024年2月19日",
     "desc": "这些服务条款（“条款”）管辖您对 SoraWebui（“服务”）的访问和使用，由 SoraWebui（“我们”或“我们”）提供。通过访问或使用服务，您同意受这些条款的约束。",
@@ -288,6 +288,7 @@
       "displayNameFallback": "用户"
     },
     "nav": {
+      "home": "首页",
       "gallery": "画廊",
       "create": "创作",
       "favorites": "收藏",
@@ -901,26 +902,274 @@
       "registerSuccess": "账户已创建，正在登录…"
     },
     "galleryPage": {
+      "title": "提示词画廊",
+      "subtitle": "按模型与分类筛选，复制模板，站内一键生成。",
       "seo": {
         "title": "社区精选 AI 生图提示词 | Open Prompts",
         "description": "在 Open Prompts 发现精选 AI 图像提示词与模板，按模型筛选、复制模板，并用 GPT Image、Midjourney、DALL·E 等生成。",
         "keywords": "提示词,生图,AI绘画,画廊,Midjourney,DALL·E,Open Prompts"
       }
     },
+    "modelPage": {
+      "seo": {
+        "title": "免费 {model} 提示词 — {count} 条社区模板 | Open Prompts",
+        "description": "浏览 Open Prompts 社区精选的 {count} 条 {model} 提示词。复制模板、预览效果，站内一键生成。"
+      },
+      "breadcrumb": {
+        "home": "首页",
+        "gallery": "画廊"
+      },
+      "heading": "{model} 提示词",
+      "subtitle": "{count} 条社区精选 {model} 提示词模板 — 复制后站内生成。",
+      "empty": "暂无 {model} 提示词。请稍后再来或浏览完整画廊。"
+    },
+    "categoryPage": {
+      "seo": {
+        "title": "免费 {category} AI 提示词 — {count} 条模板 | Open Prompts",
+        "description": "在 Open Prompts 探索 {count} 条免费 {category} AI 图像提示词。复制社区验证的模板，站内生成精美图像。"
+      },
+      "breadcrumb": {
+        "home": "首页",
+        "gallery": "画廊"
+      },
+      "heading": "{category} 提示词",
+      "subtitle": "{category} 分类共 {count} 条社区提示词 — 复制模板，站内生成。",
+      "empty": "{category} 分类暂无提示词。浏览画廊或提交你的作品。"
+    },
+    "promptPage": {
+      "seo": {
+        "title": "{title} — {model} 提示词 | Open Prompts"
+      },
+      "backToGallery": "← 返回画廊",
+      "promptLabel": "提示词",
+      "modelLabel": "模型",
+      "imageAlt": "{title} — {model} 预览图 {index}"
+    },
+    "homePage": {
+      "seo": {
+        "title": "免费 AI 图像提示词画廊 | GPT Image 2 | Open Prompts",
+        "description": "发现 {count}+ 条社区精选 GPT Image 2 提示词。复制、改编，并用 GPT Image 2、DALL·E 3、Midjourney 生成精美 AI 图像 — 免费，每日更新。",
+        "keywords": "GPT Image 2 提示词,AI 生图,提示词画廊,Midjourney,DALL·E,Open Prompts"
+      },
+      "h1Line1": "免费",
+      "h1Line2": "GPT Image 2",
+      "h1Line3": "提示词画廊",
+      "browseGallery": "浏览 GPT Image 2 提示词",
+      "submitPrompt": "提交你的提示词 →",
+      "modelBar": {
+        "label": "支持模型",
+        "allModels": "全部模型",
+        "gptImage2": "GPT Image 2",
+        "dalle3": "DALL·E 3",
+        "midjourney": "Midjourney",
+        "stableDiffusion": "Stable Diffusion"
+      },
+      "browseByModel": {
+        "heading": "按模型浏览",
+        "sub": "为各 AI 图像模型精选的优质提示词"
+      },
+      "browseByCategory": {
+        "heading": "按分类浏览",
+        "sub": "探索不同创作风格的提示词"
+      },
+      "promptCount": "{count} 条提示词 →",
+      "comingSoon": "即将上线 →",
+      "models": {
+        "gptImage2": {
+          "icon": "🟢",
+          "title": "GPT Image 2 提示词",
+          "desc": "社区精选 OpenAI 图像模型提示词 — 写实人像、产品广告、时尚大片等。"
+        },
+        "dalle3": {
+          "icon": "🔵",
+          "title": "DALL·E 3 提示词",
+          "desc": "即用型 DALL·E 3 提示词 — 电影感风景、极简产品摄影与创意概念。"
+        },
+        "midjourney": {
+          "icon": "🟣",
+          "title": "Midjourney 提示词",
+          "desc": "Midjourney 艺术向提示词 — 奇幻世界、插画与概念设计。"
+        }
+      },
+      "categories": {
+        "portraitPhoto": {
+          "desc": "电影感人像、时尚大片与旅行摄影提示词。"
+        },
+        "artStyles": {
+          "desc": "水彩、复古、拼贴与插画风格提示词。"
+        },
+        "productCommercial": {
+          "desc": "护肤广告、街头美食与高端品牌摄影提示词。"
+        },
+        "gameFantasy": {
+          "desc": "赛博朋克、暗黑奇幻、科幻角色设定与世界观构建。"
+        }
+      },
+      "seoContent": {
+        "features": {
+          "eyebrow": "为什么选择 Open Prompts",
+          "title": "掌握",
+          "titleEm": "GPT Image 2",
+          "subtitle": "Open Prompts 是围绕 OpenAI 最新图像模型打造的社区画廊 — 向真实创作者学习，复制成熟模板，无需离开页面即可生成图像。",
+          "items": [
+            {
+              "t": "精选 GPT Image 2 提示词",
+              "d": "每条提示词均来自 X 上活跃创作者分享的真实成果。没有水分 — 只有经实际输出验证、可复制前即可预览的模板。"
+            },
+            {
+              "t": "站内即时生成",
+              "d": "选中任意提示词，即可在浏览器中直接生成图像。无需切换标签页，无需管理 API Key — 从灵感到成图，一键完成。"
+            },
+            {
+              "t": "复制、改编与二次创作",
+              "d": "每条提示词一键复制。替换主体、风格或光线，再输入任意支持的模型。迭代，才是好图的关键。"
+            },
+            {
+              "t": "按模型与分类筛选",
+              "d": "为 DALL·E 3、Midjourney 等模型提供专属画廊。按人像、产品、奇幻或建筑等分类，精准找到想要的风格。"
+            },
+            {
+              "t": "每日同步 X 内容",
+              "d": "系统每日监测 X 上顶尖创作者的新提示词。新鲜内容自动进入画廊 — 始终紧跟趋势。"
+            },
+            {
+              "t": "开放且由社区驱动",
+              "d": "提交你的提示词，获得创作者积分，积累关注。排行榜每周展示复制与生成次数最多的模板。"
+            }
+          ]
+        },
+        "howItWorks": {
+          "eyebrow": "使用流程",
+          "title": "从提示词到图像",
+          "titleEm": "只需几步",
+          "subtitle": "Open Prompts 省去猜测。浏览成熟提示词，一键复制，站内生成 — 全程不离开本站。",
+          "steps": [
+            {
+              "t": "浏览 GPT Image 2 画廊",
+              "d": "按模型、分类或时间探索 {count}+ 条社区提示词。每张卡片都展示成图与对应提示词 — 复制前心中有数。"
+            },
+            {
+              "t": "复制并自定义提示词",
+              "d": "点击复制，完整提示词即入剪贴板。可微调主体、风格或氛围，也可原样使用。每条模板均经真实创作者验证。"
+            },
+            {
+              "t": "站内用 GPT Image 2 生成",
+              "d": "点击生成，图像在 Open Prompts 内完成。无需额外订阅。下载、分享或继续迭代 — 都在这里。"
+            },
+            {
+              "t": "分享并获得创作者积分",
+              "d": "将最佳提示词提交回画廊。登上排行榜，在每次生成中获得署名，在 AI 图像创作者中扩大影响力。"
+            }
+          ],
+          "browserMockup": {
+            "url": "open-prompts.com/prompt/vintage-travel-poster",
+            "promptLabel": "GPT Image 2 提示词",
+            "promptText": "希腊圣托里尼经典复古旅行海报。白墙建筑、金色夕照、温暖复古色调、华丽衬线字体排版，高细节，编辑级画质。 — GPT Image 2",
+            "resultTitle": "圣托里尼旅行海报",
+            "resultSub": "由 GPT Image 2 生成 · 4 秒",
+            "badge": "✓ 可下载",
+            "statPrompts": "提示词",
+            "statCopies": "复制次数",
+            "statTime": "平均耗时"
+          }
+        },
+        "testimonials": {
+          "eyebrow": "社区好评",
+          "title": "每天使用",
+          "titleEm": "Open Prompts",
+          "subtitle": "数千名设计师、营销人与 AI 艺术家依靠 Open Prompts 发现与复用社区最佳提示词。",
+          "featured": {
+            "q": "Open Prompts 彻底改变了我使用 GPT Image 2 的方式。我不再花 30 分钟从零写提示词，而是浏览画廊、复制已验证的模板再迭代。一周内出图质量翻倍。",
+            "a": "@Diplomeme",
+            "handle": "@Diplomeme",
+            "role": "AI 内容创作者 · X",
+            "tag": "杰出贡献者"
+          },
+          "items": [
+            {
+              "q": "我找到的最佳免费 GPT Image 2 提示词资源。每张卡片都展示真实成图，不用猜。每天早上开工前必看。",
+              "a": "品牌设计师",
+              "handle": "@noorlewisx",
+              "role": "品牌设计师",
+              "avatar": "/testimonials/sarah-johnson.svg"
+            },
+            {
+              "q": "每日从 X 同步，每天早上都有新提示词。我提交的赛博朋克角色表成了复制次数最多的模板之一。",
+              "a": "概念艺术家",
+              "handle": "@Strength04_X",
+              "role": "概念艺术家",
+              "avatar": "/testimonials/michael-chen.svg"
+            },
+            {
+              "q": "我为五个品牌运营社媒。Open Prompts 把提示词调研从一小时缩到五分钟。单凭分类筛选就值得收藏。",
+              "a": "社媒运营",
+              "handle": "@Taaruk_",
+              "role": "社媒运营",
+              "avatar": "/testimonials/emily-rodriguez.svg"
+            }
+          ]
+        },
+        "faq": {
+          "eyebrow": "常见问题",
+          "title": "关于",
+          "titleEm": "GPT Image 2 提示词",
+          "sidebar": {
+            "title": "你需要了解的一切",
+            "desc": "关于在 Open Prompts 上查找、复制与生成图像的常见问题，涵盖 GPT Image 2 及其他 AI 图像模型。",
+            "contact": "还有疑问？欢迎在 GitHub 或 X @openpromptsapp 联系我们 — 通常一天内回复。"
+          },
+          "items": [
+            {
+              "q": "Open Prompts 是什么？与 GPT Image 2 有何关系？",
+              "a": "Open Prompts 是免费的社区 AI 图像提示词画廊，每日从 X 创作者同步内容。大多数提示词均针对 GPT Image 2（OpenAI 最新图像模型）编写与测试，是该模型最集中的提示词库。可在浏览器中直接浏览、复制与生成，无需额外配置。"
+            },
+            {
+              "q": "GPT Image 2 提示词免费吗？",
+              "a": "是的 — 浏览与复制画廊中所有提示词完全免费，无需账户。站内生成采用积分制。提交自己的提示词需免费注册，以便在排行榜署名。"
+            },
+            {
+              "q": "能否用于 GPT Image 2 以外的模型？",
+              "a": "可以。虽然多数模板针对 OpenAI 图像模型优化，画廊也包含 DALL·E 3、Midjourney、Stable Diffusion 等标签。许多模板稍作修改即可用于其他模型 — 使用模型筛选查看各模型可用内容。"
+            },
+            {
+              "q": "多久更新一次 GPT Image 2 提示词？",
+              "a": "每日从 X 创作者同步新提示词。流水线每 24 小时运行，画廊始终反映最新趋势。也可随时通过提交页投稿。"
+            },
+            {
+              "q": "如何提交自己的 GPT Image 2 提示词？",
+              "a": "点击导航中的「提交提示词」，用 X 登录，粘贴提示词与成图。经简短审核后即可上线并获得创作者署名。优质提示词会登上每周排行榜。"
+            },
+            {
+              "q": "有哪些 GPT Image 2 提示词分类？",
+              "a": "涵盖人像摄影、艺术风格、产品商业、游戏奇幻、场景环境、设计 UI、风格年代等。所有分类均含社区验证模板。使用分类标签或关键词搜索特定风格。"
+            }
+          ]
+        },
+        "cta": {
+          "title": "今天就开始用",
+          "titleEm": "GPT Image 2 生成",
+          "subtitle": "加入 6,200+ 创作者，浏览网上最佳免费提示词画廊。无需账户 — 浏览、复制、创作即可。",
+          "browse": "浏览 GPT Image 2 提示词 →",
+          "submit": "提交提示词",
+          "note": "免费浏览 · {count}+ 精选提示词 · 每日从 X 更新"
+        }
+      }
+    },
     "hero": {
-      "eyebrow": "社区精选 · 持续更新",
+      "eyebrow": "社区精选 · 每日从 X 更新",
       "h1Prefix": "探索 · 复用 ·",
       "h1Em": "创作",
-      "desc": "精选 AI 生图提示词，选模板一键生成图像。支持自部署、私有 Key 或订阅使用。",
+      "desc": "发现 {count}+ 条来自 X 真实创作者的精选 GPT Image 2 提示词。复制任意模板、二次改编，并用 GPT Image 2、DALL·E 3 或 Midjourney 在浏览器中生成精美 AI 图像。浏览无需账户。",
       "searchPlaceholder": "搜索提示词，如“赛博朋克”“水墨山水”“油画人像”…",
       "searchButton": "搜索"
     },
     "stats": {
-      "prompts": "提示词",
-      "models": "支持模型",
+      "prompts": "AI 提示词",
       "members": "社区成员",
       "daily": "每日",
-      "source": "X / 社区同步"
+      "newPrompts": "新提示词",
+      "free": "免费",
+      "browse": "浏览"
     },
     "section": {
       "latest": "X / 社区最新投递",
@@ -945,9 +1194,9 @@
       "tagline": "Open Prompts · 开源提示词画廊",
       "links": {
         "github": "GitHub",
-        "docs": "文档",
-        "deploy": "部署指南",
-        "pricing": "订阅计划",
+        "gptGallery": "GPT Image 2 画廊",
+        "dalleGallery": "DALL·E 3 画廊",
+        "submit": "提交",
         "privacy": "隐私政策"
       }
     },

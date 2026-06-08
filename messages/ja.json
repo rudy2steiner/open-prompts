@@ -43,8 +43,8 @@
     "soraTip": ""
   },
   "privacyPolicy": {
-    "title": "プライバシーポリシー｜ ",
-    "description": "",
+    "title": "プライバシーポリシー | Open Prompts",
+    "description": "Open Prompts のAI画像プロンプトギャラリーで閲覧・投稿・共有する際に、当社がどのように情報を収集・利用・保護するかをご確認ください。",
     "h1": "プライバシーポリシー",
     "date": "最終更新日：2024年2月19日",
     "desc": "SoraWebuiを選んでいただきありがとうございます！このプライバシーポリシーでは、当サイトをご利用いただく際の情報の収集、利用、保護方法についてご説明します。",
@@ -63,8 +63,8 @@
     "h4_6_p": "当社のプライバシーポリシーに関するご質問やご不明な点がございましたら、お問い合わせください。"
   },
   "termsOfService": {
-    "title": "利用規約｜ ",
-    "description": "",
+    "title": "利用規約 | Open Prompts",
+    "description": "Open Prompts（AI画像生成プロンプトの発見・投稿・共有のためのコミュニティギャラリー）の利用規約です。",
     "h1": "利用規約",
     "date": "最終更新日：2024年2月19日",
     "desc": "これらの利用規約（以下、「本規約」）は、SoraWebui（以下、「サービス」）へのアクセスおよび利用を規定し、SoraWebui（以下、「当社」または「私たち」）が提供します。サービスを利用することにより、これらの利用規約に拘束されることに同意します。",
@@ -310,6 +310,7 @@
       "displayNameFallback": "ユーザー"
     },
     "nav": {
+      "home": "ホーム",
       "gallery": "ギャラリー",
       "create": "作成",
       "favorites": "お気に入り",
@@ -923,26 +924,274 @@
       "registerSuccess": "アカウントを作成しました。ログインしています…"
     },
     "galleryPage": {
+      "title": "プロンプトギャラリー",
+      "subtitle": "モデル・カテゴリで絞り込み、テンプレートをコピーしてサイト内で生成。",
       "seo": {
         "title": "コミュニティ厳選 AI 画像プロンプト | Open Prompts",
         "description": "Open Prompts で厳選 AI 画像プロンプトとテンプレートを探索。モデルで絞り込み、テンプレートをコピーし、GPT Image・Midjourney・DALL·E などで生成。",
         "keywords": "プロンプト,画像生成,AI,ギャラリー,Midjourney,DALL·E,Open Prompts"
       }
     },
+    "modelPage": {
+      "seo": {
+        "title": "無料 {model} プロンプト — {count} 件のコミュニティテンプレート | Open Prompts",
+        "description": "Open Prompts コミュニティの {count} 件の {model} プロンプトを閲覧。テンプレートをコピーし、出力をプレビューしてサイト内で生成。"
+      },
+      "breadcrumb": {
+        "home": "ホーム",
+        "gallery": "ギャラリー"
+      },
+      "heading": "{model} プロンプト",
+      "subtitle": "{count} 件のコミュニティ厳選 {model} プロンプト — コピーしてサイト内で生成。",
+      "empty": "{model} のプロンプトはまだありません。後でもう一度確認するか、ギャラリー全体をご覧ください。"
+    },
+    "categoryPage": {
+      "seo": {
+        "title": "無料 {category} AI プロンプト — {count} 件のテンプレート | Open Prompts",
+        "description": "Open Prompts で {count} 件の無料 {category} AI 画像プロンプトを探索。コミュニティ検証済みテンプレートをコピーし、サイト内で美しい画像を生成。"
+      },
+      "breadcrumb": {
+        "home": "ホーム",
+        "gallery": "ギャラリー"
+      },
+      "heading": "{category} プロンプト",
+      "subtitle": "{category} カテゴリ {count} 件のコミュニティプロンプト — テンプレートをコピーしてサイト内で生成。",
+      "empty": "{category} カテゴリのプロンプトはまだありません。ギャラリーを閲覧するか、自分の作品を投稿してください。"
+    },
+    "promptPage": {
+      "seo": {
+        "title": "{title} — {model} プロンプト | Open Prompts"
+      },
+      "backToGallery": "← ギャラリーに戻る",
+      "promptLabel": "プロンプト",
+      "modelLabel": "モデル",
+      "imageAlt": "{title} — {model} プレビュー {index}"
+    },
+    "homePage": {
+      "seo": {
+        "title": "無料 AI 画像プロンプトギャラリー | GPT Image 2 | Open Prompts",
+        "description": "コミュニティ厳選の GPT Image 2 プロンプト {count}+ 件を発見。コピー・リミックスして、GPT Image 2、DALL·E 3、Midjourney で美しい AI 画像を生成 — 無料、毎日更新。",
+        "keywords": "GPT Image 2 プロンプト,AI 画像プロンプト,プロンプトギャラリー,Midjourney,DALL·E,Open Prompts"
+      },
+      "h1Line1": "無料",
+      "h1Line2": "GPT Image 2",
+      "h1Line3": "プロンプトギャラリー",
+      "browseGallery": "GPT Image 2 プロンプトを見る",
+      "submitPrompt": "プロンプトを投稿 →",
+      "modelBar": {
+        "label": "対応モデル",
+        "allModels": "すべてのモデル",
+        "gptImage2": "GPT Image 2",
+        "dalle3": "DALL·E 3",
+        "midjourney": "Midjourney",
+        "stableDiffusion": "Stable Diffusion"
+      },
+      "browseByModel": {
+        "heading": "モデル別に探す",
+        "sub": "各 AI 画像モデル向けに最適化されたプロンプト"
+      },
+      "browseByCategory": {
+        "heading": "カテゴリ別に探す",
+        "sub": "クリエイティブなジャンル横断でプロンプトを探索"
+      },
+      "promptCount": "{count} 件のプロンプト →",
+      "comingSoon": "近日公開 →",
+      "models": {
+        "gptImage2": {
+          "icon": "🟢",
+          "title": "GPT Image 2 プロンプト",
+          "desc": "OpenAI 画像モデル向けコミュニティ厳選プロンプト — 写実ポートレート、商品広告、エディトリアルなど。"
+        },
+        "dalle3": {
+          "icon": "🔵",
+          "title": "DALL·E 3 プロンプト",
+          "desc": "DALL·E 3 ですぐ使えるプロンプト — シネマティックな風景、ミニマルな商品撮影、クリエイティブなコンセプト。"
+        },
+        "midjourney": {
+          "icon": "🟣",
+          "title": "Midjourney プロンプト",
+          "desc": "Midjourney 向けアーティスティックなプロンプト — ファンタジー世界、イラスト、コンセプトアート。"
+        }
+      },
+      "categories": {
+        "portraitPhoto": {
+          "desc": "シネマティックなポートレート、ファッション、旅行写真のプロンプト。"
+        },
+        "artStyles": {
+          "desc": "水彩、ヴィンテージ、コラージュ、イラストスタイルのプロンプト。"
+        },
+        "productCommercial": {
+          "desc": "スキンケア広告、ストリートフード、ラグジュアリーブランド撮影のプロンプト。"
+        },
+        "gameFantasy": {
+          "desc": "サイバーパンク、ダークファンタジー、SF キャラクターシート、世界観構築。"
+        }
+      },
+      "seoContent": {
+        "features": {
+          "eyebrow": "Open Prompts を選ぶ理由",
+          "title": "マスターするために必要なすべて",
+          "titleEm": "GPT Image 2",
+          "subtitle": "Open Prompts は OpenAI 最新画像モデルを中心としたコミュニティギャラリー — 実在のクリエイターから学び、実績あるテンプレートをコピーし、ページを離れずに画像を生成。",
+          "items": [
+            {
+              "t": "厳選 GPT Image 2 プロンプト",
+              "d": "すべてのプロンプトは X で活動するクリエイターが共有した実績ある成果から収集。余計なものはなし — コピー前に出力を確認できる、実証済みのテンプレートだけ。"
+            },
+            {
+              "t": "サイト内で即生成",
+              "d": "任意のプロンプトを選び、ブラウザ内で直接画像を生成。タブ切り替え不要、API キー管理不要 — インスピレーションから創作までワンクリック。"
+            },
+            {
+              "t": "コピー・リミックス・調整",
+              "d": "すべてのプロンプトをワンクリックでコピー。被写体、スタイル、ライティングを入れ替え、対応モデルに再投入。反復こそ良い画像の秘訣。"
+            },
+            {
+              "t": "モデル・カテゴリで絞り込み",
+              "d": "DALL·E 3、Midjourney など専用ギャラリーを閲覧。ポートレート、商品、ファンタジー、建築などで、求めるスタイルをピンポイントで発見。"
+            },
+            {
+              "t": "X から毎日同期",
+              "d": "トップクリエイターの新プロンプトを X で毎日モニター。新鮮なコンテンツが自動でギャラリーに追加 — 常にトレンドの一歩先へ。"
+            },
+            {
+              "t": "オープンでコミュニティ主導",
+              "d": "自分のプロンプトを投稿し、クリエイタークレジットを獲得、フォロワーを増やす。リーダーボードが毎週、最もコピー・生成されたテンプレートを紹介。"
+            }
+          ]
+        },
+        "howItWorks": {
+          "eyebrow": "使い方",
+          "title": "プロンプトから画像へ",
+          "titleEm": "数ステップで",
+          "subtitle": "Open Prompts が推測をなくします。実績あるプロンプトを閲覧し、ワンクリックでコピー、サイト内で生成 — すべてこのページ内で完結。",
+          "steps": [
+            {
+              "t": "GPT Image 2 ギャラリーを閲覧",
+              "d": "モデル、カテゴリ、新着順で {count}+ 件のコミュニティプロンプトを探索。各カードに出力画像と使用プロンプトを表示 — コピー前に内容を把握。"
+            },
+            {
+              "t": "プロンプトをコピーしてカスタマイズ",
+              "d": "コピーを押せば全文がクリップボードへ。被写体、スタイル、ムードを調整するか、そのまま使用。各テンプレートは実在クリエイターが検証済み。"
+            },
+            {
+              "t": "サイト内で GPT Image 2 生成",
+              "d": "生成をクリックすれば Open Prompts 内で画像が完成。別途サブスク不要。ダウンロード、共有、反復 — すべてここで。"
+            },
+            {
+              "t": "共有してクリエイタークレジットを獲得",
+              "d": "最高のプロンプトをギャラリーに投稿。リーダーボードで注目され、生成ごとにクレジット表示、AI 画像クリエイターの中でフォロワーを拡大。"
+            }
+          ],
+          "browserMockup": {
+            "url": "open-prompts.com/prompt/vintage-travel-poster",
+            "promptLabel": "GPT Image 2 プロンプト",
+            "promptText": "ギリシャ・サントリーニのクラシックなヴィンテージ旅行ポスター。白壁の建築、黄金の夕日、温かいレトロ配色、装飾的なセリフ体タイポグラフィ、高精細、エディトリアル品質。 — GPT Image 2",
+            "resultTitle": "サントリーニ旅行ポスター",
+            "resultSub": "GPT Image 2 で生成 · 4秒",
+            "badge": "✓ ダウンロード可能",
+            "statPrompts": "プロンプト",
+            "statCopies": "コピー数",
+            "statTime": "平均時間"
+          }
+        },
+        "testimonials": {
+          "eyebrow": "コミュニティの声",
+          "title": "毎日",
+          "titleEm": "Open Prompts を使うクリエイター",
+          "subtitle": "数千人のデザイナー、マーケター、AI アーティストが Open Prompts でコミュニティ最高のプロンプトを見つけ、再利用しています。",
+          "featured": {
+            "q": "Open Prompts は GPT Image 2 の使い方を一変させました。ゼロから 30 分かけて書く代わりに、ギャラリーを見て、実績あるものをコピーして反復するだけ。1 週間で出力品質が倍になりました。",
+            "a": "@Diplomeme",
+            "handle": "@Diplomeme",
+            "role": "AI コンテンツクリエイター · X",
+            "tag": "トップ投稿者"
+          },
+          "items": [
+            {
+              "q": "見つけた中で最高の無料 GPT Image 2 プロンプトリソース。各カードに実際の出力が表示されるので推測不要。毎朝クライアントワーク前に必ずチェック。",
+              "a": "ブランドデザイナー",
+              "handle": "@noorlewisx",
+              "role": "ブランドデザイナー",
+              "avatar": "/testimonials/sarah-johnson.svg"
+            },
+            {
+              "q": "X からの毎日同期で、毎朝新しいプロンプトが届く。投稿したサイバーパンクキャラクターシートがコピー数トップに。",
+              "a": "コンセプトアーティスト",
+              "handle": "@Strength04_X",
+              "role": "コンセプトアーティスト",
+              "avatar": "/testimonials/michael-chen.svg"
+            },
+            {
+              "q": "5 ブランドの SNS を運用。Open Prompts でプロンプトリサーチが 1 時間から 5 分に。カテゴリフィルタだけでもブックマークする価値あり。",
+              "a": "SNS マネージャー",
+              "handle": "@Taaruk_",
+              "role": "SNS マネージャー",
+              "avatar": "/testimonials/emily-rodriguez.svg"
+            }
+          ]
+        },
+        "faq": {
+          "eyebrow": "FAQ",
+          "title": "よくある質問：",
+          "titleEm": "GPT Image 2 プロンプト",
+          "sidebar": {
+            "title": "知っておくべきこと",
+            "desc": "Open Prompts でプロンプトを見つけ、コピーし、生成する際のよくある質問。GPT Image 2 および他の AI 画像モデルについて。",
+            "contact": "まだ質問がありますか？GitHub または X @openpromptsapp まで — 通常 1 日以内に返信します。"
+          },
+          "items": [
+            {
+              "q": "Open Prompts とは？GPT Image 2 との関係は？",
+              "a": "Open Prompts は X クリエイターから毎日収集する無料のコミュニティ AI 画像プロンプトギャラリーです。大多数のプロンプトは GPT Image 2（OpenAI 最新画像モデル）向けに作成・検証されており、そのモデルに最も特化したライブラリです。ブラウザ内で閲覧、コピー、生成が可能で、追加設定は不要。"
+            },
+            {
+              "q": "GPT Image 2 プロンプトは無料で使えますか？",
+              "a": "はい — ギャラリー内すべてのプロンプトの閲覧・コピーは完全無料で、アカウント不要。サイト内生成はクレジット制。自分のプロンプト投稿には無料アカウントが必要（リーダーボードでのクレジット表示のため）。"
+            },
+            {
+              "q": "GPT Image 2 以外のモデルでも使えますか？",
+              "a": "もちろん。多くは OpenAI 画像モデル向けに最適化されていますが、DALL·E 3、Midjourney、Stable Diffusion 向けタグ付きプロンプトもあります。多くのテンプレートは軽い編集で他モデルにも転用可能 — モデルフィルタで各モデルの内容を確認。"
+            },
+            {
+              "q": "GPT Image 2 プロンプトはどのくらいの頻度で追加されますか？",
+              "a": "X クリエイターから毎日新プロンプトを同期。パイプラインは 24 時間ごとに実行され、ギャラリーは常に最新トレンドを反映。投稿ページからいつでも自分のプロンプトを提出可能。"
+            },
+            {
+              "q": "自分の GPT Image 2 プロンプトを投稿するには？",
+              "a": "ナビの「プロンプトを投稿」をクリックし、X でサインイン、プロンプトと出力画像を貼り付け。簡単な審査後、クリエイタークレジット付きで公開。トッププロンプトは週間リーダーボードで紹介。"
+            },
+            {
+              "q": "どんな GPT Image 2 プロンプトのカテゴリがありますか？",
+              "a": "ポートレート・写真、アートスタイル、商品・商用、ゲーム・ファンタジー、シーン・環境、デザイン・UI、スタイル・時代などをカバー。すべてのカテゴリにコミュニティ検証済みテンプレートあり。カテゴリタブまたはキーワード検索で特定スタイルを発見。"
+            }
+          ]
+        },
+        "cta": {
+          "title": "今日から",
+          "titleEm": "GPT Image 2 で生成を始めよう",
+          "subtitle": "6,200+ クリエイターと一緒に、最高の無料プロンプトギャラリーを閲覧。アカウント不要 — 閲覧、コピー、創作するだけ。",
+          "browse": "GPT Image 2 プロンプトを見る →",
+          "submit": "プロンプトを投稿",
+          "note": "無料閲覧 · {count}+ 厳選プロンプト · X から毎日更新"
+        }
+      }
+    },
     "hero": {
-      "eyebrow": "厳選 · 継続更新",
+      "eyebrow": "コミュニティ · X から毎日更新",
       "h1Prefix": "探索 · 再利用 ·",
       "h1Em": "創作",
-      "desc": "厳選した画像プロンプト。テンプレートを選んでサイト内で生成できます。",
+      "desc": "X の実在クリエイターによる厳選 GPT Image 2 プロンプト {count}+ 件を発見。任意のテンプレートをコピー・リミックスし、GPT Image 2、DALL·E 3、Midjourney でブラウザ内から美しい AI 画像を生成。閲覧にアカウント不要。",
       "searchPlaceholder": "プロンプトを検索（例：サイバーパンク、墨絵の風景…）",
       "searchButton": "検索"
     },
     "stats": {
-      "prompts": "プロンプト",
-      "models": "対応モデル",
-      "members": "コミュニティ",
+      "prompts": "AI プロンプト",
+      "members": "メンバー",
       "daily": "毎日",
-      "source": "X / コミュニティ同期"
+      "newPrompts": "新プロンプト",
+      "free": "無料",
+      "browse": "閲覧"
     },
     "section": {
       "latest": "最新投稿",
@@ -967,9 +1216,9 @@
       "tagline": "Open Prompts · オープンなプロンプトギャラリー",
       "links": {
         "github": "GitHub",
-        "docs": "ドキュメント",
-        "deploy": "デプロイ",
-        "pricing": "料金",
+        "gptGallery": "GPT Image 2 ギャラリー",
+        "dalleGallery": "DALL·E 3 ギャラリー",
+        "submit": "投稿",
         "privacy": "プライバシー"
       }
     },

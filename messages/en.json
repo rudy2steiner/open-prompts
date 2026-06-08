@@ -42,8 +42,8 @@
     "soraTip": "OpenAI has not released Sora's API yet."
   },
   "privacyPolicy": {
-    "title": "Privacy Policy ｜ ",
-    "description": "",
+    "title": "Privacy Policy | Open Prompts",
+    "description": "Read how Open Prompts collects, uses, and protects your information when you browse, submit, and share AI image prompts in our community gallery.",
     "h1": "Privacy Policy",
     "date": "Last updated: February 19, 2024",
     "desc": "Thank you for choosing SoraWebui! This Privacy Policy outlines how we collect, use, and protect your information when you use our website located at ",
@@ -62,8 +62,8 @@
     "h4_6_p": "If you have any questions or concerns regarding our Privacy Policy, please contact us at"
   },
   "termsOfService": {
-    "title": "Terms of Service ｜ ",
-    "description": "",
+    "title": "Terms of Service | Open Prompts",
+    "description": "Terms governing your use of Open Prompts, the community AI prompt gallery for discovering, submitting, and sharing image generation prompts.",
     "h1": "Terms of Service",
     "date": "Last updated: February 19, 2024",
     "desc": "These Terms of Service (\"Terms\") govern your access to and use of SoraWebui (the \"Service\"), provided by SoraWebui (\"we\" or \"us\"). By accessing or using the Service, you agree to be bound by these Terms.",
@@ -289,6 +289,7 @@
       "displayNameFallback": "User"
     },
     "nav": {
+      "home": "Home",
       "gallery": "Gallery",
       "create": "Create",
       "favorites": "Favorites",
@@ -875,26 +876,274 @@
       "registerSuccess": "Account created. Signing you in…"
     },
     "galleryPage": {
+      "title": "Prompt gallery",
+      "subtitle": "Filter by model and category, copy templates, and generate on-site.",
       "seo": {
-        "title": "Curated AI Image Prompts From Community | Open Prompts",
-        "description": "Discover curated AI image prompts on Open Prompts. Copy templates, filter by model, and generate with GPT Image, Midjourney, DALL·E, and more.",
-        "keywords": "prompts,image prompts,gpt image,midjourney,dalle,gallery,open prompts"
+        "title": "Free AI Image Prompts Gallery — GPT Image 2, Midjourney, DALL·E | Open Prompts",
+        "description": "Browse free AI image prompts on Open Prompts. Copy templates, filter by GPT Image 2, Midjourney, DALL·E 3, and more — generate on-site.",
+        "keywords": "AI image prompts,gpt image 2 prompts,midjourney prompts,dalle gallery,open prompts"
+      }
+    },
+    "modelPage": {
+      "seo": {
+        "title": "Free {model} Prompts — {count} Community Templates | Open Prompts",
+        "description": "Browse {count} free {model} prompts from the Open Prompts community. Copy templates, preview outputs, and generate on-site."
+      },
+      "breadcrumb": {
+        "home": "Home",
+        "gallery": "Gallery"
+      },
+      "heading": "{model} Prompts",
+      "subtitle": "{count} community-curated {model} prompt templates — copy and generate on-site.",
+      "empty": "No {model} prompts yet. Check back soon or browse the full gallery."
+    },
+    "categoryPage": {
+      "seo": {
+        "title": "Free {category} AI Prompts — {count} Templates | Open Prompts",
+        "description": "Explore {count} free {category} AI image prompts on Open Prompts. Copy community-tested templates and generate stunning images on-site."
+      },
+      "breadcrumb": {
+        "home": "Home",
+        "gallery": "Gallery"
+      },
+      "heading": "{category} Prompts",
+      "subtitle": "{count} community prompts in {category} — copy templates and generate on-site.",
+      "empty": "No prompts in {category} yet. Browse the gallery or submit your own."
+    },
+    "promptPage": {
+      "seo": {
+        "title": "{title} — {model} Prompt | Open Prompts"
+      },
+      "backToGallery": "← Back to gallery",
+      "promptLabel": "Prompt",
+      "modelLabel": "Model",
+      "imageAlt": "{title} — {model} preview {index}"
+    },
+    "homePage": {
+      "seo": {
+        "title": "Free AI Image Prompts Gallery | GPT Image 2 | Open Prompts",
+        "description": "Discover {count}+ curated GPT Image 2 prompts from the community. Copy, remix, and generate stunning AI images with GPT Image 2, DALL·E 3, and Midjourney — free, daily updates.",
+        "keywords": "GPT Image 2 prompts, AI image prompts, prompt gallery, Midjourney, DALL·E, Open Prompts"
+      },
+      "h1Line1": "Free",
+      "h1Line2": "GPT Image 2 ",
+      "h1Line3": "Prompts Gallery",
+      "browseGallery": "Browse GPT Image 2 Prompts",
+      "submitPrompt": "Submit Your Prompt →",
+      "modelBar": {
+        "label": "Works with",
+        "allModels": "All Models",
+        "gptImage2": "GPT Image 2",
+        "dalle3": "DALL·E 3",
+        "midjourney": "Midjourney",
+        "stableDiffusion": "Stable Diffusion"
+      },
+      "browseByModel": {
+        "heading": "Browse by Model",
+        "sub": "Find the best prompts optimized for each AI image model"
+      },
+      "browseByCategory": {
+        "heading": "Browse by Category",
+        "sub": "Explore prompt styles across creative genres"
+      },
+      "promptCount": "{count} prompts →",
+      "comingSoon": "Coming soon →",
+      "models": {
+        "gptImage2": {
+          "icon": "🟢",
+          "title": "GPT Image 2 Prompts",
+          "desc": "Community-curated prompts for OpenAI's image model — photorealistic portraits, product ads, editorial fashion, and more."
+        },
+        "dalle3": {
+          "icon": "🔵",
+          "title": "DALL·E 3 Prompts",
+          "desc": "Ready-to-use prompts for DALL·E 3 — cinematic landscapes, minimalist product shots, and creative concepts."
+        },
+        "midjourney": {
+          "icon": "🟣",
+          "title": "Midjourney Prompts",
+          "desc": "Artistic and stylized prompts for Midjourney — fantasy worlds, editorial illustration, and concept art."
+        }
+      },
+      "categories": {
+        "portraitPhoto": {
+          "desc": "Cinematic portraits, editorial fashion, and travel photography prompts."
+        },
+        "artStyles": {
+          "desc": "Watercolor, vintage, collage, and illustration prompts from top creators."
+        },
+        "productCommercial": {
+          "desc": "Skincare ads, street food, and luxury brand photography prompts."
+        },
+        "gameFantasy": {
+          "desc": "Cyberpunk, dark fantasy, sci-fi character sheets, and world-building."
+        }
+      },
+      "seoContent": {
+        "features": {
+          "eyebrow": "Why Open Prompts",
+          "title": "Everything you need to master",
+          "titleEm": "GPT Image 2",
+          "subtitle": "Open Prompts is the community-powered gallery built around OpenAI's latest image model — learn from real creators, copy proven templates, and generate images without leaving the page.",
+          "items": [
+            {
+              "t": "Curated GPT Image 2 Prompts",
+              "d": "Every prompt is sourced directly from active creators on X who share their best results. No filler — only templates with proven, real-world output you can verify before copying."
+            },
+            {
+              "t": "Generate On-Site, Instantly",
+              "d": "Pick any prompt and generate your image directly in the browser. No tab switching, no API keys to manage — one click from inspiration to creation."
+            },
+            {
+              "t": "Copy, Remix & Adapt",
+              "d": "One-click copy for every prompt. Swap subjects, styles, or lighting — then feed your version back into GPT Image 2 or any other model. Iteration is how great images are made."
+            },
+            {
+              "t": "Filter by Model & Category",
+              "d": "Browse dedicated galleries for GPT Image 2, DALL·E 3, and Midjourney. Narrow by portrait, product, fantasy, or architecture to find exactly the style you're after."
+            },
+            {
+              "t": "Daily Sync from X",
+              "d": "Our pipeline monitors X for new prompt drops from top creators every day. Fresh content appears in the gallery automatically — always one step ahead of the trends."
+            },
+            {
+              "t": "Open & Community-Driven",
+              "d": "Submit your own GPT Image 2 prompts, earn creator credit, and build a following. The leaderboard surfaces the most-copied and most-generated prompts each week."
+            }
+          ]
+        },
+        "howItWorks": {
+          "eyebrow": "How It Works",
+          "title": "From prompt to image",
+          "titleEm": "in three steps",
+          "subtitle": "Open Prompts removes the guesswork. Browse proven prompts, copy with one click, and generate — all without leaving the page.",
+          "steps": [
+            {
+              "t": "Browse the GPT Image 2 Gallery",
+              "d": "Explore {count}+ community prompts filtered by model, category, or recency. Every card shows the output image alongside the exact prompt that produced it — so you know what you're getting before you copy."
+            },
+            {
+              "t": "Copy & Customize Your Prompt",
+              "d": "Hit copy and the full prompt text lands on your clipboard. Tweak the subject, style, or mood — or use it exactly as-is. Each prompt is battle-tested by real creators."
+            },
+            {
+              "t": "Generate with GPT Image 2 On-Site",
+              "d": "Click Generate and your image is produced inside Open Prompts. No separate subscription required. Download, share, or iterate — right here."
+            },
+            {
+              "t": "Share & Earn Creator Credit",
+              "d": "Submit your best prompts back to the gallery. Get featured on the leaderboard, credited on every generation, and grow your following among AI image creators."
+            }
+          ],
+          "browserMockup": {
+            "url": "open-prompts.com/prompt/vintage-travel-poster",
+            "promptLabel": "GPT Image 2 Prompt",
+            "promptText": "Classic vintage travel poster of Santorini, Greece. Whitewashed architecture, golden sunset light, warm retro palette, ornate serif typography, high detail, editorial quality. — GPT Image 2",
+            "resultTitle": "Santorini Travel Poster",
+            "resultSub": "Generated with GPT Image 2 · 4s",
+            "badge": "✓ Ready to download",
+            "statPrompts": "Prompts",
+            "statCopies": "Copies",
+            "statTime": "Avg. time"
+          }
+        },
+        "testimonials": {
+          "eyebrow": "Community Love",
+          "title": "Creators who use",
+          "titleEm": "Open Prompts daily",
+          "subtitle": "Thousands of designers, marketers, and AI artists rely on Open Prompts to find and reuse the best GPT Image 2 prompts from the community.",
+          "featured": {
+            "q": "Open Prompts completely changed how I use GPT Image 2. Instead of spending 30 minutes writing prompts from scratch, I browse the gallery, copy what's already working, and iterate. My output quality doubled in a week.",
+            "a": "@Diplomeme",
+            "handle": "@Diplomeme",
+            "role": "AI Content Creator · X",
+            "tag": "Top Contributor"
+          },
+          "items": [
+            {
+              "q": "The best free resource for GPT Image 2 prompts I've found. Every card shows the actual output so you're never guessing. I use it every morning before starting client work.",
+              "a": "Brand Designer",
+              "handle": "@noorlewisx",
+              "role": "Brand Designer",
+              "avatar": "/testimonials/sarah-johnson.svg"
+            },
+            {
+              "q": "Daily sync from X means fresh GPT Image 2 prompts every morning. I submitted my cyberpunk character sheet and it became one of the most-copied on the leaderboard.",
+              "a": "Concept Artist",
+              "handle": "@Strength04_X",
+              "role": "Concept Artist",
+              "avatar": "/testimonials/michael-chen.svg"
+            },
+            {
+              "q": "I run social media for five brands. Open Prompts cuts my GPT Image 2 prompt research from an hour to five minutes. The category filters alone are worth bookmarking.",
+              "a": "Social Media Manager",
+              "handle": "@Taaruk_",
+              "role": "Social Media Manager",
+              "avatar": "/testimonials/emily-rodriguez.svg"
+            }
+          ]
+        },
+        "faq": {
+          "eyebrow": "FAQ",
+          "title": "Questions about",
+          "titleEm": "GPT Image 2 prompts",
+          "sidebar": {
+            "title": "Everything you need to know",
+            "desc": "Common questions about using Open Prompts to find, copy, and generate with GPT Image 2 and other AI image models.",
+            "contact": "Still have questions? Reach us on GitHub or X @openpromptsapp — we reply within a day."
+          },
+          "items": [
+            {
+              "q": "What is Open Prompts and how does it relate to GPT Image 2?",
+              "a": "Open Prompts is a free community gallery of AI image prompts sourced daily from X creators. The majority of prompts are built and tested with GPT Image 2 — OpenAI's latest image model — making it the most focused prompt library for that model. Browse, copy, and generate directly in your browser, no extra setup needed."
+            },
+            {
+              "q": "Are the GPT Image 2 prompts free to use?",
+              "a": "Yes — browsing and copying every prompt in the gallery is completely free, no account required. On-site generation uses a credit-based plan. Submitting your own prompts requires a free account so we can credit your work on the leaderboard."
+            },
+            {
+              "q": "Can I use these prompts with models other than GPT Image 2?",
+              "a": "Absolutely. While most prompts are optimized for OpenAI's image model, the gallery also includes prompts tagged for DALL·E 3, Midjourney, and Stable Diffusion. Many templates translate well to other models with minor edits — use the model filter to explore what's available per model."
+            },
+            {
+              "q": "How often are new GPT Image 2 prompts added?",
+              "a": "New prompts are synced daily from X creators. The pipeline runs every 24 hours so the gallery always reflects the latest trends. You can also submit your own prompts at any time via the Submit page."
+            },
+            {
+              "q": "How do I submit my own GPT Image 2 prompt?",
+              "a": "Click Share a Prompt in the nav, sign in with X, and paste your prompt plus output image. After a quick review your entry goes live with your creator credit. Top prompts are featured on the weekly leaderboard."
+            },
+            {
+              "q": "What categories of GPT Image 2 prompts are available?",
+              "a": "The gallery covers portrait & photo, art styles, product & commercial, games & fantasy, scenes & environments, design & UI, and styles & eras. All categories contain community-tested prompts. Use the category tabs or search by keyword to find a specific style."
+            }
+          ]
+        },
+        "cta": {
+          "title": "Start generating with",
+          "titleEm": "GPT Image 2 today",
+          "subtitle": "Join 6,200+ creators browsing the best free GPT Image 2 prompt gallery on the web. No account required — just browse, copy, and create.",
+          "browse": "Browse GPT Image 2 Prompts →",
+          "submit": "Submit a Prompt",
+          "note": "Free to browse · {count}+ curated prompts · Daily updates from X"
+        }
       }
     },
     "hero": {
-      "eyebrow": "Curated · Always updating",
+      "eyebrow": "Community · Daily Updates from X",
       "h1Prefix": "Explore · Reuse ·",
       "h1Em": "Create",
-      "desc": "Curated image prompts. Pick a template and generate images on-site.",
+      "desc": "Discover {count}+ curated GPT Image 2 prompts from real creators on X. Copy any template, remix it, and generate stunning AI images with GPT Image 2, DALL·E 3, or Midjourney — directly in your browser. No account needed to browse.",
       "searchPlaceholder": "Search prompts, e.g. “cyberpunk”, “ink landscape”…",
       "searchButton": "Search"
     },
     "stats": {
-      "prompts": "Prompts",
-      "models": "Models",
+      "prompts": "AI Prompts",
       "members": "Members",
       "daily": "Daily",
-      "source": "Synced from X / community"
+      "newPrompts": "New Prompts",
+      "free": "Free",
+      "browse": "To Browse"
     },
     "section": {
       "latest": "Latest submissions",
@@ -919,9 +1168,9 @@
       "tagline": "Open Prompts · Open prompt gallery",
       "links": {
         "github": "GitHub",
-        "docs": "Docs",
-        "deploy": "Deployment",
-        "pricing": "Pricing",
+        "gptGallery": "GPT Image 2 Gallery",
+        "dalleGallery": "DALL·E 3 Gallery",
+        "submit": "Submit",
         "privacy": "Privacy"
       }
     },
