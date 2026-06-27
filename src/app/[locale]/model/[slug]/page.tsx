@@ -18,11 +18,18 @@ export function generateStaticParams() {
   );
 }
 
-export async function generateMetadata({
-  params: { locale = 'en', slug },
-}: {
-  params: Params;
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<Params>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
+
+  const {
+    locale = 'en',
+    slug
+  } = params;
+
   const normalized = normalizeLocale(locale);
   const modelName = resolveModelSeoSlug(slug);
   if (!modelName) return {};
@@ -44,7 +51,14 @@ export async function generateMetadata({
   });
 }
 
-export default async function ModelLandingPage({ params: { locale = '', slug } }: { params: Params }) {
+export default async function ModelLandingPage(props: { params: Promise<Params> }) {
+  const params = await props.params;
+
+  const {
+    locale = '',
+    slug
+  } = params;
+
   const modelName = resolveModelSeoSlug(slug);
   if (!modelName) notFound();
 

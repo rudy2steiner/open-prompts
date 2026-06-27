@@ -5,11 +5,12 @@ import { createReplicateProviderWithOptions } from '~/lib/generation/providers/r
 function safeId() {
   return (
     // Node 18+ / modern runtimes
-    (globalThis as any).crypto?.randomUUID?.() || `req_${Date.now()}_${Math.random().toString(16).slice(2)}`
+    ((globalThis as any).crypto?.randomUUID?.() || `req_${Date.now()}_${Math.random().toString(16).slice(2)}`)
   );
 }
 
-export async function GET(req: Request, { params }: { params: { providerJobId: string } }) {
+export async function GET(req: Request, props: { params: Promise<{ providerJobId: string }> }) {
+  const params = await props.params;
   const requestId = safeId();
   const startedAt = Date.now();
   const useTestMode = String(process.env.USE_TEST_MODE || '').toLowerCase() === 'true';

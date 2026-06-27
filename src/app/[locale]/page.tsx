@@ -6,11 +6,17 @@ import { getPromptGallery } from '~/lib/prompts/get-prompt-gallery';
 import { buildPageMetadata, normalizeLocale } from '~/lib/seo/metadata';
 import PageComponent from './PageComponent';
 
-export async function generateMetadata({
-  params: { locale = 'en' },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ locale: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
+
+  const {
+    locale = 'en'
+  } = params;
+
   const normalized = normalizeLocale(locale);
   unstable_setRequestLocale(normalized);
   const [t, prompts] = await Promise.all([
@@ -29,7 +35,13 @@ export async function generateMetadata({
   });
 }
 
-export default async function HomePage({ params: { locale = '' } }) {
+export default async function HomePage(props) {
+  const params = await props.params;
+
+  const {
+    locale = ''
+  } = params;
+
   unstable_setRequestLocale(locale);
   const prompts = await getPromptGallery();
   return (

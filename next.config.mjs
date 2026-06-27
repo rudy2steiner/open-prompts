@@ -4,10 +4,12 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental: {
-        // Required for root `instrumentation.ts` (e.g. bootstrap-admin on server start).
-        instrumentationHook: true,
-    },
+    // Pin the file-tracing root to this project (a stray ~/package-lock.json otherwise
+    // makes Next infer the wrong workspace root, which breaks the OpenNext bundle).
+    outputFileTracingRoot: new URL('.', import.meta.url).pathname,
+    // Keep the Postgres driver out of the bundler so its socket/TLS handling stays intact
+    // on the Cloudflare Workers runtime (bundling it mangles the connection and hangs).
+    serverExternalPackages: ['postgres'],
     eslint: {
         ignoreDuringBuilds: true,
     },
@@ -55,3 +57,8 @@ const nextConfig = {
 };
 
 export default withNextIntl(nextConfig);
+
+// Enable Cloudflare bindings (env vars, etc.) during `next dev`.
+// No-op in production builds; only runs in the dev process.
+import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
+initOpenNextCloudflareForDev();

@@ -11,6 +11,7 @@
 
 # next.js
 /.next/
+/.open-next/
 /out/
 
 # production
@@ -44,7 +45,8 @@ wrangler.toml
 supabase/.branches
 supabase/.temp
 .*next
-.dev.vars*
+.dev.vars
+!.dev.vars.example
 .source
 yarn.lock 
 .env
