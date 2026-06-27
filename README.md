@@ -37,7 +37,7 @@ The app is built with **Next.js**, **next-intl** (English, Chinese, Japanese), *
 | **Admin moderation** | Review queue over all templates; status and visibility aligned with gallery rules. |
 | **X import** | Paste a public tweet URL on Submit to pre-fill title, description, prompt, and images. |
 | **i18n** | Locale routes: `/` (en), `/zh`, `/ja` for main pages; shared site header and footer. |
-| **Self-host** | Apache 2.0; env-driven providers and database; deploy to Vercel or any Node host. |
+| **Self-host** | Apache 2.0; env-driven providers and database; deploy to Cloudflare Workers or any Node host. |
 
 ---
 
@@ -164,16 +164,38 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) (default port **3000**).
 
-### 5. Deploy on Vercel
+### 5. Deploy on Cloudflare Workers
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frudy2steiner%2Fopen-prompts&env=NEXTAUTH_SECRET,ADMIN_EMAIL,ADMIN_PASSWORD&envDescription=Required%20secrets%20(minimum)&project-name=open-prompts)
+This app uses [@opennextjs/cloudflare](https://opennext.js.org/cloudflare) to run Next.js on Cloudflare Workers.
 
-1. Import the repo on [Vercel](https://vercel.com) (Next.js preset, `npm run build`).
-2. Add the same env vars as step 2; set `NEXTAUTH_URL` and `NEXT_PUBLIC_SITE_URL` to `https://your-app.vercel.app`.
-3. Run `supabase/migrations/` on your Supabase DB, then `npm run seed:prompts` and `npm run seed:admin` locally with that `DATABASE_URL`.
-4. Register OAuth callbacks: `…/api/auth/callback/github` and `…/api/auth/callback/google` on your Vercel domain.
+**Prerequisites:** [Cloudflare account](https://dash.cloudflare.com/sign-up), [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/) (included as a dev dependency), and the same Postgres + OAuth setup as local dev.
 
-Redeploy after env changes. If admin login fails, run `npm run seed:admin` against production `DATABASE_URL`.
+1. Log in to Cloudflare: `npx wrangler login`
+2. Copy env vars for local preview: `cp .dev.vars.example .dev.vars` and fill in secrets (same keys as `.env.local`).
+3. Preview locally on Workers runtime: `npm run preview` → [http://localhost:8787](http://localhost:8787)
+4. Set production secrets on Cloudflare (repeat for each key, or use `wrangler secret bulk`):
+
+   ```bash
+   npx wrangler secret put DATABASE_URL
+   npx wrangler secret put NEXTAUTH_SECRET
+   npx wrangler secret put NEXTAUTH_URL
+   # …plus ATLASCLOUD_API_KEY, GITHUB_*, GOOGLE_*, ADMIN_*, etc.
+   ```
+
+5. Set `NEXT_PUBLIC_SITE_URL` at **build time** (Worker deploy reads `.env.production` or your CI env). Example:
+
+   ```bash
+   NEXT_PUBLIC_SITE_URL=https://your-domain.com npm run deploy
+   ```
+
+6. Run `supabase/migrations/` on your Supabase DB, then `npm run seed:prompts` and `npm run seed:admin` locally with that `DATABASE_URL`.
+7. Register OAuth callbacks: `…/api/auth/callback/github` and `…/api/auth/callback/google` on your production domain.
+8. Deploy: `npm run deploy`
+
+**Notes:**
+- Admin bootstrap does not run on Worker cold start (no `instrumentation.ts` hook). Run `npm run seed:admin` against production `DATABASE_URL` if admin login fails.
+- Postgres connections are per-request on Workers (`src/db/client.ts`); use Supabase's transaction pooler (`?pgbouncer=true`, port 6543).
+- Redeploy after env changes.
 
 ---
 
@@ -191,7 +213,7 @@ On the Create page, users can optionally override the API key in the browser (`l
 
 ## Tech stack
 
-- [Next.js 14](https://nextjs.org/) (App Router)
+- [Next.js 15](https://nextjs.org/) (App Router) on Cloudflare Workers via OpenNext
 - [next-intl](https://next-intl-docs.vercel.app/) · [NextAuth.js](https://next-auth.js.org/)
 - [Drizzle ORM](https://orm.drizzle.team/) + Postgres
 - [Tailwind CSS](https://tailwindcss.com/) · [daisyUI](https://daisyui.com/)
@@ -206,6 +228,6 @@ Issues and pull requests are welcome. For large changes, open an issue first to 
 
 ## Conclusion
 
-**Open Prompts** is meant to be a practical hub for **reusable image prompts**: discover what works in the gallery, generate with your chosen model, and contribute templates back to the community—while keeping private drafts and a moderation path for public listings. Fork it, deploy on Vercel with Supabase, wire your preferred image API, and adapt the workflow to your team under Apache 2.0.
+**Open Prompts** is meant to be a practical hub for **reusable image prompts**: discover what works in the gallery, generate with your chosen model, and contribute templates back to the community—while keeping private drafts and a moderation path for public listings. Fork it, deploy on Cloudflare Workers with Supabase, wire your preferred image API, and adapt the workflow to your team under Apache 2.0.
 
 If this project helps your workflow, consider starring the repo and sharing feedback in [GitHub Issues](https://github.com/rudy2steiner/open-prompts/issues).

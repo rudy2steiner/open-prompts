@@ -1,6 +1,6 @@
 import {apiKey, baseUrl, model} from "~/configs/openai";
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
 
   const json = await req.json();
 

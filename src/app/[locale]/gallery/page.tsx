@@ -5,11 +5,17 @@ import { normalizeSubmitCategoryKey } from '~/lib/prompts/prompt-categories';
 import { buildPageMetadata, normalizeLocale } from '~/lib/seo/metadata';
 import PageComponent from './PageComponent';
 
-export async function generateMetadata({
-  params: { locale = 'en' },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ locale: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
+
+  const {
+    locale = 'en'
+  } = params;
+
   const normalized = normalizeLocale(locale);
   unstable_setRequestLocale(normalized);
   const t = await getTranslations({ locale: normalized, namespace: 'OpenPrompts.galleryPage' });
@@ -30,13 +36,19 @@ type SearchParams = {
   category?: string;
 };
 
-export default async function GalleryPage({
-  params: { locale = '' },
-  searchParams,
-}: {
-  params: { locale: string };
-  searchParams?: SearchParams;
-}) {
+export default async function GalleryPage(
+  props: {
+    params: Promise<{ locale: string }>;
+    searchParams?: Promise<SearchParams>;
+  }
+) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
+
+  const {
+    locale = ''
+  } = params;
+
   unstable_setRequestLocale(locale);
   const prompts = await getPromptGallery();
   const initialModel = searchParams?.model?.trim() || undefined;

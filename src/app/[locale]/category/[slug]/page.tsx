@@ -18,11 +18,18 @@ export function generateStaticParams() {
   );
 }
 
-export async function generateMetadata({
-  params: { locale = 'en', slug },
-}: {
-  params: Params;
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<Params>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
+
+  const {
+    locale = 'en',
+    slug
+  } = params;
+
   const normalized = normalizeLocale(locale);
   const categoryKey = resolveCategorySeoSlug(slug);
   if (!categoryKey) return {};
@@ -46,11 +53,18 @@ export async function generateMetadata({
   });
 }
 
-export default async function CategoryLandingPage({
-  params: { locale = '', slug },
-}: {
-  params: Params;
-}) {
+export default async function CategoryLandingPage(
+  props: {
+    params: Promise<Params>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    locale = '',
+    slug
+  } = params;
+
   const categoryKey = resolveCategorySeoSlug(slug);
   if (!categoryKey) notFound();
 

@@ -9,11 +9,17 @@ import {
 } from '~/configs/languageText';
 import { buildPageMetadata, normalizeLocale } from '~/lib/seo/metadata';
 
-export async function generateMetadata({
-  params: { locale = 'en' },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ locale: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
+
+  const {
+    locale = 'en'
+  } = params;
+
   const normalized = normalizeLocale(locale);
   unstable_setRequestLocale(normalized);
   const { title, description } = await getTermsOfServiceLanguageText();
@@ -25,11 +31,17 @@ export async function generateMetadata({
   });
 }
 
-export default async function PageContent({ params: { locale = '' } }) {
+export default async function PageContent(props) {
+  const params = await props.params;
+
+  const {
+    locale = ''
+  } = params;
+
   // Enable static rendering
   unstable_setRequestLocale(locale);
   const indexLanguageText = await getIndexLanguageText();
-    const footerLanguageText = await getFooterLanguageText();
+  const footerLanguageText = await getFooterLanguageText();
 
   const termsOfServiceLanguageText = await getTermsOfServiceLanguageText();
 
@@ -42,5 +54,4 @@ export default async function PageContent({ params: { locale = '' } }) {
     >
     </PageComponent>
   )
-
 }

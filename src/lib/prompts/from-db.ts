@@ -48,6 +48,12 @@ function rowToItem(row: {
 
 /** Loads prompts from Postgres via Drizzle; null if no DATABASE_URL, error, or empty. */
 export async function fetchPromptGalleryFromDb(): Promise<PromptGalleryItem[] | null> {
+  // Skip the DB during `next build` (static generation). Statically pre-rendered pages
+  // are built from the bundled JSON gallery; the deployed Worker queries Postgres at
+  // runtime. This keeps the build fast/deterministic and avoids fetching the full table
+  // once per pre-rendered page (thousands of remote round-trips on a `max: 1` pool).
+  if (process.env.NEXT_PHASE === 'phase-production-build') return null;
+
   const db = getDb();
   if (!db) return null;
 

@@ -8,12 +8,11 @@ import {NextIntlClientProvider} from 'next-intl';
 import {ReactNode} from 'react';
 import {locales} from '~/config';
 import { CommonProvider } from '~/context/common-context';
-import { Analytics } from "@vercel/analytics/react";
 import { AuthSessionProvider } from '~/components/auth/AuthSessionProvider';
 
 type Props = {
   children: ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
 export function generateStaticParams() {
@@ -42,8 +41,9 @@ export function generateMetadata(): Metadata {
 
 export default async function LocaleLayout({
                                              children,
-                                             params: {locale}
+                                             params,
                                            }: Props) {
+  const {locale} = await params;
 
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as any)) notFound();
@@ -195,7 +195,6 @@ export default async function LocaleLayout({
         <CommonProvider>{children}</CommonProvider>
       </AuthSessionProvider>
     </NextIntlClientProvider>
-    <Analytics />
     </body>
     </html>
   );

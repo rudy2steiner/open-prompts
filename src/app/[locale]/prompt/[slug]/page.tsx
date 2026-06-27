@@ -23,11 +23,18 @@ export async function generateStaticParams() {
   return LOCALES.flatMap((locale) => prompts.map((p) => ({ locale, slug: p.id })));
 }
 
-export async function generateMetadata({
-  params: { locale = 'en', slug = '' },
-}: {
-  params: { locale: string; slug: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ locale: string; slug: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
+
+  const {
+    locale = 'en',
+    slug = ''
+  } = params;
+
   const normalized = normalizeLocale(locale);
   unstable_setRequestLocale(normalized);
   const prompt = await getPromptBySlug(slug);
@@ -45,11 +52,18 @@ export async function generateMetadata({
   });
 }
 
-export default async function PromptPage({
-  params: { locale = '', slug = '' },
-}: {
-  params: { locale: string; slug: string };
-}) {
+export default async function PromptPage(
+  props: {
+    params: Promise<{ locale: string; slug: string }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    locale = '',
+    slug = ''
+  } = params;
+
   unstable_setRequestLocale(locale);
   const prompt = await getPromptBySlug(slug);
   if (!prompt) notFound();
