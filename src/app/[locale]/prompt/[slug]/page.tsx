@@ -32,7 +32,11 @@ export async function generateMetadata(
 
   const t = await getTranslations({ locale: normalized, namespace: 'OpenPrompts.promptPage' });
   const title = buildPromptPageTitle(prompt.title, prompt.model, normalized);
-  const description = buildPromptSeoDescription(prompt, normalized, t('seo.description'));
+  const description = buildPromptSeoDescription(
+    prompt,
+    normalized,
+    t.raw('seo.description') as string,
+  );
   const keywords = [
     'image prompts',
     `${prompt.model} prompt`,
