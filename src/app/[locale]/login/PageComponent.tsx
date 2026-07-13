@@ -7,7 +7,6 @@ import { useTranslations } from 'next-intl';
 import { useCallback, useMemo, useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { CoverImage } from '~/components/prompt-gallery/CoverImage';
-import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
 
 import { galleryHref } from '~/lib/prompts/gallery-path';
@@ -34,6 +33,11 @@ export type LoginPageProps = {
   modelCountLabel: string;
 };
 
+function imageFrameStyle(meta?: { width: number; height: number }) {
+  if (!meta || meta.width <= 0 || meta.height <= 0) return { aspectRatio: '4 / 3' };
+  return { aspectRatio: `${meta.width} / ${meta.height}` };
+}
+
 export default function PageComponent({
   locale,
   authProviders,
@@ -50,6 +54,7 @@ export default function PageComponent({
   const [pwVisible, setPwVisible] = useState(false);
   const [busy, setBusy] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
+  const [imageMeta, setImageMeta] = useState<Record<string, { width: number; height: number }>>({});
 
   const callbackUrl = useMemo(() => {
     const raw = searchParams?.get('callbackUrl');
@@ -63,6 +68,8 @@ export default function PageComponent({
     if (errorCode === 'Configuration') return t('errorConfiguration');
     if (errorCode === 'AccessDenied') return t('errorAccessDenied');
     if (errorCode === 'OAuthAccountNotLinked') return t('errorOAuthAccountNotLinked');
+    if (errorCode === 'OAuthEmailRequired') return t('errorOAuth');
+    if (errorCode === 'Callback') return t('errorOAuthPersist');
     if (errorCode === 'OAuthSignin' || errorCode === 'OAuthCallback') return t('errorOAuth');
     if (errorCode) return t('errorGeneric');
     return null;
@@ -105,10 +112,10 @@ export default function PageComponent({
   const combinedError = formError || urlError;
 
   return (
-    <div className="flex min-h-screen flex-1 flex-col bg-[var(--bg)]">
+    <div className="flex h-dvh flex-col overflow-hidden bg-[var(--bg)]">
       <OpenPromptsSiteHeader locale={locale} activeNav="login" langPathSuffix="/login" />
 
-      <main className="relative isolate flex min-h-0 flex-1 flex-col overflow-hidden px-6 pb-0 pt-0">
+      <main className="relative isolate flex min-h-0 flex-1 flex-col">
         <div
           className="pointer-events-none fixed inset-0 -z-10 opacity-[0.028]"
           style={{
@@ -119,89 +126,103 @@ export default function PageComponent({
         <div className="pointer-events-none fixed left-[-200px] top-[30%] -z-10 h-[500px] w-[500px] bg-[radial-gradient(ellipse_at_center,rgba(45,180,160,0.05)_0%,transparent_70%)]" />
         <div className="pointer-events-none fixed right-[-200px] top-[40%] -z-10 h-[500px] w-[500px] bg-[radial-gradient(ellipse_at_center,rgba(232,160,32,0.04)_0%,transparent_70%)]" />
 
-        <div className="mx-auto flex min-h-0 w-full max-w-7xl flex-1 flex-col overflow-hidden border border-[var(--border2)]">
-          <div className="grid min-h-0 w-full flex-1 gap-0 overflow-hidden md:grid-cols-2">
+        <div className="grid h-full min-h-0 w-full min-w-0 md:grid-cols-2">
             {/* Left — three stacked cards (real prompt covers from gallery) */}
-            <div className="relative hidden flex-col justify-between overflow-hidden bg-gradient-to-br from-[#0f0e0c] to-[#131108] p-6 md:flex md:border-r md:border-[var(--border)]">
+            <div className="relative hidden h-full min-h-0 min-w-0 flex-col justify-between overflow-hidden bg-[radial-gradient(circle_at_18%_18%,rgba(255,214,128,0.46),transparent_34%),radial-gradient(circle_at_82%_28%,rgba(120,232,214,0.34),transparent_34%),radial-gradient(circle_at_62%_78%,rgba(255,255,255,0.18),transparent_36%),linear-gradient(135deg,#f4e8d2_0%,#dcebe3_47%,#f0d7b8_100%)] p-6 md:flex md:border-r md:border-[var(--border)]">
               <div
                 className="pointer-events-none absolute inset-0 opacity-100"
                 style={{
-                  backgroundImage: `linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)`,
+                  backgroundImage: `linear-gradient(rgba(24,30,28,0.055) 1px, transparent 1px), linear-gradient(90deg, rgba(24,30,28,0.045) 1px, transparent 1px)`,
                   backgroundSize: '48px 48px',
                   maskImage: 'radial-gradient(ellipse at 30% 50%, black 30%, transparent 75%)',
                 }}
               />
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-white/45 to-transparent" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#694315]/20 to-transparent" />
+              <div className="pointer-events-none absolute bottom-28 left-12 h-20 w-40 border border-[#8a5a1e]/15 bg-white/15 backdrop-blur-sm" />
 
-              <div className="relative z-[1] flex flex-1 items-center justify-center py-6">
-                <div className="group/cardstack relative h-[168px] w-full max-w-[320px]">
+              <div className="relative z-[1] flex min-h-0 flex-1 items-center justify-center overflow-hidden px-2 py-8 lg:px-6">
+                <div className="group/cardstack relative mx-auto h-[320px] w-full max-w-[560px]">
                   {stackPrompts.length > 0 ? (
                     <>
                       <Link
                         href={galleryHomeHref(locale)}
                         title={stackPrompts[0].title}
-                        className="absolute left-1/2 top-1/2 z-[1] w-[240px] -translate-x-[calc(50%+60px)] -translate-y-1/2 rotate-[-6deg] rounded-none border border-[var(--border2)] bg-[var(--surface)] opacity-70 shadow-[0_24px_60px_rgba(0,0,0,0.5)] transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:opacity-90 group-hover/cardstack:-translate-x-[calc(50%+70px)] group-hover/cardstack:rotate-[-8deg]"
+                        className="absolute left-1/2 top-1/2 z-[1] w-[210px] -translate-x-[calc(50%+126px)] -translate-y-1/2 rotate-[-7deg] rounded-none border border-white/70 bg-white/75 opacity-85 shadow-[0_28px_70px_rgba(67,50,28,0.26)] backdrop-blur-md transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:opacity-95 group-hover/cardstack:-translate-x-[calc(50%+142px)] group-hover/cardstack:rotate-[-9deg] lg:w-[250px] lg:-translate-x-[calc(50%+168px)] lg:group-hover/cardstack:-translate-x-[calc(50%+184px)]"
                       >
-                        <div className="relative h-[118px] w-full overflow-hidden bg-[var(--surface2)]">
+                        <div
+                          className="relative w-full overflow-hidden bg-[linear-gradient(135deg,#fff7e8_0%,#d8eee8_62%,#f5dcc0_100%)]"
+                          style={imageFrameStyle(imageMeta[stackPrompts[0].id])}
+                        >
                           <CoverImage
                             src={stackPrompts[0].coverSrc}
                             alt={stackPrompts[0].title}
-                            sizes="240px"
-                            className="object-cover"
+                            sizes="(min-width: 1024px) 250px, 210px"
+                            className="object-contain drop-shadow-[0_10px_24px_rgba(75,53,26,0.24)]"
+                            onMeta={(meta) => setImageMeta((prev) => ({ ...prev, [stackPrompts[0].id]: meta }))}
                             priority
                           />
                         </div>
-                        <div className="border-t border-[var(--border)] px-2.5 py-2">
-                          <div className="truncate text-xs font-medium leading-snug text-[var(--text)]">{stackPrompts[0].title}</div>
+                        <div className="border-t border-[#42321f]/10 px-2.5 py-2">
+                          <div className="truncate text-xs font-medium leading-snug text-[#2b2117]">{stackPrompts[0].title}</div>
                         </div>
                       </Link>
                       <Link
                         href={galleryHomeHref(locale)}
                         title={stackPrompts[1].title}
-                        className="absolute left-1/2 top-1/2 z-[3] w-[240px] -translate-x-1/2 -translate-y-1/2 rotate-[2deg] rounded-none border border-[var(--border2)] bg-[var(--surface)] shadow-[0_24px_60px_rgba(0,0,0,0.5)] transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/cardstack:scale-[1.02]"
+                        className="absolute left-1/2 top-1/2 z-[3] w-[230px] -translate-x-1/2 -translate-y-1/2 rotate-[2deg] rounded-none border border-white/80 bg-white/85 shadow-[0_34px_80px_rgba(67,50,28,0.3)] backdrop-blur-md transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/cardstack:scale-[1.025] lg:w-[280px]"
                       >
-                        <div className="relative h-[118px] w-full overflow-hidden bg-[var(--surface2)]">
+                        <div
+                          className="relative w-full overflow-hidden bg-[linear-gradient(135deg,#fffaf0_0%,#d3efe8_55%,#f7ddbb_100%)]"
+                          style={imageFrameStyle(imageMeta[stackPrompts[1].id])}
+                        >
                           <CoverImage
                             src={stackPrompts[1].coverSrc}
                             alt={stackPrompts[1].title}
-                            sizes="240px"
-                            className="object-cover"
+                            sizes="(min-width: 1024px) 280px, 230px"
+                            className="object-contain drop-shadow-[0_12px_28px_rgba(75,53,26,0.28)]"
+                            onMeta={(meta) => setImageMeta((prev) => ({ ...prev, [stackPrompts[1].id]: meta }))}
                           />
                         </div>
-                        <div className="border-t border-[var(--border)] px-2.5 py-2">
-                          <div className="truncate text-xs font-medium leading-snug text-[var(--text)]">{stackPrompts[1].title}</div>
+                        <div className="border-t border-[#42321f]/10 px-2.5 py-2">
+                          <div className="truncate text-xs font-medium leading-snug text-[#2b2117]">{stackPrompts[1].title}</div>
                         </div>
                       </Link>
                       <Link
                         href={galleryHomeHref(locale)}
                         title={stackPrompts[2].title}
-                        className="absolute left-1/2 top-1/2 z-[2] w-[240px] -translate-x-[calc(50%-55px)] -translate-y-1/2 rotate-[8deg] rounded-none border border-[var(--border2)] bg-[var(--surface)] opacity-65 shadow-[0_24px_60px_rgba(0,0,0,0.5)] transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:opacity-80 group-hover/cardstack:-translate-x-[calc(50%-65px)] group-hover/cardstack:rotate-[10deg]"
+                        className="absolute left-1/2 top-1/2 z-[2] w-[210px] -translate-x-[calc(50%-126px)] -translate-y-1/2 rotate-[8deg] rounded-none border border-white/70 bg-white/75 opacity-85 shadow-[0_28px_70px_rgba(67,50,28,0.26)] backdrop-blur-md transition duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:opacity-95 group-hover/cardstack:-translate-x-[calc(50%-142px)] group-hover/cardstack:rotate-[10deg] lg:w-[250px] lg:-translate-x-[calc(50%-168px)] lg:group-hover/cardstack:-translate-x-[calc(50%-184px)]"
                       >
-                        <div className="relative h-[118px] w-full overflow-hidden bg-[var(--surface2)]">
+                        <div
+                          className="relative w-full overflow-hidden bg-[linear-gradient(135deg,#fff7e8_0%,#d8eee8_62%,#f5dcc0_100%)]"
+                          style={imageFrameStyle(imageMeta[stackPrompts[2].id])}
+                        >
                           <CoverImage
                             src={stackPrompts[2].coverSrc}
                             alt={stackPrompts[2].title}
-                            sizes="240px"
-                            className="object-cover"
+                            sizes="(min-width: 1024px) 250px, 210px"
+                            className="object-contain drop-shadow-[0_10px_24px_rgba(75,53,26,0.24)]"
+                            onMeta={(meta) => setImageMeta((prev) => ({ ...prev, [stackPrompts[2].id]: meta }))}
                           />
                         </div>
-                        <div className="border-t border-[var(--border)] px-2.5 py-2">
-                          <div className="truncate text-xs font-medium leading-snug text-[var(--text)]">{stackPrompts[2].title}</div>
+                        <div className="border-t border-[#42321f]/10 px-2.5 py-2">
+                          <div className="truncate text-xs font-medium leading-snug text-[#2b2117]">{stackPrompts[2].title}</div>
                         </div>
                       </Link>
                     </>
                   ) : (
                     <>
-                      <div className="absolute left-1/2 top-1/2 z-[1] w-[240px] -translate-x-[calc(50%+60px)] -translate-y-1/2 rotate-[-6deg] rounded-none border border-[var(--border2)] bg-[var(--surface)] opacity-50 shadow-[0_24px_60px_rgba(0,0,0,0.5)]">
-                        <div className="grid h-[118px] place-items-center bg-[var(--surface2)] text-[10px] text-[var(--text3)]">—</div>
-                        <div className="border-t border-[var(--border)] px-2.5 py-2 text-xs text-[var(--text3)]">—</div>
+                      <div className="absolute left-1/2 top-1/2 z-[1] w-[210px] -translate-x-[calc(50%+126px)] -translate-y-1/2 rotate-[-7deg] rounded-none border border-white/70 bg-white/70 opacity-70 shadow-[0_28px_70px_rgba(67,50,28,0.22)] backdrop-blur-md lg:w-[250px] lg:-translate-x-[calc(50%+168px)]">
+                        <div className="grid h-[170px] place-items-center bg-[linear-gradient(135deg,#fff7e8_0%,#d8eee8_62%,#f5dcc0_100%)] text-[10px] text-[#6a5438] lg:h-[200px]">—</div>
+                        <div className="border-t border-[#42321f]/10 px-2.5 py-2 text-xs text-[#6a5438]">—</div>
                       </div>
-                      <div className="absolute left-1/2 top-1/2 z-[3] w-[240px] -translate-x-1/2 -translate-y-1/2 rotate-[2deg] rounded-none border border-[var(--border2)] bg-[var(--surface)] opacity-60 shadow-[0_24px_60px_rgba(0,0,0,0.5)]">
-                        <div className="grid h-[118px] place-items-center bg-[var(--surface2)] text-[10px] text-[var(--text3)]">—</div>
-                        <div className="border-t border-[var(--border)] px-2.5 py-2 text-xs text-[var(--text3)]">—</div>
+                      <div className="absolute left-1/2 top-1/2 z-[3] w-[230px] -translate-x-1/2 -translate-y-1/2 rotate-[2deg] rounded-none border border-white/80 bg-white/80 opacity-75 shadow-[0_34px_80px_rgba(67,50,28,0.26)] backdrop-blur-md lg:w-[280px]">
+                        <div className="grid h-[186px] place-items-center bg-[linear-gradient(135deg,#fffaf0_0%,#d3efe8_55%,#f7ddbb_100%)] text-[10px] text-[#6a5438] lg:h-[224px]">—</div>
+                        <div className="border-t border-[#42321f]/10 px-2.5 py-2 text-xs text-[#6a5438]">—</div>
                       </div>
-                      <div className="absolute left-1/2 top-1/2 z-[2] w-[240px] -translate-x-[calc(50%-55px)] -translate-y-1/2 rotate-[8deg] rounded-none border border-[var(--border2)] bg-[var(--surface)] opacity-50 shadow-[0_24px_60px_rgba(0,0,0,0.5)]">
-                        <div className="grid h-[118px] place-items-center bg-[var(--surface2)] text-[10px] text-[var(--text3)]">—</div>
-                        <div className="border-t border-[var(--border)] px-2.5 py-2 text-xs text-[var(--text3)]">—</div>
+                      <div className="absolute left-1/2 top-1/2 z-[2] w-[210px] -translate-x-[calc(50%-126px)] -translate-y-1/2 rotate-[8deg] rounded-none border border-white/70 bg-white/70 opacity-70 shadow-[0_28px_70px_rgba(67,50,28,0.22)] backdrop-blur-md lg:w-[250px] lg:-translate-x-[calc(50%-168px)]">
+                        <div className="grid h-[170px] place-items-center bg-[linear-gradient(135deg,#fff7e8_0%,#d8eee8_62%,#f5dcc0_100%)] text-[10px] text-[#6a5438] lg:h-[200px]">—</div>
+                        <div className="border-t border-[#42321f]/10 px-2.5 py-2 text-xs text-[#6a5438]">—</div>
                       </div>
                     </>
                   )}
@@ -241,8 +262,8 @@ export default function PageComponent({
             </div>
 
             {/* Right — auth */}
-            <div className="relative flex min-h-0 flex-1 items-center justify-center overflow-y-auto p-6 pt-14">
-              <div className="absolute left-6 top-4 z-10">
+            <div className="relative flex h-full min-h-0 min-w-0 flex-col items-center justify-center overflow-y-auto p-6">
+              <div className="absolute left-6 top-6 z-10">
                 <Link
                   href={galleryHomeHref(locale)}
                   className="inline-flex items-center rounded-none border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-xs text-[var(--text2)] transition hover:border-[var(--border2)] hover:text-[var(--text)]"
@@ -254,7 +275,7 @@ export default function PageComponent({
                 </Link>
               </div>
 
-              <div className="w-full max-w-[380px] animate-[fadeUp_0.5s_ease_both] pt-8">
+              <div className="w-full max-w-[380px] animate-[fadeUp_0.5s_ease_both] py-4">
               <style jsx global>{`
                 @keyframes fadeUp {
                   from {
@@ -406,9 +427,7 @@ export default function PageComponent({
             </div>
           </div>
         </div>
-        </div>
       </main>
-      <OpenPromptsSiteFooter locale={locale} spacing="flush" />
     </div>
   );
 }

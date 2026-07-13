@@ -30,7 +30,15 @@ export function buildPromptImageJsonLd(prompt: PromptGalleryItem, locale: string
 type JsonLdNode = Record<string, unknown>;
 
 export function buildPromptPageJsonLd(prompt: PromptGalleryItem, locale: string, galleryLabel: string) {
+  const pageUrl = absoluteUrl(locale, `/prompt/${prompt.id}`);
   const graph: JsonLdNode[] = [
+    {
+      '@type': 'CreativeWork',
+      name: prompt.title,
+      url: pageUrl,
+      ...(prompt.description?.trim() ? { description: prompt.description.trim() } : {}),
+      ...(prompt.model ? { keywords: [prompt.model, ...prompt.tags].filter(Boolean).join(', ') } : {}),
+    },
     buildBreadcrumbJsonLd(locale, [
       { name: 'Home', path: '' },
       { name: galleryLabel, path: '/gallery' },

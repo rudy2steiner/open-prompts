@@ -5,18 +5,8 @@ import { PromptPageJsonLd } from '~/components/open-prompts/PromptPageJsonLd';
 import { getPromptBySlug } from '~/lib/prompts/get-prompt-by-slug';
 import { getPromptGallery } from '~/lib/prompts/get-prompt-gallery';
 import { buildPageMetadata, LOCALES, normalizeLocale } from '~/lib/seo/metadata';
+import { buildPromptPageTitle, buildPromptSeoDescription } from '~/lib/seo/titles';
 import PageComponent from './PageComponent';
-
-function buildPromptMetaDescription(prompt: {
-  description: string;
-  prompt: string;
-  title: string;
-}): string {
-  const desc = prompt.description?.trim();
-  if (desc) return desc;
-  const text = prompt.prompt?.trim() || prompt.title;
-  return text.length > 160 ? `${text.slice(0, 157)}...` : text;
-}
 
 export async function generateStaticParams() {
   const prompts = await getPromptGallery();
@@ -41,14 +31,20 @@ export async function generateMetadata(
   if (!prompt) notFound();
 
   const t = await getTranslations({ locale: normalized, namespace: 'OpenPrompts.promptPage' });
-  const title = t('seo.title', { title: prompt.title, model: prompt.model });
-  const description = buildPromptMetaDescription(prompt);
+  const title = buildPromptPageTitle(prompt.title, prompt.model, normalized);
+  const description = buildPromptSeoDescription(prompt, normalized, t('seo.description'));
+  const keywords = [
+    'image prompts',
+    `${prompt.model} prompt`,
+    ...prompt.tags.slice(0, 5),
+  ].filter(Boolean);
 
   return buildPageMetadata({
     locale: normalized,
     path: `/prompt/${slug}`,
     title,
     description,
+    keywords,
   });
 }
 

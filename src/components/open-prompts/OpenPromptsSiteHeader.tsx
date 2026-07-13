@@ -16,6 +16,7 @@ import {
   type OpLocale,
 } from '~/lib/op-locale';
 import { galleryHref } from '~/lib/prompts/gallery-path';
+import { categoriesHref } from '~/lib/prompts/seo-paths';
 import {
   accountPanelHref,
   type AccountPanel,
@@ -24,6 +25,7 @@ import {
 export type OpenPromptsSiteNavKey =
   | 'home'
   | 'gallery'
+  | 'categories'
   | 'create'
   | 'submit'
   | 'rank'
@@ -102,6 +104,7 @@ export function OpenPromptsSiteHeader({
       [
         { key: 'home' as const, label: t('nav.home'), href: buildLocaleHref(locale) },
         { key: 'gallery' as const, label: t('nav.gallery'), href: galleryHref(locale) },
+        { key: 'categories' as const, label: t('nav.categories'), href: categoriesHref(locale) },
         { key: 'create' as const, label: t('nav.create'), href: locale === 'en' ? '/create' : `/${locale}/create` },
         { key: 'submit' as const, label: t('nav.submit'), href: locale === 'en' ? '/submit' : `/${locale}/submit` },
         { key: 'rank' as const, label: t('nav.rank'), href: '#' },

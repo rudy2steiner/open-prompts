@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { buildFullPageTitle, clampMetaDescription } from './titles';
 
 export const LOCALES = ['en', 'zh', 'ja'] as const;
 export type AppLocale = (typeof LOCALES)[number];
@@ -57,9 +58,11 @@ type BuildPageMetadataInput = {
 export function buildPageMetadata(input: BuildPageMetadataInput): Metadata {
   const { locale, path, title, description, keywords, robots } = input;
   const alternates = buildAlternates(locale, path);
+  const fullTitle = buildFullPageTitle(title, locale);
+  const safeDescription = clampMetaDescription(description, locale);
   return {
-    title,
-    description,
+    title: { absolute: fullTitle },
+    description: safeDescription,
     ...(keywords?.length ? { keywords } : {}),
     ...(robots ? { robots } : {}),
     alternates: {
@@ -67,15 +70,15 @@ export function buildPageMetadata(input: BuildPageMetadataInput): Metadata {
       languages: alternates.languages,
     },
     openGraph: {
-      title,
-      description,
+      title: fullTitle,
+      description: safeDescription,
       type: 'website',
       url: alternates.canonical,
     },
     twitter: {
       card: 'summary_large_image',
-      title,
-      description,
+      title: fullTitle,
+      description: safeDescription,
     },
   };
 }

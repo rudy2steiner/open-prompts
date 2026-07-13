@@ -54,6 +54,10 @@ export function modelLandingHref(locale: string, slug: ModelSeoSlug | string): s
   return buildLocaleHref(locale, `/model/${slug}`);
 }
 
+export function categoriesHref(locale: string): string {
+  return buildLocaleHref(locale, '/category');
+}
+
 export function categoryLandingHref(locale: string, slug: string): string {
   return buildLocaleHref(locale, `/category/${slug}`);
 }

@@ -197,8 +197,10 @@ export async function HomeSeoSections({ locale, prompts }: Props) {
                     <div className="op-browser-stat-value">4s</div>
                   </div>
                   <div>
-                    <div className="op-browser-stat-label">{t('stats.browse')}</div>
-                    <div className="op-browser-stat-value">{t('stats.free')}</div>
+                    <div className="op-browser-stat-label">
+                      {t('homePage.seoContent.howItWorks.browserMockup.statCopies')}
+                    </div>
+                    <div className="op-browser-stat-value">6.2K+</div>
                   </div>
                 </div>
               </div>

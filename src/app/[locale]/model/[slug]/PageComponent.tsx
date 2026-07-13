@@ -2,8 +2,8 @@ import { getTranslations } from 'next-intl/server';
 import type { PromptGalleryItem } from '~/data/promptGallery';
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
+import { PromptGalleryGrid } from '~/components/prompt-gallery/PromptGalleryGrid';
 import { galleryHref } from '~/lib/prompts/gallery-path';
-import { promptHref } from '~/lib/prompts/seo-paths';
 import { buildLocaleHref } from '~/lib/op-locale';
 import { buildTaxonomyPageJsonLd } from '~/lib/seo/prompt-json-ld';
 
@@ -69,42 +69,7 @@ export default async function PageComponent({ locale, slug, modelName, prompts }
             {prompts.length === 0 ? (
               <p className="mt-8 text-sm text-[var(--text2)]">{t('empty', { model: modelName })}</p>
             ) : (
-              <ul className="mt-8 divide-y divide-[var(--border)] border-y border-[var(--border)]">
-                {prompts.map((prompt) => {
-                  const thumb = prompt.images[0];
-                  const href = promptHref(locale, prompt.id);
-                  return (
-                    <li key={prompt.id} className="flex gap-4 py-4">
-                      {thumb ? (
-                        <a href={href} className="shrink-0">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={thumb}
-                            alt=""
-                            width={80}
-                            height={80}
-                            className="h-20 w-20 rounded-lg object-cover"
-                            loading="lazy"
-                          />
-                        </a>
-                      ) : null}
-                      <div className="min-w-0 flex-1">
-                        <a
-                          href={href}
-                          className="text-base font-medium text-[var(--text)] hover:text-[var(--amber)]"
-                        >
-                          {prompt.title}
-                        </a>
-                        {prompt.description ? (
-                          <p className="mt-1 line-clamp-2 text-sm text-[var(--text2)]">
-                            {prompt.description}
-                          </p>
-                        ) : null}
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
+              <PromptGalleryGrid locale={locale} prompts={prompts} />
             )}
           </div>
         </section>

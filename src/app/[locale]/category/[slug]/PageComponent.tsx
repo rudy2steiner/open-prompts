@@ -2,10 +2,11 @@ import { getTranslations } from 'next-intl/server';
 import type { PromptGalleryItem } from '~/data/promptGallery';
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
+import { PromptGalleryGrid } from '~/components/prompt-gallery/PromptGalleryGrid';
 import { galleryHref } from '~/lib/prompts/gallery-path';
 import type { SubmitCategoryKey } from '~/lib/prompts/prompt-categories';
-import { promptHref } from '~/lib/prompts/seo-paths';
 import { buildLocaleHref } from '~/lib/op-locale';
+import { categoriesHref } from '~/lib/prompts/seo-paths';
 import { buildTaxonomyPageJsonLd } from '~/lib/seo/prompt-json-ld';
 
 type Props = {
@@ -23,12 +24,14 @@ export default async function PageComponent({ locale, slug, categoryKey, prompts
   const categoryName = tCategory(`categories.${categoryKey}`);
   const homeHref = buildLocaleHref(locale, '');
   const galleryLink = galleryHref(locale);
+  const categoriesLink = categoriesHref(locale);
 
   const jsonLd = buildTaxonomyPageJsonLd(
     locale,
     [
       { name: t('breadcrumb.home'), path: '' },
       { name: t('breadcrumb.gallery'), path: '/gallery' },
+      { name: t('breadcrumb.categories'), path: '/category' },
       { name: categoryName, path: `/category/${slug}` },
     ],
     t('heading', { category: categoryName }),
@@ -41,7 +44,7 @@ export default async function PageComponent({ locale, slug, categoryKey, prompts
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <OpenPromptsSiteHeader locale={locale} activeNav="gallery" langPathSuffix="/gallery" />
+      <OpenPromptsSiteHeader locale={locale} activeNav="categories" langPathSuffix="/category" />
 
       <main className="w-full">
         <section className="px-6 pb-8 pt-8">
@@ -57,6 +60,12 @@ export default async function PageComponent({ locale, slug, categoryKey, prompts
                 <li>
                   <a href={galleryLink} className="hover:text-[var(--text2)]">
                     {t('breadcrumb.gallery')}
+                  </a>
+                </li>
+                <li aria-hidden="true">›</li>
+                <li>
+                  <a href={categoriesLink} className="hover:text-[var(--text2)]">
+                    {t('breadcrumb.categories')}
                   </a>
                 </li>
                 <li aria-hidden="true">›</li>
@@ -76,42 +85,7 @@ export default async function PageComponent({ locale, slug, categoryKey, prompts
                 {t('empty', { category: categoryName })}
               </p>
             ) : (
-              <ul className="mt-8 divide-y divide-[var(--border)] border-y border-[var(--border)]">
-                {prompts.map((prompt) => {
-                  const thumb = prompt.images[0];
-                  const href = promptHref(locale, prompt.id);
-                  return (
-                    <li key={prompt.id} className="flex gap-4 py-4">
-                      {thumb ? (
-                        <a href={href} className="shrink-0">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={thumb}
-                            alt=""
-                            width={80}
-                            height={80}
-                            className="h-20 w-20 rounded-lg object-cover"
-                            loading="lazy"
-                          />
-                        </a>
-                      ) : null}
-                      <div className="min-w-0 flex-1">
-                        <a
-                          href={href}
-                          className="text-base font-medium text-[var(--text)] hover:text-[var(--amber)]"
-                        >
-                          {prompt.title}
-                        </a>
-                        {prompt.description ? (
-                          <p className="mt-1 line-clamp-2 text-sm text-[var(--text2)]">
-                            {prompt.description}
-                          </p>
-                        ) : null}
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
+              <PromptGalleryGrid locale={locale} prompts={prompts} />
             )}
           </div>
         </section>

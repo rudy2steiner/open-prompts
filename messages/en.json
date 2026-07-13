@@ -291,6 +291,7 @@
     "nav": {
       "home": "Home",
       "gallery": "Gallery",
+      "categories": "Categories",
       "create": "Create",
       "favorites": "Favorites",
       "submit": "Share",
@@ -865,7 +866,8 @@
       "errorCredentialsHint": "Use the exact email listed in ADMIN_EMAIL (check for typos). Online login needs DATABASE_URL and ADMIN_PASSWORD set on the host (not only in local .env). If you signed up with GitHub/Google first, try that provider—or restart the app after setting ADMIN_PASSWORD so the admin password syncs.",
       "errorConfiguration": "Sign-in is misconfigured on the server (check NEXTAUTH_URL, NEXTAUTH_SECRET, and OAuth app callback URLs).",
       "errorAccessDenied": "Sign-in was cancelled or denied.",
-      "errorOAuth": "Could not sign in with that provider. For GitHub, allow email access or use a public email on your account.",
+      "errorOAuth": "Could not sign in with that provider. For GitHub, allow email access or use a public email. For Google, verify the OAuth redirect URI is configured.",
+      "errorOAuthPersist": "Authorization succeeded but we could not save your account. Check DATABASE_URL on the host (Supabase pooler port 6543) and try again.",
       "errorOAuthAccountNotLinked": "That account is already linked to another sign-in method. Use the same provider you signed up with, or email login.",
       "errorGeneric": "Something went wrong. Try again.",
       "errorRegister": "Could not create account.",
@@ -876,44 +878,62 @@
       "registerSuccess": "Account created. Signing you in…"
     },
     "galleryPage": {
-      "title": "Prompt gallery",
-      "subtitle": "Filter by model and category, copy templates, and generate on-site.",
+      "title": "Image Prompts Gallery",
+      "subtitle": "Browse 1,000+ free image prompts. Filter by model, copy templates, generate on-site.",
       "seo": {
-        "title": "Free AI Image Prompts Gallery — GPT Image 2, Midjourney, DALL·E | Open Prompts",
-        "description": "Browse free AI image prompts on Open Prompts. Copy templates, filter by GPT Image 2, Midjourney, DALL·E 3, and more — generate on-site.",
-        "keywords": "AI image prompts,gpt image 2 prompts,midjourney prompts,dalle gallery,open prompts"
+        "title": "Image Prompts Gallery — GPT Image 2",
+        "description": "Browse free image prompts for ChatGPT, GPT Image 2, Midjourney & DALL·E. Copy templates and generate on-site.",
+        "keywords": "image prompts,ai image prompts,chatgpt image prompts,gpt image 2 prompts,free prompt gallery"
       }
     },
     "modelPage": {
       "seo": {
-        "title": "Free {model} Prompts — {count} Community Templates | Open Prompts",
-        "description": "Browse {count} free {model} prompts from the Open Prompts community. Copy templates, preview outputs, and generate on-site."
+        "title": "{model} Image Prompts ({count})",
+        "description": "Browse {count} free {model} image prompts. Copy community templates and generate on Open Prompts."
       },
       "breadcrumb": {
         "home": "Home",
         "gallery": "Gallery"
       },
-      "heading": "{model} Prompts",
-      "subtitle": "{count} community-curated {model} prompt templates — copy and generate on-site.",
+      "heading": "{model} Image Prompts",
+      "subtitle": "{count} free {model} image prompt templates — copy and generate on-site.",
       "empty": "No {model} prompts yet. Check back soon or browse the full gallery."
     },
     "categoryPage": {
       "seo": {
-        "title": "Free {category} AI Prompts — {count} Templates | Open Prompts",
-        "description": "Explore {count} free {category} AI image prompts on Open Prompts. Copy community-tested templates and generate stunning images on-site."
+        "title": "{category} Image Prompts ({count})",
+        "description": "Explore {count} free {category} AI image prompts. Copy templates and generate on Open Prompts."
+      },
+      "breadcrumb": {
+        "home": "Home",
+        "gallery": "Gallery",
+        "categories": "Categories"
+      },
+      "heading": "{category} Image Prompts",
+      "subtitle": "{count} free {category} image prompts — copy templates and generate on-site.",
+      "empty": "No prompts in {category} yet. Browse the gallery or submit your own."
+    },
+    "categoriesIndex": {
+      "seo": {
+        "title": "Image Prompt Categories",
+        "description": "Browse free AI image prompts by category — scenes, portraits, art styles, product shots, and more."
       },
       "breadcrumb": {
         "home": "Home",
         "gallery": "Gallery"
       },
-      "heading": "{category} Prompts",
-      "subtitle": "{count} community prompts in {category} — copy templates and generate on-site.",
-      "empty": "No prompts in {category} yet. Browse the gallery or submit your own."
+      "heading": "Image Prompt Categories",
+      "subtitle": "{count} prompts across {categoryCount} categories — pick a style to explore.",
+      "cardCount": "{count} prompts"
     },
     "promptPage": {
       "seo": {
-        "title": "{title} — {model} Prompt | Open Prompts"
+        "title": "{title} — {model} Prompt",
+        "description": "Free {model} image prompt: {snippet}. Copy this template and generate on Open Prompts.{tags}"
       },
+      "seoIntro": "Free {model} image prompt template — {title}. Copy the prompt below or generate on-site.",
+      "breadcrumbHome": "Home",
+      "breadcrumbGallery": "Gallery",
       "backToGallery": "← Back to gallery",
       "promptLabel": "Prompt",
       "modelLabel": "Model",
@@ -921,15 +941,14 @@
     },
     "homePage": {
       "seo": {
-        "title": "Free AI Image Prompts Gallery | GPT Image 2 | Open Prompts",
-        "description": "Discover {count}+ curated GPT Image 2 prompts from the community. Copy, remix, and generate stunning AI images with GPT Image 2, DALL·E 3, and Midjourney — free, daily updates.",
-        "keywords": "GPT Image 2 prompts, AI image prompts, prompt gallery, Midjourney, DALL·E, Open Prompts"
+        "title": "Image Prompts Gallery — GPT Image 2",
+        "description": "Discover {count}+ curated image prompts for ChatGPT & GPT Image 2. Copy, remix, and generate AI images — daily updates from X.",
+        "keywords": "image prompts,ai image prompts,chatgpt image prompts,gpt image 2 prompts,prompt gallery"
       },
-      "h1Line1": "Free",
-      "h1Line2": "GPT Image 2 ",
-      "h1Line3": "Prompts Gallery",
-      "browseGallery": "Browse GPT Image 2 Prompts",
-      "submitPrompt": "Submit Your Prompt →",
+      "h1Line2": "Image Prompts",
+      "h1Line3": "GPT Image 2 Gallery",
+      "browseGallery": "Browse Gallery",
+      "submitPrompt": "Submit Prompt →",
       "modelBar": {
         "label": "Works with",
         "allModels": "All Models",
@@ -1061,7 +1080,7 @@
           },
           "items": [
             {
-              "q": "The best free resource for GPT Image 2 prompts I've found. Every card shows the actual output so you're never guessing. I use it every morning before starting client work.",
+              "q": "The best resource for GPT Image 2 prompts I've found. Every card shows the actual output so you're never guessing. I use it every morning before starting client work.",
               "a": "Brand Designer",
               "handle": "@noorlewisx",
               "role": "Brand Designer",
@@ -1095,11 +1114,11 @@
           "items": [
             {
               "q": "What is Open Prompts and how does it relate to GPT Image 2?",
-              "a": "Open Prompts is a free community gallery of AI image prompts sourced daily from X creators. The majority of prompts are built and tested with GPT Image 2 — OpenAI's latest image model — making it the most focused prompt library for that model. Browse, copy, and generate directly in your browser, no extra setup needed."
+              "a": "Open Prompts is a community gallery of AI image prompts sourced daily from X creators. The majority of prompts are built and tested with GPT Image 2 — OpenAI's latest image model — making it the most focused prompt library for that model. Browse, copy, and generate directly in your browser, no extra setup needed."
             },
             {
-              "q": "Are the GPT Image 2 prompts free to use?",
-              "a": "Yes — browsing and copying every prompt in the gallery is completely free, no account required. On-site generation uses a credit-based plan. Submitting your own prompts requires a free account so we can credit your work on the leaderboard."
+              "q": "Do I need to pay to browse and copy prompts?",
+              "a": "No — browsing and copying every prompt in the gallery is open to everyone, no account required. On-site generation uses a credit-based plan. Submitting your own prompts requires an account so we can credit your work on the leaderboard."
             },
             {
               "q": "Can I use these prompts with models other than GPT Image 2?",
@@ -1122,10 +1141,10 @@
         "cta": {
           "title": "Start generating with",
           "titleEm": "GPT Image 2 today",
-          "subtitle": "Join 6,200+ creators browsing the best free GPT Image 2 prompt gallery on the web. No account required — just browse, copy, and create.",
+          "subtitle": "Join 6,200+ creators browsing the best GPT Image 2 prompt gallery on the web. No account required — just browse, copy, and create.",
           "browse": "Browse GPT Image 2 Prompts →",
           "submit": "Submit a Prompt",
-          "note": "Free to browse · {count}+ curated prompts · Daily updates from X"
+          "note": "No account needed · {count}+ curated prompts · Daily updates from X"
         }
       }
     },
@@ -1142,8 +1161,8 @@
       "members": "Members",
       "daily": "Daily",
       "newPrompts": "New Prompts",
-      "free": "Free",
-      "browse": "To Browse"
+      "curated": "Curated",
+      "fromX": "From X"
     },
     "section": {
       "latest": "Latest submissions",
@@ -1170,6 +1189,7 @@
         "github": "GitHub",
         "gptGallery": "GPT Image 2 Gallery",
         "dalleGallery": "DALL·E 3 Gallery",
+        "categories": "Categories",
         "submit": "Submit",
         "privacy": "Privacy"
       }

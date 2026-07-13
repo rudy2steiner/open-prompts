@@ -312,6 +312,7 @@
     "nav": {
       "home": "ホーム",
       "gallery": "ギャラリー",
+      "categories": "カテゴリ",
       "create": "作成",
       "favorites": "お気に入り",
       "submit": "共有",
@@ -913,7 +914,8 @@
       "errorCredentialsHint": "ADMIN_EMAIL に登録したメールアドレスをそのまま入力してください。本番ホストにも DATABASE_URL と ADMIN_PASSWORD が必要です（ローカルの .env だけでは不十分）。GitHub/Google で先に登録した場合はそちらでログインするか、ADMIN_PASSWORD 設定後に再起動して同期してください。",
       "errorConfiguration": "サーバーのログイン設定に問題があります（NEXTAUTH_URL、NEXTAUTH_SECRET、OAuth コールバック URL を確認）。",
       "errorAccessDenied": "ログインがキャンセルまたは拒否されました。",
-      "errorOAuth": "プロバイダーでログインできませんでした。GitHub ではメールアクセスを許可するか、公開メールを設定してください。",
+      "errorOAuth": "プロバイダーでログインできませんでした。GitHub はメールアクセスを許可するか公開メールを設定。Google は OAuth リダイレクト URI の設定を確認してください。",
+      "errorOAuthPersist": "認証は成功しましたがアカウントを保存できませんでした。本番の DATABASE_URL（Supabase はポート 6543）を確認して再試行してください。",
       "errorOAuthAccountNotLinked": "このアカウントは別のログイン方法に紐づいています。登録時と同じ方法かメールでログインしてください。",
       "errorGeneric": "エラーが発生しました。もう一度お試しください。",
       "errorRegister": "アカウントを作成できませんでした。",
@@ -924,18 +926,18 @@
       "registerSuccess": "アカウントを作成しました。ログインしています…"
     },
     "galleryPage": {
-      "title": "プロンプトギャラリー",
-      "subtitle": "モデル・カテゴリで絞り込み、テンプレートをコピーしてサイト内で生成。",
+      "title": "画像プロンプトギャラリー",
+      "subtitle": "1000件以上の無料画像プロンプト。モデルで絞り込み、コピーしてサイト内で生成。",
       "seo": {
-        "title": "コミュニティ厳選 AI 画像プロンプト | Open Prompts",
-        "description": "Open Prompts で厳選 AI 画像プロンプトとテンプレートを探索。モデルで絞り込み、テンプレートをコピーし、GPT Image・Midjourney・DALL·E などで生成。",
-        "keywords": "プロンプト,画像生成,AI,ギャラリー,Midjourney,DALL·E,Open Prompts"
+        "title": "画像プロンプトギャラリー",
+        "description": "ChatGPT・GPT Image 2・Midjourney 向けの無料画像プロンプト。テンプレートをコピーしてサイト内で生成。",
+        "keywords": "画像プロンプト,AI画像プロンプト,ChatGPT画像プロンプト,GPT Image 2,プロンプトギャラリー"
       }
     },
     "modelPage": {
       "seo": {
-        "title": "無料 {model} プロンプト — {count} 件のコミュニティテンプレート | Open Prompts",
-        "description": "Open Prompts コミュニティの {count} 件の {model} プロンプトを閲覧。テンプレートをコピーし、出力をプレビューしてサイト内で生成。"
+        "title": "{model} 画像プロンプト ({count})",
+        "description": "無料 {model} 画像プロンプト {count} 件。コミュニティテンプレートをコピーして Open Prompts で生成。"
       },
       "breadcrumb": {
         "home": "ホーム",
@@ -947,21 +949,39 @@
     },
     "categoryPage": {
       "seo": {
-        "title": "無料 {category} AI プロンプト — {count} 件のテンプレート | Open Prompts",
-        "description": "Open Prompts で {count} 件の無料 {category} AI 画像プロンプトを探索。コミュニティ検証済みテンプレートをコピーし、サイト内で美しい画像を生成。"
+        "title": "{category} 画像プロンプト ({count})",
+        "description": "無料 {category} AI 画像プロンプト {count} 件。テンプレートをコピーしてサイト内で生成。"
       },
       "breadcrumb": {
         "home": "ホーム",
-        "gallery": "ギャラリー"
+        "gallery": "ギャラリー",
+        "categories": "カテゴリ"
       },
       "heading": "{category} プロンプト",
       "subtitle": "{category} カテゴリ {count} 件のコミュニティプロンプト — テンプレートをコピーしてサイト内で生成。",
       "empty": "{category} カテゴリのプロンプトはまだありません。ギャラリーを閲覧するか、自分の作品を投稿してください。"
     },
+    "categoriesIndex": {
+      "seo": {
+        "title": "画像プロンプト カテゴリ",
+        "description": "カテゴリ別に無料 AI 画像プロンプトを閲覧 — シーン、ポートレート、アートスタイル、商品写真など。"
+      },
+      "breadcrumb": {
+        "home": "ホーム",
+        "gallery": "ギャラリー"
+      },
+      "heading": "画像プロンプト カテゴリ",
+      "subtitle": "{categoryCount} カテゴリ、合計 {count} 件のプロンプト — スタイルを選んで探索。",
+      "cardCount": "{count} 件"
+    },
     "promptPage": {
       "seo": {
-        "title": "{title} — {model} プロンプト | Open Prompts"
+        "title": "{title} — {model} プロンプト",
+        "description": "無料 {model} 画像プロンプト：{snippet}。テンプレートをコピーして Open Prompts で生成。{tags}"
       },
+      "seoIntro": "無料 {model} 画像プロンプト — {title}。下のプロンプトをコピーするかサイト内で生成。",
+      "breadcrumbHome": "ホーム",
+      "breadcrumbGallery": "ギャラリー",
       "backToGallery": "← ギャラリーに戻る",
       "promptLabel": "プロンプト",
       "modelLabel": "モデル",
@@ -969,15 +989,14 @@
     },
     "homePage": {
       "seo": {
-        "title": "無料 AI 画像プロンプトギャラリー | GPT Image 2 | Open Prompts",
-        "description": "コミュニティ厳選の GPT Image 2 プロンプト {count}+ 件を発見。コピー・リミックスして、GPT Image 2、DALL·E 3、Midjourney で美しい AI 画像を生成 — 無料、毎日更新。",
-        "keywords": "GPT Image 2 プロンプト,AI 画像プロンプト,プロンプトギャラリー,Midjourney,DALL·E,Open Prompts"
+        "title": "画像プロンプトギャラリー",
+        "description": "ChatGPT・GPT Image 2 向け厳選画像プロンプト {count} 件以上。コピー・リミックスして AI 画像を生成 — X から毎日更新。",
+        "keywords": "画像プロンプト,AI画像プロンプト,ChatGPT画像プロンプト,GPT Image 2,プロンプトギャラリー"
       },
-      "h1Line1": "無料",
-      "h1Line2": "GPT Image 2",
-      "h1Line3": "プロンプトギャラリー",
-      "browseGallery": "GPT Image 2 プロンプトを見る",
-      "submitPrompt": "プロンプトを投稿 →",
+      "h1Line2": "画像プロンプト",
+      "h1Line3": "GPT Image 2 ギャラリー",
+      "browseGallery": "ギャラリーを見る",
+      "submitPrompt": "プロンプト投稿 →",
       "modelBar": {
         "label": "対応モデル",
         "allModels": "すべてのモデル",
@@ -1109,7 +1128,7 @@
           },
           "items": [
             {
-              "q": "見つけた中で最高の無料 GPT Image 2 プロンプトリソース。各カードに実際の出力が表示されるので推測不要。毎朝クライアントワーク前に必ずチェック。",
+              "q": "見つけた中で最高の GPT Image 2 プロンプトリソース。各カードに実際の出力が表示されるので推測不要。毎朝クライアントワーク前に必ずチェック。",
               "a": "ブランドデザイナー",
               "handle": "@noorlewisx",
               "role": "ブランドデザイナー",
@@ -1143,11 +1162,11 @@
           "items": [
             {
               "q": "Open Prompts とは？GPT Image 2 との関係は？",
-              "a": "Open Prompts は X クリエイターから毎日収集する無料のコミュニティ AI 画像プロンプトギャラリーです。大多数のプロンプトは GPT Image 2（OpenAI 最新画像モデル）向けに作成・検証されており、そのモデルに最も特化したライブラリです。ブラウザ内で閲覧、コピー、生成が可能で、追加設定は不要。"
+              "a": "Open Prompts は X クリエイターから毎日収集するコミュニティ AI 画像プロンプトギャラリーです。大多数のプロンプトは GPT Image 2（OpenAI 最新画像モデル）向けに作成・検証されており、そのモデルに最も特化したライブラリです。ブラウザ内で閲覧、コピー、生成が可能で、追加設定は不要。"
             },
             {
-              "q": "GPT Image 2 プロンプトは無料で使えますか？",
-              "a": "はい — ギャラリー内すべてのプロンプトの閲覧・コピーは完全無料で、アカウント不要。サイト内生成はクレジット制。自分のプロンプト投稿には無料アカウントが必要（リーダーボードでのクレジット表示のため）。"
+              "q": "閲覧・コピーに料金はかかりますか？",
+              "a": "いいえ — ギャラリー内すべてのプロンプトの閲覧・コピーは誰でも可能で、アカウント不要。サイト内生成はクレジット制。自分のプロンプト投稿にはアカウントが必要（リーダーボードでのクレジット表示のため）。"
             },
             {
               "q": "GPT Image 2 以外のモデルでも使えますか？",
@@ -1170,10 +1189,10 @@
         "cta": {
           "title": "今日から",
           "titleEm": "GPT Image 2 で生成を始めよう",
-          "subtitle": "6,200+ クリエイターと一緒に、最高の無料プロンプトギャラリーを閲覧。アカウント不要 — 閲覧、コピー、創作するだけ。",
+          "subtitle": "6,200+ クリエイターと一緒に、最高の GPT Image 2 プロンプトギャラリーを閲覧。アカウント不要 — 閲覧、コピー、創作するだけ。",
           "browse": "GPT Image 2 プロンプトを見る →",
           "submit": "プロンプトを投稿",
-          "note": "無料閲覧 · {count}+ 厳選プロンプト · X から毎日更新"
+          "note": "アカウント不要 · {count}+ 厳選プロンプト · X から毎日更新"
         }
       }
     },
@@ -1190,8 +1209,8 @@
       "members": "メンバー",
       "daily": "毎日",
       "newPrompts": "新プロンプト",
-      "free": "無料",
-      "browse": "閲覧"
+      "curated": "厳選",
+      "fromX": "X 由来"
     },
     "section": {
       "latest": "最新投稿",
@@ -1218,6 +1237,7 @@
         "github": "GitHub",
         "gptGallery": "GPT Image 2 ギャラリー",
         "dalleGallery": "DALL·E 3 ギャラリー",
+        "categories": "カテゴリ",
         "submit": "投稿",
         "privacy": "プライバシー"
       }

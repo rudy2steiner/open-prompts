@@ -290,6 +290,7 @@
     "nav": {
       "home": "首页",
       "gallery": "画廊",
+      "categories": "分类",
       "create": "创作",
       "favorites": "收藏",
       "submit": "分享",
@@ -891,7 +892,8 @@
       "errorCredentialsHint": "请使用 ADMIN_EMAIL 中的完整邮箱。线上环境也需在部署平台配置 DATABASE_URL 与 ADMIN_PASSWORD（不能只在本地 .env）。若先用 GitHub/Google 登录过，请用对应方式登录，或设置 ADMIN_PASSWORD 后重启服务以同步管理员密码。",
       "errorConfiguration": "服务器登录配置有误（检查 NEXTAUTH_URL、NEXTAUTH_SECRET 与 OAuth 回调地址）。",
       "errorAccessDenied": "已取消或拒绝授权登录。",
-      "errorOAuth": "无法通过该方式登录。GitHub 需允许读取邮箱，或使用公开邮箱。",
+      "errorOAuth": "无法通过该方式登录。GitHub 需允许读取邮箱，或使用公开邮箱；Google 请确认 OAuth 回调地址已配置。",
+      "errorOAuthPersist": "授权成功但无法写入账户，请检查线上 DATABASE_URL（Supabase 建议端口 6543）后重试。",
       "errorOAuthAccountNotLinked": "该账号已绑定其他登录方式，请用注册时的方式或邮箱登录。",
       "errorGeneric": "出错了，请稍后再试。",
       "errorRegister": "无法创建账户。",
@@ -902,18 +904,18 @@
       "registerSuccess": "账户已创建，正在登录…"
     },
     "galleryPage": {
-      "title": "提示词画廊",
-      "subtitle": "按模型与分类筛选，复制模板，站内一键生成。",
+      "title": "图像提示词画廊",
+      "subtitle": "浏览 1000+ 免费图像提示词，按模型筛选、复制模板、站内生成。",
       "seo": {
-        "title": "社区精选 AI 生图提示词 | Open Prompts",
-        "description": "在 Open Prompts 发现精选 AI 图像提示词与模板，按模型筛选、复制模板，并用 GPT Image、Midjourney、DALL·E 等生成。",
-        "keywords": "提示词,生图,AI绘画,画廊,Midjourney,DALL·E,Open Prompts"
+        "title": "图像提示词画廊",
+        "description": "浏览免费 AI 图像提示词，支持 ChatGPT、GPT Image 2、Midjourney。复制模板，站内一键生成。",
+        "keywords": "图像提示词,AI生图提示词,ChatGPT图像提示词,GPT Image 2,提示词画廊"
       }
     },
     "modelPage": {
       "seo": {
-        "title": "免费 {model} 提示词 — {count} 条社区模板 | Open Prompts",
-        "description": "浏览 Open Prompts 社区精选的 {count} 条 {model} 提示词。复制模板、预览效果，站内一键生成。"
+        "title": "{model} 图像提示词 ({count})",
+        "description": "浏览 {count} 条免费 {model} 图像提示词。复制社区模板，在 Open Prompts 站内生成。"
       },
       "breadcrumb": {
         "home": "首页",
@@ -925,21 +927,39 @@
     },
     "categoryPage": {
       "seo": {
-        "title": "免费 {category} AI 提示词 — {count} 条模板 | Open Prompts",
-        "description": "在 Open Prompts 探索 {count} 条免费 {category} AI 图像提示词。复制社区验证的模板，站内生成精美图像。"
+        "title": "{category} 图像提示词 ({count})",
+        "description": "探索 {count} 条免费 {category} AI 图像提示词。复制模板，站内生成。"
       },
       "breadcrumb": {
         "home": "首页",
-        "gallery": "画廊"
+        "gallery": "画廊",
+        "categories": "分类"
       },
       "heading": "{category} 提示词",
       "subtitle": "{category} 分类共 {count} 条社区提示词 — 复制模板，站内生成。",
       "empty": "{category} 分类暂无提示词。浏览画廊或提交你的作品。"
     },
+    "categoriesIndex": {
+      "seo": {
+        "title": "图像提示词分类",
+        "description": "按分类浏览免费 AI 图像提示词 — 场景、人像、艺术风格、产品图等。"
+      },
+      "breadcrumb": {
+        "home": "首页",
+        "gallery": "画廊"
+      },
+      "heading": "图像提示词分类",
+      "subtitle": "共 {count} 条提示词，{categoryCount} 个分类 — 选择风格开始浏览。",
+      "cardCount": "{count} 条"
+    },
     "promptPage": {
       "seo": {
-        "title": "{title} — {model} 提示词 | Open Prompts"
+        "title": "{title} — {model} 提示词",
+        "description": "免费 {model} 图像提示词：{snippet}。复制模板，在 Open Prompts 站内生成。{tags}"
       },
+      "seoIntro": "免费 {model} 图像提示词模板 — {title}。复制下方提示词或站内生成。",
+      "breadcrumbHome": "首页",
+      "breadcrumbGallery": "画廊",
       "backToGallery": "← 返回画廊",
       "promptLabel": "提示词",
       "modelLabel": "模型",
@@ -947,15 +967,14 @@
     },
     "homePage": {
       "seo": {
-        "title": "免费 AI 图像提示词画廊 | GPT Image 2 | Open Prompts",
-        "description": "发现 {count}+ 条社区精选 GPT Image 2 提示词。复制、改编，并用 GPT Image 2、DALL·E 3、Midjourney 生成精美 AI 图像 — 免费，每日更新。",
-        "keywords": "GPT Image 2 提示词,AI 生图,提示词画廊,Midjourney,DALL·E,Open Prompts"
+        "title": "图像提示词画廊",
+        "description": "发现 {count}+ 条精选图像提示词，支持 ChatGPT 与 GPT Image 2。复制、改编，站内生成 AI 图像，每日从 X 更新。",
+        "keywords": "图像提示词,AI图像提示词,ChatGPT图像提示词,GPT Image 2,提示词画廊"
       },
-      "h1Line1": "免费",
-      "h1Line2": "GPT Image 2",
-      "h1Line3": "提示词画廊",
-      "browseGallery": "浏览 GPT Image 2 提示词",
-      "submitPrompt": "提交你的提示词 →",
+      "h1Line2": "图像提示词",
+      "h1Line3": "GPT Image 2 画廊",
+      "browseGallery": "浏览画廊",
+      "submitPrompt": "提交提示词 →",
       "modelBar": {
         "label": "支持模型",
         "allModels": "全部模型",
@@ -1087,7 +1106,7 @@
           },
           "items": [
             {
-              "q": "我找到的最佳免费 GPT Image 2 提示词资源。每张卡片都展示真实成图，不用猜。每天早上开工前必看。",
+              "q": "我找到的最佳 GPT Image 2 提示词资源。每张卡片都展示真实成图，不用猜。每天早上开工前必看。",
               "a": "品牌设计师",
               "handle": "@noorlewisx",
               "role": "品牌设计师",
@@ -1121,11 +1140,11 @@
           "items": [
             {
               "q": "Open Prompts 是什么？与 GPT Image 2 有何关系？",
-              "a": "Open Prompts 是免费的社区 AI 图像提示词画廊，每日从 X 创作者同步内容。大多数提示词均针对 GPT Image 2（OpenAI 最新图像模型）编写与测试，是该模型最集中的提示词库。可在浏览器中直接浏览、复制与生成，无需额外配置。"
+              "a": "Open Prompts 是社区 AI 图像提示词画廊，每日从 X 创作者同步内容。大多数提示词均针对 GPT Image 2（OpenAI 最新图像模型）编写与测试，是该模型最集中的提示词库。可在浏览器中直接浏览、复制与生成，无需额外配置。"
             },
             {
-              "q": "GPT Image 2 提示词免费吗？",
-              "a": "是的 — 浏览与复制画廊中所有提示词完全免费，无需账户。站内生成采用积分制。提交自己的提示词需免费注册，以便在排行榜署名。"
+              "q": "浏览和复制提示词需要付费吗？",
+              "a": "不需要 — 浏览与复制画廊中所有提示词对所有人开放，无需账户。站内生成采用积分制。提交自己的提示词需注册账户，以便在排行榜署名。"
             },
             {
               "q": "能否用于 GPT Image 2 以外的模型？",
@@ -1148,10 +1167,10 @@
         "cta": {
           "title": "今天就开始用",
           "titleEm": "GPT Image 2 生成",
-          "subtitle": "加入 6,200+ 创作者，浏览网上最佳免费提示词画廊。无需账户 — 浏览、复制、创作即可。",
+          "subtitle": "加入 6,200+ 创作者，浏览网上最佳 GPT Image 2 提示词画廊。无需账户 — 浏览、复制、创作即可。",
           "browse": "浏览 GPT Image 2 提示词 →",
           "submit": "提交提示词",
-          "note": "免费浏览 · {count}+ 精选提示词 · 每日从 X 更新"
+          "note": "无需账户 · {count}+ 精选提示词 · 每日从 X 更新"
         }
       }
     },
@@ -1168,8 +1187,8 @@
       "members": "社区成员",
       "daily": "每日",
       "newPrompts": "新提示词",
-      "free": "免费",
-      "browse": "浏览"
+      "curated": "精选",
+      "fromX": "来自 X"
     },
     "section": {
       "latest": "X / 社区最新投递",
@@ -1196,6 +1215,7 @@
         "github": "GitHub",
         "gptGallery": "GPT Image 2 画廊",
         "dalleGallery": "DALL·E 3 画廊",
+        "categories": "分类",
         "submit": "提交",
         "privacy": "隐私政策"
       }

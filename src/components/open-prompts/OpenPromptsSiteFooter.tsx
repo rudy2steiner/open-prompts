@@ -3,7 +3,7 @@
 import type { ReactNode } from 'react';
 import { useTranslations } from 'next-intl';
 import { FaGithub } from 'react-icons/fa';
-import { modelLandingHref } from '~/lib/prompts/seo-paths';
+import { categoriesHref, modelLandingHref } from '~/lib/prompts/seo-paths';
 
 export type OpenPromptsSiteFooterProps = {
   locale: string;
@@ -39,6 +39,11 @@ export function OpenPromptsSiteFooter({ locale, tagline, spacing = 'spaced' }: O
     {
       label: t('footer.links.dalleGallery'),
       href: modelLandingHref(locale, 'dalle-3'),
+      external: false,
+    },
+    {
+      label: t('footer.links.categories'),
+      href: categoriesHref(locale),
       external: false,
     },
     { label: t('footer.links.submit'), href: submitHref(locale), external: false },

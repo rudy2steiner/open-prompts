@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { getPromptGallery } from '~/lib/prompts/get-prompt-gallery';
+import { getPromptGalleryForSitemap } from '~/lib/prompts/get-prompt-gallery';
 import {
   CATEGORY_SEO_SLUG_LIST,
   MODEL_SEO_SLUG_LIST,
@@ -9,6 +9,7 @@ import { absoluteUrl } from '~/lib/seo/metadata';
 const PUBLIC_PATHS = [
   '',
   '/gallery',
+  '/category',
   '/submit',
   '/create',
   '/login',
@@ -48,7 +49,7 @@ function taxonomyEntries(now: Date): MetadataRoute.Sitemap {
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
-  const prompts = await getPromptGallery();
+  const prompts = await getPromptGalleryForSitemap();
 
   const promptEntries = LOCALES.flatMap((locale) =>
     prompts.map((p) => ({

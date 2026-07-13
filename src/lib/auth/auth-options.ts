@@ -66,24 +66,21 @@ export const authOptions: NextAuthOptions = {
     signIn: '/login',
     error: '/login',
   },
+  debug: process.env.NEXTAUTH_DEBUG === 'true',
   callbacks: {
     async signIn({ user, account }) {
       if (!account || account.provider === 'credentials') return true;
 
       const email = user?.email?.trim();
       if (!email) {
-        if (process.env.NODE_ENV === 'development') {
-          console.warn(`[auth] ${account.provider} sign-in missing email`);
-        }
-        return false;
+        console.warn(`[auth] ${account.provider} sign-in missing email`);
+        return '/login?error=OAuthEmailRequired';
       }
 
       const db = getDb();
       if (!db) {
-        if (process.env.NODE_ENV === 'development') {
-          console.warn('[auth] DATABASE_URL not set; OAuth sign-in cannot persist user');
-        }
-        return false;
+        console.warn('[auth] DATABASE_URL not set; OAuth sign-in cannot persist user');
+        return '/login?error=Configuration';
       }
 
       return true;
@@ -100,24 +97,29 @@ export const authOptions: NextAuthOptions = {
           token.picture = user.image;
           void touchUserActivity(user.id);
         } else if (user.email) {
-          const u = await ensureOAuthUser(db, {
-            email: user.email,
-            name: user.name,
-            image: user.image,
-            provider: account.provider,
-            providerAccountId: account.providerAccountId,
-            refreshToken: account.refresh_token as string | undefined,
-            accessToken: account.access_token as string | undefined,
-            expiresAt: account.expires_at as number | undefined,
-            tokenType: account.token_type as string | undefined,
-            scope: account.scope as string | undefined,
-            idToken: account.id_token as string | undefined,
-          });
-          token.sub = u.id;
-          token.email = u.email;
-          token.name = u.name;
-          token.picture = u.image;
-          void touchUserActivity(u.id);
+          try {
+            const u = await ensureOAuthUser(db, {
+              email: user.email,
+              name: user.name,
+              image: user.image,
+              provider: account.provider,
+              providerAccountId: account.providerAccountId,
+              refreshToken: account.refresh_token as string | undefined,
+              accessToken: account.access_token as string | undefined,
+              expiresAt: account.expires_at as number | undefined,
+              tokenType: account.token_type as string | undefined,
+              scope: account.scope as string | undefined,
+              idToken: account.id_token as string | undefined,
+            });
+            token.sub = u.id;
+            token.email = u.email;
+            token.name = u.name;
+            token.picture = u.image;
+            void touchUserActivity(u.id);
+          } catch (err) {
+            console.error('[auth] ensureOAuthUser failed', err);
+            throw err;
+          }
         }
       }
 
