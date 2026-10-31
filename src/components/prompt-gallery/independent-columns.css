@@ -1,0 +1,14 @@
+/* 同一份 DOM 支持 1/2/4 个独立列，无需测量高度或在 hydration 后切换布局。 */
+.independent-columns { container-type: inline-size; }
+.independent-columns-surface { display: flex; flex-direction: column; gap: 16px; reading-flow: flex-visual; }
+.independent-columns-group, .independent-columns-column { display: contents; }
+.independent-columns-item { min-width: 0; }
+@container (min-width: 640px) {
+  .independent-columns-surface { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; reading-flow: grid-rows; }
+  .independent-columns-group { display: flex; flex-direction: column; gap: 16px; min-width: 0; reading-flow: flex-visual; }
+}
+@container (min-width: 1280px) {
+  .independent-columns-surface { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .independent-columns-group { display: contents; }
+  .independent-columns-column { display: flex; flex-direction: column; gap: 16px; min-width: 0; reading-flow: flex-visual; }
+}

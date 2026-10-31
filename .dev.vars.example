@@ -1,0 +1,25 @@
+## Copy to `.dev.vars` for `npm run preview` (Cloudflare Workers local dev).
+## Same keys as `.env.local` — Wrangler loads this file automatically.
+
+DATABASE_URL=
+NEXTAUTH_URL=http://localhost:8787
+NEXTAUTH_SECRET=
+GITHUB_ID=
+GITHUB_SECRET=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+ADMIN_EMAIL=admin@localhost
+ADMIN_PASSWORD=change_me_8plus
+ADMIN_NAME=Admin
+NEXT_PUBLIC_SITE_URL=http://localhost:8787
+DEFAULT_IMAGE_PROVIDER=atlascloud
+INTERNAL_DAILY_IMAGE_CREDITS=
+INTERNAL_MONTHLY_IMAGE_CREDITS=
+CREDITS_COOKIE_SECRET=replace_with_random_hex
+USE_TEST_MODE=false
+TEST_IMAGE_URL=https://example.com/test.png
+ATLASCLOUD_BASE_URL=https://api.atlascloud.ai/api/v1/model
+ATLASCLOUD_API_KEY=
+OPENAI_API_KEY=
+OPENAI_API_MODEL=sora-1.0-turbo
+OPENAI_API_BASE_URL=https://api.openai.com

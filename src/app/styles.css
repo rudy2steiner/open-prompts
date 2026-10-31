@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Native datetime-local: avoid full-width stretch so the calendar icon stays beside the value */
+@layer utilities {
+  .datetime-local-tight {
+    max-width: min(100%, 20rem);
+    font-variant-numeric: tabular-nums;
+  }
+  .datetime-local-tight::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+  }
+  .datetime-local-tight::-webkit-datetime-edit-text {
+    padding: 0 0.15em;
+  }
+  .datetime-local-tight::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    margin-inline-start: 0.125rem;
+    margin-inline-end: 0;
+    padding: 0.125rem;
+    opacity: 0.9;
+  }
+}
+

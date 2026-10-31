@@ -1,0 +1,1534 @@
+{
+  "IndexPage": {
+    "lang": "fr",
+    "language": "Français",
+    "languageInChineseSimple": "法语",
+    "title": "Formater, Valider, Embellir, Comparer Json | Gratuit en ligne",
+    "description": "Formatez JSON, formatez le fichier JSON, formatez la réponse JSON en ligne. Téléchargez un fichier JSON au format de fichier json en quelques secondes, puis téléchargez votre fichier json formaté",
+    "h1": "Outil d'édition, de formatage, de validation et d'embellissement en ligne pour json. collez-le simplement ci-dessous :",
+    "keywords": "formateur json en ligne, éditeur json, format json, format json, format json en ligne, vérificateur de format json, formateur et validateur json, joli format json, format de vérificateur json, joli format json, json formaté, vérifier le format json, formatage du texte json, formatage json en ligne, json en chaîne, validation du format json",
+    "loadingText": "Chargement...",
+    "generateText": "Génération...",
+    "buttonText": "Générer",
+    "placeholderText": "Tapez ou collez le texte ici...",
+    "pDescription": "Outil d'édition, de formatage, de validation et d'embellissement en ligne pour json. collez-le simplement ci-dessous :",
+    "soraVideoExample": "Outil d'édition, de formatage et d'embellissement en ligne pour JSON non standard. collez-le simplement ci-dessous :",
+    "prompt": "Outil de comparaison en ligne pour json ou n'importe quel texte. collez-le simplement ci-dessous :",
+    "soraWorksTitle": "Œuvres",
+    "soraResultTitle": "Résultat",
+    "moreExample": "autre exemple de vidéo",
+    "fakeSoraTip": "FakeSora est conçu pour simuler le OpenAI Sora API, qui n'a pas encore été publié.",
+    "soraTip": "OpenAI n'a pas encore sorti le API de Sora."
+  },
+  "footer": {
+    "lang": "fr",
+    "language": "Français",
+    "languageInChineseSimple": "法语",
+    "title": "Convertisseur d'heure Unix pour l'horodatage d'époque et la date du calendrier.",
+    "description": "Convertissez l'heure Unix en ligne : secondes en nanosecondes, UTC et vues locales, horloge d'époque en direct et copier-coller des extraits de code.",
+    "h1": "Outil d'édition, de formatage, de validation et d'embellissement en ligne pour json. collez-le simplement ci-dessous :",
+    "keywords": "formateur json en ligne, éditeur json, format json, format json, format json en ligne, vérificateur de format json, formateur et validateur json, joli format json, format de vérificateur json, joli format json, json formaté, vérifier le format json, formatage du texte json, formatage json en ligne, json en chaîne, validation du format json",
+    "loadingText": "Chargement...",
+    "generateText": "Génération...",
+    "buttonText": "Générer",
+    "placeholderText": "Tapez ou collez le texte ici...",
+    "pDescription": "Outil d'édition, de formatage, de validation et d'embellissement en ligne pour json. collez-le simplement ci-dessous :",
+    "soraVideoExample": "Outil d'édition, de formatage et d'embellissement en ligne pour JSON non standard. collez-le simplement ci-dessous :",
+    "prompt": "Outil de comparaison en ligne pour json ou n'importe quel texte. collez-le simplement ci-dessous :",
+    "soraWorksTitle": "Œuvres",
+    "soraResultTitle": "Résultat",
+    "moreExample": "autre exemple de vidéo",
+    "fakeSoraTip": "FakeSora est conçu pour simuler le OpenAI Sora API, qui n'a pas encore été publié.",
+    "soraTip": "OpenAI n'a pas encore sorti le API de Sora."
+  },
+  "privacyPolicy": {
+    "title": "Politique de confidentialité | Open Prompts",
+    "description": "Découvrez comment Open Prompts collecte, utilise et protège vos informations lorsque vous parcourez, soumettez et partagez des prompts d'images IA dans notre galerie communautaire.",
+    "h1": "Politique de confidentialité",
+    "date": "Dernière mise à jour : 19 février 2024",
+    "desc": "Merci d'avoir choisi SoraWebui ! Cette politique de confidentialité décrit la manière dont nous collectons, utilisons et protégeons vos informations lorsque vous utilisez notre site Web situé à l'adresse ",
+    "h4_1": "1、Informations que nous collectons :",
+    "h4_1_pa": "une. Données personnelles : lorsque vous utilisez SoraWebui, nous pouvons collecter votre nom, votre adresse e-mail et vos informations de paiement à des fins de traitement des commandes.",
+    "h4_1_pb": "b. Données non personnelles : nous pouvons également collecter des données non personnelles via des cookies Web pour améliorer votre expérience de navigation.",
+    "h4_2": "2、Objectif de la collecte de données :",
+    "h4_2_p": "Nous collectons vos données personnelles uniquement à des fins de traitement des commandes.",
+    "h4_3": "3、Partage de données :",
+    "h4_3_p": "Nous ne partageons pas vos données personnelles avec des tiers.",
+    "h4_4": "4、Confidentialité des enfants :",
+    "h4_4_p": "SoraWebui ne collecte sciemment aucune donnée personnelle auprès des enfants.",
+    "h4_5": "5、Mises à jour de la politique de confidentialité :",
+    "h4_5_p": "Nous informerons les utilisateurs de toute mise à jour de cette politique de confidentialité par e-mail.",
+    "h4_6": "6、Coordonnées :",
+    "h4_6_p": "Si vous avez des questions ou des préoccupations concernant notre politique de confidentialité, veuillez nous contacter à"
+  },
+  "termsOfService": {
+    "title": "Conditions d'utilisation | Open Prompts",
+    "description": "Conditions régissant votre utilisation de Open Prompts, la galerie de prompts d'IA communautaire pour découvrir, soumettre et partager des prompts de génération d'images.",
+    "h1": "Conditions d'utilisation",
+    "date": "Dernière mise à jour : 19 février 2024",
+    "desc": "Ces Conditions d'utilisation (« Conditions ») régissent votre accès et votre utilisation de SoraWebui (le « Service »), fourni par SoraWebui (« nous » ou « notre »). En accédant ou en utilisant le Service, vous acceptez d'être lié par ces Conditions.",
+    "h4_1": "1、Description du service : ",
+    "h4_1_p": "SoraWebui fournit une interface de navigateur pour OpenAI Sora, permettant aux utilisateurs de générer facilement du texte en vidéo.",
+    "h4_2": "2、Propriété : ",
+    "h4_2_p": "La propriété de la vidéo générée à partir du texte appartient à l'utilisateur d'origine.",
+    "h4_3": "3、Données utilisateur :",
+    "h4_3_p": "Nous collectons et stockons les données des utilisateurs, notamment le nom, l'adresse e-mail et les informations de paiement. Nous traitons ces données conformément à notre politique de confidentialité.",
+    "h4_4": "4、Collecte de données non personnelles : ",
+    "h4_4_p": "Nous utilisons des cookies Web pour collecter des données non personnelles. Pour plus d’informations, veuillez consulter notre Politique de confidentialité.",
+    "h4_5": "5、Politique de confidentialité :",
+    "h4_5_p": "Notre Politique de confidentialité explique comment nous collectons, utilisons et divulguons des informations vous concernant. En utilisant notre service, vous acceptez notre politique de confidentialité, disponible à l'adresse ",
+    "h4_6": "6、Loi applicable : ",
+    "h4_6_p": "Ces Conditions sont régies par les lois des États-Unis d'Amérique.",
+    "h4_7": "7、Mises à jour des conditions : ",
+    "h4_7_p": "Nous pouvons mettre à jour ces Conditions de temps à autre. Nous informerons les utilisateurs de tout changement important par e-mail.",
+    "h4_8": "8、Coordonnées :",
+    "h4_8_p": "Si vous avez des questions ou des préoccupations concernant notre politique de confidentialité, veuillez nous contacter à "
+  },
+  "indexQuestion": {
+    "h2_0": "FAQ",
+    "h2_1": "Qu'est-ce que JSON Home ?",
+    "h2_1_p1": "Ensemble d'outils JSON, comprenant le formateur json, le validateur json, l'outil de comparaison json, etc.",
+    "h2_1_p2": "Il génère des scènes réalistes et imaginatives basées sur des descriptions textuelles, créant plusieurs personnages et simulant avec précision des mouvements spécifiques et des détails de la scène.",
+    "h2_1_p3": "Impressionnant dans la compréhension du langage et la production vidéo, Sora offre aux professionnels de la création un nouvel outil d'innovation. ",
+    "h2_1_p4": "Pour des informations plus détaillées, visitez le site officiel de OpenAI ",
+    "h2_2": "Qu'est-ce que JSON et ses fonctionnalités ?",
+    "h2_2_p1": "JSON (JavaScript Object Notation) est un format de données léger basé sur du texte utilisé pour représenter des données structurées. Il est couramment utilisé pour transmettre des données entre un serveur et une application Web, ainsi que pour le stockage et la configuration des données.",
+    "h2_2_p2": "Principales caractéristiques du JSON :",
+    "h2_2_p3a": "Lisible par l'homme : JSON est écrit dans un format facile à comprendre et à modifier pour les humains.",
+    "h2_2_p3b": "Indépendant du langage : JSON n'est lié à aucun langage de programmation spécifique, ce qui le rend adapté à une utilisation avec une variété de technologies.",
+    "h2_2_p3c": "Types de données : JSON prend en charge une variété de types de données, notamment des chaînes, des nombres, des booléens, des tableaux et des objets. ",
+    "h2_2_p3d": "Structure hiérarchique : JSON peut être organisé en structures hiérarchiques à l'aide d'objets et de tableaux. ",
+    "h2_2_p3e": "Léger : JSON est un format de données compact qui est efficace à transmettre et à stocker. "
+  },
+  "timestampPage": {
+    "title": "Convertisseur de temps Unix | Convertisseur d'époque et de date en ligne gratuit",
+    "description": "Convertissez les horodatages Unix en dates et les dates en heure Unix en ligne. Prend en charge les secondes, millisecondes, microsecondes et nanosecondes. Gratuit, rapide et privé.",
+    "keywords": "Convertisseur d'heure Unix, convertisseur d'époque, horodatage à ce jour, date à horodatage, horodatage Unix, heure posix",
+    "h1": "Convertisseur d'horodatage",
+    "h2_1": "Convertir l'horodatage en date",
+    "h2_2": "Convertir la date en horodatage",
+    "pick_date": "Date de sélection :",
+    "convert": "Convertir",
+    "section_timestamp_to_date": "Horodatage à ce jour",
+    "current_unix_epoch": "Époque Unix actuelle",
+    "units_hint": "Unités : auto · s · ms · μs · ns",
+    "enter_timestamp_placeholder": "Entrez l'horodatage",
+    "unit_auto": "automatique",
+    "unit_seconds": "secondes",
+    "unit_milliseconds": "millisecondes",
+    "unit_microseconds": "microsecondes (μs)",
+    "unit_nanoseconds": "nanosecondes",
+    "label_local": "Locale",
+    "label_utc": "UTC",
+    "label_seconds": "Secondes",
+    "label_millis": "Millis",
+    "label_micros": "Micros",
+    "label_nanos": "Nanos",
+    "invalid_timestamp": "Valeur d'horodatage invalide.",
+    "invalid_date": "Saisie de date invalide.",
+    "what_is_unix_timestamp_title": "Qu'est-ce que l'horodatage Unix ?",
+    "what_is_unix_timestamp_p1": "Un horodatage Unix (également appelé heure Unix ou heure POSIX) est le nombre de secondes depuis le 01/01/1970 00:00:00 UTC.",
+    "what_is_unix_timestamp_p2": "C'est un moyen pratique de stocker et de comparer les valeurs de temps entre les systèmes. La plupart des systèmes le traitent comme un décompte continu de secondes et ne comptent pas les secondes intercalaires.",
+    "what_is_unix_timestamp_p3": "Certains systèmes 32 bits débordent en 2038 (le problème de l'année 2038).",
+    "code_examples_title": "Exemples de codes",
+    "code_examples_desc": "Obtenez l'heure actuelle et convertissez un horodatage d'époque en une date lisible par l'homme (remplacez l'exemple de valeur par la vôtre).",
+    "seo_hero_title": "Convertisseur de temps Unix en ligne",
+    "seo_hero_description": "Convertisseur de temps Unix gratuit pour l'époque ↔ date : secondes à nanosecondes, époque Unix en direct, UTC et vues locales, ainsi que des extraits de copier-coller. Privé, rapide et conçu pour les journaux, les API et le débogage.",
+    "seo_features_title": "Pourquoi ce convertisseur de temps Unix se démarque",
+    "seo_feature_1_title": "Conversion bidirectionnelle de l'heure Unix",
+    "seo_feature_1_desc": "Mappez les numéros d'époque avec la date/heure locale et UTC, ou choisissez une heure de calendrier pour exporter l'heure Unix avec la précision attendue par votre pile.",
+    "seo_feature_2_title": "Unités pour chaque horodatage",
+    "seo_feature_2_desc": "Détectez ou définissez automatiquement les secondes, millisecondes, microsecondes ou nanosecondes afin que les valeurs d'époque des API et des bases de données s'alignent sans approximation.",
+    "seo_feature_3_title": "Époque Unix en direct",
+    "seo_feature_3_desc": "Regardez l'époque Unix actuelle cocher à côté du formulaire afin de toujours voir « maintenant » à côté des valeurs que vous convertissez.",
+    "seo_feature_4_title": "Sortie prête à coder",
+    "seo_feature_4_desc": "Les extraits de code JavaScript, Python, Go, SQL et shell reflètent la conversion de l'heure Unix à l'écran dans votre dépôt.",
+    "seo_how_title": "Comment ça marche",
+    "seo_how_step_1_title": "Collez ou tapez l'heure Unix",
+    "seo_how_step_1_desc": "Entrez un horodatage Unix numérique, choisissez une unité ou comptez sur la détection automatique à partir de la longueur des chiffres pour une conversion rapide.",
+    "seo_how_step_2_title": "Choisissez une date et une heure",
+    "seo_how_step_2_desc": "Utilisez le sélecteur pour transformer un moment du calendrier en secondes d'époque, millisecondes et plus encore, idéal lorsque vous partez de dates lisibles par l'homme.",
+    "seo_how_step_3_title": "Lisez chaque représentation",
+    "seo_how_step_3_desc": "Comparez côte à côte l'heure locale, UTC et l'époque brute pour les contrôles de débogage, d'assurance qualité et API.",
+    "seo_why_title": "Pourquoi les développeurs utilisent cet outil",
+    "seo_why_1_title": "Privé par conception",
+    "seo_why_1_desc": "S'exécute côté client dans votre navigateur : les entrées ne sont pas stockées sur nos serveurs.",
+    "seo_why_2_title": "Conçu pour des horodatages réels",
+    "seo_why_2_desc": "Les valeurs en millisecondes et microsecondes des journaux et JSON s'intègrent naturellement dans ce flux de travail de convertisseur d'horodatage.",
+    "seo_why_3_title": "Expédiez plus rapidement",
+    "seo_why_3_desc": "Les exemples en ligne renforcent la sortie du convertisseur d'époque à l'écran afin que les ingénieurs puissent refléter la même logique dans le code.",
+    "seo_testimonials_title": "Ce que disent les utilisateurs",
+    "seo_testimonial_1_name": "Alex",
+    "seo_testimonial_1_role": "Développeur back-end",
+    "seo_testimonial_1_quote": "Parfait pour des vérifications rapides des lignes de journal et des réponses API : mon convertisseur d'époque incontournable dans le navigateur.",
+    "seo_testimonial_2_name": "Jamie",
+    "seo_testimonial_2_role": "SRE",
+    "seo_testimonial_2_quote": "Le changement d'unité m'évite de deviner les ms par rapport aux secondes lorsque les incidents augmentent.",
+    "seo_testimonial_3_name": "Riley",
+    "seo_testimonial_3_role": "Étudiant",
+    "seo_testimonial_3_quote": "Une présentation claire et des exemples m'ont aidé à maîtriser le temps Unix plus rapidement que la documentation seule.",
+    "seo_faq_title": "FAQ",
+    "seo_faq_q1": "Qu'est-ce qu'un horodatage Unix ?",
+    "seo_faq_a1": "Il compte à partir de l'époque Unix (1970-01-01 00:00:00 UTC), généralement en secondes ou en unités plus fines – exactement ce que ce convertisseur de temps Unix affiche à côté du local et du UTC.",
+    "seo_faq_q2": "Pourquoi certaines valeurs comportent-elles 13 chiffres ?",
+    "seo_faq_a2": "Cela correspond souvent aux millisecondes depuis l'époque, ce qui est courant dans JavaScript (par exemple Date.now()). L'outil accepte automatiquement ces longueurs.",
+    "seo_faq_q3": "Cet outil est-il gratuit ?",
+    "seo_faq_a3": "Oui. Utilisez-le en ligne sans vous inscrire ; la conversion reste dans votre session.",
+    "seo_faq_q4": "Comment les fuseaux horaires sont-ils gérés ?",
+    "seo_faq_a4": "L'heure locale utilise les paramètres de votre navigateur ; UTC et les valeurs d'époque brutes apparaissent ensemble pour chaque résultat.",
+    "seo_faq_q5": "Qu'en est-il du problème de l'année 2038 ?",
+    "seo_faq_a5": "Débordement de secondes signées 32 bits vers 2038 ; préférez le temps 64 bits ou des unités plus fines pour les dates lointaines.",
+    "seo_cta_title": "Prêt à vous convertir ?",
+    "seo_cta_desc": "Revenez au convertisseur de temps Unix en haut de cette page pour une autre conversion d'époque ou de date.",
+    "seo_cta_button": "Accéder au convertisseur"
+  },
+  "jsonEditorPage": {
+    "title": "Formater, Valider, Embellir, Comparer Json | Gratuit en ligne",
+    "description": "Formatez JSON, formatez le fichier JSON, formatez la réponse JSON en ligne. Téléchargez un fichier JSON au format de fichier json en quelques secondes, puis téléchargez votre fichier json formaté.",
+    "keywords": "éditeur json, format json, format json, format json en ligne, vérificateur de format json, joli format json, format de vérificateur json, joli format json, json formaté, vérifier le format json, formatage de texte json, formatage json en ligne, json en chaîne, validation du format json",
+    "h1": "Formater, valider et embellir JSON | Gratuit en ligne ",
+    "h1_desc": "Puissant formateur JSON pour formater, valider et embellir vos données JSON. Ce formateur JSON prend en charge la coloration syntaxique, la jolie impression, la minification et la validation en temps réel. Téléchargez des fichiers JSON ou collez du texte JSON - notre formateur JSON fonctionne instantanément dans votre navigateur.",
+    "format": "Format",
+    "compact": "Compacte",
+    "upload": "Télécharger",
+    "download": "Télécharger",
+    "clear": "Effacer",
+    "auto_format": "Formatage automatique",
+    "compare": "Comparer",
+    "close_compare": "Fermer Comparer",
+    "problem": "Problème",
+    "h1Text": "SoraWebui - Travaux",
+    "pDescription": "SoraWebui est un projet open source qui simplifie la création vidéo en permettant aux utilisateurs de générer des vidéos en ligne avec le modèle Sora de OpenAI en utilisant du texte, avec un déploiement facile sur un site Web en un seul clic.",
+    "generateNew": "Générer un nouveau",
+    "h2": "Formateur JSON",
+    "h2_desc": "JSON Formatter est un outil qui vous aide à formater JSON de manière claire et lisible. Il peut être utilisé pour formater les fichiers JSON et JSON.",
+    "h2_h3": "Caractéristiques",
+    "h2_h3_l1": "Mise en évidence de la syntaxe : le formateur JSON utilise la mise en évidence de la syntaxe pour rendre JSON plus facile à lire.",
+    "h2_h3_l2": "Jolie impression : le formateur JSON peut imprimer joliment JSON, ce qui facilite la visualisation de la structure des données.",
+    "h2_h3_l3": "Validation : le formateur JSON peut valider JSON pour s'assurer qu'il s'agit d'un JSON valide.",
+    "h2_h3_l4": "Minification : le formateur JSON peut minifier JSON, réduisant ainsi sa taille.",
+    "h2_h3_l5": "Format de fichier JSON : le formateur JSON prend en charge le téléchargement d'un fichier JSON pour formater et télécharger le fichier json formaté.",
+    "h2_h3_1": "Comment utiliser le formateur JSON ?",
+    "h2_h3_1_l1": "Copiez et collez JSON dans le champ de saisie ou téléchargez un fichier json.",
+    "h2_h3_1_l2": "Cliquez sur le",
+    "h2_h3_1_l2_1": "Formater ",
+    "h2_h3_1_l2_2": ".",
+    "h2_h3_1_l3": "Le JSON formaté sera affiché dans la zone de texte.",
+    "h2_h3_2": "Exemples de formats JSON",
+    "h2_1": "Validateur JSON",
+    "h2_1_desc": "JSON Validator est un outil qui vous aide à valider JSON pour vous assurer qu'il est valide JSON. Il peut être utilisé pour valider les fichiers JSON et JSON.",
+    "h2_1_h3": "Caractéristiques",
+    "h2_1_h3_l1": "Validation de la syntaxe : JSON Validator vérifie la syntaxe de JSON pour s'assurer qu'elle est valide pour JSON.",
+    "h2_1_h3_l2": "Validation de schéma : le validateur JSON peut également valider JSON par rapport à un schéma JSON.",
+    "h2_1_h3_l3": "Rapport d'erreurs : le validateur JSON fournit des messages d'erreur détaillés si JSON n'est pas valide.",
+    "h2_1_h3_l4": "Validation du fichier JSON : le formateur JSON prend en charge le téléchargement d'un fichier JSON pour valider et télécharger le fichier json validé.",
+    "features_title": "Principales caractéristiques",
+    "features_desc": "Le formateur JSON offre des fonctionnalités puissantes pour vous aider à travailler efficacement avec JSON.",
+    "feature_1_title": "Mise en évidence de la syntaxe",
+    "feature_1_desc": "Le formateur JSON utilise la coloration syntaxique avancée pour rendre vos données JSON plus faciles à lire et à comprendre.",
+    "feature_2_title": "Jolie impression",
+    "feature_2_desc": "Formatez votre JSON avec une indentation et des sauts de ligne appropriés à l'aide de notre formateur JSON pour une meilleure lisibilité.",
+    "feature_3_title": "Validation en temps réel",
+    "feature_3_desc": "Validez instantanément la syntaxe JSON avec notre formateur JSON, en détectant les erreurs avant qu'elles ne causent des problèmes.",
+    "feature_4_title": "Minification",
+    "feature_4_desc": "Compressez efficacement vos fichiers JSON grâce à notre fonction de minification du formateur JSON.",
+    "feature_5_title": "Prise en charge des fichiers",
+    "feature_5_desc": "Téléchargez et téléchargez des fichiers JSON en toute transparence avec notre outil de formatage JSON.",
+    "feature_6_title": "Formatage automatique",
+    "feature_6_desc": "Activez le formatage automatique dans notre formateur JSON pour garder votre code propre automatiquement.",
+    "howItWorks_title": "Comment ça marche",
+    "howItWorks_desc": "L'utilisation de notre formateur JSON est simple et directe. Suivez ces étapes pour formater vos données JSON.",
+    "howItWorks_step1": "Collez vos données JSON dans l'éditeur ou téléchargez un fichier JSON à l'aide du bouton de téléchargement.",
+    "howItWorks_step2": "Cliquez sur le bouton Format pour embellir votre JSON avec une indentation appropriée, ou utilisez le format automatique pour le formatage en temps réel.",
+    "howItWorks_step3": "Le formateur JSON validera vos données et affichera toutes les erreurs si elles sont trouvées.",
+    "howItWorks_step4": "Téléchargez votre fichier JSON formaté ou copiez-le directement depuis l'éditeur.",
+    "testimonials_title": "Ce que disent les utilisateurs",
+    "testimonial_1_name": "Sarah Chen",
+    "testimonial_1_role": "Développeur front-end",
+    "testimonial_1_text": "Ce formateur JSON est devenu un outil essentiel dans mon flux de travail quotidien. C'est rapide, fiable et la coloration syntaxique facilite grandement le débogage.",
+    "testimonial_2_name": "Michael Rodriguez",
+    "testimonial_2_role": "Développeur API",
+    "testimonial_2_text": "J'utilise quotidiennement ce formateur JSON pour valider les réponses API. La fonctionnalité de validation en temps réel me fait gagner des heures de débogage.",
+    "testimonial_3_name": "Emily Watson",
+    "testimonial_3_role": "Analyste de données",
+    "testimonial_3_text": "Le meilleur formateur JSON que j'ai utilisé. La fonction de téléchargement de fichiers et le formatage automatique facilitent grandement le travail avec des fichiers JSON volumineux.",
+    "faq_title": "Questions fréquemment posées",
+    "faq_q1": "Qu'est-ce qu'un formateur JSON ?",
+    "faq_a1": "Un formateur JSON est un outil qui formate les données JSON pour les rendre plus lisibles en ajoutant une indentation, des sauts de ligne et un espacement appropriés. Notre formateur JSON valide et embellit également vos données JSON.",
+    "faq_q2": "Ce formateur JSON est-il gratuit ?",
+    "faq_a2": "Oui, notre formateur JSON est totalement gratuit. Vous pouvez formater, valider et réduire les données JSON sans aucune restriction.",
+    "faq_q3": "Puis-je télécharger des fichiers JSON vers le formateur ?",
+    "faq_a3": "Absolument ! Notre formateur JSON prend en charge les téléchargements de fichiers. Cliquez simplement sur le bouton de téléchargement et sélectionnez votre fichier JSON pour le formater instantanément.",
+    "faq_q4": "Le formateur JSON valide-t-il mes données ?",
+    "faq_a4": "Oui, notre formateur JSON inclut une validation en temps réel qui vérifie votre syntaxe JSON et signale immédiatement toute erreur.",
+    "faq_q5": "Puis-je télécharger des fichiers JSON formatés ?",
+    "faq_a5": "Oui, après avoir formaté votre JSON avec notre formateur JSON, vous pouvez télécharger le fichier formaté à l'aide du bouton de téléchargement."
+  },
+  "jsonComparePage": {
+    "title": "Comparez json en ligne",
+    "description": "Comparez json ou n'importe quel texte en ligne.",
+    "keywords": "comparer json, comparer texte json, json diff, comparer json en ligne, comparer json en ligne, comparer json en ligne, comparer json en ligne, comparer jsons en ligne, comparer json, diff texte",
+    "h1": "Comparez du JSON en ligne : collez vos données ci-dessous.",
+    "format": "Formater",
+    "compact": "compacte",
+    "h1Text": "SoraWebui - aire de jeux",
+    "pDescription": "SoraWebui est un projet open source qui simplifie la création vidéo en permettant aux utilisateurs de générer des vidéos en ligne avec le modèle Sora de OpenAI en utilisant du texte, avec un déploiement facile sur un site Web en un seul clic.",
+    "moreWorks": "Plus d'œuvres"
+  },
+  "OpenPrompts": {
+    "header": {
+      "language": "Langue",
+      "themeToggle": "Basculer entre le mode clair/sombre",
+      "themeToLight": "Passer en mode clair",
+      "themeToDark": "Passer en mode sombre",
+      "signIn": "Se connecter",
+      "signOut": "Déconnexion",
+      "userMenu": "Menu Compte",
+      "userMenuSection": "Tableau de bord",
+      "displayNameFallback": "Utilisateur"
+    },
+    "nav": {
+      "home": "Accueil",
+      "gallery": "Images",
+      "motion": "Mouvement",
+      "categories": "Catégories",
+      "create": "Créer",
+      "favorites": "Favoris",
+      "submit": "Partager",
+      "account": "Compte",
+      "rank": "Classement",
+      "docs": "Documents",
+      "submitCta": "Partager un prompt"
+    },
+    "submitPage": {
+      "seo": {
+        "title": "Soumettre les prompts d'image IA | Open Prompts",
+        "description": "Partagez les modèles de prompt Midjourney, DALL·E, GPT Image, Flux et Stable Diffusion. Soumettez-le pour examen public ou enregistrez-le en privé. Guide de soumission gratuit et conseils.",
+        "keywords": "Soumettez le prompt IA, la bibliothèque de prompts d'images, le modèle de prompt Midjourney, le partage de prompt DALL-E, les prompts GPT Image, le guide de soumission de prompt"
+      },
+      "xImport": {
+        "title": "Importation rapide depuis X",
+        "desc": "Collez une URL de tweet publique x.com / twitter.com — nous remplissons le titre, la description, le texte de prompt, les URL d'image, le lien source et @author lorsqu'ils sont disponibles.",
+        "placeholder": "https://x.com/username/status/…",
+        "button": "Analyser le tweet",
+        "busy": "Analyse…",
+        "success": "Importé du tweet. Vérifiez les champs et continuez.",
+        "errorGeneric": "Impossible d'importer ce lien.",
+        "errorNotTweet": "Utilisez une URL de tweet telle que x.com/user/status/1234567890.",
+        "errorDuplicate": "Ce tweet est déjà dans notre bibliothèque — voir l'avis ci-dessous.",
+        "duplicateHint": "Déjà soumis sous le nom \"{title}\" ({status}). Merci d'éviter les doublons.",
+        "duplicateLink": "Afficher la source existante",
+        "duplicateSubmitBlocked": "Ce post X existe déjà sous le nom \"{title}\". Utilisez un autre tweet ou modifiez votre modèle existant.",
+        "duplicateStatus": {
+          "approved": "publié",
+          "pending": "en revue",
+          "rejected": "rejeté",
+          "draft": "brouillon"
+        }
+      },
+      "wizard": {
+        "eyebrow": "Prompt de soumission",
+        "title": "Partagez votre ",
+        "titleEm": "prompt",
+        "subtitle": "Effectuez deux étapes : après examen, votre prompt peut apparaître dans la bibliothèque de prompts d'images.",
+        "subtitleSimple": "Une page — uniquement les champs du modèle qui comptent. Soumettez lorsque vous êtes prêt."
+      },
+      "chooser": {
+        "eyebrow": "Soumettre un prompt",
+        "title": "Comment souhaitez-vous",
+        "titleEm": "partager votre prompt ?",
+        "subtitleLine1": "Les prompts publiques entrent dans la file d'attente de révision de la communauté.",
+        "subtitleLine2": "Les modèles privés sont enregistrés instantanément et visibles uniquement par vous.",
+        "publicKicker": "Publique",
+        "publicTitle": "Prompts d’images publics",
+        "publicDesc": "Soumis pour examen par la communauté. Les prompts approuvées apparaissent dans la bibliothèque publique de prompts d'images, gagnent des votes positifs et sont attribuées à votre profil.",
+        "publicFeat1": "Inscrit à l'annuaire public",
+        "publicFeat2": "Votes, variantes et commentaires",
+        "publicFeat3": "Attribué à votre profil",
+        "publicFeat4": "Révisé par les responsables (~48h)",
+        "publicFeatNo": "Publication instantanée (nécessite un examen)",
+        "publicCta": "Soumettre comme public",
+        "privateKicker": "Privé",
+        "privateTitle": "Privé uniquement",
+        "privateDesc": "Enregistré instantanément sur votre compte. Non répertorié dans la bibliothèque de prompts d'images. Partagez via un lien secret chaque fois que vous êtes prêt – ou gardez-le pour vous.",
+        "privateFeat1": "Visible uniquement par vous",
+        "privateFeat2": "Enregistrement immédiat, sans modération",
+        "privateFeat3": "Partagez via un lien secret à tout moment",
+        "privateFeat4": "Publiez publiquement dès que vous êtes prêt",
+        "privateFeatNo": "Connexion requise",
+        "privateCta": "Soumettre en privé",
+        "signInNote": "Connexion requise pour les modèles privés.",
+        "back": "← Modifier la visibilité",
+        "compareDivider": "Comparaison des fonctionnalités",
+        "compareFeature": "Fonctionnalité",
+        "comparePublic": "Publique",
+        "comparePrivate": "Privé",
+        "compareRow1": "Répertorié dans la bibliothèque de prompts d'images",
+        "compareRow2": "Votes positifs et commentaires",
+        "compareRow3": "Attribution du profil",
+        "compareRow4": "Création de variantes par les autres",
+        "compareRow5": "Enregistrement immédiat (sans modération)",
+        "compareRow6": "Partager via un lien secret",
+        "compareRow7": "Publier publiquement plus tard",
+        "comparePublic1": "y",
+        "comparePublic2": "y",
+        "comparePublic3": "y",
+        "comparePublic4": "y",
+        "comparePublic5": "n",
+        "comparePublic6": "n",
+        "comparePublic7": "n",
+        "comparePrivate1": "n",
+        "comparePrivate2": "n",
+        "comparePrivate3": "n",
+        "comparePrivate4": "n",
+        "comparePrivate5": "y",
+        "comparePrivate6": "y",
+        "comparePrivate7": "y"
+      },
+      "guide": {
+        "title": "Comment soumettre des prompts à Open Prompts",
+        "intro": "Remplissez le texte de prompt, le modèle cible, les balises et une image d'aperçu facultative. Les soumissions publiques sont examinées avant d'être mises en ligne.",
+        "guideKicker": "Guide de soumission",
+        "howTitle": "Comment ça marche",
+        "howTitleLine1": "Comment ça",
+        "howTitleLine2": "fonctionne",
+        "step1Title": "Choisissez public ou privé",
+        "step1Desc": "Les prompts publiques entrent dans la file d'attente de révision et apparaissent dans la bibliothèque de prompts d'images une fois approuvées. Les modèles privés sont enregistrés instantanément et restent visibles uniquement par vous.",
+        "step2Title": "Remplissez le modèle de formulaire",
+        "step2Desc": "Écrivez un titre clair, une brève description, le texte de prompt complet, le modèle cible (Midjourney, DALL-E, GPT Image, Flux…), la catégorie, les balises et une URL d'aperçu facultative.",
+        "step3Title": "Soumettre et suivre le statut",
+        "step3Desc": "Les éléments publics commencent comme en attente. Vérifiez le statut sous « Mes modèles » dans votre compte. Les prompts approuvées deviennent immédiatement consultables dans la bibliothèque de prompts d'images.",
+        "step4Title": "Conseils pour une bonne soumission",
+        "step4DescBefore": "Utilisez 2 à 8 balises spécifiques telles que cinématographique, portrait ou anime. Incluez des indicateurs spécifiques au modèle comme ",
+        "step4Code": "--ar 16:9",
+        "step4DescAfter": ". Les prompts en anglais fonctionnent mieux. Ajoutez une image d'aperçu : cela augmente considérablement les clics.",
+        "fieldsTitle": "Ce qu'il faut inclure dans chaque soumission",
+        "field1": "Titre — nom court et consultable (moins de 50 caractères).",
+        "field2": "Description — une ligne expliquant le style visuel ou le cas d'utilisation.",
+        "field3": "Corps de le prompt — le texte intégral que vous utilisez avec votre modèle d'image, y compris des paramètres tels que les proportions.",
+        "field4": "Images d'aperçu — URL ou téléchargements montrant des exemples de sorties (aide les réviseurs et améliore les clics).",
+        "visibilityTitle": "Public contre privé",
+        "visibilityPublic": "Bibliothèque publique de prompts d'images : soumission gratuite ; les modèles sont examinés avant d’être répertoriés. Seules les prompts publiques approuvées apparaissent dans la bibliothèque de prompts d’images de communauté.",
+        "visibilityPrivate": "Privé uniquement : nécessite une connexion ; enregistré sous Mes modèles sans file d'attente de révision, idéal pour les bibliothèques personnelles et les prompts de travail en cours.",
+        "tipsTitle": "Conseils pour soumettre de meilleurs prompts",
+        "tip1": "Écrivez les prompts en anglais lorsque cela est possible : la plupart des modèles et des recherches fonctionnent mieux en anglais.",
+        "tip2": "Utilisez 2 à 8 balises spécifiques (par exemple, cinématographique, portrait, anime) plus une catégorie de style.",
+        "tip3": "Collez une URL source X/Twitter si vous avez importé à partir d'un tweet : nous créditons les auteurs lorsqu'ils sont disponibles.",
+        "tip4": "Incluez des indices de rapport hauteur/largeur ou de qualité que votre modèle comprend (par exemple --ar 16:9 pour Midjourney).",
+        "faqTitle": "Questions fréquemment posées",
+        "faqKicker": "FAQ",
+        "faqTitleLine1": "Questions",
+        "faqTitleLine2": "fréquentes",
+        "faq1q": "La soumission est-elle gratuite ?",
+        "faq1a": "Oui — les soumissions publiques et privées sont entièrement gratuites. Un compte enregistré est requis uniquement pour les modèles privés.",
+        "faq2q": "Combien de temps prend l'examen ?",
+        "faq2a": "Les soumissions publiques sont généralement examinées dans les 48 heures. Vous recevrez une notification lorsque votre prompt sera mise en ligne.",
+        "faq3q": "Puis-je modifier la visibilité après la soumission ?",
+        "faq3a": "Oui. Les prompts privées peuvent être publiées publiquement à tout moment depuis votre tableau de bord. Les prompts publiques peuvent être supprimées sur demande.",
+        "faq4q": "Quelle licence les prompts publiques utilisent-elles ?",
+        "faq4a": "Les prompts publiques sont partagées sous CC BY 4.0 — tout le monde peut les utiliser, les remixer et les développer avec attribution. Vous conservez le crédit de paternité.",
+        "faq5q": "Quels modèles d'IA sont pris en charge ?",
+        "faq5a": "Midjourney, DALL-E 3, GPT Image 1 & 2, Flux, Stable Diffusion, Adobe Firefly et plus encore, tous pris en charge.",
+        "ctaSubmit": "Démarrer une soumission",
+        "ctaGallery": "Parcourir les images"
+      },
+      "privateMode": {
+        "eyebrow": "Nouveau modèle",
+        "title": "Créer un ",
+        "titleEm": "modèle privé",
+        "subtitle": "Même formulaire de soumission que le flux de la bibliothèque de prompts d'images — enregistré en tant que privé uniquement (non répertorié, pas de file d'attente de révision).",
+        "hint": "Vous seul pouvez voir ce modèle dans Mes modèles. Pour publier ultérieurement dans la bibliothèque de prompts d'images, modifiez la visibilité ou utilisez Soumettre pour une entrée publique.",
+        "submit": "Enregistrer le modèle privé",
+        "successTitle": "Modèle privé ",
+        "successTitleEm": "enregistré",
+        "successBody": "C'est dans votre compte sous Mes modèles. Il n’apparaîtra pas dans la bibliothèque publique de prompts d’images.",
+        "goToMyTemplates": "Mes modèles →",
+        "createAnother": "Créez-en un autre"
+      },
+      "editMode": {
+        "eyebrow": "Modifier le modèle",
+        "title": "Modifiez votre ",
+        "titleEm": "modèle",
+        "subtitle": "Même éditeur que soumettre. La visibilité reste telle qu'enregistrée (changement de compte si besoin).",
+        "loading": "Chargement du modèle…",
+        "loadFailed": "Impossible de charger ce modèle.",
+        "backToTemplates": "← Mes modèles",
+        "save": "Enregistrer les modifications",
+        "successTitle": "Modèle ",
+        "successTitleEm": "mis à jour",
+        "successBody": "Vos modifications sont enregistrées. Les modèles privés et brouillons restent en dehors de la bibliothèque de prompts d'images, sauf si vous les publiez.",
+        "continueEdit": "Continuer à éditer"
+      },
+      "info": {
+        "body": "Les prompts fonctionnent mieux en anglais. La syntaxe des paramètres telle que {ar} et {v} est prise en charge.",
+        "ar": "--ar 16:9",
+        "v": "--v 6",
+        "link": "Guide de rédaction des prompts →"
+      },
+      "labels": {
+        "templateTitle": "Titre du modèle",
+        "shortDesc": "Brève description",
+        "model": "Modèle cible",
+        "prompt": "Texte du prompt",
+        "category": "Catégorie de styles",
+        "aspectRatio": "Rapport hauteur/largeur",
+        "quality": "Qualité du rendu",
+        "tags": "Mots-clés",
+        "visibility": "Visibilité",
+        "sourceUrl": "Lien source",
+        "author": "Auteur / créateur",
+        "upload": "Importer des images d’aperçu",
+        "imageUrls": "Ou collez les URL des images"
+      },
+      "hints": {
+        "title": "Jusqu'à 50 caractères, concis",
+        "desc": "Une ligne sur l'effet",
+        "promptCount": "{count} caractères",
+        "tags": "2 à 8 balises, appuyez sur Entrée",
+        "source": "X/Twitter, Reddit, site personnel…",
+        "author": "Crédit optionnel",
+        "upload": "Jusqu'à 8 images, PNG / JPG, ≤10 Mo chacune",
+        "uploadFull": "Maximum atteint — supprimez une image pour en ajouter d'autres",
+        "urls": "Une URL par ligne · Entrer ou Ajouter",
+        "imageCount": "{count} / {max}"
+      },
+      "placeholders": {
+        "title": "par ex. Portrait cinématographique au coucher du soleil",
+        "desc": "par ex. Un portrait dramatique à l’heure d’or avec une profondeur cinématographique…",
+        "prompt": "Un portrait cinématographique époustouflant à l'heure d'or…",
+        "source": "https://x.com/username/status/…",
+        "author": "@username ou vrai nom",
+        "urls": "https://cdn.example.com/preview.jpg",
+        "tagInput": "Tapez et appuyez sur Entrée…",
+        "category": "Choisissez une catégorie…"
+      },
+      "models": {
+        "gptImage2": {
+          "name": "GPT Image 2",
+          "tag": "OpenAI"
+        },
+        "midjourney": {
+          "name": "Midjourney",
+          "tag": "v6"
+        },
+        "dalle3": {
+          "name": "DALL·E 3",
+          "tag": "OpenAI"
+        },
+        "flux": {
+          "name": "Flux 1.1 Pro",
+          "tag": "BFL"
+        },
+        "sd": {
+          "name": "Stable Diffusion",
+          "tag": "XL"
+        },
+        "ideogram": {
+          "name": "Ideogram",
+          "tag": "v3"
+        }
+      },
+      "modelValues": {
+        "gptImage2": "GPT Image 2",
+        "midjourney": "Midjourney v6",
+        "dalle3": "DALL·E 3",
+        "flux": "Flux 1.1 Pro",
+        "sd": "Stable Diffusion",
+        "ideogram": "Ideogram v3"
+      },
+      "categories": {
+        "artStyles": "Styles artistiques",
+        "portraitPhoto": "Portrait & photo",
+        "designUi": "Conception et interface utilisateur",
+        "gameFantasy": "Jeux et fantasy",
+        "scenes": "Scènes et environnements",
+        "productCommercial": "Produit & commercial",
+        "styleEra": "Styles et époques"
+      },
+      "subTags": {
+        "illustration": "Illustration",
+        "concept_art": "Art conceptuel",
+        "anime": "Anime",
+        "manga": "Manga",
+        "watercolor": "Aquarelle",
+        "sketch": "Croquis",
+        "surrealism": "Surréalisme",
+        "minimalism": "Minimalisme",
+        "chinese_painting": "Peinture chinoise",
+        "storybook": "Livre d'histoires",
+        "graphic_novel": "Roman graphique",
+        "portrait": "Portrait",
+        "fashion_photography": "Photographie de mode",
+        "fashion_model": "Mannequin",
+        "photorealistic": "Photoréaliste",
+        "editorial": "Éditorial",
+        "documentary_photography": "Photographie documentaire",
+        "ui": "Interface utilisateur",
+        "app_ui": "Interface utilisateur de l'application",
+        "poster": "Poster",
+        "flyer": "Dépliant",
+        "magazine_cover": "Couverture du magazine",
+        "diagram": "Diagramme",
+        "storyboard": "Storyboard",
+        "architecture": "Architecture",
+        "web_design": "Conception de sites Web",
+        "game_asset": "Ressource de jeu",
+        "fantasy": "Fantasy",
+        "character_design": "Conception de personnages",
+        "sci_fi": "Science-fiction",
+        "alien": "Extraterrestre",
+        "landscape": "Paysage",
+        "cityscape": "Paysage urbain",
+        "cinematic": "Cinématographique",
+        "environment": "Environnement",
+        "product": "Produit",
+        "commercial": "Commercial",
+        "e_commerce_banner": "Bannière de commerce électronique",
+        "brand": "Marque",
+        "vintage": "Vintage",
+        "monochrome": "Monochrome",
+        "retro": "Rétro",
+        "film": "Film",
+        "abstract": "Abstrait"
+      },
+      "ratios": {
+        "1_1": "Carré 1:1",
+        "16_9": "Paysage 16:9",
+        "9_16": "9:16 portrait",
+        "4_3": "Norme 4:3",
+        "3_2": "Photo 3:2",
+        "21_9": "21:9 ultra-large",
+        "custom": "Personnalisé"
+      },
+      "qualities": {
+        "fast": "⚡ Aperçu rapide",
+        "standard": "✦ Standard",
+        "high": "💎 Détails élevés"
+      },
+      "visibility": {
+        "publicTitle": "🌐Public",
+        "publicDesc": "Visible par tous",
+        "privateTitle": "🔒 Privé",
+        "privateDesc": "Non répertorié dans la bibliothèque de prompts d'images"
+      },
+      "quickTags": [
+        "Illustration",
+        "Portrait",
+        "Photoréaliste",
+        "Fantaisie",
+        "Cinématographique",
+        "Éditorial",
+        "Anime",
+        "Vintage"
+      ],
+      "buttons": {
+        "nextTags": "Suivant : catégorie, tags et soumission",
+        "back": "Retour",
+        "submit": "Soumettre pour examen",
+        "submitting": "Soumission…",
+        "browseGallery": "Parcourir les images →",
+        "submitAnother": "Soumettez-en un autre",
+        "myTemplates": "Mes modèles",
+        "detectSource": "Détecter",
+        "copyPrompt": "Copier",
+        "copied": "Copié",
+        "addUrl": "Ajouter",
+        "removeImage": "Supprimer l'image"
+      },
+      "stepHint": "Étape {n} de {total}",
+      "preview": {
+        "paneTitle": "Aperçu de la carte",
+        "live": "Synchronisation en direct",
+        "titleEmpty": "Le titre apparaît ici",
+        "descEmpty": "Brève description…",
+        "promptEmpty": "Entrez un prompt à gauche…",
+        "uploadPlaceholder": "Téléchargez les images des résultats pour prévisualiser",
+        "categoryFallback": "Catégorie",
+        "generateCta": "Générer →"
+      },
+      "qualityCheck": "Liste de contrôle qualité",
+      "validation": {
+        "needTitle": "Ajoutez un titre de modèle.",
+        "needPrompt": "L'prompt doit comporter au moins 10 caractères.",
+        "needCategory": "Choisissez une catégorie de style.",
+        "needTags": "Utilisez entre 2 et 8 balises.",
+        "submitFailed": "Impossible d'enregistrer votre soumission. Essayer à nouveau.",
+        "submitUnavailable": "Les soumissions sont temporairement indisponibles (base de données non configurée).",
+        "invalidImageUrl": "Entrez une URL d'image http(s) valide.",
+        "duplicateImageUrl": "Cette URL d'image est déjà ajoutée.",
+        "imageLimit": "Vous pouvez ajouter jusqu'à 8 images."
+      },
+      "rules": {
+        "promptLen": "Longueur de le prompt ≥ 10 caractères",
+        "title": "Titre renseigné",
+        "model": "Modèle sélectionné",
+        "category": "Catégorie sélectionnée",
+        "tags": "2 à 8 balises",
+        "images": "Au moins une image de résultat"
+      },
+      "guidelines": {
+        "dividerSubmit": "Notes de soumission",
+        "dividerImages": "Images du résultat",
+        "requirementsTitle": "Exigences",
+        "requirementsList": [
+          "Prompt en anglais, au moins 10 caractères (pas de longueur maximale)",
+          "Au moins une image d'aperçu générée",
+          "Titre et description précis",
+          "Jusqu'à 20 soumissions par utilisateur et par jour"
+        ],
+        "rejectedTitle": "Non accepté",
+        "rejectedList": [
+          "NSFW, violence ou contenu haineux",
+          "Violation du droit d'auteur ou de la marque",
+          "Duplicata des entrées existantes",
+          "Désinformation ou deepfakes trompeurs"
+        ]
+      },
+      "success": {
+        "title": "Soumis",
+        "titleEm": "avec succès",
+        "body": "Votre prompt est dans la file d'attente de révision. Nous répondons généralement dans les 24 heures. Une fois approuvé, il apparaîtra dans la bibliothèque de prompts d’images.",
+        "bodySignedOut": "Votre prompt est dans la file d'attente de révision. Connectez-vous avant de soumettre la prochaine fois pour suivre le statut sous Mes modèles – les soumissions anonymes ne peuvent pas être liées à un compte.",
+        "idLabel": "Référence #OP-{id}"
+      }
+    },
+    "accountPage": {
+      "seo": {
+        "title": "Compte | Open Prompts",
+        "description": "Gérez vos modèles de prompt, votre file d'attente de révision et vos paramètres de compte."
+      },
+      "sidebar": {
+        "overview": "Aperçu",
+        "content": "Contenu",
+        "account": "Compte",
+        "adminBadge": "Administrateur"
+      },
+      "nav": {
+        "overview": "Tableau de bord",
+        "prompts": "Mes modèles",
+        "adminReview": "File d'attente de révision",
+        "users": "Utilisateurs",
+        "credits": "Crédits",
+        "subscription": "Abonnement"
+      },
+      "panels": {
+        "overview": "Tableau de bord",
+        "prompts": "Modèles de prompt",
+        "admin": "Modération",
+        "users": "Utilisateurs",
+        "credits": "Historique de crédit",
+        "subscription": "Abonnement"
+      },
+      "topbar": {
+        "gallery": "Retour aux images",
+        "newTemplate": "Nouveau modèle",
+        "signOut": "Déconnexion"
+      },
+      "metrics": {
+        "templates": "Modèles",
+        "pending": "Mon avis en attente",
+        "credits": "Crédits restants",
+        "generations": "Générations"
+      },
+      "overview": {
+        "hint": "Créez et gérez vos modèles de prompt. Les modèles publics sont examinés avant d'apparaître dans la bibliothèque de prompts d'images.",
+        "manage": "Gérer les modèles",
+        "submit": "Soumettre une nouvelle prompt"
+      },
+      "toolbar": {
+        "search": "Recherche par titre ou prompt…",
+        "allStatus": "Tous les statuts",
+        "refresh": "Actualiser"
+      },
+      "table": {
+        "template": "Modèle",
+        "owner": "Propriétaire",
+        "ownerAnonymous": "Anonyme / catalogue",
+        "status": "Statut",
+        "model": "Modèle",
+        "updated": "Mis à jour",
+        "actions": "Actions",
+        "view": "Voir",
+        "edit": "Modifier",
+        "delete": "Supprimer",
+        "approve": "Approuver",
+        "reject": "Rejeter",
+        "revoke": "Révoquer",
+        "reapprove": "Ré-approuver",
+        "empty": "Aucun modèle pour l'instant. Créez votre premier.",
+        "emptyFiltered": "Aucun modèle ne correspond à ce filtre d'état.",
+        "emptyAdminHint": "Cette liste affiche uniquement les modèles que vous avez soumis. La file d'attente de modération complète (tous les utilisateurs + catalogue) est en cours de révision du contenu et nécessite un compte administrateur.",
+        "confirmDelete": "Supprimer ce modèle ?",
+        "deleteSelected": "Supprimer la sélection",
+        "bulkConfirmDelete": "Supprimer le(s) modèle(s) sélectionné(s) {count} ?"
+      },
+      "status": {
+        "pub": "Publié",
+        "draft": "Brouillon",
+        "priv": "Privé",
+        "pending": "En revue",
+        "rejected": "Rejeté"
+      },
+      "visibility": {
+        "public": "Public (critique)",
+        "private": "Privé",
+        "draft": "Brouillon"
+      },
+      "admin": {
+        "hint": "Tous les modèles de la base de données (chaque compte et catalogue hérité). Approuver ou rejeter les soumissions ; seuls les éléments publics approuvés apparaissent dans la bibliothèque de prompts d'images.",
+        "hintActions": "Sélectionnez les lignes avec des cases à cocher pour l'approbation/le rejet groupé. Approuver/Rejeter apparaissent également par ligne pour les éléments en cours de révision.",
+        "selectAll": "Tout sélectionner sur cette page",
+        "selectedCount": "{count} sélectionné",
+        "approveSelected": "Approuver la sélection",
+        "rejectSelected": "Rejeter la sélection",
+        "clearSelection": "Effacer la sélection",
+        "bulkConfirmApprove": "Approuver le(s) modèle(s) sélectionné(s) {count} ?",
+        "bulkConfirmReject": "Rejeter le(s) modèle(s) sélectionné(s) {count} ?",
+        "forbiddenTitle": "Accès administrateur requis",
+        "forbiddenBody": "Connecté sous le nom {email}. Ce compte n'est pas dans ADMIN_EMIAL, la file d'attente de modération ne peut donc pas se charger.",
+        "forbiddenHint": "Ajoutez votre e-mail à ADMIN_EMIAL dans .env.local, redémarrez le serveur de développement et reconnectez-vous – ou utilisez le compte d'informations d'identification de l'administrateur.",
+        "forbiddenMyTemplatesHint": "「Mes modèles」 répertorie uniquement les prompts que vous avez soumises, pas le catalogue à l'échelle du site. Pour consulter tous les modèles, connectez-vous en tant qu'administrateur (par exemple, admin@gmail.com avec le mot de passe .env.local).",
+        "empty": "Aucun modèle ne correspond à ce filtre.",
+        "emptyPending": "Rien en attente de révision. Utilisez « Tous les statuts » pour voir les éléments publiés ou rejetés, ou créez un modèle public pour en mettre un en file d'attente pour examen.",
+        "loadError": "Impossible de charger la file d'attente de modération : {message}",
+        "loadTimeout": "La demande a expiré. Vérifiez DATABASE_URL (utilisez le port 5432 pour les requêtes d'administrateur, pas le pooler 6543) et arrêtez les requêtes de développement de longue durée sur p_prompts.",
+        "trendPromptsTitle": "Nouvelles prompts",
+        "trendDaysHint": "Nouveaux modèles quotidiens par jour calendaire UTC.",
+        "pagination": {
+          "pageSize": "Par page",
+          "prev": "Précédent",
+          "next": "Suivant",
+          "total": "Articles {count}",
+          "totalUnknown": "Total indisponible",
+          "pageOf": "Page {page} de {total}",
+          "pageOnly": "Page {page}"
+        }
+      },
+      "adminUsers": {
+        "hint": "Répertoire en lecture seule des comptes enregistrés (OAuth et connexion par e-mail).",
+        "searchPlaceholder": "Recherche par email ou par nom…",
+        "empty": "Aucun utilisateur ne correspond à cette recherche.",
+        "loadError": "Impossible de charger les utilisateurs : {message}",
+        "loadTimeout": "La requête a expiré lors du chargement des utilisateurs.",
+        "colUser": "Utilisateur",
+        "colRole": "Rôle",
+        "colProvider": "Fournisseur",
+        "colJoined": "A rejoint",
+        "envAdmin": "Administrateur environnemental",
+        "member": "Membre",
+        "providerEmail": "E-mail",
+        "metricTotal": "Nombre total d'utilisateurs",
+        "metricActiveToday": "Actif aujourd'hui",
+        "metricNewToday": "Nouveau aujourd'hui",
+        "metricActiveTodayHint": "Utilisateurs connectés ou ayant une activité API authentifiée aujourd'hui (UTC).",
+        "trendUsersTitle": "Nouveaux utilisateurs",
+        "trendDaysHint": "Nouveaux utilisateurs quotidiens par jour calendaire UTC.",
+        "trendRange7": "1 semaine",
+        "trendRange30": "1 mois",
+        "trendRange90": "3 mois",
+        "detailTitle": "Détails de l'utilisateur",
+        "close": "Fermer",
+        "providers": "Fournisseurs de connexion",
+        "noProviders": "Identifiants uniquement (pas de lien OAuth)",
+        "templateCount": "Modèles soumis"
+      },
+      "placeholders": {
+        "credits": "Les tableaux de facturation et d'utilisation du crédit seront bientôt disponibles.",
+        "subscription": "Gestion des abonnements à venir."
+      },
+      "loading": "Chargement…",
+      "modal": {
+        "createTitle": "Nouveau modèle",
+        "editTitle": "Modifier le modèle",
+        "model": "Modèle",
+        "visibility": "Visibilité",
+        "coverUrl": "URL de l'image de couverture",
+        "cancel": "Annuler",
+        "save": "Enregistrer",
+        "saving": "Sauvegarde…",
+        "validation": "Remplissez le titre, le prompt (plus de 10 caractères), la catégorie et 2 à 8 balises.",
+        "saveFailed": "Impossible d'enregistrer le modèle."
+      }
+    },
+    "login": {
+      "seoTitle": "Se connecter | Open Prompts",
+      "seoDescription": "Connectez-vous avec GitHub, Google ou par e-mail pour enregistrer les favoris et gérer les générations.",
+      "backGallery": "Retour aux images",
+      "promoTitleLine1": "Des prompts sélectionnés.",
+      "promoTitleLine2": "Générer",
+      "promoTitleLine2Suffix": "en un clic.",
+      "promoDesc": "Prompts d'images de haute qualité provenant de la communauté et des flux sociaux. Prise en charge multimodèle, licence Apache 2.0.",
+      "promoStatPrompts": "Prompts",
+      "promoStatModels": "Modèles",
+      "promoStatLicense": "Licence",
+      "promoLicenseName": "Apache 2.0",
+      "welcomeLine1": "Bienvenue à nouveau",
+      "welcomeBrandOpen": "Open",
+      "welcomeBrandEm": "Prompts",
+      "welcomeSubtitle": "Connectez-vous avec GitHub, Google ou par e-mail pour enregistrer les prompts et gérer votre travail.",
+      "tabLogin": "Se connecter",
+      "tabRegister": "S'inscrire",
+      "oauthGithub": "Continuer avec GitHub",
+      "oauthGoogle": "Continuer avec Google",
+      "oauthDisabledHint": "Non configuré sur ce serveur",
+      "oauthSetupHint": "La connexion GitHub et Google nécessite GITHUB_ID/GITHUB_SECRET et GOOGLE_CLIENT_ID/GOOGLE_CLIENT_SECRET dans .env.local (voir .env.example), puis redémarrez le serveur de développement.",
+      "dividerEmail": "Ou connectez-vous par e-mail",
+      "labelUsername": "Nom d'affichage",
+      "usernamePlaceholder": "votre_nom",
+      "labelEmail": "E-mail",
+      "emailPlaceholder": "you@example.com",
+      "labelPassword": "Mot de passe",
+      "passwordPlaceholder": "••••••••",
+      "remember": "Restez connecté",
+      "forgot": "Mot de passe oublié ?",
+      "submitLogin": "Se connecter",
+      "submitRegister": "Créer un compte",
+      "submitBusy": "En cours…",
+      "switchToRegister": "Pas encore de compte ?",
+      "switchToRegisterLink": "S'inscrire",
+      "switchToLogin": "Vous avez déjà un compte ?",
+      "switchToLoginLink": "Retour pour me connecter",
+      "disclaimer": "En continuant, vous acceptez les conditions d'utilisation et la politique de confidentialité.",
+      "errorCredentials": "Email ou mot de passe invalide.",
+      "errorCredentialsHint": "Utilisez l'adresse e-mail exacte indiquée dans ADMIN_EMIAL (vérifiez les fautes de frappe). La connexion en ligne nécessite que DATABASE_URL et ADMIN_PASSWORD soient définis sur l'hôte (pas seulement dans le .env local). Si vous vous êtes d'abord inscrit auprès de GitHub/Google, essayez ce fournisseur ou redémarrez l'application après avoir défini ADMIN_PASSWORD pour que le mot de passe administrateur se synchronise.",
+      "errorConfiguration": "La connexion est mal configurée sur le serveur (vérifiez NEXTAUTH_URL, NEXTAUTH_SECRET et les URL de rappel de l'application OAuth).",
+      "errorAccessDenied": "La connexion a été annulée ou refusée.",
+      "errorOAuth": "Impossible de se connecter avec ce fournisseur. Pour GitHub, autorisez l’accès au courrier électronique ou utilisez un courrier électronique public. Pour Google, vérifiez que l'URI de redirection OAuth est configuré.",
+      "errorOAuthPersist": "L'autorisation a réussi mais nous n'avons pas pu enregistrer votre compte. Vérifiez DATABASE_URL sur l'hôte (port 6543 du pooler Supabase) et réessayez.",
+      "errorOAuthAccountNotLinked": "Ce compte est déjà lié à une autre méthode de connexion. Utilisez le même fournisseur auprès duquel vous vous êtes inscrit ou connectez-vous par e-mail.",
+      "errorGeneric": "Quelque chose s'est mal passé. Essayer à nouveau.",
+      "errorRegister": "Impossible de créer un compte.",
+      "magicTitle": "Vérifiez votre courrier électronique",
+      "magicBody": "Si un compte existe pour cette adresse, vous recevrez prochainement des instructions de réinitialisation.",
+      "magicResend": "Renvoyer",
+      "magicResent": "Envoyé",
+      "registerSuccess": "Compte créé. Connexion en cours…"
+    },
+    "galleryPage": {
+      "title": "Images",
+      "subtitle": "Parcourez plus de 1 000 prompts d’images gratuits. Filtrez par modèle, copiez un prompt et générez une image directement sur la page.",
+      "seo": {
+        "title": "Prompts d’images — GPT Image 2",
+        "description": "Parcourez les prompts d'images gratuites pour ChatGPT, GPT Image 2, Midjourney et DALL·E. Copiez les modèles et générez-les sur la page.",
+        "keywords": "prompts d’images, prompts d’images IA, prompts ChatGPT, prompts GPT Image 2, bibliothèque de prompts gratuite"
+      }
+    },
+    "modelPage": {
+      "seo": {
+        "title": "Prompts d’images {model} ({count})",
+        "description": "Parcourez {count} prompts d’images {model} gratuits. Copiez les modèles de la communauté et générez vos images sur Open Prompts."
+      },
+      "breadcrumb": {
+        "home": "Accueil",
+        "gallery": "Images"
+      },
+      "heading": "Prompts d'images {model}",
+      "subtitle": "{count} modèles gratuits de prompts d’images pour {model} — copiez-les et générez vos images sur la page.",
+      "empty": "Aucun prompt {model} pour l'instant. Revenez bientôt ou parcourez la bibliothèque complète de prompts d’images."
+    },
+    "categoryPage": {
+      "seo": {
+        "title": "Prompts d’images {category} ({count})",
+        "description": "Découvrez {count} prompts d’images IA gratuits dans la catégorie {category}. Copiez les modèles et générez vos images sur Open Prompts."
+      },
+      "breadcrumb": {
+        "home": "Accueil",
+        "gallery": "Images",
+        "categories": "Catégories"
+      },
+      "heading": "Prompts d'image {category}",
+      "subtitle": "{count} prompts d’images gratuits dans la catégorie {category} — copiez les modèles et générez vos images sur la page.",
+      "empty": "Aucun prompt dans {category} pour le moment. Parcourez la bibliothèque de prompts d’images ou soumettez la vôtre."
+    },
+    "categoriesIndex": {
+      "seo": {
+        "title": "Catégories de prompts d'images",
+        "description": "Parcourez les prompts d'images IA gratuites par catégorie : scènes, portraits, styles artistiques, photos de produits, et plus encore."
+      },
+      "breadcrumb": {
+        "home": "Accueil",
+        "gallery": "Images"
+      },
+      "heading": "Catégories de prompts d'images",
+      "subtitle": "{count} prompts répartis dans {categoryCount} catégories — choisissez un style à explorer.",
+      "cardCount": "{count} prompts"
+    },
+    "promptMotionPage": {
+      "modelFilter": "Modèle",
+      "allModels": "Tous les modèles",
+      "otherModels": "Autre",
+      "sortLabel": "Trier",
+      "sortLikes": "Publications les plus aimées",
+      "sortStars": "Dépôts les plus étoilés",
+      "sortCurated": "Ordre de la sélection",
+      "likeCount": "{count, number} mentions J’aime",
+      "repoStarCount": "{count, number} étoiles sur le dépôt",
+      "approximately": "Env. ",
+      "metricsObserved": "Relevé public effectué le {date}",
+      "metricsUnknown": "Popularité inconnue",
+      "likesSortNote": "Trié par J'aime la publication originale. Les valeurs inconnues viennent en dernier. Les décomptes sont des instantanés collectés.",
+      "starsSortNote": "Les étoiles du référentiel mesurent le projet source, pas le travail individuel. Les décomptes approximatifs sont étiquetés.",
+      "curatedSortNote": "Parcourez dans l'ordre d'origine.",
+      "viewPrompt": "Afficher le prompt",
+      "originalPost": "Message original",
+      "promptSource": "Source du prompt",
+      "noPreview": "Aperçu indisponible",
+      "staticPreview": "Aperçu de l'image",
+      "videoUnavailable": "La vidéo n'a pas pu être chargée. Vous pouvez toujours lire le prompt ou ouvrir le message original ci-dessous.",
+      "loading": "Chargement…",
+      "loadError": "Impossible de charger d'autres œuvres. Veuillez réessayer.",
+      "allLoaded": "Toutes les œuvres chargées",
+      "sourceNote": "Le texte de prompt est conservé de la collection. Certaines entrées sont des modèles réutilisables ; l’inclusion ne signifie pas une vérification indépendante du résultat ou du modèle.",
+      "categoryNames": {
+        "product-brand": "Produit et marque",
+        "motion-studies": "Typographie et mouvement",
+        "explainers-data": "Explications et données",
+        "characters-stories": "Personnages et histoires",
+        "3d-simulations": "3D et simulations",
+        "music-audiovisual": "Musique & audiovisuel",
+        "interactive": "Interactif"
+      },
+      "loadMore": "Charger plus",
+      "playVideo": "Lire la vidéo",
+      "seo": {
+        "title": "Prompts de mouvement · Prompts et exemples d'animation IA",
+        "description": "Explorez les prompts de mouvement de l'IA et des exemples réels réalisés avec Claude, GPT, Gemini et plus encore. Filtrez par catégorie et modèle, affichez les sources originales et copiez les prompts.",
+        "keywords": "prompts de mouvement, prompts de mouvement IA, prompts de graphiques animés, exemples de Claude Motion, prompts d'animation"
+      },
+      "breadcrumb": {
+        "home": "Accueil"
+      },
+      "hero": {
+        "desc": "Explorez des exemples de mouvements d'IA réalisés avec Claude, GPT, Gemini et plus encore. Regardez des types cinétiques, des films de produits et des graphiques animés, puis utilisez le prompt publiée par chaque créateur.",
+        "browse": "Parcourir les prompts",
+        "tagline": "Prompts et exemples de mouvements IA"
+      },
+      "catalog": {
+        "heading": "Explorez les prompts de mouvement"
+      },
+      "subtitle": "Explorez les prompts de mouvement de l'IA sur tous les modèles, du type cinétique et de l'interface utilisateur du produit aux graphiques et effets génératifs.",
+      "useCases": {
+        "eyebrow": "Cas d'utilisation",
+        "title": "À quoi servent",
+        "titleEm": "ces prompts",
+        "subtitle": "Utilisez un brief original pour définir l'effet, le timing et le résultat. Ajoutez les ressources de référence nécessaires, puis effectuez le rendu avec les outils de votre choix.",
+        "items": [
+          {
+            "t": "Film de lancement",
+            "d": "Collez un brief et demandez à l'agent de créer une annonce de produit de 15 secondes : storyboard, chronologie, critique, puis son."
+          },
+          {
+            "t": "Mouvements de caméra nommés",
+            "d": "Demandez une révélation de masque, un chariot ou un échantillon numéroté du dictionnaire de prompt de mouvement au lieu de « rendez-le cinématographique »."
+          },
+          {
+            "t": "Pile d'agents",
+            "d": "Installez claude-motion ou motion-graphics-skills, puis pointez l'agent vers HyperFrames ou Remotion pour restituer le fichier."
+          }
+        ]
+      },
+      "faq": {
+        "eyebrow": "FAQ",
+        "title": "Questions sur les",
+        "titleEm": "prompts d’animation",
+        "items": [
+          {
+            "q": "Qu'est-ce qu'un prompt de mouvement ?",
+            "a": "Un résumé décrivant un graphique animé : son sujet, son style visuel, son timing, ses transitions et sa sortie. Ces sélections associent l'effet fini aux instructions originales publiées par son créateur."
+          },
+          {
+            "q": "Qu'est-ce que Claude Motion ?",
+            "a": "Sur cette page, Claude Motion décrit un workflow pour créer des graphiques animés avec Claude et du code. Les exemples individuels peuvent utiliser HTML, Canvas, Three.js, Remotion ou une compétence distincte. Chaque carte montre le modèle signalé."
+          },
+          {
+            "q": "D'où viennent ces prompts et ces vidéos ?",
+            "a": "À partir de publications publiques de créateurs. Chaque carte crédite son auteur et renvoie à sa publication. La page de détails renvoie à le prompt publiée, y compris la réponse de l’auteur, le cas échéant."
+          },
+          {
+            "q": "Comment utiliser un prompt ou une compétence ?",
+            "a": "Copiez un prompt dans votre agent de codage et fournissez tous les éléments de référence demandés par l'auteur. Une carte de compétence est liée à son référentiel et inclut sa commande d'installation publiée. Suivez ses instructions de configuration avant le rendu."
+          },
+          {
+            "q": "Ai-je besoin d'Opus 5.5 pour obtenir le même résultat ?",
+            "a": "Les créateurs présentés ont signalé Opus 5.5. Les résultats dépendent également des outils, des actifs de référence et de l'itération. La réutilisation d'un prompt crée un nouveau résultat ; une sortie identique n’est pas garantie."
+          },
+          {
+            "q": "Puis-je réutiliser les vidéos et les prompts à des fins commerciales ?",
+            "a": "Le crédit et la disponibilité publique n'accordent pas de licence pour réutiliser l'œuvre d'un créateur. Vérifiez la publication originale et toute licence applicable, et demandez au créateur si l'autorisation est nécessaire. Cette page inclut des prompts sélectionnés plutôt que de reproduire une galerie entière."
+          }
+        ]
+      },
+      "filters": {
+        "label": "Type de contenu",
+        "all": "Tous"
+      },
+      "promptLabel": "Prompt de mouvement",
+      "copy": "Copier",
+      "copied": "Copié",
+      "resources": {
+        "heading": "Les outils derrière le mouvement",
+        "desc": "Explorez ces référentiels lorsque vous êtes prêt à créer et à restituer votre propre film."
+      },
+      "categoriesLabel": "Catégories de mouvements",
+      "results": "{count} sélections",
+      "empty": "Aucune sélection ne correspond encore à cette catégorie et à ce type.",
+      "resetFilters": "Afficher toutes les sélections",
+      "viewPost": "Message original",
+      "referenceRequired": "Ce dossier utilise des ressources de référence. Vérifiez le message d'origine avant de le recréer.",
+      "mediaFallback": "Regarder sur X",
+      "copyError": "Échec de la copie. Ouvrez les détails pour sélectionner et copier le prompt.",
+      "mediaSlow": "Le chargement de la vidéo prend plus de temps.",
+      "retry": "Réessayer",
+      "skillLabel": "Compétence de mouvement",
+      "detail": {
+        "back": "Parcourir plus de prompts de mouvement",
+        "description": "Explorez {title} par @{author} : regardez le résultat et utilisez le prompt de mouvement complète de l'IA."
+      }
+    },
+    "promptPage": {
+      "seo": {
+        "title": "{title} — Prompt {model}",
+        "description": "Prompt d'image {model} gratuite : {snippet}. Copiez ce modèle et générez sur Open Prompts.{tags}"
+      },
+      "seoIntro": "Modèle de prompt d'image {model} gratuit — {title}. Copiez le prompt ci-dessous ou générez-la sur la page.",
+      "breadcrumbHome": "Accueil",
+      "breadcrumbGallery": "Images",
+      "backToGallery": "← Retour aux images",
+      "promptLabel": "Prompt",
+      "modelLabel": "Modèle",
+      "imageAlt": "{title} — Aperçu de {model} {index}"
+    },
+    "homePage": {
+      "seo": {
+        "title": "Prompts d’images — GPT Image 2",
+        "description": "Découvrez plus de {count} prompts d’images sélectionnés pour ChatGPT et GPT Image 2. Copiez, adaptez et générez des images IA — nouveautés quotidiennes issues de X.",
+        "keywords": "prompts d’images, prompts d’images IA, prompts ChatGPT, prompts GPT Image 2, bibliothèque de prompts"
+      },
+      "h1Line2": "Prompts d'images",
+      "h1Line3": "Prompts GPT Image 2",
+      "browseGallery": "Parcourir les images",
+      "submitPrompt": "Soumettre un prompt →",
+      "modelBar": {
+        "label": "Fonctionne avec",
+        "allModels": "Tous les modèles",
+        "gptImage2": "GPT Image 2",
+        "dalle3": "DALL·E 3",
+        "midjourney": "Midjourney",
+        "stableDiffusion": "Stable Diffusion"
+      },
+      "browseByModel": {
+        "heading": "Parcourir par modèle",
+        "sub": "Trouvez les meilleurs prompts optimisés pour chaque modèle d'image IA"
+      },
+      "browseByCategory": {
+        "heading": "Parcourir par catégorie",
+        "sub": "Explorez les styles de prompt dans tous les genres créatifs"
+      },
+      "promptCount": "{count} prompts →",
+      "comingSoon": "À venir →",
+      "models": {
+        "gptImage2": {
+          "icon": "🟢",
+          "title": "Prompts GPT Image 2",
+          "desc": "Des prompts sélectionnés par la communauté pour le modèle d’images d’OpenAI : portraits photoréalistes, publicités de produits, photographie de mode et bien plus."
+        },
+        "dalle3": {
+          "icon": "🔵",
+          "title": "Prompts DALL·E 3",
+          "desc": "Des prompts prêts à l’emploi pour DALL·E 3 : paysages cinématographiques, photos de produits minimalistes et concepts créatifs."
+        },
+        "midjourney": {
+          "icon": "🟣",
+          "title": "Prompts Midjourney",
+          "desc": "Des prompts artistiques et stylisés pour Midjourney : univers fantastiques, illustrations éditoriales et art conceptuel."
+        }
+      },
+      "categories": {
+        "portraitPhoto": {
+          "desc": "Portraits cinématographiques, mode éditoriale et photographies de voyage."
+        },
+        "artStyles": {
+          "desc": "Aquarelle, vintage, collage et illustrations des meilleurs créateurs."
+        },
+        "productCommercial": {
+          "desc": "Annonces de soins de la peau, cuisine de rue et prompts photographiques de marques de luxe."
+        },
+        "gameFantasy": {
+          "desc": "Cyberpunk, dark fantasy, feuilles de personnages de science-fiction et construction du monde."
+        }
+      },
+      "seoContent": {
+        "features": {
+          "eyebrow": "Pourquoi Open Prompts",
+          "title": "Tout ce dont vous avez besoin pour maîtriser",
+          "titleEm": "GPT Image 2",
+          "subtitle": "Open Prompts est la bibliothèque de prompts d'images alimentée par la communauté, construite autour du dernier modèle d'image de OpenAI : apprenez de vrais créateurs, copiez des modèles éprouvés et générez des images sans quitter la page.",
+          "items": [
+            {
+              "t": "Prompts GPT Image 2 organisées",
+              "d": "Chaque prompt provient directement de créateurs actifs sur X qui partagent leurs meilleurs résultats. Pas de remplissage : uniquement des modèles avec des résultats éprouvés et réels que vous pouvez vérifier avant de les copier."
+            },
+            {
+              "t": "Générez sur la page, instantanément",
+              "d": "Choisissez n'importe quelle prompt et générez votre image directement dans le navigateur. Pas de changement d'onglet, pas de touches API à gérer : un clic de l'inspiration à la création."
+            },
+            {
+              "t": "Copier, remixer et adapter",
+              "d": "Copie en un clic pour chaque prompt. Échangez des sujets, des styles ou des éclairages, puis réinjectez votre version dans GPT Image 2 ou tout autre modèle. L'itération est la façon dont de superbes images sont créées."
+            },
+            {
+              "t": "Filtrer par modèle et catégorie",
+              "d": "Parcourez les galeries dédiées aux GPT Image 2, DALL·E 3 et Midjourney. Affinez par portrait, produit, fantaisie ou architecture pour trouver exactement le style que vous recherchez."
+            },
+            {
+              "t": "Synchronisation quotidienne depuis X",
+              "d": "Notre pipeline surveille chaque jour X pour détecter les nouvelles prompts des meilleurs créateurs. Le nouveau contenu apparaît automatiquement dans la bibliothèque de prompts d'images, toujours avec une longueur d'avance sur les tendances."
+            },
+            {
+              "t": "Ouvert et axé sur la communauté",
+              "d": "Soumettez vos propres prompts GPT Image 2, gagnez un crédit de créateur et créez une audience. Le classement présente les prompts les plus copiées et les plus générées chaque semaine."
+            }
+          ]
+        },
+        "howItWorks": {
+          "eyebrow": "Comment ça marche",
+          "title": "Du prompt à l’image",
+          "titleEm": "en trois étapes",
+          "subtitle": "Open Prompts supprime les incertitudes. Parcourez les prompts éprouvés, copiez en un seul clic et générez, le tout sans quitter la page.",
+          "steps": [
+            {
+              "t": "Parcourir les prompts GPT Image 2",
+              "d": "Explorez les prompts de la communauté {count}+ filtrées par modèle, catégorie ou récence. Chaque carte affiche l'image de sortie à côté de le prompt exacte qui l'a produite — afin que vous sachiez ce que vous obtenez avant de copier."
+            },
+            {
+              "t": "Copiez et personnalisez votre prompt",
+              "d": "Appuyez sur Copier et le texte complet de le prompt atterrit dans votre presse-papiers. Modifiez le sujet, le style ou l'ambiance, ou utilisez-le exactement tel quel. Chaque prompt est testée au combat par de vrais créateurs."
+            },
+            {
+              "t": "Générer avec GPT Image 2 sur la page",
+              "d": "Cliquez sur Générer et votre image est produite dans Open Prompts. Aucun abonnement séparé requis. Téléchargez, partagez ou itérez – ici même."
+            },
+            {
+              "t": "Partagez et gagnez du crédit de créateur",
+              "d": "Soumettez vos meilleurs prompts à la bibliothèque de prompts d'images. Soyez présent dans le classement, crédité sur chaque génération et développez votre audience parmi les créateurs d'images IA."
+            }
+          ],
+          "browserMockup": {
+            "url": "open-prompts.com/prompt/vintage-travel-poster",
+            "promptLabel": "Prompt GPT Image 2",
+            "promptText": "Affiche de voyage vintage classique de Santorin, Grèce. Architecture blanchie à la chaux, lumière dorée du coucher de soleil, palette rétro chaleureuse, typographie serif ornée, détails élevés, qualité éditoriale. — GPT Image 2",
+            "resultTitle": "Affiche de voyage à Santorin",
+            "resultSub": "Généré avec GPT Image 2 · 4s",
+            "badge": "✓ Prêt à télécharger",
+            "statPrompts": "Prompts",
+            "statCopies": "Copies",
+            "statTime": "Moy. temps"
+          }
+        },
+        "testimonials": {
+          "eyebrow": "Les avis de la communauté",
+          "title": "Créateurs qui utilisent",
+          "titleEm": "Open Prompts quotidiennement",
+          "subtitle": "Des milliers de designers, spécialistes du marketing et artistes IA s'appuient sur Open Prompts pour trouver et réutiliser les meilleurs prompts GPT Image 2 de la communauté.",
+          "featured": {
+            "q": "Open Prompts a complètement changé ma façon d'utiliser GPT Image 2. Au lieu de passer 30 minutes à écrire des prompts à partir de zéro, je parcours la bibliothèque de prompts d'images, copie ce qui fonctionne déjà et itère. La qualité de ma production a doublé en une semaine.",
+            "a": "@Diplomeme",
+            "handle": "@Diplomeme",
+            "role": "Créateur de contenu IA · X",
+            "tag": "Meilleur contributeur"
+          },
+          "items": [
+            {
+              "q": "La meilleure ressource pour les prompts GPT Image 2 que j'ai trouvée. Chaque carte affiche la sortie réelle afin que vous ne deviniez jamais. Je l'utilise tous les matins avant de commencer le travail client.",
+              "a": "Créateur de marque",
+              "handle": "@noorlewisx",
+              "role": "Créateur de marque",
+              "avatar": "/testimonials/sarah-johnson.svg"
+            },
+            {
+              "q": "La synchronisation quotidienne depuis X signifie de nouvelles prompts GPT Image 2 chaque matin. J'ai soumis ma feuille de personnage cyberpunk et elle est devenue l'une des plus copiées du classement.",
+              "a": "Artiste conceptuel",
+              "handle": "@Strength04_X",
+              "role": "Artiste conceptuel",
+              "avatar": "/testimonials/michael-chen.svg"
+            },
+            {
+              "q": "Je gère les réseaux sociaux pour cinq marques. Open Prompts réduit ma recherche rapide GPT Image 2 d'une heure à cinq minutes. Les filtres de catégorie méritent à eux seuls d’être ajoutés aux favoris.",
+              "a": "Gestionnaire de médias sociaux",
+              "handle": "@Taaruk_",
+              "role": "Gestionnaire de médias sociaux",
+              "avatar": "/testimonials/emily-rodriguez.svg"
+            }
+          ]
+        },
+        "faq": {
+          "eyebrow": "FAQ",
+          "title": "Questions sur",
+          "titleEm": "Prompts GPT Image 2",
+          "sidebar": {
+            "title": "Tout ce que vous devez savoir",
+            "desc": "Questions courantes sur l'utilisation de Open Prompts pour rechercher, copier et générer avec GPT Image 2 et d'autres modèles d'images IA.",
+            "contact": "Vous avez encore des questions ? Contactez-nous sur <githubLink>GitHub</githubLink> ou X <xLink>@technoobgo</xLink> — nous répondons dans la journée."
+          },
+          "items": [
+            {
+              "q": "Qu'est-ce que Open Prompts et quel est son rapport avec GPT Image 2 ?",
+              "a": "Open Prompts est une bibliothèque communautaire de prompts d'images IA provenant quotidiennement des créateurs de X. La majorité des prompts sont créées et testées avec GPT Image 2 – le dernier modèle d'image de OpenAI – ce qui en fait la bibliothèque de prompts la plus ciblée pour ce modèle. Parcourez, copiez et générez directement dans votre navigateur, aucune configuration supplémentaire n'est nécessaire."
+            },
+            {
+              "q": "Dois-je payer pour parcourir et copier les prompts ?",
+              "a": "Non : la navigation et la copie de chaque prompt dans la bibliothèque de prompts d'images sont ouvertes à tous, aucun compte n'est requis. La production sur la page utilise un plan basé sur le crédit. La soumission de vos propres prompts nécessite un compte afin que nous puissions créditer votre travail dans le classement."
+            },
+            {
+              "q": "Puis-je utiliser ces prompts avec des modèles autres que GPT Image 2 ?",
+              "a": "Absolument. Bien que la plupart des prompts soient optimisées pour le modèle d'image de OpenAI, la bibliothèque de prompts d'image comprend également des prompts marquées pour DALL·E 3, Midjourney et Stable Diffusion. De nombreux modèles se traduisent bien dans d'autres modèles avec des modifications mineures : utilisez le filtre de modèle pour explorer ce qui est disponible par modèle."
+            },
+            {
+              "q": "À quelle fréquence de nouvelles prompts GPT Image 2 sont-elles ajoutées ?",
+              "a": "De nouvelles prompts sont synchronisées quotidiennement par les créateurs de X. Le pipeline s'exécute toutes les 24 heures, de sorte que la bibliothèque de prompts d'images reflète toujours les dernières tendances. Vous pouvez également soumettre vos propres prompts à tout moment via la page Soumettre."
+            },
+            {
+              "q": "Comment puis-je soumettre ma propre prompt GPT Image 2 ?",
+              "a": "Cliquez sur Partager un prompt dans la navigation, connectez-vous avec X et collez votre prompt ainsi que l'image de sortie. Après un examen rapide, votre participation est mise en ligne avec votre crédit de créateur. Les principales prompts sont présentées dans le classement hebdomadaire."
+            },
+            {
+              "q": "Quelles catégories de prompts GPT Image 2 sont disponibles ?",
+              "a": "La bibliothèque de prompts d'images couvre les portraits et les photos, les styles artistiques, les produits et les publicités, les jeux et la fantaisie, les scènes et les environnements, le design et l'interface utilisateur, ainsi que les styles et les époques. Toutes les catégories contiennent des prompts testées par la communauté. Utilisez les onglets de catégorie ou effectuez une recherche par mot-clé pour trouver un style spécifique."
+            }
+          ]
+        },
+        "cta": {
+          "title": "Commencez à générer avec",
+          "titleEm": "GPT Image 2 aujourd'hui",
+          "subtitle": "Rejoignez plus de 6 200 créateurs parcourant la meilleure bibliothèque de prompts GPT Image 2 sur le Web. Aucun compte requis : parcourez, copiez et créez simplement.",
+          "browse": "Parcourir les prompts GPT Image 2 →",
+          "submit": "Soumettre un prompt",
+          "note": "Aucun compte requis · Plus de {count} prompts sélectionnés · Nouveautés quotidiennes issues de X"
+        }
+      }
+    },
+    "hero": {
+      "eyebrow": "Communauté · Mises à jour quotidiennes de X",
+      "h1Prefix": "Explorer · Réutiliser ·",
+      "h1Em": "Créer",
+      "desc": "Découvrez plus de {count} prompts GPT Image 2 sélectionnés auprès de créateurs sur X. Copiez un modèle, adaptez-le et générez de superbes images IA avec GPT Image 2, DALL·E 3 ou Midjourney, directement dans votre navigateur. Aucun compte requis pour parcourir la bibliothèque.",
+      "searchPlaceholder": "Prompts de recherche, par ex. « cyberpunk », « paysage d’encre »…",
+      "searchButton": "Recherche"
+    },
+    "stats": {
+      "prompts": "Prompts IA",
+      "members": "Membres",
+      "daily": "Quotidiennement",
+      "newPrompts": "Nouvelles prompts",
+      "curated": "Organisé",
+      "fromX": "De X"
+    },
+    "section": {
+      "latest": "Dernières soumissions",
+      "categorySub": "{category} · {subTag}"
+    },
+    "filters": {
+      "allModels": "Tous les modèles",
+      "allCategories": "Tous",
+      "allTags": "Tous"
+    },
+    "gallery": {
+      "catalogLoading": "Chargement…",
+      "catalogFailed": "Impossible de charger le catalogue.",
+      "retry": "Réessayez",
+      "loadMore": "Charger plus",
+      "noMore": "Tout a été chargé",
+      "coverLoadFailed": "L'image n'a pas pu être chargée",
+      "showing": "Affichage {shown} / {total}"
+    },
+    "card": {
+      "community": "Communauté",
+      "generate": "Générer"
+    },
+    "footer": {
+      "tagline": "Open Prompts · Bibliothèque ouverte de prompts",
+      "links": {
+        "github": "GitHub",
+        "gptGallery": "Prompts GPT Image 2",
+        "dalleGallery": "Prompts DALL·E 3",
+        "categories": "Catégories",
+        "submit": "Soumettre",
+        "privacy": "Confidentialité"
+      }
+    },
+    "modal": {
+      "promptLabel": "Prompt",
+      "copy": "Copier",
+      "copied": "Copié",
+      "from": "De",
+      "viewSource": "Voir la source",
+      "generateNow": "Générer maintenant"
+    },
+    "gen": {
+      "title": "Générer à partir d'un modèle",
+      "params": "Paramètres",
+      "provider": "Fournisseur",
+      "count": "Nombre",
+      "aspectRatio": "Rapport hauteur/largeur",
+      "quality": "Qualité",
+      "generate": "Générer",
+      "generating": "Génération…",
+      "jobLabel": "emploi",
+      "prompt": "Prompt",
+      "generatedImages": "Images générées",
+      "resultsPlaceholder": "Les résultats apparaîtront ici",
+      "openDownload": "Ouvrir / télécharger",
+      "successNoImages": "Réussite, mais aucune URL d'image renvoyée",
+      "failedPrefix": "Échec : ",
+      "tryAgain": "Veuillez réessayer",
+      "missingPrompt": "Prompt manquante",
+      "templateRenderFailed": "Échec du rendu du modèle",
+      "generationFailed": "Échec de la génération",
+      "pollingFailed": "Échec du sondage",
+      "createFailed": "Échec de la création"
+    },
+    "createPage": {
+      "seo": {
+        "title": "Studio de génération d’images IA | Open Prompts",
+        "description": "Créez avec Open Prompts : démarrez à partir de modèles sélectionnés, choisissez le modèle et le rapport hauteur/largeur, générez avec GPT Image, Midjourney, DALL·E, Flux et plus encore : historique des sessions dans un seul studio."
+      },
+      "brandPill": "Open Prompts",
+      "templatesLabel": "MODÈLES",
+      "searchTemplatesPlaceholder": "Rechercher des modèles…",
+      "originalPromptLabel": "INVITE ORIGINALE",
+      "promptSectionLabel": "INVITE",
+      "enhanceButton": "✨ Améliorer",
+      "promptPlaceholder": "Décrivez l'image que vous souhaitez générer…",
+      "carouselApplyTitle": "Cliquez pour appliquer le modèle",
+      "carouselPromptBadge": "INVITE",
+      "modelTitle": "Modèle",
+      "selectModel": "Sélectionnez le modèle",
+      "selectImageRatio": "Sélectionnez le rapport d'image",
+      "qualityPopoverTitle": "Qualité",
+      "qualityDefaultSuffix": " (par défaut)",
+      "qualityActive": "Actif",
+      "generateCountTitle": "Générer un décompte",
+      "moreOptions": "Plus d'options",
+      "moreMenuAriaLabel": "Plus d'options",
+      "providerSection": "FOURNISSEUR",
+      "providerInternal": "Par défaut",
+      "popularTitle": "Modèles populaires",
+      "popularSubtitle": "Démarrez plus vite avec un modèle. Cliquez pour l’appliquer.",
+      "allTemplatesLink": "Tous les modèles →",
+      "allTemplatesTitle": "Tous les modèles",
+      "resultHistoryLabel": "RÉSULTAT & HISTORIQUE",
+      "currentLabel": "ACTUEL",
+      "historyLabel": "HISTOIRE",
+      "railCurrentEmpty": "Aucune sortie pour l'instant. Écrivez un prompt et cliquez sur Générer – les résultats s'afficheront ici.",
+      "railCurrentJump": "Go au générateur",
+      "railHistoryEmpty": "Pas d'historique pour l'instant. Les exécutions réussies sont enregistrées ici, dans ce navigateur uniquement.",
+      "railJobIdle": "Aucun emploi actif",
+      "fullscreenTitle": "Plein écran",
+      "downloadTitle": "Télécharger",
+      "deleteTitle": "Supprimer",
+      "viewerClose": "Fermer",
+      "viewerPrev": "← Précédent",
+      "viewerNext": "Suivant →",
+      "keyDialogTitle": "Clé API pour {provider}",
+      "keyDialogHint": "Laissez vide pour utiliser la clé interne du serveur.",
+      "keyDialogPlaceholder": "Collez votre clé API (facultatif)",
+      "keyDialogCancel": "Annuler",
+      "keyDialogUseInternal": "Utiliser interne",
+      "keyDialogSave": "Enregistrer",
+      "ratioSquare": "Carré ({ratio})",
+      "ratioUltraWide": "Ultra-large ({ratio})",
+      "ratioLandscape": "Paysage ({ratio})",
+      "ratioPortrait": "Portrait ({ratio})",
+      "githubRepoAriaLabel": "Dépôt GitHub",
+      "githubTitle": "GitHub",
+      "hero": {
+        "title": "De meilleurs prompts De meilleures images",
+        "titleLine1": "De meilleurs prompts",
+        "titleLine2Before": "De meilleures ",
+        "titleLine2Em": "images",
+        "titleLine2After": "",
+        "subtitle": "Transformez des modèles sélectionnés en images prêtes pour la production. Ajustez le modèle, les proportions, la qualité et la taille du lot, puis affinez à partir de l'historique de la session sans quitter le canevas.",
+        "featuresTitle": "Caractéristiques",
+        "features": [
+          {
+            "t": "Échafaudages de prompts structurés",
+            "d": "Commencez à partir de modèles vérifiés et échangez les variables importantes : le sujet, la scène, la palette et les éléments de style restent alignés d'une exécution à l'autre."
+          },
+          {
+            "t": "Surface de contrôle unifiée",
+            "d": "Fournisseur, format d'image, qualité de sortie et nombre d'images en direct dans une seule bande afin que la configuration reste rapide et prévisible."
+          },
+          {
+            "t": "Historique de la session",
+            "d": "Les analyses réussies sont conservées localement pour un rappel instantané, une comparaison côte à côte et une réutilisation rapide en un clic."
+          }
+        ],
+        "howTitle": "Comment ça marche",
+        "howSteps": [
+          "Sélectionnez un modèle qui correspond à votre direction créative.",
+          "Modifiez le prompt : conservez l'échafaudage ; personnalisez le sujet, l’éclairage et la composition.",
+          "Définissez les paramètres du modèle et exécutez la génération.",
+          "Examinez les sorties et parcourez l'historique dans la même vue."
+        ],
+        "whyTitle": "Pourquoi les utilisateurs choisissent Open Prompts",
+        "whyPoints": [
+          "Réduit le délai d'obtention de la première image grâce à des structures de prompt réutilisables et avisées.",
+          "Améliore la cohérence stylistique en verrouillant la structure et en modifiant uniquement les deltas.",
+          "Consolide la création, la génération et la révision dans une seule surface ciblée."
+        ],
+        "sayTitle": "Ce que disent les utilisateurs",
+        "says": [
+          {
+            "q": "Les modèles se lisent comme des mémoires : mes prompts ont cessé de dériver une fois que j'ai verrouillé l'échafaudage.",
+            "a": "Créateur indépendant"
+          },
+          {
+            "q": "Le fait d'avoir le fournisseur, le ratio et la qualité sur une seule ligne permet aux avis de progresser même dans des délais serrés.",
+            "a": "Créateur de marque"
+          },
+          {
+            "q": "L'historique local nous permet de formuler des phrases A/B et de revenir à un prompt gagnante en quelques secondes.",
+            "a": "Commercialisation des produits"
+          }
+        ],
+        "faqTitle": "FAQ",
+        "faqs": [
+          {
+            "q": "Qu'est-ce que Open Prompts ?",
+            "a": "Open Prompts combine une bibliothèque de prompts organisée avec un studio intégré au navigateur pour la génération d'images, afin que vous puissiez partir de structures éprouvées, exécuter avec des modèles pris en charge et itérer sans changer d'outil."
+          },
+          {
+            "q": "Par où dois-je commencer ?",
+            "a": "Choisissez le modèle le plus proche de votre intention, puis remplacez d'abord le sujet, le paramètre et les éléments de style tout en préservant la structure globale."
+          },
+          {
+            "q": "Dans quelle mesure mon prompt doit-elle être détaillée ?",
+            "a": "Dirigez avec le sujet et le style, puis superposez l'éclairage, l'objectif ou la composition, les matériaux et l'arrière-plan. Ajoutez des contraintes uniquement lorsqu'elles affectent matériellement la sortie."
+          },
+          {
+            "q": "Comment puis-je maintenir la cohérence des sorties ?",
+            "a": "Maintenez le squelette du modèle et le vocabulaire d'ancrage stables ; faites varier uniquement les paramètres que vous souhaitez tester. Réutilisez les entrées de l'historique comme références entre les exécutions."
+          },
+          {
+            "q": "Puis-je utiliser ma propre clé ou fournisseur API ?",
+            "a": "Oui. Vous pouvez acheminer les demandes via des fournisseurs pris en charge et fournir vos propres informations d'identification lorsque le produit le permet, ou vous fier à la configuration côté serveur pour le mode interne."
+          }
+        ],
+        "ctaTitle": "Prêt à créer ?",
+        "ctaSubtitle": "Écrivez votre idée et cliquez sur Générer.",
+        "ctaButton": "Générer"
+      },
+      "internalConfig": {
+        "title": "Aucune clé API côté serveur configurée",
+        "body": "Le mode interne nécessite des clés de fournisseur dans les variables d'environnement du serveur.",
+        "steps": [
+          "Pour le développement local, copiez `.env.example` → `.env.local`",
+          "Configurez au moins un fournisseur :",
+          "- AtlasCloud : `ATLASCLOUD_BASE_URL` + `ATLASCLOUD_API_KEY`",
+          "- Replicate : `REPLICATE_API_TOKEN` + (`REPLICATE_MODEL` ou `REPLICATE_VERSION`)",
+          "Redémarrez `npm run dev` et réessayez"
+        ]
+      }
+    }
+  }
+}

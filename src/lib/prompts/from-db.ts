@@ -1,0 +1,92 @@
+import { desc, and, inArray, sql } from 'drizzle-orm';
+import type { PromptGalleryItem } from '~/data/promptGallery';
+import { getDb } from '~/db/client';
+import { prompts } from '~/db/schema';
+import {
+  normalizeSubmitCategoryKey,
+  type SubmitCategoryKey,
+} from '~/lib/prompts/prompt-categories';
+import { galleryPublicFilter } from '~/lib/prompts/template-record';
+
+function rowToItem(row: {
+  slug: string;
+  title: string;
+  description: string | null;
+  prompt: string | null;
+  templateId: string | null;
+  model: string | null;
+  category: string | null;
+  tags: string[] | null;
+  sourceUrl: string | null;
+  authorHandle: string | null;
+  images: string[] | null;
+  createdAt: Date;
+}): PromptGalleryItem {
+  const tags = Array.isArray(row.tags) ? row.tags.filter((t) => typeof t === 'string' && t.trim()) : [];
+  const images = Array.isArray(row.images)
+    ? row.images.filter((u) => typeof u === 'string' && u.trim())
+    : [];
+  const item: PromptGalleryItem = {
+    id: row.slug,
+    title: row.title?.trim() || 'Untitled',
+    description: typeof row.description === 'string' ? row.description : '',
+    prompt: typeof row.prompt === 'string' ? row.prompt : '',
+    model: row.model?.trim() || 'GPT Image 2',
+    category: normalizeSubmitCategoryKey(row.category ?? ''),
+    tags,
+    images,
+  };
+  const tid = row.templateId?.trim();
+  if (tid) item.templateId = tid;
+  const su = row.sourceUrl?.trim();
+  if (su) item.sourceUrl = su;
+  const ah = row.authorHandle?.trim();
+  if (ah) item.authorHandle = ah;
+  item.createdAt = row.createdAt.toISOString();
+  return item;
+}
+
+/** Loads public prompts from D1 via Drizzle; null if binding unavailable, error, or empty. */
+export async function fetchPromptGalleryFromDb(limit?: number, ids?: number[], preview = false, offset = 0): Promise<PromptGalleryItem[] | null> {
+  // Skip the DB during `next build` (static generation). Statically pre-rendered pages
+  // are built from the bundled JSON gallery; the deployed Worker queries D1 at
+  // runtime. This keeps the build fast/deterministic and avoids fetching the full table
+  // once per pre-rendered page (thousands of remote round-trips on a `max: 1` pool).
+  if (process.env.NEXT_PHASE === 'phase-production-build') return null;
+
+  const db = getDb();
+  if (!db) return null;
+
+  try {
+    const rows = await db
+      .select({
+        slug: prompts.slug,
+        title: prompts.title,
+        description: prompts.description,
+        prompt: preview ? sql<string>`''` : prompts.prompt,
+        templateId: prompts.templateId,
+        model: prompts.model,
+        category: prompts.category,
+        tags: prompts.tags,
+        sourceUrl: prompts.sourceUrl,
+        authorHandle: prompts.authorHandle,
+        images: prompts.images,
+        createdAt: prompts.createdAt,
+      })
+      .from(prompts)
+      .where(and(galleryPublicFilter(), ids ? inArray(prompts.id, ids) : undefined))
+      .orderBy(desc(prompts.createdAt), desc(prompts.id))
+      .limit(limit ?? -1)
+      .offset(offset);
+
+    if (!rows.length) return preview ? [] : null;
+    return rows.map(rowToItem);
+  } catch (e: unknown) {
+    const msg = e instanceof Error ? e.message : String(e);
+    console.error('[op:prompts:drizzle]', msg);
+    return null;
+  }
+}
+
+/** Alias for older imports / caches still referencing the Supabase client name. */
+export const fetchPromptGalleryFromSupabase = fetchPromptGalleryFromDb;

@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "open-prompts",
+  "main": "worker.ts",
+  "rules": [{ "type": "Text", "globs": ["**/BUILD_ID"], "fallthrough": true }],
+  "compatibility_date": "2025-03-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [{
+    "binding": "DB",
+    "database_name": "open-prompts",
+    "database_id": "97a63f9c-b95c-4597-952c-0235b1425fde",
+    "migrations_dir": "drizzle/d1"
+  }],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "vars": { "DB_MIGRATION_MODE": "off" },
+  "observability": {
+    "enabled": true
+  }
+}

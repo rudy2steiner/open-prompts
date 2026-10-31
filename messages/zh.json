@@ -1,0 +1,1534 @@
+{
+  "IndexPage": {
+    "lang": "en",
+    "language": "简体中文",
+    "languageInChineseSimple": "简体中文",
+    "title": "在线编辑、格式化、语法验证和美化JSON",
+    "keywords": "json格式化,格式化json",
+    "description": "在线编辑、格式化、语法验证和美化JSON。",
+    "loadingText": "加载中...",
+    "generateText": "生成中...",
+    "buttonText": "生成",
+    "placeholderText": "在此处输入或粘贴文本...",
+    "h1": "在线编辑、格式化、语法验证和美化JSON，只需将其粘贴到下面即可：",
+    "pDescription": "在线编辑、格式化、语法验证和美化JSON，只需将其粘贴到下面即可：",
+    "soraVideoExample": "Sora 生成的示例视频",
+    "prompt": "提示词",
+    "soraWorksTitle": "作品列表",
+    "soraResultTitle": "结果",
+    "moreExample": "更多示例视频",
+    "fakeSoraTip": "FakeSora 旨在模拟尚未发布的 OpenAI Sora API。",
+    "soraTip": "OpenAI 尚未发布 Sora 的 API。"
+  },
+  "footer": {
+    "lang": "zh",
+    "language": "简体中文",
+    "languageInChineseSimple": "简体中文",
+    "title": "Unix 时间转换器：时间戳与日期互转。",
+    "description": "在线转换 Unix 时间：支持秒至纳秒、UTC 与本地时间、实时 epoch 与代码示例。",
+    "h1": "Online edit,format,validate,beautify tool for json. just  paste it below:",
+    "keywords": "online json formatter,json editor,json format,format json,online json format,json format checker,json formatter and validator,pretty format json,json checker format,json pretty format,formatted json,verify json format,json text formatting,json formatting online,json to string,json format validation",
+    "loadingText": "Loading...",
+    "generateText": "Generating...",
+    "buttonText": "Generate",
+    "placeholderText": "Type or paste text here...",
+    "pDescription": "Online edit,format,validate,beautify tool for json. just  paste it below:",
+    "soraVideoExample": "Online edit,format,beautify tool for non-standard json. just  paste it below:",
+    "prompt": "Online compare tool for json or any text. just paste it below:",
+    "soraWorksTitle": "Works",
+    "soraResultTitle": "Result",
+    "moreExample": "more example video",
+    "fakeSoraTip": "FakeSora is designed to simulate the yet-to-be-released OpenAI Sora API.",
+    "soraTip": "OpenAI has not released Sora's API yet."
+  },
+  "privacyPolicy": {
+    "title": "隐私政策 | Open Prompts",
+    "description": "了解 Open Prompts 在您浏览、提交和分享 AI 图像提示词社区图库时如何收集、使用和保护您的信息。",
+    "h1": "隐私政策",
+    "date": "最后更新日期：2024年2月19日",
+    "desc": "感谢您选择 SoraWebui！本隐私政策概述了您在使用我们位于的网站时我们如何收集、使用和保护您的信息",
+    "h4_1": "1、我们收集的信息:",
+    "h4_1_pa": "a. 个人数据: 当您使用 SoraWebui 时，我们可能会收集您的姓名、电子邮件地址和支付信息，以便进行订单处理。",
+    "h4_1_pb": "b. 非个人数据: 我们还可能通过网络 Cookie 收集非个人数据，以增强您的浏览体验。",
+    "h4_2": "2、数据收集目的:",
+    "h4_2_p": "我们仅收集您的个人数据以进行订单处理。",
+    "h4_3": "3、数据共享:",
+    "h4_3_p": "我们不会与任何第三方共享您的个人数据。",
+    "h4_4": "4、儿童隐私:",
+    "h4_4_p": "SoraWebui 不会故意收集儿童的任何个人数据。",
+    "h4_5": "5、隐私政策更新:",
+    "h4_5_p": "我们将通过电子邮件通知用户有关本隐私政策的任何更新。",
+    "h4_6": "6、联系信息:",
+    "h4_6_p": "如果您对我们的隐私政策有任何疑问或顾虑，请通过以下方式与我们联系："
+  },
+  "termsOfService": {
+    "title": "服务条款 | Open Prompts",
+    "description": "使用 Open Prompts（社区 AI 提示词图库，用于发现、提交和分享图像生成提示词）的服务条款。",
+    "h1": "服务条款",
+    "date": "最后更新日期：2024年2月19日",
+    "desc": "这些服务条款（“条款”）管辖您对 SoraWebui（“服务”）的访问和使用，由 SoraWebui（“我们”或“我们”）提供。通过访问或使用服务，您同意受这些条款的约束。",
+    "h4_1": "1、服务描述：",
+    "h4_1_p": "SoraWebui 提供了一个 OpenAI Sora 的浏览器界面，允许用户轻松生成文本到视频。",
+    "h4_2": "2、所有权：",
+    "h4_2_p": "从文本生成的视频的所有权属于原始用户。",
+    "h4_3": "3、用户数据：",
+    "h4_3_p": "我们收集和存储用户数据，包括姓名、电子邮件和付款信息。我们根据我们的隐私政策处理这些数据。",
+    "h4_4": "4、非个人数据收集：",
+    "h4_4_p": "我们使用网络cookie来收集非个人数据。有关更多信息，请参阅我们的隐私政策。",
+    "h4_5": "5、隐私政策：",
+    "h4_5_p": "我们的隐私政策解释了我们如何收集、使用和披露关于您的信息。通过使用我们的服务，您同意我们的隐私政策，该政策可在以下网址找到 ",
+    "h4_6": "6、适用法律：",
+    "h4_6_p": "这些条款受美国法律管辖。",
+    "h4_7": "7、条款更新：",
+    "h4_7_p": "我们可能会不时更新这些条款。我们将通过电子邮件通知用户任何重大变更。",
+    "h4_8": "8、联系信息：",
+    "h4_8_p": "如果您对我们的隐私政策有任何疑问或关注，请联系我们："
+  },
+  "indexQuestion": {
+    "h2_0": "常见问题",
+    "h2_1": "JSON Home(JSON之家)",
+    "h2_1_p1": "JSON工具集，包括在线编辑、格式化、语法验证、美化等功能。",
+    "h2_1_p2": "它根据文本描述生成逼真而富有想象力的场景，创建多个角色，并准确模拟特定动作和场景细节。",
+    "h2_1_p3": "在语言理解和视频制作方面令人印象深刻，Sora为创意专业人士提供了一个创新的新工具。",
+    "h2_1_p4": "有关更详细的信息，请访问OpenAI的官方网站。",
+    "h2_2": "JSON 数据格式及其特性?",
+    "h2_2_p1": "JSON（JavaScript 对象表示法）是一种用于表示结构化数据的轻量级、基于文本的数据格式。它通常用于在服务器和 Web 应用程序之间传输数据，以及用于数据存储和配置。",
+    "h2_2_p2": "JSON 的主要特点：",
+    "h2_2_p3a": "可读性强：JSON 数据以易于理解和编辑的格式编写。",
+    "h2_2_p3b": "与语言无关：JSON 与任何特定编程语言无关，使其适用于各种技术。 ",
+    "h2_2_p3c": "数据类型：JSON 支持多种数据类型，包括字符串、数字、布尔值、数组和对象。",
+    "h2_2_p3d": "层次结构：JSON 数据可以使用对象和数组组织成层次结构。",
+    "h2_2_p3e": "轻量级：JSON 是一种紧凑的数据格式，传输和存储都非常有效。"
+  },
+  "timestampPage": {
+    "title": "Unix 时间转换器 | 在线 Epoch 与时间互转",
+    "description": "在线将 Unix 时间戳转为日期，或将日期转为 Unix 时间。支持秒、毫秒、微秒、纳秒。免费、快速、本地计算。",
+    "keywords": "unix时间转换,时间戳转换,epoch转换,时间戳转日期,日期转时间戳,posix时间",
+    "h1": "时间戳转换器",
+    "h2_1": "时间戳转日期",
+    "h2_2": "日期转时间戳",
+    "pick_date": "日期选择：",
+    "convert": "转换",
+    "section_timestamp_to_date": "时间戳转日期",
+    "current_unix_epoch": "当前 Unix 时间戳",
+    "units_hint": "单位：auto · s · ms · μs · ns",
+    "enter_timestamp_placeholder": "输入时间戳",
+    "unit_auto": "自动",
+    "unit_seconds": "秒",
+    "unit_milliseconds": "毫秒",
+    "unit_microseconds": "微秒 (μs)",
+    "unit_nanoseconds": "纳秒",
+    "label_local": "本地时间",
+    "label_utc": "UTC",
+    "label_seconds": "秒",
+    "label_millis": "毫秒",
+    "label_micros": "微秒",
+    "label_nanos": "纳秒",
+    "invalid_timestamp": "无效的时间戳。",
+    "invalid_date": "无效的日期输入。",
+    "what_is_unix_timestamp_title": "什么是 Unix 时间戳？",
+    "what_is_unix_timestamp_p1": "Unix 时间戳（也称 Unix time 或 POSIX time）是从 1970-01-01 00:00:00 UTC 开始经过的秒数。",
+    "what_is_unix_timestamp_p2": "它是跨系统存储和比较时间的便捷方式。大多数系统把它当作连续秒计数，并不计算闰秒。",
+    "what_is_unix_timestamp_p3": "部分 32 位系统会在 2038 年溢出（2038 年问题）。",
+    "code_examples_title": "代码示例",
+    "code_examples_desc": "获取当前 epoch 时间，并将 epoch 时间戳转换为可读日期（将示例数字替换为你的值）。",
+    "seo_hero_title": "Unix 时间转换器",
+    "seo_hero_description": "免费 Unix 时间转换器：epoch 与日期互转，支持秒至纳秒、实时 Unix epoch、UTC 与本地视图及代码片段。私密、快速，适合日志、接口与排障。",
+    "seo_features_title": "这款 Unix 时间转换器的亮点",
+    "seo_feature_1_title": "双向 Unix 时间换算",
+    "seo_feature_1_desc": "将 epoch 映射为本地与 UTC 时间，或选择日历时间导出符合栈要求的 Unix 时间精度。",
+    "seo_feature_2_title": "覆盖常见时间戳单位",
+    "seo_feature_2_desc": "自动识别或手动选择秒、毫秒、微秒、纳秒，让接口与数据库里的 epoch 值一次对齐。",
+    "seo_feature_3_title": "实时 Unix epoch",
+    "seo_feature_3_desc": "表单旁显示当前 Unix epoch 每秒跳动，对照你正在转换的值。",
+    "seo_feature_4_title": "代码即用",
+    "seo_feature_4_desc": "JavaScript、Python、Go、SQL、Shell 示例与页面上的 Unix 时间换算结果一致，便于复制到项目。",
+    "seo_how_title": "如何使用",
+    "seo_how_step_1_title": "粘贴或输入 Unix 时间",
+    "seo_how_step_1_desc": "输入数字型 Unix 时间戳，选择单位，或按位数自动推断。",
+    "seo_how_step_2_title": "选择日期时间",
+    "seo_how_step_2_desc": "用日期时间选择器把日历时刻转为 epoch 秒、毫秒等。",
+    "seo_how_step_3_title": "查看多种表示",
+    "seo_how_step_3_desc": "并排查看本地时间、UTC 与原始 epoch，便于调试、测试与接口核对。",
+    "seo_why_title": "开发者为何常用",
+    "seo_why_1_title": "默认私密",
+    "seo_why_1_desc": "在浏览器本地计算，输入不会上传到服务器。",
+    "seo_why_2_title": "面向真实时间戳",
+    "seo_why_2_desc": "日志与 JSON 里常见的毫秒、微秒时间戳可顺畅走完时间戳转换流程。",
+    "seo_why_3_title": "更快落地",
+    "seo_why_3_desc": "内联示例与界面上的 epoch 结果对应，便于在代码里复现相同逻辑。",
+    "seo_testimonials_title": "用户评价",
+    "seo_testimonial_1_name": "Alex",
+    "seo_testimonial_1_role": "后端开发",
+    "seo_testimonial_1_quote": "查日志和接口时很方便——浏览器里顺手的 epoch 转换工具。",
+    "seo_testimonial_2_name": "Jamie",
+    "seo_testimonial_2_role": "SRE",
+    "seo_testimonial_2_quote": "单位切换让我在故障时少猜很多次毫秒还是秒。",
+    "seo_testimonial_3_name": "Riley",
+    "seo_testimonial_3_role": "学生",
+    "seo_testimonial_3_quote": "界面清楚，示例帮我更快理解 Unix 时间。",
+    "seo_faq_title": "常见问题",
+    "seo_faq_q1": "什么是 Unix 时间戳？",
+    "seo_faq_a1": "从 Unix 纪元（1970-01-01 00:00:00 UTC）起算，通常以秒或更细粒度计数；本 Unix 时间转换器会在本地与 UTC 旁同步展示。",
+    "seo_faq_q2": "为什么有些值是 13 位？",
+    "seo_faq_a2": "多为毫秒级 epoch，在 JavaScript 中很常见（如 Date.now()）；工具会自动识别。",
+    "seo_faq_q3": "收费吗？",
+    "seo_faq_a3": "免费在线使用，无需注册；换算过程留在本会话。",
+    "seo_faq_q4": "时区如何处理？",
+    "seo_faq_a4": "本地时间依据浏览器；UTC 与 epoch 数值同时展示。",
+    "seo_faq_q5": "2038 年问题是什么？",
+    "seo_faq_a5": "32 位有符号秒约在 2038 年溢出；远期日期建议 64 位或更细粒度。",
+    "seo_cta_title": "开始转换",
+    "seo_cta_desc": "回到页面顶部的 Unix 时间转换器继续完成 epoch 或日期换算。",
+    "seo_cta_button": "前往转换器"
+  },
+  "jsonEditorPage": {
+    "title": "在线格式化JSON工具",
+    "description": "在线编辑、格式化和美化非标准JSON工具。",
+    "keywords": "json格式化,格式化json",
+    "h1": "免费在线 JSON 格式化工具 - 即时格式化、验证和美化 JSON",
+    "h1_desc": "使用我们强大的 JSON 格式化工具来格式化、验证和美化您的 JSON 数据。此 JSON 格式化工具支持语法高亮、美化打印、压缩和实时验证。上传 JSON 文件或粘贴 JSON 文本 - 我们的 JSON 格式化工具可在浏览器中即时工作。",
+    "format": "格式化",
+    "compact": "压缩",
+    "upload": "上传",
+    "download": "下载",
+    "clear": "清理",
+    "auto_format": "自动格式化",
+    "compare": "比较",
+    "close_compare": "关闭比较",
+    "problem": "问题",
+    "h1Text": "SoraWebui - 作品",
+    "pDescription": "SoraWebui 是一个开源项目，通过允许用户使用文本在线生成视频，使用 OpenAI 的 Sora 模型简化视频创建，具有简单的一键网站部署功能。",
+    "generateNew": "生成新视频",
+    "h2": "JSON 格式化工具",
+    "h2_desc": "JSON 格式化工具是一款可以帮助您将 JSON 数据格式化为清晰可读形式的工具。它可以用来格式化 JSON 字符串和 JSON 文件。",
+    "h2_h3": "特性：",
+    "h2_h3_l1": "语法高亮：JSON 格式化工具使用语法高亮功能，让 JSON 数据更易于阅读。",
+    "h2_h3_l2": "美化打印：JSON 格式化工具可以美化打印 JSON 数据，让您更容易查看数据的结构。",
+    "h2_h3_l3": "验证：JSON 格式化工具可以验证 JSON 数据，以确保其为有效的 JSON。",
+    "h2_h3_l4": "最小化：JSON 格式化工具可以最小化 JSON 数据，从而减小其大小。",
+    "h2_h3_l5": "JSON 文件格式：JSON 格式化工具支持上传 JSON 文件进行格式化并下载已格式化的 JSON 文件。",
+    "h2_h3_1": "如何使用 JSON 格式化工具？",
+    "h2_h3_1_l1": "将 JSON 数据复制并粘贴到输入字段中或上传一个 JSON 文件。",
+    "h2_h3_1_l2": "点击",
+    "h2_h3_1_l2_1": "格式化 ",
+    "h2_h3_1_l2_2": "按钮。",
+    "h2_h3_1_l3": "格式化后的 JSON 数据将显示在文本框中。",
+    "h2_h3_2": "JSON 格式化示例",
+    "h2_1": "JSON 验证工具",
+    "h2_1_desc": "JSON 验证工具是一款可以帮助您验证 JSON 数据，以确保其为有效 JSON 的工具。它可以用来验证 JSON 字符串和 JSON 文件。",
+    "h2_1_h3": "特性：",
+    "h2_1_h3_l1": "语法验证：JSON 验证工具会检查 JSON 数据的语法，以确保其为有效的 JSON。",
+    "h2_1_h3_l2": "模式验证：JSON 验证工具还可以根据 JSON 模式来验证 JSON 数据。",
+    "h2_1_h3_l3": "错误报告：如果 JSON 数据无效，JSON 验证工具会提供详细的错误信息。",
+    "h2_1_h3_l4": "JSON 文件验证：JSON 格式化工具支持上传 JSON 文件进行验证并下载经过验证的 JSON 文件。",
+    "features_title": "核心功能",
+    "features_desc": "我们的 JSON 格式化工具提供强大的功能，帮助您高效处理 JSON 数据。",
+    "feature_1_title": "语法高亮",
+    "feature_1_desc": "JSON 格式化工具使用高级语法高亮功能，让您的 JSON 数据更易于阅读和理解。",
+    "feature_2_title": "美化打印",
+    "feature_2_desc": "使用我们的 JSON 格式化工具，通过适当的缩进和换行来格式化您的 JSON，提高可读性。",
+    "feature_3_title": "实时验证",
+    "feature_3_desc": "使用我们的 JSON 格式化工具即时验证 JSON 语法，在错误造成问题之前捕获它们。",
+    "feature_4_title": "压缩功能",
+    "feature_4_desc": "使用我们的 JSON 格式化工具的压缩功能，高效压缩您的 JSON 文件。",
+    "feature_5_title": "文件支持",
+    "feature_5_desc": "使用我们的 JSON 格式化工具无缝上传和下载 JSON 文件。",
+    "feature_6_title": "自动格式化",
+    "feature_6_desc": "在我们的 JSON 格式化工具中启用自动格式化功能，自动保持代码整洁。",
+    "howItWorks_title": "使用方法",
+    "howItWorks_desc": "使用我们的 JSON 格式化工具简单直接。按照以下步骤格式化您的 JSON 数据。",
+    "howItWorks_step1": "将您的 JSON 数据粘贴到编辑器中，或使用上传按钮上传 JSON 文件。",
+    "howItWorks_step2": "点击格式化按钮以美化您的 JSON（带适当的缩进），或使用自动格式化进行实时格式化。",
+    "howItWorks_step3": "JSON 格式化工具将验证您的数据，如果发现任何错误，将显示错误信息。",
+    "howItWorks_step4": "下载格式化后的 JSON 文件，或直接从编辑器复制。",
+    "testimonials_title": "用户评价",
+    "testimonial_1_name": "陈莎拉",
+    "testimonial_1_role": "前端开发工程师",
+    "testimonial_1_text": "这个 JSON 格式化工具已成为我日常工作中必不可少的工具。它快速、可靠，语法高亮功能使调试变得容易得多。",
+    "testimonial_2_name": "罗德里格斯·迈克尔",
+    "testimonial_2_role": "API 开发工程师",
+    "testimonial_2_text": "我每天使用这个 JSON 格式化工具来验证 API 响应。实时验证功能为我节省了数小时的调试时间。",
+    "testimonial_3_name": "沃森·艾米丽",
+    "testimonial_3_role": "数据分析师",
+    "testimonial_3_text": "这是我使用过的最好的 JSON 格式化工具。文件上传功能和自动格式化使处理大型 JSON 文件变得轻而易举。",
+    "faq_title": "常见问题",
+    "faq_q1": "什么是 JSON 格式化工具？",
+    "faq_a1": "JSON 格式化工具是一种通过添加适当的缩进、换行和间距来格式化 JSON 数据，使其更易于阅读的工具。我们的 JSON 格式化工具还可以验证和美化您的 JSON 数据。",
+    "faq_q2": "这个 JSON 格式化工具是免费的吗？",
+    "faq_a2": "是的，我们的 JSON 格式化工具完全免费使用。您可以无限制地格式化、验证和压缩 JSON 数据。",
+    "faq_q3": "我可以上传 JSON 文件到格式化工具吗？",
+    "faq_a3": "当然可以！我们的 JSON 格式化工具支持文件上传。只需点击上传按钮并选择您的 JSON 文件即可立即格式化。",
+    "faq_q4": "JSON 格式化工具会验证我的数据吗？",
+    "faq_a4": "是的，我们的 JSON 格式化工具包括实时验证功能，可以检查您的 JSON 语法并立即报告任何错误。",
+    "faq_q5": "我可以下载格式化后的 JSON 文件吗？",
+    "faq_a5": "是的，使用我们的 JSON 格式化工具格式化 JSON 后，您可以使用下载按钮下载格式化后的文件。"
+  },
+  "jsonComparePage": {
+    "title": "比较JSON 或文本的在线比较工具",
+    "description": "比较 JSON 或任何文本的在线比较工具。",
+    "keywords": "json在线对比,json对比,文本对比",
+    "h1": "比较JSON 或文本的在线比较工具，只需将其粘贴到下面即可：",
+    "format": "格式化",
+    "compact": "压缩",
+    "h1Text": "SoraWebui - playground",
+    "pDescription": "SoraWebui 是一个开源项目，通过允许用户使用文本在线生成视频，使用 OpenAI 的 Sora 模型简化视频创建，具有简单的一键网站部署功能。",
+    "moreWorks": "更多作品"
+  },
+  "OpenPrompts": {
+    "header": {
+      "language": "切换语言",
+      "themeToggle": "切换浅色/深色模式",
+      "themeToLight": "切换亮色模式",
+      "themeToDark": "切换暗色模式",
+      "signIn": "登录",
+      "signOut": "退出",
+      "userMenu": "账户菜单",
+      "userMenuSection": "控制台",
+      "displayNameFallback": "用户"
+    },
+    "nav": {
+      "home": "首页",
+      "gallery": "图片",
+      "motion": "动效",
+      "categories": "分类",
+      "create": "创作",
+      "favorites": "收藏",
+      "submit": "分享",
+      "account": "用户中心",
+      "rank": "排行榜",
+      "docs": "文档",
+      "submitCta": "分享提示词"
+    },
+    "submitPage": {
+      "seo": {
+        "title": "提交 AI 图像提示词 | Open Prompts",
+        "description": "分享 Midjourney、DALL·E、GPT Image、Flux、Stable Diffusion 等提示词模板。公开提示词库审核或私有保存。免费提交指南与写作技巧。",
+        "keywords": "提交 AI 提示词, 图片提示词, Midjourney 提示词模板, DALL-E 提示词分享, GPT Image 提示词, 提示词提交指南"
+      },
+      "xImport": {
+        "title": "从 X 快筛导入",
+        "desc": "粘贴公开推文链接（x.com / twitter.com），自动填充标题、描述、正文、配图 URL、来源链接及作者 @（若接口返回）。",
+        "placeholder": "https://x.com/username/status/…",
+        "button": "解析推文",
+        "busy": "解析中…",
+        "success": "已从推文导入，请检查各字段后继续。",
+        "errorGeneric": "无法导入该链接。",
+        "errorNotTweet": "请使用推文地址，例如 x.com/用户/status/数字ID。",
+        "errorDuplicate": "该推文已在库中，请查看下方提示。",
+        "duplicateHint": "已存在模板「{title}」（{status}），请勿重复提交。",
+        "duplicateLink": "查看已有来源",
+        "duplicateSubmitBlocked": "该 X 推文已提交为「{title}」。请换一条推文，或编辑已有模板。",
+        "duplicateStatus": {
+          "approved": "已发布",
+          "pending": "审核中",
+          "rejected": "已拒绝",
+          "draft": "草稿"
+        }
+      },
+      "wizard": {
+        "eyebrow": "提交提示词",
+        "title": "分享你的创意",
+        "titleEm": "提示词",
+        "subtitle": "完成两步填写，提交后经审核即可在提示词库公开展示。",
+        "subtitleSimple": "单页填写 — 只保留模板必要信息，填完即可提交。"
+      },
+      "chooser": {
+        "eyebrow": "提交提示词",
+        "title": "你想如何",
+        "titleEm": "分享？",
+        "subtitleLine1": "公开提示词进入社区审核队列；",
+        "subtitleLine2": "私有模板即时保存，仅自己可见。",
+        "publicKicker": "公开",
+        "publicTitle": "公开提示词库",
+        "publicDesc": "提交社区审核。通过后展示在公开提示词库，获得点赞，并标注到你的个人资料。",
+        "publicFeat1": "收录于公开目录",
+        "publicFeat2": "点赞、复刻与评论",
+        "publicFeat3": "标注到你的个人资料",
+        "publicFeat4": "维护者审核（约 48 小时）",
+        "publicFeatNo": "即时发布（需审核）",
+        "publicCta": "公开提交",
+        "privateKicker": "私有",
+        "privateTitle": "仅私有",
+        "privateDesc": "即时保存到账户，不上架提示词库。随时通过私密链接分享，或仅自己使用。",
+        "privateFeat1": "仅自己可见",
+        "privateFeat2": "无需审核，即时保存",
+        "privateFeat3": "随时通过私密链接分享",
+        "privateFeat4": "随时可改为公开",
+        "privateFeatNo": "需登录",
+        "privateCta": "私有提交",
+        "signInNote": "私有模板需登录。",
+        "back": "← 更换提交方式",
+        "compareDivider": "功能对比",
+        "compareFeature": "功能",
+        "comparePublic": "公开",
+        "comparePrivate": "私有",
+        "compareRow1": "提示词库收录",
+        "compareRow2": "点赞与评论",
+        "compareRow3": "个人资料标注",
+        "compareRow4": "他人可复刻",
+        "compareRow5": "即时保存（无审核）",
+        "compareRow6": "私密链接分享",
+        "compareRow7": "稍后公开",
+        "comparePublic1": "y",
+        "comparePublic2": "y",
+        "comparePublic3": "y",
+        "comparePublic4": "y",
+        "comparePublic5": "n",
+        "comparePublic6": "n",
+        "comparePublic7": "n",
+        "comparePrivate1": "n",
+        "comparePrivate2": "n",
+        "comparePrivate3": "n",
+        "comparePrivate4": "n",
+        "comparePrivate5": "y",
+        "comparePrivate6": "y",
+        "comparePrivate7": "y"
+      },
+      "guide": {
+        "title": "如何在 Open Prompts 提交提示词",
+        "intro": "填写提示词正文、目标模型、标签与可选预览图。公开提交经审核后才会上线。",
+        "guideKicker": "提交指南",
+        "howTitle": "流程说明",
+        "howTitleLine1": "流程",
+        "howTitleLine2": "说明",
+        "step1Title": "选择公开或私有",
+        "step1Desc": "公开提示词进入审核队列，通过后展示在提示词库。私有模板即时保存，仅自己可见。",
+        "step2Title": "填写模板表单",
+        "step2Desc": "填写清晰标题、简短描述、完整提示词正文、目标模型（Midjourney、DALL·E、GPT Image、Flux 等）、分类、标签及可选预览 URL。",
+        "step3Title": "提交并跟踪状态",
+        "step3Desc": "公开条目初始为待审核。在账户「我的模板」中查看状态；通过后可在提示词库浏览。",
+        "step4Title": "优质提交技巧",
+        "step4DescBefore": "使用 2–8 个具体标签，如 cinematic、portrait、anime。包含模型参数，如 ",
+        "step4Code": "--ar 16:9",
+        "step4DescAfter": "。英文提示词效果更好。添加预览图可显著提升点击率。",
+        "fieldsTitle": "每次提交应包含的内容",
+        "field1": "标题 — 简短、可搜索的名称（50 字以内）。",
+        "field2": "描述 — 一行说明视觉风格或使用场景。",
+        "field3": "提示词正文 — 你在图像模型中使用的完整文本，含画幅比例等参数。",
+        "field4": "预览图 — URL 或上传的示例输出（帮助审核并提升点击率）。",
+        "visibilityTitle": "公开与私有",
+        "visibilityPublic": "公开提示词库：免费提交；模板经审核后上架。仅通过的公开提示词出现在社区提示词库。",
+        "visibilityPrivate": "仅私有：需登录；保存在「我的模板」，不进审核队列 — 适合个人库与草稿。",
+        "tipsTitle": "提升提交质量的技巧",
+        "tip1": "尽量使用英文提示词 — 多数模型与搜索对英文效果更好。",
+        "tip2": "使用 2–8 个具体标签（如 cinematic、portrait、anime）并选一个风格分类。",
+        "tip3": "若从推文导入，请粘贴 X/Twitter 来源链接 — 我们会尽量标注原作者。",
+        "tip4": "包含模型可识别的画幅或质量参数（如 Midjourney 的 --ar 16:9）。",
+        "faqTitle": "常见问题",
+        "faqKicker": "FAQ",
+        "faqTitleLine1": "常见",
+        "faqTitleLine2": "问题",
+        "faq1q": "提交免费吗？",
+        "faq1a": "是的 — 公开与私有提交均完全免费。私有模板需注册账户。",
+        "faq2q": "审核需要多久？",
+        "faq2a": "公开提交通常在 48 小时内审核。提示词上线后你会收到通知。",
+        "faq3q": "提交后可以更改可见性吗？",
+        "faq3a": "可以。私有提示词可随时在控制台改为公开。公开提示词可按需申请下架。",
+        "faq4q": "公开提示词使用什么许可？",
+        "faq4a": "公开提示词采用 CC BY 4.0 — 他人可在注明出处的前提下使用、改编与二次创作。你保留作者署名。",
+        "faq5q": "支持哪些 AI 模型？",
+        "faq5a": "Midjourney、DALL·E 3、GPT Image 1 与 2、Flux、Stable Diffusion、Adobe Firefly 等均可。",
+        "ctaSubmit": "开始提交",
+        "ctaGallery": "浏览图片"
+      },
+      "privateMode": {
+        "eyebrow": "新建模板",
+        "title": "创建",
+        "titleEm": "私有模板",
+        "subtitle": "与提交提示词库相同的表单，仅保存为私有（不上架、不进审核队列）。",
+        "hint": "仅你在「我的模板」中可见。若要公开到提示词库，请稍后修改可见性或使用公开提交。",
+        "submit": "保存私有模板",
+        "successTitle": "私有模板",
+        "successTitleEm": "已保存",
+        "successBody": "可在账户「我的模板」中查看，不会出现在公开提示词库。",
+        "goToMyTemplates": "我的模板 →",
+        "createAnother": "再创建一个"
+      },
+      "editMode": {
+        "eyebrow": "编辑模板",
+        "title": "更新",
+        "titleEm": "模板",
+        "subtitle": "与提交页相同的编辑器。可见性保持原设置（需在账户中另行修改可见性）。",
+        "loading": "正在加载模板…",
+        "loadFailed": "无法加载该模板。",
+        "backToTemplates": "← 我的模板",
+        "save": "保存修改",
+        "successTitle": "模板",
+        "successTitleEm": "已更新",
+        "successBody": "修改已保存。私有与草稿不会进入提示词库，除非改为公开并过审。",
+        "continueEdit": "继续编辑"
+      },
+      "info": {
+        "body": "提示词请使用英文，效果最佳。支持参数语法如 {ar}、{v} 等。",
+        "ar": "--ar 16:9",
+        "v": "--v 6",
+        "link": "提示词写作指南 →"
+      },
+      "labels": {
+        "templateTitle": "模板名称",
+        "shortDesc": "简短描述",
+        "model": "适配模型",
+        "prompt": "提示词正文",
+        "category": "风格分类",
+        "aspectRatio": "画幅比例",
+        "quality": "风格强度",
+        "tags": "标签",
+        "visibility": "可见性",
+        "sourceUrl": "来源链接",
+        "author": "作者 / 提交者",
+        "upload": "上传效果预览图",
+        "imageUrls": "或填入图片 URL"
+      },
+      "hints": {
+        "title": "50 字以内，简洁有力",
+        "desc": "一句话说明效果",
+        "promptCount": "{count} 字符",
+        "tags": "2–8 个，回车确认",
+        "source": "X/Twitter、Reddit、个人网站等",
+        "author": "选填，致谢原创作者",
+        "upload": "最多 8 张，PNG / JPG，≤10MB",
+        "uploadFull": "已达上限，删除一张后可继续添加",
+        "urls": "每次一条 · 回车或点添加",
+        "imageCount": "{count} / {max} 张"
+      },
+      "placeholders": {
+        "title": "例：Cinematic Sunset Portrait",
+        "desc": "例：A dramatic portrait at golden hour with cinematic depth…",
+        "prompt": "A breathtaking cinematic portrait at golden hour…",
+        "source": "https://x.com/username/status/…",
+        "author": "@username 或 真实姓名",
+        "urls": "https://cdn.example.com/preview.jpg",
+        "tagInput": "输入后回车…",
+        "category": "选择主分类…"
+      },
+      "models": {
+        "gptImage2": {
+          "name": "GPT Image 2",
+          "tag": "OpenAI"
+        },
+        "midjourney": {
+          "name": "Midjourney",
+          "tag": "v6"
+        },
+        "dalle3": {
+          "name": "DALL·E 3",
+          "tag": "OpenAI"
+        },
+        "flux": {
+          "name": "Flux 1.1 Pro",
+          "tag": "BFL"
+        },
+        "sd": {
+          "name": "Stable Diffusion",
+          "tag": "XL"
+        },
+        "ideogram": {
+          "name": "Ideogram",
+          "tag": "v3"
+        }
+      },
+      "modelValues": {
+        "gptImage2": "GPT Image 2",
+        "midjourney": "Midjourney v6",
+        "dalle3": "DALL·E 3",
+        "flux": "Flux 1.1 Pro",
+        "sd": "Stable Diffusion",
+        "ideogram": "Ideogram v3"
+      },
+      "categories": {
+        "artStyles": "艺术风格",
+        "portraitPhoto": "摄影人像",
+        "designUi": "设计 & UI",
+        "gameFantasy": "游戏 & 幻想",
+        "scenes": "场景 & 环境",
+        "productCommercial": "产品 & 商业",
+        "styleEra": "风格 & 时代"
+      },
+      "subTags": {
+        "illustration": "插画",
+        "concept_art": "概念艺术",
+        "anime": "动漫",
+        "manga": "漫画",
+        "watercolor": "水彩",
+        "sketch": "素描",
+        "surrealism": "超现实",
+        "minimalism": "极简",
+        "chinese_painting": "国画",
+        "storybook": "绘本",
+        "graphic_novel": "图像小说",
+        "portrait": "人像",
+        "fashion_photography": "时尚摄影",
+        "fashion_model": "时尚模特",
+        "photorealistic": "写实",
+        "editorial": "编辑大片",
+        "documentary_photography": "纪实摄影",
+        "ui": "UI",
+        "app_ui": "应用界面",
+        "poster": "海报",
+        "flyer": "传单",
+        "magazine_cover": "杂志封面",
+        "diagram": "信息图",
+        "storyboard": "分镜",
+        "architecture": "建筑",
+        "web_design": "网页设计",
+        "game_asset": "游戏资产",
+        "fantasy": "幻想",
+        "character_design": "角色设计",
+        "sci_fi": "科幻",
+        "alien": "异形",
+        "landscape": "风景",
+        "cityscape": "城市景观",
+        "cinematic": "电影感",
+        "environment": "环境",
+        "product": "产品",
+        "commercial": "商业",
+        "e_commerce_banner": "电商 Banner",
+        "brand": "品牌",
+        "vintage": "复古",
+        "monochrome": "单色",
+        "retro": "怀旧",
+        "film": "胶片",
+        "abstract": "抽象"
+      },
+      "ratios": {
+        "1_1": "1:1 方形",
+        "16_9": "16:9 横屏",
+        "9_16": "9:16 竖屏",
+        "4_3": "4:3 标准",
+        "3_2": "3:2 摄影",
+        "21_9": "21:9 宽幅",
+        "custom": "自定义"
+      },
+      "qualities": {
+        "fast": "⚡ 快速预览",
+        "standard": "✦ 标准质量",
+        "high": "💎 高精细度"
+      },
+      "visibility": {
+        "publicTitle": "🌐 公开发布",
+        "publicDesc": "所有人可见，参与社区推荐",
+        "privateTitle": "🔒 仅自己",
+        "privateDesc": "私有保存，不出现在提示词库"
+      },
+      "quickTags": [
+        "Illustration",
+        "Portrait",
+        "Photorealistic",
+        "Fantasy",
+        "Cinematic",
+        "Editorial",
+        "Anime",
+        "Vintage"
+      ],
+      "buttons": {
+        "nextTags": "下一步：分类、标签与提交",
+        "back": "← 上一步",
+        "submit": "🚀 提交审核",
+        "submitting": "提交中…",
+        "browseGallery": "浏览图片 →",
+        "submitAnother": "再提交一条",
+        "myTemplates": "查看我的模板",
+        "detectSource": "自动识别",
+        "copyPrompt": "复制",
+        "copied": "✓ 已复制",
+        "addUrl": "添加",
+        "removeImage": "移除图片"
+      },
+      "stepHint": "第 {n} 步 / 共 {total} 步",
+      "preview": {
+        "paneTitle": "卡片预览",
+        "live": "实时同步",
+        "titleEmpty": "模板标题将显示在这里",
+        "descEmpty": "简短描述…",
+        "promptEmpty": "在左侧填写提示词后显示…",
+        "uploadPlaceholder": "上传效果图后显示",
+        "categoryFallback": "分类",
+        "generateCta": "生图 →"
+      },
+      "qualityCheck": "质量检查",
+      "validation": {
+        "needTitle": "请填写模板标题。",
+        "needPrompt": "提示词至少需要 10 个字符。",
+        "needCategory": "请选择风格分类。",
+        "needTags": "请使用 2–8 个标签。",
+        "submitFailed": "提交保存失败，请稍后重试。",
+        "submitUnavailable": "暂时无法提交（数据库未配置）。",
+        "invalidImageUrl": "请输入有效的 http(s) 图片链接。",
+        "duplicateImageUrl": "该图片链接已添加。",
+        "imageLimit": "最多添加 8 张图片。"
+      },
+      "rules": {
+        "promptLen": "提示词长度 ≥ 10 字符",
+        "title": "模板标题已填写",
+        "model": "已选择适配模型",
+        "category": "已选择风格分类",
+        "tags": "标签数量 2–8 个",
+        "images": "至少 1 张效果图"
+      },
+      "guidelines": {
+        "dividerSubmit": "提交须知",
+        "dividerImages": "效果图片",
+        "requirementsTitle": "提交要求",
+        "requirementsList": [
+          "提示词须为英文，至少 10 字符（无上限）",
+          "需附带至少 1 张使用该提示词生成的效果图",
+          "标题和描述应准确反映效果，不得误导",
+          "每位用户每天最多提交 20 条"
+        ],
+        "rejectedTitle": "不受理内容",
+        "rejectedList": [
+          "含有色情、暴力、仇恨等违规内容",
+          "侵犯他人版权或商标的提示词",
+          "重复提交已存在的相同内容",
+          "故意生成虚假信息或深伪内容"
+        ]
+      },
+      "success": {
+        "title": "提交",
+        "titleEm": "成功",
+        "body": "你的提示词已进入审核队列，通常在 24 小时内完成审核。审核通过后将自动出现在提示词库并通知你。",
+        "bodySignedOut": "你的提示词已进入审核队列。下次请先登录再提交，以便在「我的模板」中查看状态——未登录提交无法关联到账户。",
+        "idLabel": "提交编号 · #OP-{id}"
+      }
+    },
+    "accountPage": {
+      "seo": {
+        "title": "用户中心 | Open Prompts",
+        "description": "在 Open Prompts 管理提示词模板、审核队列与账户设置。"
+      },
+      "sidebar": {
+        "overview": "概览",
+        "content": "内容管理",
+        "account": "账户",
+        "adminBadge": "管理员"
+      },
+      "nav": {
+        "overview": "控制台",
+        "prompts": "提示词模板",
+        "adminReview": "审核队列",
+        "users": "用户",
+        "credits": "Credit 流水",
+        "subscription": "订阅管理"
+      },
+      "panels": {
+        "overview": "控制台",
+        "prompts": "提示词模板",
+        "admin": "内容审核",
+        "users": "用户",
+        "credits": "Credit 流水",
+        "subscription": "订阅管理"
+      },
+      "topbar": {
+        "gallery": "返回图片",
+        "newTemplate": "新建模板",
+        "signOut": "退出登录"
+      },
+      "metrics": {
+        "templates": "模板数",
+        "pending": "待审核",
+        "credits": "剩余 Credits",
+        "generations": "生图次数"
+      },
+      "overview": {
+        "hint": "在此创建与管理提示词模板。公开发布需审核通过后才会出现在提示词库。",
+        "manage": "管理模板",
+        "submit": "去提交页"
+      },
+      "toolbar": {
+        "search": "搜索标题或提示词…",
+        "allStatus": "全部状态",
+        "refresh": "刷新"
+      },
+      "table": {
+        "template": "模板",
+        "owner": "所有者",
+        "ownerAnonymous": "匿名 / 目录",
+        "status": "状态",
+        "model": "模型",
+        "updated": "更新时间",
+        "actions": "操作",
+        "view": "查看",
+        "edit": "编辑",
+        "delete": "删除",
+        "approve": "通过",
+        "reject": "拒绝",
+        "revoke": "下架",
+        "reapprove": "重新通过",
+        "empty": "还没有你提交的模板，点击新建开始。",
+        "emptyFiltered": "当前筛选状态下没有模板。",
+        "emptyAdminHint": "此列表仅显示你本人提交的模板，不包含全站目录。要审核全部模板，请用管理员账号登录后打开「内容审核」。",
+        "confirmDelete": "确定删除该模板？",
+        "deleteSelected": "删除所选",
+        "bulkConfirmDelete": "确定删除所选的 {count} 个模板？"
+      },
+      "status": {
+        "pub": "已发布",
+        "draft": "草稿",
+        "priv": "私有",
+        "pending": "审核中",
+        "rejected": "已拒绝"
+      },
+      "visibility": {
+        "public": "公开发布（需审核）",
+        "private": "私有",
+        "draft": "草稿"
+      },
+      "admin": {
+        "hint": "数据库中的全部模板（所有账号及历史目录）。审核通过/拒绝；仅已通过且公开的条目会出现在提示词库。",
+        "hintActions": "勾选行可批量通过/拒绝；审核中条目仍支持单行操作。",
+        "selectAll": "全选本页",
+        "selectedCount": "已选 {count} 项",
+        "approveSelected": "批量通过",
+        "rejectSelected": "批量拒绝",
+        "clearSelection": "取消选择",
+        "bulkConfirmApprove": "确定通过所选的 {count} 个模板？",
+        "bulkConfirmReject": "确定拒绝所选的 {count} 个模板？",
+        "forbiddenTitle": "需要管理员权限",
+        "forbiddenBody": "当前登录：{email}。该账号不在 ADMIN_EMAIL 中，无法加载审核队列。",
+        "forbiddenHint": "请在 .env.local 的 ADMIN_EMAIL 中加入你的邮箱，重启 dev 后重新登录；或使用管理员账号登录。",
+        "forbiddenMyTemplatesHint": "「提示词模板」只显示你本人提交的内容，不包含全站目录。要查看并审核全部模板，请用管理员账号（如 .env.local 中的 admin@gmail.com + 密码）登录。",
+        "empty": "当前筛选条件下没有模板。",
+        "emptyPending": "暂无待审核项。选择「全部状态」可查看已发布/已拒绝；创建「公开」模板会进入审核队列。",
+        "loadError": "无法加载审核列表：{message}",
+        "loadTimeout": "请求超时。请检查 DATABASE_URL（管理查询建议用 5432 直连，不要用 6543 pooler），并停止 dev 对 p_prompts 的长时间查询。",
+        "trendPromptsTitle": "Prompt 新增",
+        "trendDaysHint": "按 UTC 自然日统计每日新增模板。",
+        "pagination": {
+          "pageSize": "每页",
+          "prev": "上一页",
+          "next": "下一页",
+          "total": "共 {count} 条",
+          "totalUnknown": "总数暂不可用",
+          "pageOf": "第 {page} / {total} 页",
+          "pageOnly": "第 {page} 页"
+        }
+      },
+      "adminUsers": {
+        "hint": "已注册账户的只读目录（OAuth 与邮箱登录）。",
+        "searchPlaceholder": "按邮箱或姓名搜索…",
+        "empty": "没有匹配的用户。",
+        "loadError": "无法加载用户列表：{message}",
+        "loadTimeout": "加载用户列表超时。",
+        "colUser": "用户",
+        "colRole": "角色",
+        "colProvider": "登录方式",
+        "colJoined": "注册时间",
+        "envAdmin": "环境管理员",
+        "member": "普通用户",
+        "providerEmail": "邮箱",
+        "metricTotal": "用户总数",
+        "metricActiveToday": "今日活跃",
+        "metricNewToday": "今日新增",
+        "metricActiveTodayHint": "今日（UTC）有登录或已认证 API 活动的用户。",
+        "trendUsersTitle": "用户新增",
+        "trendDaysHint": "按 UTC 自然日统计每日新增用户。",
+        "trendRange7": "1 周",
+        "trendRange30": "1 月",
+        "trendRange90": "3 月",
+        "detailTitle": "用户详情",
+        "close": "关闭",
+        "providers": "登录方式",
+        "noProviders": "仅邮箱密码（未关联 OAuth）",
+        "templateCount": "提交模板数"
+      },
+      "placeholders": {
+        "credits": "Credit 流水与图表即将上线。",
+        "subscription": "订阅管理即将上线。"
+      },
+      "loading": "加载中…",
+      "modal": {
+        "createTitle": "新建提示词模板",
+        "editTitle": "编辑模板",
+        "model": "适配模型",
+        "visibility": "可见性",
+        "coverUrl": "封面图片 URL",
+        "cancel": "取消",
+        "save": "保存",
+        "saving": "保存中…",
+        "validation": "请填写标题、提示词（≥10 字）、分类和 2–8 个标签。",
+        "saveFailed": "保存失败，请重试。"
+      }
+    },
+    "login": {
+      "seoTitle": "登录 | Open Prompts",
+      "seoDescription": "使用 GitHub、Google 或邮箱登录 Open Prompts，收藏提示词并管理生图与模板。",
+      "backGallery": "返回图片",
+      "promoTitleLine1": "社区精选提示词",
+      "promoTitleLine2": "一键",
+      "promoTitleLine2Suffix": "生图，开箱即用",
+      "promoDesc": "汇聚来自 X、社区投递的高质量 AI 生图提示词，支持多模型，Apache 2.0 开源协议。",
+      "promoStatPrompts": "提示词",
+      "promoStatModels": "支持模型",
+      "promoStatLicense": "开源协议",
+      "promoLicenseName": "Apache 2.0",
+      "welcomeLine1": "欢迎回到",
+      "welcomeBrandOpen": "Open",
+      "welcomeBrandEm": "Prompts",
+      "welcomeSubtitle": "使用 GitHub、Google 或邮箱登录，保存提示词并管理你的作品。",
+      "tabLogin": "登录",
+      "tabRegister": "注册",
+      "oauthGithub": "使用 GitHub 继续",
+      "oauthGoogle": "使用 Google 继续",
+      "oauthDisabledHint": "服务器未配置该登录方式",
+      "oauthSetupHint": "GitHub / Google 登录需在 .env.local 中配置 GITHUB_ID、GITHUB_SECRET、GOOGLE_CLIENT_ID、GOOGLE_CLIENT_SECRET（见 .env.example），然后重启开发服务器。",
+      "dividerEmail": "或使用邮箱登录",
+      "labelUsername": "用户名 / 显示名",
+      "usernamePlaceholder": "your_username",
+      "labelEmail": "邮箱地址",
+      "emailPlaceholder": "you@example.com",
+      "labelPassword": "密码",
+      "passwordPlaceholder": "••••••••",
+      "remember": "保持登录",
+      "forgot": "忘记密码？",
+      "submitLogin": "登录账户",
+      "submitRegister": "创建账户",
+      "submitBusy": "处理中…",
+      "switchToRegister": "还没有账户？",
+      "switchToRegisterLink": "立即注册",
+      "switchToLogin": "已有账户？",
+      "switchToLoginLink": "返回登录",
+      "disclaimer": "继续即代表你同意服务条款与隐私政策。",
+      "errorCredentials": "邮箱或密码不正确。",
+      "errorCredentialsHint": "请使用 ADMIN_EMAIL 中的完整邮箱。线上环境也需在部署平台配置 DATABASE_URL 与 ADMIN_PASSWORD（不能只在本地 .env）。若先用 GitHub/Google 登录过，请用对应方式登录，或设置 ADMIN_PASSWORD 后重启服务以同步管理员密码。",
+      "errorConfiguration": "服务器登录配置有误（检查 NEXTAUTH_URL、NEXTAUTH_SECRET 与 OAuth 回调地址）。",
+      "errorAccessDenied": "已取消或拒绝授权登录。",
+      "errorOAuth": "无法通过该方式登录。GitHub 需允许读取邮箱，或使用公开邮箱；Google 请确认 OAuth 回调地址已配置。",
+      "errorOAuthPersist": "授权成功但无法写入账户，请检查线上 DATABASE_URL（Supabase 建议端口 6543）后重试。",
+      "errorOAuthAccountNotLinked": "该账号已绑定其他登录方式，请用注册时的方式或邮箱登录。",
+      "errorGeneric": "出错了，请稍后再试。",
+      "errorRegister": "无法创建账户。",
+      "magicTitle": "查收你的邮件",
+      "magicBody": "若该邮箱已注册，你将很快收到重置说明。",
+      "magicResend": "重新发送",
+      "magicResent": "已发送",
+      "registerSuccess": "账户已创建，正在登录…"
+    },
+    "galleryPage": {
+      "title": "图片",
+      "subtitle": "浏览 1000+ 免费图像提示词，按模型筛选、复制模板、站内生成。",
+      "seo": {
+        "title": "图片提示词",
+        "description": "浏览免费 AI 图像提示词，支持 ChatGPT、GPT Image 2、Midjourney。复制模板，站内一键生成。",
+        "keywords": "图像提示词,AI生图提示词,ChatGPT图像提示词,GPT Image 2,提示词库"
+      }
+    },
+    "modelPage": {
+      "seo": {
+        "title": "{model} 图像提示词 ({count})",
+        "description": "浏览 {count} 条免费 {model} 图像提示词。复制社区模板，在 Open Prompts 站内生成。"
+      },
+      "breadcrumb": {
+        "home": "首页",
+        "gallery": "图片"
+      },
+      "heading": "{model} 提示词",
+      "subtitle": "{count} 条社区精选 {model} 提示词模板 — 复制后站内生成。",
+      "empty": "暂无 {model} 提示词。请稍后再来或浏览完整提示词库。"
+    },
+    "categoryPage": {
+      "seo": {
+        "title": "{category} 图像提示词 ({count})",
+        "description": "探索 {count} 条免费 {category} AI 图像提示词。复制模板，站内生成。"
+      },
+      "breadcrumb": {
+        "home": "首页",
+        "gallery": "图片",
+        "categories": "分类"
+      },
+      "heading": "{category} 提示词",
+      "subtitle": "{category} 分类共 {count} 条社区提示词 — 复制模板，站内生成。",
+      "empty": "{category} 分类暂无提示词。浏览提示词库或提交你的作品。"
+    },
+    "categoriesIndex": {
+      "seo": {
+        "title": "图像提示词分类",
+        "description": "按分类浏览免费 AI 图像提示词 — 场景、人像、艺术风格、产品图等。"
+      },
+      "breadcrumb": {
+        "home": "首页",
+        "gallery": "图片"
+      },
+      "heading": "图像提示词分类",
+      "subtitle": "共 {count} 条提示词，{categoryCount} 个分类 — 选择风格开始浏览。",
+      "cardCount": "{count} 条"
+    },
+    "promptMotionPage": {
+      "modelFilter": "模型",
+      "allModels": "全部模型",
+      "otherModels": "其它",
+      "sortLabel": "排序",
+      "sortLikes": "原帖点赞最多",
+      "sortStars": "来源仓库 Stars 最多",
+      "sortCurated": "精选顺序",
+      "likeCount": "{count, number} 点赞",
+      "repoStarCount": "{count, number} 仓库 Stars",
+      "approximately": "约 ",
+      "metricsObserved": "采集于 {date}，为当时的公开数据快照",
+      "metricsUnknown": "热度数据未知",
+      "likesSortNote": "按原帖点赞数降序，未知数据排后；显示的是采集时的快照。",
+      "starsSortNote": "按来源仓库 Stars 排序，反映项目关注度，并非单个作品热度；约数已标注。",
+      "curatedSortNote": "按收录时的精选顺序展示。",
+      "viewPrompt": "查看提示词",
+      "originalPost": "作者原文",
+      "promptSource": "提示词来源",
+      "noPreview": "暂无预览",
+      "staticPreview": "静态预览",
+      "videoUnavailable": "视频暂时无法加载，可继续查看提示词或通过下方入口访问作者原文。",
+      "loading": "正在加载…",
+      "loadError": "加载失败，请重试。",
+      "allLoaded": "已显示全部作品",
+      "sourceNote": "提示词保留收录文本，部分条目为可复用模板；收录不代表已独立验证生成效果或模型。",
+      "categoryNames": {
+        "product-brand": "产品与品牌",
+        "motion-studies": "字体与动效",
+        "explainers-data": "科普与数据",
+        "characters-stories": "角色与故事",
+        "3d-simulations": "3D 与模拟",
+        "music-audiovisual": "音乐与视听",
+        "interactive": "交互体验"
+      },
+      "loadMore": "加载更多",
+      "playVideo": "播放视频",
+      "seo": {
+        "title": "Motion Prompts · AI 动效提示词与案例",
+        "description": "探索 Claude、GPT、Gemini 等模型的 AI 动效提示词与真实案例，按动效类别和模型筛选，查看作者原文并复制提示词。",
+        "keywords": "motion prompts,AI motion prompts,motion graphics prompts,Claude Motion examples,animation prompts"
+      },
+      "breadcrumb": {
+        "home": "首页"
+      },
+      "hero": {
+        "desc": "探索 Claude、GPT、Gemini 等模型的 AI 动效案例。先看动态排版、产品短片和动态图表，再使用作者公开的提示词。",
+        "browse": "浏览提示词",
+        "tagline": "AI Motion Prompts & Examples"
+      },
+      "catalog": {
+        "heading": "浏览 Motion Prompts"
+      },
+      "subtitle": "探索多模型 AI 动效提示词，从动态排版、产品界面到图表与生成式动效。",
+      "useCases": {
+        "eyebrow": "使用场景",
+        "title": "这些提示词",
+        "titleEm": "用来做什么",
+        "subtitle": "用原始指令说明效果、节奏和输出要求，补齐指令需要的参考素材，再用相应工具制作与渲染。",
+        "items": [
+          {
+            "t": "产品发布片",
+            "d": "贴一条简报，让代理做一条 15 秒产品预告：先分镜和时间轴，再审帧，最后加声音。"
+          },
+          {
+            "t": "点名运镜",
+            "d": "直接要遮罩揭示、推轨，或 motion-prompt 词典里的编号样本，而不是只说“更有电影感”。"
+          },
+          {
+            "t": "代理工具栈",
+            "d": "装上 claude-motion 或 motion-graphics-skills，再让代理用 HyperFrames 或 Remotion 渲染成片。"
+          }
+        ]
+      },
+      "faq": {
+        "eyebrow": "常见问题",
+        "title": "动态提示词",
+        "titleEm": "问答",
+        "items": [
+          {
+            "q": "什么是动效提示词？",
+            "a": "描述动效主题、视觉风格、时间、转场和输出要求的一段指令。这里把成片效果与作者公开的原始指令放在一起，方便先看效果再使用。"
+          },
+          {
+            "q": "Claude Motion 是什么？",
+            "a": "本页用 Claude Motion 指用 Claude 和代码制作动效的工作流。具体作品可能使用 HTML、Canvas、Three.js、Remotion 或独立技能；卡片标注来源报告的模型。"
+          },
+          {
+            "q": "提示词和视频来自哪里？",
+            "a": "来自作者公开的帖子。每张卡片保留作者署名与原帖链接，详情页链接公开的提示词原文；原文在作者回复中时，链接对应回复。"
+          },
+          {
+            "q": "怎样使用 Prompt 和 Skill？",
+            "a": "将 Prompt 原文复制到编程代理中，并补齐作者要求的参考素材。Skill 卡片提供公开安装命令与仓库链接，按仓库说明完成准备后再制作和渲染。"
+          },
+          {
+            "q": "必须用 Opus 5.5 才能得到相同效果吗？",
+            "a": "当前收录作品的来源标注为 Opus 5.5。实际效果也取决于工具、参考素材和迭代过程；复制提示词会生成新的结果，不能保证与原作相同。"
+          },
+          {
+            "q": "可以直接商用这些视频和提示词吗？",
+            "a": "署名和公开可见不等于取得复用授权。请核对原帖和适用许可，需要时联系作者。本页只收录精选提示词，不转载整个画廊。"
+          }
+        ]
+      },
+      "filters": {
+        "label": "内容类型",
+        "all": "全部"
+      },
+      "promptLabel": "Motion prompt",
+      "copy": "复制",
+      "copied": "已复制",
+      "resources": {
+        "heading": "制作与渲染工具",
+        "desc": "准备动手时，可以从这些仓库了解制作流程、技能和渲染引擎。"
+      },
+      "categoriesLabel": "动效分类",
+      "results": "{count} 条精选",
+      "empty": "这个分类下暂时没有对应类型的精选。",
+      "resetFilters": "显示全部精选",
+      "viewPost": "作者原帖",
+      "referenceRequired": "这条提示词使用了参考素材，复现前请查看原帖。",
+      "mediaFallback": "在 X 观看",
+      "copyError": "复制失败，请在详情页选中提示词手动复制。",
+      "mediaSlow": "视频加载时间较长。",
+      "retry": "重试",
+      "skillLabel": "Motion skill",
+      "detail": {
+        "back": "浏览更多动效提示词",
+        "description": "查看 @{author} 的 {title} 动效成片与完整提示词。"
+      }
+    },
+    "promptPage": {
+      "seo": {
+        "title": "{title} — {model} 提示词",
+        "description": "免费 {model} 图像提示词：{snippet}。复制模板，在 Open Prompts 站内生成。{tags}"
+      },
+      "seoIntro": "免费 {model} 图像提示词模板 — {title}。复制下方提示词或站内生成。",
+      "breadcrumbHome": "首页",
+      "breadcrumbGallery": "图片",
+      "backToGallery": "← 返回图片",
+      "promptLabel": "提示词",
+      "modelLabel": "模型",
+      "imageAlt": "{title} — {model} 预览图 {index}"
+    },
+    "homePage": {
+      "seo": {
+        "title": "图片提示词",
+        "description": "发现 {count}+ 条精选图像提示词，支持 ChatGPT 与 GPT Image 2。复制、改编，站内生成 AI 图像，每日从 X 更新。",
+        "keywords": "图像提示词,AI图像提示词,ChatGPT图像提示词,GPT Image 2,提示词库"
+      },
+      "h1Line2": "图像提示词",
+      "h1Line3": "GPT Image 2 提示词",
+      "browseGallery": "浏览图片",
+      "submitPrompt": "提交提示词 →",
+      "modelBar": {
+        "label": "支持模型",
+        "allModels": "全部模型",
+        "gptImage2": "GPT Image 2",
+        "dalle3": "DALL·E 3",
+        "midjourney": "Midjourney",
+        "stableDiffusion": "Stable Diffusion"
+      },
+      "browseByModel": {
+        "heading": "按模型浏览",
+        "sub": "为各 AI 图像模型精选的优质提示词"
+      },
+      "browseByCategory": {
+        "heading": "按分类浏览",
+        "sub": "探索不同创作风格的提示词"
+      },
+      "promptCount": "{count} 条提示词 →",
+      "comingSoon": "即将上线 →",
+      "models": {
+        "gptImage2": {
+          "icon": "🟢",
+          "title": "GPT Image 2 提示词",
+          "desc": "社区精选 OpenAI 图像模型提示词 — 写实人像、产品广告、时尚大片等。"
+        },
+        "dalle3": {
+          "icon": "🔵",
+          "title": "DALL·E 3 提示词",
+          "desc": "即用型 DALL·E 3 提示词 — 电影感风景、极简产品摄影与创意概念。"
+        },
+        "midjourney": {
+          "icon": "🟣",
+          "title": "Midjourney 提示词",
+          "desc": "Midjourney 艺术向提示词 — 奇幻世界、插画与概念设计。"
+        }
+      },
+      "categories": {
+        "portraitPhoto": {
+          "desc": "电影感人像、时尚大片与旅行摄影提示词。"
+        },
+        "artStyles": {
+          "desc": "水彩、复古、拼贴与插画风格提示词。"
+        },
+        "productCommercial": {
+          "desc": "护肤广告、街头美食与高端品牌摄影提示词。"
+        },
+        "gameFantasy": {
+          "desc": "赛博朋克、暗黑奇幻、科幻角色设定与世界观构建。"
+        }
+      },
+      "seoContent": {
+        "features": {
+          "eyebrow": "为什么选择 Open Prompts",
+          "title": "掌握",
+          "titleEm": "GPT Image 2",
+          "subtitle": "Open Prompts 是围绕 OpenAI 最新图像模型打造的社区提示词库 — 向真实创作者学习，复制成熟模板，无需离开页面即可生成图像。",
+          "items": [
+            {
+              "t": "精选 GPT Image 2 提示词",
+              "d": "每条提示词均来自 X 上活跃创作者分享的真实成果。没有水分 — 只有经实际输出验证、可复制前即可预览的模板。"
+            },
+            {
+              "t": "站内即时生成",
+              "d": "选中任意提示词，即可在浏览器中直接生成图像。无需切换标签页，无需管理 API Key — 从灵感到成图，一键完成。"
+            },
+            {
+              "t": "复制、改编与二次创作",
+              "d": "每条提示词一键复制。替换主体、风格或光线，再输入任意支持的模型。迭代，才是好图的关键。"
+            },
+            {
+              "t": "按模型与分类筛选",
+              "d": "为 DALL·E 3、Midjourney 等模型提供专属提示词库。按人像、产品、奇幻或建筑等分类，精准找到想要的风格。"
+            },
+            {
+              "t": "每日同步 X 内容",
+              "d": "系统每日监测 X 上顶尖创作者的新提示词。新鲜内容自动进入提示词库 — 始终紧跟趋势。"
+            },
+            {
+              "t": "开放且由社区驱动",
+              "d": "提交你的提示词，获得创作者积分，积累关注。排行榜每周展示复制与生成次数最多的模板。"
+            }
+          ]
+        },
+        "howItWorks": {
+          "eyebrow": "使用流程",
+          "title": "从提示词到图像",
+          "titleEm": "只需几步",
+          "subtitle": "Open Prompts 省去猜测。浏览成熟提示词，一键复制，站内生成 — 全程不离开本站。",
+          "steps": [
+            {
+              "t": "浏览 GPT Image 2 提示词",
+              "d": "按模型、分类或时间探索 {count}+ 条社区提示词。每张卡片都展示成图与对应提示词 — 复制前心中有数。"
+            },
+            {
+              "t": "复制并自定义提示词",
+              "d": "点击复制，完整提示词即入剪贴板。可微调主体、风格或氛围，也可原样使用。每条模板均经真实创作者验证。"
+            },
+            {
+              "t": "站内用 GPT Image 2 生成",
+              "d": "点击生成，图像在 Open Prompts 内完成。无需额外订阅。下载、分享或继续迭代 — 都在这里。"
+            },
+            {
+              "t": "分享并获得创作者积分",
+              "d": "将最佳提示词提交回提示词库。登上排行榜，在每次生成中获得署名，在 AI 图像创作者中扩大影响力。"
+            }
+          ],
+          "browserMockup": {
+            "url": "open-prompts.com/prompt/vintage-travel-poster",
+            "promptLabel": "GPT Image 2 提示词",
+            "promptText": "希腊圣托里尼经典复古旅行海报。白墙建筑、金色夕照、温暖复古色调、华丽衬线字体排版，高细节，编辑级画质。 — GPT Image 2",
+            "resultTitle": "圣托里尼旅行海报",
+            "resultSub": "由 GPT Image 2 生成 · 4 秒",
+            "badge": "✓ 可下载",
+            "statPrompts": "提示词",
+            "statCopies": "复制次数",
+            "statTime": "平均耗时"
+          }
+        },
+        "testimonials": {
+          "eyebrow": "社区好评",
+          "title": "每天使用",
+          "titleEm": "Open Prompts",
+          "subtitle": "数千名设计师、营销人与 AI 艺术家依靠 Open Prompts 发现与复用社区最佳提示词。",
+          "featured": {
+            "q": "Open Prompts 彻底改变了我使用 GPT Image 2 的方式。我不再花 30 分钟从零写提示词，而是浏览提示词库、复制已验证的模板再迭代。一周内出图质量翻倍。",
+            "a": "@Diplomeme",
+            "handle": "@Diplomeme",
+            "role": "AI 内容创作者 · X",
+            "tag": "杰出贡献者"
+          },
+          "items": [
+            {
+              "q": "我找到的最佳 GPT Image 2 提示词资源。每张卡片都展示真实成图，不用猜。每天早上开工前必看。",
+              "a": "品牌设计师",
+              "handle": "@noorlewisx",
+              "role": "品牌设计师",
+              "avatar": "/testimonials/sarah-johnson.svg"
+            },
+            {
+              "q": "每日从 X 同步，每天早上都有新提示词。我提交的赛博朋克角色表成了复制次数最多的模板之一。",
+              "a": "概念艺术家",
+              "handle": "@Strength04_X",
+              "role": "概念艺术家",
+              "avatar": "/testimonials/michael-chen.svg"
+            },
+            {
+              "q": "我为五个品牌运营社媒。Open Prompts 把提示词调研从一小时缩到五分钟。单凭分类筛选就值得收藏。",
+              "a": "社媒运营",
+              "handle": "@Taaruk_",
+              "role": "社媒运营",
+              "avatar": "/testimonials/emily-rodriguez.svg"
+            }
+          ]
+        },
+        "faq": {
+          "eyebrow": "常见问题",
+          "title": "关于",
+          "titleEm": "GPT Image 2 提示词",
+          "sidebar": {
+            "title": "你需要了解的一切",
+            "desc": "关于在 Open Prompts 上查找、复制与生成图像的常见问题，涵盖 GPT Image 2 及其他 AI 图像模型。",
+            "contact": "还有疑问？欢迎在 <githubLink>GitHub</githubLink> 或 X <xLink>@technoobgo</xLink> 联系我们 — 通常一天内回复。"
+          },
+          "items": [
+            {
+              "q": "Open Prompts 是什么？与 GPT Image 2 有何关系？",
+              "a": "Open Prompts 是社区 AI 图片提示词，每日从 X 创作者同步内容。大多数提示词均针对 GPT Image 2（OpenAI 最新图像模型）编写与测试，是该模型最集中的提示词库。可在浏览器中直接浏览、复制与生成，无需额外配置。"
+            },
+            {
+              "q": "浏览和复制提示词需要付费吗？",
+              "a": "不需要 — 浏览与复制提示词库中所有提示词对所有人开放，无需账户。站内生成采用积分制。提交自己的提示词需注册账户，以便在排行榜署名。"
+            },
+            {
+              "q": "能否用于 GPT Image 2 以外的模型？",
+              "a": "可以。虽然多数模板针对 OpenAI 图像模型优化，提示词库也包含 DALL·E 3、Midjourney、Stable Diffusion 等标签。许多模板稍作修改即可用于其他模型 — 使用模型筛选查看各模型可用内容。"
+            },
+            {
+              "q": "多久更新一次 GPT Image 2 提示词？",
+              "a": "每日从 X 创作者同步新提示词。流水线每 24 小时运行，提示词库始终反映最新趋势。也可随时通过提交页投稿。"
+            },
+            {
+              "q": "如何提交自己的 GPT Image 2 提示词？",
+              "a": "点击导航中的「提交提示词」，用 X 登录，粘贴提示词与成图。经简短审核后即可上线并获得创作者署名。优质提示词会登上每周排行榜。"
+            },
+            {
+              "q": "有哪些 GPT Image 2 提示词分类？",
+              "a": "涵盖人像摄影、艺术风格、产品商业、游戏奇幻、场景环境、设计 UI、风格年代等。所有分类均含社区验证模板。使用分类标签或关键词搜索特定风格。"
+            }
+          ]
+        },
+        "cta": {
+          "title": "今天就开始用",
+          "titleEm": "GPT Image 2 生成",
+          "subtitle": "加入 6,200+ 创作者，浏览网上最佳 GPT Image 2 提示词库。无需账户 — 浏览、复制、创作即可。",
+          "browse": "浏览 GPT Image 2 提示词 →",
+          "submit": "提交提示词",
+          "note": "无需账户 · {count}+ 精选提示词 · 每日从 X 更新"
+        }
+      }
+    },
+    "hero": {
+      "eyebrow": "社区精选 · 每日从 X 更新",
+      "h1Prefix": "探索 · 复用 ·",
+      "h1Em": "创作",
+      "desc": "发现 {count}+ 条来自 X 真实创作者的精选 GPT Image 2 提示词。复制任意模板、二次改编，并用 GPT Image 2、DALL·E 3 或 Midjourney 在浏览器中生成精美 AI 图像。浏览无需账户。",
+      "searchPlaceholder": "搜索提示词，如“赛博朋克”“水墨山水”“油画人像”…",
+      "searchButton": "搜索"
+    },
+    "stats": {
+      "prompts": "AI 提示词",
+      "members": "社区成员",
+      "daily": "每日",
+      "newPrompts": "新提示词",
+      "curated": "精选",
+      "fromX": "来自 X"
+    },
+    "section": {
+      "latest": "X / 社区最新投递",
+      "categorySub": "{category} · {subTag}"
+    },
+    "filters": {
+      "allModels": "全部模型",
+      "allCategories": "全部",
+      "allTags": "全部"
+    },
+    "gallery": {
+      "catalogLoading": "加载中…",
+      "catalogFailed": "目录加载失败。",
+      "retry": "重试",
+      "loadMore": "加载更多",
+      "noMore": "没有更多了",
+      "coverLoadFailed": "封面加载失败",
+      "showing": "显示 {shown} / {total}"
+    },
+    "card": {
+      "community": "社区",
+      "generate": "生图"
+    },
+    "footer": {
+      "tagline": "Open Prompts · 开源提示词库",
+      "links": {
+        "github": "GitHub",
+        "gptGallery": "GPT Image 2 提示词",
+        "dalleGallery": "DALL·E 3 提示词",
+        "categories": "分类",
+        "submit": "提交",
+        "privacy": "隐私政策"
+      }
+    },
+    "modal": {
+      "promptLabel": "提示词",
+      "copy": "复制",
+      "copied": "已复制",
+      "from": "来自",
+      "viewSource": "查看原帖",
+      "generateNow": "立即生图"
+    },
+    "gen": {
+      "title": "基于模版生图",
+      "params": "参数",
+      "provider": "Provider",
+      "count": "Count",
+      "aspectRatio": "Aspect Ratio",
+      "quality": "Quality",
+      "generate": "Generate",
+      "generating": "Generating…",
+      "jobLabel": "job",
+      "prompt": "Prompt",
+      "generatedImages": "Generated Images",
+      "resultsPlaceholder": "生成结果会显示在这里",
+      "openDownload": "打开 / 下载",
+      "successNoImages": "成功但未返回图片链接",
+      "failedPrefix": "生成失败：",
+      "tryAgain": "请重试",
+      "missingPrompt": "缺少提示词",
+      "templateRenderFailed": "模板渲染失败",
+      "generationFailed": "生成失败",
+      "pollingFailed": "轮询失败",
+      "createFailed": "创建失败"
+    },
+    "createPage": {
+      "seo": {
+        "title": "AI 图像生成工作室 | Open Prompts",
+        "description": "在 Open Prompts 创作：从精选模板出发，选择模型与画幅比例，用 GPT Image、Midjourney、DALL·E、Flux 等生成，会话历史集中在一个工作室。"
+      },
+      "brandPill": "Open Prompts",
+      "templatesLabel": "模板",
+      "searchTemplatesPlaceholder": "搜索模板…",
+      "originalPromptLabel": "原始提示词",
+      "promptSectionLabel": "提示词",
+      "enhanceButton": "✨ 增强",
+      "promptPlaceholder": "描述你想生成的图片…",
+      "carouselApplyTitle": "点击套用模板",
+      "carouselPromptBadge": "提示词",
+      "modelTitle": "模型",
+      "selectModel": "选择模型",
+      "selectImageRatio": "选择图片比例",
+      "qualityPopoverTitle": "质量",
+      "qualityDefaultSuffix": "（默认）",
+      "qualityActive": "启用中",
+      "generateCountTitle": "生成数量",
+      "moreOptions": "更多选项",
+      "moreMenuAriaLabel": "更多选项",
+      "providerSection": "提供方",
+      "providerInternal": "默认",
+      "popularTitle": "热门模板",
+      "popularSubtitle": "用模板更快开始，点击即可套用到生成器。",
+      "allTemplatesLink": "全部模板 →",
+      "allTemplatesTitle": "全部模板",
+      "resultHistoryLabel": "结果与历史",
+      "currentLabel": "当前",
+      "historyLabel": "历史",
+      "railCurrentEmpty": "还没有生成结果。写好提示词后点击「生成」，图片会出现在这里。",
+      "railCurrentJump": "前往生成",
+      "railHistoryEmpty": "暂无历史记录。成功的生成会保存在这里（仅本机浏览器）。",
+      "railJobIdle": "暂无任务",
+      "fullscreenTitle": "全屏查看",
+      "downloadTitle": "下载",
+      "deleteTitle": "删除",
+      "viewerClose": "关闭",
+      "viewerPrev": "← 上一张",
+      "viewerNext": "下一张 →",
+      "keyDialogTitle": "{provider} 的 API Key",
+      "keyDialogHint": "留空则使用服务端内置 Key。",
+      "keyDialogPlaceholder": "粘贴你的 API Key（可选）",
+      "keyDialogCancel": "取消",
+      "keyDialogUseInternal": "使用内置",
+      "keyDialogSave": "保存",
+      "ratioSquare": "正方形（{ratio}）",
+      "ratioUltraWide": "超宽（{ratio}）",
+      "ratioLandscape": "横图（{ratio}）",
+      "ratioPortrait": "竖图（{ratio}）",
+      "githubRepoAriaLabel": "GitHub 仓库",
+      "githubTitle": "GitHub",
+      "hero": {
+        "title": "更好的提示词 更好的出图",
+        "titleLine1": "更好的提示词",
+        "titleLine2Before": "更好的",
+        "titleLine2Em": "出图",
+        "titleLine2After": "",
+        "subtitle": "用精选模板快速落地可生产的图像方案。在同一画布内调节模型、比例、质量与批量，并依托会话历史持续迭代，无需切换工具链。",
+        "featuresTitle": "功能亮点",
+        "features": [
+          {
+            "t": "结构化提示词骨架",
+            "d": "基于验证过的模板起步，只替换关键变量——主体、场景、色彩与风格锚点在各次生成之间保持对齐。"
+          },
+          {
+            "t": "统一的参数面板",
+            "d": "提供方、比例、输出质量与生成数量集中在一行，配置路径短、结果更可预期。"
+          },
+          {
+            "t": "会话级历史记录",
+            "d": "成功的生成在本地保留，支持即时回看、对比与一键回填提示词，便于建立基线。"
+          }
+        ],
+        "howTitle": "如何使用",
+        "howSteps": [
+          "选择最贴近创意方向的模板。",
+          "编辑提示词：保留骨架，个性化主体、光照与构图。",
+          "设置模型与参数并执行生成。",
+          "在同一视图中查看结果并基于历史迭代。"
+        ],
+        "whyTitle": "为什么选择 Open Prompts",
+        "whyPoints": [
+          "以可复用的提示词结构缩短从想法到首帧的时间。",
+          "通过锁定骨架、仅调整差异项，提升风格一致性。",
+          "将撰写、生成与评审收敛到单一专注界面。"
+        ],
+        "sayTitle": "用户怎么说",
+        "says": [
+          {
+            "q": "模板像 brief，一旦固定骨架，提示词就不再漂移。",
+            "a": "独立创作者"
+          },
+          {
+            "q": "比例、质量、提供方在同一行，排期紧时评审效率明显提高。",
+            "a": "品牌设计师"
+          },
+          {
+            "q": "本地历史让我们快速对比措辞，并在几秒内回到表现最好的版本。",
+            "a": "产品市场"
+          }
+        ],
+        "faqTitle": "常见问题",
+        "faqs": [
+          {
+            "q": "Open Prompts 是什么？",
+            "a": "它将精选提示词库与浏览器内图像工作室结合：从成熟结构起步，对接支持的模型完成生成，并可在同一工具内迭代，减少上下文切换。"
+          },
+          {
+            "q": "我应该从哪里开始？",
+            "a": "先选择与目标最接近的模板，在保留整体结构的前提下，优先替换主体、场景与风格关键词。"
+          },
+          {
+            "q": "提示词需要写到多细？",
+            "a": "先明确主体与风格，再补充光照、镜头或构图、材质与背景。仅当约束会实质影响画面时，再加入额外限制。"
+          },
+          {
+            "q": "如何让出图更稳定？",
+            "a": "保持模板骨架与核心词表稳定，只改动计划测试的变量；将历史中的优质结果作为后续运行的基线。"
+          },
+          {
+            "q": "可以使用自己的 API Key 或提供方吗？",
+            "a": "可以。在支持的情况下，你可为指定提供方配置自有凭证；也可依赖服务端的 internal 模式由环境变量统一注入。"
+          }
+        ],
+        "ctaTitle": "准备好开始创作了吗？",
+        "ctaSubtitle": "把想法写进输入框，点击生成。",
+        "ctaButton": "去生成"
+      },
+      "internalConfig": {
+        "title": "未检测到服务端 API Key 配置",
+        "body": "当前使用的是 internal 模式：需要在服务端环境变量里配置生图 Provider 的 Key。",
+        "steps": [
+          "复制 `.env.example` → `.env.local`（本地开发）",
+          "配置至少一套 Provider：",
+          "- AtlasCloud: `ATLASCLOUD_BASE_URL` + `ATLASCLOUD_API_KEY`",
+          "- Replicate: `REPLICATE_API_TOKEN` + (`REPLICATE_MODEL` 或 `REPLICATE_VERSION`)",
+          "重启 `npm run dev` 后再试"
+        ]
+      }
+    }
+  }
+}

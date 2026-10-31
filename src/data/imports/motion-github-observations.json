@@ -1,0 +1,58 @@
+{
+  "CommandCodeAI/slash-design-showcase": {
+    "sourceUrl": "https://github.com/CommandCodeAI/slash-design-showcase",
+    "stars": 70,
+    "approximate": false,
+    "observedAt": "2026-10-23T02:13:02.558807+00:00",
+    "method": "github-public-page",
+    "scope": "repository"
+  },
+  "Unclecheng-li/AI_Animation": {
+    "sourceUrl": "https://github.com/Unclecheng-li/AI_Animation",
+    "stars": 1600,
+    "approximate": true,
+    "observedAt": "2026-10-23T02:13:02.558807+00:00",
+    "method": "github-public-page",
+    "scope": "repository"
+  },
+  "Vincentwei1021/mg-styles-15": {
+    "sourceUrl": "https://github.com/Vincentwei1021/mg-styles-15",
+    "stars": 1800,
+    "approximate": true,
+    "observedAt": "2026-10-23T02:13:02.558807+00:00",
+    "method": "github-public-page",
+    "scope": "repository"
+  },
+  "XiesRay/motionsites-prompt-collection": {
+    "sourceUrl": "https://github.com/XiesRay/motionsites-prompt-collection",
+    "stars": 5,
+    "approximate": false,
+    "observedAt": "2026-10-23T02:13:02.558807+00:00",
+    "method": "github-public-page",
+    "scope": "repository"
+  },
+  "lemomo-ai/lemo-opuscar": {
+    "sourceUrl": "https://github.com/lemomo-ai/lemo-opuscar",
+    "stars": 5500,
+    "approximate": true,
+    "observedAt": "2026-10-23T02:13:02.558807+00:00",
+    "method": "github-public-page",
+    "scope": "repository"
+  },
+  "whaleyxbt/claude-motion": {
+    "sourceUrl": "https://github.com/whaleyxbt/claude-motion",
+    "stars": 610,
+    "approximate": false,
+    "observedAt": "2026-10-23T02:13:02.558807+00:00",
+    "method": "github-public-page",
+    "scope": "repository"
+  },
+  "xiyu519/MotionVault": {
+    "sourceUrl": "https://github.com/xiyu519/MotionVault",
+    "stars": 56,
+    "approximate": false,
+    "observedAt": "2026-10-23T02:13:02.558807+00:00",
+    "method": "github-public-page",
+    "scope": "repository"
+  }
+}

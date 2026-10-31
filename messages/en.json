@@ -1,0 +1,1534 @@
+{
+  "IndexPage": {
+    "lang": "en",
+    "language": "English",
+    "languageInChineseSimple": "英语",
+    "title": "Format, Validate, Beautify, Compare Json | Free Online",
+    "description": "Format JSON, format JSON file, format JSON response online. Upload a JSON file, json file format in seconds, then download your formatted json file",
+    "h1": "Online edit,format,validate,beautify tool for json. just  paste it below:",
+    "keywords": "online json formatter,json editor,json format,format json,online json format,json format checker,json formatter and validator,pretty format json,json checker format,json pretty format,formatted json,verify json format,json text formatting,json formatting online,json to string,json format validation",
+    "loadingText": "Loading...",
+    "generateText": "Generating...",
+    "buttonText": "Generate",
+    "placeholderText": "Type or paste text here...",
+    "pDescription": "Online edit,format,validate,beautify tool for json. just  paste it below:",
+    "soraVideoExample": "Online edit,format,beautify tool for non-standard json. just  paste it below:",
+    "prompt": "Online compare tool for json or any text. just paste it below:",
+    "soraWorksTitle": "Works",
+    "soraResultTitle": "Result",
+    "moreExample": "more example video",
+    "fakeSoraTip": "FakeSora is designed to simulate the yet-to-be-released OpenAI Sora API.",
+    "soraTip": "OpenAI has not released Sora's API yet."
+  },
+  "footer": {
+    "lang": "en",
+    "language": "English",
+    "languageInChineseSimple": "英语",
+    "title": "Unix time converter for epoch timestamp and calendar date.",
+    "description": "Convert Unix time online: seconds through nanoseconds, UTC and local views, live epoch clock, and copy-paste code snippets.",
+    "h1": "Online edit,format,validate,beautify tool for json. just  paste it below:",
+    "keywords": "online json formatter,json editor,json format,format json,online json format,json format checker,json formatter and validator,pretty format json,json checker format,json pretty format,formatted json,verify json format,json text formatting,json formatting online,json to string,json format validation",
+    "loadingText": "Loading...",
+    "generateText": "Generating...",
+    "buttonText": "Generate",
+    "placeholderText": "Type or paste text here...",
+    "pDescription": "Online edit,format,validate,beautify tool for json. just  paste it below:",
+    "soraVideoExample": "Online edit,format,beautify tool for non-standard json. just  paste it below:",
+    "prompt": "Online compare tool for json or any text. just paste it below:",
+    "soraWorksTitle": "Works",
+    "soraResultTitle": "Result",
+    "moreExample": "more example video",
+    "fakeSoraTip": "FakeSora is designed to simulate the yet-to-be-released OpenAI Sora API.",
+    "soraTip": "OpenAI has not released Sora's API yet."
+  },
+  "privacyPolicy": {
+    "title": "Privacy Policy | Open Prompts",
+    "description": "Read how Open Prompts collects, uses, and protects your information when you browse, submit, and share AI image prompts in our community gallery.",
+    "h1": "Privacy Policy",
+    "date": "Last updated: February 19, 2024",
+    "desc": "Thank you for choosing SoraWebui! This Privacy Policy outlines how we collect, use, and protect your information when you use our website located at ",
+    "h4_1": "1、Information We Collect:",
+    "h4_1_pa": "a. Personal Data: When you use SoraWebui, we may collect your name, email address, and payment information for order processing purposes.",
+    "h4_1_pb": "b. Non-Personal Data: We may also collect non-personal data through web cookies to enhance your browsing experience.",
+    "h4_2": "2、Purpose of Data Collection:",
+    "h4_2_p": "We collect your personal data solely for order processing purposes.",
+    "h4_3": "3、Data Sharing:",
+    "h4_3_p": "We do not share your personal data with any third parties.",
+    "h4_4": "4、Children's Privacy:",
+    "h4_4_p": "SoraWebui does not knowingly collect any personal data from children.",
+    "h4_5": "5、Updates to the Privacy Policy:",
+    "h4_5_p": "We will notify users of any updates to this Privacy Policy via email.",
+    "h4_6": "6、Contact Information:",
+    "h4_6_p": "If you have any questions or concerns regarding our Privacy Policy, please contact us at"
+  },
+  "termsOfService": {
+    "title": "Terms of Service | Open Prompts",
+    "description": "Terms governing your use of Open Prompts, the community AI prompt gallery for discovering, submitting, and sharing image generation prompts.",
+    "h1": "Terms of Service",
+    "date": "Last updated: February 19, 2024",
+    "desc": "These Terms of Service (\"Terms\") govern your access to and use of SoraWebui (the \"Service\"), provided by SoraWebui (\"we\" or \"us\"). By accessing or using the Service, you agree to be bound by these Terms.",
+    "h4_1": "1、Description of Service: ",
+    "h4_1_p": "SoraWebui provides a browser interface for OpenAI Sora, allowing users to generate text-to-video easily.",
+    "h4_2": "2、Ownership: ",
+    "h4_2_p": "The ownership of the video generated from the text belongs to the original user.",
+    "h4_3": "3、User Data:",
+    "h4_3_p": "We collect and store user data including name, email, and payment information. We handle this data in accordance with our Privacy Policy.",
+    "h4_4": "4、Non-Personal Data Collection: ",
+    "h4_4_p": "We use web cookies to collect non-personal data. For more information, please refer to our Privacy Policy.",
+    "h4_5": "5、Privacy Policy:",
+    "h4_5_p": "Our Privacy Policy explains how we collect, use, and disclose information about you. By using our Service, you agree to our Privacy Policy, which can be found at ",
+    "h4_6": "6、Governing Law: ",
+    "h4_6_p": "These Terms are governed by the laws of the United States of America.",
+    "h4_7": "7、Updates to Terms: ",
+    "h4_7_p": "We may update these Terms from time to time. We will notify users of any material changes via email.",
+    "h4_8": "8、Contact Information:",
+    "h4_8_p": "If you have any questions or concerns regarding our Privacy Policy, please contact us at "
+  },
+  "indexQuestion": {
+    "h2_0": "FAQs",
+    "h2_1": "What is JSON Home?",
+    "h2_1_p1": "JSON toolset, including json formatter, json validator, json compare tool and so on.",
+    "h2_1_p2": "It generates realistic and imaginative scenes based on text descriptions, creating multiple characters and accurately simulating specific motions and scene details.",
+    "h2_1_p3": "Impressive in language understanding and video production, Sora offers creative professionals a new tool for innovation. ",
+    "h2_1_p4": "For more detailed information, visit OpenAI's official website ",
+    "h2_2": "What is JSON and features?",
+    "h2_2_p1": "JSON (JavaScript Object Notation) is a lightweight, text-based data format used for representing structured data. It is commonly used to transmit data between a server and web application, as well as for data storage and configuration.",
+    "h2_2_p2": "Key Features of JSON:",
+    "h2_2_p3a": "Human-readable: JSON is written in a format that is easy for humans to understand and edit.",
+    "h2_2_p3b": "Language-independent: JSON is not tied to any specific programming language, making it suitable for use with a variety of technologies.",
+    "h2_2_p3c": "Data types: JSON supports a variety of data types, including strings, numbers, booleans, arrays, and objects. ",
+    "h2_2_p3d": "Hierarchical structure: JSON can be organized into hierarchical structures using objects and arrays. ",
+    "h2_2_p3e": "Lightweight: JSON is a compact data format that is efficient to transmit and store. "
+  },
+  "timestampPage": {
+    "title": "Unix Time Converter | Free Online Epoch & Date Converter",
+    "description": "Convert Unix timestamps to dates and dates to Unix time online. Supports seconds, milliseconds, microseconds, and nanoseconds. Free, fast, and private.",
+    "keywords": "unix time converter,epoch converter,timestamp to date,date to timestamp,unix timestamp,posix time",
+    "h1": "Timestamp Converter",
+    "h2_1": "Convert timestamp to date",
+    "h2_2": "Convert date to timestamp",
+    "pick_date": "Pick date:",
+    "convert": "Convert",
+    "section_timestamp_to_date": "Timestamp to date",
+    "current_unix_epoch": "Current Unix epoch",
+    "units_hint": "Units: auto · s · ms · μs · ns",
+    "enter_timestamp_placeholder": "Enter timestamp",
+    "unit_auto": "auto",
+    "unit_seconds": "seconds",
+    "unit_milliseconds": "milliseconds",
+    "unit_microseconds": "microseconds (μs)",
+    "unit_nanoseconds": "nanoseconds",
+    "label_local": "Local",
+    "label_utc": "UTC",
+    "label_seconds": "Seconds",
+    "label_millis": "Millis",
+    "label_micros": "Micros",
+    "label_nanos": "Nanos",
+    "invalid_timestamp": "Invalid timestamp value.",
+    "invalid_date": "Invalid date input.",
+    "what_is_unix_timestamp_title": "What is Unix timestamp?",
+    "what_is_unix_timestamp_p1": "A Unix timestamp (also called Unix time or POSIX time) is the number of seconds since 1970-01-01 00:00:00 UTC.",
+    "what_is_unix_timestamp_p2": "It is a convenient way to store and compare time values across systems. Most systems treat it as a continuous count of seconds and do not count leap seconds.",
+    "what_is_unix_timestamp_p3": "Some 32-bit systems overflow in 2038 (the Year 2038 problem).",
+    "code_examples_title": "Code examples",
+    "code_examples_desc": "Get current epoch time and convert an epoch timestamp to a human-readable date (replace the example value with yours).",
+    "seo_hero_title": "Unix Time Converter Online",
+    "seo_hero_description": "Free Unix time converter for epoch ↔ date: seconds through nanoseconds, live Unix epoch, UTC and local views, plus copy-paste snippets. Private, fast, and built for logs, APIs, and debugging.",
+    "seo_features_title": "Why this Unix time converter stands out",
+    "seo_feature_1_title": "Two-way Unix time conversion",
+    "seo_feature_1_desc": "Map epoch numbers to local and UTC datetime, or pick a calendar time to export Unix time in the precision your stack expects.",
+    "seo_feature_2_title": "Units for every timestamp",
+    "seo_feature_2_desc": "Auto-detect or set seconds, milliseconds, microseconds, or nanoseconds so epoch values from APIs and databases line up without guesswork.",
+    "seo_feature_3_title": "Live Unix epoch",
+    "seo_feature_3_desc": "Watch the current Unix epoch tick beside the form so you always see “now” next to the values you convert.",
+    "seo_feature_4_title": "Code-ready output",
+    "seo_feature_4_desc": "JavaScript, Python, Go, SQL, and shell snippets mirror the on-screen Unix time conversion in your repo.",
+    "seo_how_title": "How it works",
+    "seo_how_step_1_title": "Paste or type Unix time",
+    "seo_how_step_1_desc": "Enter a numeric Unix timestamp, choose a unit, or rely on auto-detect from digit length for quick conversion.",
+    "seo_how_step_2_title": "Pick a date and time",
+    "seo_how_step_2_desc": "Use the picker to turn a calendar moment into epoch seconds, milliseconds, and more—ideal when you start from human-readable dates.",
+    "seo_how_step_3_title": "Read every representation",
+    "seo_how_step_3_desc": "Compare local time, UTC, and raw epoch side by side for debugging, QA, and API checks.",
+    "seo_why_title": "Why developers use this tool",
+    "seo_why_1_title": "Private by design",
+    "seo_why_1_desc": "Runs client-side in your browser—inputs are not stored on our servers.",
+    "seo_why_2_title": "Built for real timestamps",
+    "seo_why_2_desc": "Millisecond and microsecond values from logs and JSON fit naturally in this timestamp converter workflow.",
+    "seo_why_3_title": "Ship faster",
+    "seo_why_3_desc": "Inline examples reinforce the on-screen epoch converter output so engineers can mirror the same logic in code.",
+    "seo_testimonials_title": "What users say",
+    "seo_testimonial_1_name": "Alex",
+    "seo_testimonial_1_role": "Backend developer",
+    "seo_testimonial_1_quote": "Perfect for quick checks on log lines and API responses—my go-to epoch converter in the browser.",
+    "seo_testimonial_2_name": "Jamie",
+    "seo_testimonial_2_role": "SRE",
+    "seo_testimonial_2_quote": "The unit switch saves me from guessing ms vs seconds when incidents spike.",
+    "seo_testimonial_3_name": "Riley",
+    "seo_testimonial_3_role": "Student",
+    "seo_testimonial_3_quote": "Clear layout and examples helped me grok Unix time faster than docs alone.",
+    "seo_faq_title": "FAQs",
+    "seo_faq_q1": "What is a Unix timestamp?",
+    "seo_faq_a1": "It counts from the Unix epoch (1970-01-01 00:00:00 UTC), usually in seconds or finer units—exactly what this Unix time converter displays beside local and UTC.",
+    "seo_faq_q2": "Why are some values 13 digits?",
+    "seo_faq_a2": "That is often milliseconds since epoch, common in JavaScript (e.g. Date.now()). The tool accepts those lengths automatically.",
+    "seo_faq_q3": "Is this tool free?",
+    "seo_faq_a3": "Yes. Use it online without signing up; conversion stays in your session.",
+    "seo_faq_q4": "How are time zones handled?",
+    "seo_faq_a4": "Local time uses your browser settings; UTC and raw epoch values appear together for every result.",
+    "seo_faq_q5": "What about the year 2038 problem?",
+    "seo_faq_a5": "32-bit signed seconds overflow around 2038; prefer 64-bit time or finer units for far-future dates.",
+    "seo_cta_title": "Ready to convert?",
+    "seo_cta_desc": "Jump back to the Unix time converter at the top of this page for another epoch or date conversion.",
+    "seo_cta_button": "Go to converter"
+  },
+  "jsonEditorPage": {
+    "title": "Format, Validate, Beautify, Compare Json | Free Online",
+    "description": "Format JSON, format JSON file, format JSON response online. Upload a JSON file, json file format in seconds, then download your formatted json file.",
+    "keywords": "json editor,json format,format json,online json format,json format checker,pretty format json,json checker format,json pretty format,formatted json,verify json format,json text formatting,json formatting online,json to string,json format validation",
+    "h1": "Format, Validate & Beautify JSON | Free Online ",
+    "h1_desc": "Powerful JSON formatter to format, validate, and beautify your JSON data. This JSON formatter supports syntax highlighting, pretty printing, minification, and real-time validation. Upload JSON files or paste JSON text - our JSON formatter works instantly in your browser.",
+    "format": "Format",
+    "compact": "Compact",
+    "upload": "Upload",
+    "download": "Download",
+    "clear": "Clear",
+    "auto_format": "Auto Format",
+    "compare": "Compare",
+    "close_compare": "Close Compare",
+    "problem": "Problem",
+    "h1Text": "SoraWebui - Works",
+    "pDescription": "SoraWebui is an open-source project that simplifies video creation by allowing users to generate videos online with OpenAI's Sora model using text, featuring easy one-click website deployment.",
+    "generateNew": "Generate New",
+    "h2": "JSON Formatter",
+    "h2_desc": "JSON Formatter is a tool that helps you format JSON in a clear and readable way. It can be used to format both JSON and JSON file.",
+    "h2_h3": "Features",
+    "h2_h3_l1": "Syntax highlighting: JSON Formatter uses syntax highlighting to make JSON easier to read.",
+    "h2_h3_l2": "Pretty printing: JSON Formatter can pretty-print JSON, making it easier to see the structure of the data.",
+    "h2_h3_l3": "Validation: JSON Formatter can validate JSON to make sure that it's valid JSON.",
+    "h2_h3_l4": "Minification: JSON Formatter can minify JSON, reducing its size.",
+    "h2_h3_l5": "JSON file format: JSON Formatter support upload a JSON file to format and download formatted json file.",
+    "h2_h3_1": "How to use JSON Formatter ?",
+    "h2_h3_1_l1": "Copy and paste JSON into the input field or upload a json file.",
+    "h2_h3_1_l2": "Click the",
+    "h2_h3_1_l2_1": "Format ",
+    "h2_h3_1_l2_2": "button.",
+    "h2_h3_1_l3": "The formatted JSON will be displayed in the text box.",
+    "h2_h3_2": "JSON Format Examples",
+    "h2_1": "JSON Validator",
+    "h2_1_desc": "JSON Validator is a tool that helps you validate JSON to make sure that it's valid JSON. It can be used to validate both JSON and JSON file.",
+    "h2_1_h3": "Features",
+    "h2_1_h3_l1": "Syntax validation: JSON Validator checks the syntax of JSON to make sure that it's valid JSON.",
+    "h2_1_h3_l2": "Schema validation: JSON Validator can also validate JSON against a JSON schema.",
+    "h2_1_h3_l3": "Error reporting: JSON Validator provides detailed error messages if JSON is not valid.",
+    "h2_1_h3_l4": "JSON file validation: JSON Formatter support upload a JSON file to validate and download validated json file.",
+    "features_title": "Key Features",
+    "features_desc": "JSON formatter provides powerful capabilities to help you work with JSON efficiently.",
+    "feature_1_title": "Syntax Highlighting",
+    "feature_1_desc": "The JSON formatter uses advanced syntax highlighting to make your JSON data easier to read and understand.",
+    "feature_2_title": "Pretty Printing",
+    "feature_2_desc": "Format your JSON with proper indentation and line breaks using our JSON formatter for better readability.",
+    "feature_3_title": "Real-time Validation",
+    "feature_3_desc": "Validate JSON syntax instantly with our JSON formatter, catching errors before they cause problems.",
+    "feature_4_title": "Minification",
+    "feature_4_desc": "Compress your JSON files efficiently with our JSON formatter minification feature.",
+    "feature_5_title": "File Support",
+    "feature_5_desc": "Upload and download JSON files seamlessly with our JSON formatter tool.",
+    "feature_6_title": "Auto Format",
+    "feature_6_desc": "Enable auto-formatting in our JSON formatter to keep your code clean automatically.",
+    "howItWorks_title": "How It Works",
+    "howItWorks_desc": "Using our JSON formatter is simple and straightforward. Follow these steps to format your JSON data.",
+    "howItWorks_step1": "Paste your JSON data into the editor or upload a JSON file using the upload button.",
+    "howItWorks_step2": "Click the Format button to beautify your JSON with proper indentation, or use Auto Format for real-time formatting.",
+    "howItWorks_step3": "The JSON formatter will validate your data and display any errors if found.",
+    "howItWorks_step4": "Download your formatted JSON file or copy it directly from the editor.",
+    "testimonials_title": "What Users Say",
+    "testimonial_1_name": "Sarah Chen",
+    "testimonial_1_role": "Frontend Developer",
+    "testimonial_1_text": "This JSON formatter has become an essential tool in my daily workflow. It's fast, reliable, and the syntax highlighting makes debugging so much easier.",
+    "testimonial_2_name": "Michael Rodriguez",
+    "testimonial_2_role": "API Developer",
+    "testimonial_2_text": "I use this JSON formatter daily to validate API responses. The real-time validation feature saves me hours of debugging time.",
+    "testimonial_3_name": "Emily Watson",
+    "testimonial_3_role": "Data Analyst",
+    "testimonial_3_text": "The best JSON formatter I've used. The file upload feature and auto-formatting make working with large JSON files a breeze.",
+    "faq_title": "Frequently Asked Questions",
+    "faq_q1": "What is a JSON formatter?",
+    "faq_a1": "A JSON formatter is a tool that formats JSON data to make it more readable by adding proper indentation, line breaks, and spacing. Our JSON formatter also validates and beautifies your JSON data.",
+    "faq_q2": "Is this JSON formatter free to use?",
+    "faq_a2": "Yes, our JSON formatter is completely free to use. You can format, validate, and minify JSON data without any restrictions.",
+    "faq_q3": "Can I upload JSON files to the formatter?",
+    "faq_a3": "Absolutely! Our JSON formatter supports file uploads. Simply click the upload button and select your JSON file to format it instantly.",
+    "faq_q4": "Does the JSON formatter validate my data?",
+    "faq_a4": "Yes, our JSON formatter includes real-time validation that checks your JSON syntax and reports any errors immediately.",
+    "faq_q5": "Can I download formatted JSON files?",
+    "faq_a5": "Yes, after formatting your JSON with our JSON formatter, you can download the formatted file using the download button."
+  },
+  "jsonComparePage": {
+    "title": "Compare json online",
+    "description": "Compare json or any text online.",
+    "keywords": "compare json, text compare json, json diff, compare json online, json compare online,online compare json,online json compare,compare jsons online, json compare,text diff",
+    "h1": "Compare json online,just paste json below:",
+    "format": "format",
+    "compact": "compact",
+    "h1Text": "SoraWebui - playground",
+    "pDescription": "SoraWebui is an open-source project that simplifies video creation by allowing users to generate videos online with OpenAI's Sora model using text, featuring easy one-click website deployment.",
+    "moreWorks": "More Works"
+  },
+  "OpenPrompts": {
+    "header": {
+      "language": "Language",
+      "themeToggle": "Toggle light/dark mode",
+      "themeToLight": "Switch to light mode",
+      "themeToDark": "Switch to dark mode",
+      "signIn": "Sign in",
+      "signOut": "Sign out",
+      "userMenu": "Account menu",
+      "userMenuSection": "Dashboard",
+      "displayNameFallback": "User"
+    },
+    "nav": {
+      "home": "Home",
+      "gallery": "Images",
+      "motion": "Motion",
+      "categories": "Categories",
+      "create": "Create",
+      "favorites": "Favorites",
+      "submit": "Share",
+      "account": "Account",
+      "rank": "Leaderboard",
+      "docs": "Docs",
+      "submitCta": "Share a prompt"
+    },
+    "submitPage": {
+      "seo": {
+        "title": "Submit AI Image Prompts | Open Prompts",
+        "description": "Share Midjourney, DALL·E, GPT Image, Flux and Stable Diffusion prompt templates. Submit for public review or save privately. Free submission guide and tips.",
+        "keywords": "submit AI prompt, image prompt library, Midjourney prompt template, DALL-E prompt share, GPT Image prompts, prompt submission guide"
+      },
+      "xImport": {
+        "title": "Quick import from X",
+        "desc": "Paste a public x.com / twitter.com tweet URL — we fill title, description, prompt text, image URLs, source link, and @author when available.",
+        "placeholder": "https://x.com/username/status/…",
+        "button": "Parse tweet",
+        "busy": "Parsing…",
+        "success": "Imported from tweet. Review the fields and continue.",
+        "errorGeneric": "Could not import this link.",
+        "errorNotTweet": "Use a tweet URL like x.com/user/status/1234567890.",
+        "errorDuplicate": "This tweet is already in our library — see the notice below.",
+        "duplicateHint": "Already submitted as \"{title}\" ({status}). Please avoid a duplicate.",
+        "duplicateLink": "View existing source",
+        "duplicateSubmitBlocked": "This X post already exists as \"{title}\". Use a different tweet or edit your existing template.",
+        "duplicateStatus": {
+          "approved": "published",
+          "pending": "in review",
+          "rejected": "rejected",
+          "draft": "draft"
+        }
+      },
+      "wizard": {
+        "eyebrow": "Submit prompt",
+        "title": "Share your creative ",
+        "titleEm": "prompt",
+        "subtitle": "Complete two steps; after review your prompt can appear in the image prompt library.",
+        "subtitleSimple": "One page — only the template fields that matter. Submit when ready."
+      },
+      "chooser": {
+        "eyebrow": "Submit a prompt",
+        "title": "How do you want",
+        "titleEm": "to share this?",
+        "subtitleLine1": "Public prompts enter the community review queue.",
+        "subtitleLine2": "Private templates save instantly — visible only to you.",
+        "publicKicker": "Public",
+        "publicTitle": "Public Image Prompts",
+        "publicDesc": "Submitted for community review. Approved prompts appear in the public image prompt library, earn upvotes, and are attributed to your profile.",
+        "publicFeat1": "Listed in the public directory",
+        "publicFeat2": "Upvotes, forks & comments",
+        "publicFeat3": "Attributed to your profile",
+        "publicFeat4": "Reviewed by maintainers (~48h)",
+        "publicFeatNo": "Instant publish (requires review)",
+        "publicCta": "Submit as public",
+        "privateKicker": "Private",
+        "privateTitle": "Private Only",
+        "privateDesc": "Saved instantly to your account. Not listed in the image prompt library. Share via a secret link whenever you're ready — or keep it to yourself.",
+        "privateFeat1": "Visible only to you",
+        "privateFeat2": "No review — saves instantly",
+        "privateFeat3": "Share via secret link anytime",
+        "privateFeat4": "Publish publicly whenever ready",
+        "privateFeatNo": "Login required",
+        "privateCta": "Submit as private",
+        "signInNote": "Sign-in required for private templates.",
+        "back": "← Change visibility",
+        "compareDivider": "Feature comparison",
+        "compareFeature": "Feature",
+        "comparePublic": "Public",
+        "comparePrivate": "Private",
+        "compareRow1": "Listed in image prompt library",
+        "compareRow2": "Upvotes & comments",
+        "compareRow3": "Profile attribution",
+        "compareRow4": "Forkable by others",
+        "compareRow5": "Instant save (no review)",
+        "compareRow6": "Share via secret link",
+        "compareRow7": "Publish publicly later",
+        "comparePublic1": "y",
+        "comparePublic2": "y",
+        "comparePublic3": "y",
+        "comparePublic4": "y",
+        "comparePublic5": "n",
+        "comparePublic6": "n",
+        "comparePublic7": "n",
+        "comparePrivate1": "n",
+        "comparePrivate2": "n",
+        "comparePrivate3": "n",
+        "comparePrivate4": "n",
+        "comparePrivate5": "y",
+        "comparePrivate6": "y",
+        "comparePrivate7": "y"
+      },
+      "guide": {
+        "title": "How to submit prompts to Open Prompts",
+        "intro": "Fill in the prompt text, target model, tags, and an optional preview image. Public submissions are reviewed before going live.",
+        "guideKicker": "Submission guide",
+        "howTitle": "How it works",
+        "howTitleLine1": "How it",
+        "howTitleLine2": "works",
+        "step1Title": "Choose public or private",
+        "step1Desc": "Public prompts enter the review queue and appear in the image prompt library once approved. Private templates save instantly and stay visible only to you.",
+        "step2Title": "Fill out the template form",
+        "step2Desc": "Write a clear title, short description, the full prompt text, target model (Midjourney, DALL-E, GPT Image, Flux…), category, tags, and an optional preview URL.",
+        "step3Title": "Submit and track status",
+        "step3Desc": "Public items start as pending. Check status under \"My Templates\" in your account. Approved prompts become immediately browsable in the image prompt library.",
+        "step4Title": "Tips for a great submission",
+        "step4DescBefore": "Use 2–8 specific tags like cinematic, portrait, or anime. Include model-specific flags like ",
+        "step4Code": "--ar 16:9",
+        "step4DescAfter": ". English prompts perform best. Add a preview image — it significantly boosts click-through.",
+        "fieldsTitle": "What to include in each submission",
+        "field1": "Title — short, searchable name (under 50 characters).",
+        "field2": "Description — one line explaining the visual style or use case.",
+        "field3": "Prompt body — the full text you use with your image model, including parameters like aspect ratio.",
+        "field4": "Preview images — URLs or uploads showing example outputs (helps reviewers and improves click-through).",
+        "visibilityTitle": "Public vs private",
+        "visibilityPublic": "Public image prompt library: free to submit; templates are reviewed before listing. Only approved public prompts appear in the community image prompt library.",
+        "visibilityPrivate": "Private only: requires sign-in; saved under My templates with no review queue—ideal for personal libraries and work-in-progress prompts.",
+        "tipsTitle": "Tips for better prompt submissions",
+        "tip1": "Write prompts in English when possible—most models and search work best in English.",
+        "tip2": "Use 2–8 specific tags (e.g. cinematic, portrait, anime) plus one style category.",
+        "tip3": "Paste an X/Twitter source URL if you imported from a tweet—we credit authors when available.",
+        "tip4": "Include aspect-ratio or quality hints your model understands (e.g. --ar 16:9 for Midjourney).",
+        "faqTitle": "Frequently asked questions",
+        "faqKicker": "FAQ",
+        "faqTitleLine1": "Common",
+        "faqTitleLine2": "questions",
+        "faq1q": "Is submitting free?",
+        "faq1a": "Yes — both public and private submissions are completely free. A registered account is required only for private templates.",
+        "faq2q": "How long does review take?",
+        "faq2a": "Public submissions are typically reviewed within 48 hours. You'll receive a notification when your prompt goes live.",
+        "faq3q": "Can I change visibility after submitting?",
+        "faq3a": "Yes. Private prompts can be published publicly at any time from your dashboard. Public prompts can be unlisted on request.",
+        "faq4q": "What license do public prompts use?",
+        "faq4a": "Public prompts are shared under CC BY 4.0 — anyone can use, remix, and build on them with attribution. You retain authorship credit.",
+        "faq5q": "Which AI models are supported?",
+        "faq5a": "Midjourney, DALL-E 3, GPT Image 1 & 2, Flux, Stable Diffusion, Adobe Firefly, and more — all supported.",
+        "ctaSubmit": "Start a submission",
+        "ctaGallery": "Browse the Images"
+      },
+      "privateMode": {
+        "eyebrow": "New template",
+        "title": "Create a ",
+        "titleEm": "private template",
+        "subtitle": "Same submit form as the image prompt library flow — saved as private only (not listed, no review queue).",
+        "hint": "Only you can see this template in My templates. To publish to the image prompt library later, edit visibility or use Submit for a public entry.",
+        "submit": "Save private template",
+        "successTitle": "Private template ",
+        "successTitleEm": "saved",
+        "successBody": "It is in your account under My templates. It will not appear in the public image prompt library.",
+        "goToMyTemplates": "My templates →",
+        "createAnother": "Create another"
+      },
+      "editMode": {
+        "eyebrow": "Edit template",
+        "title": "Update your ",
+        "titleEm": "template",
+        "subtitle": "Same editor as submit. Visibility stays as saved (change in account if needed).",
+        "loading": "Loading template…",
+        "loadFailed": "Could not load this template.",
+        "backToTemplates": "← My templates",
+        "save": "Save changes",
+        "successTitle": "Template ",
+        "successTitleEm": "updated",
+        "successBody": "Your changes are saved. Private and draft templates stay off the image prompt library unless you publish.",
+        "continueEdit": "Keep editing"
+      },
+      "info": {
+        "body": "Prompts work best in English. Parameter syntax like {ar} and {v} is supported.",
+        "ar": "--ar 16:9",
+        "v": "--v 6",
+        "link": "Prompt writing guide →"
+      },
+      "labels": {
+        "templateTitle": "Template title",
+        "shortDesc": "Short description",
+        "model": "Target model",
+        "prompt": "Prompt body",
+        "category": "Style category",
+        "aspectRatio": "Aspect ratio",
+        "quality": "Render quality",
+        "tags": "Tags",
+        "visibility": "Visibility",
+        "sourceUrl": "Source link",
+        "author": "Author / submitter",
+        "upload": "Upload preview images",
+        "imageUrls": "Or paste image URLs"
+      },
+      "hints": {
+        "title": "Up to 50 characters, concise",
+        "desc": "One line on the effect",
+        "promptCount": "{count} characters",
+        "tags": "2–8 tags, press Enter",
+        "source": "X/Twitter, Reddit, personal site…",
+        "author": "Optional credit",
+        "upload": "Up to 8 images, PNG / JPG, ≤10MB each",
+        "uploadFull": "Maximum reached — remove an image to add more",
+        "urls": "One URL per line · Enter or Add",
+        "imageCount": "{count} / {max}"
+      },
+      "placeholders": {
+        "title": "e.g. Cinematic sunset portrait",
+        "desc": "e.g. A dramatic portrait at golden hour with cinematic depth…",
+        "prompt": "A breathtaking cinematic portrait at golden hour…",
+        "source": "https://x.com/username/status/…",
+        "author": "@username or real name",
+        "urls": "https://cdn.example.com/preview.jpg",
+        "tagInput": "Type and press Enter…",
+        "category": "Choose a category…"
+      },
+      "models": {
+        "gptImage2": {
+          "name": "GPT Image 2",
+          "tag": "OpenAI"
+        },
+        "midjourney": {
+          "name": "Midjourney",
+          "tag": "v6"
+        },
+        "dalle3": {
+          "name": "DALL·E 3",
+          "tag": "OpenAI"
+        },
+        "flux": {
+          "name": "Flux 1.1 Pro",
+          "tag": "BFL"
+        },
+        "sd": {
+          "name": "Stable Diffusion",
+          "tag": "XL"
+        },
+        "ideogram": {
+          "name": "Ideogram",
+          "tag": "v3"
+        }
+      },
+      "modelValues": {
+        "gptImage2": "GPT Image 2",
+        "midjourney": "Midjourney v6",
+        "dalle3": "DALL·E 3",
+        "flux": "Flux 1.1 Pro",
+        "sd": "Stable Diffusion",
+        "ideogram": "Ideogram v3"
+      },
+      "categories": {
+        "artStyles": "Art styles",
+        "portraitPhoto": "Portrait & photo",
+        "designUi": "Design & UI",
+        "gameFantasy": "Games & fantasy",
+        "scenes": "Scenes & environments",
+        "productCommercial": "Product & commercial",
+        "styleEra": "Styles & eras"
+      },
+      "subTags": {
+        "illustration": "Illustration",
+        "concept_art": "Concept Art",
+        "anime": "Anime",
+        "manga": "Manga",
+        "watercolor": "Watercolor",
+        "sketch": "Sketch",
+        "surrealism": "Surrealism",
+        "minimalism": "Minimalism",
+        "chinese_painting": "Chinese Painting",
+        "storybook": "Storybook",
+        "graphic_novel": "Graphic Novel",
+        "portrait": "Portrait",
+        "fashion_photography": "Fashion Photography",
+        "fashion_model": "Fashion Model",
+        "photorealistic": "Photorealistic",
+        "editorial": "Editorial",
+        "documentary_photography": "Documentary Photography",
+        "ui": "UI",
+        "app_ui": "App UI",
+        "poster": "Poster",
+        "flyer": "Flyer",
+        "magazine_cover": "Magazine Cover",
+        "diagram": "Diagram",
+        "storyboard": "Storyboard",
+        "architecture": "Architecture",
+        "web_design": "Web Design",
+        "game_asset": "Game Asset",
+        "fantasy": "Fantasy",
+        "character_design": "Character Design",
+        "sci_fi": "Sci-Fi",
+        "alien": "Alien",
+        "landscape": "Landscape",
+        "cityscape": "Cityscape",
+        "cinematic": "Cinematic",
+        "environment": "Environment",
+        "product": "Product",
+        "commercial": "Commercial",
+        "e_commerce_banner": "E-commerce Banner",
+        "brand": "Brand",
+        "vintage": "Vintage",
+        "monochrome": "Monochrome",
+        "retro": "Retro",
+        "film": "Film",
+        "abstract": "Abstract"
+      },
+      "ratios": {
+        "1_1": "1:1 square",
+        "16_9": "16:9 landscape",
+        "9_16": "9:16 portrait",
+        "4_3": "4:3 standard",
+        "3_2": "3:2 photo",
+        "21_9": "21:9 ultrawide",
+        "custom": "Custom"
+      },
+      "qualities": {
+        "fast": "⚡ Fast preview",
+        "standard": "✦ Standard",
+        "high": "💎 High detail"
+      },
+      "visibility": {
+        "publicTitle": "🌐 Public",
+        "publicDesc": "Visible to everyone",
+        "privateTitle": "🔒 Private",
+        "privateDesc": "Not listed in image prompt library"
+      },
+      "quickTags": [
+        "Illustration",
+        "Portrait",
+        "Photorealistic",
+        "Fantasy",
+        "Cinematic",
+        "Editorial",
+        "Anime",
+        "Vintage"
+      ],
+      "buttons": {
+        "nextTags": "Next: category, tags & submit",
+        "back": "Back",
+        "submit": "Submit for review",
+        "submitting": "Submitting…",
+        "browseGallery": "Browse Images →",
+        "submitAnother": "Submit another",
+        "myTemplates": "My templates",
+        "detectSource": "Detect",
+        "copyPrompt": "Copy",
+        "copied": "Copied",
+        "addUrl": "Add",
+        "removeImage": "Remove image"
+      },
+      "stepHint": "Step {n} of {total}",
+      "preview": {
+        "paneTitle": "Card preview",
+        "live": "Live sync",
+        "titleEmpty": "Title appears here",
+        "descEmpty": "Short description…",
+        "promptEmpty": "Enter a prompt on the left…",
+        "uploadPlaceholder": "Upload result images to preview",
+        "categoryFallback": "Category",
+        "generateCta": "Generate →"
+      },
+      "qualityCheck": "Quality checklist",
+      "validation": {
+        "needTitle": "Add a template title.",
+        "needPrompt": "Prompt must be at least 10 characters.",
+        "needCategory": "Choose a style category.",
+        "needTags": "Use between 2 and 8 tags.",
+        "submitFailed": "Could not save your submission. Try again.",
+        "submitUnavailable": "Submissions are temporarily unavailable (database not configured).",
+        "invalidImageUrl": "Enter a valid http(s) image URL.",
+        "duplicateImageUrl": "This image URL is already added.",
+        "imageLimit": "You can add up to 8 images."
+      },
+      "rules": {
+        "promptLen": "Prompt length ≥ 10 characters",
+        "title": "Title filled in",
+        "model": "Model selected",
+        "category": "Category selected",
+        "tags": "2–8 tags",
+        "images": "At least one result image"
+      },
+      "guidelines": {
+        "dividerSubmit": "Submission notes",
+        "dividerImages": "Result images",
+        "requirementsTitle": "Requirements",
+        "requirementsList": [
+          "Prompt in English, at least 10 characters (no max length)",
+          "At least one generated preview image",
+          "Accurate title and description",
+          "Up to 20 submissions per user per day"
+        ],
+        "rejectedTitle": "Not accepted",
+        "rejectedList": [
+          "NSFW, violence, or hate content",
+          "Copyright or trademark infringement",
+          "Duplicate of existing entries",
+          "Misinformation or deceptive deepfakes"
+        ]
+      },
+      "success": {
+        "title": "Submitted",
+        "titleEm": "successfully",
+        "body": "Your prompt is in the review queue. We usually respond within 24 hours. Once approved it will appear in the image prompt library.",
+        "bodySignedOut": "Your prompt is in the review queue. Sign in before submitting next time to track status under My templates — anonymous submissions cannot be linked to an account.",
+        "idLabel": "Reference #OP-{id}"
+      }
+    },
+    "accountPage": {
+      "seo": {
+        "title": "Account | Open Prompts",
+        "description": "Manage your prompt templates, review queue, and account settings."
+      },
+      "sidebar": {
+        "overview": "Overview",
+        "content": "Content",
+        "account": "Account",
+        "adminBadge": "Admin"
+      },
+      "nav": {
+        "overview": "Dashboard",
+        "prompts": "My templates",
+        "adminReview": "Review queue",
+        "users": "Users",
+        "credits": "Credits",
+        "subscription": "Subscription"
+      },
+      "panels": {
+        "overview": "Dashboard",
+        "prompts": "Prompt templates",
+        "admin": "Moderation",
+        "users": "Users",
+        "credits": "Credit history",
+        "subscription": "Subscription"
+      },
+      "topbar": {
+        "gallery": "Back to Images",
+        "newTemplate": "New template",
+        "signOut": "Sign out"
+      },
+      "metrics": {
+        "templates": "Templates",
+        "pending": "My pending review",
+        "credits": "Credits left",
+        "generations": "Generations"
+      },
+      "overview": {
+        "hint": "Create and manage your prompt templates. Public templates go through review before appearing in the image prompt library.",
+        "manage": "Manage templates",
+        "submit": "Submit new prompt"
+      },
+      "toolbar": {
+        "search": "Search by title or prompt…",
+        "allStatus": "All statuses",
+        "refresh": "Refresh"
+      },
+      "table": {
+        "template": "Template",
+        "owner": "Owner",
+        "ownerAnonymous": "Anonymous / catalog",
+        "status": "Status",
+        "model": "Model",
+        "updated": "Updated",
+        "actions": "Actions",
+        "view": "View",
+        "edit": "Edit",
+        "delete": "Delete",
+        "approve": "Approve",
+        "reject": "Reject",
+        "revoke": "Revoke",
+        "reapprove": "Re-approve",
+        "empty": "No templates yet. Create your first one.",
+        "emptyFiltered": "No templates match this status filter.",
+        "emptyAdminHint": "This list only shows templates you submitted. The full moderation queue (all users + catalog) is under Content review and requires an admin account.",
+        "confirmDelete": "Delete this template?",
+        "deleteSelected": "Delete selected",
+        "bulkConfirmDelete": "Delete {count} selected template(s)?"
+      },
+      "status": {
+        "pub": "Published",
+        "draft": "Draft",
+        "priv": "Private",
+        "pending": "In review",
+        "rejected": "Rejected"
+      },
+      "visibility": {
+        "public": "Public (review)",
+        "private": "Private",
+        "draft": "Draft"
+      },
+      "admin": {
+        "hint": "All templates in the database (every account and legacy catalog). Approve or reject submissions; only approved public items appear in the image prompt library.",
+        "hintActions": "Select rows with checkboxes for bulk approve/reject. Approve/Reject also appear per row for items in review.",
+        "selectAll": "Select all on this page",
+        "selectedCount": "{count} selected",
+        "approveSelected": "Approve selected",
+        "rejectSelected": "Reject selected",
+        "clearSelection": "Clear selection",
+        "bulkConfirmApprove": "Approve {count} selected template(s)?",
+        "bulkConfirmReject": "Reject {count} selected template(s)?",
+        "forbiddenTitle": "Admin access required",
+        "forbiddenBody": "Signed in as {email}. This account is not in ADMIN_EMAIL, so the moderation queue cannot load.",
+        "forbiddenHint": "Add your email to ADMIN_EMAIL in .env.local, restart the dev server, and sign in again — or use the admin credentials account.",
+        "forbiddenMyTemplatesHint": "「My templates」 only lists prompts you submitted — not the site-wide catalog. To review all templates, sign in as an admin (e.g. admin@gmail.com with password from .env.local).",
+        "empty": "No templates match this filter.",
+        "emptyPending": "Nothing awaiting review. Use “All statuses” to see published or rejected items, or create a public template to queue one for review.",
+        "loadError": "Could not load moderation queue: {message}",
+        "loadTimeout": "Request timed out. Check DATABASE_URL (use port 5432 for admin queries, not pooler 6543) and stop long-running dev queries on p_prompts.",
+        "trendPromptsTitle": "New prompts",
+        "trendDaysHint": "Daily new templates by UTC calendar day.",
+        "pagination": {
+          "pageSize": "Per page",
+          "prev": "Previous",
+          "next": "Next",
+          "total": "{count} items",
+          "totalUnknown": "Total unavailable",
+          "pageOf": "Page {page} of {total}",
+          "pageOnly": "Page {page}"
+        }
+      },
+      "adminUsers": {
+        "hint": "Read-only directory of registered accounts (OAuth and email sign-in).",
+        "searchPlaceholder": "Search by email or name…",
+        "empty": "No users match this search.",
+        "loadError": "Could not load users: {message}",
+        "loadTimeout": "Request timed out while loading users.",
+        "colUser": "User",
+        "colRole": "Role",
+        "colProvider": "Provider",
+        "colJoined": "Joined",
+        "envAdmin": "Env admin",
+        "member": "Member",
+        "providerEmail": "Email",
+        "metricTotal": "Total users",
+        "metricActiveToday": "Active today",
+        "metricNewToday": "New today",
+        "metricActiveTodayHint": "Users with sign-in or authenticated API activity today (UTC).",
+        "trendUsersTitle": "New users",
+        "trendDaysHint": "Daily new users by UTC calendar day.",
+        "trendRange7": "1 week",
+        "trendRange30": "1 month",
+        "trendRange90": "3 months",
+        "detailTitle": "User details",
+        "close": "Close",
+        "providers": "Sign-in providers",
+        "noProviders": "Credentials only (no OAuth linked)",
+        "templateCount": "Templates submitted"
+      },
+      "placeholders": {
+        "credits": "Credit billing and usage charts coming soon.",
+        "subscription": "Subscription management coming soon."
+      },
+      "loading": "Loading…",
+      "modal": {
+        "createTitle": "New template",
+        "editTitle": "Edit template",
+        "model": "Model",
+        "visibility": "Visibility",
+        "coverUrl": "Cover image URL",
+        "cancel": "Cancel",
+        "save": "Save",
+        "saving": "Saving…",
+        "validation": "Fill title, prompt (10+ chars), category, and 2–8 tags.",
+        "saveFailed": "Could not save template."
+      }
+    },
+    "login": {
+      "seoTitle": "Sign in | Open Prompts",
+      "seoDescription": "Sign in with GitHub, Google, or email to save favorites and manage generations.",
+      "backGallery": "Back to Images",
+      "promoTitleLine1": "Curated prompts.",
+      "promoTitleLine2": "Generate",
+      "promoTitleLine2Suffix": "in one click.",
+      "promoDesc": "High-quality image prompts from the community and social feeds. Multi-model support, Apache 2.0 licensed.",
+      "promoStatPrompts": "Prompts",
+      "promoStatModels": "Models",
+      "promoStatLicense": "License",
+      "promoLicenseName": "Apache 2.0",
+      "welcomeLine1": "Welcome back to",
+      "welcomeBrandOpen": "Open",
+      "welcomeBrandEm": "Prompts",
+      "welcomeSubtitle": "Sign in with GitHub, Google, or email to save prompts and manage your work.",
+      "tabLogin": "Log in",
+      "tabRegister": "Register",
+      "oauthGithub": "Continue with GitHub",
+      "oauthGoogle": "Continue with Google",
+      "oauthDisabledHint": "Not configured on this server",
+      "oauthSetupHint": "GitHub and Google sign-in need GITHUB_ID/GITHUB_SECRET and GOOGLE_CLIENT_ID/GOOGLE_CLIENT_SECRET in .env.local (see .env.example), then restart the dev server.",
+      "dividerEmail": "Or sign in with email",
+      "labelUsername": "Display name",
+      "usernamePlaceholder": "your_name",
+      "labelEmail": "Email",
+      "emailPlaceholder": "you@example.com",
+      "labelPassword": "Password",
+      "passwordPlaceholder": "••••••••",
+      "remember": "Stay signed in",
+      "forgot": "Forgot password?",
+      "submitLogin": "Sign in",
+      "submitRegister": "Create account",
+      "submitBusy": "Working…",
+      "switchToRegister": "No account yet?",
+      "switchToRegisterLink": "Register",
+      "switchToLogin": "Already have an account?",
+      "switchToLoginLink": "Back to log in",
+      "disclaimer": "By continuing you agree to the terms of service and privacy policy.",
+      "errorCredentials": "Invalid email or password.",
+      "errorCredentialsHint": "Use the exact email listed in ADMIN_EMAIL (check for typos). Online login needs DATABASE_URL and ADMIN_PASSWORD set on the host (not only in local .env). If you signed up with GitHub/Google first, try that provider—or restart the app after setting ADMIN_PASSWORD so the admin password syncs.",
+      "errorConfiguration": "Sign-in is misconfigured on the server (check NEXTAUTH_URL, NEXTAUTH_SECRET, and OAuth app callback URLs).",
+      "errorAccessDenied": "Sign-in was cancelled or denied.",
+      "errorOAuth": "Could not sign in with that provider. For GitHub, allow email access or use a public email. For Google, verify the OAuth redirect URI is configured.",
+      "errorOAuthPersist": "Authorization succeeded but we could not save your account. Check DATABASE_URL on the host (Supabase pooler port 6543) and try again.",
+      "errorOAuthAccountNotLinked": "That account is already linked to another sign-in method. Use the same provider you signed up with, or email login.",
+      "errorGeneric": "Something went wrong. Try again.",
+      "errorRegister": "Could not create account.",
+      "magicTitle": "Check your email",
+      "magicBody": "If an account exists for this address, you will receive reset instructions shortly.",
+      "magicResend": "Resend",
+      "magicResent": "Sent",
+      "registerSuccess": "Account created. Signing you in…"
+    },
+    "galleryPage": {
+      "title": "Images",
+      "subtitle": "Browse 1,000+ free image prompts. Filter by model, copy templates, generate on-site.",
+      "seo": {
+        "title": "Image Prompts — GPT Image 2",
+        "description": "Browse free image prompts for ChatGPT, GPT Image 2, Midjourney & DALL·E. Copy templates and generate on-site.",
+        "keywords": "image prompts,ai image prompts,chatgpt image prompts,gpt image 2 prompts,free prompt library"
+      }
+    },
+    "modelPage": {
+      "seo": {
+        "title": "{model} Image Prompts ({count})",
+        "description": "Browse {count} free {model} image prompts. Copy community templates and generate on Open Prompts."
+      },
+      "breadcrumb": {
+        "home": "Home",
+        "gallery": "Images"
+      },
+      "heading": "{model} Image Prompts",
+      "subtitle": "{count} free {model} image prompt templates — copy and generate on-site.",
+      "empty": "No {model} prompts yet. Check back soon or browse the full image prompt library."
+    },
+    "categoryPage": {
+      "seo": {
+        "title": "{category} Image Prompts ({count})",
+        "description": "Explore {count} free {category} AI image prompts. Copy templates and generate on Open Prompts."
+      },
+      "breadcrumb": {
+        "home": "Home",
+        "gallery": "Images",
+        "categories": "Categories"
+      },
+      "heading": "{category} Image Prompts",
+      "subtitle": "{count} free {category} image prompts — copy templates and generate on-site.",
+      "empty": "No prompts in {category} yet. Browse the image prompt library or submit your own."
+    },
+    "categoriesIndex": {
+      "seo": {
+        "title": "Image Prompt Categories",
+        "description": "Browse free AI image prompts by category — scenes, portraits, art styles, product shots, and more."
+      },
+      "breadcrumb": {
+        "home": "Home",
+        "gallery": "Images"
+      },
+      "heading": "Image Prompt Categories",
+      "subtitle": "{count} prompts across {categoryCount} categories — pick a style to explore.",
+      "cardCount": "{count} prompts"
+    },
+    "promptMotionPage": {
+      "modelFilter": "Model",
+      "allModels": "All models",
+      "otherModels": "Other",
+      "sortLabel": "Sort",
+      "sortLikes": "Most post likes",
+      "sortStars": "Most repository stars",
+      "sortCurated": "Curated order",
+      "likeCount": "{count, number} likes",
+      "repoStarCount": "{count, number} repo stars",
+      "approximately": "Approx. ",
+      "metricsObserved": "Public snapshot collected on {date}",
+      "metricsUnknown": "Popularity unknown",
+      "likesSortNote": "Sorted by original-post likes. Unknown values come last. Counts are collected snapshots.",
+      "starsSortNote": "Repository stars measure the source project, not the individual work. Approximate counts are labeled.",
+      "curatedSortNote": "Browse in the original curated order.",
+      "viewPrompt": "View prompt",
+      "originalPost": "Original post",
+      "promptSource": "Prompt source",
+      "noPreview": "Preview unavailable",
+      "staticPreview": "Image preview",
+      "videoUnavailable": "Video could not be loaded. You can still read the prompt or open the original post below.",
+      "loading": "Loading…",
+      "loadError": "Could not load more works. Please retry.",
+      "allLoaded": "All works loaded",
+      "sourceNote": "Prompt text is preserved from the collection. Some entries are reusable templates; inclusion does not mean independent verification of the result or model.",
+      "categoryNames": {
+        "product-brand": "Product & brand",
+        "motion-studies": "Typography & motion",
+        "explainers-data": "Explainers & data",
+        "characters-stories": "Characters & stories",
+        "3d-simulations": "3D & simulations",
+        "music-audiovisual": "Music & audiovisual",
+        "interactive": "Interactive"
+      },
+      "loadMore": "Load more",
+      "playVideo": "Play video",
+      "seo": {
+        "title": "Motion Prompts · AI Animation Prompts & Examples",
+        "description": "Explore AI motion prompts and real examples made with Claude, GPT, Gemini and more. Filter by category and model, view original sources and copy prompts.",
+        "keywords": "motion prompts,AI motion prompts,motion graphics prompts,Claude Motion examples,animation prompts"
+      },
+      "breadcrumb": {
+        "home": "Home"
+      },
+      "hero": {
+        "desc": "Explore AI motion examples made with Claude, GPT, Gemini and more. Watch kinetic type, product films and animated charts, then use each creator’s published prompt.",
+        "browse": "Browse prompts",
+        "tagline": "AI Motion Prompts & Examples"
+      },
+      "catalog": {
+        "heading": "Explore motion prompts"
+      },
+      "subtitle": "Explore AI motion prompts across models, from kinetic type and product UI to charts and generative effects.",
+      "useCases": {
+        "eyebrow": "Use cases",
+        "title": "What these prompts",
+        "titleEm": "are for",
+        "subtitle": "Use an original brief to define the effect, timing and output. Add the reference assets it calls for, then render with your chosen tools.",
+        "items": [
+          {
+            "t": "Launch film",
+            "d": "Paste one brief and have the agent build a 15-second product announcement: storyboard, timeline, review, then sound."
+          },
+          {
+            "t": "Named camera moves",
+            "d": "Ask for a mask reveal, a dolly, or a numbered sample from the motion-prompt dictionary instead of “make it cinematic.”"
+          },
+          {
+            "t": "Agent stack",
+            "d": "Install claude-motion or motion-graphics-skills, then point the agent at HyperFrames or Remotion to render the file."
+          }
+        ]
+      },
+      "faq": {
+        "eyebrow": "FAQ",
+        "title": "Motion prompt",
+        "titleEm": "questions",
+        "items": [
+          {
+            "q": "What is a motion prompt?",
+            "a": "A brief describing a motion graphic: its subject, visual style, timing, transitions and output. These selections pair the finished effect with the original instruction published by its creator."
+          },
+          {
+            "q": "What is Claude Motion?",
+            "a": "On this page, Claude Motion describes a workflow for making motion graphics with Claude and code. Individual examples may use HTML, Canvas, Three.js, Remotion or a separate skill. Each card shows the reported model."
+          },
+          {
+            "q": "Where do these prompts and videos come from?",
+            "a": "From public creator posts. Each card credits its author and links to their post. The detail page links to the published prompt, including the author’s reply when applicable."
+          },
+          {
+            "q": "How do I use a prompt or skill?",
+            "a": "Copy a Prompt into your coding agent and provide any reference assets requested by the author. A Skill card links to its repository and includes its published install command. Follow its setup instructions before rendering."
+          },
+          {
+            "q": "Do I need Opus 5.5 to get the same result?",
+            "a": "The featured creators reported Opus 5.5. Results also depend on tools, reference assets and iteration. Reusing a prompt creates a new result; identical output is not guaranteed."
+          },
+          {
+            "q": "Can I reuse the videos and prompts commercially?",
+            "a": "Credit and public availability do not grant a license to reuse a creator’s work. Check the original post and any applicable license, and ask the creator when permission is needed. This page includes selected prompts rather than reproducing an entire gallery."
+          }
+        ]
+      },
+      "filters": {
+        "label": "Content type",
+        "all": "All"
+      },
+      "promptLabel": "Motion prompt",
+      "copy": "Copy",
+      "copied": "Copied",
+      "resources": {
+        "heading": "Tools behind the motion",
+        "desc": "Explore these repositories when you are ready to build and render your own film."
+      },
+      "categoriesLabel": "Motion categories",
+      "results": "{count} selections",
+      "empty": "No selections match this category and type yet.",
+      "resetFilters": "Show all selections",
+      "viewPost": "Original post",
+      "referenceRequired": "This brief uses reference assets. Check the original post before recreating it.",
+      "mediaFallback": "Watch on X",
+      "copyError": "Copy failed. Open the details to select and copy the prompt.",
+      "mediaSlow": "The video is taking longer to load.",
+      "retry": "Retry",
+      "skillLabel": "Motion skill",
+      "detail": {
+        "back": "Browse more motion prompts",
+        "description": "Explore {title} by @{author}: watch the result and use the complete AI motion prompt."
+      }
+    },
+    "promptPage": {
+      "seo": {
+        "title": "{title} — {model} Prompt",
+        "description": "Free {model} image prompt: {snippet}. Copy this template and generate on Open Prompts.{tags}"
+      },
+      "seoIntro": "Free {model} image prompt template — {title}. Copy the prompt below or generate on-site.",
+      "breadcrumbHome": "Home",
+      "breadcrumbGallery": "Images",
+      "backToGallery": "← Back to Images",
+      "promptLabel": "Prompt",
+      "modelLabel": "Model",
+      "imageAlt": "{title} — {model} preview {index}"
+    },
+    "homePage": {
+      "seo": {
+        "title": "Image Prompts — GPT Image 2",
+        "description": "Discover {count}+ curated image prompts for ChatGPT & GPT Image 2. Copy, remix, and generate AI images — daily updates from X.",
+        "keywords": "image prompts,ai image prompts,chatgpt image prompts,gpt image 2 prompts,prompt library"
+      },
+      "h1Line2": "Image Prompts",
+      "h1Line3": "GPT Image 2 Prompts",
+      "browseGallery": "Browse Images",
+      "submitPrompt": "Submit Prompt →",
+      "modelBar": {
+        "label": "Works with",
+        "allModels": "All Models",
+        "gptImage2": "GPT Image 2",
+        "dalle3": "DALL·E 3",
+        "midjourney": "Midjourney",
+        "stableDiffusion": "Stable Diffusion"
+      },
+      "browseByModel": {
+        "heading": "Browse by Model",
+        "sub": "Find the best prompts optimized for each AI image model"
+      },
+      "browseByCategory": {
+        "heading": "Browse by Category",
+        "sub": "Explore prompt styles across creative genres"
+      },
+      "promptCount": "{count} prompts →",
+      "comingSoon": "Coming soon →",
+      "models": {
+        "gptImage2": {
+          "icon": "🟢",
+          "title": "GPT Image 2 Prompts",
+          "desc": "Community-curated prompts for OpenAI's image model — photorealistic portraits, product ads, editorial fashion, and more."
+        },
+        "dalle3": {
+          "icon": "🔵",
+          "title": "DALL·E 3 Prompts",
+          "desc": "Ready-to-use prompts for DALL·E 3 — cinematic landscapes, minimalist product shots, and creative concepts."
+        },
+        "midjourney": {
+          "icon": "🟣",
+          "title": "Midjourney Prompts",
+          "desc": "Artistic and stylized prompts for Midjourney — fantasy worlds, editorial illustration, and concept art."
+        }
+      },
+      "categories": {
+        "portraitPhoto": {
+          "desc": "Cinematic portraits, editorial fashion, and travel photography prompts."
+        },
+        "artStyles": {
+          "desc": "Watercolor, vintage, collage, and illustration prompts from top creators."
+        },
+        "productCommercial": {
+          "desc": "Skincare ads, street food, and luxury brand photography prompts."
+        },
+        "gameFantasy": {
+          "desc": "Cyberpunk, dark fantasy, sci-fi character sheets, and world-building."
+        }
+      },
+      "seoContent": {
+        "features": {
+          "eyebrow": "Why Open Prompts",
+          "title": "Everything you need to master",
+          "titleEm": "GPT Image 2",
+          "subtitle": "Open Prompts is the community-powered image prompt library built around OpenAI's latest image model — learn from real creators, copy proven templates, and generate images without leaving the page.",
+          "items": [
+            {
+              "t": "Curated GPT Image 2 Prompts",
+              "d": "Every prompt is sourced directly from active creators on X who share their best results. No filler — only templates with proven, real-world output you can verify before copying."
+            },
+            {
+              "t": "Generate On-Site, Instantly",
+              "d": "Pick any prompt and generate your image directly in the browser. No tab switching, no API keys to manage — one click from inspiration to creation."
+            },
+            {
+              "t": "Copy, Remix & Adapt",
+              "d": "One-click copy for every prompt. Swap subjects, styles, or lighting — then feed your version back into GPT Image 2 or any other model. Iteration is how great images are made."
+            },
+            {
+              "t": "Filter by Model & Category",
+              "d": "Browse dedicated galleries for GPT Image 2, DALL·E 3, and Midjourney. Narrow by portrait, product, fantasy, or architecture to find exactly the style you're after."
+            },
+            {
+              "t": "Daily Sync from X",
+              "d": "Our pipeline monitors X for new prompt drops from top creators every day. Fresh content appears in the image prompt library automatically — always one step ahead of the trends."
+            },
+            {
+              "t": "Open & Community-Driven",
+              "d": "Submit your own GPT Image 2 prompts, earn creator credit, and build a following. The leaderboard surfaces the most-copied and most-generated prompts each week."
+            }
+          ]
+        },
+        "howItWorks": {
+          "eyebrow": "How It Works",
+          "title": "From prompt to image",
+          "titleEm": "in three steps",
+          "subtitle": "Open Prompts removes the guesswork. Browse proven prompts, copy with one click, and generate — all without leaving the page.",
+          "steps": [
+            {
+              "t": "Browse the GPT Image 2 Prompts",
+              "d": "Explore {count}+ community prompts filtered by model, category, or recency. Every card shows the output image alongside the exact prompt that produced it — so you know what you're getting before you copy."
+            },
+            {
+              "t": "Copy & Customize Your Prompt",
+              "d": "Hit copy and the full prompt text lands on your clipboard. Tweak the subject, style, or mood — or use it exactly as-is. Each prompt is battle-tested by real creators."
+            },
+            {
+              "t": "Generate with GPT Image 2 On-Site",
+              "d": "Click Generate and your image is produced inside Open Prompts. No separate subscription required. Download, share, or iterate — right here."
+            },
+            {
+              "t": "Share & Earn Creator Credit",
+              "d": "Submit your best prompts back to the image prompt library. Get featured on the leaderboard, credited on every generation, and grow your following among AI image creators."
+            }
+          ],
+          "browserMockup": {
+            "url": "open-prompts.com/prompt/vintage-travel-poster",
+            "promptLabel": "GPT Image 2 Prompt",
+            "promptText": "Classic vintage travel poster of Santorini, Greece. Whitewashed architecture, golden sunset light, warm retro palette, ornate serif typography, high detail, editorial quality. — GPT Image 2",
+            "resultTitle": "Santorini Travel Poster",
+            "resultSub": "Generated with GPT Image 2 · 4s",
+            "badge": "✓ Ready to download",
+            "statPrompts": "Prompts",
+            "statCopies": "Copies",
+            "statTime": "Avg. time"
+          }
+        },
+        "testimonials": {
+          "eyebrow": "Community Love",
+          "title": "Creators who use",
+          "titleEm": "Open Prompts daily",
+          "subtitle": "Thousands of designers, marketers, and AI artists rely on Open Prompts to find and reuse the best GPT Image 2 prompts from the community.",
+          "featured": {
+            "q": "Open Prompts completely changed how I use GPT Image 2. Instead of spending 30 minutes writing prompts from scratch, I browse the image prompt library, copy what's already working, and iterate. My output quality doubled in a week.",
+            "a": "@Diplomeme",
+            "handle": "@Diplomeme",
+            "role": "AI Content Creator · X",
+            "tag": "Top Contributor"
+          },
+          "items": [
+            {
+              "q": "The best resource for GPT Image 2 prompts I've found. Every card shows the actual output so you're never guessing. I use it every morning before starting client work.",
+              "a": "Brand Designer",
+              "handle": "@noorlewisx",
+              "role": "Brand Designer",
+              "avatar": "/testimonials/sarah-johnson.svg"
+            },
+            {
+              "q": "Daily sync from X means fresh GPT Image 2 prompts every morning. I submitted my cyberpunk character sheet and it became one of the most-copied on the leaderboard.",
+              "a": "Concept Artist",
+              "handle": "@Strength04_X",
+              "role": "Concept Artist",
+              "avatar": "/testimonials/michael-chen.svg"
+            },
+            {
+              "q": "I run social media for five brands. Open Prompts cuts my GPT Image 2 prompt research from an hour to five minutes. The category filters alone are worth bookmarking.",
+              "a": "Social Media Manager",
+              "handle": "@Taaruk_",
+              "role": "Social Media Manager",
+              "avatar": "/testimonials/emily-rodriguez.svg"
+            }
+          ]
+        },
+        "faq": {
+          "eyebrow": "FAQ",
+          "title": "Questions about",
+          "titleEm": "GPT Image 2 prompts",
+          "sidebar": {
+            "title": "Everything you need to know",
+            "desc": "Common questions about using Open Prompts to find, copy, and generate with GPT Image 2 and other AI image models.",
+            "contact": "Still have questions? Reach us on <githubLink>GitHub</githubLink> or X <xLink>@technoobgo</xLink> — we reply within a day."
+          },
+          "items": [
+            {
+              "q": "What is Open Prompts and how does it relate to GPT Image 2?",
+              "a": "Open Prompts is a community library of AI image prompts sourced daily from X creators. The majority of prompts are built and tested with GPT Image 2 — OpenAI's latest image model — making it the most focused prompt library for that model. Browse, copy, and generate directly in your browser, no extra setup needed."
+            },
+            {
+              "q": "Do I need to pay to browse and copy prompts?",
+              "a": "No — browsing and copying every prompt in the image prompt library is open to everyone, no account required. On-site generation uses a credit-based plan. Submitting your own prompts requires an account so we can credit your work on the leaderboard."
+            },
+            {
+              "q": "Can I use these prompts with models other than GPT Image 2?",
+              "a": "Absolutely. While most prompts are optimized for OpenAI's image model, the image prompt library also includes prompts tagged for DALL·E 3, Midjourney, and Stable Diffusion. Many templates translate well to other models with minor edits — use the model filter to explore what's available per model."
+            },
+            {
+              "q": "How often are new GPT Image 2 prompts added?",
+              "a": "New prompts are synced daily from X creators. The pipeline runs every 24 hours so the image prompt library always reflects the latest trends. You can also submit your own prompts at any time via the Submit page."
+            },
+            {
+              "q": "How do I submit my own GPT Image 2 prompt?",
+              "a": "Click Share a Prompt in the nav, sign in with X, and paste your prompt plus output image. After a quick review your entry goes live with your creator credit. Top prompts are featured on the weekly leaderboard."
+            },
+            {
+              "q": "What categories of GPT Image 2 prompts are available?",
+              "a": "The image prompt library covers portrait & photo, art styles, product & commercial, games & fantasy, scenes & environments, design & UI, and styles & eras. All categories contain community-tested prompts. Use the category tabs or search by keyword to find a specific style."
+            }
+          ]
+        },
+        "cta": {
+          "title": "Start generating with",
+          "titleEm": "GPT Image 2 today",
+          "subtitle": "Join 6,200+ creators browsing the best GPT Image 2 prompt library on the web. No account required — just browse, copy, and create.",
+          "browse": "Browse GPT Image 2 Prompts →",
+          "submit": "Submit a Prompt",
+          "note": "No account needed · {count}+ curated prompts · Daily updates from X"
+        }
+      }
+    },
+    "hero": {
+      "eyebrow": "Community · Daily Updates from X",
+      "h1Prefix": "Explore · Reuse ·",
+      "h1Em": "Create",
+      "desc": "Discover {count}+ curated GPT Image 2 prompts from real creators on X. Copy any template, remix it, and generate stunning AI images with GPT Image 2, DALL·E 3, or Midjourney — directly in your browser. No account needed to browse.",
+      "searchPlaceholder": "Search prompts, e.g. “cyberpunk”, “ink landscape”…",
+      "searchButton": "Search"
+    },
+    "stats": {
+      "prompts": "AI Prompts",
+      "members": "Members",
+      "daily": "Daily",
+      "newPrompts": "New Prompts",
+      "curated": "Curated",
+      "fromX": "From X"
+    },
+    "section": {
+      "latest": "Latest submissions",
+      "categorySub": "{category} · {subTag}"
+    },
+    "filters": {
+      "allModels": "All models",
+      "allCategories": "All",
+      "allTags": "All"
+    },
+    "gallery": {
+      "catalogLoading": "Loading…",
+      "catalogFailed": "Could not load the catalog.",
+      "retry": "Try again",
+      "loadMore": "Load more",
+      "noMore": "No more",
+      "coverLoadFailed": "Image failed to load",
+      "showing": "Showing {shown} / {total}"
+    },
+    "card": {
+      "community": "Community",
+      "generate": "Generate"
+    },
+    "footer": {
+      "tagline": "Open Prompts · Open prompt library",
+      "links": {
+        "github": "GitHub",
+        "gptGallery": "GPT Image 2 Prompts",
+        "dalleGallery": "DALL·E 3 Prompts",
+        "categories": "Categories",
+        "submit": "Submit",
+        "privacy": "Privacy"
+      }
+    },
+    "modal": {
+      "promptLabel": "Prompt",
+      "copy": "Copy",
+      "copied": "Copied",
+      "from": "From",
+      "viewSource": "View source",
+      "generateNow": "Generate now"
+    },
+    "gen": {
+      "title": "Generate from template",
+      "params": "Parameters",
+      "provider": "Provider",
+      "count": "Count",
+      "aspectRatio": "Aspect ratio",
+      "quality": "Quality",
+      "generate": "Generate",
+      "generating": "Generating…",
+      "jobLabel": "job",
+      "prompt": "Prompt",
+      "generatedImages": "Generated images",
+      "resultsPlaceholder": "Results will appear here",
+      "openDownload": "Open / download",
+      "successNoImages": "Succeeded, but no image URLs returned",
+      "failedPrefix": "Failed: ",
+      "tryAgain": "Please try again",
+      "missingPrompt": "Missing prompt",
+      "templateRenderFailed": "Template render failed",
+      "generationFailed": "Generation failed",
+      "pollingFailed": "Polling failed",
+      "createFailed": "Create failed"
+    },
+    "createPage": {
+      "seo": {
+        "title": "AI Image Generation Studio | Open Prompts",
+        "description": "Create with Open Prompts: start from curated templates, choose model and aspect ratio, generate with GPT Image, Midjourney, DALL·E, Flux, and more—session history in one studio."
+      },
+      "brandPill": "Open Prompts",
+      "templatesLabel": "TEMPLATES",
+      "searchTemplatesPlaceholder": "Search templates…",
+      "originalPromptLabel": "ORIGINAL PROMPT",
+      "promptSectionLabel": "PROMPT",
+      "enhanceButton": "✨ Enhance",
+      "promptPlaceholder": "Describe the image you want to generate…",
+      "carouselApplyTitle": "Click to apply template",
+      "carouselPromptBadge": "PROMPT",
+      "modelTitle": "Model",
+      "selectModel": "Select Model",
+      "selectImageRatio": "Select Image Ratio",
+      "qualityPopoverTitle": "Quality",
+      "qualityDefaultSuffix": " (default)",
+      "qualityActive": "Active",
+      "generateCountTitle": "Generate Count",
+      "moreOptions": "More options",
+      "moreMenuAriaLabel": "More options",
+      "providerSection": "PROVIDER",
+      "providerInternal": "Default",
+      "popularTitle": "Popular Templates",
+      "popularSubtitle": "Start faster with a template. Click to apply.",
+      "allTemplatesLink": "All Templates →",
+      "allTemplatesTitle": "All Templates",
+      "resultHistoryLabel": "RESULT & HISTORY",
+      "currentLabel": "CURRENT",
+      "historyLabel": "HISTORY",
+      "railCurrentEmpty": "No output yet. Write a prompt and click Generate — results will show up here.",
+      "railCurrentJump": "Go to generator",
+      "railHistoryEmpty": "No history yet. Successful runs are saved here in this browser only.",
+      "railJobIdle": "No active job",
+      "fullscreenTitle": "Fullscreen",
+      "downloadTitle": "Download",
+      "deleteTitle": "Delete",
+      "viewerClose": "Close",
+      "viewerPrev": "← Prev",
+      "viewerNext": "Next →",
+      "keyDialogTitle": "API Key for {provider}",
+      "keyDialogHint": "Leave empty to use the internal server key.",
+      "keyDialogPlaceholder": "Paste your API key (optional)",
+      "keyDialogCancel": "Cancel",
+      "keyDialogUseInternal": "Use internal",
+      "keyDialogSave": "Save",
+      "ratioSquare": "Square ({ratio})",
+      "ratioUltraWide": "Ultra-wide ({ratio})",
+      "ratioLandscape": "Landscape ({ratio})",
+      "ratioPortrait": "Portrait ({ratio})",
+      "githubRepoAriaLabel": "GitHub repository",
+      "githubTitle": "GitHub",
+      "hero": {
+        "title": "Better prompts Better images",
+        "titleLine1": "Better prompts",
+        "titleLine2Before": "Better ",
+        "titleLine2Em": "images",
+        "titleLine2After": "",
+        "subtitle": "Turn curated templates into production-ready images. Tune model, aspect ratio, quality, and batch size—then refine from session history without leaving the canvas.",
+        "featuresTitle": "Features",
+        "features": [
+          {
+            "t": "Structured prompt scaffolds",
+            "d": "Start from vetted templates and swap the variables that matter—subject, scene, palette, and style cues stay aligned run to run."
+          },
+          {
+            "t": "Unified control surface",
+            "d": "Provider, aspect ratio, output quality, and image count live in one strip so configuration stays fast and predictable."
+          },
+          {
+            "t": "Session-scoped history",
+            "d": "Successful runs are retained locally for instant recall, side-by-side comparison, and one-click prompt reuse."
+          }
+        ],
+        "howTitle": "How it works",
+        "howSteps": [
+          "Select a template that matches your creative direction.",
+          "Edit the prompt: keep the scaffold; personalize subject, lighting, and composition.",
+          "Set model parameters and run generation.",
+          "Review outputs and iterate from history in the same view."
+        ],
+        "whyTitle": "Why users choose Open Prompts",
+        "whyPoints": [
+          "Reduces time-to-first-frame with reusable, opinionated prompt structures.",
+          "Improves stylistic consistency by locking structure and changing only deltas.",
+          "Consolidates authoring, generation, and review in a single focused surface."
+        ],
+        "sayTitle": "What users say",
+        "says": [
+          {
+            "q": "The templates read like briefs—my prompts stopped drifting once I locked the scaffold.",
+            "a": "Independent creator"
+          },
+          {
+            "q": "Having provider, ratio, and quality in one row keeps reviews moving during tight deadlines.",
+            "a": "Brand designer"
+          },
+          {
+            "q": "Local history lets us A/B phrasing and roll back to a winning prompt in seconds.",
+            "a": "Product marketing"
+          }
+        ],
+        "faqTitle": "FAQs",
+        "faqs": [
+          {
+            "q": "What is Open Prompts?",
+            "a": "Open Prompts combines a curated prompt library with an in-browser studio for image generation—so you can start from proven structures, run against supported models, and iterate without switching tools."
+          },
+          {
+            "q": "Where should I begin?",
+            "a": "Choose the template closest to your intent, then replace subject, setting, and style cues first while preserving the overall structure."
+          },
+          {
+            "q": "How detailed should my prompt be?",
+            "a": "Lead with subject and style, then layer lighting, lens or composition, materials, and background. Add constraints only when they materially affect the output."
+          },
+          {
+            "q": "How do I keep outputs consistent?",
+            "a": "Hold the template skeleton and anchor vocabulary steady; vary only the parameters you intend to test. Reuse history entries as baselines between runs."
+          },
+          {
+            "q": "Can I use my own API key or provider?",
+            "a": "Yes. You can route requests through supported providers and supply your own credentials where the product allows it, or rely on server-side configuration for internal mode."
+          }
+        ],
+        "ctaTitle": "Ready to create?",
+        "ctaSubtitle": "Write your idea and hit Generate.",
+        "ctaButton": "Generate"
+      },
+      "internalConfig": {
+        "title": "No server-side API key configured",
+        "body": "Internal mode requires provider keys in server environment variables.",
+        "steps": [
+          "For local dev, copy `.env.example` → `.env.local`",
+          "Configure at least one provider:",
+          "- AtlasCloud: `ATLASCLOUD_BASE_URL` + `ATLASCLOUD_API_KEY`",
+          "- Replicate: `REPLICATE_API_TOKEN` + (`REPLICATE_MODEL` or `REPLICATE_VERSION`)",
+          "Restart `npm run dev` and retry"
+        ]
+      }
+    }
+  }
+}

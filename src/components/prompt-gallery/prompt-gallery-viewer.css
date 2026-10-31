@@ -1,0 +1,133 @@
+.op-viewer-overlay {
+  animation: op-viewer-fade-in 0.22s ease;
+}
+
+@keyframes op-viewer-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.op-viewer-close {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgb(255 255 255 / 0.18);
+  background: rgb(0 0 0 / 0.45);
+  color: #fff;
+  transition: background 0.16s ease;
+}
+
+.op-viewer-close:hover {
+  background: rgb(0 0 0 / 0.62);
+}
+
+.op-viewer-nav {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.14);
+  color: #fff;
+  backdrop-filter: blur(6px);
+  transition: background 0.16s ease;
+}
+
+.op-viewer-nav:hover {
+  background: rgb(255 255 255 / 0.24);
+}
+
+.op-viewer-counter {
+  border-radius: 9999px;
+  background: rgb(0 0 0 / 0.55);
+  padding: 0.35rem 0.85rem;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  color: rgb(255 255 255 / 0.92);
+  letter-spacing: 0.04em;
+}
+
+.op-viewer-strip {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.op-viewer-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.op-viewer-slide {
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  snap-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 4.5rem 4.75rem 1rem;
+}
+
+.op-viewer-frame {
+  position: relative;
+  width: min(92vw, 980px);
+  height: calc(100vh - 9.5rem);
+  max-width: min(92vw, 980px);
+  max-height: calc(100vh - 9.5rem);
+}
+
+.op-viewer-thumbs {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.op-viewer-thumbs::-webkit-scrollbar {
+  display: none;
+}
+
+.op-viewer-thumb {
+  position: relative;
+  height: 3.75rem;
+  width: auto;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 0.35rem;
+  background: rgb(0 0 0 / 0.35);
+  border: 2px solid rgb(255 255 255 / 0.22);
+  transition:
+    border-color 0.16s ease,
+    transform 0.16s ease;
+}
+
+.op-viewer-thumb:hover {
+  border-color: rgb(255 255 255 / 0.45);
+}
+
+.op-viewer-thumb.active {
+  border-color: #fff;
+  transform: scale(1.04);
+}
+
+@media (max-width: 640px) {
+  .op-viewer-slide {
+    padding: 4rem 3.25rem 0.75rem;
+  }
+
+  .op-viewer-nav {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .op-viewer-frame {
+    max-height: calc(100vh - 8.75rem);
+    max-width: 94vw;
+  }
+
+  .op-viewer-thumb {
+    height: 3rem;
+  }
+}

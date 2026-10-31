@@ -1,0 +1,1556 @@
+{
+  "IndexPage": {
+    "lang": "ja",
+    "language": "日本語",
+    "languageInChineseSimple": "日语",
+    "title": "",
+    "h1": "Open Prompts",
+    "keywords": "open prompts,prompt gallery,image prompt,template,image generation",
+    "description": "",
+    "loadingText": "読み込み中...",
+    "generateText": "生成中...",
+    "buttonText": "生成",
+    "placeholderText": "ここにテキストを入力または貼り付け...",
+    "h1Text": "SoraWebui",
+    "pDescription": "SoraWebuiは、テキストを使ってオンラインで動画を生成できるオープンソースプロジェクトで、動画作成をより簡単にします。OpenAIのSoraモデルを使用し、シンプルなワンクリックでウェブサイトを展開できます。",
+    "soraVideoExample": "Soraが作成した動画の例",
+    "prompt": "プロンプト",
+    "soraWorksTitle": "作品",
+    "soraResultTitle": "生成結果",
+    "moreExample": "その他の動画",
+    "fakeSoraTip": "FakeSora は、まだリリースされていない OpenAI Sora API をシミュレートするように設計されています。",
+    "soraTip": "OpenAIはSoraのAPIをまだリリースしていません。"
+  },
+  "footer": {
+    "lang": "ja",
+    "language": "日本語",
+    "languageInChineseSimple": "日语",
+    "title": "Unix 時間変換：epoch タイムスタンプと日付の相互変換。無料・プライバシー重視・ブラウザ内で完結。",
+    "description": "Unix 時間をオンラインで変換：秒からナノ秒まで、UTC・ローカル、ライブ epoch とコード例。",
+    "h1": "",
+    "keywords": "",
+    "loadingText": "読み込み中...",
+    "generateText": "生成中...",
+    "buttonText": "生成",
+    "placeholderText": "ここにテキストを入力または貼り付け...",
+    "pDescription": "",
+    "soraVideoExample": "",
+    "prompt": "",
+    "soraWorksTitle": "作品",
+    "soraResultTitle": "生成結果",
+    "moreExample": "その他の動画",
+    "fakeSoraTip": "",
+    "soraTip": ""
+  },
+  "privacyPolicy": {
+    "title": "プライバシーポリシー | Open Prompts",
+    "description": "Open Prompts のAI画像プロンプトギャラリーで閲覧・投稿・共有する際に、当社がどのように情報を収集・利用・保護するかをご確認ください。",
+    "h1": "プライバシーポリシー",
+    "date": "最終更新日：2024年2月19日",
+    "desc": "SoraWebuiを選んでいただきありがとうございます！このプライバシーポリシーでは、当サイトをご利用いただく際の情報の収集、利用、保護方法についてご説明します。",
+    "h4_1": "1、収集する情報：",
+    "h4_1_pa": "a. 個人データ: SoraWebuiの利用時には、注文処理のためにお名前、メールアドレス、支払い情報などを収集することがあります。",
+    "h4_1_pb": "b. 非個人データ：Webクッキーを通じて、お客様のブラウジング体験を向上させるための非個人情報を収集することがあります。",
+    "h4_2": "2、情報収集の目的：",
+    "h4_2_p": "お客様の個人データは、注文処理の目的のためにのみ収集します。",
+    "h4_3": "3、データの共有：",
+    "h4_3_p": "お客様の個人データは第三者と共有されることはありません",
+    "h4_4": "4、子供のプライバシー：",
+    "h4_4_p": "SoraWebuiは、子供からの個人データの意図的な収集は行いません。。",
+    "h4_5": "5、プライバシーポリシーの更新：",
+    "h4_5_p": "本プライバシーポリシーの更新については、メールでお知らせします。",
+    "h4_6": "6、連絡先情報：",
+    "h4_6_p": "当社のプライバシーポリシーに関するご質問やご不明な点がございましたら、お問い合わせください。"
+  },
+  "termsOfService": {
+    "title": "利用規約 | Open Prompts",
+    "description": "Open Prompts（AI画像生成プロンプトの発見・投稿・共有のためのコミュニティギャラリー）の利用規約です。",
+    "h1": "利用規約",
+    "date": "最終更新日：2024年2月19日",
+    "desc": "これらの利用規約（以下、「本規約」）は、SoraWebui（以下、「サービス」）へのアクセスおよび利用を規定し、SoraWebui（以下、「当社」または「私たち」）が提供します。サービスを利用することにより、これらの利用規約に拘束されることに同意します。",
+    "h4_1": "1、サービスの説明：",
+    "h4_1_p": "SoraWebuiは、OpenAI Soraのブラウザインタフェースを提供し、ユーザーが簡単にテキストからビデオを生成できるようにします。",
+    "h4_2": "2、所有権：",
+    "h4_2_p": "テキストから生成されたビデオの所有権は、元のユーザーにあります。",
+    "h4_3": "3、ユーザーデータ：",
+    "h4_3_p": "お客様の名前、メールアドレス、支払い情報を含むユーザーデータを収集し、保管します。このデータは、当社のプライバシーポリシーに従って処理されます。",
+    "h4_4": "4、非個人データの収集：",
+    "h4_4_p": "非個人データを収集するためにWebクッキーを使用します。詳細については、当社のプライバシーポリシーを参照してください。",
+    "h4_5": "5、プライバシーポリシー：",
+    "h4_5_p": "当社のプライバシーポリシーは、お客様の情報の収集、利用、開示方法について説明しています。サービスを利用することにより、当社のプライバシーポリシーに同意したことになります。プライバシーポリシーは以下からご確認いただけます。",
+    "h4_6": "6、準拠法：",
+    "h4_6_p": "これらの利用規約は、アメリカ合衆国の法律に準拠します。",
+    "h4_7": "7、利用規約の更新：",
+    "h4_7_p": "これらの利用規約を定期的に更新することがあります。重要な変更がある場合は、ユーザーにメールで通知します。",
+    "h4_8": "8、連絡先情報：",
+    "h4_8_p": "当社のプライバシーポリシーに関するご質問やご不明な点がございましたら、お問い合わせください。"
+  },
+  "indexQuestion": {
+    "h2_1": "Soraとは何ですか",
+    "h2_1_p1": "OpenAIのSoraモデルは、テキストから動画を生成するために設計された高度なAIです。",
+    "h2_1_p2": "テキストの説明に基づいてリアルで想像力豊かなシーンを生成し、複数のキャラクターを作成し、特定の動きやシーンの詳細を正確にシミュレーションします。",
+    "h2_1_p3": "言語理解と動画制作の面で印象的なSoraは、クリエイティブプロフェッショナルに革新のための新しいツールを提供します。",
+    "h2_1_p4": "詳細な情報は、OpenAIの公式ウェブサイトをご覧ください ",
+    "h2_2": "SoraWebuiとは何ですか",
+    "h2_2_p1": "SoraWebuiは、OpenAIのSoraモデルを使用してテキストから動画を生成するためのオープンソースのWebプラットフォームです。",
+    "h2_2_p2": "これは、動画作成プロセスを簡素化し、簡単な展開と使用ができるようにします。",
+    "h2_2_p3": "SoraWebuiを使用すると、誰でもテキストを入力するだけで動画を作成できるため、動画制作とAI技術の両方において専門家や愛好家にとってアクセスしやすいツールになります。",
+    "h2_2_p4a": "詳細については、SoraWebuiのウェブサイトをご覧ください ",
+    "h2_2_p4b": " またはGitHubリポジトリ ",
+    "h2_0": "FAQs",
+    "h2_2_p3a": "Human-readable: JSON is written in a format that is easy for humans to understand and edit.",
+    "h2_2_p3b": "Language-independent: JSON is not tied to any specific programming language, making it suitable for use with a variety of technologies.",
+    "h2_2_p3c": "Data types: JSON supports a variety of data types, including strings, numbers, booleans, arrays, and objects. ",
+    "h2_2_p3d": "Hierarchical structure: JSON can be organized into hierarchical structures using objects and arrays. ",
+    "h2_2_p3e": "Lightweight: JSON is a compact data format that is efficient to transmit and store. "
+  },
+  "videosPage": {
+    "title": "動画：Soraによって生成されたサンプル動画、Soraによって生成された最新動画。",
+    "description": "サンプル動画、Soraによって生成された最新動画。 | sorawebui.com"
+  },
+  "worksPage": {
+    "title": "作品: 生成した動画履歴",
+    "description": "生成した動画履歴| sorawebui.com",
+    "h1Text": "SoraWebui - 作品",
+    "pDescription": "SoraWebui は、オープンソースのプロジェクトで、テキストを使用して OpenAI の Sora モデルを使用してオンラインでビデオを生成することを可能にし、簡単なワンクリックのウェブサイトの展開を特色としています。",
+    "generateNew": "新たに生成"
+  },
+  "playgroundPage": {
+    "title": "プレイグラウンド: 簡単に動画を生成",
+    "description": "簡単に動画を生成| sorawebui.com",
+    "h1Text": "SoraWebui - プレイグラウンド",
+    "pDescription": "SoraWebui は、オープンソースのプロジェクトで、テキストを使用して OpenAI の Sora モデルを使用してオンラインでビデオを生成することを可能にし、簡単なワンクリックのウェブサイトの展開を特色としています。",
+    "moreWorks": "その他の作品"
+  },
+  "timestampPage": {
+    "title": "Unix Time Converter | Free Online Epoch & Date Converter",
+    "description": "Convert Unix timestamps to dates and dates to Unix time online. Supports seconds, milliseconds, microseconds, and nanoseconds. Free, fast, and private.",
+    "keywords": "unix time converter,epoch converter,timestamp to date,date to timestamp,unix timestamp,posix time",
+    "h1": "Timestamp Converter",
+    "h2_1": "Convert timestamp to date",
+    "h2_2": "Convert date to timestamp",
+    "pick_date": "Pick date:",
+    "convert": "Convert",
+    "section_timestamp_to_date": "Timestamp to date",
+    "current_unix_epoch": "Current Unix epoch",
+    "units_hint": "Units: auto · s · ms · μs · ns",
+    "enter_timestamp_placeholder": "Enter timestamp",
+    "unit_auto": "auto",
+    "unit_seconds": "seconds",
+    "unit_milliseconds": "milliseconds",
+    "unit_microseconds": "microseconds (μs)",
+    "unit_nanoseconds": "nanoseconds",
+    "label_local": "Local",
+    "label_utc": "UTC",
+    "label_seconds": "Seconds",
+    "label_millis": "Millis",
+    "label_micros": "Micros",
+    "label_nanos": "Nanos",
+    "invalid_timestamp": "Invalid timestamp value.",
+    "invalid_date": "Invalid date input.",
+    "what_is_unix_timestamp_title": "What is Unix timestamp?",
+    "what_is_unix_timestamp_p1": "A Unix timestamp (also called Unix time or POSIX time) is the number of seconds since 1970-01-01 00:00:00 UTC.",
+    "what_is_unix_timestamp_p2": "It is a convenient way to store and compare time values across systems. Most systems treat it as a continuous count of seconds and do not count leap seconds.",
+    "what_is_unix_timestamp_p3": "Some 32-bit systems overflow in 2038 (the Year 2038 problem).",
+    "code_examples_title": "Code examples",
+    "code_examples_desc": "Get current epoch time and convert an epoch timestamp to a human-readable date (replace the example value with yours).",
+    "seo_hero_title": "Unix Time Converter Online",
+    "seo_hero_description": "Free Unix time converter for epoch ↔ date: seconds through nanoseconds, live Unix epoch, UTC and local views, plus copy-paste snippets. Private, fast, and built for logs, APIs, and debugging.",
+    "seo_features_title": "Why this Unix time converter stands out",
+    "seo_feature_1_title": "Two-way Unix time conversion",
+    "seo_feature_1_desc": "Map epoch numbers to local and UTC datetime, or pick a calendar time to export Unix time in the precision your stack expects.",
+    "seo_feature_2_title": "Units for every timestamp",
+    "seo_feature_2_desc": "Auto-detect or set seconds, milliseconds, microseconds, or nanoseconds so epoch values from APIs and databases line up without guesswork.",
+    "seo_feature_3_title": "Live Unix epoch",
+    "seo_feature_3_desc": "Watch the current Unix epoch tick beside the form so you always see “now” next to the values you convert.",
+    "seo_feature_4_title": "Code-ready output",
+    "seo_feature_4_desc": "JavaScript, Python, Go, SQL, and shell snippets mirror the on-screen Unix time conversion in your repo.",
+    "seo_how_title": "How it works",
+    "seo_how_step_1_title": "Paste or type Unix time",
+    "seo_how_step_1_desc": "Enter a numeric Unix timestamp, choose a unit, or rely on auto-detect from digit length for quick conversion.",
+    "seo_how_step_2_title": "Pick a date and time",
+    "seo_how_step_2_desc": "Use the picker to turn a calendar moment into epoch seconds, milliseconds, and more—ideal when you start from human-readable dates.",
+    "seo_how_step_3_title": "Read every representation",
+    "seo_how_step_3_desc": "Compare local time, UTC, and raw epoch side by side for debugging, QA, and API checks.",
+    "seo_why_title": "Why developers use this tool",
+    "seo_why_1_title": "Private by design",
+    "seo_why_1_desc": "Runs client-side in your browser—inputs are not stored on our servers.",
+    "seo_why_2_title": "Built for real timestamps",
+    "seo_why_2_desc": "Millisecond and microsecond values from logs and JSON fit naturally in this timestamp converter workflow.",
+    "seo_why_3_title": "Ship faster",
+    "seo_why_3_desc": "Inline examples reinforce the on-screen epoch converter output so engineers can mirror the same logic in code.",
+    "seo_testimonials_title": "What users say",
+    "seo_testimonial_1_name": "Alex",
+    "seo_testimonial_1_role": "Backend developer",
+    "seo_testimonial_1_quote": "Perfect for quick checks on log lines and API responses—my go-to epoch converter in the browser.",
+    "seo_testimonial_2_name": "Jamie",
+    "seo_testimonial_2_role": "SRE",
+    "seo_testimonial_2_quote": "The unit switch saves me from guessing ms vs seconds when incidents spike.",
+    "seo_testimonial_3_name": "Riley",
+    "seo_testimonial_3_role": "Student",
+    "seo_testimonial_3_quote": "Clear layout and examples helped me grok Unix time faster than docs alone.",
+    "seo_faq_title": "FAQs",
+    "seo_faq_q1": "What is a Unix timestamp?",
+    "seo_faq_a1": "It counts from the Unix epoch (1970-01-01 00:00:00 UTC), usually in seconds or finer units—exactly what this Unix time converter displays beside local and UTC.",
+    "seo_faq_q2": "Why are some values 13 digits?",
+    "seo_faq_a2": "That is often milliseconds since epoch, common in JavaScript (e.g. Date.now()). The tool accepts those lengths automatically.",
+    "seo_faq_q3": "Is this tool free?",
+    "seo_faq_a3": "Yes. Use it online without signing up; conversion stays in your session.",
+    "seo_faq_q4": "How are time zones handled?",
+    "seo_faq_a4": "Local time uses your browser settings; UTC and raw epoch values appear together for every result.",
+    "seo_faq_q5": "What about the year 2038 problem?",
+    "seo_faq_a5": "32-bit signed seconds overflow around 2038; prefer 64-bit time or finer units for far-future dates.",
+    "seo_cta_title": "Ready to convert?",
+    "seo_cta_desc": "Jump back to the Unix time converter at the top of this page for another epoch or date conversion.",
+    "seo_cta_button": "Go to converter"
+  },
+  "jsonEditorPage": {
+    "title": "JSONフォーマッター: JSONをオンラインでフォーマット、検証、比較",
+    "description": "JSON、JSONファイル、JSONレスポンスをオンラインでフォーマット。JSONファイルをアップロードし、数秒でJSONファイルをフォーマットして、フォーマットされたJSONファイルをダウンロードします。",
+    "keywords": "JSONエディター,JSONフォーマット,JSONフォーマット,オンラインJSONフォーマット,JSONフォーマットチェッカー,JSONをきれいにフォーマット,JSONチェッカーフォーマット,JSONきれいなフォーマット,フォーマットされたJSON,JSONフォーマットを確認,JSONテキストフォーマット,JSONフォーマットオンライン,JSONを文字列に,JSONフォーマット検証",
+    "h1": "JSONを即座にフォーマット、検証、美化 | 無料オンライン",
+    "h1_desc": "強力なJSONフォーマッターを使用して、JSONデータをフォーマット、検証、美化します。このJSONフォーマッターは、構文ハイライト、きれいな印刷、最小化、リアルタイム検証をサポートしています。JSONファイルをアップロードするか、JSONテキストを貼り付けてください - 当社のJSONフォーマッターはブラウザで即座に動作します。",
+    "format": "フォーマット",
+    "compact": "圧縮",
+    "upload": "アップロード",
+    "download": "ダウンロード",
+    "clear": "クリア",
+    "auto_format": "自動フォーマット",
+    "compare": "比較",
+    "close_compare": "比較を閉じる",
+    "problem": "問題",
+    "h1Text": "SoraWebui - 作品",
+    "pDescription": "SoraWebuiは、テキストを使用してOpenAIのSoraモデルでオンラインでビデオを生成できるオープンソースプロジェクトで、簡単なワンクリックのウェブサイト展開を特徴としています。",
+    "generateNew": "新規生成",
+    "h2": "JSONフォーマッター",
+    "h2_desc": "JSONフォーマッターは、JSONを明確で読みやすい方法でフォーマットするのに役立つツールです。JSONとJSONファイルの両方をフォーマットするために使用できます。",
+    "h2_h3": "機能",
+    "h2_h3_l1": "構文ハイライト: JSONフォーマッターは構文ハイライトを使用してJSONを読みやすくします。",
+    "h2_h3_l2": "きれいな印刷: JSONフォーマッターはJSONをきれいに印刷でき、データの構造を簡単に確認できます。",
+    "h2_h3_l3": "検証: JSONフォーマッターはJSONを検証して、有効なJSONであることを確認できます。",
+    "h2_h3_l4": "最小化: JSONフォーマッターはJSONを最小化し、サイズを削減できます。",
+    "h2_h3_l5": "JSONファイルフォーマット: JSONフォーマッターは、JSONファイルをアップロードしてフォーマットし、フォーマットされたJSONファイルをダウンロードすることをサポートしています。",
+    "h2_h3_1": "JSONフォーマッターの使用方法は？",
+    "h2_h3_1_l1": "JSONを入力フィールドにコピーして貼り付けるか、JSONファイルをアップロードします。",
+    "h2_h3_1_l2": "をクリックします",
+    "h2_h3_1_l2_1": "フォーマット ",
+    "h2_h3_1_l2_2": "ボタン。",
+    "h2_h3_1_l3": "フォーマットされたJSONがテキストボックスに表示されます。",
+    "h2_h3_2": "JSONフォーマットの例",
+    "h2_1": "JSONバリデーター",
+    "h2_1_desc": "JSONバリデーターは、JSONを検証して有効なJSONであることを確認するのに役立つツールです。JSONとJSONファイルの両方を検証するために使用できます。",
+    "h2_1_h3": "機能",
+    "h2_1_h3_l1": "構文検証: JSONバリデーターはJSONの構文をチェックして、有効なJSONであることを確認します。",
+    "h2_1_h3_l2": "スキーマ検証: JSONバリデーターは、JSONスキーマに対してJSONを検証することもできます。",
+    "h2_1_h3_l3": "エラー報告: JSONバリデーターは、JSONが無効な場合に詳細なエラーメッセージを提供します。",
+    "h2_1_h3_l4": "JSONファイル検証: JSONフォーマッターは、JSONファイルをアップロードして検証し、検証されたJSONファイルをダウンロードすることをサポートしています。",
+    "features_title": "主な機能",
+    "features_desc": "当社のJSONフォーマッターは、JSONを効率的に操作するのに役立つ強力な機能を提供します。",
+    "feature_1_title": "構文ハイライト",
+    "feature_1_desc": "JSONフォーマッターは高度な構文ハイライトを使用して、JSONデータを読みやすく理解しやすくします。",
+    "feature_2_title": "きれいな印刷",
+    "feature_2_desc": "当社のJSONフォーマッターを使用して、適切なインデントと改行でJSONをフォーマットし、読みやすさを向上させます。",
+    "feature_3_title": "リアルタイム検証",
+    "feature_3_desc": "当社のJSONフォーマッターでJSON構文を即座に検証し、問題が発生する前にエラーをキャッチします。",
+    "feature_4_title": "最小化",
+    "feature_4_desc": "当社のJSONフォーマッターの最小化機能でJSONファイルを効率的に圧縮します。",
+    "feature_5_title": "ファイルサポート",
+    "feature_5_desc": "当社のJSONフォーマッターツールでJSONファイルをシームレスにアップロードおよびダウンロードします。",
+    "feature_6_title": "自動フォーマット",
+    "feature_6_desc": "当社のJSONフォーマッターで自動フォーマットを有効にして、コードを自動的にクリーンに保ちます。",
+    "howItWorks_title": "使い方",
+    "howItWorks_desc": "当社のJSONフォーマッターの使用は簡単でわかりやすいです。以下の手順に従ってJSONデータをフォーマットします。",
+    "howItWorks_step1": "JSONデータをエディターに貼り付けるか、アップロードボタンを使用してJSONファイルをアップロードします。",
+    "howItWorks_step2": "フォーマットボタンをクリックして、適切なインデントでJSONを美化するか、リアルタイムフォーマットには自動フォーマットを使用します。",
+    "howItWorks_step3": "JSONフォーマッターはデータを検証し、エラーが見つかった場合は表示します。",
+    "howItWorks_step4": "フォーマットされたJSONファイルをダウンロードするか、エディターから直接コピーします。",
+    "testimonials_title": "ユーザーの声",
+    "testimonial_1_name": "Sarah Chen",
+    "testimonial_1_role": "フロントエンド開発者",
+    "testimonial_1_text": "このJSONフォーマッターは、私の日常業務において不可欠なツールになりました。高速で信頼性が高く、構文ハイライトによりデバッグがはるかに簡単になります。",
+    "testimonial_2_name": "Michael Rodriguez",
+    "testimonial_2_role": "API開発者",
+    "testimonial_2_text": "APIレスポンスを検証するために、このJSONフォーマッターを毎日使用しています。リアルタイム検証機能により、デバッグ時間を何時間も節約できます。",
+    "testimonial_3_name": "Emily Watson",
+    "testimonial_3_role": "データアナリスト",
+    "testimonial_3_text": "私が使用した中で最高のJSONフォーマッターです。ファイルアップロード機能と自動フォーマットにより、大きなJSONファイルの操作が簡単になります。",
+    "faq_title": "よくある質問",
+    "faq_q1": "JSONフォーマッターとは何ですか？",
+    "faq_a1": "JSONフォーマッターは、適切なインデント、改行、スペースを追加してJSONデータをより読みやすくフォーマットするツールです。当社のJSONフォーマッターは、JSONデータの検証と美化も行います。",
+    "faq_q2": "このJSONフォーマッターは無料で使用できますか？",
+    "faq_a2": "はい、当社のJSONフォーマッターは完全に無料です。制限なくJSONデータをフォーマット、検証、最小化できます。",
+    "faq_q3": "JSONファイルをフォーマッターにアップロードできますか？",
+    "faq_a3": "もちろんです！当社のJSONフォーマッターはファイルアップロードをサポートしています。アップロードボタンをクリックしてJSONファイルを選択するだけで、即座にフォーマットされます。",
+    "faq_q4": "JSONフォーマッターはデータを検証しますか？",
+    "faq_a4": "はい、当社のJSONフォーマッターには、JSON構文をチェックし、エラーを即座に報告するリアルタイム検証が含まれています。",
+    "faq_q5": "フォーマットされたJSONファイルをダウンロードできますか？",
+    "faq_a5": "はい、当社のJSONフォーマッターでJSONをフォーマットした後、ダウンロードボタンを使用してフォーマットされたファイルをダウンロードできます。"
+  },
+  "jsonComparePage": {
+    "title": "JSONをオンラインで比較",
+    "description": "JSONまたは任意のテキストをオンラインで比較します。",
+    "keywords": "JSON比較,テキスト比較JSON,JSON差分,JSONオンライン比較,JSON比較オンライン,オンラインJSON比較,JSON比較,テキスト差分",
+    "h1": "JSONをオンラインで比較、以下にJSONを貼り付けてください：",
+    "format": "フォーマット",
+    "compact": "圧縮",
+    "h1Text": "SoraWebui - プレイグラウンド",
+    "pDescription": "SoraWebuiは、テキストを使用してOpenAIのSoraモデルでオンラインでビデオを生成できるオープンソースプロジェクトで、簡単なワンクリックのウェブサイト展開を特徴としています。",
+    "moreWorks": "その他の作品"
+  },
+  "OpenPrompts": {
+    "header": {
+      "language": "言語",
+      "themeToggle": "ライト/ダークを切り替え",
+      "themeToLight": "ライトモードへ",
+      "themeToDark": "ダークモードへ",
+      "signIn": "ログイン",
+      "signOut": "ログアウト",
+      "userMenu": "アカウントメニュー",
+      "userMenuSection": "ダッシュボード",
+      "displayNameFallback": "ユーザー"
+    },
+    "nav": {
+      "home": "ホーム",
+      "gallery": "画像",
+      "motion": "モーション",
+      "categories": "カテゴリ",
+      "create": "作成",
+      "favorites": "お気に入り",
+      "submit": "共有",
+      "account": "アカウント",
+      "rank": "ランキング",
+      "docs": "ドキュメント",
+      "submitCta": "プロンプトを共有"
+    },
+    "submitPage": {
+      "seo": {
+        "title": "AI画像プロンプトを投稿 | Open Prompts",
+        "description": "Midjourney、DALL·E、GPT Image、Flux、Stable Diffusion などのプロンプトテンプレートを共有。公開画像プロンプト集審査または非公開保存。無料の投稿ガイドとヒント。",
+        "keywords": "AIプロンプト投稿, 画像プロンプト, Midjourney プロンプト, DALL-E テンプレート, GPT Image プロンプト, プロンプト投稿ガイド"
+      },
+      "xImport": {
+        "title": "X からクイック取り込み",
+        "desc": "公開ツイートの URL（x.com / twitter.com）を貼ると、タイトル・説明・本文・画像 URL・出典・@作者（取得できる場合）を自動入力します。",
+        "placeholder": "https://x.com/username/status/…",
+        "button": "ツイートを解析",
+        "busy": "解析中…",
+        "success": "ツイートから取り込みました。内容を確認して続行してください。",
+        "errorGeneric": "このリンクは取り込めませんでした。",
+        "errorNotTweet": "ツイートの URL（例: x.com/user/status/123…）を入力してください。",
+        "errorDuplicate": "このツイートは既に登録されています。下の案内を確認してください。",
+        "duplicateHint": "「{title}」（{status}）として既に提出されています。重複提出は避けてください。",
+        "duplicateLink": "既存の出典を開く",
+        "duplicateSubmitBlocked": "この X 投稿は既に「{title}」として存在します。別のツイートを使うか、既存テンプレートを編集してください。",
+        "duplicateStatus": {
+          "approved": "公開済み",
+          "pending": "審査中",
+          "rejected": "却下",
+          "draft": "下書き"
+        }
+      },
+      "wizard": {
+        "eyebrow": "プロンプト投稿",
+        "title": "クリエイティブな",
+        "titleEm": "プロンプト",
+        "subtitle": "2ステップで入力。審査後に画像プロンプト集へ掲載できます。",
+        "subtitleSimple": "1ページで入力 — テンプレに必要な項目だけ。準備ができたら提出。"
+      },
+      "chooser": {
+        "eyebrow": "プロンプトを投稿",
+        "title": "どのように",
+        "titleEm": "共有しますか？",
+        "subtitleLine1": "公開プロンプトはコミュニティ審査キューに入ります。",
+        "subtitleLine2": "非公開テンプレートは即時保存され、自分だけが閲覧できます。",
+        "publicKicker": "公開",
+        "publicTitle": "公開画像プロンプト集",
+        "publicDesc": "コミュニティ審査に提出。承認後は公開画像プロンプト集に掲載され、投票を集め、プロフィールに帰属表示されます。",
+        "publicFeat1": "公開ディレクトリに掲載",
+        "publicFeat2": "投票・フォーク・コメント",
+        "publicFeat3": "プロフィールに帰属表示",
+        "publicFeat4": "管理者による審査（約48時間）",
+        "publicFeatNo": "即時公開（審査が必要）",
+        "publicCta": "公開で投稿",
+        "privateKicker": "非公開",
+        "privateTitle": "非公開のみ",
+        "privateDesc": "アカウントに即時保存。画像プロンプト集非掲載。準備ができたら秘密リンクで共有、または自分だけで保管。",
+        "privateFeat1": "自分だけが閲覧可能",
+        "privateFeat2": "審査なし — 即時保存",
+        "privateFeat3": "いつでも秘密リンクで共有",
+        "privateFeat4": "いつでも公開に変更可能",
+        "privateFeatNo": "ログインが必要",
+        "privateCta": "非公開で投稿",
+        "signInNote": "非公開テンプレートはログインが必要です。",
+        "back": "← 投稿方法を変更",
+        "compareDivider": "機能比較",
+        "compareFeature": "機能",
+        "comparePublic": "公開",
+        "comparePrivate": "非公開",
+        "compareRow1": "画像プロンプト集掲載",
+        "compareRow2": "投票とコメント",
+        "compareRow3": "プロフィール帰属",
+        "compareRow4": "他者によるフォーク",
+        "compareRow5": "即時保存（審査なし）",
+        "compareRow6": "秘密リンクで共有",
+        "compareRow7": "後から公開",
+        "comparePublic1": "y",
+        "comparePublic2": "y",
+        "comparePublic3": "y",
+        "comparePublic4": "y",
+        "comparePublic5": "n",
+        "comparePublic6": "n",
+        "comparePublic7": "n",
+        "comparePrivate1": "n",
+        "comparePrivate2": "n",
+        "comparePrivate3": "n",
+        "comparePrivate4": "n",
+        "comparePrivate5": "y",
+        "comparePrivate6": "y",
+        "comparePrivate7": "y"
+      },
+      "guide": {
+        "title": "Open Prompts へのプロンプト投稿方法",
+        "intro": "プロンプト本文、対象モデル、タグ、任意のプレビュー画像を入力します。公開投稿は掲載前に審査されます。",
+        "guideKicker": "投稿ガイド",
+        "howTitle": "流れ",
+        "howTitleLine1": "投稿の",
+        "howTitleLine2": "流れ",
+        "step1Title": "公開か非公開かを選ぶ",
+        "step1Desc": "公開プロンプトは審査キューに入り、承認後画像プロンプト集に掲載されます。非公開テンプレートは即時保存され、自分だけが閲覧できます。",
+        "step2Title": "テンプレートフォームを入力",
+        "step2Desc": "わかりやすいタイトル、短い説明、プロンプト全文、対象モデル（Midjourney、DALL·E、GPT Image、Flux など）、カテゴリ、タグ、任意のプレビュー URL を入力します。",
+        "step3Title": "提出してステータスを確認",
+        "step3Desc": "公開エントリは審査待ちから始まります。アカウントの「マイテンプレート」で状態を確認。承認後は画像プロンプト集ですぐ閲覧できます。",
+        "step4Title": "良い投稿のヒント",
+        "step4DescBefore": "cinematic、portrait、anime など 2〜8 個の具体的タグを使い、",
+        "step4Code": "--ar 16:9",
+        "step4DescAfter": " などモデル固有のフラグを含めましょう。英語プロンプトが最も効果的です。プレビュー画像はクリック率を大きく向上させます。",
+        "fieldsTitle": "各投稿に含める内容",
+        "field1": "タイトル — 短く検索しやすい名前（50 文字以内）。",
+        "field2": "説明 — ビジュアルスタイルや用途を 1 行で。",
+        "field3": "プロンプト本文 — 画像モデルで使う全文（アスペクト比などのパラメータ含む）。",
+        "field4": "プレビュー画像 — 出力例の URL またはアップロード（審査とクリック率向上に有効）。",
+        "visibilityTitle": "公開と非公開",
+        "visibilityPublic": "公開画像プロンプト集：無料で投稿。テンプレートは掲載前に審査されます。承認された公開プロンプトのみコミュニティ画像プロンプト集に表示されます。",
+        "visibilityPrivate": "非公開のみ：ログイン必須。マイテンプレートに保存され審査キューには入りません — 個人ライブラリや下書き向け。",
+        "tipsTitle": "より良い投稿のヒント",
+        "tip1": "可能なら英語でプロンプトを書く — 多くのモデルと検索は英語が最適です。",
+        "tip2": "2〜8 個の具体的タグ（cinematic、portrait、anime など）と 1 つのスタイルカテゴリを使う。",
+        "tip3": "ツイートから取り込んだ場合は X/Twitter の出典 URL を貼る — 取得できれば作者をクレジットします。",
+        "tip4": "モデルが理解するアスペクト比や品質ヒントを含める（例: Midjourney の --ar 16:9）。",
+        "faqTitle": "よくある質問",
+        "faqKicker": "FAQ",
+        "faqTitleLine1": "よくある",
+        "faqTitleLine2": "質問",
+        "faq1q": "投稿は無料ですか？",
+        "faq1a": "はい — 公開・非公開とも完全無料です。非公開テンプレートのみ登録アカウントが必要です。",
+        "faq2q": "審査にはどのくらいかかりますか？",
+        "faq2a": "公開投稿は通常 48 時間以内に審査されます。掲載時に通知を受け取れます。",
+        "faq3q": "提出後に公開設定を変更できますか？",
+        "faq3a": "はい。非公開プロンプトはダッシュボードからいつでも公開できます。公開プロンプトは依頼により非掲載にできます。",
+        "faq4q": "公開プロンプトのライセンスは？",
+        "faq4a": "公開プロンプトは CC BY 4.0 で共有されます — 帰属表示があれば誰でも利用・改変・二次創作できます。作者クレジットは保持されます。",
+        "faq5q": "どの AI モデルに対応していますか？",
+        "faq5a": "Midjourney、DALL·E 3、GPT Image 1 と 2、Flux、Stable Diffusion、Adobe Firefly などに対応しています。",
+        "ctaSubmit": "投稿を始める",
+        "ctaGallery": "画像を見る"
+      },
+      "privateMode": {
+        "eyebrow": "新規テンプレート",
+        "title": "非公開テンプレートを",
+        "titleEm": "作成",
+        "subtitle": "画像プロンプト集投稿と同じフォーム。非公開のみ保存（掲載なし・審査キューなし）。",
+        "hint": "「マイテンプレート」にのみ表示されます。画像プロンプト集公開は後から可視性を変更するか、公開投稿をご利用ください。",
+        "submit": "非公開で保存",
+        "successTitle": "非公開テンプレートを",
+        "successTitleEm": "保存しました",
+        "successBody": "アカウントのマイテンプレートにあります。公開画像プロンプト集には表示されません。",
+        "goToMyTemplates": "マイテンプレート →",
+        "createAnother": "もう一件作成"
+      },
+      "editMode": {
+        "eyebrow": "テンプレート編集",
+        "title": "テンプレートを",
+        "titleEm": "更新",
+        "subtitle": "投稿と同じエディタ。公開設定は保存時のまま（変更はアカウントから）。",
+        "loading": "テンプレートを読み込み中…",
+        "loadFailed": "テンプレートを読み込めませんでした。",
+        "backToTemplates": "← マイテンプレート",
+        "save": "変更を保存",
+        "successTitle": "テンプレートを",
+        "successTitleEm": "更新しました",
+        "successBody": "変更を保存しました。非公開・下書きは公開設定を変えない限り画像プロンプト集に出ません。",
+        "continueEdit": "編集を続ける"
+      },
+      "info": {
+        "body": "英語のプロンプトが最も安定します。{ar} や {v} などのパラメータ記法に対応。",
+        "ar": "--ar 16:9",
+        "v": "--v 6",
+        "link": "執筆ガイド →"
+      },
+      "labels": {
+        "templateTitle": "テンプレート名",
+        "shortDesc": "短い説明",
+        "model": "対象モデル",
+        "prompt": "プロンプト本文",
+        "category": "スタイル分類",
+        "aspectRatio": "アスペクト比",
+        "quality": "品質プリセット",
+        "tags": "タグ",
+        "visibility": "公開範囲",
+        "sourceUrl": "出典リンク",
+        "author": "作者 / 投稿者",
+        "upload": "プレビュー画像をアップロード",
+        "imageUrls": "または画像 URL"
+      },
+      "hints": {
+        "title": "50文字以内で簡潔に",
+        "desc": "効果を一言で",
+        "promptCount": "{count} 文字",
+        "tags": "2〜8個、Enter で確定",
+        "source": "X、Reddit、個人サイトなど",
+        "author": "任意、クレジット表示",
+        "upload": "最大8枚、PNG/JPG、各10MB以下",
+        "uploadFull": "上限に達しました — 削除してから追加",
+        "urls": "1件ずつ · Enter または追加",
+        "imageCount": "{count} / {max} 枚"
+      },
+      "placeholders": {
+        "title": "例：Cinematic sunset portrait",
+        "desc": "例：ゴールデンアワーのドラマチックな肖像…",
+        "prompt": "A breathtaking cinematic portrait…",
+        "source": "https://x.com/…",
+        "author": "@username または氏名",
+        "urls": "https://cdn.example.com/preview.jpg",
+        "tagInput": "入力して Enter…",
+        "category": "カテゴリを選択…"
+      },
+      "models": {
+        "gptImage2": {
+          "name": "GPT Image 2",
+          "tag": "OpenAI"
+        },
+        "midjourney": {
+          "name": "Midjourney",
+          "tag": "v6"
+        },
+        "dalle3": {
+          "name": "DALL·E 3",
+          "tag": "OpenAI"
+        },
+        "flux": {
+          "name": "Flux 1.1 Pro",
+          "tag": "BFL"
+        },
+        "sd": {
+          "name": "Stable Diffusion",
+          "tag": "XL"
+        },
+        "ideogram": {
+          "name": "Ideogram",
+          "tag": "v3"
+        }
+      },
+      "modelValues": {
+        "gptImage2": "GPT Image 2",
+        "midjourney": "Midjourney v6",
+        "dalle3": "DALL·E 3",
+        "flux": "Flux 1.1 Pro",
+        "sd": "Stable Diffusion",
+        "ideogram": "Ideogram v3"
+      },
+      "categories": {
+        "artStyles": "アートスタイル",
+        "portraitPhoto": "写真・ポートレート",
+        "designUi": "デザイン & UI",
+        "gameFantasy": "ゲーム & ファンタジー",
+        "scenes": "シーン & 環境",
+        "productCommercial": "プロダクト & 商用",
+        "styleEra": "スタイル & 時代"
+      },
+      "subTags": {
+        "illustration": "イラスト",
+        "concept_art": "コンセプトアート",
+        "anime": "アニメ",
+        "manga": "マンガ",
+        "watercolor": "水彩",
+        "sketch": "スケッチ",
+        "surrealism": "シュールレアリスム",
+        "minimalism": "ミニマル",
+        "chinese_painting": "中国画",
+        "storybook": "絵本",
+        "graphic_novel": "グラフィックノベル",
+        "portrait": "ポートレート",
+        "fashion_photography": "ファッション写真",
+        "fashion_model": "ファッションモデル",
+        "photorealistic": "フォトリアル",
+        "editorial": "エディトリアル",
+        "documentary_photography": "ドキュメンタリー",
+        "ui": "UI",
+        "app_ui": "アプリ UI",
+        "poster": "ポスター",
+        "flyer": "フライヤー",
+        "magazine_cover": "雑誌カバー",
+        "diagram": "図解",
+        "storyboard": "絵コンテ",
+        "architecture": "建築",
+        "web_design": "Web デザイン",
+        "game_asset": "ゲームアセット",
+        "fantasy": "ファンタジー",
+        "character_design": "キャラクターデザイン",
+        "sci_fi": "SF",
+        "alien": "エイリアン",
+        "landscape": "風景",
+        "cityscape": "都市風景",
+        "cinematic": "シネマティック",
+        "environment": "環境",
+        "product": "プロダクト",
+        "commercial": "コマーシャル",
+        "e_commerce_banner": "EC バナー",
+        "brand": "ブランド",
+        "vintage": "ヴィンテージ",
+        "monochrome": "モノクロ",
+        "retro": "レトロ",
+        "film": "フィルム",
+        "abstract": "抽象"
+      },
+      "ratios": {
+        "1_1": "1:1",
+        "16_9": "16:9",
+        "9_16": "9:16",
+        "4_3": "4:3",
+        "3_2": "3:2",
+        "21_9": "21:9",
+        "custom": "カスタム"
+      },
+      "qualities": {
+        "fast": "⚡ 高速プレビュー",
+        "standard": "✦ 標準",
+        "high": "💎 高品質"
+      },
+      "visibility": {
+        "publicTitle": "🌐 公開",
+        "publicDesc": "全員に表示",
+        "privateTitle": "🔒 自分のみ",
+        "privateDesc": "画像プロンプト集に出さない"
+      },
+      "quickTags": [
+        "Illustration",
+        "Portrait",
+        "Photorealistic",
+        "Fantasy",
+        "Cinematic",
+        "Editorial",
+        "Anime",
+        "Vintage"
+      ],
+      "buttons": {
+        "nextTags": "次へ：カテゴリ・タグ・投稿",
+        "back": "戻る",
+        "submit": "審査に提出",
+        "submitting": "送信中…",
+        "browseGallery": "画像へ →",
+        "submitAnother": "もう一件投稿",
+        "myTemplates": "マイテンプレート",
+        "detectSource": "自動検出",
+        "copyPrompt": "コピー",
+        "copied": "コピー済み",
+        "addUrl": "追加",
+        "removeImage": "画像を削除"
+      },
+      "stepHint": "ステップ {n} / {total}",
+      "preview": {
+        "paneTitle": "カードプレビュー",
+        "live": "ライブ同期",
+        "titleEmpty": "タイトルがここに表示",
+        "descEmpty": "短い説明…",
+        "promptEmpty": "左側にプロンプトを入力…",
+        "uploadPlaceholder": "画像をアップロードすると表示",
+        "categoryFallback": "カテゴリ",
+        "generateCta": "生成 →"
+      },
+      "qualityCheck": "品質チェック",
+      "validation": {
+        "needTitle": "テンプレート名を入力してください。",
+        "needPrompt": "プロンプトは10文字以上にしてください。",
+        "needCategory": "スタイル分類を選んでください。",
+        "needTags": "タグは2〜8個にしてください。",
+        "submitFailed": "保存に失敗しました。しばらくしてから再度お試しください。",
+        "submitUnavailable": "現在投稿を受け付けられません（データベース未設定）。",
+        "invalidImageUrl": "有効な http(s) 画像 URL を入力してください。",
+        "duplicateImageUrl": "この URL は既に追加されています。",
+        "imageLimit": "画像は最大8枚までです。"
+      },
+      "rules": {
+        "promptLen": "プロンプト 10文字以上",
+        "title": "タイトル入力済み",
+        "model": "モデル選択済み",
+        "category": "カテゴリ選択済み",
+        "tags": "タグ 2〜8 個",
+        "images": "画像 1 枚以上"
+      },
+      "guidelines": {
+        "dividerSubmit": "投稿について",
+        "dividerImages": "結果画像",
+        "requirementsTitle": "要件",
+        "requirementsList": [
+          "英語・10文字以上（上限なし）",
+          "生成結果の画像を1枚以上",
+          "正確なタイトルと説明",
+          "1日あたり最大20件まで"
+        ],
+        "rejectedTitle": "受け付けない内容",
+        "rejectedList": [
+          "不適切・暴力的・ヘイトな内容",
+          "著作権・商標の侵害",
+          "既存と重複する投稿",
+          "虚偽情報や悪用目的のディープフェイク"
+        ]
+      },
+      "success": {
+        "title": "送信",
+        "titleEm": "完了",
+        "body": "審査キューに入りました。通常24時間以内に確認します。承認後画像プロンプト集に表示されます。",
+        "bodySignedOut": "審査キューに入りました。次回はログインしてから投稿すると「マイテンプレート」で状態を確認できます。未ログインの投稿はアカウントに紐づけられません。",
+        "idLabel": "参照番号 #OP-{id}"
+      }
+    },
+    "accountPage": {
+      "seo": {
+        "title": "アカウント | Open Prompts",
+        "description": "Open Prompts でテンプレート管理、審査キュー、アカウント設定。"
+      },
+      "sidebar": {
+        "overview": "概要",
+        "content": "コンテンツ",
+        "account": "アカウント",
+        "adminBadge": "管理者"
+      },
+      "nav": {
+        "overview": "ダッシュボード",
+        "prompts": "マイテンプレート",
+        "adminReview": "審査キュー",
+        "users": "ユーザー",
+        "credits": "クレジット",
+        "subscription": "サブスク"
+      },
+      "panels": {
+        "overview": "ダッシュボード",
+        "prompts": "テンプレート",
+        "admin": "モデレーション",
+        "users": "ユーザー",
+        "credits": "クレジット履歴",
+        "subscription": "サブスクリプション"
+      },
+      "topbar": {
+        "gallery": "画像へ",
+        "newTemplate": "新規テンプレート",
+        "signOut": "ログアウト"
+      },
+      "metrics": {
+        "templates": "テンプレート",
+        "pending": "審査待ち",
+        "credits": "残クレジット",
+        "generations": "生成回数"
+      },
+      "overview": {
+        "hint": "テンプレートの作成・管理。公開は審査通過後に画像プロンプト集へ表示されます。",
+        "manage": "テンプレート管理",
+        "submit": "新規投稿"
+      },
+      "toolbar": {
+        "search": "タイトル・プロンプトで検索…",
+        "allStatus": "すべての状態",
+        "refresh": "更新"
+      },
+      "table": {
+        "template": "テンプレート",
+        "owner": "所有者",
+        "ownerAnonymous": "匿名 / カタログ",
+        "status": "状態",
+        "model": "モデル",
+        "updated": "更新日",
+        "actions": "操作",
+        "view": "詳細",
+        "edit": "編集",
+        "delete": "削除",
+        "approve": "承認",
+        "reject": "却下",
+        "revoke": "公開取り消し",
+        "reapprove": "再承認",
+        "empty": "提出したテンプレートはまだありません。新規作成から始めてください。",
+        "emptyFiltered": "この状態に一致するテンプレートはありません。",
+        "emptyAdminHint": "この一覧は自分が提出したテンプレートのみです。全サイトの審査キューは「コンテンツ審査」で、管理者アカウントが必要です。",
+        "confirmDelete": "このテンプレートを削除しますか？",
+        "deleteSelected": "選択を削除",
+        "bulkConfirmDelete": "選択した {count} 件を削除しますか？"
+      },
+      "status": {
+        "pub": "公開中",
+        "draft": "下書き",
+        "priv": "非公開",
+        "pending": "審査中",
+        "rejected": "却下"
+      },
+      "visibility": {
+        "public": "公開（審査あり）",
+        "private": "非公開",
+        "draft": "下書き"
+      },
+      "admin": {
+        "hint": "データベース内のすべてのテンプレート（全アカウントと従来カタログ）。承認・却下；承認済みの公開のみ画像プロンプト集に表示。",
+        "hintActions": "チェックボックスで一括承認/却下。審査中は行ごとの操作も利用できます。",
+        "selectAll": "このページをすべて選択",
+        "selectedCount": "{count} 件選択中",
+        "approveSelected": "選択を承認",
+        "rejectSelected": "選択を却下",
+        "clearSelection": "選択を解除",
+        "bulkConfirmApprove": "選択した {count} 件を承認しますか？",
+        "bulkConfirmReject": "選択した {count} 件を却下しますか？",
+        "forbiddenTitle": "管理者権限が必要です",
+        "forbiddenBody": "ログイン中: {email}。このアカウントは ADMIN_EMAIL に含まれていないため、審査キューを読み込めません。",
+        "forbiddenHint": ".env.local の ADMIN_EMAIL にメールを追加し、dev サーバーを再起動して再ログインするか、管理者アカウントでログインしてください。",
+        "forbiddenMyTemplatesHint": "「テンプレート」は自分の提出分のみ表示され、サイト全体のカタログは含まれません。すべてを審査するには管理者（例: .env.local の admin@gmail.com）でログインし「コンテンツ審査」を開いてください。",
+        "empty": "この条件に一致するテンプレートはありません。",
+        "emptyPending": "審査待ちはありません。「すべての状態」で公開・却下済みを表示できます。公開テンプレートを作成すると審査キューに入ります。",
+        "loadError": "モデレーション一覧の読み込みに失敗しました: {message}",
+        "loadTimeout": "タイムアウトしました。DATABASE_URL を確認してください（管理用は 5432 直結、6543 プーラーは避ける）。dev の p_prompts 長時間クエリを停止してください。",
+        "trendPromptsTitle": "新規 Prompt",
+        "trendDaysHint": "UTC 自然日ベースのテンプレート日次新規数。",
+        "pagination": {
+          "pageSize": "件数",
+          "prev": "前へ",
+          "next": "次へ",
+          "total": "全 {count} 件",
+          "totalUnknown": "合計件数不明",
+          "pageOf": "{page} / {total} ページ",
+          "pageOnly": "{page} ページ"
+        }
+      },
+      "adminUsers": {
+        "hint": "登録アカウントの閲覧専用ディレクトリ（OAuth とメールログイン）。",
+        "searchPlaceholder": "メールまたは名前で検索…",
+        "empty": "一致するユーザーがいません。",
+        "loadError": "ユーザーの読み込みに失敗しました: {message}",
+        "loadTimeout": "ユーザーの読み込みがタイムアウトしました。",
+        "colUser": "ユーザー",
+        "colRole": "ロール",
+        "colProvider": "ログイン方式",
+        "colJoined": "登録日",
+        "envAdmin": "環境変数管理者",
+        "member": "一般ユーザー",
+        "providerEmail": "メール",
+        "metricTotal": "ユーザー総数",
+        "metricActiveToday": "本日アクティブ",
+        "metricNewToday": "本日新規",
+        "metricActiveTodayHint": "本日（UTC）にログインまたは認証済み API 利用があったユーザー。",
+        "trendUsersTitle": "新規ユーザー",
+        "trendDaysHint": "UTC 自然日ベースのユーザー日次新規数。",
+        "trendRange7": "1 週間",
+        "trendRange30": "1 ヶ月",
+        "trendRange90": "3 ヶ月",
+        "detailTitle": "ユーザー詳細",
+        "close": "閉じる",
+        "providers": "ログイン方式",
+        "noProviders": "メールのみ（OAuth 未連携）",
+        "templateCount": "提出テンプレート数"
+      },
+      "placeholders": {
+        "credits": "クレジット履歴は近日公開。",
+        "subscription": "サブスク管理は近日公開。"
+      },
+      "loading": "読み込み中…",
+      "modal": {
+        "createTitle": "新規テンプレート",
+        "editTitle": "テンプレート編集",
+        "model": "モデル",
+        "visibility": "公開範囲",
+        "coverUrl": "カバー画像 URL",
+        "cancel": "キャンセル",
+        "save": "保存",
+        "saving": "保存中…",
+        "validation": "タイトル・プロンプト（10文字以上）・カテゴリ・タグ2〜8個を入力してください。",
+        "saveFailed": "保存に失敗しました。"
+      }
+    },
+    "login": {
+      "seoTitle": "ログイン | Open Prompts",
+      "seoDescription": "GitHub、Google、またはメールで Open Prompts にログイン。お気に入りや生成・テンプレートを管理。",
+      "backGallery": "画像へ戻る",
+      "promoTitleLine1": "厳選プロンプト。",
+      "promoTitleLine2": "ワンクリックで",
+      "promoTitleLine2Suffix": "生成",
+      "promoDesc": "コミュニティと X 由来の高品質画像プロンプト。マルチモデル対応、Apache 2.0 ライセンス。",
+      "promoStatPrompts": "プロンプト",
+      "promoStatModels": "モデル",
+      "promoStatLicense": "ライセンス",
+      "promoLicenseName": "Apache 2.0",
+      "welcomeLine1": "おかえりなさい",
+      "welcomeBrandOpen": "Open",
+      "welcomeBrandEm": "Prompts",
+      "welcomeSubtitle": "GitHub、Google、またはメールでログインし、プロンプトを保存して作品を管理。",
+      "tabLogin": "ログイン",
+      "tabRegister": "新規登録",
+      "oauthGithub": "GitHub で続行",
+      "oauthGoogle": "Google で続行",
+      "oauthDisabledHint": "このサーバーでは未設定です",
+      "oauthSetupHint": "GitHub / Google ログインには .env.local に GITHUB_ID、GITHUB_SECRET、GOOGLE_CLIENT_ID、GOOGLE_CLIENT_SECRET が必要です（.env.example 参照）。設定後に dev サーバーを再起動してください。",
+      "dividerEmail": "またはメールでログイン",
+      "labelUsername": "表示名",
+      "usernamePlaceholder": "your_name",
+      "labelEmail": "メール",
+      "emailPlaceholder": "you@example.com",
+      "labelPassword": "パスワード",
+      "passwordPlaceholder": "••••••••",
+      "remember": "ログイン状態を保持",
+      "forgot": "パスワードをお忘れですか？",
+      "submitLogin": "ログイン",
+      "submitRegister": "アカウントを作成",
+      "submitBusy": "処理中…",
+      "switchToRegister": "アカウントをお持ちでないですか？",
+      "switchToRegisterLink": "登録",
+      "switchToLogin": "すでにアカウントがありますか？",
+      "switchToLoginLink": "ログインへ",
+      "disclaimer": "続行すると利用規約とプライバシーポリシーに同意したことになります。",
+      "errorCredentials": "メールまたはパスワードが正しくありません。",
+      "errorCredentialsHint": "ADMIN_EMAIL に登録したメールアドレスをそのまま入力してください。本番ホストにも DATABASE_URL と ADMIN_PASSWORD が必要です（ローカルの .env だけでは不十分）。GitHub/Google で先に登録した場合はそちらでログインするか、ADMIN_PASSWORD 設定後に再起動して同期してください。",
+      "errorConfiguration": "サーバーのログイン設定に問題があります（NEXTAUTH_URL、NEXTAUTH_SECRET、OAuth コールバック URL を確認）。",
+      "errorAccessDenied": "ログインがキャンセルまたは拒否されました。",
+      "errorOAuth": "プロバイダーでログインできませんでした。GitHub はメールアクセスを許可するか公開メールを設定。Google は OAuth リダイレクト URI の設定を確認してください。",
+      "errorOAuthPersist": "認証は成功しましたがアカウントを保存できませんでした。本番の DATABASE_URL（Supabase はポート 6543）を確認して再試行してください。",
+      "errorOAuthAccountNotLinked": "このアカウントは別のログイン方法に紐づいています。登録時と同じ方法かメールでログインしてください。",
+      "errorGeneric": "エラーが発生しました。もう一度お試しください。",
+      "errorRegister": "アカウントを作成できませんでした。",
+      "magicTitle": "メールを確認",
+      "magicBody": "このアドレスで登録がある場合、まもなくリセット手順をお送りします。",
+      "magicResend": "再送信",
+      "magicResent": "送信済み",
+      "registerSuccess": "アカウントを作成しました。ログインしています…"
+    },
+    "galleryPage": {
+      "title": "画像",
+      "subtitle": "1000件以上の無料画像プロンプト。モデルで絞り込み、コピーしてサイト内で生成。",
+      "seo": {
+        "title": "画像プロンプト",
+        "description": "ChatGPT・GPT Image 2・Midjourney 向けの無料画像プロンプト。テンプレートをコピーしてサイト内で生成。",
+        "keywords": "画像プロンプト,AI画像プロンプト,ChatGPT画像プロンプト,GPT Image 2,プロンプト集"
+      }
+    },
+    "modelPage": {
+      "seo": {
+        "title": "{model} 画像プロンプト ({count})",
+        "description": "無料 {model} 画像プロンプト {count} 件。コミュニティテンプレートをコピーして Open Prompts で生成。"
+      },
+      "breadcrumb": {
+        "home": "ホーム",
+        "gallery": "画像"
+      },
+      "heading": "{model} プロンプト",
+      "subtitle": "{count} 件のコミュニティ厳選 {model} プロンプト — コピーしてサイト内で生成。",
+      "empty": "{model} のプロンプトはまだありません。後でもう一度確認するか、画像プロンプト集全体をご覧ください。"
+    },
+    "categoryPage": {
+      "seo": {
+        "title": "{category} 画像プロンプト ({count})",
+        "description": "無料 {category} AI 画像プロンプト {count} 件。テンプレートをコピーしてサイト内で生成。"
+      },
+      "breadcrumb": {
+        "home": "ホーム",
+        "gallery": "画像",
+        "categories": "カテゴリ"
+      },
+      "heading": "{category} プロンプト",
+      "subtitle": "{category} カテゴリ {count} 件のコミュニティプロンプト — テンプレートをコピーしてサイト内で生成。",
+      "empty": "{category} カテゴリのプロンプトはまだありません。画像プロンプト集を閲覧するか、自分の作品を投稿してください。"
+    },
+    "categoriesIndex": {
+      "seo": {
+        "title": "画像プロンプト カテゴリ",
+        "description": "カテゴリ別に無料 AI 画像プロンプトを閲覧 — シーン、ポートレート、アートスタイル、商品写真など。"
+      },
+      "breadcrumb": {
+        "home": "ホーム",
+        "gallery": "画像"
+      },
+      "heading": "画像プロンプト カテゴリ",
+      "subtitle": "{categoryCount} カテゴリ、合計 {count} 件のプロンプト — スタイルを選んで探索。",
+      "cardCount": "{count} 件"
+    },
+    "promptMotionPage": {
+      "modelFilter": "モデル",
+      "allModels": "すべてのモデル",
+      "otherModels": "その他",
+      "sortLabel": "並び順",
+      "sortLikes": "元投稿のいいね順",
+      "sortStars": "元リポジトリの Stars 順",
+      "sortCurated": "厳選順",
+      "likeCount": "{count, number} いいね",
+      "repoStarCount": "{count, number} リポジトリ Stars",
+      "approximately": "約 ",
+      "metricsObserved": "{date} に収集した公開データ",
+      "metricsUnknown": "人気データなし",
+      "likesSortNote": "元投稿のいいね数が多い順。不明なデータは最後に表示します。収集時点の値です。",
+      "starsSortNote": "Stars は出典プロジェクトへの関心を示し、個別作品の人気ではありません。概数は明記しています。",
+      "curatedSortNote": "収録時の厳選順で表示します。",
+      "viewPrompt": "プロンプトを見る",
+      "originalPost": "作者の元投稿",
+      "promptSource": "プロンプトの出典",
+      "noPreview": "プレビューなし",
+      "staticPreview": "画像プレビュー",
+      "videoUnavailable": "動画を読み込めません。プロンプトや下の元投稿をご覧ください。",
+      "loading": "読み込み中…",
+      "loadError": "読み込めませんでした。再試行してください。",
+      "allLoaded": "すべて表示しました",
+      "sourceNote": "収録テキストを保持しています。一部は再利用可能なテンプレートです。生成結果やモデルを独立に検証したものではありません。",
+      "categoryNames": {
+        "product-brand": "製品・ブランド",
+        "motion-studies": "文字・モーション",
+        "explainers-data": "解説・データ",
+        "characters-stories": "キャラクター・物語",
+        "3d-simulations": "3D・シミュレーション",
+        "music-audiovisual": "音楽・映像",
+        "interactive": "インタラクティブ"
+      },
+      "loadMore": "もっと見る",
+      "playVideo": "動画を再生",
+      "seo": {
+        "title": "Motion Prompts · AI モーションプロンプトと作例",
+        "description": "Claude、GPT、Gemini などによる AI モーションプロンプトと実際の作例。カテゴリやモデルで絞り込み、出典の確認とプロンプトのコピーができます。",
+        "keywords": "motion prompts,AI motion prompts,motion graphics prompts,Claude Motion examples,animation prompts"
+      },
+      "breadcrumb": {
+        "home": "ホーム"
+      },
+      "hero": {
+        "desc": "Claude、GPT、Gemini などのモデルによる AI モーション作例を探す。動く文字、製品映像、アニメーションチャートを見て、作者が公開したプロンプトを使えます。",
+        "browse": "プロンプトを見る",
+        "tagline": "AI Motion Prompts & Examples"
+      },
+      "catalog": {
+        "heading": "Motion Prompts を探す"
+      },
+      "subtitle": "複数のモデルによる AI モーションプロンプト。キネティックタイプ、製品 UI、チャート、生成的な表現を探す。",
+      "useCases": {
+        "eyebrow": "使い方",
+        "title": "このプロンプトで",
+        "titleEm": "できること",
+        "subtitle": "原文で効果、タイミング、出力を指定し、必要な参考素材を用意して対応するツールで制作します。",
+        "items": [
+          {
+            "t": "ローンチ映像",
+            "d": "ブリーフを1つ貼ると、15秒の製品告知を作れます。絵コンテ、タイムライン、フレーム確認、それから音です。"
+          },
+          {
+            "t": "名前のあるカメラワーク",
+            "d": "「映画っぽく」ではなく、マスクリビール、ドリー、motion-prompt の番号サンプルを指定します。"
+          },
+          {
+            "t": "エージェントの構成",
+            "d": "claude-motion か motion-graphics-skills を入れ、HyperFrames か Remotion で書き出させます。"
+          }
+        ]
+      },
+      "faq": {
+        "eyebrow": "FAQ",
+        "title": "モーションプロンプトの",
+        "titleEm": "質問",
+        "items": [
+          {
+            "q": "モーションプロンプトとは？",
+            "a": "テーマ、スタイル、タイミング、トランジション、出力を指定する指示です。各作品では、完成映像と作者が公開した原文を一緒に確認できます。"
+          },
+          {
+            "q": "Claude Motion とは？",
+            "a": "このページでは Claude とコードでモーションを作るワークフローを指します。作品によって HTML、Canvas、Three.js、Remotion、個別のスキルなどを使います。モデルは出典の表記に従います。"
+          },
+          {
+            "q": "映像とプロンプトの出典は？",
+            "a": "作者の公開投稿です。各カードに作者と元の投稿を明記し、詳細ページで公開プロンプトへリンクします。原文が作者の返信にある場合は、その返信を参照できます。"
+          },
+          {
+            "q": "Prompt と Skill の使い方は？",
+            "a": "Prompt をコピーしてエージェントに貼り、必要な参考素材を用意してください。Skill は公開インストールコマンドとリポジトリを確認し、セットアップ手順に従って使います。"
+          },
+          {
+            "q": "Opus 5.5 で同じ結果になりますか？",
+            "a": "掲載作品は Opus 5.5 として公開されています。結果はツール、参考素材、修正の過程にも依存するため、同じプロンプトでも同一の映像は保証されません。"
+          },
+          {
+            "q": "映像やプロンプトを商用利用できますか？",
+            "a": "公開やクレジットは利用許諾を意味しません。元の投稿とライセンスを確認し、必要に応じて作者の許可を得てください。ギャラリー全体の転載は行っていません。"
+          }
+        ]
+      },
+      "filters": {
+        "label": "種類",
+        "all": "すべて"
+      },
+      "promptLabel": "Motion prompt",
+      "copy": "コピー",
+      "copied": "コピーしました",
+      "resources": {
+        "heading": "制作と書き出しのツール",
+        "desc": "制作を始めるときに、ワークフローやスキル、レンダリング用のリポジトリを確認できます。"
+      },
+      "categoriesLabel": "モーションカテゴリ",
+      "results": "{count} 件の作品",
+      "empty": "このカテゴリと種類に一致する作品はまだありません。",
+      "resetFilters": "すべての作品を表示",
+      "viewPost": "元の投稿",
+      "referenceRequired": "参考素材を使うプロンプトです。元の投稿を確認してください。",
+      "mediaFallback": "X で見る",
+      "copyError": "コピーできませんでした。詳細ページで原文を選択してコピーしてください。",
+      "mediaSlow": "映像の読み込みに時間がかかっています。",
+      "retry": "再試行",
+      "skillLabel": "Motion skill",
+      "detail": {
+        "back": "モーションプロンプトを探す",
+        "description": "@{author} の {title}。映像と完全な AI モーションプロンプトを確認。"
+      }
+    },
+    "promptPage": {
+      "seo": {
+        "title": "{title} — {model} プロンプト",
+        "description": "無料 {model} 画像プロンプト：{snippet}。テンプレートをコピーして Open Prompts で生成。{tags}"
+      },
+      "seoIntro": "無料 {model} 画像プロンプト — {title}。下のプロンプトをコピーするかサイト内で生成。",
+      "breadcrumbHome": "ホーム",
+      "breadcrumbGallery": "画像",
+      "backToGallery": "← 画像に戻る",
+      "promptLabel": "プロンプト",
+      "modelLabel": "モデル",
+      "imageAlt": "{title} — {model} プレビュー {index}"
+    },
+    "homePage": {
+      "seo": {
+        "title": "画像プロンプト",
+        "description": "ChatGPT・GPT Image 2 向け厳選画像プロンプト {count} 件以上。コピー・リミックスして AI 画像を生成 — X から毎日更新。",
+        "keywords": "画像プロンプト,AI画像プロンプト,ChatGPT画像プロンプト,GPT Image 2,プロンプト集"
+      },
+      "h1Line2": "画像プロンプト",
+      "h1Line3": "GPT Image 2 プロンプト",
+      "browseGallery": "画像を見る",
+      "submitPrompt": "プロンプト投稿 →",
+      "modelBar": {
+        "label": "対応モデル",
+        "allModels": "すべてのモデル",
+        "gptImage2": "GPT Image 2",
+        "dalle3": "DALL·E 3",
+        "midjourney": "Midjourney",
+        "stableDiffusion": "Stable Diffusion"
+      },
+      "browseByModel": {
+        "heading": "モデル別に探す",
+        "sub": "各 AI 画像モデル向けに最適化されたプロンプト"
+      },
+      "browseByCategory": {
+        "heading": "カテゴリ別に探す",
+        "sub": "クリエイティブなジャンル横断でプロンプトを探索"
+      },
+      "promptCount": "{count} 件のプロンプト →",
+      "comingSoon": "近日公開 →",
+      "models": {
+        "gptImage2": {
+          "icon": "🟢",
+          "title": "GPT Image 2 プロンプト",
+          "desc": "OpenAI 画像モデル向けコミュニティ厳選プロンプト — 写実ポートレート、商品広告、エディトリアルなど。"
+        },
+        "dalle3": {
+          "icon": "🔵",
+          "title": "DALL·E 3 プロンプト",
+          "desc": "DALL·E 3 ですぐ使えるプロンプト — シネマティックな風景、ミニマルな商品撮影、クリエイティブなコンセプト。"
+        },
+        "midjourney": {
+          "icon": "🟣",
+          "title": "Midjourney プロンプト",
+          "desc": "Midjourney 向けアーティスティックなプロンプト — ファンタジー世界、イラスト、コンセプトアート。"
+        }
+      },
+      "categories": {
+        "portraitPhoto": {
+          "desc": "シネマティックなポートレート、ファッション、旅行写真のプロンプト。"
+        },
+        "artStyles": {
+          "desc": "水彩、ヴィンテージ、コラージュ、イラストスタイルのプロンプト。"
+        },
+        "productCommercial": {
+          "desc": "スキンケア広告、ストリートフード、ラグジュアリーブランド撮影のプロンプト。"
+        },
+        "gameFantasy": {
+          "desc": "サイバーパンク、ダークファンタジー、SF キャラクターシート、世界観構築。"
+        }
+      },
+      "seoContent": {
+        "features": {
+          "eyebrow": "Open Prompts を選ぶ理由",
+          "title": "マスターするために必要なすべて",
+          "titleEm": "GPT Image 2",
+          "subtitle": "Open Prompts は OpenAI 最新画像モデルを中心としたコミュニティ画像プロンプト集 — 実在のクリエイターから学び、実績あるテンプレートをコピーし、ページを離れずに画像を生成。",
+          "items": [
+            {
+              "t": "厳選 GPT Image 2 プロンプト",
+              "d": "すべてのプロンプトは X で活動するクリエイターが共有した実績ある成果から収集。余計なものはなし — コピー前に出力を確認できる、実証済みのテンプレートだけ。"
+            },
+            {
+              "t": "サイト内で即生成",
+              "d": "任意のプロンプトを選び、ブラウザ内で直接画像を生成。タブ切り替え不要、API キー管理不要 — インスピレーションから創作までワンクリック。"
+            },
+            {
+              "t": "コピー・リミックス・調整",
+              "d": "すべてのプロンプトをワンクリックでコピー。被写体、スタイル、ライティングを入れ替え、対応モデルに再投入。反復こそ良い画像の秘訣。"
+            },
+            {
+              "t": "モデル・カテゴリで絞り込み",
+              "d": "DALL·E 3、Midjourney など専用画像プロンプト集を閲覧。ポートレート、商品、ファンタジー、建築などで、求めるスタイルをピンポイントで発見。"
+            },
+            {
+              "t": "X から毎日同期",
+              "d": "トップクリエイターの新プロンプトを X で毎日モニター。新鮮なコンテンツが自動で画像プロンプト集に追加 — 常にトレンドの一歩先へ。"
+            },
+            {
+              "t": "オープンでコミュニティ主導",
+              "d": "自分のプロンプトを投稿し、クリエイタークレジットを獲得、フォロワーを増やす。リーダーボードが毎週、最もコピー・生成されたテンプレートを紹介。"
+            }
+          ]
+        },
+        "howItWorks": {
+          "eyebrow": "使い方",
+          "title": "プロンプトから画像へ",
+          "titleEm": "数ステップで",
+          "subtitle": "Open Prompts が推測をなくします。実績あるプロンプトを閲覧し、ワンクリックでコピー、サイト内で生成 — すべてこのページ内で完結。",
+          "steps": [
+            {
+              "t": "GPT Image 2 プロンプトを閲覧",
+              "d": "モデル、カテゴリ、新着順で {count}+ 件のコミュニティプロンプトを探索。各カードに出力画像と使用プロンプトを表示 — コピー前に内容を把握。"
+            },
+            {
+              "t": "プロンプトをコピーしてカスタマイズ",
+              "d": "コピーを押せば全文がクリップボードへ。被写体、スタイル、ムードを調整するか、そのまま使用。各テンプレートは実在クリエイターが検証済み。"
+            },
+            {
+              "t": "サイト内で GPT Image 2 生成",
+              "d": "生成をクリックすれば Open Prompts 内で画像が完成。別途サブスク不要。ダウンロード、共有、反復 — すべてここで。"
+            },
+            {
+              "t": "共有してクリエイタークレジットを獲得",
+              "d": "最高のプロンプトを画像プロンプト集に投稿。リーダーボードで注目され、生成ごとにクレジット表示、AI 画像クリエイターの中でフォロワーを拡大。"
+            }
+          ],
+          "browserMockup": {
+            "url": "open-prompts.com/prompt/vintage-travel-poster",
+            "promptLabel": "GPT Image 2 プロンプト",
+            "promptText": "ギリシャ・サントリーニのクラシックなヴィンテージ旅行ポスター。白壁の建築、黄金の夕日、温かいレトロ配色、装飾的なセリフ体タイポグラフィ、高精細、エディトリアル品質。 — GPT Image 2",
+            "resultTitle": "サントリーニ旅行ポスター",
+            "resultSub": "GPT Image 2 で生成 · 4秒",
+            "badge": "✓ ダウンロード可能",
+            "statPrompts": "プロンプト",
+            "statCopies": "コピー数",
+            "statTime": "平均時間"
+          }
+        },
+        "testimonials": {
+          "eyebrow": "コミュニティの声",
+          "title": "毎日",
+          "titleEm": "Open Prompts を使うクリエイター",
+          "subtitle": "数千人のデザイナー、マーケター、AI アーティストが Open Prompts でコミュニティ最高のプロンプトを見つけ、再利用しています。",
+          "featured": {
+            "q": "Open Prompts は GPT Image 2 の使い方を一変させました。ゼロから 30 分かけて書く代わりに、画像プロンプト集を見て、実績あるものをコピーして反復するだけ。1 週間で出力品質が倍になりました。",
+            "a": "@Diplomeme",
+            "handle": "@Diplomeme",
+            "role": "AI コンテンツクリエイター · X",
+            "tag": "トップ投稿者"
+          },
+          "items": [
+            {
+              "q": "見つけた中で最高の GPT Image 2 プロンプトリソース。各カードに実際の出力が表示されるので推測不要。毎朝クライアントワーク前に必ずチェック。",
+              "a": "ブランドデザイナー",
+              "handle": "@noorlewisx",
+              "role": "ブランドデザイナー",
+              "avatar": "/testimonials/sarah-johnson.svg"
+            },
+            {
+              "q": "X からの毎日同期で、毎朝新しいプロンプトが届く。投稿したサイバーパンクキャラクターシートがコピー数トップに。",
+              "a": "コンセプトアーティスト",
+              "handle": "@Strength04_X",
+              "role": "コンセプトアーティスト",
+              "avatar": "/testimonials/michael-chen.svg"
+            },
+            {
+              "q": "5 ブランドの SNS を運用。Open Prompts でプロンプトリサーチが 1 時間から 5 分に。カテゴリフィルタだけでもブックマークする価値あり。",
+              "a": "SNS マネージャー",
+              "handle": "@Taaruk_",
+              "role": "SNS マネージャー",
+              "avatar": "/testimonials/emily-rodriguez.svg"
+            }
+          ]
+        },
+        "faq": {
+          "eyebrow": "FAQ",
+          "title": "よくある質問：",
+          "titleEm": "GPT Image 2 プロンプト",
+          "sidebar": {
+            "title": "知っておくべきこと",
+            "desc": "Open Prompts でプロンプトを見つけ、コピーし、生成する際のよくある質問。GPT Image 2 および他の AI 画像モデルについて。",
+            "contact": "まだ質問がありますか？<githubLink>GitHub</githubLink> または X <xLink>@technoobgo</xLink> まで — 通常 1 日以内に返信します。"
+          },
+          "items": [
+            {
+              "q": "Open Prompts とは？GPT Image 2 との関係は？",
+              "a": "Open Prompts は X クリエイターから毎日収集するコミュニティ AI 画像プロンプトです。大多数のプロンプトは GPT Image 2（OpenAI 最新画像モデル）向けに作成・検証されており、そのモデルに最も特化したライブラリです。ブラウザ内で閲覧、コピー、生成が可能で、追加設定は不要。"
+            },
+            {
+              "q": "閲覧・コピーに料金はかかりますか？",
+              "a": "いいえ — 画像プロンプト集内すべてのプロンプトの閲覧・コピーは誰でも可能で、アカウント不要。サイト内生成はクレジット制。自分のプロンプト投稿にはアカウントが必要（リーダーボードでのクレジット表示のため）。"
+            },
+            {
+              "q": "GPT Image 2 以外のモデルでも使えますか？",
+              "a": "もちろん。多くは OpenAI 画像モデル向けに最適化されていますが、DALL·E 3、Midjourney、Stable Diffusion 向けタグ付きプロンプトもあります。多くのテンプレートは軽い編集で他モデルにも転用可能 — モデルフィルタで各モデルの内容を確認。"
+            },
+            {
+              "q": "GPT Image 2 プロンプトはどのくらいの頻度で追加されますか？",
+              "a": "X クリエイターから毎日新プロンプトを同期。パイプラインは 24 時間ごとに実行され、画像プロンプト集は常に最新トレンドを反映。投稿ページからいつでも自分のプロンプトを提出可能。"
+            },
+            {
+              "q": "自分の GPT Image 2 プロンプトを投稿するには？",
+              "a": "ナビの「プロンプトを投稿」をクリックし、X でサインイン、プロンプトと出力画像を貼り付け。簡単な審査後、クリエイタークレジット付きで公開。トッププロンプトは週間リーダーボードで紹介。"
+            },
+            {
+              "q": "どんな GPT Image 2 プロンプトのカテゴリがありますか？",
+              "a": "ポートレート・写真、アートスタイル、商品・商用、ゲーム・ファンタジー、シーン・環境、デザイン・UI、スタイル・時代などをカバー。すべてのカテゴリにコミュニティ検証済みテンプレートあり。カテゴリタブまたはキーワード検索で特定スタイルを発見。"
+            }
+          ]
+        },
+        "cta": {
+          "title": "今日から",
+          "titleEm": "GPT Image 2 で生成を始めよう",
+          "subtitle": "6,200+ クリエイターと一緒に、最高の GPT Image 2 プロンプト集を閲覧。アカウント不要 — 閲覧、コピー、創作するだけ。",
+          "browse": "GPT Image 2 プロンプトを見る →",
+          "submit": "プロンプトを投稿",
+          "note": "アカウント不要 · {count}+ 厳選プロンプト · X から毎日更新"
+        }
+      }
+    },
+    "hero": {
+      "eyebrow": "コミュニティ · X から毎日更新",
+      "h1Prefix": "探索 · 再利用 ·",
+      "h1Em": "創作",
+      "desc": "X の実在クリエイターによる厳選 GPT Image 2 プロンプト {count}+ 件を発見。任意のテンプレートをコピー・リミックスし、GPT Image 2、DALL·E 3、Midjourney でブラウザ内から美しい AI 画像を生成。閲覧にアカウント不要。",
+      "searchPlaceholder": "プロンプトを検索（例：サイバーパンク、墨絵の風景…）",
+      "searchButton": "検索"
+    },
+    "stats": {
+      "prompts": "AI プロンプト",
+      "members": "メンバー",
+      "daily": "毎日",
+      "newPrompts": "新プロンプト",
+      "curated": "厳選",
+      "fromX": "X 由来"
+    },
+    "section": {
+      "latest": "最新投稿",
+      "categorySub": "{category} · {subTag}"
+    },
+    "filters": {
+      "allModels": "すべてのモデル",
+      "allCategories": "すべて",
+      "allTags": "すべて"
+    },
+    "gallery": {
+      "catalogLoading": "読み込み中…",
+      "catalogFailed": "カタログを読み込めませんでした。",
+      "retry": "再試行",
+      "loadMore": "さらに読み込む",
+      "noMore": "これ以上ありません",
+      "coverLoadFailed": "画像の読み込みに失敗しました",
+      "showing": "{shown} / {total} を表示"
+    },
+    "card": {
+      "community": "コミュニティ",
+      "generate": "生成"
+    },
+    "footer": {
+      "tagline": "Open Prompts · オープンなプロンプト集",
+      "links": {
+        "github": "GitHub",
+        "gptGallery": "GPT Image 2 プロンプト",
+        "dalleGallery": "DALL·E 3 プロンプト",
+        "categories": "カテゴリ",
+        "submit": "投稿",
+        "privacy": "プライバシー"
+      }
+    },
+    "modal": {
+      "promptLabel": "プロンプト",
+      "copy": "コピー",
+      "copied": "コピーしました",
+      "from": "出典",
+      "viewSource": "元投稿を見る",
+      "generateNow": "今すぐ生成"
+    },
+    "gen": {
+      "title": "テンプレートから生成",
+      "params": "パラメータ",
+      "provider": "Provider",
+      "count": "Count",
+      "aspectRatio": "Aspect Ratio",
+      "quality": "Quality",
+      "generate": "Generate",
+      "generating": "Generating…",
+      "jobLabel": "job",
+      "prompt": "Prompt",
+      "generatedImages": "Generated Images",
+      "resultsPlaceholder": "結果はここに表示されます",
+      "openDownload": "開く / ダウンロード",
+      "successNoImages": "成功しましたが、画像URLが返りませんでした",
+      "failedPrefix": "失敗：",
+      "tryAgain": "もう一度お試しください",
+      "missingPrompt": "プロンプトがありません",
+      "templateRenderFailed": "テンプレートのレンダリングに失敗しました",
+      "generationFailed": "生成に失敗しました",
+      "pollingFailed": "ポーリングに失敗しました",
+      "createFailed": "作成に失敗しました"
+    },
+    "createPage": {
+      "seo": {
+        "title": "AI 画像生成スタジオ | Open Prompts",
+        "description": "Open Prompts で制作：厳選テンプレートから、モデルとアスペクト比を選び、GPT Image・Midjourney・DALL·E・Flux などで生成。セッション履歴はひとつのスタジオに。"
+      },
+      "brandPill": "Open Prompts",
+      "templatesLabel": "テンプレート",
+      "searchTemplatesPlaceholder": "テンプレートを検索…",
+      "originalPromptLabel": "元のプロンプト",
+      "promptSectionLabel": "プロンプト",
+      "enhanceButton": "✨ 強化",
+      "promptPlaceholder": "生成したい画像を説明…",
+      "carouselApplyTitle": "クリックしてテンプレートを適用",
+      "carouselPromptBadge": "プロンプト",
+      "modelTitle": "モデル",
+      "selectModel": "モデルを選択",
+      "selectImageRatio": "画像比率を選択",
+      "qualityPopoverTitle": "品質",
+      "qualityDefaultSuffix": "（デフォルト）",
+      "qualityActive": "有効",
+      "generateCountTitle": "生成枚数",
+      "moreOptions": "その他",
+      "moreMenuAriaLabel": "その他のオプション",
+      "providerSection": "プロバイダー",
+      "providerInternal": "デフォルト",
+      "popularTitle": "人気テンプレート",
+      "popularSubtitle": "テンプレートから素早く開始。クリックで生成器に適用。",
+      "allTemplatesLink": "すべて →",
+      "allTemplatesTitle": "すべてのテンプレート",
+      "resultHistoryLabel": "結果と履歴",
+      "currentLabel": "現在",
+      "historyLabel": "履歴",
+      "railCurrentEmpty": "まだ結果がありません。プロンプトを入力して「生成」を押すと、ここに表示されます。",
+      "railCurrentJump": "生成へ",
+      "railHistoryEmpty": "履歴はまだありません。成功した生成はここに保存されます（このブラウザのみ）。",
+      "railJobIdle": "ジョブなし",
+      "fullscreenTitle": "全画面",
+      "downloadTitle": "ダウンロード",
+      "deleteTitle": "削除",
+      "viewerClose": "閉じる",
+      "viewerPrev": "← 前へ",
+      "viewerNext": "次へ →",
+      "keyDialogTitle": "{provider} の API キー",
+      "keyDialogHint": "空欄のままにするとサーバー側のキーを使います。",
+      "keyDialogPlaceholder": "API キーを貼り付け（任意）",
+      "keyDialogCancel": "キャンセル",
+      "keyDialogUseInternal": "内部キーを使う",
+      "keyDialogSave": "保存",
+      "ratioSquare": "正方形（{ratio}）",
+      "ratioUltraWide": "超ワイド（{ratio}）",
+      "ratioLandscape": "横長（{ratio}）",
+      "ratioPortrait": "縦長（{ratio}）",
+      "githubRepoAriaLabel": "GitHub リポジトリ",
+      "githubTitle": "GitHub",
+      "hero": {
+        "title": "より良いプロンプト より良い画像",
+        "titleLine1": "より良いプロンプト",
+        "titleLine2Before": "より良い",
+        "titleLine2Em": "画像",
+        "titleLine2After": "",
+        "subtitle": "厳選テンプレートから制作向きの画像へ。モデル・アスペクト比・品質・枚数を同一キャンバスで調整し、セッション履歴を使ってツールを切り替えずに改善できます。",
+        "featuresTitle": "機能",
+        "features": [
+          {
+            "t": "構造化されたプロンプト骨格",
+            "d": "検証済みテンプレから開始し、被写体・シーン・パレット・スタイルの手がかりなど、重要な変数だけを差し替えて再現性を確保します。"
+          },
+          {
+            "t": "統一されたコントロール",
+            "d": "プロバイダ、アスペクト比、出力品質、生成枚数を一行に集約し、設定の迷いと試行コストを抑えます。"
+          },
+          {
+            "t": "セッション単位の履歴",
+            "d": "成功した生成をローカルに保持し、即時の再表示、比較、ワンクリックでのプロンプト再利用が可能です。"
+          }
+        ],
+        "howTitle": "使い方",
+        "howSteps": [
+          "創作の方向性に最も近いテンプレートを選びます。",
+          "プロンプトを編集：骨格は維持し、被写体・光・構図を個別化します。",
+          "モデルとパラメータを設定して生成を実行します。",
+          "同一ビューで結果を確認し、履歴から反復します。"
+        ],
+        "whyTitle": "Open Prompts が選ばれる理由",
+        "whyPoints": [
+          "再利用可能な構造により、着想から初回出力までの時間を短縮。",
+          "骨格と語彙を固定し差分だけを変えることで、スタイルの一貫性が向上。",
+          "執筆・生成・レビューを単一の集中画面に集約。"
+        ],
+        "sayTitle": "ユーザーの声",
+        "says": [
+          {
+            "q": "テンプレがブリーフのようで、骨格を固定してから迷いが減りました。",
+            "a": "独立クリエイター"
+          },
+          {
+            "q": "プロバイダと比率・品質が一行にまとまり、納期が厳しいときのレビューが速くなります。",
+            "a": "ブランドデザイナー"
+          },
+          {
+            "q": "ローカル履歴で文言の A/B と、勝ちパターンへの即時ロールバックがしやすいです。",
+            "a": "プロダクトマーケティング"
+          }
+        ],
+        "faqTitle": "よくある質問",
+        "faqs": [
+          {
+            "q": "Open Prompts とは何ですか？",
+            "a": "厳選プロンプト集とブラウザ内の画像スタジオを組み合わせ、実績のある構造から始めて対応モデルで生成し、同一ツール内で反復できるようにしたワークフローです。"
+          },
+          {
+            "q": "まず何から始めればよいですか？",
+            "a": "意図に最も近いテンプレを選び、全体構造を保ったまま被写体・舞台・スタイルの手がかりから置き換えます。"
+          },
+          {
+            "q": "プロンプトはどの程度詳しく書けばよいですか？",
+            "a": "被写体とスタイルを先に明確にし、続けて光、レンズや構図、質感、背景を足します。出力に実質的な影響がある制約だけを追加するのがコツです。"
+          },
+          {
+            "q": "結果の一貫性を高めるには？",
+            "a": "テンプレの骨格とアンカー語彙を固定し、検証したいパラメータだけを変えます。履歴の良い結果を次のランのベースにしてください。"
+          },
+          {
+            "q": "独自の API キーやプロバイダは使えますか？",
+            "a": "はい。製品が許容する範囲で、対応プロバイダに自有の資格情報を渡せます。internal モードではサーバー側の環境変数で一元設定することもできます。"
+          }
+        ],
+        "ctaTitle": "さあ、作り始めよう",
+        "ctaSubtitle": "入力して生成ボタンを押すだけ。",
+        "ctaButton": "生成へ"
+      },
+      "internalConfig": {
+        "title": "サーバー側の API キー設定が見つかりません",
+        "body": "internal モードでは、サーバー側の環境変数に Provider のキー設定が必要です。",
+        "steps": [
+          "ローカル開発では `.env.example` を `.env.local` にコピー",
+          "少なくとも 1 つの Provider を設定:",
+          "- AtlasCloud: `ATLASCLOUD_BASE_URL` + `ATLASCLOUD_API_KEY`",
+          "- Replicate: `REPLICATE_API_TOKEN` + (`REPLICATE_MODEL` または `REPLICATE_VERSION`)",
+          "`npm run dev` を再起動して再試行"
+        ]
+      }
+    }
+  }
+}
