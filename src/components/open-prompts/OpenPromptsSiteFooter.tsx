@@ -21,6 +21,10 @@ function submitHref(locale: string) {
   return locale === 'en' ? '/submit' : `/${locale}/submit`;
 }
 
+function libraryHref(locale: string) {
+  return locale === 'en' ? '/ai-prompt-library' : `/${locale}/ai-prompt-library`;
+}
+
 export function OpenPromptsSiteFooter({ locale, tagline, spacing = 'spaced' }: OpenPromptsSiteFooterProps) {
   const t = useTranslations('OpenPrompts');
   const line = tagline ?? t('footer.tagline');
@@ -47,6 +51,8 @@ export function OpenPromptsSiteFooter({ locale, tagline, spacing = 'spaced' }: O
       external: false,
     },
     { label: t('footer.links.submit'), href: submitHref(locale), external: false },
+    { label: locale === 'zh' ? '提示词库说明' : 'Prompt library', href: libraryHref(locale), external: false },
+    { label: 'llms.txt', href: '/llms.txt', external: false },
     { label: t('footer.links.privacy'), href: privacyHref(locale), external: false },
   ];
 

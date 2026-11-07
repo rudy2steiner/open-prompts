@@ -10473,7 +10473,7 @@
   },
   {
     "id": "2105279421435572498",
-    "title": "AI-generated animated video demo",
+    "title": "Animated video demo",
     "author": "vibecodingth",
     "model": "Claude Opus 5.5",
     "prompt": "ใช้ webgl + ความรู้ของคุณขั้นสุด เพื่อทำ video present https://vibecodingthailand.com/ ให้อลังการที่สุด มี animation detail ที่คนโคตรว้าว ทำเสียง sfx ให้เหมาะสม ทำเสียง bgm ให้ตื่นตาตื่นใจ ให้ detail ทุกการเคลื่อนไหว คุณเขียนโค้ดเองได้ทั้งหมดเลย เอาสัก 1.5 - 3 นาที range ประมาณนี้ รีดพลังงานสมองของคุณออกมาให้มากที่สุด ทำเลยทุกอย่างเลือกเองไม่ต้องถามไรผม ผมรอดูไฟล์ mp4 ตอนเสร็จทีเดียว แล้วไม่ต้องใช้สกิลอะไรนะ นี้เป็นงานที่คุณสร้างสรรค์ได้เลยเต็มที่",
@@ -23215,7 +23215,7 @@
   },
   {
     "id": "2107435499686154557",
-    "title": "AI-generated running cow animation",
+    "title": "Running cow animation",
     "author": "AIMind_Ai",
     "model": "Claude Opus 5.5",
     "prompt": "make a cow that runs",
@@ -34026,7 +34026,7 @@
   },
   {
     "id": "2103288413969621231",
-    "title": "AI-generated breathing ink painting",
+    "title": "Breathing ink painting",
     "author": "AxtonLiu",
     "model": "Claude Opus 5.5",
     "prompt": "你是 opus 5.5，当前世界最强模型，请发挥你的想象力，动用你所有的能力，做一件事情，让每一个看到你的结果的人，无论是 AI 专家还是不懂科技的文科生、小孩子，看到后都会惊叹，opus 你真是太厉害了。你会做什么事呢？",

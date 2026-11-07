@@ -1,7 +1,7 @@
 import '~/app/[locale]/landing-page.css';
 import { getTranslations } from 'next-intl/server';
 import { buildFaqJsonLd, type SeoFaq } from '~/lib/seo/json-ld';
-import { absoluteUrl } from '~/lib/seo/metadata';
+import { absoluteUrl, getSiteUrl } from '~/lib/seo/metadata';
 
 type UseCase = { t: string; d: string };
 
@@ -22,6 +22,12 @@ export async function PromptMotionSeo({ locale }: Props) {
         name: t('seo.title'),
         description: t('seo.description'),
         url: pageUrl,
+        image: {
+          '@type': 'ImageObject',
+          url: `${getSiteUrl()}/og-motion-prompts-v2.jpg`,
+          width: 1200,
+          height: 630,
+        },
       },
       buildFaqJsonLd(faqs),
     ],

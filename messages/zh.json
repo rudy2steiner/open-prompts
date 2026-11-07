@@ -289,8 +289,8 @@
     },
     "nav": {
       "home": "首页",
-      "gallery": "图片",
-      "motion": "动效",
+      "gallery": "图片提示词",
+      "motion": "动效提示词",
       "categories": "分类",
       "create": "创作",
       "favorites": "收藏",
@@ -905,10 +905,10 @@
       "registerSuccess": "账户已创建，正在登录…"
     },
     "galleryPage": {
-      "title": "图片",
+      "title": "图片提示词",
       "subtitle": "浏览 1000+ 免费图像提示词，按模型筛选、复制模板、站内生成。",
       "seo": {
-        "title": "图片提示词",
+        "title": "AI图片提示词｜GPT Image 2",
         "description": "浏览免费 AI 图像提示词，支持 ChatGPT、GPT Image 2、Midjourney。复制模板，站内一键生成。",
         "keywords": "图像提示词,AI生图提示词,ChatGPT图像提示词,GPT Image 2,提示词库"
       }
@@ -933,7 +933,7 @@
       },
       "breadcrumb": {
         "home": "首页",
-        "gallery": "图片",
+        "gallery": "图片提示词",
         "categories": "分类"
       },
       "heading": "{category} 提示词",
@@ -947,7 +947,7 @@
       },
       "breadcrumb": {
         "home": "首页",
-        "gallery": "图片"
+        "gallery": "图片提示词"
       },
       "heading": "图像提示词分类",
       "subtitle": "共 {count} 条提示词，{categoryCount} 个分类 — 选择风格开始浏览。",
@@ -991,8 +991,8 @@
       "loadMore": "加载更多",
       "playVideo": "播放视频",
       "seo": {
-        "title": "Motion Prompts · AI 动效提示词与案例",
-        "description": "探索 Claude、GPT、Gemini 等模型的 AI 动效提示词与真实案例，按动效类别和模型筛选，查看作者原文并复制提示词。",
+        "title": "AI动效提示词｜Claude",
+        "description": "浏览 AI 动效提示词。先看成片，再把完整提示词贴给 Claude。",
         "keywords": "motion prompts,AI motion prompts,motion graphics prompts,Claude Motion examples,animation prompts"
       },
       "breadcrumb": {
@@ -1082,31 +1082,56 @@
       "skillLabel": "Motion skill",
       "detail": {
         "back": "浏览更多动效提示词",
-        "description": "查看 @{author} 的 {title} 动效成片与完整提示词。"
+        "description": "AI动效提示词：{title}，@{author}。可预览并复制。"
       }
     },
     "promptPage": {
       "seo": {
         "title": "{title} — {model} 提示词",
-        "description": "免费 {model} 图像提示词：{snippet}。复制模板，在 Open Prompts 站内生成。{tags}"
+        "description": "免费 AI 图片提示词：{title}。{snippet}"
       },
-      "seoIntro": "免费 {model} 图像提示词模板 — {title}。复制下方提示词或站内生成。",
       "breadcrumbHome": "首页",
       "breadcrumbGallery": "图片",
       "backToGallery": "← 返回图片",
       "promptLabel": "提示词",
       "modelLabel": "模型",
-      "imageAlt": "{title} — {model} 预览图 {index}"
+      "imageAlt": "{title} — {model} 预览图 {index}",
+      "seoSections": {
+        "fallbackCategory": "图片",
+        "howto": {
+          "title": "使用这条 AI 图片提示词",
+          "steps": [
+            {"t": "贴提示词框", "d": "复制拿到的是「提示词」框里的全文，不是标题下面那一句。整段贴进 {model}，当作一条消息。图不要一起传，那是成品，不是输入。"},
+            {"t": "或在这里生图", "d": "立即生图会打开「创作」，并把这条提示词填好。想改就在那里改完再跑。这一次会用掉 credits。复制不用。"}
+          ]
+        },
+        "faq": {
+          "title": "AI 图片提示词问答",
+          "authorNote": "这条署名给 {author}。",
+          "sourceNote": "来源链接指向原帖。",
+          "items": [
+            {"q": "能得到同一张图吗？", "a": "不能。页面上的图是 {model} 的一次成品。把旁边的提示词再跑一次，方向接近，画面不会一样。"},
+            {"q": "想换个主体，改哪里？", "a": "留下 {tags}。换掉画面里的人或物。想要同样的处理，就别改光线、媒介和风格那几句。"},
+            {"q": "提示词和这张图都能拿去用吗？", "a": "提示词可以复制使用。这张图是作者的成品，卡片上的署名不是这张图的授权。"}
+          ]
+        },
+        "related": {
+          "title": "更多 AI 图片提示词",
+          "also": "继续看",
+          "model": "{model} 提示词",
+          "category": "全部{category}"
+        }
+      }
     },
     "homePage": {
       "seo": {
-        "title": "图片提示词",
-        "description": "发现 {count}+ 条精选图像提示词，支持 ChatGPT 与 GPT Image 2。复制、改编，站内生成 AI 图像，每日从 X 更新。",
-        "keywords": "图像提示词,AI图像提示词,ChatGPT图像提示词,GPT Image 2,提示词库"
+        "title": "图片提示词｜AI动效",
+        "description": "免费在线 AI 图片提示词 {count}+ 条，以及可预览、可复制的 AI 动效提示词。",
+        "keywords": "AI图片提示词,图片提示词,AI动效提示词,图像提示词,GPT Image 2"
       },
       "h1Line2": "图像提示词",
       "h1Line3": "GPT Image 2 提示词",
-      "browseGallery": "浏览图片",
+      "browseGallery": "图片提示词",
       "submitPrompt": "提交提示词 →",
       "modelBar": {
         "label": "支持模型",
@@ -1161,12 +1186,12 @@
         "features": {
           "eyebrow": "为什么选择 Open Prompts",
           "title": "掌握",
-          "titleEm": "GPT Image 2",
-          "subtitle": "Open Prompts 是围绕 OpenAI 最新图像模型打造的社区提示词库 — 向真实创作者学习，复制成熟模板，无需离开页面即可生成图像。",
+          "titleEm": "AI 图片提示词",
+          "subtitle": "免费的 AI 图片提示词和 AI 动效提示词库。复制已验证的图片提示词，或预览一条短动效提示词，无需离开页面。",
           "items": [
             {
-              "t": "精选 GPT Image 2 提示词",
-              "d": "每条提示词均来自 X 上活跃创作者分享的真实成果。没有水分 — 只有经实际输出验证、可复制前即可预览的模板。"
+              "t": "可复制的 AI 图片提示词",
+              "d": "每张卡片同时给出成图和图片提示词。复制到 GPT Image 2，或打开 AI 动效提示词做一段短动画。"
             },
             {
               "t": "站内即时生成",
@@ -1214,7 +1239,7 @@
             }
           ],
           "browserMockup": {
-            "url": "open-prompts.com/prompt/vintage-travel-poster",
+            "url": "open-prompts.com/image-prompts/vintage-travel-poster",
             "promptLabel": "GPT Image 2 提示词",
             "promptText": "希腊圣托里尼经典复古旅行海报。白墙建筑、金色夕照、温暖复古色调、华丽衬线字体排版，高细节，编辑级画质。 — GPT Image 2",
             "resultTitle": "圣托里尼旅行海报",
@@ -1264,7 +1289,7 @@
         "faq": {
           "eyebrow": "常见问题",
           "title": "关于",
-          "titleEm": "GPT Image 2 提示词",
+          "titleEm": "AI 图片提示词",
           "sidebar": {
             "title": "你需要了解的一切",
             "desc": "关于在 Open Prompts 上查找、复制与生成图像的常见问题，涵盖 GPT Image 2 及其他 AI 图像模型。",
@@ -1272,8 +1297,8 @@
           },
           "items": [
             {
-              "q": "Open Prompts 是什么？与 GPT Image 2 有何关系？",
-              "a": "Open Prompts 是社区 AI 图片提示词，每日从 X 创作者同步内容。大多数提示词均针对 GPT Image 2（OpenAI 最新图像模型）编写与测试，是该模型最集中的提示词库。可在浏览器中直接浏览、复制与生成，无需额外配置。"
+              "q": "AI 图片提示词是什么？",
+              "a": "AI 图片提示词是贴进 GPT Image 2 或 ChatGPT 用来出图的文字。每张卡片同时给出成图和对应提示词，可以直接复制。若要短动画，打开 AI 动效提示词。这里的 AI 动效是动画提示词，不是日程或待办类产品。"
             },
             {
               "q": "浏览和复制提示词需要付费吗？",

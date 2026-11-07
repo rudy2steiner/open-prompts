@@ -289,8 +289,8 @@
     },
     "nav": {
       "home": "Inicio",
-      "gallery": "Imágenes",
-      "motion": "Movimiento",
+      "gallery": "Prompts de imagen",
+      "motion": "Prompts de movimiento",
       "categories": "Categorías",
       "create": "Crear",
       "favorites": "Favoritos",
@@ -905,10 +905,10 @@
       "registerSuccess": "Cuenta creada. Registrándote..."
     },
     "galleryPage": {
-      "title": "Imágenes",
+      "title": "Prompts de imagen",
       "subtitle": "Explora más de 1000 prompts de imagen gratuitos. Filtra por modelo, copia plantillas y genera imágenes aquí mismo.",
       "seo": {
-        "title": "Prompts de imagen — GPT Image 2",
+        "title": "Prompts de imagen｜GPT Image 2",
         "description": "Explora prompts de imagen gratuitos para ChatGPT, GPT Image 2, Midjourney y DALL·E. Copia plantillas y genera imágenes aquí mismo.",
         "keywords": "prompts de imagen,prompts de imagen con IA,prompts de ChatGPT,prompts de GPT Image 2,biblioteca gratuita de prompts"
       }
@@ -933,7 +933,7 @@
       },
       "breadcrumb": {
         "home": "Inicio",
-        "gallery": "Imágenes",
+        "gallery": "Prompts de imagen",
         "categories": "Categorías"
       },
       "heading": "{category} Prompts de imagen",
@@ -947,7 +947,7 @@
       },
       "breadcrumb": {
         "home": "Inicio",
-        "gallery": "Imágenes"
+        "gallery": "Prompts de imagen"
       },
       "heading": "Categorías de prompts de imagen",
       "subtitle": "{count} indicaciones en {categoryCount} categorías: elija un estilo para explorar.",
@@ -991,8 +991,8 @@
       "loadMore": "Cargar más",
       "playVideo": "Reproducir vídeo",
       "seo": {
-        "title": "Indicaciones de movimiento · Indicaciones y ejemplos de animación de IA",
-        "description": "Explore indicaciones de movimiento de IA y ejemplos reales creados con Claude, GPT, Gemini y más. Filtre por categoría y modelo, vea fuentes originales y copie indicaciones.",
+        "title": "Prompts de movimiento IA｜Claude",
+        "description": "Explora prompts de movimiento con IA para Claude. Mira el resultado, copia el prompt y pégalo.",
         "keywords": "indicaciones de movimiento, indicaciones de movimiento de IA, indicaciones de gráficos en movimiento, ejemplos Claude Motion, indicaciones de animación"
       },
       "breadcrumb": {
@@ -1082,31 +1082,56 @@
       "skillLabel": "Habilidad de movimiento",
       "detail": {
         "back": "Explorar más indicaciones de movimiento",
-        "description": "Explora {title} por @{author}: mira el resultado y utiliza el prompt de movimiento completo de IA."
+        "description": "Prompt de movimiento con IA: {title} de @{author}. Mira la vista previa y cópialo."
       }
     },
     "promptPage": {
       "seo": {
         "title": "{title} — {model} Prompt",
-        "description": "Prompt de imagen {model} gratuito: {snippet}. Copie esta plantilla y genere el Open Prompts.{tags}"
+        "description": "Prompt de imagen con IA gratis: {title}. {snippet}"
       },
-      "seoIntro": "Plantilla de prompt de imagen {model} gratuita: {title}. Copie el siguiente prompt o generelo en el sitio.",
       "breadcrumbHome": "Inicio",
       "breadcrumbGallery": "Imágenes",
       "backToGallery": "← Volver a Imágenes",
       "promptLabel": "Rápido",
       "modelLabel": "Modelo",
-      "imageAlt": "{title} — {model} vista previa {index}"
+      "imageAlt": "{title} — {model} vista previa {index}",
+      "seoSections": {
+        "fallbackCategory": "imagen",
+        "howto": {
+          "title": "Usar este prompt de imagen con IA",
+          "steps": [
+            {"t": "Pegar el recuadro", "d": "Copiar toma el recuadro Rápido, no la línea bajo el título. Pega todo ese texto en {model} como un solo mensaje. No adjuntes la imagen. Es un resultado acabado, no una entrada."},
+            {"t": "O generar", "d": "Generar ahora abre Crear con este prompt ya escrito. Cámbialo allí si quieres y luego ejecútalo. Esa ejecución usa un credit. Copiar no."}
+          ]
+        },
+        "faq": {
+          "title": "Preguntas sobre prompts de imagen con IA",
+          "authorNote": "Esta ficha acredita a {author}.",
+          "sourceNote": "El enlace de origen lleva a la publicación original.",
+          "items": [
+            {"q": "¿Obtendré exactamente esta imagen?", "a": "No. La imagen es una pasada terminada con {model}. Pega el prompt de al lado para una pasada nueva en la misma dirección. No coincidirá cuadro a cuadro."},
+            {"q": "¿Qué cambio para otro tema?", "a": "Conserva {tags}. Cambia quién o qué aparece. Deja las líneas de luz, medio y estilo si quieres este tratamiento."},
+            {"q": "¿Puedo usar el prompt y la imagen?", "a": "Copia el prompt y úsalo. La imagen es el resultado terminado del autor, y el crédito de esta ficha no es una licencia de ese archivo."}
+          ]
+        },
+        "related": {
+          "title": "Más prompts de imagen con IA",
+          "also": "Abrir también",
+          "model": "Prompts de {model}",
+          "category": "Todo {category}"
+        }
+      }
     },
     "homePage": {
       "seo": {
-        "title": "Prompts de imagen — GPT Image 2",
-        "description": "Descubre más de {count} prompts de imagen seleccionados para ChatGPT y GPT Image 2. Copia, adapta y genera imágenes con IA, con novedades diarias de X.",
-        "keywords": "prompts de imagen,prompts de imagen con IA,prompts de ChatGPT,prompts de GPT Image 2,biblioteca gratuita de prompts"
+        "title": "Prompts de imagen｜Motion",
+        "description": "Prompts de imagen con IA gratis online para GPT Image 2 y prompts de movimiento con vista previa. Más de {count}.",
+        "keywords": "prompts de imagen,prompts de movimiento,prompts de imagen con IA,prompts de GPT Image 2,biblioteca de prompts"
       },
       "h1Line2": "Prompts de imagen",
       "h1Line3": "GPT Image 2 Prompts",
-      "browseGallery": "Explorar imágenes",
+      "browseGallery": "Prompts de imagen",
       "submitPrompt": "Enviar prompt →",
       "modelBar": {
         "label": "Funciona con",
@@ -1161,12 +1186,12 @@
         "features": {
           "eyebrow": "Por qué Open Prompts",
           "title": "Todo lo que necesitas para dominar",
-          "titleEm": "GPT Image 2",
-          "subtitle": "Open Prompts es la biblioteca de imágenes impulsada por la comunidad creada alrededor del último modelo de imágenes de OpenAI: aprenda de creadores reales, copie plantillas probadas y genere imágenes sin salir de la página.",
+          "titleEm": "prompts de imagen IA",
+          "subtitle": "Una biblioteca gratis de prompts de imagen con IA y prompts de movimiento. Copia un prompt probado o mira una animación corta.",
           "items": [
             {
-              "t": "Prompts seleccionados GPT Image 2",
-              "d": "Cada prompt proviene directamente de creadores activos en X que comparten sus mejores resultados. Sin relleno: solo plantillas con resultados probados y reales que puedes verificar antes de copiar."
+              "t": "Prompts de imagen con IA para copiar",
+              "d": "Cada tarjeta muestra la imagen y el prompt. Cópialo en GPT Image 2, o abre los prompts de movimiento para una animación corta."
             },
             {
               "t": "Genere en el sitio, al instante",
@@ -1214,7 +1239,7 @@
             }
           ],
           "browserMockup": {
-            "url": "open-prompts.com/prompt/vintage-travel-poster",
+            "url": "open-prompts.com/image-prompts/vintage-travel-poster",
             "promptLabel": "GPT Image 2 Prompt",
             "promptText": "Afiche de viaje clásico de Santorini, Grecia. Arquitectura encalada, luz dorada del atardecer, cálida paleta retro, tipografía serif ornamentada, alto detalle, calidad editorial. — GPT Image 2",
             "resultTitle": "Cartel de viaje de Santorini",
@@ -1264,7 +1289,7 @@
         "faq": {
           "eyebrow": "Preguntas frecuentes",
           "title": "Preguntas sobre",
-          "titleEm": "GPT Image 2 indicaciones",
+          "titleEm": "prompts de imagen IA",
           "sidebar": {
             "title": "Todo lo que necesitas saber",
             "desc": "Preguntas comunes sobre el uso de Open Prompts para buscar, copiar y generar con GPT Image 2 y otros modelos de imágenes de IA.",
@@ -1272,8 +1297,8 @@
           },
           "items": [
             {
-              "q": "¿Qué es Open Prompts y cómo se relaciona con GPT Image 2?",
-              "a": "Open Prompts es una biblioteca comunitaria de indicaciones de imágenes de IA obtenidas diariamente de los creadores de X. La mayoría de las indicaciones se crean y prueban con GPT Image 2, el último modelo de imagen de OpenAI, lo que la convierte en la biblioteca de indicaciones más enfocada para ese modelo. Explore, copie y genere directamente en su navegador, sin necesidad de configuración adicional."
+              "q": "¿Qué son los prompts de imagen con IA?",
+              "a": "Son el texto que pegas en GPT Image 2 o ChatGPT para crear una imagen. Cada tarjeta muestra la imagen y el prompt. Para una animación corta, abre los prompts de movimiento. Aquí Motion es esa biblioteca, no una app de agenda."
             },
             {
               "q": "¿Tengo que pagar para explorar y copiar prompts?",

@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useState, type ReactNode } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { CoverImage } from '~/components/prompt-gallery/CoverImage';
+import { PromptGallerySwipeViewer } from '~/components/prompt-gallery/PromptGallerySwipeViewer';
 import { galleryAuthorLabel } from '~/lib/prompts/gallery-attribution';
 import type { PromptDetailItem } from '~/lib/prompts/prompt-detail-item';
 
@@ -25,6 +27,7 @@ export type PromptDetailPanelProps = {
   showGenerate?: boolean;
   /** Dialog uses max-height; page flows naturally. */
   variant?: 'dialog' | 'page';
+  category?: { href: string; label: string } | null;
 };
 
 export function PromptDetailPanel({
@@ -34,11 +37,13 @@ export function PromptDetailPanel({
   footerExtra,
   showGenerate = true,
   variant = 'page',
+  category = null,
 }: PromptDetailPanelProps) {
   const t = useTranslations('OpenPrompts');
   const router = useRouter();
   const [promptCopied, setPromptCopied] = useState(false);
   const [ratioByImageKey, setRatioByImageKey] = useState<Record<string, string>>({});
+  const [viewerIndex, setViewerIndex] = useState<number | null>(null);
 
   useEffect(() => {
     if (!promptCopied) return;
@@ -74,16 +79,17 @@ export function PromptDetailPanel({
     }
   };
 
-  const shellClass =
-    variant === 'dialog'
-      ? 'flex max-h-[calc(100vh-32px)] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-xl'
-      : 'flex w-full flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-xl';
+  const isPage = variant === 'page';
+  const shellClass = isPage
+    ? 'grid w-full grid-cols-1 items-stretch overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-xl lg:grid-cols-2'
+    : 'flex max-h-[calc(100vh-32px)] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-xl';
 
   return (
+    <>
     <div className={shellClass}>
-      <div className="relative border-b border-stone-200 bg-stone-50">
+      <div className={isPage ? 'relative flex items-center border-b border-stone-200 bg-stone-50 lg:border-b-0 lg:border-r' : 'relative border-b border-stone-200 bg-stone-50'}>
         {headerAction ? <div className="absolute right-3 top-3 z-10">{headerAction}</div> : null}
-        <div className="p-3 sm:p-4">
+        <div className="w-full p-3 sm:p-4">
           <div className="flex w-full snap-x snap-mandatory items-center overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {item.images.length ? (
               item.images.map((src, idx) => {
@@ -91,14 +97,17 @@ export function PromptDetailPanel({
                 const ar = ratioByImageKey[key] ?? '16 / 9';
                 return (
                   <div key={src} className="flex w-full shrink-0 snap-center items-center justify-center px-2">
-                    <div
-                      className="relative h-[48vh] max-h-[420px] w-auto overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-stone-200"
+                    <button
+                      type="button"
+                      className={`${isPage ? 'relative mx-auto h-[min(68vh,560px)] w-auto max-w-full' : 'relative h-[48vh] max-h-[420px] w-auto'} cursor-zoom-in overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-stone-200`}
                       style={{ aspectRatio: ar }}
+                      aria-label={item.title}
+                      onClick={() => setViewerIndex(idx)}
                     >
                       <CoverImage
                         src={src}
                         alt={`${item.title} ${idx + 1}`}
-                        sizes="(max-width: 1024px) 100vw, 768px"
+                        sizes={isPage ? '(max-width: 1024px) 100vw, 640px' : '(max-width: 1024px) 100vw, 768px'}
                         className="object-contain"
                         priority={idx === 0}
                         errorText={t('gallery.coverLoadFailed')}
@@ -110,11 +119,11 @@ export function PromptDetailPanel({
                         }}
                       />
                       {item.images.length > 1 ? (
-                        <div className="absolute left-3 top-3 rounded-md bg-black/55 px-2 py-1 text-[10px] text-white">
+                        <div className="pointer-events-none absolute left-3 top-3 rounded-md bg-black/55 px-2 py-1 text-[10px] text-white">
                           {idx + 1}/{item.images.length}
                         </div>
                       ) : null}
-                    </div>
+                    </button>
                   </div>
                 );
               })
@@ -127,7 +136,7 @@ export function PromptDetailPanel({
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-5">
+      <div className={isPage ? 'flex flex-col p-5 lg:min-h-full' : 'flex-1 overflow-y-auto p-5'}>
         <h1 id="op-template-detail-title" className="text-lg font-semibold text-stone-900">
           {item.title}
         </h1>
@@ -149,13 +158,18 @@ export function PromptDetailPanel({
               {promptCopied ? t('modal.copied') : t('modal.copy')}
             </button>
           </div>
-          <div className="mt-2 max-h-32 overflow-y-auto whitespace-pre-wrap text-sm leading-relaxed text-stone-800">
+          <div className={isPage ? 'mt-2 max-h-[min(48vh,420px)] overflow-y-auto whitespace-pre-wrap text-sm leading-relaxed text-stone-800' : 'mt-2 max-h-32 overflow-y-auto whitespace-pre-wrap text-sm leading-relaxed text-stone-800'}>
             {item.prompt}
           </div>
         </div>
 
         <div className="mt-4 flex flex-wrap gap-2">
           {item.model ? <span className={TAG_META_CHIP}>{item.model}</span> : null}
+          {category ? (
+            <Link href={category.href} className={`${TAG_META_CHIP} hover:text-[var(--text)]`}>
+              {category.label}
+            </Link>
+          ) : null}
           {item.tags.map((tag) => (
             <span key={tag} className={TAG_META_CHIP}>
               {tag}
@@ -204,5 +218,20 @@ export function PromptDetailPanel({
         </div>
       </div>
     </div>
+    {viewerIndex != null && item.images.length > 0 ? (
+      <PromptGallerySwipeViewer
+        open
+        onClose={() => setViewerIndex(null)}
+        images={item.images}
+        title={item.title}
+        imageKeyPrefix={item.id}
+        initialIndex={viewerIndex}
+        coverLoadFailedText={t('gallery.coverLoadFailed')}
+        closeLabel={t('createPage.viewerClose')}
+        prevLabel={t('createPage.viewerPrev')}
+        nextLabel={t('createPage.viewerNext')}
+      />
+    ) : null}
+    </>
   );
 }

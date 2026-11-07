@@ -5,6 +5,7 @@ import type { PromptGalleryItem } from '~/data/promptGallery';
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
 import { galleryHref } from '~/lib/prompts/gallery-path';
+import { buildLocaleHref } from '~/lib/op-locale';
 import { formatGalleryStatCount } from '~/lib/prompts/gallery-stats';
 import { landingFontClassName } from './landing-fonts';
 
@@ -90,7 +91,8 @@ export default async function PageComponent({ locale, prompts, children }: Props
   const previews = pickHeroPreviews(prompts);
 
   const galleryLink = galleryHref(locale);
-  const submitLink = locale === 'en' ? '/submit' : `/${locale}/submit`;
+  const motionLink = buildLocaleHref(locale, '/motion-prompts');
+  const submitLink = buildLocaleHref(locale, '/submit');
 
   return (
     <div className={`min-h-screen w-full ${landingFontClassName}`}>
@@ -110,6 +112,9 @@ export default async function PageComponent({ locale, prompts, children }: Props
               <div className="op-landing-actions">
                 <a href={galleryLink} className="op-landing-btn-primary">
                   {t('homePage.browseGallery')}
+                </a>
+                <a href={motionLink} className="op-landing-btn-ghost">
+                  {t('nav.motion')}
                 </a>
                 <a href={submitLink} className="op-landing-btn-ghost">
                   {t('homePage.submitPrompt')}

@@ -36,6 +36,17 @@ export function buildHomeJsonLd(
     '@context': 'https://schema.org',
     '@graph': [
       {
+        '@type': 'WebPage',
+        url: `${base}/`,
+        name: 'Open Prompts',
+        image: {
+          '@type': 'ImageObject',
+          url: `${base}/og-home.jpg`,
+          width: 1200,
+          height: 630,
+        },
+      },
+      {
         '@type': 'WebSite',
         name: 'Open Prompts',
         url: `${base}/`,

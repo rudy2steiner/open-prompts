@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import type { PromptGalleryItem } from '~/data/promptGallery';
+import { getPromptDetailCopy } from '~/lib/seo/prompt-detail-copy';
 import { buildPromptPageJsonLd } from '~/lib/seo/prompt-json-ld';
 
 type Props = {
@@ -8,9 +9,11 @@ type Props = {
 };
 
 export async function PromptPageJsonLd({ locale, prompt }: Props) {
-  const t = await getTranslations({ locale, namespace: 'OpenPrompts.galleryPage' });
-  const galleryLabel = t('title');
-  const jsonLd = buildPromptPageJsonLd(prompt, locale, galleryLabel);
+  const [copy, t] = await Promise.all([
+    getPromptDetailCopy(locale, prompt),
+    getTranslations({ locale, namespace: 'OpenPrompts.promptPage' }),
+  ]);
+  const jsonLd = buildPromptPageJsonLd(prompt, locale, copy.faqs, t('breadcrumbHome'));
 
   return (
     <script

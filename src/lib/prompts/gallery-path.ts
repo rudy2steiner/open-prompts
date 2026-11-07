@@ -3,7 +3,7 @@ import { normalizeSubmitCategoryKey, type SubmitCategoryKey } from '~/lib/prompt
 
 export function galleryHref(
   locale: string,
-  params?: { model?: string; category?: string | SubmitCategoryKey },
+  params?: { model?: string; category?: string | SubmitCategoryKey; tag?: string },
 ): string {
   const base = buildLocaleHref(locale, '/image-prompts');
   if (!params) return base;
@@ -12,6 +12,8 @@ export function galleryHref(
   if (params.model && params.model !== 'all') qs.set('model', params.model);
   const cat = params.category ? normalizeSubmitCategoryKey(params.category) : null;
   if (cat) qs.set('category', cat);
+  const tag = params.tag?.trim();
+  if (tag) qs.set('tag', tag);
 
   const q = qs.toString();
   return q ? `${base}?${q}` : base;

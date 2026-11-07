@@ -311,8 +311,8 @@
     },
     "nav": {
       "home": "ホーム",
-      "gallery": "画像",
-      "motion": "モーション",
+      "gallery": "画像プロンプト",
+      "motion": "モーションプロンプト",
       "categories": "カテゴリ",
       "create": "作成",
       "favorites": "お気に入り",
@@ -927,10 +927,10 @@
       "registerSuccess": "アカウントを作成しました。ログインしています…"
     },
     "galleryPage": {
-      "title": "画像",
+      "title": "画像プロンプト",
       "subtitle": "1000件以上の無料画像プロンプト。モデルで絞り込み、コピーしてサイト内で生成。",
       "seo": {
-        "title": "画像プロンプト",
+        "title": "AI画像プロンプト｜GPT Image 2",
         "description": "ChatGPT・GPT Image 2・Midjourney 向けの無料画像プロンプト。テンプレートをコピーしてサイト内で生成。",
         "keywords": "画像プロンプト,AI画像プロンプト,ChatGPT画像プロンプト,GPT Image 2,プロンプト集"
       }
@@ -955,7 +955,7 @@
       },
       "breadcrumb": {
         "home": "ホーム",
-        "gallery": "画像",
+        "gallery": "画像プロンプト",
         "categories": "カテゴリ"
       },
       "heading": "{category} プロンプト",
@@ -969,7 +969,7 @@
       },
       "breadcrumb": {
         "home": "ホーム",
-        "gallery": "画像"
+        "gallery": "画像プロンプト"
       },
       "heading": "画像プロンプト カテゴリ",
       "subtitle": "{categoryCount} カテゴリ、合計 {count} 件のプロンプト — スタイルを選んで探索。",
@@ -1013,8 +1013,8 @@
       "loadMore": "もっと見る",
       "playVideo": "動画を再生",
       "seo": {
-        "title": "Motion Prompts · AI モーションプロンプトと作例",
-        "description": "Claude、GPT、Gemini などによる AI モーションプロンプトと実際の作例。カテゴリやモデルで絞り込み、出典の確認とプロンプトのコピーができます。",
+        "title": "AIモーションプロンプト｜Claude",
+        "description": "Claude 向けの AI モーションプロンプト。結果を見てからコピーし、Claude に貼ります。",
         "keywords": "motion prompts,AI motion prompts,motion graphics prompts,Claude Motion examples,animation prompts"
       },
       "breadcrumb": {
@@ -1104,31 +1104,56 @@
       "skillLabel": "Motion skill",
       "detail": {
         "back": "モーションプロンプトを探す",
-        "description": "@{author} の {title}。映像と完全な AI モーションプロンプトを確認。"
+        "description": "AIモーションプロンプト：{title}（@{author}）。プレビューしてコピー。"
       }
     },
     "promptPage": {
       "seo": {
         "title": "{title} — {model} プロンプト",
-        "description": "無料 {model} 画像プロンプト：{snippet}。テンプレートをコピーして Open Prompts で生成。{tags}"
+        "description": "無料のAI画像プロンプト：{title}。{snippet}"
       },
-      "seoIntro": "無料 {model} 画像プロンプト — {title}。下のプロンプトをコピーするかサイト内で生成。",
       "breadcrumbHome": "ホーム",
       "breadcrumbGallery": "画像",
       "backToGallery": "← 画像に戻る",
       "promptLabel": "プロンプト",
       "modelLabel": "モデル",
-      "imageAlt": "{title} — {model} プレビュー {index}"
+      "imageAlt": "{title} — {model} プレビュー {index}",
+      "seoSections": {
+        "fallbackCategory": "画像",
+        "howto": {
+          "title": "このAI画像プロンプトを使う",
+          "steps": [
+            {"t": "欄を貼る", "d": "コピーされるのは「プロンプト」欄の全文で、タイトル下の一行ではありません。その全文を {model} に一つのメッセージとして貼ります。画像は一緒に渡さないでください。完成品であり、入力ではありません。"},
+            {"t": "または生成", "d": "今すぐ生成は「作成」を開き、このプロンプトを入れておきます。変えるならそこで直してから実行します。実行は credits を使います。コピーは使いません。"}
+          ]
+        },
+        "faq": {
+          "title": "AI画像プロンプトの質問",
+          "authorNote": "このカードのクレジットは {author} です。",
+          "sourceNote": "出典リンクは元の投稿です。",
+          "items": [
+            {"q": "同じ画像になりますか？", "a": "なりません。ページの画像は {model} の完成した一回です。横のプロンプトを再実行すると方向は近くなりますが、同じ画面にはなりません。"},
+            {"q": "別の被写体にするには何を変えますか？", "a": "{tags} は残します。誰が、何が写っているかを変えます。同じ処理にするなら、光、媒体、スタイルの文はそのままにします。"},
+            {"q": "プロンプトと画像は使えますか？", "a": "プロンプトはコピーして使えます。画像は作者の完成品で、このカードのクレジットはそのファイルの利用許諾ではありません。"}
+          ]
+        },
+        "related": {
+          "title": "ほかのAI画像プロンプト",
+          "also": "あわせて見る",
+          "model": "{model} のプロンプト",
+          "category": "{category}のすべて"
+        }
+      }
     },
     "homePage": {
       "seo": {
-        "title": "画像プロンプト",
-        "description": "ChatGPT・GPT Image 2 向け厳選画像プロンプト {count} 件以上。コピー・リミックスして AI 画像を生成 — X から毎日更新。",
-        "keywords": "画像プロンプト,AI画像プロンプト,ChatGPT画像プロンプト,GPT Image 2,プロンプト集"
+        "title": "画像プロンプト｜動画",
+        "description": "無料のAI画像プロンプト{count}件以上。短いプレビュー付きのAIモーションプロンプトも探せます。",
+        "keywords": "AI画像プロンプト,画像プロンプト,AIモーションプロンプト,GPT Image 2,プロンプト集"
       },
       "h1Line2": "画像プロンプト",
       "h1Line3": "GPT Image 2 プロンプト",
-      "browseGallery": "画像を見る",
+      "browseGallery": "画像プロンプト",
       "submitPrompt": "プロンプト投稿 →",
       "modelBar": {
         "label": "対応モデル",
@@ -1183,12 +1208,12 @@
         "features": {
           "eyebrow": "Open Prompts を選ぶ理由",
           "title": "マスターするために必要なすべて",
-          "titleEm": "GPT Image 2",
-          "subtitle": "Open Prompts は OpenAI 最新画像モデルを中心としたコミュニティ画像プロンプト集 — 実在のクリエイターから学び、実績あるテンプレートをコピーし、ページを離れずに画像を生成。",
+          "titleEm": "AI画像プロンプト",
+          "subtitle": "無料のAI画像プロンプトとAIモーションプロンプト集。検証済みの画像プロンプトをコピーするか、短いモーションをプレビューできます。",
           "items": [
             {
-              "t": "厳選 GPT Image 2 プロンプト",
-              "d": "すべてのプロンプトは X で活動するクリエイターが共有した実績ある成果から収集。余計なものはなし — コピー前に出力を確認できる、実証済みのテンプレートだけ。"
+              "t": "コピーできるAI画像プロンプト",
+              "d": "カードには完成画像と画像プロンプトが並びます。GPT Image 2 にコピーするか、短いアニメーションならAIモーションプロンプトを開きます。"
             },
             {
               "t": "サイト内で即生成",
@@ -1236,7 +1261,7 @@
             }
           ],
           "browserMockup": {
-            "url": "open-prompts.com/prompt/vintage-travel-poster",
+            "url": "open-prompts.com/image-prompts/vintage-travel-poster",
             "promptLabel": "GPT Image 2 プロンプト",
             "promptText": "ギリシャ・サントリーニのクラシックなヴィンテージ旅行ポスター。白壁の建築、黄金の夕日、温かいレトロ配色、装飾的なセリフ体タイポグラフィ、高精細、エディトリアル品質。 — GPT Image 2",
             "resultTitle": "サントリーニ旅行ポスター",
@@ -1286,7 +1311,7 @@
         "faq": {
           "eyebrow": "FAQ",
           "title": "よくある質問：",
-          "titleEm": "GPT Image 2 プロンプト",
+          "titleEm": "AI画像プロンプト",
           "sidebar": {
             "title": "知っておくべきこと",
             "desc": "Open Prompts でプロンプトを見つけ、コピーし、生成する際のよくある質問。GPT Image 2 および他の AI 画像モデルについて。",
@@ -1294,8 +1319,8 @@
           },
           "items": [
             {
-              "q": "Open Prompts とは？GPT Image 2 との関係は？",
-              "a": "Open Prompts は X クリエイターから毎日収集するコミュニティ AI 画像プロンプトです。大多数のプロンプトは GPT Image 2（OpenAI 最新画像モデル）向けに作成・検証されており、そのモデルに最も特化したライブラリです。ブラウザ内で閲覧、コピー、生成が可能で、追加設定は不要。"
+              "q": "AI画像プロンプトとは？",
+              "a": "GPT Image 2 や ChatGPT に貼って画像を作る文章です。カードには完成画像とそのプロンプトが並び、コピーできます。短いアニメーションは AI モーションプロンプトを開いてください。このサイトの AI モーションはアニメーション用で、予定管理アプリではありません。"
             },
             {
               "q": "閲覧・コピーに料金はかかりますか？",

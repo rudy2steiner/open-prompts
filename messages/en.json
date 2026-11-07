@@ -289,8 +289,8 @@
     },
     "nav": {
       "home": "Home",
-      "gallery": "Images",
-      "motion": "Motion",
+      "gallery": "Image Prompts",
+      "motion": "Motion Prompts",
       "categories": "Categories",
       "create": "Create",
       "favorites": "Favorites",
@@ -905,10 +905,10 @@
       "registerSuccess": "Account created. Signing you in…"
     },
     "galleryPage": {
-      "title": "Images",
+      "title": "Image Prompts",
       "subtitle": "Browse 1,000+ free image prompts. Filter by model, copy templates, generate on-site.",
       "seo": {
-        "title": "Image Prompts — GPT Image 2",
+        "title": "AI Image Prompts｜GPT Image 2",
         "description": "Browse free image prompts for ChatGPT, GPT Image 2, Midjourney & DALL·E. Copy templates and generate on-site.",
         "keywords": "image prompts,ai image prompts,chatgpt image prompts,gpt image 2 prompts,free prompt library"
       }
@@ -933,7 +933,7 @@
       },
       "breadcrumb": {
         "home": "Home",
-        "gallery": "Images",
+        "gallery": "Image Prompts",
         "categories": "Categories"
       },
       "heading": "{category} Image Prompts",
@@ -947,7 +947,7 @@
       },
       "breadcrumb": {
         "home": "Home",
-        "gallery": "Images"
+        "gallery": "Image Prompts"
       },
       "heading": "Image Prompt Categories",
       "subtitle": "{count} prompts across {categoryCount} categories — pick a style to explore.",
@@ -991,8 +991,8 @@
       "loadMore": "Load more",
       "playVideo": "Play video",
       "seo": {
-        "title": "Motion Prompts · AI Animation Prompts & Examples",
-        "description": "Explore AI motion prompts and real examples made with Claude, GPT, Gemini and more. Filter by category and model, view original sources and copy prompts.",
+        "title": "AI Motion Prompts｜Claude",
+        "description": "Browse AI motion prompts for Claude. Preview the result, copy the prompt, and paste it in.",
         "keywords": "motion prompts,AI motion prompts,motion graphics prompts,Claude Motion examples,animation prompts"
       },
       "breadcrumb": {
@@ -1082,31 +1082,56 @@
       "skillLabel": "Motion skill",
       "detail": {
         "back": "Browse more motion prompts",
-        "description": "Explore {title} by @{author}: watch the result and use the complete AI motion prompt."
+        "description": "AI motion prompt: {title} by @{author}. Watch the preview and copy the prompt."
       }
     },
     "promptPage": {
       "seo": {
         "title": "{title} — {model} Prompt",
-        "description": "Free {model} image prompt: {snippet}. Copy this template and generate on Open Prompts.{tags}"
+        "description": "Free AI image prompt: {title}. {snippet} Copy this {model} prompt.{tags}"
       },
-      "seoIntro": "Free {model} image prompt template — {title}. Copy the prompt below or generate on-site.",
       "breadcrumbHome": "Home",
       "breadcrumbGallery": "Images",
       "backToGallery": "← Back to Images",
       "promptLabel": "Prompt",
       "modelLabel": "Model",
-      "imageAlt": "{title} — {model} preview {index}"
+      "imageAlt": "{title} — {model} preview {index}",
+      "seoSections": {
+        "fallbackCategory": "image",
+        "howto": {
+          "title": "Use this AI image prompt",
+          "steps": [
+            {"t": "Paste the box", "d": "Copy takes the Prompt box, not the line under the title. Paste that whole text into {model} as one message. Leave the picture out. It is a finished result, not an input."},
+            {"t": "Or generate", "d": "Generate now opens Create with this prompt filled in. Change the text there if you want, then run it. That run uses a credit. Copy does not."}
+          ]
+        },
+        "faq": {
+          "title": "AI image prompt questions",
+          "authorNote": "This card credits {author}.",
+          "sourceNote": "The source link goes to the original post.",
+          "items": [
+            {"q": "Will I get this exact picture?", "a": "No. The image is one finished {model} run. Paste the prompt beside it for a new run in the same direction. It will not match frame for frame."},
+            {"q": "What should I edit for a different subject?", "a": "Keep {tags}. Change who or what the picture shows. Leave the lighting, medium, and style lines as written if you want this treatment."},
+            {"q": "Can I use the prompt and the picture?", "a": "Copy the prompt and use it. The picture is the author's finished result, and the credit on this card is not a license for that file."}
+          ]
+        },
+        "related": {
+          "title": "More AI image prompts",
+          "also": "Also open",
+          "model": "{model} prompts",
+          "category": "All {category}"
+        }
+      }
     },
     "homePage": {
       "seo": {
-        "title": "Image Prompts — GPT Image 2",
-        "description": "Discover {count}+ curated image prompts for ChatGPT & GPT Image 2. Copy, remix, and generate AI images — daily updates from X.",
-        "keywords": "image prompts,ai image prompts,chatgpt image prompts,gpt image 2 prompts,prompt library"
+        "title": "AI Image Prompts｜AI Motion",
+        "description": "Free online AI image prompts for GPT Image 2, plus AI motion prompts you can preview and copy. {count}+ image prompt examples.",
+        "keywords": "ai image prompts,image prompts,ai motion prompts,image prompt,free online image prompts"
       },
       "h1Line2": "Image Prompts",
       "h1Line3": "GPT Image 2 Prompts",
-      "browseGallery": "Browse Images",
+      "browseGallery": "Image Prompts",
       "submitPrompt": "Submit Prompt →",
       "modelBar": {
         "label": "Works with",
@@ -1161,12 +1186,12 @@
         "features": {
           "eyebrow": "Why Open Prompts",
           "title": "Everything you need to master",
-          "titleEm": "GPT Image 2",
-          "subtitle": "Open Prompts is the community-powered image prompt library built around OpenAI's latest image model — learn from real creators, copy proven templates, and generate images without leaving the page.",
+          "titleEm": "AI image prompts",
+          "subtitle": "A free library of AI image prompts and AI motion prompts. Copy a tested image prompt, or preview a short motion prompt, without leaving the page.",
           "items": [
             {
-              "t": "Curated GPT Image 2 Prompts",
-              "d": "Every prompt is sourced directly from active creators on X who share their best results. No filler — only templates with proven, real-world output you can verify before copying."
+              "t": "AI image prompts you can copy",
+              "d": "Each card pairs the finished picture with the image prompt. Copy it into GPT Image 2, or open AI motion prompts when you want a short animation instead of a still."
             },
             {
               "t": "Generate On-Site, Instantly",
@@ -1214,7 +1239,7 @@
             }
           ],
           "browserMockup": {
-            "url": "open-prompts.com/prompt/vintage-travel-poster",
+            "url": "open-prompts.com/image-prompts/vintage-travel-poster",
             "promptLabel": "GPT Image 2 Prompt",
             "promptText": "Classic vintage travel poster of Santorini, Greece. Whitewashed architecture, golden sunset light, warm retro palette, ornate serif typography, high detail, editorial quality. — GPT Image 2",
             "resultTitle": "Santorini Travel Poster",
@@ -1264,7 +1289,7 @@
         "faq": {
           "eyebrow": "FAQ",
           "title": "Questions about",
-          "titleEm": "GPT Image 2 prompts",
+          "titleEm": "AI image prompts",
           "sidebar": {
             "title": "Everything you need to know",
             "desc": "Common questions about using Open Prompts to find, copy, and generate with GPT Image 2 and other AI image models.",
@@ -1272,8 +1297,8 @@
           },
           "items": [
             {
-              "q": "What is Open Prompts and how does it relate to GPT Image 2?",
-              "a": "Open Prompts is a community library of AI image prompts sourced daily from X creators. The majority of prompts are built and tested with GPT Image 2 — OpenAI's latest image model — making it the most focused prompt library for that model. Browse, copy, and generate directly in your browser, no extra setup needed."
+              "q": "What are AI image prompts?",
+              "a": "AI image prompts are the words you paste into GPT Image 2 or ChatGPT to make a picture. Each card shows the finished image and the image prompt that produced it. Copy it, or open AI motion prompts for a short animation. AI motion on this site means those animation prompts, not a calendar or scheduling app."
             },
             {
               "q": "Do I need to pay to browse and copy prompts?",

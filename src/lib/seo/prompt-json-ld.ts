@@ -1,4 +1,6 @@
 import type { PromptGalleryItem } from '~/data/promptGallery';
+import { promptBreadcrumbLabel, promptPath } from '~/lib/prompts/seo-paths';
+import { buildFaqJsonLd, type SeoFaq } from '~/lib/seo/json-ld';
 import { absoluteUrl } from '~/lib/seo/metadata';
 
 type BreadcrumbItem = { name: string; path: string };
@@ -23,14 +25,14 @@ export function buildPromptImageJsonLd(prompt: PromptGalleryItem, locale: string
     name: prompt.title,
     ...(prompt.description ? { description: prompt.description } : {}),
     contentUrl: image,
-    url: absoluteUrl(locale, `/prompt/${prompt.id}`),
+    url: absoluteUrl(locale, promptPath(prompt.id)),
   };
 }
 
 type JsonLdNode = Record<string, unknown>;
 
-export function buildPromptPageJsonLd(prompt: PromptGalleryItem, locale: string, galleryLabel: string) {
-  const pageUrl = absoluteUrl(locale, `/prompt/${prompt.id}`);
+export function buildPromptPageJsonLd(prompt: PromptGalleryItem, locale: string, faqs: SeoFaq[] = [], homeName = 'Home') {
+  const pageUrl = absoluteUrl(locale, promptPath(prompt.id));
   const graph: JsonLdNode[] = [
     {
       '@type': 'CreativeWork',
@@ -40,13 +42,14 @@ export function buildPromptPageJsonLd(prompt: PromptGalleryItem, locale: string,
       ...(prompt.model ? { keywords: [prompt.model, ...prompt.tags].filter(Boolean).join(', ') } : {}),
     },
     buildBreadcrumbJsonLd(locale, [
-      { name: 'Home', path: '' },
-      { name: galleryLabel, path: '/image-prompts' },
-      { name: prompt.title, path: `/prompt/${prompt.id}` },
+      { name: homeName, path: '' },
+      { name: 'image-prompts', path: '/image-prompts' },
+      { name: promptBreadcrumbLabel(prompt.id), path: promptPath(prompt.id) },
     ]),
   ];
   const imageLd = buildPromptImageJsonLd(prompt, locale);
   if (imageLd) graph.unshift(imageLd);
+  if (faqs.length) graph.push(buildFaqJsonLd(faqs));
 
   return {
     '@context': 'https://schema.org',
@@ -63,7 +66,7 @@ export function buildTaxonomyPageJsonLd(
   const listItems = prompts.slice(0, 50).map((p, i) => ({
     '@type': 'ListItem',
     position: i + 1,
-    url: absoluteUrl(locale, `/prompt/${p.id}`),
+    url: absoluteUrl(locale, promptPath(p.id)),
     name: p.title,
   }));
 

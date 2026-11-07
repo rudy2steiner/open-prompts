@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { PromptPageJsonLd } from '~/components/open-prompts/PromptPageJsonLd';
 import { getPromptBySlug } from '~/lib/prompts/get-prompt-by-slug';
 import { getPromptGallery } from '~/lib/prompts/get-prompt-gallery';
+import { promptPath } from '~/lib/prompts/seo-paths';
 import { buildPageMetadata, LOCALES, normalizeLocale } from '~/lib/seo/metadata';
 import { buildPromptPageTitle, buildPromptSeoDescription } from '~/lib/seo/titles';
 import PageComponent from './PageComponent';
@@ -38,14 +39,17 @@ export async function generateMetadata(
     t.raw('seo.description') as string,
   );
   const keywords = [
+    'ai image prompts',
+    'image prompt',
     'image prompts',
+    `${prompt.title} image prompt`,
     `${prompt.model} prompt`,
-    ...prompt.tags.slice(0, 5),
+    ...prompt.tags.slice(0, 3),
   ].filter(Boolean);
 
   return buildPageMetadata({
     locale: normalized,
-    path: `/prompt/${slug}`,
+    path: promptPath(slug),
     title,
     description,
     keywords,

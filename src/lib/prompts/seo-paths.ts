@@ -46,8 +46,18 @@ export function modelLabelToSeoSlug(label: string): ModelSeoSlug | null {
   return null;
 }
 
+/** Breadcrumb label for a detail slug, without the generated 8-character suffix. */
+export function promptBreadcrumbLabel(slug: string): string {
+  const label = slug.replace(/-[0-9a-f]{8}$/i, '');
+  return label || slug;
+}
+
+export function promptPath(slug: string): string {
+  return `/image-prompts/${slug}`;
+}
+
 export function promptHref(locale: string, slug: string): string {
-  return buildLocaleHref(locale, `/prompt/${slug}`);
+  return buildLocaleHref(locale, promptPath(slug));
 }
 
 export function modelLandingHref(locale: string, slug: ModelSeoSlug | string): string {

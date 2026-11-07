@@ -31,8 +31,14 @@ const catalog = records.filter(record => !!record.poster && !excludedIds.has(rec
 const modelGroups = groupMotionModels(catalog);
 const byId = new Map(catalog.map(entry => [entry.id, entry]));
 const bySlug = new Map(catalog.map(entry => [entry.slug, entry]));
+/** 去掉 "AI-generated" 前缀后的旧 slug，详情页会 301 到新地址。 */
+const legacySlugs: Record<string, string> = {
+  'ai-generated-animated-video-demo': '2105279421435572498',
+  'ai-generated-running-cow-animation': '2107435499686154557',
+  'ai-generated-breathing-ink-painting': '2103288413969621231',
+};
 export function getMotionSlugs() { return catalog.map(entry => entry.slug); }
-export function getMotion(id: string) { return byId.get(id) || bySlug.get(id); }
+export function getMotion(id: string) { return byId.get(legacySlugs[id] || id) || bySlug.get(id); }
 function summarize({ id, slug, title, author, model, type, category, categories, sourceUrl, poster, video, previewVideo, width, height, popularity }: MotionDetail): MotionSummary {
   return { id, slug, title, author, model, type, category, categories, sourceUrl, poster, video, previewVideo, width, height, popularity };
 }

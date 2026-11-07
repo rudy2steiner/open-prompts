@@ -6,6 +6,7 @@ import '~/app/[locale]/landing-page.css';
 import '../motion-prompts.css';
 import { getMotion, getMotionSummary } from '~/lib/motion/catalog';
 import { buildPageMetadata, normalizeLocale } from '~/lib/seo/metadata';
+import { buildFullPageTitle, buildMotionPageTitle } from '~/lib/seo/titles';
 import { buildLocaleHref } from '~/lib/op-locale';
 import { landingFontClassName } from '~/app/[locale]/landing-fonts';
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
@@ -23,10 +24,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!entry) notFound();
   const language = normalizeLocale(locale);
   const t = await getTranslations({ locale: language, namespace: 'OpenPrompts.promptMotionPage' });
-  const title = `${entry.title} · Motion Prompts | Open Prompts`;
+  const title = buildFullPageTitle(buildMotionPageTitle(entry.title, language), language);
   const metadata = buildPageMetadata({ locale: language, path: `/motion-prompts/${entry.slug}`,
-    title: entry.title, description: t('detail.description', { title: entry.title, author: entry.author }),
-    keywords: ['motion prompts', 'AI motion graphics', entry.title, ...entry.categories],
+    title: buildMotionPageTitle(entry.title, language), description: t('detail.description', { title: entry.title, author: entry.author }),
+    keywords: ['ai motion prompts', 'motion prompts', entry.title, ...entry.categories],
   });
   return { ...metadata, title: { absolute: title }, openGraph: { ...metadata.openGraph, title, images: entry.poster ? [{ url: entry.poster }] : undefined }, twitter: { ...metadata.twitter, title, images: entry.poster ? [entry.poster] : undefined }, referrer: 'no-referrer' };
 }
@@ -39,11 +40,12 @@ export default async function MotionDetailPage({ params }: Props) {
   if (!entry) notFound();
   if (slug !== entry.slug) permanentRedirect(buildLocaleHref(language, `/motion-prompts/${entry.slug}`));
   const t = await getTranslations({ locale: language, namespace: 'OpenPrompts.promptMotionPage' });
+  const homeHref = buildLocaleHref(language, '');
   const backHref = buildLocaleHref(language, '/motion-prompts');
   return <div className={`min-h-screen w-full ${landingFontClassName} motion-page`}>
     <link rel="preload" as="image" href={entry.poster || undefined} fetchPriority="high" />
     <main className="motion-container motion-detail">
-      <nav className="motion-breadcrumb" aria-label="Breadcrumb"><a href={backHref}>Motion Prompts</a><span aria-hidden="true">/</span><span>{entry.title}</span></nav>
+      <nav className="motion-breadcrumb" aria-label="Breadcrumb"><a href={homeHref}>{t('breadcrumb.home')}</a><span aria-hidden="true">/</span><a href={backHref}>Motion Prompts</a><span aria-hidden="true">/</span><span>{entry.title}</span></nav>
       <h1>{entry.title}</h1>
       <div className="motion-detail-meta"><span>{t(`categoryNames.${entry.category}`)}</span><span>{entry.model}</span><a className="motion-author" href={entry.sourceUrl} target="_blank" rel="noreferrer">{t('originalPost')} · @{entry.author} ↗</a></div>
       <div className="motion-detail-grid" style={{ '--motion-media-column': `${480 * entry.width / entry.height}px` } as CSSProperties}>

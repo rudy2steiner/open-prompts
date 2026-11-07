@@ -2,7 +2,7 @@ import '~/app/[locale]/landing-page.css';
 import { getTranslations } from 'next-intl/server';
 import type { PromptGalleryItem } from '~/data/promptGallery';
 import { galleryHref } from '~/lib/prompts/gallery-path';
-import { promptHref } from '~/lib/prompts/seo-paths';
+import { promptHref, promptPath } from '~/lib/prompts/seo-paths';
 import { formatGalleryStatCount } from '~/lib/prompts/gallery-stats';
 
 type Props = {
@@ -63,7 +63,7 @@ export async function HomeSeoSections({ locale, prompts }: Props) {
   const browserDemoImage = browserDemoPrompt?.images[0];
   const browserDemoHref = browserDemoPrompt ? promptHref(locale, browserDemoPrompt.id) : undefined;
   const browserDemoUrl = browserDemoPrompt
-    ? `open-prompts.com/prompt/${browserDemoPrompt.id}`
+    ? `open-prompts.com${promptPath(browserDemoPrompt.id)}`
     : t('homePage.seoContent.howItWorks.browserMockup.url');
   const browserResultTitle = browserDemoPrompt?.title
     ?? t('homePage.seoContent.howItWorks.browserMockup.resultTitle');

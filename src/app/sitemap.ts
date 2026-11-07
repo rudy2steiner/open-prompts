@@ -3,6 +3,7 @@ import { getPromptGalleryForSitemap } from '~/lib/prompts/get-prompt-gallery';
 import {
   CATEGORY_SEO_SLUG_LIST,
   MODEL_SEO_SLUG_LIST,
+  promptPath,
 } from '~/lib/prompts/seo-paths';
 import { getMotionSlugs } from '~/lib/motion/catalog';
 import { absoluteUrl, LOCALES } from '~/lib/seo/metadata';
@@ -11,6 +12,7 @@ const PUBLIC_PATHS = [
   '',
   '/image-prompts',
   '/motion-prompts',
+  '/ai-prompt-library',
   '/category',
   '/submit',
   '/create',
@@ -54,7 +56,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const promptEntries = LOCALES.flatMap((locale) =>
     prompts.map((p) => ({
-      url: absoluteUrl(locale, `/prompt/${p.id}`),
+      url: absoluteUrl(locale, promptPath(p.id)),
       lastModified: p.createdAt ? new Date(p.createdAt) : now,
       changeFrequency: 'weekly' as const,
       priority: 0.6,

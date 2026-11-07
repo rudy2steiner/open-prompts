@@ -30,12 +30,14 @@ export async function generateMetadata(
     title,
     description,
     keywords,
+    image: { url: '/og-image-prompts.jpg', width: 1200, height: 630 },
   });
 }
 
 type SearchParams = {
   model?: string;
   category?: string;
+  tag?: string;
 };
 
 export default async function GalleryPage(
@@ -56,13 +58,14 @@ export default async function GalleryPage(
   const initialCategory = searchParams?.category
     ? normalizeSubmitCategoryKey(searchParams.category) ?? undefined
     : undefined;
+  const initialTag = searchParams?.tag?.trim() || undefined;
 
   const bootstrap = await getGalleryBootstrap({ model: initialModel, category: initialCategory });
   const prompts = bootstrap.items;
 
   return (
     <PageComponent
-      key={`${locale}:${initialModel ?? 'all'}:${initialCategory ?? 'all'}`}
+      key={`${locale}:${initialModel ?? 'all'}:${initialCategory ?? 'all'}:${initialTag ?? ''}`}
       locale={locale}
       prompts={prompts}
       initialTotal={bootstrap.total}
@@ -70,6 +73,7 @@ export default async function GalleryPage(
       catalogComplete={false}
       initialModel={initialModel}
       initialCategory={initialCategory}
+      initialTag={initialTag}
     />
   );
 }

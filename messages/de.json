@@ -289,8 +289,8 @@
     },
     "nav": {
       "home": "Startseite",
-      "gallery": "Bilder",
-      "motion": "Bewegung",
+      "gallery": "Bild-Prompts",
+      "motion": "Animations-Prompts",
       "categories": "Kategorien",
       "create": "Erstellen",
       "favorites": "Favoriten",
@@ -905,10 +905,10 @@
       "registerSuccess": "Konto erstellt. Anmeldung läuft…"
     },
     "galleryPage": {
-      "title": "Bilder",
+      "title": "Bild-Prompts",
       "subtitle": "Durchsuchen Sie über 1.000 kostenlose Bild-Prompts. Nach Modell filtern, Vorlagen kopieren, direkt auf der Website generieren.",
       "seo": {
-        "title": "Bild-Prompts — GPT Image 2",
+        "title": "Bild-Prompts｜GPT Image 2",
         "description": "Durchsuchen Sie kostenlose Bild-Prompts für ChatGPT, GPT Image 2, Midjourney und DALL·E. Vorlagen kopieren und direkt auf der Website generieren.",
         "keywords": "Bild-Prompts, KI-Bild-Prompts, ChatGPT-Bild-Prompts, GPT Image 2-Prompts, kostenlose Prompt-Bibliothek"
       }
@@ -933,7 +933,7 @@
       },
       "breadcrumb": {
         "home": "Startseite",
-        "gallery": "Bilder",
+        "gallery": "Bild-Prompts",
         "categories": "Kategorien"
       },
       "heading": "{category} Bild-Prompts",
@@ -947,7 +947,7 @@
       },
       "breadcrumb": {
         "home": "Startseite",
-        "gallery": "Bilder"
+        "gallery": "Bild-Prompts"
       },
       "heading": "Bild-Prompt-Kategorien",
       "subtitle": "{count} Prompts in {categoryCount} Kategorien — wählen Sie einen Stil zum Entdecken.",
@@ -991,8 +991,8 @@
       "loadMore": "Mehr laden",
       "playVideo": "Video abspielen",
       "seo": {
-        "title": "Animations-Prompts · KI-Animations-Prompts und Beispiele",
-        "description": "Entdecken Sie KI-Animations-Prompts und reale Beispiele, die mit Claude, GPT, Gemini und anderen erstellt wurden. Filtern Sie nach Kategorie und Modell, sehen Sie sich Originalquellen an und kopieren Sie Prompts.",
+        "title": "KI-Motion-Prompts｜Claude",
+        "description": "KI-Motion-Prompts für Claude durchsuchen. Ergebnis ansehen, Prompt kopieren und einfügen.",
         "keywords": "Animations-Prompts, KI-Animations-Prompts, Bewegungsgrafikaufforderungen, Claude Motion-Beispiele, Animations-Prompts"
       },
       "breadcrumb": {
@@ -1082,31 +1082,56 @@
       "skillLabel": "Animations-Skill",
       "detail": {
         "back": "Durchsuchen Sie weitere Animations-Prompts",
-        "description": "Entdecken Sie {title} von @{author}: Sehen Sie sich das Ergebnis an und nutzen Sie die vollständige KI-Animations-Prompt."
+        "description": "KI-Motion-Prompt: {title} von @{author}. Vorschau ansehen und kopieren."
       }
     },
     "promptPage": {
       "seo": {
         "title": "{title} — {model}-Prompt",
-        "description": "Kostenlose {model}-Bild-Prompt: {snippet}. Kopieren Sie diese Vorlage und generieren Sie sie auf Open Prompts.{tags}"
+        "description": "Kostenloser KI-Bild-Prompt: {title}. {snippet}"
       },
-      "seoIntro": "Kostenlose {model}-Bild-Prompt-Vorlage – {title}. Kopieren Sie die Prompt unten oder generieren Sie sie direkt auf der Website.",
       "breadcrumbHome": "Startseite",
       "breadcrumbGallery": "Bilder",
       "backToGallery": "← Zurück zu Bildern",
       "promptLabel": "Prompt",
       "modelLabel": "Modell",
-      "imageAlt": "{title} – {model} Vorschau {index}"
+      "imageAlt": "{title} – {model} Vorschau {index}",
+      "seoSections": {
+        "fallbackCategory": "Bild",
+        "howto": {
+          "title": "Diesen KI-Bild-Prompt verwenden",
+          "steps": [
+            {"t": "Den Block einfügen", "d": "Kopieren nimmt den Block Prompt, nicht die Zeile unter dem Titel. Fügen Sie den ganzen Text als eine Nachricht in {model} ein. Hängen Sie das Bild nicht an. Es ist ein fertiges Ergebnis, keine Eingabe."},
+            {"t": "Oder erzeugen", "d": "Jetzt generieren öffnet Erstellen mit diesem Prompt. Ändern Sie den Text dort und starten Sie dann. Dieser Lauf verbraucht ein Credit. Kopieren nicht."}
+          ]
+        },
+        "faq": {
+          "title": "Fragen zu KI-Bild-Prompts",
+          "authorNote": "Diese Karte nennt {author}.",
+          "sourceNote": "Der Quellenlink führt zum Originalbeitrag.",
+          "items": [
+            {"q": "Bekomme ich genau dieses Bild?", "a": "Nein. Das Bild ist ein fertiger {model}-Lauf. Fügen Sie den Prompt daneben für einen neuen Lauf in dieselbe Richtung ein. Es wird nicht dasselbe Bild."},
+            {"q": "Was ändere ich für ein anderes Motiv?", "a": "Behalten Sie {tags}. Wechseln Sie, wer oder was zu sehen ist. Lassen Sie Licht, Medium und Stil stehen, wenn Sie diese Behandlung wollen."},
+            {"q": "Darf ich Prompt und Bild verwenden?", "a": "Den Prompt können Sie kopieren und nutzen. Das Bild ist das fertige Ergebnis der Autorin oder des Autors, und die Nennung auf der Karte ist keine Lizenz für diese Datei."}
+          ]
+        },
+        "related": {
+          "title": "Weitere KI-Bild-Prompts",
+          "also": "Weiter öffnen",
+          "model": "{model}-Prompts",
+          "category": "Alle {category}"
+        }
+      }
     },
     "homePage": {
       "seo": {
-        "title": "Bild-Prompts – GPT Image 2",
-        "description": "Entdecken Sie über {count} ausgewählte Bild-Prompts für ChatGPT und GPT Image 2. Kopieren, anpassen und KI-Bilder generieren — täglich neue Inhalte von X.",
-        "keywords": "Bild-Prompts, KI-Bild-Prompts, Chatgpt-Bild-Prompts, GPT-Bild 2-Prompts, Prompt-Bibliothek"
+        "title": "Bild-Prompts｜KI-Motion",
+        "description": "Kostenlose KI-Bild-Prompts für GPT Image 2 und KI-Motion-Prompts mit kurzer Vorschau. Über {count} Beispiele.",
+        "keywords": "Bild-Prompts,Animations-Prompts,KI-Bild-Prompts,GPT Image 2-Prompts,Prompt-Bibliothek"
       },
       "h1Line2": "Bild-Prompts",
       "h1Line3": "GPT Image 2-Prompts",
-      "browseGallery": "Bilder durchsuchen",
+      "browseGallery": "Bild-Prompts",
       "submitPrompt": "Prompt senden →",
       "modelBar": {
         "label": "Funktioniert mit",
@@ -1161,12 +1186,12 @@
         "features": {
           "eyebrow": "Warum Open Prompts",
           "title": "Alles für den sicheren Umgang mit",
-          "titleEm": "GPT Image 2",
-          "subtitle": "Open Prompts ist die von der Community betriebene Bild-Prompt-Bibliothek, die auf dem neuesten Bildmodell von OpenAI basiert – lernen Sie von echten Erstellern, kopieren Sie bewährte Vorlagen und generieren Sie Bilder, ohne die Seite zu verlassen.",
+          "titleEm": "KI-Bild-Prompts",
+          "subtitle": "Eine kostenlose Bibliothek mit KI-Bild-Prompts und KI-Motion-Prompts. Kopieren Sie einen geprüften Bild-Prompt oder sehen Sie eine kurze Animation in der Vorschau.",
           "items": [
             {
-              "t": "Kuratierte GPT Image 2-Prompts",
-              "d": "Jede Prompt stammt direkt von aktiven Erstellern auf X, die ihre besten Ergebnisse teilen. Kein Füllmaterial – nur Vorlagen mit bewährter, realer Ausgabe, die Sie vor dem Kopieren überprüfen können."
+              "t": "KI-Bild-Prompts zum Kopieren",
+              "d": "Jede Karte zeigt das Bild und den Prompt. Kopieren Sie ihn in GPT Image 2, oder öffnen Sie KI-Motion-Prompts für eine kurze Animation."
             },
             {
               "t": "Sofort direkt auf der Website generieren",
@@ -1214,7 +1239,7 @@
             }
           ],
           "browserMockup": {
-            "url": "open-prompts.com/prompt/vintage-travel-poster",
+            "url": "open-prompts.com/image-prompts/vintage-travel-poster",
             "promptLabel": "GPT Image 2-Prompt",
             "promptText": "Klassisches Vintage-Reiseplakat von Santorini, Griechenland. Weiß getünchte Architektur, goldenes Abendlicht, warme Retro-Palette, kunstvolle Serifentypografie, hohe Detailgenauigkeit, redaktionelle Qualität. — GPT Image 2",
             "resultTitle": "Santorini-Reiseposter",
@@ -1264,7 +1289,7 @@
         "faq": {
           "eyebrow": "FAQ",
           "title": "Fragen zu",
-          "titleEm": "GPT Image 2-Prompts",
+          "titleEm": "KI-Bild-Prompts",
           "sidebar": {
             "title": "Alles, was Sie wissen müssen",
             "desc": "Häufige Fragen zur Verwendung von Open Prompts zum Suchen, Kopieren und Generieren mit GPT Image 2 und anderen KI-Bildmodellen.",
@@ -1272,8 +1297,8 @@
           },
           "items": [
             {
-              "q": "Was ist Open Prompts und in welcher Beziehung steht es zu GPT Image 2?",
-              "a": "Open Prompts ist eine Community-Bibliothek mit KI-Bild-Prompts, die täglich von X-Erstellern bezogen werden. Die meisten Prompts werden mit GPT Image 2 – dem neuesten Bildmodell von OpenAI – erstellt und getestet, was es zur am stärksten fokussierten Prompt-Bibliothek für dieses Modell macht. Durchsuchen, kopieren und generieren Sie direkt in Ihrem Browser, ohne dass eine zusätzliche Einrichtung erforderlich ist."
+              "q": "Was sind KI-Bild-Prompts?",
+              "a": "Das sind die Texte, die Sie in GPT Image 2 oder ChatGPT einfügen, um ein Bild zu erzeugen. Jede Karte zeigt das Bild und den Prompt. Für eine kurze Animation öffnen Sie die KI-Motion-Prompts. KI-Motion meint hier Animations-Prompts, keine Kalender-App."
             },
             {
               "q": "Muss ich für das Durchsuchen und Kopieren von Prompts bezahlen?",

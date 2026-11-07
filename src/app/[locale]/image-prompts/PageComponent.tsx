@@ -27,6 +27,7 @@ type Props = {
   catalogComplete?: boolean;
   initialModel?: string;
   initialCategory?: SubmitCategoryKey;
+  initialTag?: string;
 };
 
 const PAGE_SIZE = 18;
@@ -56,6 +57,7 @@ export default function PageComponent({
   catalogComplete = true,
   initialModel,
   initialCategory,
+  initialTag,
 }: Props) {
   const { prompts, total: catalogTotal, catalogReady, nextOffset, loading: catalogLoading, error: catalogError, ensureCatalog, loadNextPage } = useGalleryCatalog(initialPrompts, initialTotal, catalogComplete, !initialModel && !initialCategory);
 
@@ -70,7 +72,7 @@ export default function PageComponent({
   const [categoryId, setCategoryId] = useState<'all' | SubmitCategoryKey>(() =>
     initialCategory ?? 'all',
   );
-  const [subTag, setSubTag] = useState<string | null>(null);
+  const [subTag, setSubTag] = useState<string | null>(initialTag ?? null);
   const [limit, setLimit] = useState(PAGE_SIZE);
   const [autoLoading, setAutoLoading] = useState(false);
   const [enteringDelays, setEnteringDelays] = useState<Map<string, number>>(() => new Map());

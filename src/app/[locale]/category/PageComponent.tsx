@@ -2,13 +2,16 @@ import { getTranslations } from 'next-intl/server';
 import type { PromptGalleryItem } from '~/data/promptGallery';
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
+import { categoryFeaturedCovers } from '~/lib/prompts/category-covers';
 import { filterPromptsByCategory } from '~/lib/prompts/filter-prompts';
 import { galleryHref } from '~/lib/prompts/gallery-path';
 import {
+  getSubmitCategoryTags,
   SUBMIT_CATEGORY_EMOJI,
   SUBMIT_CATEGORY_KEYS,
   type SubmitCategoryKey,
 } from '~/lib/prompts/prompt-categories';
+import { formatSubTagLabel } from '~/lib/prompts/sub-tag-i18n';
 import { buildLocaleHref } from '~/lib/op-locale';
 import {
   categoryKeyToSeoSlug,
@@ -26,7 +29,8 @@ type CategoryCard = {
   slug: string;
   name: string;
   count: number;
-  cover?: string;
+  covers: string[];
+  tags: string[];
 };
 
 export default async function PageComponent({ locale, prompts, categoryCount }: Props) {
@@ -38,6 +42,7 @@ export default async function PageComponent({ locale, prompts, categoryCount }: 
   const homeHref = buildLocaleHref(locale, '');
   const galleryLink = galleryHref(locale);
 
+  const labelForTag = (tag: string) => formatSubTagLabel(tag, (key) => tCategory(`subTags.${key}`));
   const cards: CategoryCard[] = SUBMIT_CATEGORY_KEYS.map((key) => {
     const filtered = filterPromptsByCategory(prompts, key);
     return {
@@ -45,9 +50,11 @@ export default async function PageComponent({ locale, prompts, categoryCount }: 
       slug: categoryKeyToSeoSlug(key),
       name: tCategory(`categories.${key}`),
       count: filtered.length,
-      cover: filtered[0]?.images[0],
+      covers: categoryFeaturedCovers(prompts, key),
+      tags: getSubmitCategoryTags(key).slice(0, 4).map(labelForTag),
     };
   });
+  const categorizedCount = cards.reduce((total, card) => total + card.count, 0);
 
   return (
     <div className="min-h-screen w-full bg-[var(--bg)] text-[var(--text)]">
@@ -78,7 +85,7 @@ export default async function PageComponent({ locale, prompts, categoryCount }: 
               {t('heading')}
             </h1>
             <p className="mt-1 text-sm text-[var(--text2)]">
-              {t('subtitle', { count: prompts.length, categoryCount })}
+              {t('subtitle', { count: categorizedCount, categoryCount })}
             </p>
 
             <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -88,33 +95,44 @@ export default async function PageComponent({ locale, prompts, categoryCount }: 
                     href={categoryLandingHref(locale, card.slug)}
                     className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] transition hover:border-[var(--border2)] hover:shadow-md"
                   >
-                    <div className="relative aspect-[16/10] overflow-hidden bg-[var(--surface2)]">
-                      {card.cover ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={card.cover}
-                          alt=""
-                          className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
-                          loading="lazy"
-                        />
+                    <div
+                      className={`grid gap-px overflow-hidden bg-[var(--border)] ${
+                        card.covers.length >= 4
+                          ? 'aspect-[2/1] grid-cols-2'
+                          : card.covers.length === 3
+                            ? 'aspect-[16/9] grid-cols-3'
+                            : card.covers.length === 2
+                              ? 'aspect-[16/9] grid-cols-2'
+                              : 'aspect-[16/9] grid-cols-1'
+                      }`}
+                    >
+                      {card.covers.length > 0 ? (
+                        card.covers.map((src) => (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            key={src}
+                            src={src}
+                            alt=""
+                            className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+                            loading="lazy"
+                          />
+                        ))
                       ) : (
-                        <div className="flex h-full w-full items-center justify-center text-4xl opacity-60">
+                        <div className="flex h-full w-full items-center justify-center bg-[var(--surface2)] text-4xl opacity-60">
                           {SUBMIT_CATEGORY_EMOJI[card.key]}
                         </div>
                       )}
                     </div>
-                    <div className="flex flex-1 flex-col gap-1 p-4">
-                      <div className="flex items-center gap-2">
-                        <span aria-hidden className="text-base">
-                          {SUBMIT_CATEGORY_EMOJI[card.key]}
-                        </span>
+                    <div className="flex flex-1 flex-col gap-2 p-4">
+                      <div className="flex items-baseline justify-between gap-3">
                         <h2 className="text-base font-medium text-[var(--text)] group-hover:text-[var(--amber)]">
                           {card.name}
                         </h2>
+                        <p className="shrink-0 text-sm text-[var(--text2)]">
+                          {t('cardCount', { count: card.count })}
+                        </p>
                       </div>
-                      <p className="text-sm text-[var(--text2)]">
-                        {t('cardCount', { count: card.count })}
-                      </p>
+                      <p className="text-xs leading-5 text-[var(--text3)]">{card.tags.join(' · ')}</p>
                     </div>
                   </a>
                 </li>

@@ -18,8 +18,18 @@ output = root / 'public/motion-posters'
 output.mkdir(parents=True, exist_ok=True)
 entries = json.loads((source / 'data/videos.json').read_text())
 
+def display_title(title):
+    """标题后缀已经写明 AI，去掉多余的 AI-generated 前缀。"""
+    if not isinstance(title, str):
+        return title
+    shorter = re.sub(r'^(?:an?\s+)?ai[-\s]?generated\s+', '', title, flags=re.I)
+    if not shorter or shorter == title:
+        return title
+    return shorter[0].upper() + shorter[1:]
+
 def import_entry(entry):
     record = {key: entry.get(key) for key in ['id', 'title', 'author', 'model', 'prompt', 'sourceUrl', 'promptSourceUrl', 'collectionUrl', 'video', 'skillUrl', 'requiresReference']}
+    record['title'] = display_title(record.get('title'))
     record.update(type=entry.get('type') or 'Prompt', category=entry['primaryCategory'], categories=entry.get('categories', []), width=entry.get('width') or 16, height=entry.get('height') or 9)
     provenance = entry.get('provenance') or {}
     record['promptStatus'] = provenance.get('promptStatus', 'collected')

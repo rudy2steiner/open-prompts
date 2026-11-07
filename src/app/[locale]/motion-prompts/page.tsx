@@ -14,19 +14,15 @@ export async function generateMetadata(
   setRequestLocale(normalized);
   const t = await getTranslations({ locale: normalized, namespace: 'OpenPrompts.promptMotionPage' });
   const keywords = t('seo.keywords').split(',').map((k) => k.trim()).filter(Boolean);
-  const metadata = buildPageMetadata({
-    locale: normalized,
-    path: '/motion-prompts',
-    title: t('seo.title'),
-    description: t('seo.description'),
-    keywords,
-  });
-  const title = `${t('seo.title')} | Open Prompts`;
   return {
-    ...metadata,
-    title: { absolute: title },
-    openGraph: { ...metadata.openGraph, title },
-    twitter: { ...metadata.twitter, title },
+    ...buildPageMetadata({
+      locale: normalized,
+      path: '/motion-prompts',
+      title: t('seo.title'),
+      description: t('seo.description'),
+      keywords,
+      image: { url: '/og-motion-prompts-v2.jpg', width: 1200, height: 630 },
+    }),
     referrer: 'no-referrer',
   };
 }

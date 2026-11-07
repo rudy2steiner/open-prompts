@@ -34,11 +34,19 @@ const nextConfig = {
     async redirects() {
         return [
             { source: '/gallery', destination: '/image-prompts', permanent: true },
-            ...['en', 'zh', 'ja', 'ko', 'fr', 'de', 'es', 'pt'].map(locale => ({
-                source: `/${locale}/gallery`,
-                destination: `/${locale}/image-prompts`,
-                permanent: true,
-            })),
+            { source: '/prompt/:slug', destination: '/image-prompts/:slug', permanent: true },
+            ...['en', 'zh', 'ja', 'ko', 'fr', 'de', 'es', 'pt'].flatMap(locale => ([
+                {
+                    source: `/${locale}/gallery`,
+                    destination: `/${locale}/image-prompts`,
+                    permanent: true,
+                },
+                {
+                    source: `/${locale}/prompt/:slug`,
+                    destination: `/${locale}/image-prompts/:slug`,
+                    permanent: true,
+                },
+            ])),
         ];
     },
     async headers() {

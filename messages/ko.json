@@ -289,8 +289,8 @@
     },
     "nav": {
       "home": "홈",
-      "gallery": "이미지",
-      "motion": "모션",
+      "gallery": "이미지 프롬프트",
+      "motion": "모션 프롬프트",
       "categories": "카테고리",
       "create": "만들기",
       "favorites": "즐겨찾기",
@@ -905,10 +905,10 @@
       "registerSuccess": "계정이 생성되었습니다. 로그인 중…"
     },
     "galleryPage": {
-      "title": "이미지",
+      "title": "이미지 프롬프트",
       "subtitle": "1,000개 이상의 무료 이미지 프롬프트를 둘러보세요. 모델별로 필터링하고 템플릿을 복사하여 사이트에서 바로 생성하세요.",
       "seo": {
-        "title": "이미지 프롬프트 — GPT Image 2",
+        "title": "이미지 프롬프트｜GPT Image 2",
         "description": "ChatGPT, GPT Image 2, Midjourney 및 DALL·E에 대한 무료 이미지 프롬프트를 찾아보세요. 템플릿을 복사하고 사이트에서 바로 생성하세요.",
         "keywords": "이미지 프롬프트,ai 이미지 프롬프트,ChatGPT 이미지 프롬프트,GPT Image 2 프롬프트,무료 프롬프트 라이브러리"
       }
@@ -933,7 +933,7 @@
       },
       "breadcrumb": {
         "home": "홈",
-        "gallery": "이미지",
+        "gallery": "이미지 프롬프트",
         "categories": "카테고리"
       },
       "heading": "{category} 이미지 프롬프트",
@@ -947,7 +947,7 @@
       },
       "breadcrumb": {
         "home": "홈",
-        "gallery": "이미지"
+        "gallery": "이미지 프롬프트"
       },
       "heading": "이미지 프롬프트 카테고리",
       "subtitle": "{categoryCount}개 카테고리의 프롬프트 {count}개 중 원하는 스타일을 선택해 둘러보세요.",
@@ -991,8 +991,8 @@
       "loadMore": "더 로드하기",
       "playVideo": "동영상 재생",
       "seo": {
-        "title": "모션 프롬프트 · AI 애니메이션 프롬프트 및 예",
-        "description": "Claude, GPT, Gemini 등으로 만든 AI 모션 프롬프트와 실제 사례를 살펴보세요. 카테고리 및 모델별로 필터링하고 원본 소스를 확인하고 프롬프트를 복사하세요.",
+        "title": "AI 모션 프롬프트｜Claude",
+        "description": "Claude용 AI 모션 프롬프트를 둘러보세요. 결과를 본 뒤 프롬프트를 복사해 Claude에 붙이세요.",
         "keywords": "모션 프롬프트,AI 모션 프롬프트,모션 그래픽 프롬프트,Claude Motion 예제,애니메이션 프롬프트"
       },
       "breadcrumb": {
@@ -1082,31 +1082,56 @@
       "skillLabel": "모션 스킬",
       "detail": {
         "back": "더 많은 모션 프롬프트 찾아보기",
-        "description": "@{author}의 {title} 탐색: 결과를 보고 전체 AI 모션 프롬프트를 사용하세요."
+        "description": "AI 모션 프롬프트: {title}, @{author}. 미리 보고 복사하세요."
       }
     },
     "promptPage": {
       "seo": {
         "title": "{title} — {model} 프롬프트",
-        "description": "무료 {model} 이미지 프롬프트: {snippet}. 이 템플릿을 복사하고 Open Prompts에서 생성하세요.{tags}"
+        "description": "무료 AI 이미지 프롬프트: {title}. {snippet}"
       },
-      "seoIntro": "무료 {model} 이미지 프롬프트 템플릿 — {title}. 아래 프롬프트를 복사하거나 사이트에서 바로 생성하세요.",
       "breadcrumbHome": "홈",
       "breadcrumbGallery": "이미지",
       "backToGallery": "← 이미지로 돌아가기",
       "promptLabel": "프롬프트",
       "modelLabel": "모델",
-      "imageAlt": "{title} — {model} 미리보기 {index}"
+      "imageAlt": "{title} — {model} 미리보기 {index}",
+      "seoSections": {
+        "fallbackCategory": "이미지",
+        "howto": {
+          "title": "이 AI 이미지 프롬프트 사용하기",
+          "steps": [
+            {"t": "칸을 붙이기", "d": "복사는 제목 아래 문장이 아니라 「프롬프트」 칸의 전문입니다. 그 전문을 {model}에 메시지 하나로 붙이세요. 그림은 같이 넣지 마세요. 결과물이지 입력이 아닙니다."},
+            {"t": "또는 생성", "d": "지금 생성은 「만들기」를 열고 이 프롬프트를 채워 둡니다. 바꿀 내용이 있으면 거기서 고친 뒤 실행하세요. 실행은 credits를 씁니다. 복사는 쓰지 않습니다."}
+          ]
+        },
+        "faq": {
+          "title": "AI 이미지 프롬프트 질문",
+          "authorNote": "이 카드의 크레딧은 {author}입니다.",
+          "sourceNote": "출처 링크는 원본 게시물입니다.",
+          "items": [
+            {"q": "같은 그림이 나오나요?", "a": "나오지 않습니다. 페이지의 이미지는 {model}로 끝난 한 번의 결과입니다. 옆의 프롬프트를 다시 실행하면 방향은 비슷해도 같은 화면은 아닙니다."},
+            {"q": "다른 대상으로 바꾸려면 어디를 고치나요?", "a": "{tags}는 남기세요. 누가, 무엇이 나오는지 바꿉니다. 같은 처리를 원하면 빛, 매체, 스타일 문장은 그대로 두세요."},
+            {"q": "프롬프트와 그림을 써도 되나요?", "a": "프롬프트는 복사해 쓸 수 있습니다. 그림은 작성자의 완성본이고, 카드의 크레딧은 그 파일의 사용 허락이 아닙니다."}
+          ]
+        },
+        "related": {
+          "title": "더 많은 AI 이미지 프롬프트",
+          "also": "이어서 보기",
+          "model": "{model} 프롬프트",
+          "category": "{category} 전체"
+        }
+      }
     },
     "homePage": {
       "seo": {
-        "title": "이미지 프롬프트 — GPT Image 2",
-        "description": "ChatGPT와 GPT Image 2를 위한 선별된 이미지 프롬프트 {count}개 이상을 살펴보세요. 프롬프트를 복사하고 나만의 방식으로 바꿔 AI 이미지를 생성하세요. X에서 매일 업데이트됩니다.",
-        "keywords": "이미지 프롬프트,ai 이미지 프롬프트,ChatGPT 이미지 프롬프트,GPT Image 2 프롬프트,프롬프트 라이브러리"
+        "title": "AI 이미지 프롬프트｜모션",
+        "description": "무료 온라인 AI 이미지 프롬프트 {count}개 이상. 짧은 미리보기가 있는 AI 모션 프롬프트도 복사할 수 있습니다.",
+        "keywords": "AI 이미지 프롬프트,이미지 프롬프트,AI 모션 프롬프트,GPT Image 2 프롬프트,프롬프트 라이브러리"
       },
       "h1Line2": "이미지 프롬프트",
       "h1Line3": "GPT Image 2 프롬프트",
-      "browseGallery": "이미지 찾아보기",
+      "browseGallery": "이미지 프롬프트",
       "submitPrompt": "프롬프트 제출 →",
       "modelBar": {
         "label": "지원 모델",
@@ -1161,12 +1186,12 @@
         "features": {
           "eyebrow": "왜 Open Prompts인가?",
           "title": "마스터하는 데 필요한 모든 것",
-          "titleEm": "GPT Image 2",
-          "subtitle": "Open Prompts는 OpenAI의 최신 이미지 모델을 기반으로 구축된 커뮤니티 기반 이미지 프롬프트 라이브러리입니다. 실제 제작자로부터 배우고, 입증된 템플릿을 복사하고, 페이지를 떠나지 않고도 이미지를 생성할 수 있습니다.",
+          "titleEm": "AI 이미지 프롬프트",
+          "subtitle": "무료 AI 이미지 프롬프트와 AI 모션 프롬프트 라이브러리입니다. 검증된 이미지 프롬프트를 복사하거나 짧은 모션을 미리 볼 수 있습니다.",
           "items": [
             {
-              "t": "엄선된 GPT Image 2 프롬프트",
-              "d": "모든 프롬프트는 X에서 좋은 결과물을 공유하는 활발한 크리에이터에게서 직접 수집합니다. 불필요한 내용 없이, 복사 전에 실제 결과를 확인할 수 있는 검증된 템플릿만 제공합니다."
+              "t": "복사할 수 있는 AI 이미지 프롬프트",
+              "d": "카드에 완성 이미지와 이미지 프롬프트가 함께 있습니다. GPT Image 2에 복사하거나, 짧은 애니메이션은 AI 모션 프롬프트를 여세요."
             },
             {
               "t": "사이트에서 즉시 생성",
@@ -1214,7 +1239,7 @@
             }
           ],
           "browserMockup": {
-            "url": "open-prompts.com/prompt/vintage-travel-poster",
+            "url": "open-prompts.com/image-prompts/vintage-travel-poster",
             "promptLabel": "GPT Image 2 프롬프트",
             "promptText": "그리스 산토리니를 담은 클래식 빈티지 여행 포스터. 하얀 건물, 황금빛 석양, 따뜻한 복고풍 색감, 장식적인 세리프 타이포그래피, 정교한 디테일, 에디토리얼 수준의 완성도. — GPT Image 2",
             "resultTitle": "산토리니 여행 포스터",
@@ -1264,7 +1289,7 @@
         "faq": {
           "eyebrow": "자주 묻는 질문",
           "title": "궁금한 점을 확인하세요",
-          "titleEm": "GPT Image 2 프롬프트",
+          "titleEm": "AI 이미지 프롬프트",
           "sidebar": {
             "title": "당신이 알아야 할 모든 것",
             "desc": "Open Prompts에서 GPT Image 2 및 다른 AI 이미지 모델용 프롬프트를 찾고 복사하고 이미지 생성에 활용하는 방법에 관한 자주 묻는 질문입니다.",
@@ -1272,8 +1297,8 @@
           },
           "items": [
             {
-              "q": "Open Prompts란 무엇이며 GPT Image 2와 어떤 관련이 있나요?",
-              "a": "Open Prompts는 X 제작자가 매일 제공하는 AI 이미지 프롬프트의 커뮤니티 라이브러리입니다. 대부분의 프롬프트는 GPT Image 2(OpenAI의 최신 이미지 모델)로 구축 및 테스트되어 해당 모델에 가장 집중된 프롬프트 라이브러리입니다. 추가 설정이 필요 없이 브라우저에서 직접 탐색, 복사 및 생성할 수 있습니다."
+              "q": "AI 이미지 프롬프트란 무엇인가요?",
+              "a": "GPT Image 2나 ChatGPT에 붙여 넣어 이미지를 만드는 글입니다. 카드에 완성 이미지와 프롬프트가 함께 있어 바로 복사할 수 있습니다. 짧은 애니메이션은 AI 모션 프롬프트를 여세요. 여기서 AI 모션은 애니메이션 프롬프트이며, 일정 관리 앱이 아닙니다."
             },
             {
               "q": "프롬프트를 찾아보고 복사하려면 비용을 지불해야 합니까?",

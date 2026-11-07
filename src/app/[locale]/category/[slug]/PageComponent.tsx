@@ -44,7 +44,7 @@ export default async function PageComponent({ locale, slug, categoryKey, prompts
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <OpenPromptsSiteHeader locale={locale} activeNav="categories" langPathSuffix="/category" />
+      <OpenPromptsSiteHeader locale={locale} activeNav="categories" langPathSuffix={`/category/${slug}`} />
 
       <main className="w-full">
         <section className="px-6 pb-8 pt-8">
