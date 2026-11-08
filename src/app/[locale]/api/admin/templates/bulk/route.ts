@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getDb } from '~/db/client';
 import { requireAdminSession } from '~/lib/auth/session';
 import { adminBulkSetReviewStatus, parseReviewStatus } from '~/lib/prompts/template-record';
+import { invalidateAdminCache } from '~/lib/admin/cache';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,7 +19,7 @@ function parseIds(raw: unknown): number[] {
 export async function PATCH(req: Request) {
   const session = await requireAdminSession();
   if (!session) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    return new NextResponse('Not found', { status: 404 });
   }
 
   const db = getDb();
@@ -44,6 +45,8 @@ export async function PATCH(req: Request) {
 
   try {
     const updated = await adminBulkSetReviewStatus(db, ids, status);
+    invalidateAdminCache('templates');
+    invalidateAdminCache('review');
     return NextResponse.json({ ok: true, updated });
   } catch (e: unknown) {
     const message = e instanceof Error ? e.message : 'Bulk update failed';

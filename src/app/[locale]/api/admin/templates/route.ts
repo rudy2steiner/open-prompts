@@ -9,13 +9,14 @@ import {
 } from '~/lib/prompts/template-record';
 import { getPromptDailyTrend } from '~/lib/users/admin-user-record';
 import { normalizeTrendDays } from '~/lib/users/admin-user-trend';
+import { adminQueryKey, cachedAdminPage } from '~/lib/admin/cache';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: Request) {
   const session = await requireAdminSession();
   if (!session) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    return new NextResponse('Not found', { status: 404 });
   }
 
   const db = getDb();
@@ -30,17 +31,21 @@ export async function GET(req: Request) {
   const trendDays = normalizeTrendDays(url.searchParams.get('trendDays'));
 
   try {
-    const [result, pendingCount] = await Promise.all([
-      listTemplatesForAdmin(db, { q, status, visibility, limit, offset }),
-      countPendingReview(db),
-    ]);
-    let promptsDailyTrend: Awaited<ReturnType<typeof getPromptDailyTrend>> = [];
-    try {
-      promptsDailyTrend = await getPromptDailyTrend(db, trendDays);
-    } catch (trendErr) {
-      console.error('[admin/templates GET:trend]', trendErr);
-    }
-    return NextResponse.json({ ...result, pendingCount, trendDays, promptsDailyTrend });
+    const key = adminQueryKey({ namespace: 'templates', pageSize: limit, offset, query: q, status, visibility, trendDays });
+    const payload = await cachedAdminPage(key, async () => {
+      const [result, pendingCount] = await Promise.all([
+        listTemplatesForAdmin(db, { q, status, visibility, limit, offset }),
+        countPendingReview(db),
+      ]);
+      let promptsDailyTrend: Awaited<ReturnType<typeof getPromptDailyTrend>> = [];
+      try {
+        promptsDailyTrend = await getPromptDailyTrend(db, trendDays);
+      } catch (trendErr) {
+        console.error('[admin/templates GET:trend]', trendErr);
+      }
+      return { ...result, pendingCount, trendDays, promptsDailyTrend };
+    });
+    return NextResponse.json(payload, { headers: { 'cache-control': 'private, no-store' } });
   } catch (e: unknown) {
     const message = e instanceof Error ? e.message : 'List failed';
     console.error('[admin/templates GET]', e);

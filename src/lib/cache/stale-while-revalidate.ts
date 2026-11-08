@@ -55,9 +55,9 @@ export function createStaleCache<T>({
       entries.delete(key);
     },
     invalidatePrefix(prefix: string): void {
-      for (const key of entries.keys()) {
+      entries.forEach((_value, key) => {
         if (key.startsWith(prefix)) entries.delete(key);
-      }
+      });
     },
     clear(): void {
       entries.clear();

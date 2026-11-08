@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getDb } from '~/db/client';
 import { requireAdminSession } from '~/lib/auth/session';
 import { adminSetReviewStatus, getTemplateById, parseReviewStatus } from '~/lib/prompts/template-record';
+import { invalidateAdminCache } from '~/lib/admin/cache';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,7 +14,7 @@ function parseId(raw: string): number | null {
 export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
   const session = await requireAdminSession();
   if (!session) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    return new NextResponse('Not found', { status: 404 });
   }
 
   const db = getDb();
@@ -38,6 +39,8 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
   try {
     const item = await adminSetReviewStatus(db, id, status);
     if (!item) return NextResponse.json({ error: 'Not found' }, { status: 404 });
+    invalidateAdminCache('templates');
+    invalidateAdminCache('review');
     return NextResponse.json({ ok: true, item });
   } catch (e: unknown) {
     const message = e instanceof Error ? e.message : 'Update failed';
@@ -49,7 +52,7 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
 export async function GET(_req: Request, { params }: { params: Promise<{ id: string }> }) {
   const session = await requireAdminSession();
   if (!session) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    return new NextResponse('Not found', { status: 404 });
   }
 
   const db = getDb();

@@ -3,13 +3,14 @@ import { getDb } from '~/db/client';
 import { requireAdminSession } from '~/lib/auth/session';
 import { listUsers, getAdminUserStats } from '~/lib/users/admin-user-record';
 import { normalizeTrendDays } from '~/lib/users/admin-user-trend';
+import { adminQueryKey, cachedAdminPage } from '~/lib/admin/cache';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: Request) {
   const session = await requireAdminSession();
   if (!session) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    return new NextResponse('Not found', { status: 404 });
   }
 
   const db = getDb();
@@ -22,22 +23,24 @@ export async function GET(req: Request) {
   const trendDays = normalizeTrendDays(url.searchParams.get('trendDays'));
 
   try {
-    const result = await listUsers(db, { q, limit, offset });
-
-    let userStats: Awaited<ReturnType<typeof getAdminUserStats>> = {
-      totalUsers: 0,
-      activeToday: 0,
-      newToday: 0,
-      trendDays,
-      usersDailyTrend: [],
-    };
-    try {
-      userStats = await getAdminUserStats(db, trendDays);
-    } catch (statsErr) {
-      console.error('[admin/users GET] stats failed', statsErr);
-    }
-
-    return NextResponse.json({ ...result, stats: userStats });
+    const key = adminQueryKey({ namespace: 'users', pageSize: limit, offset, query: q, trendDays });
+    const payload = await cachedAdminPage(key, async () => {
+      const result = await listUsers(db, { q, limit, offset });
+      let userStats: Awaited<ReturnType<typeof getAdminUserStats>> = {
+        totalUsers: 0,
+        activeToday: 0,
+        newToday: 0,
+        trendDays,
+        usersDailyTrend: [],
+      };
+      try {
+        userStats = await getAdminUserStats(db, trendDays);
+      } catch (statsErr) {
+        console.error('[admin/users GET] stats failed', statsErr);
+      }
+      return { ...result, stats: userStats };
+    });
+    return NextResponse.json(payload, { headers: { 'cache-control': 'private, no-store' } });
   } catch (e: unknown) {
     const message = e instanceof Error ? e.message : 'List failed';
     console.error('[admin/users GET]', e);
