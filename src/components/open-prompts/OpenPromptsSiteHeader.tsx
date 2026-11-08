@@ -1,12 +1,14 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState, type AnchorHTMLAttributes } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type AnchorHTMLAttributes } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
-import { FaGithub } from 'react-icons/fa';
 import { languages, locales } from '~/config';
+import { CreditBadge } from '~/components/open-prompts/CreditBadge';
+import { PromptDownloadDialog } from '~/components/open-prompts/PromptDownloadDialog';
+import { SignInDialog } from '~/components/open-prompts/SignInDialog';
 import { UserAvatar } from '~/components/open-prompts/UserAvatar';
 import { applyOpThemeToDocument, getOpDocumentTheme } from '~/lib/op-theme';
 import {
@@ -15,12 +17,47 @@ import {
   persistOpLocale,
   type OpLocale,
 } from '~/lib/op-locale';
+import { CREDITS_CHANGED_EVENT } from '~/lib/billing/credits-changed';
 import { galleryHref } from '~/lib/prompts/gallery-path';
 import { categoriesHref } from '~/lib/prompts/seo-paths';
 import {
-  accountPanelHref,
-  type AccountPanel,
-} from '~/lib/account/account-path';
+  clearAccountSnapshot,
+  readAccountSnapshot,
+  writeAccountSnapshot,
+  type AccountDisplaySnapshot,
+} from '~/lib/auth/account-snapshot';
+
+const useBrowserLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
+
+type HeaderUser = {
+  id: string;
+  name?: string | null;
+  email?: string | null;
+  image?: string | null;
+  isAdmin?: boolean;
+};
+
+export function resolveHeaderAccountView(
+  status: 'loading' | 'authenticated' | 'unauthenticated',
+  liveUser: HeaderUser | null,
+  cached: AccountDisplaySnapshot | null,
+) {
+  const verifiedUser = status === 'authenticated' ? liveUser : null;
+  const cachedUser = status === 'loading' && cached ? {
+    id: cached.userId,
+    name: cached.name,
+    email: cached.email,
+    image: cached.image,
+    isAdmin: false,
+  } : null;
+  const user = verifiedUser ?? cachedUser;
+  return {
+    user,
+    canShowAdmin: Boolean(verifiedUser?.isAdmin),
+    showSignIn: status === 'unauthenticated',
+    showPlaceholder: status === 'loading' && !user,
+  };
+}
 
 /** 仅 Gallery 导航走站内预取，其余入口保留原行为。 */
 function SiteNavLink({ gallery, prefetch, children, ...props }: AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -35,9 +72,8 @@ export type OpenPromptsSiteNavKey =
   | 'motion'
   | 'categories'
   | 'create'
+  | 'pricing'
   | 'submit'
-  | 'rank'
-  | 'docs'
   | 'login'
   | 'account';
 
@@ -48,64 +84,46 @@ export type OpenPromptsSiteHeaderProps = {
   langPathSuffix?: string;
   /** Tailwind z-index class for sticky stacking (create uses z-50). */
   stickyZClass?: string;
-  githubAriaLabel?: string;
-  githubTitle?: string;
-  /** Extra text after submit CTA label (create uses ` →`). */
-  submitCtaSuffix?: string;
 };
-
-function accountHref(locale: string, panel?: AccountPanel): string {
-  return accountPanelHref(locale, panel ?? 'overview');
-}
 
 export function OpenPromptsSiteHeader({
   locale,
   activeNav,
   langPathSuffix = '',
   stickyZClass = 'z-30',
-  githubAriaLabel,
-  githubTitle,
-  submitCtaSuffix = '',
 }: OpenPromptsSiteHeaderProps) {
   const t = useTranslations('OpenPrompts');
-  const ta = useTranslations('OpenPrompts.accountPage');
   const { data: session, status } = useSession();
+  const [cachedAccount, setCachedAccount] = useState<AccountDisplaySnapshot | null>(null);
   const [langOpen, setLangOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [balance, setBalance] = useState<number | null>(null);
+  const [downloadOpen, setDownloadOpen] = useState(false);
+  const [signInOpen, setSignInOpen] = useState(false);
   const langWrapRef = useRef<HTMLDivElement | null>(null);
   const userMenuRef = useRef<HTMLDivElement | null>(null);
 
-  const ghAria = githubAriaLabel ?? 'GitHub repository';
-  const ghTitle = githubTitle ?? 'GitHub';
+  const accountView = resolveHeaderAccountView(status, session?.user ?? null, cachedAccount);
+  const accountUser = accountView.user;
 
   const displayName = useMemo(() => {
-    const u = session?.user;
+    const u = accountUser;
     if (!u) return '';
     const n = u.name?.trim();
     if (n) return n;
     return t('header.displayNameFallback');
-  }, [session?.user, t]);
+  }, [accountUser, t]);
 
-  const isAdmin = Boolean(session?.user?.isAdmin);
+  const isAdmin = accountView.canShowAdmin;
 
   const dashboardMenuItems = useMemo(() => {
-    const items: { panel: AccountPanel; label: string; href: string }[] = [
-      { panel: 'overview', label: ta('nav.overview'), href: accountHref(locale, 'overview') },
-      { panel: 'prompts', label: ta('nav.prompts'), href: accountHref(locale, 'prompts') },
-    ];
+    const items: { key: string; label: string; href: string }[] = [];
     if (isAdmin) {
-      items.push({
-        panel: 'admin',
-        label: ta('nav.adminReview'),
-        href: accountHref(locale, 'admin'),
-      });
+      items.push({ key: 'admin', label: t('header.admin'), href: locale === 'en' ? '/admin' : `/${locale}/admin` });
     }
-    items.push(
-      { panel: 'credits', label: ta('nav.credits'), href: accountHref(locale, 'credits') },
-      { panel: 'subscription', label: ta('nav.subscription'), href: accountHref(locale, 'subscription') },
-    );
+    items.push({ key: 'billing', label: t('header.billing'), href: locale === 'en' ? '/billing' : `/${locale}/billing` });
     return items;
-  }, [locale, isAdmin, ta]);
+  }, [locale, isAdmin, t]);
 
   const navItems = useMemo(
     () =>
@@ -115,9 +133,8 @@ export function OpenPromptsSiteHeader({
         { key: 'motion' as const, label: t('nav.motion'), href: buildLocaleHref(locale, '/motion-prompts') },
         { key: 'categories' as const, label: t('nav.categories'), href: categoriesHref(locale) },
         { key: 'create' as const, label: t('nav.create'), href: locale === 'en' ? '/create' : `/${locale}/create` },
+        { key: 'pricing' as const, label: t('nav.pricing'), href: locale === 'en' ? '/pricing' : `/${locale}/pricing` },
         { key: 'submit' as const, label: t('nav.submit'), href: locale === 'en' ? '/submit' : `/${locale}/submit` },
-        { key: 'rank' as const, label: t('nav.rank'), href: '#' },
-        { key: 'docs' as const, label: t('nav.docs'), href: '#' },
       ] as const,
     [t, locale]
   );
@@ -126,6 +143,58 @@ export function OpenPromptsSiteHeader({
     const parsed = parseOpLocale(locale);
     if (parsed) persistOpLocale(parsed);
   }, [locale]);
+
+  useBrowserLayoutEffect(() => {
+    const snapshot = readAccountSnapshot(window.sessionStorage);
+    setCachedAccount(snapshot);
+    if (snapshot?.balance != null) setBalance(snapshot.balance);
+  }, []);
+
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      clearAccountSnapshot(window.sessionStorage);
+      setCachedAccount(null);
+      setBalance(null);
+      return;
+    }
+    if (status !== 'authenticated' || !session?.user?.id) return;
+    const snapshot: AccountDisplaySnapshot = {
+      version: 1,
+      userId: session.user.id,
+      name: session.user.name ?? null,
+      email: session.user.email ?? null,
+      image: session.user.image ?? null,
+      isAdmin: Boolean(session.user.isAdmin),
+      balance,
+      updatedAt: Date.now(),
+    };
+    writeAccountSnapshot(window.sessionStorage, snapshot);
+    setCachedAccount(snapshot);
+  }, [balance, session?.user?.email, session?.user?.id, session?.user?.image, session?.user?.isAdmin, session?.user?.name, status]);
+
+  useEffect(() => {
+    let live = true;
+    const refresh = () => {
+      void fetch('/api/billing/balance', { cache: 'no-store' })
+        .then((response) => response.json())
+        .then((data: { balance?: unknown }) => {
+          if (!live) return;
+          const value = Number(data?.balance);
+          setBalance(Number.isFinite(value) ? value : 0);
+        })
+        .catch(() => {
+          if (live) setBalance(null);
+        });
+    };
+    refresh();
+    window.addEventListener(CREDITS_CHANGED_EVENT, refresh);
+    window.addEventListener('focus', refresh);
+    return () => {
+      live = false;
+      window.removeEventListener(CREDITS_CHANGED_EVENT, refresh);
+      window.removeEventListener('focus', refresh);
+    };
+  }, [status]);
 
   useEffect(() => {
     const onPointerDown = (e: PointerEvent) => {
@@ -146,19 +215,26 @@ export function OpenPromptsSiteHeader({
   }, []);
 
   const signOutCallback = locale === 'en' ? '/' : `/${locale}`;
+  const signInHref = locale === 'en' ? '/login' : `/${locale}/login`;
+  const creditsLabel = t('header.credits');
+  const creditBadge = balance == null ? null : <CreditBadge balance={balance} label={creditsLabel} />;
 
   return (
-    <header className={`sticky top-0 ${stickyZClass} border-b border-[var(--border)] bg-[var(--bg)]`}>
+    <>
+    <header
+      className={`sticky ${stickyZClass} border-b border-[var(--border)] bg-[var(--bg)]`}
+      style={{ top: 'var(--promo-banner-height, 0px)' }}
+    >
       <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-4 md:px-6">
-        <a href={locale === 'en' ? '/' : `/${locale}`} className="flex shrink-0 items-center gap-2 whitespace-nowrap text-sm font-semibold tracking-wide">
-          <span className="relative grid h-8 w-8 place-items-center overflow-hidden rounded-lg">
+        <a href={locale === 'en' ? '/' : `/${locale}`} className="flex min-w-0 items-center gap-2 whitespace-nowrap text-sm font-semibold tracking-wide">
+          <span className="relative grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-lg">
             <Image src="/logo.png" alt="Open Prompts" fill sizes="32px" className="object-contain" priority />
           </span>
-          <span>
+          <span className="hidden min-w-0 truncate min-[360px]:block">
             Open <span className="italic text-[var(--amber2)]">Prompts</span>
           </span>
         </a>
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => (
             <SiteNavLink
               gallery={item.key === 'gallery'}
@@ -176,17 +252,7 @@ export function OpenPromptsSiteHeader({
             </SiteNavLink>
           ))}
         </nav>
-        <div className="flex items-center gap-2">
-          <a
-            href="https://github.com/rudy2steiner/open-prompts"
-            target="_blank"
-            rel="noreferrer"
-            className="hidden h-9 w-9 place-items-center rounded-xl border border-[var(--ctl-border)] bg-[var(--ctl-bg)] text-[var(--text2)] shadow-sm hover:bg-[var(--ctl-hover)] hover:text-[var(--text)] md:grid"
-            aria-label={ghAria}
-            title={ghTitle}
-          >
-            <FaGithub className="h-4 w-4" aria-hidden="true" />
-          </a>
+        <div className="flex shrink-0 items-center gap-2">
           <button
             type="button"
             className="grid h-9 w-9 grid-cols-1 grid-rows-1 place-items-center rounded-xl border border-[var(--ctl-border)] bg-[var(--ctl-bg)] text-[var(--text2)] shadow-sm hover:bg-[var(--ctl-hover)] hover:text-[var(--text)]"
@@ -244,11 +310,11 @@ export function OpenPromptsSiteHeader({
             ) : null}
           </div>
 
-          {status === 'authenticated' && session?.user ? (
+          {accountUser ? (
             <div className="relative flex items-center gap-2" ref={userMenuRef}>
               <button
                 type="button"
-                className="rounded-full transition hover:opacity-90 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--amber)]"
+                className="flex items-center gap-2 rounded-full transition hover:opacity-90 focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--amber)]"
                 aria-expanded={userMenuOpen}
                 aria-haspopup="menu"
                 aria-label={t('header.userMenu')}
@@ -257,10 +323,11 @@ export function OpenPromptsSiteHeader({
                   setLangOpen(false);
                 }}
               >
+                {creditBadge}
                 <UserAvatar
-                  image={session.user.image}
-                  seed={session.user.email ?? session.user.id}
-                  name={session.user.name}
+                  image={accountUser.image}
+                  seed={accountUser.email ?? accountUser.id}
+                  name={accountUser.name}
                   size={32}
                   className="h-8 w-8"
                 />
@@ -272,17 +339,14 @@ export function OpenPromptsSiteHeader({
                 >
                   <div className="border-b border-[var(--border)] px-3 py-2.5">
                     <div className="truncate text-sm font-medium text-[var(--text)]">{displayName}</div>
-                    {session.user.email ? (
-                      <div className="truncate text-[11px] text-[var(--text3)]">{session.user.email}</div>
+                    {accountUser.email ? (
+                      <div className="truncate text-[11px] text-[var(--text3)]">{accountUser.email}</div>
                     ) : null}
                   </div>
                   <div className="px-1 py-1">
-                    <div className="px-2 py-1.5 text-[10px] font-medium uppercase tracking-wide text-[var(--text3)]">
-                      {t('header.userMenuSection')}
-                    </div>
                     {dashboardMenuItems.map((item) => (
                       <Link
-                        key={item.panel}
+                        key={item.key}
                         role="menuitem"
                         href={item.href}
                         className="block rounded-lg px-3 py-2 text-sm text-[var(--text)] transition hover:bg-[var(--surface2)]"
@@ -291,6 +355,17 @@ export function OpenPromptsSiteHeader({
                         {item.label}
                       </Link>
                     ))}
+                    <button
+                      type="button"
+                      role="menuitem"
+                      className="w-full rounded-lg px-3 py-2 text-left text-sm text-[var(--text)] transition hover:bg-[var(--surface2)]"
+                      onClick={() => {
+                        setUserMenuOpen(false);
+                        setDownloadOpen(true);
+                      }}
+                    >
+                      {t('gallery.batchDownload')}
+                    </button>
                   </div>
                   <div className="border-t border-[var(--border)] p-1">
                     <button
@@ -299,6 +374,8 @@ export function OpenPromptsSiteHeader({
                       className="w-full rounded-lg px-3 py-2 text-left text-sm text-[var(--coral)] transition hover:bg-[var(--surface2)]"
                       onClick={() => {
                         setUserMenuOpen(false);
+                        clearAccountSnapshot(window.sessionStorage);
+                        setCachedAccount(null);
                         void signOut({ callbackUrl: signOutCallback });
                       }}
                     >
@@ -308,25 +385,32 @@ export function OpenPromptsSiteHeader({
                 </div>
               ) : null}
             </div>
+          ) : accountView.showPlaceholder ? (
+            <div className="flex items-center gap-2" aria-hidden="true">
+              {balance != null && balance > 0 ? creditBadge : null}
+              <span className="h-8 w-[50px] shrink-0" />
+            </div>
           ) : (
-            <Link
-              href={locale === 'en' ? '/login' : `/${locale}/login`}
-              className="shrink-0 rounded-lg border border-[var(--border2)] px-3 py-1.5 text-xs text-[var(--text2)] hover:bg-[var(--surface2)] hover:text-[var(--text)]"
-            >
-              {t('header.signIn')}
-            </Link>
+            <div className="flex items-center gap-2">
+              {balance != null && balance > 0 ? creditBadge : null}
+              <a
+                href={signInHref}
+                aria-haspopup="dialog"
+                aria-expanded={signInOpen}
+                className="inline-flex min-h-9 shrink-0 items-center rounded-lg border border-[var(--border2)] px-3 py-1.5 text-xs text-[var(--text2)] hover:bg-[var(--surface2)] hover:text-[var(--text)] md:min-h-0"
+                onClick={(event) => {
+                  event.preventDefault();
+                  setSignInOpen(true);
+                  setLangOpen(false);
+                }}
+              >
+                {t('header.signIn')}
+              </a>
+            </div>
           )}
-
-          <Link
-            href={locale === 'en' ? '/submit' : `/${locale}/submit`}
-            className="hidden rounded-lg border border-[var(--border2)] px-3 py-1.5 text-xs text-[var(--text2)] hover:bg-[var(--surface2)] hover:text-[var(--text)] md:inline-flex"
-          >
-            {t('nav.submitCta')}
-            {submitCtaSuffix}
-          </Link>
         </div>
       </div>
-      <nav className="flex w-full items-center gap-1 overflow-x-auto border-t border-[var(--border)] px-4 py-2 md:hidden">
+      <nav className="flex w-full items-center gap-1 overflow-x-auto border-t border-[var(--border)] px-4 py-2 lg:hidden">
         {navItems.filter(item => item.href !== '#').map(item => (
           <SiteNavLink gallery={item.key === 'gallery'} key={item.key} href={item.href} prefetch={item.key === 'gallery' && activeNav !== 'gallery'} aria-current={item.key === activeNav ? 'page' : undefined}
             className={`shrink-0 rounded-lg px-3 py-2 text-xs transition ${item.key === activeNav
@@ -337,5 +421,8 @@ export function OpenPromptsSiteHeader({
         ))}
       </nav>
     </header>
+    <PromptDownloadDialog open={downloadOpen} locale={locale} onClose={() => setDownloadOpen(false)} />
+    <SignInDialog open={signInOpen} onClose={() => setSignInOpen(false)} />
+    </>
   );
 }
