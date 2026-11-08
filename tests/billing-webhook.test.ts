@@ -67,7 +67,8 @@ test('a matching CNY WeChat payment credits once and rejects amount, currency, o
     { orderNo: 'order-missing-method', amount: 3500, currency: 'cny', paymentMethod: undefined },
     { orderNo: 'order-wrong-method', amount: 3500, currency: 'cny', paymentMethod: 'card' },
   ] as const;
-  for (const [index, mismatch] of mismatches.entries()) {
+  for (let index = 0; index < mismatches.length; index++) {
+    const mismatch = mismatches[index]!;
     orders.set(mismatch.orderNo, order({ orderNo: mismatch.orderNo, amount: 3500, currency: 'cny' }));
     const event = signed({
       id: `evt_cny_mismatch_${index}`, type: 'checkout.session.completed',
