@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import PageComponent from '../../account/PageComponent';
-import { AdminMonitor } from '~/components/admin/AdminMonitor';
+import { AdminMonitorClient } from '~/components/admin/AdminMonitorClient';
 import { adminAccess } from '~/lib/admin/access';
 import { adminTab, listAdminEvents, listAdminGenerations, listAdminUsers, loadAdminSummary, normalizeAdminPage, type AdminEventRow, type AdminGenerationRow, type AdminPage, type AdminUserRow } from '~/lib/admin/monitor';
 import { emptyBillingSnapshot, loadAdminBilling } from '~/lib/billing/summary';
@@ -54,15 +54,17 @@ export default async function Page({ params, searchParams }: { params: Promise<{
   const current = tab === 'users' ? users : tab === 'generations' ? generations : events;
 
   return (
-    <AdminMonitor
+    <AdminMonitorClient
       locale={locale}
-      tab={tab}
-      page={page}
-      summary={summary}
-      users={users.items}
-      generations={generations.items}
-      events={events.items}
-      hasNext={current.hasNext}
+      initialTab={tab}
+      initialPage={page}
+      initialData={{
+        summary,
+        users: users.items,
+        generations: generations.items,
+        events: events.items,
+        hasNext: current.hasNext,
+      }}
     />
   );
 }
