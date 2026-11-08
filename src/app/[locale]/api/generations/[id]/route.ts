@@ -104,4 +104,3 @@ export async function GET(req: Request, props: { params: Promise<{ id: string }>
     headers: { 'content-type': 'application/json' },
   });
 }
-
