@@ -35,6 +35,11 @@ const nextConfig = {
         return [
             { source: '/gallery', destination: '/image-prompts', permanent: true },
             { source: '/prompt/:slug', destination: '/image-prompts/:slug', permanent: true },
+            ...['text-to-image', 'reference-to-image', 'image-edit'].map(type => ({
+                source: `/create/${type}`,
+                destination: `/${type}`,
+                permanent: true,
+            })),
             ...['en', 'zh', 'ja', 'ko', 'fr', 'de', 'es', 'pt'].flatMap(locale => ([
                 {
                     source: `/${locale}/gallery`,
@@ -46,6 +51,11 @@ const nextConfig = {
                     destination: `/${locale}/image-prompts/:slug`,
                     permanent: true,
                 },
+                ...['text-to-image', 'reference-to-image', 'image-edit'].map(type => ({
+                    source: `/${locale}/create/${type}`,
+                    destination: `${locale === 'en' ? '' : `/${locale}`}/${type}`,
+                    permanent: true,
+                })),
             ])),
         ];
     },
@@ -69,6 +79,7 @@ const nextConfig = {
             { source: '/api/generate', destination: '/en/api/generate' },
             { source: '/api/generations', destination: '/en/api/generations' },
             { source: '/api/generations/:path*', destination: '/en/api/generations/:path*' },
+            { source: '/api/account/:path*', destination: '/en/api/account/:path*' },
             { source: '/api/my/:path*', destination: '/en/api/my/:path*' },
             { source: '/api/admin/:path*', destination: '/en/api/admin/:path*' },
         ];
