@@ -24,6 +24,10 @@ export function checkoutSiteOrigin(requestUrl: string): string {
   return new URL(requestUrl).origin;
 }
 
+export function parsePaymentMethod(value: unknown): PaymentMethod | null {
+  return value === 'card' || value === 'wechat_pay' ? value : null;
+}
+
 export function productionCheckoutGate(env: {
   secretKey?: string;
   webhookSecret?: string;

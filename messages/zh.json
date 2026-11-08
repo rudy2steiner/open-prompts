@@ -276,6 +276,7 @@
     "moreWorks": "更多作品"
   },
   "OpenPrompts": {
+    "promo": { "banner": "" },
     "header": {
       "language": "切换语言",
       "themeToggle": "切换浅色/深色模式",
@@ -285,7 +286,10 @@
       "signOut": "退出",
       "userMenu": "账户菜单",
       "userMenuSection": "控制台",
-      "displayNameFallback": "用户"
+      "admin": "管理后台",
+      "billing": "账单",
+      "displayNameFallback": "用户",
+      "credits": "积分"
     },
     "nav": {
       "home": "首页",
@@ -293,12 +297,51 @@
       "motion": "动效提示词",
       "categories": "分类",
       "create": "创作",
+      "pricing": "定价",
       "favorites": "收藏",
       "submit": "分享",
       "account": "用户中心",
       "rank": "排行榜",
-      "docs": "文档",
-      "submitCta": "分享提示词"
+      "docs": "文档"
+    },
+    "pricingPage": {
+      "title": "定价",
+      "description": "各模型每次生成消耗的积分见下方表格。",
+      "oneTime": "一次性",
+      "monthlyTab": "按月",
+      "credits": "{count} 积分",
+      "approxImages": "大约 {count} 张",
+      "save": "比入门省 {percent}%",
+      "allTemplates": "全站提示词模板免费用",
+      "batchDownload": "批量下载 {count} 条提示词",
+      "batchDownloadUnlimited": "提示词下载不限量",
+      "perMonth": "/ 月",
+      "buy": "购买",
+      "wechatPay": "微信支付 ¥{price}",
+      "subscribe": "订阅",
+      "recommended": "常用",
+      "note": "不登录也能买。首次登录另送 3 积分。",
+      "rateTitle": "每次生成消耗的积分",
+      "rateNote": "GPT 入门价按低画质、1K、单张计算：2.6 Sunburst 为 3 积分，其余已开放变体为 2 积分。文生图、参考生图与编辑同价，参考图不加费。基础价 2 积分 × 模型倍率 × 画质倍率（低 1、中 3、高 12）× 分辨率倍率（1K 1、2K 2、4K 4），单张向上取整且最低 2 积分，再乘张数。按钮显示最终站点售价，不代表上游成本。Nano Banana 2 即将上线，4 积分仅为入门估算。",
+      "rateModel": "模型",
+      "rateEach": "每次生成",
+      "rateCredits": "积分",
+      "rateText": "文生图",
+      "rateReference": "参考生图",
+      "rateEdit": "图像编辑",
+      "checkoutError": "结账暂时不可用",
+      "dialogTitle": "登录后再支付",
+      "dialogBody": "登录后可在不同设备查看积分、订单和图片。匿名购买仅绑定当前浏览器。",
+      "dialogLogin": "使用 Google 登录",
+      "dialogGuest": "继续匿名购买",
+      "dialogClose": "关闭",
+      "planStarter": "入门",
+      "planPopular": "常用",
+      "planPlus": "更多",
+      "planMonthly": "月度",
+      "rateBanana": "Nano Banana 2",
+      "rateFlare": "GPT Image 2.5 Flare",
+      "rateGpt": "GPT Image 2"
     },
     "submitPage": {
       "seo": {
@@ -1325,10 +1368,10 @@
         "cta": {
           "title": "今天就开始用",
           "titleEm": "GPT Image 2 生成",
-          "subtitle": "加入 6,200+ 创作者，浏览网上最佳 GPT Image 2 提示词库。无需账户 — 浏览、复制、创作即可。",
+          "subtitle": "加入 1000+ 创作者，浏览网上最佳 GPT Image 2 提示词库。浏览、复制提示词无需账户。",
           "browse": "浏览 GPT Image 2 提示词 →",
           "submit": "提交提示词",
-          "note": "无需账户 · {count}+ 精选提示词 · 每日从 X 更新"
+          "note": "浏览无需账户 · {count}+ 精选提示词 · 每日从 X 更新"
         }
       }
     },
@@ -1364,7 +1407,33 @@
       "loadMore": "加载更多",
       "noMore": "没有更多了",
       "coverLoadFailed": "封面加载失败",
-      "showing": "显示 {shown} / {total}"
+      "showing": "显示 {shown} / {total}",
+      "batchDownload": "批量下载提示词",
+      "downloadTitle": "选择提示词",
+      "downloadHint": "额度按账号累计。重复下载已经获得的不占额度。",
+      "downloadSearch": "搜索标题",
+      "downloadCount": "数量",
+      "downloadPickCount": "选择",
+      "downloadAll": "全部",
+      "downloadChosen": "已选 {count}",
+      "downloadCap": "上限 {count}",
+      "downloadUnlimited": "不限量",
+      "downloadAction": "下载",
+      "downloadClose": "关闭",
+      "downloadLoading": "加载中…",
+      "downloadFailed": "列表加载失败。",
+      "downloadTaken": "已获得 {count}",
+      "downloadRemaining": "还可下载 {count}",
+      "downloadNew": "本次新选 {count}",
+      "downloadAlready": "已获得",
+      "downloadFormat": "下载格式",
+      "downloadHtml": "HTML",
+      "downloadZip": "ZIP",
+      "downloadHtmlHint": "离线图库，保留站内卡片、详情、图片放大和提示词复制效果。",
+      "downloadZipHint": "每条提示词一个文件夹，包含完整 prompt.txt 和全部原格式图片。",
+      "downloadPackaging": "正在打包…",
+      "downloadExportFailed": "未能完整打包图片和提示词，请重试或减少选择数量。",
+      "downloadQuota": "已超过剩余额度"
     },
     "card": {
       "community": "社区",
@@ -1372,12 +1441,24 @@
     },
     "footer": {
       "tagline": "Open Prompts · 开源提示词库",
+      "product": "产品",
+      "friends": "友情链接",
+      "support": "支持",
+      "legal": "法律信息",
+      "help": "帮助中心",
+      "contact": "联系我们",
+      "community": "社区",
+      "privacy": "隐私说明",
+      "terms": "使用条款",
+      "cookies": "Cookie 政策",
+      "rights": "保留所有权利。",
       "links": {
         "github": "GitHub",
         "gptGallery": "GPT Image 2 提示词",
         "dalleGallery": "DALL·E 3 提示词",
         "categories": "分类",
         "submit": "提交",
+        "library": "提示词库说明",
         "privacy": "隐私政策"
       }
     },
@@ -1392,14 +1473,44 @@
     "gen": {
       "title": "基于模版生图",
       "params": "参数",
-      "provider": "Provider",
-      "count": "Count",
-      "aspectRatio": "Aspect Ratio",
-      "quality": "Quality",
-      "generate": "Generate",
-      "generating": "Generating…",
-      "jobLabel": "job",
-      "prompt": "Prompt",
+      "provider": "提供方",
+      "count": "数量",
+      "aspectRatio": "画幅比例",
+      "quality": "画质",
+      "model": "模型",
+      "modelDetailed": "精细版",
+      "modelFast": "快速版",
+      "modelDefault": "默认模型",
+      "resolution": "分辨率",
+      "resolutionExperimental": "4K 为实验性尺寸，仅支持 16:9 和 9:16。",
+      "qualityLow": "低",
+      "qualityMedium": "中",
+      "qualityHigh": "高",
+      "path": "路径",
+      "textToImage": "文生图",
+      "imageToImage": "图生图",
+      "referenceToImage": "参考生图",
+      "imageEdit": "图像编辑",
+      "referenceHint": "用参考图的风格或主体生成新图。支持上传多张图片。",
+      "editHint": "按提示词修改上传的图片。",
+      "uploadDropTitle": "拖拽图片到这里",
+      "uploadDropHint": "或点击选择，支持多图上传",
+      "uploadFormats": "JPG、PNG、WebP、GIF · 每张不超过 8MB",
+      "removeImage": "移除 {name}",
+      "previewImage": "预览 {name}",
+      "uploadImage": "上传图片",
+      "uploading": "上传中",
+      "uploadFailed": "图片上传失败",
+      "uploadType": "请上传图片文件",
+      "uploadSize": "图片不能超过 8 MB",
+      "referenceImage": "参考图",
+      "referenceLimit": "当前模型最多支持 {max} 张参考图",
+      "comingSoon": "即将上线",
+      "generate": "生成",
+      "generating": "生成中…",
+      "unpricedLabel": "暂无报价",
+      "jobLabel": "任务",
+      "prompt": "提示词",
       "generatedImages": "Generated Images",
       "resultsPlaceholder": "生成结果会显示在这里",
       "openDownload": "打开 / 下载",
@@ -1410,7 +1521,286 @@
       "templateRenderFailed": "模板渲染失败",
       "generationFailed": "生成失败",
       "pollingFailed": "轮询失败",
-      "createFailed": "创建失败"
+      "createFailed": "创建失败",
+      "unpricedOffer": "当前参数没有积分价格。可以登录，首次登录送 3 积分，也可以不登录直接购买积分。",
+      "loginOffer": "登录",
+      "buyAnonymous": "匿名购买",
+      "buyCredits": "购买积分"
+    },
+    "creationTypes": {
+      "section": {
+        "eyebrow": "创作",
+        "title": "三种方式生成图片",
+        "titleEm": "GPT Image 与 Nano Banana 驱动",
+        "otherTitle": "换一种方式",
+        "otherTitleEm": "开始创作",
+        "subtitle": "从一句描述、一张参考图，或一张现成的图片出发。三种方式共用同一套模型、尺寸和积分。",
+        "tryNow": "立即试用",
+        "learnMore": "了解更多",
+        "current": "当前页面"
+      },
+      "common": {
+        "breadcrumbHome": "首页",
+        "breadcrumbCreate": "创作",
+        "browsePrompts": "浏览提示词",
+        "specs": {
+          "models": "{count} 个图像模型",
+          "ratios": "{count} 种画面比例",
+          "quality": "低 · 中 · 高画质",
+          "count": "单次最多 {count} 张"
+        },
+        "demo": {
+          "yourImage": "你的图片",
+          "prompt": "提示词",
+          "instruction": "编辑指令",
+          "output": "生成结果",
+          "newImage": "新图片",
+          "useExample": "使用这条提示词"
+        },
+        "media": {
+          "inputs": "参考输入",
+          "outputs": "生成结果",
+          "unclassified": "原模板附图（角色未核实）",
+          "missingReference": "参考图未收录",
+          "partialReferences": "仅补齐部分参考区域，原始输入仍不完整。",
+          "extractedReference": "从原模板复合图提取的示例参考图",
+          "embeddedReference": "成片中已包含原图。",
+          "videoPreviewReference": "原帖视频预览截图；原案例以视频为输入。",
+          "promptDescriptionOnly": "该模板只收录了原帖描述，完整编辑指令未收录。",
+          "sourceDescription": "原帖描述",
+          "source": "查看来源",
+          "mismatch": "原模板图片与提示词描述存在差异。",
+          "imageCount": "{index} / {count}",
+          "zoom": "放大图片"
+        },
+        "featuresEyebrow": "核心优势",
+        "stepsEyebrow": "使用步骤",
+        "useCasesEyebrow": "适用场景",
+        "examples": {
+          "eyebrow": "效果展示",
+          "title": "真实提示词，",
+          "titleEm": "真实效果",
+          "subtitle": "下面每个案例都是 Open Prompts 模板库里的模板。看完整提示词和生成效果，一键在创作台打开。",
+          "use": "使用这个模板 →",
+          "view": "查看模板",
+          "prompt": "提示词",
+          "input": "你的图片",
+          "output": "效果"
+        },
+        "models": {
+          "eyebrow": "模型与积分",
+          "title": "支持的模型",
+          "titleEm": "{name}",
+          "subtitle": "在创作台选择模型，按生成的图片张数扣除积分。",
+          "modelCol": "模型",
+          "creditsCol": "起步价（每张）",
+          "credits": "{count} 积分",
+          "note": "价格为 1K 画质下的起步估算，画质越高、尺寸越大，消耗越多。新账号首次登录赠送 3 积分。",
+          "pricing": "查看定价"
+        },
+        "faq": {
+          "eyebrow": "常见问题",
+          "title": "关于"
+        },
+        "ctaNote": "无需订阅，只为生成的图片付费。"
+      },
+      "types": {
+        "textToImage": {
+          "name": "文生图",
+          "card": "用文字描述画面，直接得到成图。适合从一个想法而不是一张图片开始。",
+          "seo": {
+            "title": "AI 文生图工具 | GPT Image 2 与 Nano Banana | Open Prompts",
+            "description": "用 GPT Image 2、GPT Image 2.5、GPT Image 2.6 和 Nano Banana 2 把文字提示词变成图片。支持 10 种画面比例、最高 4K，可从精选提示词直接开始。",
+            "keywords": "文生图, AI 文生图, AI 绘画, GPT Image 2, Nano Banana 2, AI 图片生成器, 提示词生成图片"
+          },
+          "hero": {
+            "eyebrow": "文生图",
+            "title": "写下提示词，",
+            "titleEm": "图片随即生成。",
+            "subtitle": "描述你想看到的画面，选择模型和比例，一次最多生成四张。可以从空白开始，也可以从图库里的提示词开始。",
+            "cta": "开始文生图"
+          },
+          "showcase": {
+            "photoreal": { "t": "照片级写实场景", "d": "自然光线、真实材质和可信的肤质，不用约拍也能拿到生活方式照和人像。" },
+            "typography": { "t": "文字清晰的海报", "d": "标题、标语和标签拼写正确、位置准确，海报生成后就能直接用。" },
+            "multilingual": { "t": "中日韩文字渲染", "d": "把要出现的中日韩文字写进引号里，就能准确呈现在招牌、封面和包装上。" },
+            "infographic": { "t": "信息图与图解", "d": "结构清晰的长提示词，会生成带分区、图标和标注的完整版式。" },
+            "ui": { "t": "UI 与应用原型", "d": "布局清楚、按钮文字正确的界面图，适合概念设计、演示文稿和落地页。" },
+            "product": { "t": "产品与广告创意", "d": "活动海报、分镜和产品图，让产品和品牌始终是画面焦点。" }
+          },
+          "demoPrompt": "圣托里尼黄金时刻的复古旅行海报，大胆的平涂色块，白色穹顶，深蓝大海，顶部是醒目的标题文字。",
+          "features": {
+            "title": "从文字",
+            "titleEm": "到完整的画面",
+            "subtitle": "不需要参考图，主体、风格和构图都由提示词决定。",
+            "items": [
+              { "t": "现成的好提示词", "d": "在创作台打开任意图库提示词，只改细节，不必从零写起。" },
+              { "t": "每次都能换模型", "d": "在 GPT Image 2、2.5、2.6 和 Nano Banana 2 之间切换，对比文字渲染、风格和速度。" },
+              { "t": "按用途选尺寸", "d": "10 种比例可选，从 9:16 竖版到 16:9 横幅，支持 1K、2K、4K。" }
+            ]
+          },
+          "steps": {
+            "title": "三步",
+            "titleEm": "把想法变成图片",
+            "items": [
+              { "t": "写或选一条提示词", "d": "描述主体、风格、光线和构图，或者从模板开始。" },
+              { "t": "设置模型和尺寸", "d": "选择模型、画面比例、画质和生成张数。" },
+              { "t": "生成并下载", "d": "结果显示在提示词旁边，打开大图即可下载。" }
+            ]
+          },
+          "useCases": {
+            "title": "适合",
+            "titleEm": "日常的各类配图",
+            "items": [
+              { "t": "海报与封面", "d": "活动海报、书籍封面、视频缩略图，标题清晰可读。" },
+              { "t": "社交媒体", "d": "方图和竖图，适用于信息流、快拍和广告。" },
+              { "t": "产品概念", "d": "在拍摄前先做出样机、包装创意和主视觉。" },
+              { "t": "插画创作", "d": "角色、场景和图标，任何你能描述的画风。" }
+            ]
+          },
+          "faq": [
+            { "q": "什么是文生图？", "a": "文生图只根据文字提示词生成一张新图片。你描述主体、风格和构图，模型负责画出来，不需要上传图片。" },
+            { "q": "可以用哪些模型？", "a": "GPT Image 2、GPT Image 2.5 Sunburst 与 Flare、GPT Image 2.6 Sunburst 与 Flare，以及 Nano Banana 2。每次生成都可以重新选择。" },
+            { "q": "生成一张图要多少积分？", "a": "GPT Image 系列在 1K 画质下每张 2 积分起，Nano Banana 2 每张 4 积分起，画质越高消耗越多。新账号首次登录赠送 3 积分。" },
+            { "q": "怎样写出更好的提示词？", "a": "写清主体、风格、光线、镜头角度，以及需要出现的文字。也可以打开图库里的提示词，只改需要的部分。" }
+          ],
+          "cta": {
+            "title": "下一张好图，",
+            "titleEm": "从一句话开始",
+            "subtitle": "以文生图模式打开创作台，写下你的第一条提示词。"
+          }
+        },
+        "referenceToImage": {
+          "name": "参考生图",
+          "card": "上传一张参考图并描述新场景。模型保留主体或风格，围绕它生成全新的图片。",
+          "seo": {
+            "title": "AI 参考生图工具 | 保持人物与风格一致 | Open Prompts",
+            "description": "上传参考照片并输入提示词，生成保留同一人物、产品或风格的新图片。支持 GPT Image 2、2.5、2.6 和 Nano Banana 2，最高 4K。",
+            "keywords": "参考生图, 图生图, AI 参考图生成, 人物一致性, 风格参考, GPT Image 2"
+          },
+          "hero": {
+            "eyebrow": "参考生图",
+            "title": "保留关键，",
+            "titleEm": "其余都可以重新想象。",
+            "subtitle": "上传一张人物、产品或你喜欢的风格图片，再描述新的场景。参考图会引导生成结果，主体依然一眼能认出来。",
+            "cta": "开始参考生图"
+          },
+          "showcase": {
+            "character": { "t": "保持同一张脸", "d": "保留人物身份，生成不同角度和造型的角色参考图。" },
+            "portrait": { "t": "一张照片变精修人像", "d": "修复老照片中的人像细节与色彩，保留原人物身份和构图。" },
+            "style": { "t": "换一种画风重绘照片", "d": "保留照片构图，重绘成水彩、插画或矢量风格。" },
+            "series": { "t": "系列海报与分镜", "d": "用一张参考图贯穿多帧画面或一组海报，风格保持一致。" },
+            "productScene": { "t": "把品牌放进新场景", "d": "使用真实产品图作为参考，重新组织场景、构图与光线。" },
+            "figure": { "t": "手办与雕塑", "d": "把人物或角色做成收藏手办、玩具或 3D 雕塑。" }
+          },
+          "demoPrompt": "使用参考图中的人物，把他放到雨夜的霓虹街头，电影感光线，35mm 胶片质感。保持脸部和发型不变。",
+          "features": {
+            "title": "全新的画面，",
+            "titleEm": "依然是你的主角",
+            "subtitle": "参考图决定主体或观感，提示词决定场景。",
+            "items": [
+              { "t": "主体保持一致", "d": "同一张脸、同一个角色或产品，出现在许多新场景中。" },
+              { "t": "借用一种风格", "d": "把一幅画、一张照片或品牌视觉作为新作品的风格来源。" },
+              { "t": "上传或粘贴链接", "d": "支持 8 MB 以内的 JPEG、PNG、WebP、GIF，也可以粘贴公开图片链接。" }
+            ]
+          },
+          "steps": {
+            "title": "三步",
+            "titleEm": "从参考图到成品",
+            "items": [
+              { "t": "添加参考图", "d": "上传图片或粘贴公开链接，清晰、光线好的图片效果最佳。" },
+              { "t": "描述新场景", "d": "说明要保留参考图里的什么，以及新图片要呈现什么。" },
+              { "t": "生成并比较", "d": "一次最多生成四个版本，留下最合适的一张。" }
+            ]
+          },
+          "useCases": {
+            "title": "适合",
+            "titleEm": "系列内容与品牌",
+            "items": [
+              { "t": "人像与头像", "d": "让自己换上新服装、去到新地点、变成新画风。" },
+              { "t": "产品图", "d": "同一件产品出现在不同房间、季节和营销活动中。" },
+              { "t": "角色设定", "d": "在漫画、故事或游戏中保持角色形象一致。" },
+              { "t": "风格迁移", "d": "把一张图的观感应用到完全不同的主体上。" }
+            ]
+          },
+          "faq": [
+            { "q": "什么是参考生图？", "a": "你提供一张参考图和一段提示词，模型以参考图作为主体或风格来源，生成一张全新的图片，而不是修改原图。" },
+            { "q": "它和图片编辑有什么区别？", "a": "参考生图根据参考图生成新画面；图片编辑则直接修改你上传的图片，其余部分保持原样。" },
+            { "q": "可以上传哪些图片？", "a": "8 MB 以内的 JPEG、PNG、WebP 或 GIF 文件，也可以粘贴公开的图片链接。" },
+            { "q": "需要多少积分？", "a": "与文生图相同：GPT Image 系列在 1K 画质下每张 2 积分起，Nano Banana 2 每张 4 积分起。" }
+          ],
+          "cta": {
+            "title": "带上一张参考图，",
+            "titleEm": "带走一张新作品",
+            "subtitle": "以参考模式打开创作台，上传图片并描述场景。"
+          }
+        },
+        "imageEdit": {
+          "name": "图片编辑",
+          "card": "上传图片并说明要改什么。换背景、加物体或改风格，其余部分保持不变。",
+          "seo": {
+            "title": "AI 图片编辑器 | 用文字修改照片 | Open Prompts",
+            "description": "用一句话编辑任意图片：替换背景、添加或移除物体、更换颜色或风格。由 GPT Image 2、2.5、2.6 和 Nano Banana 2 驱动。",
+            "keywords": "AI 图片编辑, 用提示词修图, AI 修图, AI 换背景, AI 消除物体, GPT Image 编辑"
+          },
+          "hero": {
+            "eyebrow": "图片编辑",
+            "title": "说出改动，",
+            "titleEm": "其余照旧。",
+            "subtitle": "上传一张照片，用日常语言描述修改。替换背景、添加物体、调整光线或转成插画，不需要蒙版和图层。",
+            "cta": "开始编辑"
+          },
+          "showcase": {
+            "toy": { "t": "把人变成玩具", "d": "照片里的每个人都变成小人仔或手办，原来的场景保持不变。" },
+            "restyle": { "t": "整体换风格", "d": "保留原图布局，转成矢量、插画或其他视觉风格。" },
+            "poster": { "t": "照片变海报", "d": "在你的图片周围加上标题、版式和图形元素，直接得到成品海报。" },
+            "swap": { "t": "替换人物或主体", "d": "保留原图的构图和光线，换掉画面里的人或物。" },
+            "outfit": { "t": "换装", "d": "同一个人、同一个姿势，试穿新的服装、发型和造型。" },
+            "retouch": { "t": "商品照片精修", "d": "把随手拍的饮料照片修成更明亮、清晰的商品照。" }
+          },
+          "demoPrompt": "把背景换成干净的白色摄影棚，产品、阴影和标签保持原样。",
+          "features": {
+            "title": "用文字修图，",
+            "titleEm": "不用图层",
+            "subtitle": "描述你想要的结果，模型只修改你要求的部分。",
+            "items": [
+              { "t": "精准修改", "d": "替换背景、添加或移除物体、更换颜色或服装。" },
+              { "t": "一键换风格", "d": "把照片变成素描、3D 渲染或海报。" },
+              { "t": "同样的模型与尺寸", "d": "使用 GPT Image 或 Nano Banana 2 编辑，导出 1K、2K 或 4K。" }
+            ]
+          },
+          "steps": {
+            "title": "三步",
+            "titleEm": "完成一次编辑",
+            "items": [
+              { "t": "上传图片", "d": "添加要修改的照片，或粘贴公开图片链接。" },
+              { "t": "描述修改", "d": "说明要改什么，以及哪些部分必须保持不变。" },
+              { "t": "生成并下载", "d": "比较最多四个版本，下载最满意的一张。" }
+            ]
+          },
+          "useCases": {
+            "title": "适合",
+            "titleEm": "小修小补与大改造",
+            "items": [
+              { "t": "商品图", "d": "为店铺上架图换上干净背景和新场景。" },
+              { "t": "照片清理", "d": "去掉干扰物、修正光线或改变拍摄时间。" },
+              { "t": "创意改造", "d": "把照片变成艺术画、贴纸、海报或漫画。" },
+              { "t": "营销素材变体", "d": "为同一张主视觉制作节日版或地区版。" }
+            ]
+          },
+          "faq": [
+            { "q": "什么是 AI 图片编辑？", "a": "上传一张图片并写下要修改的内容，模型会返回应用了修改的新版本图片。" },
+            { "q": "需要手动画蒙版吗？", "a": "不需要。用文字描述区域和修改即可，例如：把天空换成日落，建筑保持不变。" },
+            { "q": "哪些模型支持编辑？", "a": "创作台的全部模型：GPT Image 2、2.5、2.6 和 Nano Banana 2。生成前在模型菜单中选择即可。" },
+            { "q": "编辑一次需要多少积分？", "a": "GPT Image 编辑在 1K 画质下每张 2 积分起，Nano Banana 2 每张 4 积分起。新账号首次登录赠送 3 积分。" }
+          ],
+          "cta": {
+            "title": "手里有照片？",
+            "titleEm": "告诉它要改什么",
+            "subtitle": "以编辑模式打开创作台，上传图片并描述修改。"
+          }
+        }
+      }
     },
     "createPage": {
       "seo": {
@@ -1420,6 +1810,12 @@
       "brandPill": "Open Prompts",
       "templatesLabel": "模板",
       "searchTemplatesPlaceholder": "搜索模板…",
+      "templateNoResults": "没有找到匹配的模板",
+      "templateOptional": "模板（可选）",
+      "templateOptionalHint": "可以直接写提示词，也可以从模板开始。",
+      "chooseTemplate": "选择模板",
+      "changeTemplate": "更换",
+      "clearTemplate": "清除",
       "originalPromptLabel": "原始提示词",
       "promptSectionLabel": "提示词",
       "enhanceButton": "✨ 增强",
@@ -1437,9 +1833,9 @@
       "moreMenuAriaLabel": "更多选项",
       "providerSection": "提供方",
       "providerInternal": "默认",
-      "popularTitle": "热门模板",
-      "popularSubtitle": "用模板更快开始，点击即可套用到生成器。",
-      "allTemplatesLink": "全部模板 →",
+      "popularTitle": "灵感精选",
+      "popularSubtitle": "为当前创作类型精选作品，点击即可使用提示词。",
+      "allTemplatesLink": "更多创作灵感 →",
       "allTemplatesTitle": "全部模板",
       "resultHistoryLabel": "结果与历史",
       "currentLabel": "当前",
@@ -1451,6 +1847,7 @@
       "fullscreenTitle": "全屏查看",
       "downloadTitle": "下载",
       "deleteTitle": "删除",
+      "reuseTitle": "复用",
       "viewerClose": "关闭",
       "viewerPrev": "← 上一张",
       "viewerNext": "下一张 →",

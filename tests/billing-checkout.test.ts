@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import { strict as assert } from 'node:assert';
-import { createCheckout, productionCheckoutGate } from '../src/lib/billing/checkout';
+import { createCheckout, parsePaymentMethod, productionCheckoutGate } from '../src/lib/billing/checkout';
 import { checkoutQuote, findPurchasablePlan } from '../src/lib/billing/catalog';
 import { stripeCheckoutParams } from '../src/lib/billing/stripe';
 import { hashGuestToken, readGuestToken, resolveCheckoutIdentity, resolveGuestOwner } from '../src/lib/billing/guest';
@@ -49,6 +49,21 @@ test('monthly WeChat Pay is rejected before an order or Stripe session is create
   );
   assert.deepEqual(orders, []);
   assert.deepEqual(sessions, []);
+});
+
+test('payment method parsing accepts only the checkout allowlist', () => {
+  const cases: Array<[unknown, 'card' | 'wechat_pay' | null]> = [
+    ['card', 'card'],
+    ['wechat_pay', 'wechat_pay'],
+    [undefined, null],
+    ['', null],
+    [{}, null],
+    ['alipay', null],
+  ];
+
+  for (const [value, expected] of cases) {
+    assert.equal(parsePaymentMethod(value), expected);
+  }
 });
 
 test('one-time checkout is a payment and monthly checkout uses inline monthly price data', async () => {

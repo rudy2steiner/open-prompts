@@ -298,6 +298,7 @@
     "moreWorks": "その他の作品"
   },
   "OpenPrompts": {
+    "promo": { "banner": "" },
     "header": {
       "language": "言語",
       "themeToggle": "ライト/ダークを切り替え",
@@ -307,7 +308,10 @@
       "signOut": "ログアウト",
       "userMenu": "アカウントメニュー",
       "userMenuSection": "ダッシュボード",
-      "displayNameFallback": "ユーザー"
+      "admin": "管理画面",
+      "billing": "請求",
+      "displayNameFallback": "ユーザー",
+      "credits": "クレジット"
     },
     "nav": {
       "home": "ホーム",
@@ -315,12 +319,51 @@
       "motion": "モーションプロンプト",
       "categories": "カテゴリ",
       "create": "作成",
+      "pricing": "料金",
       "favorites": "お気に入り",
       "submit": "共有",
       "account": "アカウント",
       "rank": "ランキング",
-      "docs": "ドキュメント",
-      "submitCta": "プロンプトを共有"
+      "docs": "ドキュメント"
+    },
+    "pricingPage": {
+      "title": "料金",
+      "description": "モデルと操作ごとのクレジットは下の表にあります。",
+      "oneTime": "買い切り",
+      "monthlyTab": "月額",
+      "credits": "{count} クレジット",
+      "approxImages": "約 {count} 枚",
+      "save": "{percent}% お得",
+      "allTemplates": "サイト内のプロンプトテンプレートは無料",
+      "batchDownload": "プロンプト {count} 件を一括ダウンロード",
+      "batchDownloadUnlimited": "プロンプトの一括ダウンロード無制限",
+      "perMonth": "/ 月",
+      "buy": "購入",
+      "wechatPay": "WeChat Pay ¥{price}",
+      "subscribe": "購読",
+      "recommended": "人気",
+      "note": "アカウントなしでも購入できます。初回ログインで 3 クレジットが付きます。",
+      "rateTitle": "生成ごとのクレジット",
+      "rateNote": "低画質・1K・1枚では、GPT 2.6 Sunburst は 3 クレジット、その他の公開済みモデルは 2 クレジットです。テキスト・参考画像・編集は同額で、参考画像の追加料金はありません。基本 2 × モデル倍率 × 画質（低 1・中 3・高 12）× 解像度（1K 1・2K 2・4K 4）を1枚ごとに切り上げ、最低 2 としてから枚数を掛けます。ボタンは提供元の原価ではなく、サイトの最終価格を表示します。Nano Banana 2 は近日公開予定で、4 クレジットは入門設定の概算です。",
+      "rateModel": "モデル",
+      "rateEach": "1回の生成",
+      "rateCredits": "クレジット",
+      "rateText": "テキストから画像",
+      "rateReference": "参照画像から",
+      "rateEdit": "画像編集",
+      "checkoutError": "決済を開始できません",
+      "dialogTitle": "お支払い前にログイン",
+      "dialogBody": "ログインすると、クレジット、注文、画像を別の端末でも利用できます。ゲスト購入はこのブラウザにのみ保存されます。",
+      "dialogLogin": "Google でログイン",
+      "dialogGuest": "ゲストとして続ける",
+      "dialogClose": "閉じる",
+      "planStarter": "スターター",
+      "planPopular": "人気",
+      "planPlus": "プラス",
+      "planMonthly": "月額",
+      "rateBanana": "Nano Banana 2",
+      "rateFlare": "GPT Image 2.5 Flare",
+      "rateGpt": "GPT Image 2"
     },
     "submitPage": {
       "seo": {
@@ -1347,10 +1390,10 @@
         "cta": {
           "title": "今日から",
           "titleEm": "GPT Image 2 で生成を始めよう",
-          "subtitle": "6,200+ クリエイターと一緒に、最高の GPT Image 2 プロンプト集を閲覧。アカウント不要 — 閲覧、コピー、創作するだけ。",
+          "subtitle": "1000+ クリエイターと一緒に、最高の GPT Image 2 プロンプト集を閲覧。プロンプトの閲覧・コピーにアカウントは不要です。",
           "browse": "GPT Image 2 プロンプトを見る →",
           "submit": "プロンプトを投稿",
-          "note": "アカウント不要 · {count}+ 厳選プロンプト · X から毎日更新"
+          "note": "閲覧にアカウント不要 · {count}+ 厳選プロンプト · X から毎日更新"
         }
       }
     },
@@ -1386,7 +1429,33 @@
       "loadMore": "さらに読み込む",
       "noMore": "これ以上ありません",
       "coverLoadFailed": "画像の読み込みに失敗しました",
-      "showing": "{shown} / {total} を表示"
+      "showing": "{shown} / {total} を表示",
+      "batchDownload": "プロンプトを一括ダウンロード",
+      "downloadTitle": "プロンプトを選択",
+      "downloadHint": "上限はこのアカウントの累計です。取得済みの再ダウンロードは回数に入りません。",
+      "downloadSearch": "タイトルを検索",
+      "downloadCount": "件数",
+      "downloadPickCount": "選択",
+      "downloadAll": "すべて",
+      "downloadChosen": "{count} 件選択中",
+      "downloadCap": "上限 {count}",
+      "downloadUnlimited": "無制限",
+      "downloadAction": "ダウンロード",
+      "downloadClose": "閉じる",
+      "downloadLoading": "読み込み中…",
+      "downloadFailed": "一覧を読み込めませんでした。",
+      "downloadTaken": "取得済み {count}",
+      "downloadRemaining": "残り {count}",
+      "downloadNew": "今回 {count}",
+      "downloadAlready": "取得済み",
+      "downloadFormat": "ダウンロード形式",
+      "downloadHtml": "HTML",
+      "downloadZip": "ZIP",
+      "downloadHtmlHint": "サイトと同じカード、詳細、画像拡大、プロンプトコピーを使えるオフラインギャラリー。",
+      "downloadZipHint": "プロンプトごとのフォルダーに、全文の prompt.txt と元形式の全画像を保存します。",
+      "downloadPackaging": "パッケージ作成中…",
+      "downloadExportFailed": "画像とプロンプトをすべてまとめられませんでした。再試行するか選択数を減らしてください。",
+      "downloadQuota": "残り上限を超えています"
     },
     "card": {
       "community": "コミュニティ",
@@ -1394,12 +1463,24 @@
     },
     "footer": {
       "tagline": "Open Prompts · オープンなプロンプト集",
+      "product": "製品",
+      "friends": "フレンド",
+      "support": "サポート",
+      "legal": "法務",
+      "help": "ヘルプ",
+      "contact": "お問い合わせ",
+      "community": "コミュニティ",
+      "privacy": "プライバシー",
+      "terms": "利用規約",
+      "cookies": "Cookie",
+      "rights": "無断転載を禁じます。",
       "links": {
         "github": "GitHub",
         "gptGallery": "GPT Image 2 プロンプト",
         "dalleGallery": "DALL·E 3 プロンプト",
         "categories": "カテゴリ",
         "submit": "投稿",
+        "library": "プロンプトライブラリ",
         "privacy": "プライバシー"
       }
     },
@@ -1414,14 +1495,44 @@
     "gen": {
       "title": "テンプレートから生成",
       "params": "パラメータ",
-      "provider": "Provider",
-      "count": "Count",
-      "aspectRatio": "Aspect Ratio",
-      "quality": "Quality",
-      "generate": "Generate",
-      "generating": "Generating…",
-      "jobLabel": "job",
-      "prompt": "Prompt",
+      "provider": "プロバイダー",
+      "count": "枚数",
+      "aspectRatio": "アスペクト比",
+      "quality": "画質",
+      "model": "モデル",
+      "modelDetailed": "高精細",
+      "modelFast": "高速",
+      "modelDefault": "デフォルト",
+      "resolution": "解像度",
+      "resolutionExperimental": "4Kは試験的なサイズです。16:9と9:16のみ対応しています。",
+      "qualityLow": "低",
+      "qualityMedium": "中",
+      "qualityHigh": "高",
+      "path": "経路",
+      "textToImage": "テキストから画像",
+      "imageToImage": "画像から画像",
+      "referenceToImage": "参照画像から生成",
+      "imageEdit": "画像編集",
+      "referenceHint": "参照画像の雰囲気や対象を使って新しい画像を作ります。複数の画像をアップロードできます。",
+      "editHint": "プロンプトでアップロードした画像を編集します。",
+      "uploadDropTitle": "ここに画像をドロップ",
+      "uploadDropHint": "またはクリックして複数の画像を選択",
+      "uploadFormats": "JPG、PNG、WebP、GIF · 1枚につき8MBまで",
+      "removeImage": "{name}を削除",
+      "previewImage": "{name}をプレビュー",
+      "uploadImage": "画像をアップロード",
+      "uploading": "アップロード中",
+      "uploadFailed": "画像のアップロードに失敗しました",
+      "uploadType": "画像ファイルを選んでください",
+      "uploadSize": "画像は 8 MB 以下にしてください",
+      "referenceImage": "参照画像",
+      "referenceLimit": "このモデルの参照画像は最大 {max} 枚です",
+      "comingSoon": "近日公開",
+      "generate": "生成",
+      "generating": "生成中…",
+      "unpricedLabel": "料金未確定",
+      "jobLabel": "ジョブ",
+      "prompt": "プロンプト",
       "generatedImages": "Generated Images",
       "resultsPlaceholder": "結果はここに表示されます",
       "openDownload": "開く / ダウンロード",
@@ -1432,7 +1543,286 @@
       "templateRenderFailed": "テンプレートのレンダリングに失敗しました",
       "generationFailed": "生成に失敗しました",
       "pollingFailed": "ポーリングに失敗しました",
-      "createFailed": "作成に失敗しました"
+      "createFailed": "作成に失敗しました",
+      "unpricedOffer": "この設定にはクレジット価格がありません。ログインすると初回に 3 クレジットが付きます。アカウントなしでも購入できます。",
+      "loginOffer": "ログイン",
+      "buyAnonymous": "アカウントなしで購入",
+      "buyCredits": "クレジットを購入"
+    },
+    "creationTypes": {
+      "section": {
+        "eyebrow": "作成",
+        "title": "画像をつくる3つの方法",
+        "titleEm": "GPT Image と Nano Banana で",
+        "otherTitle": "ほかの方法で",
+        "otherTitleEm": "つくってみる",
+        "subtitle": "言葉から、参考画像から、または手元の画像から始められます。どのモードも同じモデル・サイズ・クレジットを使います。",
+        "tryNow": "試してみる",
+        "learnMore": "詳しく見る",
+        "current": "このページ"
+      },
+      "common": {
+        "breadcrumbHome": "ホーム",
+        "breadcrumbCreate": "作成",
+        "browsePrompts": "プロンプトを見る",
+        "specs": {
+          "models": "{count} 種類の画像モデル",
+          "ratios": "{count} 種類のアスペクト比",
+          "quality": "画質 低 · 中 · 高",
+          "count": "1回で最大 {count} 枚"
+        },
+        "demo": {
+          "yourImage": "あなたの画像",
+          "prompt": "プロンプト",
+          "instruction": "編集指示",
+          "output": "結果",
+          "newImage": "新しい画像",
+          "useExample": "このプロンプトを使う"
+        },
+        "media": {
+          "inputs": "参照画像",
+          "outputs": "生成結果",
+          "unclassified": "元テンプレートの添付画像（役割未確認）",
+          "missingReference": "参照画像は未収録です",
+          "partialReferences": "参照領域の一部のみを抽出できました。元の入力画像は揃っていません。",
+          "extractedReference": "元テンプレートの合成画像から抽出した参照画像の例です。",
+          "embeddedReference": "元の写真は完成画像に含まれています。",
+          "videoPreviewReference": "元投稿の動画プレビュー画像です。元の入力は動画でした。",
+          "promptDescriptionOnly": "このテンプレートには元投稿の説明のみが収録されています。編集指示の全文は未収録です。",
+          "sourceDescription": "元投稿の説明",
+          "source": "出典を見る",
+          "mismatch": "元テンプレートの画像はプロンプトの説明と異なります。",
+          "imageCount": "{index} / {count}",
+          "zoom": "画像を拡大"
+        },
+        "featuresEyebrow": "特長",
+        "stepsEyebrow": "使い方",
+        "useCasesEyebrow": "活用例",
+        "examples": {
+          "eyebrow": "作例",
+          "title": "実際のプロンプトと",
+          "titleEm": "実際の仕上がり",
+          "subtitle": "以下の事例はすべて Open Prompts のテンプレートです。プロンプト全文と生成結果を確認し、ワンクリックでスタジオに開けます。",
+          "use": "このテンプレートを使う →",
+          "view": "テンプレートを見る",
+          "prompt": "プロンプト",
+          "input": "あなたの画像",
+          "output": "仕上がり"
+        },
+        "models": {
+          "eyebrow": "モデルとクレジット",
+          "title": "対応モデル",
+          "titleEm": "{name}",
+          "subtitle": "スタジオでモデルを選択します。クレジットは画像1枚ごとに消費されます。",
+          "modelCol": "モデル",
+          "creditsCol": "目安（1枚あたり）",
+          "credits": "{count} クレジット〜",
+          "note": "価格は 1K 画質での目安です。高画質・大きいサイズほど多く消費します。新規アカウントは初回ログインで 3 クレジットを受け取れます。",
+          "pricing": "料金を見る"
+        },
+        "faq": {
+          "eyebrow": "よくある質問",
+          "title": "よくある質問："
+        },
+        "ctaNote": "サブスクリプション不要。生成した画像の分だけお支払い。"
+      },
+      "types": {
+        "textToImage": {
+          "name": "テキストから画像",
+          "card": "シーンを言葉で説明するだけで画像が完成。画像ではなくアイデアから始めたいときに。",
+          "seo": {
+            "title": "AI テキストから画像生成 | GPT Image 2・Nano Banana | Open Prompts",
+            "description": "GPT Image 2、2.5、2.6、Nano Banana 2 でテキストプロンプトを画像に。10 種類のアスペクト比、最大 4K、厳選プロンプトからすぐに始められます。",
+            "keywords": "テキストから画像, AI 画像生成, GPT Image 2, Nano Banana 2, プロンプト 画像生成"
+          },
+          "hero": {
+            "eyebrow": "テキストから画像",
+            "title": "プロンプトを書けば、",
+            "titleEm": "画像ができる。",
+            "subtitle": "見たいものを書き、モデルと比率を選ぶだけで最大4枚を一度に生成。白紙からでも、ギャラリーのプロンプトからでも始められます。",
+            "cta": "テキストから画像を始める"
+          },
+          "showcase": {
+            "photoreal": { "t": "写真のようなリアルな描写", "d": "自然光、本物の質感、自然な肌。撮影を手配しなくてもライフスタイル写真やポートレートが作れます。" },
+            "typography": { "t": "文字が読めるポスター", "d": "タイトル、キャッチコピー、ラベルが正しい綴りで指定どおりの位置に入り、そのまま使えます。" },
+            "multilingual": { "t": "日本語・中国語・韓国語の文字", "d": "入れたい文字を引用符で書けば、看板、表紙、パッケージに正確に描かれます。" },
+            "infographic": { "t": "インフォグラフィックと図解", "d": "構成のはっきりした長いプロンプトが、見出し、アイコン、注釈付きのレイアウトになります。" },
+            "ui": { "t": "UI・アプリのモックアップ", "d": "レイアウトが明快でボタン文字も正しい画面。コンセプト案、資料、LP に。" },
+            "product": { "t": "商品・広告クリエイティブ", "d": "キャンペーンポスター、絵コンテ、商品写真。商品とブランドが主役のままです。" }
+          },
+          "demoPrompt": "夕暮れのサントリーニ島を描いたヴィンテージ旅行ポスター。大胆なフラットカラー、白いドーム、深い青の海、上部に大きなタイトル文字。",
+          "features": {
+            "title": "言葉から",
+            "titleEm": "完成した一枚へ",
+            "subtitle": "参考画像は不要。被写体・スタイル・構図はプロンプトで決まります。",
+            "items": [
+              { "t": "使えるプロンプトがすぐ手に", "d": "ギャラリーのプロンプトをスタジオで開き、細部だけを書き換えられます。" },
+              { "t": "生成ごとにモデルを選択", "d": "GPT Image 2・2.5・2.6 と Nano Banana 2 を切り替え、文字描写や画風を比較。" },
+              { "t": "用途に合うサイズ", "d": "9:16 のストーリーから 16:9 のバナーまで 10 種類の比率、1K・2K・4K に対応。" }
+            ]
+          },
+          "steps": {
+            "title": "3ステップで",
+            "titleEm": "アイデアを画像に",
+            "items": [
+              { "t": "プロンプトを書く・選ぶ", "d": "被写体、スタイル、光、構図を書くか、テンプレートから始めます。" },
+              { "t": "モデルとサイズを設定", "d": "モデル、アスペクト比、画質、枚数を選びます。" },
+              { "t": "生成してダウンロード", "d": "結果はプロンプトの横に表示。フルサイズで開いて保存できます。" }
+            ]
+          },
+          "useCases": {
+            "title": "毎日の",
+            "titleEm": "ビジュアルづくりに",
+            "items": [
+              { "t": "ポスター・表紙", "d": "読みやすいタイトル入りのイベントポスターやサムネイル。" },
+              { "t": "SNS 投稿", "d": "フィード、ストーリー、広告向けの正方形・縦長画像。" },
+              { "t": "製品コンセプト", "d": "撮影前にモックアップやパッケージ案を形に。" },
+              { "t": "イラスト", "d": "キャラクター、風景、アイコンを好きな画風で。" }
+            ]
+          },
+          "faq": [
+            { "q": "テキストから画像とは？", "a": "文章のプロンプトだけから新しい画像を生成する機能です。被写体やスタイル、構図を書けばモデルが描きます。入力画像は不要です。" },
+            { "q": "使えるモデルは？", "a": "GPT Image 2、GPT Image 2.5 Sunburst / Flare、GPT Image 2.6 Sunburst / Flare、Nano Banana 2 です。生成のたびに選べます。" },
+            { "q": "1枚あたりの料金は？", "a": "GPT Image 系は 1K 画質で1枚 2 クレジットから、Nano Banana 2 は 4 クレジットから。高画質ほど多く消費します。新規アカウントは初回ログインで 3 クレジット。" },
+            { "q": "良いプロンプトのコツは？", "a": "被写体、スタイル、光、カメラアングル、入れたい文字を具体的に書きましょう。ギャラリーのプロンプトを開いて一部だけ変えるのも効果的です。" }
+          ],
+          "cta": {
+            "title": "次の一枚は",
+            "titleEm": "ひとことから",
+            "subtitle": "テキストから画像モードでスタジオを開き、最初のプロンプトを書きましょう。"
+          }
+        },
+        "referenceToImage": {
+          "name": "参考画像から生成",
+          "card": "参考画像をアップロードして新しいシーンを説明。被写体やスタイルを保ったまま新しい画像をつくります。",
+          "seo": {
+            "title": "AI 参考画像から画像生成 | 人物・スタイルを一貫 | Open Prompts",
+            "description": "参考写真とプロンプトで、同じ人物・製品・スタイルを保った新しい画像を生成。GPT Image 2、2.5、2.6、Nano Banana 2 に対応、最大 4K。",
+            "keywords": "参考画像 生成, 画像から画像 AI, キャラクター 一貫性, スタイル参照, GPT Image 2"
+          },
+          "hero": {
+            "eyebrow": "参考画像から生成",
+            "title": "大事なところは残して、",
+            "titleEm": "ほかは自由に。",
+            "subtitle": "人物や製品、好きなスタイルの写真をアップロードし、新しいシーンを説明します。参考画像が結果を導くので、被写体はひと目でわかります。",
+            "cta": "参考画像から生成を始める"
+          },
+          "showcase": {
+            "character": { "t": "同じ顔のまま", "d": "人物の特徴を保ちながら、異なる角度や衣装のキャラクター参考画像を生成します。" },
+            "portrait": { "t": "1 枚の写真から本格ポートレート", "d": "元の人物と構図を保ち、古い人物写真の細部と自然な色を復元します。" },
+            "style": { "t": "写真を別のタッチで描き直す", "d": "写真の構図を残したまま、水彩、イラスト、ベクター風に描き直します。" },
+            "series": { "t": "キャンペーンと絵コンテ", "d": "1 枚の参考画像を複数のコマやポスターに使い、統一感を保ちます。" },
+            "productScene": { "t": "ブランドを新しいシーンに", "d": "実際の商品写真を参考に、シーン、構図、ライティングを組み直します。" },
+            "figure": { "t": "フィギュアと彫刻", "d": "人物やキャラクターをコレクションフィギュア、おもちゃ、3D 彫刻にします。" }
+          },
+          "demoPrompt": "参考画像の人物を使い、雨の夜のネオン街に配置。映画のようなライティング、35mm フィルム風。顔と髪型はそのままに。",
+          "features": {
+            "title": "新しい一枚でも、",
+            "titleEm": "あなたらしさはそのまま",
+            "subtitle": "参考画像が被写体や雰囲気を、プロンプトがシーンを決めます。",
+            "items": [
+              { "t": "被写体を一貫", "d": "同じ顔、キャラクター、製品をさまざまな新シーンに。" },
+              { "t": "スタイルを借りる", "d": "絵画や写真、ブランド画像を新作のスタイル元に。" },
+              { "t": "アップロードかリンク", "d": "8 MB までの JPEG・PNG・WebP・GIF、または公開画像の URL に対応。" }
+            ]
+          },
+          "steps": {
+            "title": "3ステップで",
+            "titleEm": "参考画像から完成へ",
+            "items": [
+              { "t": "参考画像を追加", "d": "画像をアップロードするか公開 URL を貼り付け。鮮明で明るい画像がおすすめ。" },
+              { "t": "新しいシーンを説明", "d": "参考画像から残したいものと、新しい画像に描きたいものを書きます。" },
+              { "t": "生成して比較", "d": "一度に最大4パターンを生成し、合うものを選びます。" }
+            ]
+          },
+          "useCases": {
+            "title": "シリーズや",
+            "titleEm": "ブランドづくりに",
+            "items": [
+              { "t": "ポートレート・アバター", "d": "新しい服装、場所、画風の自分に。" },
+              { "t": "製品写真", "d": "同じ製品をさまざまな部屋や季節、キャンペーンに。" },
+              { "t": "キャラクター", "d": "マンガやゲームでキャラクターを一貫させる。" },
+              { "t": "スタイル変換", "d": "ある画像の雰囲気をまったく別の被写体に適用。" }
+            ]
+          },
+          "faq": [
+            { "q": "参考画像から生成とは？", "a": "参考画像とプロンプトを渡すと、参考画像を被写体やスタイルの元として新しい画像を生成します。元画像を編集するわけではありません。" },
+            { "q": "画像編集との違いは？", "a": "参考画像から生成は参考をもとに新しい絵をつくります。画像編集はアップロードした画像そのものを変更し、ほかの部分はそのまま残します。" },
+            { "q": "アップロードできる画像は？", "a": "8 MB までの JPEG・PNG・WebP・GIF ファイル。公開画像の URL も使えます。" },
+            { "q": "料金は？", "a": "テキストから画像と同じです。GPT Image 系は 1K 画質で1枚 2 クレジットから、Nano Banana 2 は 4 クレジットから。" }
+          ],
+          "cta": {
+            "title": "参考画像を持ってきて、",
+            "titleEm": "新しい作品を持ち帰ろう",
+            "subtitle": "参考モードでスタジオを開き、画像をアップロードしてシーンを説明しましょう。"
+          }
+        },
+        "imageEdit": {
+          "name": "画像編集",
+          "card": "画像をアップロードして変えたいことを伝えるだけ。背景の差し替え、物の追加、画風の変更も、ほかはそのまま。",
+          "seo": {
+            "title": "AI 画像編集 | テキストで写真を編集 | Open Prompts",
+            "description": "変えたい内容を書くだけで画像を編集。背景の差し替え、物の追加・削除、色やスタイルの変更に対応。GPT Image 2、2.5、2.6、Nano Banana 2 搭載。",
+            "keywords": "AI 画像編集, プロンプト 画像編集, AI 写真編集, 背景 変更 AI, 物体 削除 AI"
+          },
+          "hero": {
+            "eyebrow": "画像編集",
+            "title": "変えたいことを伝えて、",
+            "titleEm": "あとはそのまま。",
+            "subtitle": "写真をアップロードし、編集内容をふだんの言葉で書くだけ。背景の差し替え、物の追加、光の調整、イラスト化まで、マスクもレイヤーも不要です。",
+            "cta": "編集を始める"
+          },
+          "showcase": {
+            "toy": { "t": "人物をおもちゃに", "d": "写真の人物を全員ミニフィギュアやフィギュアに変え、元の背景はそのまま残します。" },
+            "restyle": { "t": "画像全体のスタイル変更", "d": "レイアウトを保ったまま、ベクター、イラストなど別の表現に変換します。" },
+            "poster": { "t": "写真をポスターに", "d": "画像にタイトル、レイアウト、グラフィックを加えて完成したポスターにします。" },
+            "swap": { "t": "人物や被写体の差し替え", "d": "構図と光はそのままに、写っている人や物を入れ替えます。" },
+            "outfit": { "t": "着せ替え", "d": "同じ人物・同じポーズで、新しい服、髪型、スタイリングを試せます。" },
+            "retouch": { "t": "商品写真のレタッチ", "d": "何気なく撮ったドリンクの写真を、明るく鮮明な商品写真に仕上げます。" }
+          },
+          "demoPrompt": "背景を真っ白なスタジオに差し替え。製品、影、ラベルはそのまま残して。",
+          "features": {
+            "title": "レイヤーではなく、",
+            "titleEm": "言葉で編集",
+            "subtitle": "仕上がりを説明すれば、モデルは指示した部分だけを変更します。",
+            "items": [
+              { "t": "狙った部分だけ変更", "d": "背景の差し替え、物の追加・削除、色や服装の変更。" },
+              { "t": "写真をリスタイル", "d": "写真をスケッチや 3D レンダー、ポスターに一度で変換。" },
+              { "t": "同じモデル、好きなサイズ", "d": "GPT Image や Nano Banana 2 で編集し、1K・2K・4K で書き出し。" }
+            ]
+          },
+          "steps": {
+            "title": "3ステップで",
+            "titleEm": "編集完了",
+            "items": [
+              { "t": "画像をアップロード", "d": "変更したい写真を追加するか、公開 URL を貼り付けます。" },
+              { "t": "編集内容を書く", "d": "何を変えて、何を残すかを書きます。" },
+              { "t": "生成してダウンロード", "d": "最大4パターンを比べて、いちばん良いものを保存。" }
+            ]
+          },
+          "useCases": {
+            "title": "ちょっとした修正から",
+            "titleEm": "大胆な変更まで",
+            "items": [
+              { "t": "商品写真", "d": "EC 掲載用にきれいな背景や新しいシーンを。" },
+              { "t": "写真の手直し", "d": "邪魔なものを消し、光や時間帯を変更。" },
+              { "t": "クリエイティブな変換", "d": "写真をアート、ステッカー、ポスター、マンガに。" },
+              { "t": "広告バリエーション", "d": "1枚のキービジュアルから季節版・地域版を作成。" }
+            ]
+          },
+          "faq": [
+            { "q": "AI 画像編集とは？", "a": "画像をアップロードして変更内容を書くと、その編集を反映した新しいバージョンが返ってきます。" },
+            { "q": "マスクを描く必要は？", "a": "ありません。範囲と変更を言葉で書くだけです。例：空を夕焼けにして、建物はそのまま。" },
+            { "q": "編集に対応するモデルは？", "a": "スタジオのすべてのモデル（GPT Image 2・2.5・2.6、Nano Banana 2）です。生成前にモデルメニューで選びます。" },
+            { "q": "編集1回の料金は？", "a": "GPT Image の編集は 1K 画質で1枚 2 クレジットから、Nano Banana 2 は 4 クレジットから。新規アカウントは初回ログインで 3 クレジット。" }
+          ],
+          "cta": {
+            "title": "写真がある？",
+            "titleEm": "変えたいことを伝えよう",
+            "subtitle": "編集モードでスタジオを開き、画像をアップロードして編集内容を書きましょう。"
+          }
+        }
+      }
     },
     "createPage": {
       "seo": {
@@ -1442,6 +1832,12 @@
       "brandPill": "Open Prompts",
       "templatesLabel": "テンプレート",
       "searchTemplatesPlaceholder": "テンプレートを検索…",
+      "templateNoResults": "一致するテンプレートがありません",
+      "templateOptional": "テンプレート（任意）",
+      "templateOptionalHint": "自由にプロンプトを書くか、テンプレートから始められます。",
+      "chooseTemplate": "テンプレートを選択",
+      "changeTemplate": "変更",
+      "clearTemplate": "クリア",
       "originalPromptLabel": "元のプロンプト",
       "promptSectionLabel": "プロンプト",
       "enhanceButton": "✨ 強化",
@@ -1459,9 +1855,9 @@
       "moreMenuAriaLabel": "その他のオプション",
       "providerSection": "プロバイダー",
       "providerInternal": "デフォルト",
-      "popularTitle": "人気テンプレート",
-      "popularSubtitle": "テンプレートから素早く開始。クリックで生成器に適用。",
-      "allTemplatesLink": "すべて →",
+      "popularTitle": "厳選インスピレーション",
+      "popularSubtitle": "選択中の作成タイプに合う作品です。クリックしてプロンプトを使えます。",
+      "allTemplatesLink": "インスピレーションをもっと見る →",
       "allTemplatesTitle": "すべてのテンプレート",
       "resultHistoryLabel": "結果と履歴",
       "currentLabel": "現在",
@@ -1473,6 +1869,7 @@
       "fullscreenTitle": "全画面",
       "downloadTitle": "ダウンロード",
       "deleteTitle": "削除",
+      "reuseTitle": "再利用",
       "viewerClose": "閉じる",
       "viewerPrev": "← 前へ",
       "viewerNext": "次へ →",

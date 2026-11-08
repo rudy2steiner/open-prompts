@@ -276,6 +276,7 @@
     "moreWorks": "Mais trabalhos"
   },
   "OpenPrompts": {
+    "promo": { "banner": "" },
     "header": {
       "language": "Idioma",
       "themeToggle": "Alternar modo claro/escuro",
@@ -285,7 +286,10 @@
       "signOut": "Sair",
       "userMenu": "Menu da conta",
       "userMenuSection": "Painel",
-      "displayNameFallback": "Usuário"
+      "admin": "Administração",
+      "billing": "Faturamento",
+      "displayNameFallback": "Usuário",
+      "credits": "créditos"
     },
     "nav": {
       "home": "Página inicial",
@@ -293,12 +297,51 @@
       "motion": "Prompts de movimento",
       "categories": "Categorias",
       "create": "Criar",
+      "pricing": "Preços",
       "favorites": "Favoritos",
       "submit": "Compartilhar",
       "account": "Conta",
       "rank": "Tabela de classificação",
-      "docs": "Documentação",
-      "submitCta": "Compartilhar um prompt"
+      "docs": "Documentação"
+    },
+    "pricingPage": {
+      "title": "Preços",
+      "description": "Os créditos por modelo e operação estão na tabela abaixo.",
+      "oneTime": "Uma vez",
+      "monthlyTab": "Mensal",
+      "credits": "{count} créditos",
+      "approxImages": "Cerca de {count} imagens",
+      "save": "Economize {percent}%",
+      "allTemplates": "Todos os modelos do site são grátis",
+      "batchDownload": "Baixar {count} prompts",
+      "batchDownloadUnlimited": "Download de prompts ilimitado",
+      "perMonth": "/ mês",
+      "buy": "Comprar",
+      "wechatPay": "WeChat Pay ¥{price}",
+      "subscribe": "Assinar",
+      "recommended": "Popular",
+      "note": "Dá para comprar sem conta. O primeiro login adiciona 3 créditos.",
+      "rateTitle": "Créditos por geração",
+      "rateNote": "Com qualidade baixa, 1K e uma imagem: GPT 2.6 Sunburst custa 3 créditos; as outras variantes disponíveis, 2. Texto, referência e edição têm o mesmo preço, sem taxa adicional por referência. Base 2 × multiplicador do modelo × qualidade (baixa 1, média 3, alta 12) × resolução (1K 1, 2K 2, 4K 4); arredonde para cima por imagem, mínimo 2, e depois multiplique pela quantidade. O botão mostra o preço final do site, não o custo do fornecedor. Nano Banana 2 chega em breve; 4 créditos é apenas uma estimativa inicial.",
+      "rateModel": "Modelo",
+      "rateEach": "Cada geração",
+      "rateCredits": "Créditos",
+      "rateText": "Texto para imagem",
+      "rateReference": "Referência para imagem",
+      "rateEdit": "Edição de imagem",
+      "checkoutError": "O pagamento não está disponível",
+      "dialogTitle": "Entre antes de pagar",
+      "dialogBody": "Entre para ver seus créditos, pedidos e imagens em outros dispositivos. Compras como convidado ficam vinculadas a este navegador.",
+      "dialogLogin": "Entrar com o Google",
+      "dialogGuest": "Continuar como convidado",
+      "dialogClose": "Fechar",
+      "planStarter": "Inicial",
+      "planPopular": "Popular",
+      "planPlus": "Plus",
+      "planMonthly": "Mensal",
+      "rateBanana": "Nano Banana 2",
+      "rateFlare": "GPT Image 2.5 Flare",
+      "rateGpt": "GPT Image 2"
     },
     "submitPage": {
       "seo": {
@@ -1088,7 +1131,7 @@
     "promptPage": {
       "seo": {
         "title": "{title} — {model} Prompt",
-        "description": "Prompt de imagem com IA grátis: {title}. {snippet}"
+        "description": "Prompt de imagem com IA grátis: {title}. {snippet} Copie este prompt de {model}.{tags}"
       },
       "breadcrumbHome": "Página inicial",
       "breadcrumbGallery": "Imagens",
@@ -1325,10 +1368,10 @@
         "cta": {
           "title": "Comece a gerar com",
           "titleEm": "GPT Image 2 hoje",
-          "subtitle": "Junte-se a mais de 6.200 criadores navegando na melhor biblioteca de prompts GPT Image 2 da web. Não é necessária nenhuma conta – basta navegar, copiar e criar.",
+          "subtitle": "Junte-se a mais de 1000 criadores navegando na melhor biblioteca de prompts GPT Image 2 da web. Navegue e copie prompts sem uma conta.",
           "browse": "Navegue pelos prompts GPT Image 2 →",
           "submit": "Envie uma prompt",
-          "note": "Não é necessária uma conta · {count}+ prompts selecionados · Atualizações diárias de X"
+          "note": "Navegue sem uma conta · {count}+ prompts selecionados · Atualizações diárias de X"
         }
       }
     },
@@ -1364,7 +1407,33 @@
       "loadMore": "Carregar mais",
       "noMore": "Não mais",
       "coverLoadFailed": "A imagem não foi carregada",
-      "showing": "Mostrando {shown} / {total}"
+      "showing": "Mostrando {shown} / {total}",
+      "batchDownload": "Baixar prompts",
+      "downloadTitle": "Escolher prompts",
+      "downloadHint": "A cota é o total da conta. Baixar de novo um prompt já obtido não consome cota.",
+      "downloadSearch": "Buscar títulos",
+      "downloadCount": "Quantidade",
+      "downloadPickCount": "Escolher",
+      "downloadAll": "Todos",
+      "downloadChosen": "{count} selecionados",
+      "downloadCap": "Até {count}",
+      "downloadUnlimited": "Sem limite",
+      "downloadAction": "Baixar",
+      "downloadClose": "Fechar",
+      "downloadLoading": "Carregando…",
+      "downloadFailed": "Não foi possível carregar a lista.",
+      "downloadTaken": "{count} obtidos",
+      "downloadRemaining": "{count} restantes",
+      "downloadNew": "{count} novos",
+      "downloadAlready": "Obtido",
+      "downloadFormat": "Formato de download",
+      "downloadHtml": "HTML",
+      "downloadZip": "ZIP",
+      "downloadHtmlHint": "Galeria offline com os mesmos cartões, detalhes, imagens em tela cheia e cópia de prompts do site.",
+      "downloadZipHint": "Uma pasta por prompt, com o texto completo em prompt.txt e todas as imagens no formato original.",
+      "downloadPackaging": "Preparando…",
+      "downloadExportFailed": "Não foi possível incluir todas as imagens e prompts. Tente novamente ou selecione menos prompts.",
+      "downloadQuota": "Acima da cota restante"
     },
     "card": {
       "community": "Comunidade",
@@ -1372,12 +1441,24 @@
     },
     "footer": {
       "tagline": "Open Prompts · Abrir biblioteca de prompts",
+      "product": "Produtos",
+      "friends": "Amigos",
+      "support": "Suporte",
+      "legal": "Legal",
+      "help": "Ajuda",
+      "contact": "Contato",
+      "community": "Comunidade",
+      "privacy": "Privacidade",
+      "terms": "Termos",
+      "cookies": "Cookies",
+      "rights": "Todos os direitos reservados.",
       "links": {
         "github": "GitHub",
         "gptGallery": "GPT Image 2 Prompts",
         "dalleGallery": "DALL·E 3 Prompts",
         "categories": "Categorias",
         "submit": "Enviar",
+        "library": "Biblioteca de prompts",
         "privacy": "Privacidade"
       }
     },
@@ -1396,8 +1477,38 @@
       "count": "Quantidade",
       "aspectRatio": "Proporção de aspecto",
       "quality": "Qualidade",
+      "model": "Modelo",
+      "modelDetailed": "Detalhado",
+      "modelFast": "Rápido",
+      "modelDefault": "Modelo padrão",
+      "resolution": "Resolução",
+      "resolutionExperimental": "4K é experimental; apenas os formatos 16:9 e 9:16 são suportados.",
+      "qualityLow": "Baixa",
+      "qualityMedium": "Média",
+      "qualityHigh": "Alta",
+      "path": "Caminho",
+      "textToImage": "Texto para imagem",
+      "imageToImage": "Imagem para imagem",
+      "referenceToImage": "Referência para imagem",
+      "imageEdit": "Edição de imagem",
+      "referenceHint": "As referências guiam o estilo ou o assunto de uma imagem nova. Envie várias imagens.",
+      "editHint": "Altere as imagens enviadas com o seu prompt.",
+      "uploadDropTitle": "Arraste as imagens para aqui",
+      "uploadDropHint": "Ou clique para selecionar várias imagens",
+      "uploadFormats": "JPG, PNG, WebP, GIF · Até 8MB por imagem",
+      "removeImage": "Remover {name}",
+      "previewImage": "Pré-visualizar {name}",
+      "uploadImage": "Enviar",
+      "uploading": "Enviando",
+      "uploadFailed": "Falha ao enviar a imagem",
+      "uploadType": "Escolha um arquivo de imagem",
+      "uploadSize": "A imagem deve ter no máximo 8 MB",
+      "referenceImage": "Imagem de referência",
+      "referenceLimit": "Este modelo aceita até {max} imagens de referência",
+      "comingSoon": "Em breve",
       "generate": "Gerar",
       "generating": "Gerando…",
+      "unpricedLabel": "Preço indisponível",
       "jobLabel": "trabalho",
       "prompt": "Alerta",
       "generatedImages": "Imagens geradas",
@@ -1410,7 +1521,286 @@
       "templateRenderFailed": "Falha na renderização do modelo",
       "generationFailed": "Falha na geração",
       "pollingFailed": "Falha ao consultar o status",
-      "createFailed": "Falha na criação"
+      "createFailed": "Falha na criação",
+      "unpricedOffer": "Esta opção não tem preço em créditos. Entre para ganhar 3 créditos no primeiro login, ou compre sem conta.",
+      "loginOffer": "Entrar",
+      "buyAnonymous": "Comprar sem conta",
+      "buyCredits": "Comprar créditos"
+    },
+    "creationTypes": {
+      "section": {
+        "eyebrow": "Criar",
+        "title": "Três formas de criar uma imagem",
+        "titleEm": "com GPT Image e Nano Banana",
+        "otherTitle": "Experimente outra",
+        "otherTitleEm": "forma de criar",
+        "subtitle": "Comece com palavras, com uma referência ou com uma imagem que você já tem. Todos os modos usam os mesmos modelos, formatos e créditos.",
+        "tryNow": "Experimentar",
+        "learnMore": "Saiba mais",
+        "current": "Você está aqui"
+      },
+      "common": {
+        "breadcrumbHome": "Início",
+        "breadcrumbCreate": "Criar",
+        "browsePrompts": "Ver prompts",
+        "specs": {
+          "models": "{count} modelos de imagem",
+          "ratios": "{count} proporções",
+          "quality": "Qualidade baixa · média · alta",
+          "count": "Até {count} imagens por geração"
+        },
+        "demo": {
+          "yourImage": "Sua imagem",
+          "prompt": "Prompt",
+          "instruction": "Instrução de edição",
+          "output": "Resultado",
+          "newImage": "Nova imagem",
+          "useExample": "Usar este prompt"
+        },
+        "media": {
+          "inputs": "Imagens de referência",
+          "outputs": "Resultados",
+          "unclassified": "Imagens do modelo original (papéis não verificados)",
+          "missingReference": "Imagem de referência não incluída",
+          "partialReferences": "Apenas algumas áreas de referência foram recuperadas; as entradas originais estão incompletas.",
+          "extractedReference": "Referência de exemplo extraída da montagem do modelo original.",
+          "embeddedReference": "A foto de referência está incluída no resultado.",
+          "videoPreviewReference": "Prévia do vídeo da publicação original; a entrada original era um vídeo.",
+          "promptDescriptionOnly": "Este modelo contém apenas a descrição da publicação original; a instrução de edição completa não está disponível.",
+          "sourceDescription": "Descrição da publicação original",
+          "source": "Ver fonte",
+          "mismatch": "As imagens do modelo original diferem da descrição do prompt.",
+          "imageCount": "{index} / {count}",
+          "zoom": "Ampliar imagem"
+        },
+        "featuresEyebrow": "Vantagens",
+        "stepsEyebrow": "Como funciona",
+        "useCasesEyebrow": "Casos de uso",
+        "examples": {
+          "eyebrow": "Resultados",
+          "title": "Prompts reais, ",
+          "titleEm": "resultados reais",
+          "subtitle": "Cada caso é um modelo da biblioteca do Open Prompts. Leia o prompt completo, veja o resultado e abra no estúdio com um clique.",
+          "use": "Usar este modelo →",
+          "view": "Ver modelo",
+          "prompt": "Prompt",
+          "input": "Sua imagem",
+          "output": "Resultado"
+        },
+        "models": {
+          "eyebrow": "Modelos e créditos",
+          "title": "Modelos compatíveis",
+          "titleEm": "para {name}",
+          "subtitle": "Escolha um modelo no estúdio. Os créditos são cobrados por imagem.",
+          "modelCol": "Modelo",
+          "creditsCol": "A partir de (por imagem)",
+          "credits": "{count} créditos",
+          "note": "Preços estimados em qualidade 1K. Qualidade e tamanhos maiores custam mais. Contas novas recebem 3 créditos grátis no primeiro login.",
+          "pricing": "Ver preços"
+        },
+        "faq": {
+          "eyebrow": "FAQ",
+          "title": "Perguntas sobre"
+        },
+        "ctaNote": "Sem assinatura. Pague só pelas imagens que criar."
+      },
+      "types": {
+        "textToImage": {
+          "name": "Texto para imagem",
+          "card": "Descreva uma cena em palavras e receba uma imagem pronta. Ideal quando você parte de uma ideia, não de uma foto.",
+          "seo": {
+            "title": "Gerador de IA de texto para imagem | GPT Image 2 e Nano Banana | Open Prompts",
+            "description": "Transforme um prompt de texto em imagem com GPT Image 2, GPT Image 2.5, GPT Image 2.6 e Nano Banana 2. 10 proporções, até 4K e prompts selecionados para começar.",
+            "keywords": "texto para imagem, gerador de imagens IA, GPT Image 2, Nano Banana 2, prompt para imagem"
+          },
+          "hero": {
+            "eyebrow": "Texto para imagem",
+            "title": "Escreva um prompt,",
+            "titleEm": "receba a imagem.",
+            "subtitle": "Descreva o que quer ver, escolha um modelo e um formato e gere até quatro imagens de uma vez. Comece do zero ou de um prompt da galeria.",
+            "cta": "Começar texto para imagem"
+          },
+          "showcase": {
+            "photoreal": { "t": "Cenas fotorrealistas", "d": "Luz natural, materiais reais e pele convincente: fotos lifestyle e retratos sem marcar uma sessão de fotos." },
+            "typography": { "t": "Pôsteres com texto legível", "d": "Títulos, slogans e rótulos saem escritos corretamente e no lugar pedido, e o pôster fica pronto para usar." },
+            "multilingual": { "t": "Texto em chinês, japonês e coreano", "d": "Escreva os caracteres exatos entre aspas e eles aparecem em placas, capas e embalagens." },
+            "infographic": { "t": "Infográficos e diagramas", "d": "Um prompt longo e estruturado vira um layout com seções, ícones e anotações." },
+            "ui": { "t": "Mockups de UI e apps", "d": "Telas com layout claro e botões com texto correto, para conceitos, apresentações e landing pages." },
+            "product": { "t": "Criativos de produto e anúncios", "d": "Pôsteres de campanha, storyboards e fotos de produto que mantêm a marca em destaque." }
+          },
+          "demoPrompt": "Um pôster de viagem vintage de Santorini na hora dourada, cores chapadas fortes, cúpulas brancas, mar azul profundo e um grande título no topo.",
+          "features": {
+            "title": "Das palavras",
+            "titleEm": "à imagem pronta",
+            "subtitle": "Não precisa de imagem de referência. O prompt define o tema, o estilo e a composição.",
+            "items": [
+              { "t": "Prompts que já funcionam", "d": "Abra qualquer prompt da galeria no estúdio e altere só os detalhes." },
+              { "t": "Modelo a cada geração", "d": "Alterne entre GPT Image 2, 2.5, 2.6 e Nano Banana 2 para comparar texto, estilo e velocidade." },
+              { "t": "O tamanho certo", "d": "10 proporções, de stories 9:16 a banners 16:9, em 1K, 2K ou 4K." }
+            ]
+          },
+          "steps": {
+            "title": "Três passos",
+            "titleEm": "da ideia à imagem",
+            "items": [
+              { "t": "Escreva ou escolha um prompt", "d": "Descreva tema, estilo, luz e composição, ou comece com um modelo pronto." },
+              { "t": "Defina modelo e tamanho", "d": "Escolha o modelo, a proporção, a qualidade e quantas imagens gerar." },
+              { "t": "Gere e baixe", "d": "Os resultados aparecem ao lado do prompt. Abra qualquer imagem em tamanho real para baixar." }
+            ]
+          },
+          "useCases": {
+            "title": "Feito para",
+            "titleEm": "os visuais do dia a dia",
+            "items": [
+              { "t": "Pôsteres e capas", "d": "Pôsteres de eventos, capas de livros e miniaturas com títulos legíveis." },
+              { "t": "Redes sociais", "d": "Imagens quadradas e verticais para feeds, stories e anúncios." },
+              { "t": "Conceitos de produto", "d": "Mockups, ideias de embalagem e visuais antes de uma sessão de fotos." },
+              { "t": "Ilustração", "d": "Personagens, cenas e ícones em qualquer estilo que você descrever." }
+            ]
+          },
+          "faq": [
+            { "q": "O que é texto para imagem?", "a": "Texto para imagem cria uma nova imagem apenas a partir de um prompt escrito. Você descreve tema, estilo e composição, e o modelo desenha. Não é preciso imagem de entrada." },
+            { "q": "Quais modelos posso usar?", "a": "GPT Image 2, GPT Image 2.5 Sunburst e Flare, GPT Image 2.6 Sunburst e Flare, e Nano Banana 2. Você escolhe o modelo a cada geração." },
+            { "q": "Quanto custa uma imagem?", "a": "Os modelos GPT Image começam em 2 créditos por imagem em 1K e o Nano Banana 2 em 4 créditos. Mais qualidade custa mais. Contas novas recebem 3 créditos grátis no primeiro login." },
+            { "q": "Como escrevo um prompt melhor?", "a": "Informe tema, estilo, luz, ângulo de câmera e o texto que deve aparecer. Ou abra um prompt da galeria e mude só o necessário." }
+          ],
+          "cta": {
+            "title": "Sua próxima imagem",
+            "titleEm": "começa com uma frase",
+            "subtitle": "Abra o estúdio no modo texto para imagem e escreva seu primeiro prompt."
+          }
+        },
+        "referenceToImage": {
+          "name": "Referência para imagem",
+          "card": "Envie uma referência e descreva uma nova cena. O modelo mantém o sujeito ou o estilo e cria uma nova imagem em volta dele.",
+          "seo": {
+            "title": "Gerador de IA de imagem a partir de referência | Mantenha sujeito e estilo | Open Prompts",
+            "description": "Envie uma foto de referência e um prompt para criar uma nova imagem com a mesma pessoa, produto ou estilo. Funciona com GPT Image 2, 2.5, 2.6 e Nano Banana 2, até 4K.",
+            "keywords": "imagem de referência IA, imagem para imagem IA, personagem consistente, referência de estilo, GPT Image 2"
+          },
+          "hero": {
+            "eyebrow": "Referência para imagem",
+            "title": "Mantenha o essencial,",
+            "titleEm": "mude todo o resto.",
+            "subtitle": "Envie a foto de uma pessoa, de um produto ou de um estilo de que você gosta e descreva a nova cena. A referência guia o resultado e o sujeito continua reconhecível.",
+            "cta": "Começar referência para imagem"
+          },
+          "showcase": {
+            "character": { "t": "Mantenha o mesmo rosto", "d": "Mantenha a identidade da pessoa em imagens de referência com diferentes ângulos e roupas." },
+            "portrait": { "t": "Um retrato caprichado a partir de uma foto", "d": "Restaure os detalhes e as cores naturais de um retrato antigo, preservando a identidade e a composição originais." },
+            "style": { "t": "Redesenhe uma foto em outro estilo", "d": "Mantenha a composição da foto e transforme-a em aquarela, ilustração ou arte vetorial." },
+            "series": { "t": "Campanhas e storyboards", "d": "Leve a mesma referência a uma série de quadros ou pôsteres consistentes." },
+            "productScene": { "t": "Sua marca em uma nova cena", "d": "Use uma foto real do produto como referência para um novo cenário, composição e iluminação." },
+            "figure": { "t": "Bonecos e esculturas", "d": "Transforme uma pessoa ou personagem em boneco colecionável, brinquedo ou escultura 3D." }
+          },
+          "demoPrompt": "Use a pessoa da imagem de referência. Coloque-a em uma rua de neon na chuva à noite, iluminação cinematográfica, visual de filme 35 mm. Mantenha o rosto e o penteado iguais.",
+          "features": {
+            "title": "Uma nova imagem",
+            "titleEm": "que continua sendo sua",
+            "subtitle": "A referência define o sujeito ou o visual. Seu prompt define a cena.",
+            "items": [
+              { "t": "Sujeitos consistentes", "d": "O mesmo rosto, personagem ou produto em muitas cenas novas." },
+              { "t": "Pegue um estilo emprestado", "d": "Use uma pintura, foto ou imagem de marca como fonte de estilo." },
+              { "t": "Envie ou cole um link", "d": "Envie JPEG, PNG, WebP ou GIF de até 8 MB, ou cole a URL pública de uma imagem." }
+            ]
+          },
+          "steps": {
+            "title": "Três passos",
+            "titleEm": "da referência ao resultado",
+            "items": [
+              { "t": "Adicione uma referência", "d": "Envie uma imagem ou cole uma URL pública. Imagens nítidas e bem iluminadas funcionam melhor." },
+              { "t": "Descreva a nova cena", "d": "Diga o que manter da referência e o que a nova imagem deve mostrar." },
+              { "t": "Gere e compare", "d": "Crie até quatro versões de uma vez e fique com a que combinar." }
+            ]
+          },
+          "useCases": {
+            "title": "Feito para",
+            "titleEm": "séries e marcas",
+            "items": [
+              { "t": "Retratos e avatares", "d": "Você com roupas, lugares e estilos novos." },
+              { "t": "Fotos de produto", "d": "O mesmo produto em ambientes, estações e campanhas diferentes." },
+              { "t": "Personagens", "d": "Um personagem consistente em quadrinhos, histórias ou jogos." },
+              { "t": "Transferência de estilo", "d": "Aplique o visual de uma imagem a um sujeito totalmente novo." }
+            ]
+          },
+          "faq": [
+            { "q": "O que é referência para imagem?", "a": "Você fornece uma imagem de referência e um prompt. O modelo cria uma nova imagem usando a referência como fonte de sujeito ou estilo, em vez de editar a original." },
+            { "q": "Qual a diferença para a edição de imagem?", "a": "Referência para imagem cria uma nova imagem inspirada na sua referência. A edição altera a imagem enviada e mantém o resto no lugar." },
+            { "q": "Quais imagens posso enviar?", "a": "Arquivos JPEG, PNG, WebP ou GIF de até 8 MB. Você também pode colar a URL pública de uma imagem." },
+            { "q": "Quanto custa?", "a": "O mesmo que texto para imagem: os modelos GPT Image começam em 2 créditos por imagem em 1K e o Nano Banana 2 em 4 créditos." }
+          ],
+          "cta": {
+            "title": "Traga uma referência,",
+            "titleEm": "leve algo novo",
+            "subtitle": "Abra o estúdio no modo referência, envie uma imagem e descreva a cena."
+          }
+        },
+        "imageEdit": {
+          "name": "Edição de imagem",
+          "card": "Envie uma imagem e diga o que mudar. Troque o fundo, adicione um objeto ou mude o estilo, e mantenha o resto.",
+          "seo": {
+            "title": "Editor de imagens com IA por prompt | Edite fotos online | Open Prompts",
+            "description": "Edite qualquer imagem descrevendo a mudança: troque o fundo, adicione ou remova objetos, mude cores ou estilo. Com GPT Image 2, 2.5, 2.6 e Nano Banana 2.",
+            "keywords": "editor de imagens IA, editar imagem com prompt, editor de fotos IA, trocar fundo IA, remover objetos IA"
+          },
+          "hero": {
+            "eyebrow": "Edição de imagem",
+            "title": "Diga a mudança,",
+            "titleEm": "mantenha o resto.",
+            "subtitle": "Envie uma foto e descreva a edição com suas palavras. Troque o fundo, adicione um objeto, mude a luz ou transforme em ilustração, sem máscaras nem camadas.",
+            "cta": "Começar a editar"
+          },
+          "showcase": {
+            "toy": { "t": "Transforme pessoas em brinquedos", "d": "Cada pessoa da foto vira uma minifigura ou um boneco colecionável, e a cena original continua no lugar." },
+            "restyle": { "t": "Mude o estilo da imagem inteira", "d": "Converta uma foto em arte vetorial, ilustração ou outro visual mantendo o layout." },
+            "poster": { "t": "Transforme uma foto em pôster", "d": "Adicione título, layout e elementos gráficos em volta da sua imagem para um pôster pronto." },
+            "swap": { "t": "Troque um rosto ou um assunto", "d": "Mantenha a composição e a luz da imagem e substitua quem ou o que aparece nela." },
+            "outfit": { "t": "Troque o look", "d": "Experimente roupas, cabelos e estilos novos na mesma pessoa e na mesma pose." },
+            "retouch": { "t": "Retoque de fotos de produtos", "d": "Transforme uma foto casual de uma bebida em uma foto de produto mais clara e nítida." }
+          },
+          "demoPrompt": "Troque o fundo por um estúdio branco e limpo. Mantenha o produto, a sombra e o rótulo exatamente como estão.",
+          "features": {
+            "title": "Edite com palavras,",
+            "titleEm": "não com camadas",
+            "subtitle": "Descreva o resultado que deseja e o modelo muda só o que você pediu.",
+            "items": [
+              { "t": "Mudanças precisas", "d": "Troque fundos, adicione ou remova objetos, mude cores ou roupas." },
+              { "t": "Mude o estilo", "d": "Transforme uma foto em esboço, render 3D ou pôster em um passo." },
+              { "t": "Mesmos modelos, qualquer tamanho", "d": "Edite com GPT Image ou Nano Banana 2 e exporte em 1K, 2K ou 4K." }
+            ]
+          },
+          "steps": {
+            "title": "Três passos",
+            "titleEm": "até a imagem editada",
+            "items": [
+              { "t": "Envie sua imagem", "d": "Adicione a foto que quer mudar ou cole uma URL pública." },
+              { "t": "Descreva a edição", "d": "Diga o que deve mudar e o que deve continuar igual." },
+              { "t": "Gere e baixe", "d": "Compare até quatro versões e baixe a melhor." }
+            ]
+          },
+          "useCases": {
+            "title": "Feito para",
+            "titleEm": "ajustes rápidos e grandes mudanças",
+            "items": [
+              { "t": "Fotos de produto", "d": "Fundos limpos e novos cenários para sua loja online." },
+              { "t": "Limpeza de fotos", "d": "Remova distrações, corrija a luz ou mude a hora do dia." },
+              { "t": "Releituras criativas", "d": "Transforme fotos em arte, adesivos, pôsteres ou quadrinhos." },
+              { "t": "Variações de marketing", "d": "Crie versões sazonais ou regionais de uma mesma imagem." }
+            ]
+          },
+          "faq": [
+            { "q": "O que é edição de imagem com IA?", "a": "Você envia uma imagem e escreve o que mudar. O modelo devolve uma nova versão dessa imagem com a edição aplicada." },
+            { "q": "Preciso desenhar uma máscara?", "a": "Não. Descreva a área e a mudança com palavras, por exemplo: troque o céu por um pôr do sol e mantenha os prédios." },
+            { "q": "Quais modelos permitem editar?", "a": "Todos os modelos do estúdio: GPT Image 2, 2.5, 2.6 e Nano Banana 2. Escolha um no menu de modelos antes de gerar." },
+            { "q": "Quanto custa uma edição?", "a": "As edições com GPT Image começam em 2 créditos por imagem em 1K e o Nano Banana 2 em 4 créditos. Contas novas recebem 3 créditos grátis no primeiro login." }
+          ],
+          "cta": {
+            "title": "Tem uma foto?",
+            "titleEm": "Diga o que mudar",
+            "subtitle": "Abra o estúdio no modo edição, envie sua imagem e descreva a mudança."
+          }
+        }
+      }
     },
     "createPage": {
       "seo": {
@@ -1420,6 +1810,12 @@
       "brandPill": "Open Prompts",
       "templatesLabel": "MODELOS",
       "searchTemplatesPlaceholder": "Pesquisar modelos…",
+      "templateNoResults": "Nenhum modelo correspondente",
+      "templateOptional": "Modelo (opcional)",
+      "templateOptionalHint": "Escreva seu próprio prompt ou comece com um modelo.",
+      "chooseTemplate": "Escolher modelo",
+      "changeTemplate": "Alterar",
+      "clearTemplate": "Limpar",
       "originalPromptLabel": "AVISO ORIGINAL",
       "promptSectionLabel": "AVISO",
       "enhanceButton": "✨ Melhorar",
@@ -1437,9 +1833,9 @@
       "moreMenuAriaLabel": "Mais opções",
       "providerSection": "FORNECEDOR",
       "providerInternal": "Padrão",
-      "popularTitle": "Modelos populares",
-      "popularSubtitle": "Comece mais rápido com um modelo. Clique para aplicar.",
-      "allTemplatesLink": "Todos os modelos →",
+      "popularTitle": "Inspiração selecionada",
+      "popularSubtitle": "Obras escolhidas para seu tipo de criação. Clique para usar o prompt.",
+      "allTemplatesLink": "Mais inspiração →",
       "allTemplatesTitle": "Todos os modelos",
       "resultHistoryLabel": "RESULTADO E HISTÓRICO",
       "currentLabel": "ATUAL",
@@ -1451,6 +1847,7 @@
       "fullscreenTitle": "Tela cheia",
       "downloadTitle": "Baixar",
       "deleteTitle": "Excluir",
+      "reuseTitle": "Reutilizar",
       "viewerClose": "Fechar",
       "viewerPrev": "← Anterior",
       "viewerNext": "Próximo →",
