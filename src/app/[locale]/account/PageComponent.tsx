@@ -34,13 +34,22 @@ import {
   parseMyTemplatesPage,
   type MyTemplatesPage,
 } from '~/lib/account/my-templates-page';
+import { BillingSummary } from '~/components/billing/BillingSummary';
+import type { BillingSnapshot } from '~/lib/billing/summary';
+import { accountListQueryKey, createAccountListCache } from '~/lib/account/panel-cache';
 
 type Panel = ResolvedAccountPanel;
+
+const EMPTY_BILLING: BillingSnapshot = {
+  purchasedBalance: 0, monthlyBalance: 0, monthlyExpiresAt: null, usable: 0, orders: [], subscription: null, generations: [],
+};
 
 type Props = {
   locale: string;
   isAdmin: boolean;
+  surface?: 'account' | 'admin';
   initialPanel: Panel;
+  billing?: BillingSnapshot;
   user: { id: string; email: string; name: string | null; image: string | null };
   initialAdmin?: {
     items: AdminTemplateRecord[];
@@ -150,7 +159,7 @@ function displayStatus(item: TemplateRecord): DisplayStatusKey {
   return 'pub';
 }
 
-export default function PageComponent({ locale, isAdmin, initialPanel, user, initialAdmin }: Props) {
+export default function PageComponent({ locale, isAdmin, surface = 'account', initialPanel, user, initialAdmin, billing = EMPTY_BILLING }: Props) {
   const t = useTranslations('OpenPrompts.accountPage');
   const router = useRouter();
   const adminLoadGen = useRef(0);
@@ -158,6 +167,24 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
   const adminPrefetchedRef = useRef(Boolean(initialAdmin?.items.length));
   const myTemplatesLoadGen = useRef(0);
   const myTemplatesPrefetchRef = useRef<{ key: string; data: MyTemplatesPage } | null>(null);
+  const myTemplatesCacheRef = useRef(createAccountListCache<MyTemplatesPage>());
+  const adminTemplatesCacheRef = useRef(createAccountListCache<{
+    items: AdminTemplateRecord[];
+    total: number | null;
+    hasMore: boolean;
+    pendingCount?: number;
+    promptsDailyTrend: DailyCountPoint[];
+  }>());
+  const adminUsersCacheRef = useRef(createAccountListCache<{
+    items: AdminUserSummary[];
+    total: number | null;
+    hasMore: boolean;
+    totalUsers: number | null;
+    activeToday: number | null;
+    newToday: number | null;
+    usersDailyTrend: DailyCountPoint[];
+  }>());
+  const usersLoadGen = useRef(0);
 
   const [panel, setPanel] = useState<Panel>(initialPanel);
   const [templates, setTemplates] = useState<TemplateRecord[]>([]);
@@ -226,6 +253,20 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
 
   const navigatePanel = (next: Panel) => {
     if (next === 'admin-denied') return;
+    if (next === 'prompts') {
+      if (!isAdmin) return;
+      router.push(locale === 'en' ? '/admin/prompts' : `/${locale}/admin/prompts`, { scroll: false });
+      return;
+    }
+    if (next === 'overview' || next === 'credits' || next === 'subscription') {
+      router.push(accountPanelHref(locale, next), { scroll: false });
+      return;
+    }
+    if (surface === 'admin') {
+      const base = locale === 'en' ? '/admin' : `/${locale}/admin`;
+      router.push(next === 'users' ? `${base}/users` : `${base}/review`, { scroll: false });
+      return;
+    }
     router.push(accountPanelHref(locale, next), { scroll: false });
   };
 
@@ -292,20 +333,24 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
 
   const loadMyTemplates = useCallback(async () => {
     const pageKey = myTemplatesPageKey(search, myStatusFilter, myPage, myPageSize);
+    const queryKey = accountListQueryKey({ namespace: 'my-templates', search, status: myStatusFilter, page: myPage, pageSize: myPageSize });
+    const remembered = myTemplatesCacheRef.current.read(queryKey);
+    if (remembered) {
+      setTemplates(remembered.data.items);
+      setMyTotal(remembered.data.total);
+      setMyHasMore(remembered.data.hasMore);
+    }
     const cached = myTemplatesPrefetchRef.current;
     if (cached?.key === pageKey) {
       setTemplates(cached.data.items);
       setMyTotal(cached.data.total);
       setMyHasMore(cached.data.hasMore);
+      myTemplatesCacheRef.current.write(queryKey, cached.data);
       myTemplatesPrefetchRef.current = null;
-      if (cached.data.hasMore) {
-        void prefetchMyTemplatesPage(myPage + 1, myTemplatesLoadGen.current);
-      }
-      return;
     }
 
     const gen = ++myTemplatesLoadGen.current;
-    setMyLoading(true);
+    setMyLoading(!remembered && !cached);
     try {
       const q = buildMyTemplatesQuery(search, myStatusFilter, myPage, myPageSize);
       const res = await fetch(localeApiPath(locale, `/api/my/templates?${q}`), { cache: 'no-store' });
@@ -320,6 +365,7 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
         setTemplates(page.items);
         setMyTotal(page.total);
         setMyHasMore(page.hasMore);
+        myTemplatesCacheRef.current.write(queryKey, page);
         if (page.hasMore) void prefetchMyTemplatesPage(myPage + 1, gen);
       } else {
         setTemplates([]);
@@ -328,9 +374,11 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
       }
     } catch {
       if (gen !== myTemplatesLoadGen.current) return;
-      setTemplates([]);
-      setMyTotal(null);
-      setMyHasMore(false);
+      if (!remembered && !cached) {
+        setTemplates([]);
+        setMyTotal(null);
+        setMyHasMore(false);
+      }
     } finally {
       if (gen === myTemplatesLoadGen.current) setMyLoading(false);
     }
@@ -338,7 +386,16 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
 
   const loadAdminTemplates = useCallback(async () => {
     const gen = ++adminLoadGen.current;
-    setAdminLoading(true);
+    const queryKey = accountListQueryKey({ namespace: 'admin-templates', search: adminSearch, status: adminStatusFilter, page: adminPage, pageSize: adminPageSize, trendDays: adminTrendDays });
+    const remembered = adminTemplatesCacheRef.current.read(queryKey);
+    if (remembered) {
+      setAdminItems(remembered.data.items);
+      setAdminTotal(remembered.data.total);
+      setAdminHasMore(remembered.data.hasMore);
+      if (remembered.data.pendingCount !== undefined) setAdminPendingCount(remembered.data.pendingCount);
+      setAdminPromptsDailyTrend(remembered.data.promptsDailyTrend);
+    }
+    setAdminLoading(!remembered);
     setAdminLoadError(null);
 
     const ac = new AbortController();
@@ -365,20 +422,26 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
       };
       if (gen !== adminLoadGen.current) return;
       if (res.ok) {
-        setAdminItems(data.items ?? []);
-        setAdminTotal(typeof data.total === 'number' ? data.total : null);
-        setAdminHasMore(Boolean(data.hasMore));
+        const next = {
+          items: data.items ?? [],
+          total: typeof data.total === 'number' ? data.total : null,
+          hasMore: Boolean(data.hasMore),
+          pendingCount: data.pendingCount,
+          promptsDailyTrend: Array.isArray(data.promptsDailyTrend) ? data.promptsDailyTrend : [],
+        };
+        setAdminItems(next.items);
+        setAdminTotal(next.total);
+        setAdminHasMore(next.hasMore);
         if (typeof data.pendingCount === 'number') setAdminPendingCount(data.pendingCount);
-        setAdminPromptsDailyTrend(
-          Array.isArray(data.promptsDailyTrend) ? data.promptsDailyTrend : [],
-        );
+        setAdminPromptsDailyTrend(next.promptsDailyTrend);
+        adminTemplatesCacheRef.current.write(queryKey, next);
       } else {
         if (res.status === 403) {
           setAdminLoadError(t('admin.forbiddenBody', { email: user.email || '—' }));
         } else {
           setAdminLoadError(data.error ?? `HTTP ${res.status}`);
         }
-        if (!adminItemsCountRef.current) {
+        if (!remembered && !adminItemsCountRef.current) {
           setAdminItems([]);
           setAdminTotal(null);
           setAdminHasMore(false);
@@ -388,7 +451,7 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
     } catch (e: unknown) {
       if (gen !== adminLoadGen.current) return;
       if (e instanceof DOMException && e.name === 'AbortError') {
-        if (!adminItemsCountRef.current) {
+        if (!remembered && !adminItemsCountRef.current) {
           setAdminLoadError(t('admin.loadTimeout'));
         }
         return;
@@ -408,7 +471,19 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
   }, [locale, adminSearch, adminStatusFilter, adminPage, adminPageSize, adminTrendDays, user.email]);
 
   const loadAdminUsers = useCallback(async () => {
-    setUsersLoading(true);
+    const gen = ++usersLoadGen.current;
+    const queryKey = accountListQueryKey({ namespace: 'admin-users', search: usersSearch, page: usersPage, pageSize: usersPageSize, trendDays: usersTrendDays });
+    const remembered = adminUsersCacheRef.current.read(queryKey);
+    if (remembered) {
+      setUserItems(remembered.data.items);
+      setUsersTotal(remembered.data.total);
+      setUsersHasMore(remembered.data.hasMore);
+      setUsersPlatformTotal(remembered.data.totalUsers);
+      setUsersActiveToday(remembered.data.activeToday);
+      setUsersNewToday(remembered.data.newToday);
+      setUsersDailyTrend(remembered.data.usersDailyTrend);
+    }
+    setUsersLoading(!remembered);
     setUsersLoadError(null);
 
     const ac = new AbortController();
@@ -430,10 +505,14 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
         hasMore?: boolean;
         error?: string;
       };
+      if (gen !== usersLoadGen.current) return;
       if (res.ok) {
-        setUserItems(data.items ?? []);
-        setUsersTotal(typeof data.total === 'number' ? data.total : null);
-        setUsersHasMore(Boolean(data.hasMore));
+        const items = data.items ?? [];
+        const total = typeof data.total === 'number' ? data.total : null;
+        const hasMore = Boolean(data.hasMore);
+        setUserItems(items);
+        setUsersTotal(total);
+        setUsersHasMore(hasMore);
         const parsedStats = parseAdminUserStats(data);
         if (parsedStats) {
           setUsersPlatformTotal(parsedStats.totalUsers);
@@ -441,7 +520,30 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
           setUsersNewToday(parsedStats.newToday);
           setUsersDailyTrend(parsedStats.usersDailyTrend);
         }
+        adminUsersCacheRef.current.write(queryKey, {
+          items,
+          total,
+          hasMore,
+          totalUsers: parsedStats?.totalUsers ?? null,
+          activeToday: parsedStats?.activeToday ?? null,
+          newToday: parsedStats?.newToday ?? null,
+          usersDailyTrend: parsedStats?.usersDailyTrend ?? [],
+        });
       } else {
+        if (!remembered) {
+          setUserItems([]);
+          setUsersTotal(null);
+          setUsersPlatformTotal(null);
+          setUsersActiveToday(null);
+          setUsersNewToday(null);
+          setUsersDailyTrend([]);
+          setUsersHasMore(false);
+        }
+        setUsersLoadError(data.error ?? `HTTP ${res.status}`);
+      }
+    } catch (e: unknown) {
+      if (gen !== usersLoadGen.current) return;
+      if (!remembered) {
         setUserItems([]);
         setUsersTotal(null);
         setUsersPlatformTotal(null);
@@ -449,23 +551,14 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
         setUsersNewToday(null);
         setUsersDailyTrend([]);
         setUsersHasMore(false);
-        setUsersLoadError(data.error ?? `HTTP ${res.status}`);
       }
-    } catch (e: unknown) {
-      setUserItems([]);
-      setUsersTotal(null);
-      setUsersPlatformTotal(null);
-      setUsersActiveToday(null);
-      setUsersNewToday(null);
-      setUsersDailyTrend([]);
-      setUsersHasMore(false);
       const msg = e instanceof Error ? e.message : 'Network error';
       setUsersLoadError(
         e instanceof DOMException && e.name === 'AbortError' ? t('adminUsers.loadTimeout') : msg,
       );
     } finally {
       window.clearTimeout(timeoutId);
-      setUsersLoading(false);
+      if (gen === usersLoadGen.current) setUsersLoading(false);
     }
   }, [locale, usersSearch, usersPage, usersPageSize, usersTrendDays, t]);
 
@@ -1404,34 +1497,28 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
 
           <div className="op-account-nav-section">
             <div className="op-account-nav-label">{t('sidebar.content')}</div>
-            <button
-              type="button"
-              className={`op-account-nav-item${panel === 'prompts' ? ' active' : ''}`}
-              onClick={() => navigatePanel('prompts')}
-            >
-              {t('nav.prompts')}
-              <span className="op-account-nav-badge">{templateCount}</span>
-            </button>
-            {isAdmin ? (
+            {surface === 'admin' ? (
               <button
                 type="button"
-                className={`op-account-nav-item${panel === 'admin' ? ' active' : ''}`}
-                onClick={() => navigatePanel('admin')}
+                className={`op-account-nav-item${panel === 'prompts' ? ' active' : ''}`}
+                onClick={() => navigatePanel('prompts')}
               >
-                {t('nav.adminReview')}
-                {adminPendingCount != null && adminPendingCount > 0 ? (
-                  <span className="op-account-nav-badge warn">{adminPendingCount}</span>
-                ) : null}
+                {t('nav.prompts')}
+                <span className="op-account-nav-badge">{templateCount}</span>
               </button>
             ) : null}
-            {isAdmin ? (
-              <button
-                type="button"
-                className={`op-account-nav-item${panel === 'users' ? ' active' : ''}`}
-                onClick={() => navigatePanel('users')}
-              >
+            {surface === 'admin' ? (
+              <button type="button" className={`op-account-nav-item${panel === 'admin' ? ' active' : ''}`} onClick={() => navigatePanel('admin')}>
+                {t('nav.adminReview')}
+              </button>
+            ) : null}
+            {surface === 'admin' ? (
+              <button type="button" className={`op-account-nav-item${panel === 'users' ? ' active' : ''}`} onClick={() => navigatePanel('users')}>
                 {t('nav.users')}
               </button>
+            ) : null}
+            {surface === 'account' && isAdmin ? (
+              <a className="op-account-nav-item" href={locale === 'en' ? '/admin' : `/${locale}/admin`}>{t('nav.adminReview')}</a>
             ) : null}
           </div>
 
@@ -1469,9 +1556,6 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
                 <div className="mt-4 flex flex-wrap gap-2">
                   <button type="button" className="op-account-btn" onClick={() => navigatePanel('overview')}>
                     {t('nav.overview')}
-                  </button>
-                  <button type="button" className="op-account-btn primary" onClick={() => navigatePanel('prompts')}>
-                    {t('nav.prompts')}
                   </button>
                 </div>
               </div>
@@ -1580,8 +1664,9 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
               })}
             </div>
 
-            {isAdmin ? (
+            {surface === 'admin' ? (
               <div className={`op-account-panel${panel === 'admin' ? ' active' : ''}`}>
+                <BillingSummary locale={locale} snapshot={billing} showAdminDownloads />
                 <p className="mb-3 text-sm text-[var(--text2)]">{t('admin.hint')}</p>
                 <p className="mb-3 text-xs text-[var(--text3)]">{t('admin.hintActions')}</p>
                 {adminLoadError ? (
@@ -1660,7 +1745,7 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
               </div>
             ) : null}
 
-            {isAdmin ? (
+            {surface === 'admin' ? (
               <div className={`op-account-panel${panel === 'users' ? ' active' : ''}`}>
                 <p className="mb-3 text-sm text-[var(--text2)]">{t('adminUsers.hint')}</p>
                 <div className="op-account-metrics mb-4">
@@ -1708,15 +1793,9 @@ export default function PageComponent({ locale, isAdmin, initialPanel, user, ini
               </div>
             ) : null}
 
-            <div className={`op-account-panel${panel === 'credits' ? ' active' : ''}`}>
+            <div className={`op-account-panel${panel === 'credits' || panel === 'subscription' ? ' active' : ''}`}>
               <div className="op-account-card">
-                <p className="text-sm text-[var(--text2)]">{t('placeholders.credits')}</p>
-              </div>
-            </div>
-
-            <div className={`op-account-panel${panel === 'subscription' ? ' active' : ''}`}>
-              <div className="op-account-card">
-                <p className="text-sm text-[var(--text2)]">{t('placeholders.subscription')}</p>
+                <BillingSummary locale={locale} snapshot={billing} />
               </div>
             </div>
               </div>
