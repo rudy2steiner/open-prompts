@@ -1,15 +1,13 @@
 /** 从原 PostgreSQL 只读导出四张业务表，输出只能放在工作区外。 */
-import { readFile, mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises';
 import { resolve, dirname } from 'node:path';
-import { parse } from 'dotenv';
 import postgres from 'postgres';
 import { createHash } from 'node:crypto';
 
 async function main() {
   const output = process.argv[2];
   if (!output || resolve(output).startsWith(`${process.cwd()}/`)) throw new Error('Pass a private output path outside the worktree');
-  const env = parse(await readFile('.env.production'));
-  const url = process.env.SOURCE_DATABASE_URL || env.DATABASE_URL;
+  const url = process.env.SOURCE_DATABASE_URL;
   if (!url) throw new Error('Source configuration missing');
   const db = postgres(url, { max: 1, prepare: false, connect_timeout: 8 });
   try {

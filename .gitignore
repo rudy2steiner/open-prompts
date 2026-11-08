@@ -11,6 +11,7 @@
 
 # next.js
 /.next/
+/src/lib/prompts/download-assets.json
 /.open-next/
 /out/
 
@@ -38,15 +39,19 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
+openspec
 Makefile
 .wrangler
 wrangler.toml
+wrangler.jsonc
 supabase/.branches
 supabase/.temp
 .*next
 .dev.vars
+.dev.vars.*
 !.dev.vars.example
+.prod.vars
+!.prod.vars.example
 .source
 yarn.lock 
 .env

@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+
+/* iOS Safari zooms into focused fields whose font-size is below 16px */
+@media (pointer: coarse) and (max-width: 1023px) {
+  nav[aria-label='Breadcrumb'] a {
+    display: inline-flex;
+    min-height: 2.25rem;
+    align-items: center;
+  }
+
+  nav[aria-label='Breadcrumb'],
+  nav[aria-label='Breadcrumb'] ol {
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='file']),
+  select,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
 /* Native datetime-local: avoid full-width stretch so the calendar icon stays beside the value */
 @layer utilities {
   .datetime-local-tight {

@@ -1,28 +1,43 @@
+import { eq } from 'drizzle-orm';
+import { getDb } from '~/db/client';
+import { guestSessions } from '~/db/schema';
+import { getAuthSession } from '~/lib/auth/session';
+import { persistGenerationCharge, readCreditAccount, refundGenerationCharge } from '~/lib/billing/accounts';
+import { decideGeneration } from '~/lib/billing/generation-charge';
+import { hashGuestToken, readGuestToken } from '~/lib/billing/guest';
+import { settleLoginLedger } from '~/lib/billing/identity';
 import { getProviderRegistry, getDefaultProviderName, encodeProviderJobId } from '~/lib/generation/registry';
 import type { GenerationCreateParams } from '~/lib/generation/types';
-import { createAtlascloudProviderWithOptions } from '~/lib/generation/providers/atlascloud';
+import { isModelComingSoon, referenceImageLimit } from '~/lib/generation/capabilities';
+import { createAtlascloudProviderWithOptions, pickAtlasSize } from '~/lib/generation/providers/atlascloud';
 import { createReplicateProviderWithOptions } from '~/lib/generation/providers/replicate';
-import {
-  canConsumeCredits,
-  consumeCredits,
-  getCreditsCookieName,
-  getInternalCreditsLimitsFromEnv,
-  parseCreditsCookie,
-  serializeCreditsCookie,
-} from '~/lib/credits/server';
 
 function safeId() {
   return (
-    // Node 18+ / modern runtimes
-    (globalThis as any).crypto?.randomUUID?.() || `req_${Date.now()}_${Math.random().toString(16).slice(2)}`
+    (globalThis as { crypto?: { randomUUID?: () => string } }).crypto?.randomUUID?.() || `req_${Date.now()}_${Math.random().toString(16).slice(2)}`
   );
 }
 
 function preview(text: string, max = 120) {
-  const s = String(text || '');
-  const oneLine = s.replace(/\s+/g, ' ').trim();
-  if (oneLine.length <= max) return oneLine;
-  return `${oneLine.slice(0, max)}…`;
+  const oneLine = String(text || '').replace(/\s+/g, ' ').trim();
+  return oneLine.length <= max ? oneLine : `${oneLine.slice(0, max)}…`;
+}
+
+async function ownerFromRequest(req: Request): Promise<string | null> {
+  const session = await getAuthSession();
+  if (session?.user?.id) {
+    try { await settleLoginLedger(session.user.id, readGuestToken(req)); } catch (error) {
+      console.error('[op:billing:settle]', error instanceof Error ? error.message : error);
+    }
+    return session.user.id;
+  }
+  const token = readGuestToken(req);
+  const db = getDb();
+  if (!token || !db) return null;
+  const row = await db.select({ guestId: guestSessions.guestId, expiresAt: guestSessions.expiresAt })
+    .from(guestSessions).where(eq(guestSessions.tokenHash, await hashGuestToken(token))).get();
+  if (!row || row.expiresAt.getTime() <= Date.now()) return null;
+  return row.guestId;
 }
 
 export async function POST(req: Request) {
@@ -30,191 +45,98 @@ export async function POST(req: Request) {
   const startedAt = Date.now();
   const useTestMode = String(process.env.USE_TEST_MODE || '').toLowerCase() === 'true';
   const testImageUrl = String(process.env.TEST_IMAGE_URL || '').trim();
-
   const json = (await req.json().catch(() => ({}))) as Partial<GenerationCreateParams> & {
     provider?: string;
     apiKey?: string;
+    path?: 'text-to-image' | 'reference' | 'edit';
   };
-
   const prompt = String(json.prompt || '').trim();
-  if (!prompt) {
-    return new Response(JSON.stringify({ error: 'Missing prompt' }), {
-      status: 400,
-      headers: { 'content-type': 'application/json' },
-    });
-  }
+  if (!prompt) return Response.json({ error: 'Missing prompt' }, { status: 400 });
 
-  // Credits: only enforce when the server pays (registry keys), not BYOK.
-  // BYOK is only atlascloud/replicate when the client sends apiKey (see provider wiring below).
   const apiKey = typeof json.apiKey === 'string' ? json.apiKey.trim() : '';
   const providerName = (json.provider || getDefaultProviderName()).toLowerCase();
-  const usesClientApiKey =
-    Boolean(apiKey) && (providerName === 'atlascloud' || providerName === 'replicate');
-  const isInternalModeRequest = !usesClientApiKey;
-  const userId = (req.headers.get('x-op-user-id') || '').trim();
-  const requestedCount =
-    typeof json.count === 'number' && Number.isFinite(json.count) ? Math.max(1, Math.floor(json.count)) : 1;
+  const usesClientApiKey = Boolean(apiKey) && (providerName === 'atlascloud' || providerName === 'replicate');
+  if (json.path !== undefined && !['text-to-image', 'reference', 'edit'].includes(json.path)) {
+    return Response.json({ error: 'invalid_path' }, { status: 400 });
+  }
+  const path = json.path ?? 'text-to-image';
+  const referenceImages = path !== 'text-to-image' && Array.isArray(json.referenceImages) ? json.referenceImages.map(String).filter(Boolean) : [];
+  const model = String(json.model || 'GPT Image 2');
+  if (isModelComingSoon(model)) return Response.json({ error: 'model_coming_soon' }, { status: 400 });
+  const maxReferenceImages = referenceImageLimit(model);
+  if (maxReferenceImages !== null && referenceImages.length > maxReferenceImages) {
+    return Response.json({ error: 'too_many_reference_images', max: maxReferenceImages }, { status: 400 });
+  }
+  const requestedCount = json.count === undefined ? 1 : json.count;
+  if (!Number.isInteger(requestedCount) || requestedCount < 1 || requestedCount > 4) {
+    return Response.json({ error: 'invalid_count' }, { status: 400 });
+  }
+  const resolution = json.resolution === undefined ? '1k' : json.resolution;
+  const size = pickAtlasSize(json.aspectRatio, resolution);
+  if (providerName === 'atlascloud' && !size) return Response.json({ error: 'unsupported_size' }, { status: 400 });
+  if (providerName !== 'atlascloud' && json.resolution !== undefined) return Response.json({ error: 'unsupported_size' }, { status: 400 });
+  const ownerId = usesClientApiKey ? null : await ownerFromRequest(req);
+  const decision = decideGeneration({
+    byok: usesClientApiKey,
+    ownerId,
+    account: ownerId ? await readCreditAccount(ownerId) : null,
+    model,
+    path,
+    quality: json.quality,
+    width: size?.width,
+    height: size?.height,
+    count: requestedCount,
+    hasReference: referenceImages.length > 0,
+    now: Date.now(),
+  });
+  if (decision.action === 'reject') {
+    return Response.json({ error: decision.error, credits: decision.credits, pricing: decision.error === 'insufficient' }, { status: decision.status });
+  }
 
-  // Enforce internal credits even in test mode.
-  if (isInternalModeRequest) {
-    const limits = getInternalCreditsLimitsFromEnv();
-    const hasAnyLimit = limits.daily != null || limits.monthly != null;
-    if (hasAnyLimit) {
-      const cookie = req.headers.get('cookie') || '';
-      const name = getCreditsCookieName();
-      const value = cookie
-        .split(';')
-        .map((p) => p.trim())
-        .find((p) => p.startsWith(`${name}=`))
-        ?.slice(name.length + 1) ?? null;
-
-      const usage = parseCreditsCookie(value, { userId: userId || undefined });
-      const allowed = canConsumeCredits(limits, usage, requestedCount);
-      if (!allowed.ok) {
-        const detail =
-          allowed.reason === 'daily'
-            ? `Daily credits exceeded (${usage.dayUsed}/${limits.daily})`
-            : `Monthly credits exceeded (${usage.monthUsed}/${limits.monthly})`;
-        return new Response(
-          JSON.stringify({
-            error: 'Credits exceeded',
-            detail,
-            limits,
-            usage,
-            hint: 'Configure INTERNAL_DAILY_IMAGE_CREDITS / INTERNAL_MONTHLY_IMAGE_CREDITS, or use your own provider apiKey override to bypass limits.',
-          }),
-          { status: 429, headers: { 'content-type': 'application/json' } }
-        );
-      }
+  let generationId: string | null = null;
+  if (decision.action === 'charge') {
+    if (!ownerId) return Response.json({ error: 'no_identity' }, { status: 402 });
+    generationId = safeId();
+    const saved = await persistGenerationCharge({ ownerId, generationId, model: decision.slug, credits: decision.credits });
+    if (saved === 'insufficient' || saved === 'unavailable') {
+      return Response.json({ error: saved, credits: decision.credits, pricing: saved === 'insufficient' }, { status: saved === 'unavailable' ? 503 : 402 });
     }
   }
 
   if (useTestMode) {
-    const id = safeId();
-    console.info('[op:generation:create]', {
-      requestId,
-      provider: 'test',
-      testImageUrl: Boolean(testImageUrl),
-      promptLen: prompt.length,
-      promptPreview: preview(prompt),
-      aspectRatio: json.aspectRatio,
-      quality: json.quality,
-      count: json.count,
-      elapsedMs: Date.now() - startedAt,
-    });
-    const headers: Record<string, string> = { 'content-type': 'application/json' };
-    if (isInternalModeRequest) {
-      const limits = getInternalCreditsLimitsFromEnv();
-      const hasAnyLimit = limits.daily != null || limits.monthly != null;
-      if (hasAnyLimit) {
-        const cookie = req.headers.get('cookie') || '';
-        const name = getCreditsCookieName();
-        const value = cookie
-          .split(';')
-          .map((p) => p.trim())
-          .find((p) => p.startsWith(`${name}=`))
-          ?.slice(name.length + 1) ?? null;
-        const usage = parseCreditsCookie(value, { userId: userId || undefined });
-        const next = consumeCredits({ ...usage, userId: userId || usage.userId }, requestedCount);
-        headers['set-cookie'] = serializeCreditsCookie(next, {
-          secure: String(process.env.NODE_ENV || '') === 'production',
-        });
-      }
-    }
-    return new Response(
-      JSON.stringify({
-        provider: 'test',
-        providerJobId: encodeProviderJobId('test', id),
-        // Let the client polling path populate images.
-        status: 'queued',
-      }),
-      { status: 200, headers }
-    );
+    console.info('[op:generation:create]', { requestId, provider: 'test', testImageUrl: Boolean(testImageUrl), promptLen: prompt.length, promptPreview: preview(prompt), elapsedMs: Date.now() - startedAt });
+    return Response.json({ provider: 'test', providerJobId: encodeProviderJobId('test', safeId()), generationId, status: 'queued', credits: decision.action === 'charge' ? decision.credits : 0 });
   }
 
-  console.info('[op:generation:create:start]', {
-    requestId,
-    provider: providerName,
-    hasApiKeyOverride: Boolean(apiKey),
-    model: json.model,
-    aspectRatio: json.aspectRatio,
-    quality: json.quality,
-    count: json.count,
-    promptLen: prompt.length,
-    promptPreview: preview(prompt),
-  });
-
-  const provider =
-    apiKey && providerName === 'atlascloud'
-      ? createAtlascloudProviderWithOptions({ apiKey })
-      : apiKey && providerName === 'replicate'
-        ? createReplicateProviderWithOptions({ token: apiKey })
-        : getProviderRegistry()[providerName];
-  if (!provider) {
-    return new Response(JSON.stringify({ error: `Unknown provider: ${providerName}` }), {
-      status: 400,
-      headers: { 'content-type': 'application/json' },
-    });
-  }
+  const provider = apiKey && providerName === 'atlascloud'
+    ? createAtlascloudProviderWithOptions({ apiKey })
+    : apiKey && providerName === 'replicate'
+      ? createReplicateProviderWithOptions({ token: apiKey })
+      : getProviderRegistry()[providerName];
+  if (!provider) return Response.json({ error: `Unknown provider: ${providerName}` }, { status: 400 });
 
   try {
     const result = await provider.create({
       prompt,
       negativePrompt: json.negativePrompt,
-      model: json.model,
+      model: decision.slug,
       aspectRatio: json.aspectRatio,
-      quality: 'medium',
-      count: json.count,
+      ...(providerName === 'atlascloud' ? { resolution } : {}),
+      quality: json.quality,
+      count: requestedCount,
+      referenceImages,
     });
-    console.info('[op:generation:create:done]', {
-      requestId,
+    if (result.status === 'failed' && generationId) await refundGenerationCharge(generationId);
+    return Response.json({
       provider: providerName,
+      providerJobId: encodeProviderJobId(providerName, result.providerJobId),
       status: result.status,
-      providerJobId: result.providerJobId,
-      elapsedMs: Date.now() - startedAt,
+      generationId,
+      credits: decision.action === 'charge' ? decision.credits : 0,
     });
-    const headers: Record<string, string> = { 'content-type': 'application/json' };
-    if (isInternalModeRequest && result.status !== 'failed') {
-      const limits = getInternalCreditsLimitsFromEnv();
-      const hasAnyLimit = limits.daily != null || limits.monthly != null;
-      if (hasAnyLimit) {
-        const cookie = req.headers.get('cookie') || '';
-        const name = getCreditsCookieName();
-        const value = cookie
-          .split(';')
-          .map((p) => p.trim())
-          .find((p) => p.startsWith(`${name}=`))
-          ?.slice(name.length + 1) ?? null;
-        const usage = parseCreditsCookie(value, { userId: userId || undefined });
-        const next = consumeCredits(
-          { ...usage, userId: userId || usage.userId },
-          requestedCount
-        );
-        headers['set-cookie'] = serializeCreditsCookie(next, {
-          secure: String(process.env.NODE_ENV || '') === 'production',
-        });
-      }
-    }
-
-    return new Response(
-      JSON.stringify({
-        provider: providerName,
-        providerJobId: encodeProviderJobId(providerName, result.providerJobId),
-        status: result.status,
-      }),
-      { status: 200, headers }
-    );
-  } catch (e: any) {
-    console.error('[op:generation:create:error]', {
-      requestId,
-      provider: providerName,
-      elapsedMs: Date.now() - startedAt,
-      error: e?.message || String(e),
-    });
-    return new Response(JSON.stringify({ error: e?.message || 'create failed' }), {
-      status: 500,
-      headers: { 'content-type': 'application/json' },
-    });
+  } catch (error) {
+    if (generationId) await refundGenerationCharge(generationId);
+    console.error('[op:generation:create:error]', { requestId, provider: providerName, elapsedMs: Date.now() - startedAt, error: error instanceof Error ? error.message : String(error) });
+    return Response.json({ error: error instanceof Error ? error.message : 'create failed' }, { status: 500 });
   }
 }
-

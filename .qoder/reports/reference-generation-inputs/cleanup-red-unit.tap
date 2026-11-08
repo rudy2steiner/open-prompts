@@ -1,0 +1,224 @@
+TAP version 13
+# Warning: React does not recognize the `fetchPriority` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `fetchpriority` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+#     at img
+#     at button
+#     at div
+#     at div
+#     at section
+#     at ArtworkRail (/Users/xuandu/mywsp/open-prompts/src/components/create/CreationShowcaseMedia.tsx:41:3)
+#     at div
+#     at div
+#     at CreationShowcaseMedia (/Users/xuandu/mywsp/open-prompts/src/components/create/CreationShowcaseMedia.tsx:189:3)
+# Subtest: explicit site demos show genuine independent local inputs and every qualified output
+ok 1 - explicit site demos show genuine independent local inputs and every qualified output
+  ---
+  duration_ms: 6.243916
+  type: 'test'
+  ...
+# Subtest: site demos cannot be restored by ordinary, mismatched or arbitrary URL context
+ok 2 - site demos cannot be restored by ordinary, mismatched or arbitrary URL context
+  ---
+  duration_ms: 0.120792
+  type: 'test'
+  ...
+# Subtest: an embedded reference stays hidden without displaying a source caption
+not ok 3 - an embedded reference stays hidden without displaying a source caption
+  ---
+  duration_ms: 1.067667
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-showcase-media.test.ts:2:4601'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /Reference photo included in the result\./. Input:
+    
+    '<div class="op-creation-media is-results-only" style="--op-artwork-ratio:1;--op-artwork-columns:1;--op-artwork-mobile-columns:1"><div class="op-creation-media-groups"><section class="op-artwork" data-group="outputs" aria-label="Results"><div class="op-artwork-heading"><span class="op-artwork-label">Results</span><div class="op-artwork-controls"><span class="op-artwork-count" aria-live="polite">1</span></div></div><div class="op-artwork-grid" style="min-height:4rem"><div class="op-artwork-slide"><button type="button" tabindex="0" aria-label="Enlarge image · Results · 1 / 1"><img src="/media/composite.jpg" alt="Artwork · Results · 1 / 1" loading="lazy" fetchPriority="auto" decoding="async"/></button><p class="op-artwork-origin">Reference photo included in the result. <a href="/source/post" target="_blank" rel="noreferrer">Source ↗</a></p></div></div></section></div></div>'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: '<div class="op-creation-media is-results-only" style="--op-artwork-ratio:1;--op-artwork-columns:1;--op-artwork-mobile-columns:1"><div class="op-creation-media-groups"><section class="op-artwork" data-group="outputs" aria-label="Results"><div class="op-artwork-heading"><span class="op-artwork-label">Results</span><div class="op-artwork-controls"><span class="op-artwork-count" aria-live="polite">1</span></div></div><div class="op-artwork-grid" style="min-height:4rem"><div class="op-artwork-slide"><button type="button" tabindex="0" aria-label="Enlarge image · Results · 1 / 1"><img src="/media/composite.jpg" alt="Artwork · Results · 1 / 1" loading="lazy" fetchPriority="auto" decoding="async"/></button><p class="op-artwork-origin">Reference photo included in the result. <a href="/source/post" target="_blank" rel="noreferrer">Source ↗</a></p></div></div></section></div></div>'
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-showcase-media.test.ts:71:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: embedded originals do not show a redundant incomplete-extraction notice
+not ok 4 - embedded originals do not show a redundant incomplete-extraction notice
+  ---
+  duration_ms: 0.290541
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-showcase-media.test.ts:2:5403'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /Reference photo included in the result\./. Input:
+    
+    '<div class="op-creation-media is-results-only" style="--op-artwork-ratio:1;--op-artwork-columns:1;--op-artwork-mobile-columns:1"><div class="op-creation-media-groups"><section class="op-artwork" data-group="outputs" aria-label="Results"><div class="op-artwork-heading"><span class="op-artwork-label">Results</span><div class="op-artwork-controls"><span class="op-artwork-count" aria-live="polite">1</span></div></div><div class="op-artwork-grid" style="min-height:4rem"><div class="op-artwork-slide"><button type="button" tabindex="0" aria-label="Enlarge image · Results · 1 / 1"><img src="/media/composite.jpg" alt="Artwork · Results · 1 / 1" loading="lazy" fetchPriority="auto" decoding="async"/></button><p class="op-artwork-origin">Reference photo included in the result. <a href="/source/post" target="_blank" rel="noreferrer">Source ↗</a></p></div></div></section></div></div>'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: '<div class="op-creation-media is-results-only" style="--op-artwork-ratio:1;--op-artwork-columns:1;--op-artwork-mobile-columns:1"><div class="op-creation-media-groups"><section class="op-artwork" data-group="outputs" aria-label="Results"><div class="op-artwork-heading"><span class="op-artwork-label">Results</span><div class="op-artwork-controls"><span class="op-artwork-count" aria-live="polite">1</span></div></div><div class="op-artwork-grid" style="min-height:4rem"><div class="op-artwork-slide"><button type="button" tabindex="0" aria-label="Enlarge image · Results · 1 / 1"><img src="/media/composite.jpg" alt="Artwork · Results · 1 / 1" loading="lazy" fetchPriority="auto" decoding="async"/></button><p class="op-artwork-origin">Reference photo included in the result. <a href="/source/post" target="_blank" rel="noreferrer">Source ↗</a></p></div></div></section></div></div>'
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-showcase-media.test.ts:83:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: mixed references hide only the crop already included in a displayed output
+ok 5 - mixed references hide only the crop already included in a displayed output
+  ---
+  duration_ms: 0.417917
+  type: 'test'
+  ...
+# Subtest: results without standalone inputs are tiled with every image directly accessible
+ok 6 - results without standalone inputs are tiled with every image directly accessible
+  ---
+  duration_ms: 0.309708
+  type: 'test'
+  ...
+# Subtest: separate reference inputs keep their output carousel instead of becoming tiles
+ok 7 - separate reference inputs keep their output carousel instead of becoming tiles
+  ---
+  duration_ms: 0.210583
+  type: 'test'
+  ...
+# Subtest: every composite stays accessible without embedded-reference captions or source links
+not ok 8 - every composite stays accessible without embedded-reference captions or source links
+  ---
+  duration_ms: 0.2575
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-showcase-media.test.ts:2:8151'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /href="\/source\/[ab]"/. Input:
+    
+    '<div class="op-creation-media is-results-only is-equal-height" style="--op-artwork-ratio:1;--op-artwork-columns:2;--op-artwork-mobile-columns:2"><div class="op-creation-media-groups"><section class="op-artwork" data-group="outputs" aria-label="Results"><div class="op-artwork-heading"><span class="op-artwork-label">Results</span><div class="op-artwork-controls"><span class="op-artwork-count" aria-live="polite">2</span></div></div><div class="op-artwork-grid" style="min-height:4rem;--op-artwork-row-ratio:2;--op-artwork-mobile-row-ratio:2;--op-artwork-row-gap:1rem;--op-artwork-mobile-row-gap:1rem"><div class="op-artwork-slide" style="--op-artwork-image-ratio:1"><button type="button" tabindex="0" aria-label="Enlarge image · Results · 1 / 2"><img src="/media/a.jpg" alt="Artwork · Results · 1 / 2" loading="lazy" fetchPriority="auto" decoding="async"/></button><p class="op-artwork-origin">Reference photo included in the result. <a href="/source/a" target="_blank" rel="noreferrer">Source ↗</a></p></div><div class="op-artwork-slide" style="--op-artwork-image-ratio:1"><button type="button" tabindex="0" aria-label="Enlarge image · Results · 2 / 2"><img src="/media/b.jpg" alt="Artwork · Results · 2 / 2" loading="lazy" fetchPriority="auto" decoding="async"/></button><p class="op-artwork-origin">Reference photo included in the result. <a href="/source/b" target="_blank" rel="noreferrer">Source ↗</a></p></div></div></section></div></div>'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: '<div class="op-creation-media is-results-only is-equal-height" style="--op-artwork-ratio:1;--op-artwork-columns:2;--op-artwork-mobile-columns:2"><div class="op-creation-media-groups"><section class="op-artwork" data-group="outputs" aria-label="Results"><div class="op-artwork-heading"><span class="op-artwork-label">Results</span><div class="op-artwork-controls"><span class="op-artwork-count" aria-live="polite">2</span></div></div><div class="op-artwork-grid" style="min-height:4rem;--op-artwork-row-ratio:2;--op-artwork-mobile-row-ratio:2;--op-artwork-row-gap:1rem;--op-artwork-mobile-row-gap:1rem"><div class="op-artwork-slide" style="--op-artwork-image-ratio:1"><button type="button" tabindex="0" aria-label="Enlarge image · Results · 1 / 2"><img src="/media/a.jpg" alt="Artwork · Results · 1 / 2" loading="lazy" fetchPriority="auto" decoding="async"/></button><p class="op-artwork-origin">Reference photo included in the result. <a href="/source/a" target="_blank" rel="noreferrer">Source ↗</a></p></div><div class="op-artwork-slide" style="--op-artwork-image-ratio:1"><button type="button" tabindex="0" aria-label="Enlarge image · Results · 2 / 2"><img src="/media/b.jpg" alt="Artwork · Results · 2 / 2" loading="lazy" fetchPriority="auto" decoding="async"/></button><p class="op-artwork-origin">Reference photo included in the result. <a href="/source/b" target="_blank" rel="noreferrer">Source ↗</a></p></div></div></section></div></div>'
+  operator: 'doesNotMatch'
+  stack: |-
+    TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-showcase-media.test.ts:127:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: independent original references remain visible beside a clean generated result
+ok 9 - independent original references remain visible beside a clean generated result
+  ---
+  duration_ms: 0.548375
+  type: 'test'
+  ...
+# Subtest: cola storyboard and generated campaign preview form one output-only group
+ok 10 - cola storyboard and generated campaign preview form one output-only group
+  ---
+  duration_ms: 0.622708
+  type: 'test'
+  ...
+# Subtest: unverified catalog images stay visible without guessing input or output roles
+ok 11 - unverified catalog images stay visible without guessing input or output roles
+  ---
+  duration_ms: 0.046333
+  type: 'test'
+  ...
+# Subtest: multiple verified inputs are independent of a single output
+ok 12 - multiple verified inputs are independent of a single output
+  ---
+  duration_ms: 0.044292
+  type: 'test'
+  ...
+# Subtest: one input and multiple outputs preserve every result and exclude the input from attachments
+ok 13 - one input and multiple outputs preserve every result and exclude the input from attachments
+  ---
+  duration_ms: 0.037625
+  type: 'test'
+  ...
+# Subtest: missing references never reuse a verified output as an input
+ok 14 - missing references never reuse a verified output as an input
+  ---
+  duration_ms: 0.029042
+  type: 'test'
+  ...
+# Subtest: partially recovered references retain the incomplete-input status
+ok 15 - partially recovered references retain the incomplete-input status
+  ---
+  duration_ms: 0.033541
+  type: 'test'
+  ...
+# Subtest: extracted references retain provenance while the complete original composite remains an output
+ok 16 - extracted references retain provenance while the complete original composite remains an output
+  ---
+  duration_ms: 0.042125
+  type: 'test'
+  ...
+# Subtest: new or unclassified catalog images are retained without reclassifying changed URLs
+ok 17 - new or unclassified catalog images are retained without reclassifying changed URLs
+  ---
+  duration_ms: 0.026875
+  type: 'test'
+  ...
+# Subtest: duplicate catalog URLs do not inflate group counts or hide distinct originals
+ok 18 - duplicate catalog URLs do not inflate group counts or hide distinct originals
+  ---
+  duration_ms: 0.032042
+  type: 'test'
+  ...
+# Subtest: the character source preview is marked as partial video reference rather than a complete original photo
+ok 19 - the character source preview is marked as partial video reference rather than a complete original photo
+  ---
+  duration_ms: 0.0345
+  type: 'test'
+  ...
+# Subtest: the same-face countryside collage is one complete output without an invented reference panel
+ok 20 - the same-face countryside collage is one complete output without an invented reference panel
+  ---
+  duration_ms: 0.211042
+  type: 'test'
+  ...
+# Subtest: brand campaign posters are two outputs, never a guessed before-and-after pair
+ok 21 - brand campaign posters are two outputs, never a guessed before-and-after pair
+  ---
+  duration_ms: 0.156292
+  type: 'test'
+  ...
+# Subtest: restored portraits retain both composites and source-matched extracted old-photo regions
+ok 22 - restored portraits retain both composites and source-matched extracted old-photo regions
+  ---
+  duration_ms: 0.046125
+  type: 'test'
+  ...
+# Subtest: product retouching preserves the independently verified before and after photos in either catalog order
+ok 23 - product retouching preserves the independently verified before and after photos in either catalog order
+  ---
+  duration_ms: 0.045708
+  type: 'test'
+  ...
+# Subtest: the product reference and new-scene result use verified source roles regardless of gallery order
+ok 24 - the product reference and new-scene result use verified source roles regardless of gallery order
+  ---
+  duration_ms: 0.037583
+  type: 'test'
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 21
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 568.461375

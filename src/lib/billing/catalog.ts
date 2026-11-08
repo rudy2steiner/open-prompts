@@ -19,10 +19,10 @@ export function creditsForPriceCents(amountCents: number): number {
 }
 
 export const PURCHASABLE_PLANS: PurchasablePlan[] = [
-  { id: 'one-time', kind: 'one_time', amount: 490, currency: 'usd', cnyAmount: 3500, credits: 245, downloadLimit: 100 },
-  { id: 'one-time-9', kind: 'one_time', amount: 990, currency: 'usd', cnyAmount: 7100, credits: 619, downloadLimit: 500 },
+  { id: 'one-time', kind: 'one_time', amount: 490, currency: 'usd', cnyAmount: 3500, credits: 245, downloadLimit: 500 },
+  { id: 'one-time-9', kind: 'one_time', amount: 990, currency: 'usd', cnyAmount: 7100, credits: 619, downloadLimit: 1000 },
   { id: 'one-time-19', kind: 'one_time', amount: 1990, currency: 'usd', cnyAmount: 14300, credits: 1499, downloadLimit: null },
-  { id: 'monthly', kind: 'monthly', amount: 990, currency: 'usd', cnyAmount: null, credits: 619, downloadLimit: null },
+  { id: 'monthly', kind: 'monthly', amount: 990, currency: 'usd', cnyAmount: null, credits: 749, downloadLimit: null },
 ];
 
 export function checkoutQuote(plan: PurchasablePlan, paymentMethod: PaymentMethod): {

@@ -7,7 +7,8 @@ var seen=new WeakSet(),entry={width:280,layout:{positions:new Map(),height:0,rea
 store[r.id]=entry;
 function run(){
 var cw=r.clientWidth;if(cw<=0)return;
-var cols=cw>=1280?4:cw>=1024?3:cw>=640?2:1,w=(cw-16*(cols-1))/cols;
+var min=Number(r.dataset.masonryColumnMinWidth)||0;
+var cols=min?Math.max(1,Math.floor((cw+16)/(min+16))):(cw>=1280?4:cw>=1024?3:cw>=640?2:1),w=(cw-16*(cols-1))/cols;
 var cards=Array.prototype.filter.call(r.children,function(e){return e.hasAttribute('data-gallery-item');});
 cards.forEach(function(e){e.style.width=w+'px';if(!seen.has(e)){seen.add(e);ro.observe(e);}});
 var heights=cards.map(function(e){return e.getBoundingClientRect().height;}),tails=new Array(cols).fill(0),positions=new Map();

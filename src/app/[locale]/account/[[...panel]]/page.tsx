@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { redirect } from 'next/navigation';
+import { cookies } from 'next/headers';
+import { notFound, redirect } from 'next/navigation';
 import { Suspense } from 'react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getDb } from '~/db/client';
@@ -11,6 +12,9 @@ import {
   resolveAccountPanel,
 } from '~/lib/account/account-path';
 import { getAuthSession, isSessionAdmin } from '~/lib/auth/session';
+import { GUEST_COOKIE_NAME } from '~/lib/billing/guest';
+import { settleLoginLedger } from '~/lib/billing/identity';
+import { loadBillingSnapshot } from '~/lib/billing/summary';
 import {
   countPendingReview,
   listTemplatesForAdmin,
@@ -69,12 +73,30 @@ export default async function Page({
     redirect(accountPanelHref(locale, legacyPanel));
   }
 
+  if (segment === 'admin' || segment === 'users') {
+    redirect(locale === 'en' ? '/admin' : `/${locale}/admin`);
+  }
+
+  if (segment === 'prompts') {
+    if (!isAdmin) notFound();
+    redirect(locale === 'en' ? '/admin/prompts' : `/${locale}/admin/prompts`);
+  }
+
+  if (!segment || segment === 'credits' || segment === 'subscription') {
+    const guest = (await cookies()).get(GUEST_COOKIE_NAME)?.value ?? null;
+    await settleLoginLedger(session.user.id, guest);
+    redirect(locale === 'en' ? '/billing' : `/${locale}/billing`);
+  }
+
   if (segment && !isAccountPanelSegment(segment)) {
     redirect(accountPanelHref(locale, 'overview'));
   }
 
   const initialPanel = resolveAccountPanel(segment, isAdmin);
 
+  const guest = (await cookies()).get(GUEST_COOKIE_NAME)?.value ?? null;
+  await settleLoginLedger(session.user.id, guest);
+  const billing = await loadBillingSnapshot(session.user.id);
   let initialAdmin: Awaited<ReturnType<typeof loadInitialAdmin>> = null;
   if (isAdmin && initialPanel === 'admin') {
     initialAdmin = await loadInitialAdmin();
@@ -86,6 +108,7 @@ export default async function Page({
         locale={locale}
         isAdmin={isAdmin}
         initialPanel={initialPanel}
+        billing={billing}
         user={{
           id: session.user.id,
           email,

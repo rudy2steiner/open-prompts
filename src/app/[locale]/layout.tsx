@@ -2,13 +2,14 @@ import clsx from 'clsx';
 import Script from 'next/script';
 import type { Metadata } from 'next';
 import {notFound} from 'next/navigation';
-import {getMessages, setRequestLocale} from 'next-intl/server';
+import {getMessages, getTranslations, setRequestLocale} from 'next-intl/server';
 import { getSiteUrl } from '~/lib/seo/metadata';
 import {NextIntlClientProvider} from 'next-intl';
-import {ReactNode} from 'react';
+import type {CSSProperties, ReactNode} from 'react';
 import {locales} from '~/config';
 import { CommonProvider } from '~/context/common-context';
 import { AuthSessionProvider } from '~/components/auth/AuthSessionProvider';
+import { PromoBanner } from '~/components/site/PromoBanner';
 
 type Props = {
   children: ReactNode;
@@ -30,11 +31,11 @@ export function generateMetadata(): Metadata {
     openGraph: {
       siteName: 'Open Prompts',
       type: 'website',
-      images: [{ url: '/og-home.jpg', width: 1200, height: 630, alt: 'Open Prompts' }],
+      images: [{ url: '/og-home-v2.jpg', width: 1200, height: 630, alt: 'Open Prompts' }],
     },
     twitter: {
       card: 'summary_large_image',
-      images: ['/og-home.jpg'],
+      images: ['/og-home-v2.jpg'],
     },
     robots: {
       index: true,
@@ -58,6 +59,9 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   const messages = await getMessages();
+  const promo = await getTranslations({ locale, namespace: 'OpenPrompts.promo' });
+  const promoText = promo('banner').trim();
+  const promoHref = promo('href').trim();
 
   return (
     <html
@@ -125,6 +129,33 @@ export default async function LocaleLayout({
           `,
         }}
       />
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function () {
+              document.addEventListener('click', function (event) {
+                try {
+                  if (document.documentElement.dataset.opSiteNavReady === 'true') return;
+                  if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                  var target = event.target;
+                  var link = target && target.closest ? target.closest('a[data-op-site-nav="true"]') : null;
+                  if (!link || link.target || link.hasAttribute('download')) return;
+                  var url = new URL(link.href, window.location.href);
+                  if (url.origin !== window.location.origin) return;
+                  event.preventDefault();
+                  window.__opPendingSiteNav = url.href;
+                  link.setAttribute('aria-busy', 'true');
+                  var indicator = link.querySelector('[data-nav-pending]');
+                  if (indicator) {
+                    indicator.setAttribute('data-nav-pending', 'true');
+                    indicator.style.opacity = '0.6';
+                  }
+                } catch (error) {}
+              }, true);
+            })();
+          `,
+        }}
+      />
       <style
         // Ensure theme variables exist before hydration (avoid white flash).
         dangerouslySetInnerHTML={{
@@ -172,6 +203,9 @@ export default async function LocaleLayout({
             html[data-theme='dark'] .op-theme-toggle-moon{ display:inline !important; }
             html[data-theme='light'] .op-theme-toggle-moon{ display:none !important; }
             html[data-theme='light'] .op-theme-toggle-sun{ display:inline !important; }
+            .op-credits-badge{display:inline-flex;min-height:34px;align-items:center;gap:5px;border:1px solid var(--border);border-radius:999px;padding:0 10px 0 8px;color:var(--text);background:var(--surface);font-size:12px;font-weight:700;white-space:nowrap}
+            .op-credits-badge svg{width:18px;height:18px;flex:0 0 auto;color:#e6b325}
+            @media(max-width:720px){.op-credits-badge{padding:0 8px;font-size:11px}}
           `,
         }}
       />
@@ -194,7 +228,13 @@ export default async function LocaleLayout({
     >
     <NextIntlClientProvider messages={messages}>
       <AuthSessionProvider>
-        <CommonProvider>{children}</CommonProvider>
+        <div
+          className="flex min-h-0 flex-1 flex-col"
+          style={{ '--promo-banner-height': promoText ? '36px' : '0px' } as CSSProperties}
+        >
+          <PromoBanner text={promoText} href={promoHref} />
+          <CommonProvider>{children}</CommonProvider>
+        </div>
       </AuthSessionProvider>
     </NextIntlClientProvider>
     </body>

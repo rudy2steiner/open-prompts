@@ -1,0 +1,1073 @@
+TAP version 13
+# Subtest: history/390px: natural-ratio masonry keeps fullscreen, download, reuse and delete
+ok 1 - history/390px: natural-ratio masonry keeps fullscreen, download, reuse and delete
+  ---
+  duration_ms: 2443.242583
+  type: 'test'
+  ...
+# Subtest: history/1440px: natural-ratio masonry keeps fullscreen, download, reuse and delete
+ok 2 - history/1440px: natural-ratio masonry keeps fullscreen, download, reuse and delete
+  ---
+  duration_ms: 1423.285375
+  type: 'test'
+  ...
+# Subtest: history layout/1024px/24 entries: saved images replace inspiration without growing desktop controls
+ok 3 - history layout/1024px/24 entries: saved images replace inspiration without growing desktop controls
+  ---
+  duration_ms: 1347.095791
+  type: 'test'
+  ...
+# Subtest: history layout/1440px/24 entries: saved images replace inspiration without growing desktop controls
+ok 4 - history layout/1440px/24 entries: saved images replace inspiration without growing desktop controls
+  ---
+  duration_ms: 12090.262708
+  type: 'test'
+  ...
+# Subtest: history layout/1440px/0 entries: saved images replace inspiration without growing desktop controls
+ok 5 - history layout/1440px/0 entries: saved images replace inspiration without growing desktop controls
+  ---
+  duration_ms: 1475.635375
+  type: 'test'
+  ...
+# Subtest: history layout/390px/24 entries: saved images replace inspiration without growing desktop controls
+ok 6 - history layout/390px/24 entries: saved images replace inspiration without growing desktop controls
+  ---
+  duration_ms: 1704.195541
+  type: 'test'
+  ...
+# Subtest: old history without a stored ratio still displays its natural image and opens fullscreen
+ok 7 - old history without a stored ratio still displays its natural image and opens fullscreen
+  ---
+  duration_ms: 1459.713541
+  type: 'test'
+  ...
+# Subtest: denied storage access does not crash the creation workspace
+ok 8 - denied storage access does not crash the creation workspace
+  ---
+  duration_ms: 1544.378792
+  type: 'test'
+  ...
+# Subtest: two open tabs preserve both generation histories and synchronize deletion
+ok 9 - two open tabs preserve both generation histories and synchronize deletion
+  ---
+  duration_ms: 2448.592375
+  type: 'test'
+  ...
+# Subtest: 390×900: readable-text posters use equal-height, naturally proportioned artwork
+ok 10 - 390×900: readable-text posters use equal-height, naturally proportioned artwork
+  ---
+  duration_ms: 15355.616791
+  type: 'test'
+  ...
+# Subtest: 900×900: readable-text posters use equal-height, naturally proportioned artwork
+ok 11 - 900×900: readable-text posters use equal-height, naturally proportioned artwork
+  ---
+  duration_ms: 20309.04025
+  type: 'test'
+  ...
+# Subtest: 1200×900: readable-text posters use equal-height, naturally proportioned artwork
+ok 12 - 1200×900: readable-text posters use equal-height, naturally proportioned artwork
+  ---
+  duration_ms: 21353.805083
+  type: 'test'
+  ...
+# Subtest: 1440×900: readable-text posters use equal-height, naturally proportioned artwork
+ok 13 - 1440×900: readable-text posters use equal-height, naturally proportioned artwork
+  ---
+  duration_ms: 21678.088416
+  type: 'test'
+  ...
+# Subtest: 390×600: readable-text posters use equal-height, naturally proportioned artwork
+ok 14 - 390×600: readable-text posters use equal-height, naturally proportioned artwork
+  ---
+  duration_ms: 10831.429583
+  type: 'test'
+  ...
+# Subtest: 390px: product advertising shows the campaign preview beside its storyboard
+ok 15 - 390px: product advertising shows the campaign preview beside its storyboard
+  ---
+  duration_ms: 16951.675334
+  type: 'test'
+  ...
+# Subtest: 900px: product advertising shows the campaign preview beside its storyboard
+ok 16 - 900px: product advertising shows the campaign preview beside its storyboard
+  ---
+  duration_ms: 11780.851166
+  type: 'test'
+  ...
+# Subtest: 1440px: product advertising shows the campaign preview beside its storyboard
+ok 17 - 1440px: product advertising shows the campaign preview beside its storyboard
+  ---
+  duration_ms: 17746.0705
+  type: 'test'
+  ...
+# Subtest: 320px: Redraw a photo in a new style shows every result without a scrolling or oversized empty column
+ok 18 - 320px: Redraw a photo in a new style shows every result without a scrolling or oversized empty column
+  ---
+  duration_ms: 13683.593625
+  type: 'test'
+  ...
+# Subtest: 320px: Campaigns and storyboards shows every result without a scrolling or oversized empty column
+ok 19 - 320px: Campaigns and storyboards shows every result without a scrolling or oversized empty column
+  ---
+  duration_ms: 12556.853042
+  type: 'test'
+  ...
+# Subtest: 320px: Figures and sculptures shows every result without a scrolling or oversized empty column
+ok 20 - 320px: Figures and sculptures shows every result without a scrolling or oversized empty column
+  ---
+  duration_ms: 19917.028542
+  type: 'test'
+  ...
+# Subtest: 390px: Redraw a photo in a new style shows every result without a scrolling or oversized empty column
+ok 21 - 390px: Redraw a photo in a new style shows every result without a scrolling or oversized empty column
+  ---
+  duration_ms: 11793.397416
+  type: 'test'
+  ...
+# Subtest: 390px: Campaigns and storyboards shows every result without a scrolling or oversized empty column
+not ok 22 - 390px: Campaigns and storyboards shows every result without a scrolling or oversized empty column
+  ---
+  duration_ms: 968.535083
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-showcase-tiles.browser.cjs:109:5'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-showcase-tiles.browser.cjs:126:16)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 390px: Figures and sculptures shows every result without a scrolling or oversized empty column
+ok 23 - 390px: Figures and sculptures shows every result without a scrolling or oversized empty column
+  ---
+  duration_ms: 20511.5735
+  type: 'test'
+  ...
+# Subtest: 900px: Redraw a photo in a new style shows every result without a scrolling or oversized empty column
+ok 24 - 900px: Redraw a photo in a new style shows every result without a scrolling or oversized empty column
+  ---
+  duration_ms: 10546.395792
+  type: 'test'
+  ...
+# Subtest: 900px: Campaigns and storyboards shows every result without a scrolling or oversized empty column
+ok 25 - 900px: Campaigns and storyboards shows every result without a scrolling or oversized empty column
+  ---
+  duration_ms: 10714.335
+  type: 'test'
+  ...
+# Subtest: 900px: Figures and sculptures shows every result without a scrolling or oversized empty column
+ok 26 - 900px: Figures and sculptures shows every result without a scrolling or oversized empty column
+  ---
+  duration_ms: 19332.887625
+  type: 'test'
+  ...
+# Subtest: 1440px: Redraw a photo in a new style shows every result without a scrolling or oversized empty column
+ok 27 - 1440px: Redraw a photo in a new style shows every result without a scrolling or oversized empty column
+  ---
+  duration_ms: 10557.790875
+  type: 'test'
+  ...
+# Subtest: 1440px: Campaigns and storyboards shows every result without a scrolling or oversized empty column
+ok 28 - 1440px: Campaigns and storyboards shows every result without a scrolling or oversized empty column
+  ---
+  duration_ms: 9789.408875
+  type: 'test'
+  ...
+# Subtest: 1440px: Figures and sculptures shows every result without a scrolling or oversized empty column
+ok 29 - 1440px: Figures and sculptures shows every result without a scrolling or oversized empty column
+  ---
+  duration_ms: 17130.329375
+  type: 'test'
+  ...
+# Subtest: homepage CTA limits no-account promises to browsing and copying in every locale
+ok 30 - homepage CTA limits no-account promises to browsing and copying in every locale
+  ---
+  duration_ms: 3129.531666
+  type: 'test'
+  ...
+# Subtest: 320px: each creation Hero links all three modes and highlights only its current mode
+ok 31 - 320px: each creation Hero links all three modes and highlights only its current mode
+  ---
+  duration_ms: 24597.016042
+  type: 'test'
+  ...
+# Subtest: 390px: each creation Hero links all three modes and highlights only its current mode
+ok 32 - 390px: each creation Hero links all three modes and highlights only its current mode
+  ---
+  duration_ms: 25735.069459
+  type: 'test'
+  ...
+# Subtest: 1440px: each creation Hero links all three modes and highlights only its current mode
+ok 33 - 1440px: each creation Hero links all three modes and highlights only its current mode
+  ---
+  duration_ms: 47012.4155
+  type: 'test'
+  ...
+# Subtest: eight locales keep creation Hero mode links localized with exactly one current mode
+ok 34 - eight locales keep creation Hero mode links localized with exactly one current mode
+  ---
+  duration_ms: 9026.052625
+  type: 'test'
+  ...
+# Subtest: creation root routes publish localized canonical, alternates and root breadcrumbs
+not ok 35 - creation root routes publish localized canonical, alternates and root breadcrumbs
+  ---
+  duration_ms: 2306.805917
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:234:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(headerLinks.includes(`${language === 'en' ? '' : `/${language}`}/${slug}`))
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    /Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:270:50
+    runNextTicks (node:internal/process/task_queues:64:5)
+    process.processImmediate (node:internal/timers:452:9)
+    process.callbackTrampoline (node:internal/async_hooks:130:17)
+    async withPage (/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:116:5)
+    async TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:235:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: legacy creation URLs return permanent redirects with query values intact and leave the workspace alone
+ok 36 - legacy creation URLs return permanent redirects with query values intact and leave the workspace alone
+  ---
+  duration_ms: 979.9145
+  type: 'test'
+  ...
+# Subtest: sitemap lists root creation URLs and keeps the generation workspace
+ok 37 - sitemap lists root creation URLs and keeps the generation workspace
+  ---
+  duration_ms: 603.67675
+  type: 'test'
+  ...
+# Subtest: 320px: home creation cards reuse their corresponding Hero artwork
+ok 38 - 320px: home creation cards reuse their corresponding Hero artwork
+  ---
+  duration_ms: 40154.443042
+  type: 'test'
+  ...
+# Subtest: 390px: home creation cards reuse their corresponding Hero artwork
+ok 39 - 390px: home creation cards reuse their corresponding Hero artwork
+  ---
+  duration_ms: 23139.543292
+  type: 'test'
+  ...
+# Subtest: 900px: home creation cards reuse their corresponding Hero artwork
+ok 40 - 900px: home creation cards reuse their corresponding Hero artwork
+  ---
+  duration_ms: 33029.111125
+  type: 'test'
+  ...
+# Subtest: 1200px: home creation cards reuse their corresponding Hero artwork
+ok 41 - 1200px: home creation cards reuse their corresponding Hero artwork
+  ---
+  duration_ms: 29626.144708
+  type: 'test'
+  ...
+# Subtest: 1440px: home creation cards reuse their corresponding Hero artwork
+ok 42 - 1440px: home creation cards reuse their corresponding Hero artwork
+  ---
+  duration_ms: 43099.008666
+  type: 'test'
+  ...
+# Subtest: 320px: text-to-image gives hero and every case large, proportionate artwork
+ok 43 - 320px: text-to-image gives hero and every case large, proportionate artwork
+  ---
+  duration_ms: 20334.52875
+  type: 'test'
+  ...
+# Subtest: 320px: reference-to-image gives hero and every case large, proportionate artwork
+ok 44 - 320px: reference-to-image gives hero and every case large, proportionate artwork
+  ---
+  duration_ms: 19213.409959
+  type: 'test'
+  ...
+# Subtest: 320px: image-edit gives hero and every case large, proportionate artwork
+ok 45 - 320px: image-edit gives hero and every case large, proportionate artwork
+  ---
+  duration_ms: 7011.967375
+  type: 'test'
+  ...
+# Subtest: 390px: text-to-image gives hero and every case large, proportionate artwork
+ok 46 - 390px: text-to-image gives hero and every case large, proportionate artwork
+  ---
+  duration_ms: 26519.88325
+  type: 'test'
+  ...
+# Subtest: 390px: reference-to-image gives hero and every case large, proportionate artwork
+ok 47 - 390px: reference-to-image gives hero and every case large, proportionate artwork
+  ---
+  duration_ms: 18267.06975
+  type: 'test'
+  ...
+# Subtest: 390px: image-edit gives hero and every case large, proportionate artwork
+ok 48 - 390px: image-edit gives hero and every case large, proportionate artwork
+  ---
+  duration_ms: 12728.787375
+  type: 'test'
+  ...
+# Subtest: 900px: text-to-image gives hero and every case large, proportionate artwork
+ok 49 - 900px: text-to-image gives hero and every case large, proportionate artwork
+  ---
+  duration_ms: 35502.397125
+  type: 'test'
+  ...
+# Subtest: 900px: reference-to-image gives hero and every case large, proportionate artwork
+ok 50 - 900px: reference-to-image gives hero and every case large, proportionate artwork
+  ---
+  duration_ms: 26608.583917
+  type: 'test'
+  ...
+# Subtest: 900px: image-edit gives hero and every case large, proportionate artwork
+ok 51 - 900px: image-edit gives hero and every case large, proportionate artwork
+  ---
+  duration_ms: 8899.234166
+  type: 'test'
+  ...
+# Subtest: 1200px: text-to-image gives hero and every case large, proportionate artwork
+ok 52 - 1200px: text-to-image gives hero and every case large, proportionate artwork
+  ---
+  duration_ms: 24181.145792
+  type: 'test'
+  ...
+# Subtest: 1200px: reference-to-image gives hero and every case large, proportionate artwork
+ok 53 - 1200px: reference-to-image gives hero and every case large, proportionate artwork
+  ---
+  duration_ms: 18775.424292
+  type: 'test'
+  ...
+# Subtest: 1200px: image-edit gives hero and every case large, proportionate artwork
+ok 54 - 1200px: image-edit gives hero and every case large, proportionate artwork
+  ---
+  duration_ms: 6225.411417
+  type: 'test'
+  ...
+# Subtest: 1440px: text-to-image gives hero and every case large, proportionate artwork
+ok 55 - 1440px: text-to-image gives hero and every case large, proportionate artwork
+  ---
+  duration_ms: 18339.708084
+  type: 'test'
+  ...
+# Subtest: 1440px: reference-to-image gives hero and every case large, proportionate artwork
+ok 56 - 1440px: reference-to-image gives hero and every case large, proportionate artwork
+  ---
+  duration_ms: 17922.877875
+  type: 'test'
+  ...
+# Subtest: 1440px: image-edit gives hero and every case large, proportionate artwork
+ok 57 - 1440px: image-edit gives hero and every case large, proportionate artwork
+  ---
+  duration_ms: 6615.848875
+  type: 'test'
+  ...
+# Subtest: 390px: complete output tiles zoom any result with keyboard navigation
+ok 58 - 390px: complete output tiles zoom any result with keyboard navigation
+  ---
+  duration_ms: 2987.167375
+  type: 'test'
+  ...
+# Subtest: 1440px: complete output tiles zoom any result with keyboard navigation
+ok 59 - 1440px: complete output tiles zoom any result with keyboard navigation
+  ---
+  duration_ms: 3353.764708
+  type: 'test'
+  ...
+# Subtest: 390px: zoom close button stays above the sticky header
+ok 60 - 390px: zoom close button stays above the sticky header
+  ---
+  duration_ms: 1612.48825
+  type: 'test'
+  ...
+# Subtest: 390px: Escape restores focus after clicking an artwork image
+ok 61 - 390px: Escape restores focus after clicking an artwork image
+  ---
+  duration_ms: 2132.01275
+  type: 'test'
+  ...
+# Subtest: 1440px: zoom close button stays above the sticky header
+ok 62 - 1440px: zoom close button stays above the sticky header
+  ---
+  duration_ms: 1706.683875
+  type: 'test'
+  ...
+# Subtest: 1440px: Escape restores focus after clicking an artwork image
+ok 63 - 1440px: Escape restores focus after clicking an artwork image
+  ---
+  duration_ms: 2150.862292
+  type: 'test'
+  ...
+# Subtest: 390px: curated 保持同一张脸 preserves independent or embedded references truthfully
+not ok 64 - 390px: curated 保持同一张脸 preserves independent or embedded references truthfully
+  ---
+  duration_ms: 1174.740375
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:532:5'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'http://localhost:3000/_next/image?url=%2Fcreation-results%2Fsite-countryside-collage.png&w=3840&q=75'
+    - '/creation-results/site-countryside-collage.png'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '/creation-results/site-countryside-collage.png'
+  actual: 'http://localhost:3000/_next/image?url=%2Fcreation-results%2Fsite-countryside-collage.png&w=3840&q=75'
+  operator: 'strictEqual'
+  stack: |-
+    /Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:560:18
+    async withPage (/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:116:5)
+    async TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:533:7)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 390px: curated 换一种画风重绘照片 preserves independent or embedded references truthfully
+ok 65 - 390px: curated 换一种画风重绘照片 preserves independent or embedded references truthfully
+  ---
+  duration_ms: 7280.433708
+  type: 'test'
+  ...
+# Subtest: 390px: curated 把品牌放进新场景 preserves independent or embedded references truthfully
+ok 66 - 390px: curated 把品牌放进新场景 preserves independent or embedded references truthfully
+  ---
+  duration_ms: 1298.434417
+  type: 'test'
+  ...
+# Subtest: 1440px: curated 保持同一张脸 preserves independent or embedded references truthfully
+not ok 67 - 1440px: curated 保持同一张脸 preserves independent or embedded references truthfully
+  ---
+  duration_ms: 1067.901625
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:532:5'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'http://localhost:3000/_next/image?url=%2Fcreation-results%2Fsite-countryside-collage.png&w=3840&q=75'
+    - '/creation-results/site-countryside-collage.png'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '/creation-results/site-countryside-collage.png'
+  actual: 'http://localhost:3000/_next/image?url=%2Fcreation-results%2Fsite-countryside-collage.png&w=3840&q=75'
+  operator: 'strictEqual'
+  stack: |-
+    /Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:560:18
+    async withPage (/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:116:5)
+    async TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:533:7)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 1440px: curated 换一种画风重绘照片 preserves independent or embedded references truthfully
+ok 68 - 1440px: curated 换一种画风重绘照片 preserves independent or embedded references truthfully
+  ---
+  duration_ms: 7773.4505
+  type: 'test'
+  ...
+# Subtest: 1440px: curated 把品牌放进新场景 preserves independent or embedded references truthfully
+ok 69 - 1440px: curated 把品牌放进新场景 preserves independent or embedded references truthfully
+  ---
+  duration_ms: 1451.305333
+  type: 'test'
+  ...
+# Subtest: 390px: three landing pages use disjoint templates and genuine editing examples
+not ok 70 - 390px: three landing pages use disjoint templates and genuine editing examples
+  ---
+  duration_ms: 4002.832125
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:605:3'
+  failureType: 'testCodeFailure'
+  error: 'locator.evaluate: EncodingError: The source image cannot be decoded.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    assertNaturalImage (/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:132:15)
+    async /Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:646:7
+    async withPage (/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:116:5)
+    async TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:606:5)
+  ...
+# Subtest: 1440px: three landing pages use disjoint templates and genuine editing examples
+ok 71 - 1440px: three landing pages use disjoint templates and genuine editing examples
+  ---
+  duration_ms: 7029.116875
+  type: 'test'
+  ...
+# Subtest: 390px: results containing original photos do not repeat extracted references
+not ok 72 - 390px: results containing original photos do not repeat extracted references
+  ---
+  duration_ms: 3047.934875
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:656:3'
+  failureType: 'testCodeFailure'
+  error: 'locator.evaluate: EncodingError: The source image cannot be decoded.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    assertNaturalImage (/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:132:15)
+    async /Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:663:88
+    async withPage (/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:116:5)
+    async TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:657:5)
+  ...
+# Subtest: 1440px: results containing original photos do not repeat extracted references
+not ok 73 - 1440px: results containing original photos do not repeat extracted references
+  ---
+  duration_ms: 3090.18225
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:656:3'
+  failureType: 'testCodeFailure'
+  error: 'locator.evaluate: EncodingError: The source image cannot be decoded.'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    assertNaturalImage (/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:132:15)
+    async /Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:663:88
+    async withPage (/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:116:5)
+    async TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:657:5)
+  ...
+# Subtest: all catalog original images, embedded references, and curated template links remain accessible
+ok 74 - all catalog original images, embedded references, and curated template links remain accessible
+  ---
+  duration_ms: 2444.561
+  type: 'test'
+  ...
+# Subtest: eight locales render all modes with localized media controls and status labels
+not ok 75 - eight locales render all modes with localized media controls and status labels
+  ---
+  duration_ms: 1413.995375
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:727:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    /Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:756:18
+    async withPage (/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:116:5)
+    async TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-type-hero.browser.cjs:728:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: pending complete output tiles remain directly accessible before and after loading
+ok 76 - pending complete output tiles remain directly accessible before and after loading
+  ---
+  duration_ms: 3322.682041
+  type: 'test'
+  ...
+# Subtest: an image that fails before hydration shows its localized status without blocking another tile
+ok 77 - an image that fails before hydration shows its localized status without blocking another tile
+  ---
+  duration_ms: 2688.405167
+  type: 'test'
+  ...
+# Subtest: synthetic fixture: a single output stays stable while multiple crop-less inputs scroll and resize
+ok 78 - synthetic fixture: a single output stays stable while multiple crop-less inputs scroll and resize
+  ---
+  duration_ms: 2195.971416
+  type: 'test'
+  ...
+# Subtest: 390px: synthetic fixture synchronizes unequal many-to-many groups by source URL, never index or unknown role
+ok 79 - 390px: synthetic fixture synchronizes unequal many-to-many groups by source URL, never index or unknown role
+  ---
+  duration_ms: 4300.735125
+  type: 'test'
+  ...
+# Subtest: 1440px: synthetic fixture synchronizes unequal many-to-many groups by source URL, never index or unknown role
+ok 80 - 1440px: synthetic fixture synchronizes unequal many-to-many groups by source URL, never index or unknown role
+  ---
+  duration_ms: 3477.782041
+  type: 'test'
+  ...
+# Subtest: synthetic fixture preserves truthful missing, mismatch and unclassified states without pairing unknown images
+ok 81 - synthetic fixture preserves truthful missing, mismatch and unclassified states without pairing unknown images
+  ---
+  duration_ms: 1783.12075
+  type: 'test'
+  ...
+# Subtest: DM Sans UI weights load through the existing Turbopack service
+ok 82 - DM Sans UI weights load through the existing Turbopack service
+  ---
+  duration_ms: 883.4295
+  type: 'test'
+  ...
+# Subtest: 390px: latest inspiration restores real demo images, prompts and references without submission
+not ok 83 - 390px: latest inspiration restores real demo images, prompts and references without submission
+  ---
+  duration_ms: 2016.614666
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:33:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    locator.scrollIntoViewIfNeeded: Element is not attached to the DOM
+    Call log:
+    [2m  - attempting scroll into view action[22m
+    [2m    2 × waiting for element to be stable[22m
+    [2m      - element is not stable[22m
+    [2m    - retrying scroll into view action[22m
+    [2m    - waiting 20ms[22m
+    [2m    2 × waiting for element to be stable[22m
+    [2m      - element is not stable[22m
+    [2m    - retrying scroll into view action[22m
+    [2m      - waiting 100ms[22m
+    [2m    - waiting for element to be stable[22m
+    [2m    - element is not stable[22m
+    [2m  - retrying scroll into view action[22m
+    [2m    - waiting 500ms[22m
+    [2m    - waiting for element to be stable[22m
+    
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    /Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:49:20
+    async withPage (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:24:5)
+    async TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:34:5)
+  ...
+# Subtest: 1440px: latest inspiration restores real demo images, prompts and references without submission
+ok 84 - 1440px: latest inspiration restores real demo images, prompts and references without submission
+  ---
+  duration_ms: 1593.149833
+  type: 'test'
+  ...
+# Subtest: 320px: roomy result canvas precedes curated mode-matched, usable inspirations
+not ok 85 - 320px: roomy result canvas precedes curated mode-matched, usable inspirations
+  ---
+  duration_ms: 2408.782458
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:71:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    the manual reference remains when a demo is applied or its context ends
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    /Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:110:18
+    async withPage (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:24:5)
+    async TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:72:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 390px: roomy result canvas precedes curated mode-matched, usable inspirations
+not ok 86 - 390px: roomy result canvas precedes curated mode-matched, usable inspirations
+  ---
+  duration_ms: 2589.504625
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:71:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    the manual reference remains when a demo is applied or its context ends
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    /Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:110:18
+    async withPage (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:24:5)
+    async TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:72:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 1440px: roomy result canvas precedes curated mode-matched, usable inspirations
+not ok 87 - 1440px: roomy result canvas precedes curated mode-matched, usable inspirations
+  ---
+  duration_ms: 1693.074542
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:71:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    the manual reference remains when a demo is applied or its context ends
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    /Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:110:18
+    async withPage (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:24:5)
+    async TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:72:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: 390px: 1 generated images fit the canvas, preview, download and persist in history
+ok 88 - 390px: 1 generated images fit the canvas, preview, download and persist in history
+  ---
+  duration_ms: 2290.697625
+  type: 'test'
+  ...
+# Subtest: 390px: 4 generated images fit the canvas, preview, download and persist in history
+ok 89 - 390px: 4 generated images fit the canvas, preview, download and persist in history
+  ---
+  duration_ms: 2469.429167
+  type: 'test'
+  ...
+# Subtest: 1440px: 1 generated images fit the canvas, preview, download and persist in history
+ok 90 - 1440px: 1 generated images fit the canvas, preview, download and persist in history
+  ---
+  duration_ms: 1302.767875
+  type: 'test'
+  ...
+# Subtest: 1440px: 4 generated images fit the canvas, preview, download and persist in history
+ok 91 - 1440px: 4 generated images fit the canvas, preview, download and persist in history
+  ---
+  duration_ms: 1309.314584
+  type: 'test'
+  ...
+# Subtest: short desktop: history hides inspiration and current restores it on screen
+ok 92 - short desktop: history hides inspiration and current restores it on screen
+  ---
+  duration_ms: 1305.527125
+  type: 'test'
+  ...
+# Subtest: 390px: inspiration shows whole images and is not obscured by the generate button
+not ok 93 - 390px: inspiration shows whole images and is not obscured by the generate button
+  ---
+  duration_ms: 30980.089958
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:231:3'
+  failureType: 'testCodeFailure'
+  error: 'page.waitForFunction: Timeout 30000ms exceeded.'
+  code: 'ERR_TEST_FAILURE'
+  name: 'TimeoutError'
+  stack: |-
+    /Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:236:18
+    async withPage (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:24:5)
+    async TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:232:5)
+  ...
+# Subtest: 1440px: inspiration shows whole images and is not obscured by the generate button
+not ok 94 - 1440px: inspiration shows whole images and is not obscured by the generate button
+  ---
+  duration_ms: 31480.114292
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:231:3'
+  failureType: 'testCodeFailure'
+  error: 'page.waitForFunction: Timeout 30000ms exceeded.'
+  code: 'ERR_TEST_FAILURE'
+  name: 'TimeoutError'
+  stack: |-
+    /Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:236:18
+    async withPage (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:24:5)
+    async TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:232:5)
+  ...
+# Subtest: 390px: large equal-height artworks follow native proportions without side gaps
+not ok 95 - 390px: large equal-height artworks follow native proportions without side gaps
+  ---
+  duration_ms: 31422.797084
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:258:3'
+  failureType: 'testCodeFailure'
+  error: 'page.waitForFunction: Timeout 30000ms exceeded.'
+  code: 'ERR_TEST_FAILURE'
+  name: 'TimeoutError'
+  stack: |-
+    /Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:270:18
+    async withPage (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:24:5)
+    async TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:259:5)
+  ...
+# Subtest: 1440px: large equal-height artworks follow native proportions without side gaps
+not ok 96 - 1440px: large equal-height artworks follow native proportions without side gaps
+  ---
+  duration_ms: 31563.96475
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:258:3'
+  failureType: 'testCodeFailure'
+  error: 'page.waitForFunction: Timeout 30000ms exceeded.'
+  code: 'ERR_TEST_FAILURE'
+  name: 'TimeoutError'
+  stack: |-
+    /Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:270:18
+    async withPage (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:24:5)
+    async TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:259:5)
+  ...
+# Subtest: unavailable artwork is removed from inspiration without substituting a different creation mode
+not ok 97 - unavailable artwork is removed from inspiration without substituting a different creation mode
+  ---
+  duration_ms: 30884.890709
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:294:1'
+  failureType: 'testCodeFailure'
+  error: 'page.waitForFunction: Timeout 30000ms exceeded.'
+  code: 'ERR_TEST_FAILURE'
+  name: 'TimeoutError'
+  stack: |-
+    TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:312:16)
+  ...
+# Subtest: ja: inspiration controls are localized and follow the creation mode
+not ok 98 - ja: inspiration controls are localized and follow the creation mode
+  ---
+  duration_ms: 1266.244875
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:328:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    2 !== 4
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 4
+  actual: 2
+  operator: 'strictEqual'
+  stack: |-
+    /Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:335:14
+    async withPage (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:24:5)
+    async TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:329:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: fr: inspiration controls are localized and follow the creation mode
+not ok 99 - fr: inspiration controls are localized and follow the creation mode
+  ---
+  duration_ms: 1144.580417
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:328:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    2 !== 4
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 4
+  actual: 2
+  operator: 'strictEqual'
+  stack: |-
+    /Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:335:14
+    async withPage (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:24:5)
+    async TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/creation-workspace.browser.cjs:329:5)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: credits/390px/zh: button quotes every open parameter combination without submitting
+ok 100 - credits/390px/zh: button quotes every open parameter combination without submitting
+  ---
+  duration_ms: 1426.542292
+  type: 'test'
+  ...
+# Subtest: credits/1440px/zh: button quotes every open parameter combination without submitting
+ok 101 - credits/1440px/zh: button quotes every open parameter combination without submitting
+  ---
+  duration_ms: 2239.725167
+  type: 'test'
+  ...
+# Subtest: credits/1440px/en: button quotes every open parameter combination without submitting
+ok 102 - credits/1440px/en: button quotes every open parameter combination without submitting
+  ---
+  duration_ms: 1967.741792
+  type: 'test'
+  ...
+# Subtest: resolution/390px: ratio shares a row, quality stays independent, legal 4K submits the selected settings
+ok 103 - resolution/390px: ratio shares a row, quality stays independent, legal 4K submits the selected settings
+  ---
+  duration_ms: 2712.516125
+  type: 'test'
+  ...
+# Subtest: resolution/1440px: ratio shares a row, quality stays independent, legal 4K submits the selected settings
+ok 104 - resolution/1440px: ratio shares a row, quality stays independent, legal 4K submits the selected settings
+  ---
+  duration_ms: 2626.991041
+  type: 'test'
+  ...
+# Subtest: history retains submitted resolution when controls change during generation
+ok 105 - history retains submitted resolution when controls change during generation
+  ---
+  duration_ms: 2346.148541
+  type: 'test'
+  ...
+# Subtest: API rejects illegal paths, unknown models, and unavailable models before any charge
+ok 106 - API rejects illegal paths, unknown models, and unavailable models before any charge
+  ---
+  duration_ms: 309.460375
+  type: 'test'
+  ...
+# Subtest: API recomputes same-price modes at reference limits and ignores client-supplied credits
+ok 107 - API recomputes same-price modes at reference limits and ignores client-supplied credits
+  ---
+  duration_ms: 1262.009625
+  type: 'test'
+  ...
+# Subtest: API rejects malformed counts before billing and preserves valid count quotes
+ok 108 - API rejects malformed counts before billing and preserves valid count quotes
+  ---
+  duration_ms: 208.541541
+  type: 'test'
+  ...
+# Subtest: API rejects malformed resolution and unsupported 4K before billing
+ok 109 - API rejects malformed resolution and unsupported 4K before billing
+  ---
+  duration_ms: 164.974375
+  type: 'test'
+  ...
+# Subtest: 390px: site demo countryside-film-collage-2a70f109 restores genuine local reference and settings without uploading
+not ok 110 - 390px: site demo countryside-film-collage-2a70f109 restores genuine local reference and settings without uploading
+  ---
+  duration_ms: 2649.606167
+  type: 'test'
+  location: '/Users/xuandu/mywsp/open-prompts/tests/reference-images.browser.cjs:45:5'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + ''
+    - 'Create an ultra-realistic cinematic 4:5 vintage-modern fashion collage using the uploaded photo as the ONLY facial identity reference. Keep the exact same face, facial features, skin tone, proportions, hairstyle, and natural skin texture in all 5 frames. No face alteration, beautification, or identity change.\n' +
+    -   '\n' +
+    -   'Create 5 naturally overlapping photos of the same woman in a peaceful rustic countryside garden with a vintage cottage, flowers, trees, wooden fences, and warm late-afternoon sunlight:\n' +
+    -   '\n' +
+    -   '1. Hero: Large center-left portrait holding a small wildflower bouquet, smiling at camera.\n' +
+    -   '\n' +
+    -   '2. Upper-right: Standing full/three-quarter portrait, touching hair and holding flowers, pastel floral blouse with beige trousers.\n' +
+    -   '\n' +
+    -   '3. Middle-right: Waist-up portrait near a rustic garden structure, wearing a powder-blue floral blouse.\n' +
+    -   '\n' +
+    -   '4. Lower-left: Relaxed seated portrait on a wooden bench, cream floral blouse with dark high-waisted bottom.\n' +
+    -   '\n' +
+    -   '5. Lower-right: Full-body walking portrait with a small vintage shoulder bag, blue floral blouse and beige trousers.\n' +
+    -   '\n' +
+    -   'Use soft vintage floral clothing in cream, ivory, dusty pink, powder blue, beige and navy. Natural wavy hair, minimal jewelry, realistic fabric and flower details.\n' +
+    -   '\n' +
+    -   'Style: High-end DSLR fashion editorial, 1990s/early-2000s vintage aesthetic, soft golden-hour light, cinematic bokeh, subtle film grain, muted pastel colors, realistic skin, natural anatomy, photorealistic 8K quality.\n' +
+    -   '\n' +
+    -   'Negative: Different face, identity change, face swap, plastic skin, excessive makeup, distorted hands/fingers, extra limbs, duplicate people, inconsistent hairstyle, inconsistent lighting, logos, text, watermark, borders, artificial AI look.'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: |-
+    Create an ultra-realistic cinematic 4:5 vintage-modern fashion collage using the uploaded photo as the ONLY facial identity reference. Keep the exact same face, facial features, skin tone, proportions, hairstyle, and natural skin texture in all 5 frames. No face alteration, beautification, or identity change.
+    
+    Create 5 naturally overlapping photos of the same woman in a peaceful rustic countryside garden with a vintage cottage, flowers, trees, wooden fences, and warm late-afternoon sunlight:
+    
+    1. Hero: Large center-left portrait holding a small wildflower bouquet, smiling at camera.
+    
+    2. Upper-right: Standing full/three-quarter portrait, touching hair and holding flowers, pastel floral blouse with beige trousers.
+    
+    3. Middle-right: Waist-up portrait near a rustic garden structure, wearing a powder-blue floral blouse.
+    
+    4. Lower-left: Relaxed seated portrait on a wooden bench, cream floral blouse with dark high-waisted bottom.
+    
+    5. Lower-right: Full-body walking portrait with a small vintage shoulder bag, blue floral blouse and beige trousers.
+    
+    Use soft vintage floral clothing in cream, ivory, dusty pink, powder blue, beige and navy. Natural wavy hair, minimal jewelry, realistic fabric and flower details.
+    
+    Style: High-end DSLR fashion editorial, 1990s/early-2000s vintage aesthetic, soft golden-hour light, cinematic bokeh, subtle film grain, muted pastel colors, realistic skin, natural anatomy, photorealistic 8K quality.
+    
+    Negative: Different face, identity change, face swap, plastic skin, excessive makeup, distorted hands/fingers, extra limbs, duplicate people, inconsistent hairstyle, inconsistent lighting, logos, text, watermark, borders, artificial AI look.
+  actual: ''
+  operator: 'strictEqual'
+  stack: |-
+    /Users/xuandu/mywsp/open-prompts/tests/reference-images.browser.cjs:74:16
+    async withPage (/Users/xuandu/mywsp/open-prompts/tests/reference-images.browser.cjs:32:5)
+    async TestContext.<anonymous> (/Users/xuandu/mywsp/open-prompts/tests/reference-images.browser.cjs:46:7)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: 390px: site demo gpt-image-2-on-chatgpt-f7a4c7af restores genuine local reference and settings without uploading
+ok 111 - 390px: site demo gpt-image-2-on-chatgpt-f7a4c7af restores genuine local reference and settings without uploading
+  ---
+  duration_ms: 4262.001
+  type: 'test'
+  ...
+# Subtest: 1440px: site demo countryside-film-collage-2a70f109 restores genuine local reference and settings without uploading
+ok 112 - 1440px: site demo countryside-film-collage-2a70f109 restores genuine local reference and settings without uploading
+  ---
+  duration_ms: 22687.986208
+  type: 'test'
+  ...
+# Subtest: 1440px: site demo gpt-image-2-on-chatgpt-f7a4c7af restores genuine local reference and settings without uploading
+ok 113 - 1440px: site demo gpt-image-2-on-chatgpt-f7a4c7af restores genuine local reference and settings without uploading
+  ---
+  duration_ms: 3192.516833
+  type: 'test'
+  ...
+# Subtest: leaving reference mode cancels a pending automatic site-demo reference
+ok 114 - leaving reference mode cancels a pending automatic site-demo reference
+  ---
+  duration_ms: 2599.116209
+  type: 'test'
+  ...
+# Subtest: invalidating site-demo context closes its reference viewer and preserves manual references
+ok 115 - invalidating site-demo context closes its reference viewer and preserves manual references
+  ---
+  duration_ms: 1568.755292
+  type: 'test'
+  ...
+# Subtest: 320px: local-only multiple images can be previewed, removed and sent together
+ok 116 - 320px: local-only multiple images can be previewed, removed and sent together
+  ---
+  duration_ms: 2370.163459
+  type: 'test'
+  ...
+# Subtest: 390px: local-only multiple images can be previewed, removed and sent together
+ok 117 - 390px: local-only multiple images can be previewed, removed and sent together
+  ---
+  duration_ms: 2322.53975
+  type: 'test'
+  ...
+# Subtest: 1440px: local-only multiple images can be previewed, removed and sent together
+ok 118 - 1440px: local-only multiple images can be previewed, removed and sent together
+  ---
+  duration_ms: 1738.565916
+  type: 'test'
+  ...
+# Subtest: reference preview traps keyboard focus and restores the thumbnail on close
+ok 119 - reference preview traps keyboard focus and restores the thumbnail on close
+  ---
+  duration_ms: 1151.001958
+  type: 'test'
+  ...
+# Subtest: local drag/drop, validation and removing selected images preserve previews without uploading
+ok 120 - local drag/drop, validation and removing selected images preserve previews without uploading
+  ---
+  duration_ms: 2124.333875
+  type: 'test'
+  ...
+# Subtest: submitted partial upload failure blocks generation and retry reuses successful images
+ok 121 - submitted partial upload failure blocks generation and retry reuses successful images
+  ---
+  duration_ms: 1138.576583
+  type: 'test'
+  ...
+1..121
+# tests 121
+# suites 0
+# pass 101
+# fail 20
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1187097.501209

@@ -3,7 +3,7 @@
 import '../image-prompts/gallery-page.css';
 import './submit-page.css';
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
@@ -54,6 +54,10 @@ const MODEL_EMOJI: Record<(typeof MODEL_IDS)[number], string> = {
 export type SubmitPageProps = {
   locale: string;
   quickTags: string[];
+  initialQuery?: {
+    edit?: string;
+    visibility?: string;
+  };
 };
 
 function accountHref(locale: string) {
@@ -65,20 +69,19 @@ function loginHref(locale: string, returnPath: string) {
   return `${base}?callbackUrl=${encodeURIComponent(returnPath)}`;
 }
 
-export default function PageComponent({ locale, quickTags }: SubmitPageProps) {
+export default function PageComponent({ locale, quickTags, initialQuery = {} }: SubmitPageProps) {
   const t = useTranslations('OpenPrompts.submitPage');
   const tGallery = useTranslations('OpenPrompts.gallery');
   const router = useRouter();
-  const searchParams = useSearchParams();
   const { status: authStatus } = useSession();
   const galleryHref = locale === 'en' ? '/' : `/${locale}`;
   const submitPublicPath = submitEditorHref(locale, { visibility: 'public' });
   const submitPrivatePath = submitEditorHref(locale, { visibility: 'private' });
   const submitChooserPath = submitEditorHref(locale);
 
-  const editId = parseSubmitEditId(searchParams?.get('edit'));
+  const editId = parseSubmitEditId(initialQuery.edit);
   const isEditMode = editId !== null;
-  const visibilityParam = searchParams?.get('visibility');
+  const visibilityParam = initialQuery.visibility;
   const isPublicMode = !isEditMode && visibilityParam === 'public';
   const isPrivateMode = !isEditMode && visibilityParam === 'private';
   const isChooserMode = !isEditMode && !isPublicMode && !isPrivateMode;

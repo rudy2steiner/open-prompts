@@ -107,7 +107,12 @@ export function PricingPlans({ locale }: { locale: string }) {
               setSelectedId(value === 'monthly' ? 'monthly' : 'one-time-9');
             }}
           >
-            {value === 'one_time' ? t('pricingPage.oneTime') : t('pricingPage.monthlyTab')}
+            <span>{value === 'one_time' ? t('pricingPage.oneTime') : t('pricingPage.monthlyTab')}</span>
+            {value === 'monthly' ? (
+              <span className="ml-2 rounded-full bg-[color-mix(in_oklab,var(--amber)_18%,transparent)] px-2 py-0.5 text-[10px] font-bold text-[var(--amber2)]">
+                {t('pricingPage.subscriptionSave')}
+              </span>
+            ) : null}
           </button>
         ))}
       </div>
@@ -139,7 +144,11 @@ export function PricingPlans({ locale }: { locale: string }) {
               <p className="mt-2 text-sm font-medium text-[var(--text)]">{t('pricingPage.credits', { count: plan.credits })}</p>
               <p className="mt-1 text-sm text-[var(--text3)]">{t('pricingPage.approxImages', { count: approximateImageCount(plan.credits) })}</p>
               <ul className="my-6 grid flex-1 gap-2 text-sm text-[var(--text)]">
-                {savingsVersusStarter(plan) > 0 ? <li className="font-medium text-[var(--amber)]">{t('pricingPage.save', { percent: savingsVersusStarter(plan) })}</li> : null}
+                {plan.id === 'monthly' ? (
+                  <li className="font-medium text-[var(--amber)]">{t('pricingPage.monthlyBonus')}</li>
+                ) : savingsVersusStarter(plan) > 0 ? (
+                  <li className="font-medium text-[var(--amber)]">{t('pricingPage.save', { percent: savingsVersusStarter(plan) })}</li>
+                ) : null}
                 <li>{t('pricingPage.allTemplates')}</li>
                 <li>{plan.downloadLimit === null ? t('pricingPage.batchDownloadUnlimited') : t('pricingPage.batchDownload', { count: plan.downloadLimit })}</li>
               </ul>
@@ -155,7 +164,7 @@ export function PricingPlans({ locale }: { locale: string }) {
                 >
                   {busyId === `${plan.id}:card` ? '…' : plan.kind === 'monthly' ? t('pricingPage.subscribe') : t('pricingPage.buy')}
                 </button>
-                {plan.kind === 'one_time' && plan.cnyAmount !== null ? (
+                {locale === 'zh' && plan.kind === 'one_time' && plan.cnyAmount !== null ? (
                   <button
                     type="button"
                     disabled={busyId === `${plan.id}:wechat_pay`}
@@ -165,7 +174,7 @@ export function PricingPlans({ locale }: { locale: string }) {
                       startPurchase(plan.id, 'wechat_pay');
                     }}
                   >
-                    {busyId === `${plan.id}:wechat_pay` ? '…' : t('pricingPage.wechatPay', { price: plan.cnyAmount / 100 })}
+                    {busyId === `${plan.id}:wechat_pay` ? '…' : t('pricingPage.wechatPay')}
                   </button>
                 ) : null}
               </div>

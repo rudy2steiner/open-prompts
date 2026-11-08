@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { galleryCoverUrl } from '~/lib/prompts/gallery-cover-url';
 import type { PromptGalleryItem } from '~/data/promptGallery';
 import { PromptGalleryCard } from '~/components/prompt-gallery/PromptGalleryCard';
+import { PromptGallerySwipeViewer } from '~/components/prompt-gallery/PromptGallerySwipeViewer';
 import { GalleryFilterStrip } from '~/components/prompt-gallery/GalleryFilterStrip';
 import { PromptGalleryMasonry } from '~/components/prompt-gallery/PromptGalleryMasonry';
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
@@ -42,8 +43,8 @@ function uniq<T>(arr: T[]) {
 }
 
 import {
+  filterPromptGalleryItems,
   mergeCategoryTags,
-  promptMatchesGalleryFilter,
   type SubmitCategoryKey,
 } from '~/lib/prompts/prompt-categories';
 import { promptHref } from '~/lib/prompts/seo-paths';
@@ -62,6 +63,7 @@ export default function PageComponent({
   const { prompts, total: catalogTotal, catalogReady, nextOffset, loading: catalogLoading, error: catalogError, ensureCatalog, loadNextPage } = useGalleryCatalog(initialPrompts, initialTotal, catalogComplete, !initialModel && !initialCategory);
 
   const t = useTranslations('OpenPrompts');
+  const [preview, setPreview] = useState<{ id: string; title: string; images: string[] } | null>(null);
   const tSubmit = useTranslations('OpenPrompts.submitPage');
   const router = useRouter();
   const [query, setQuery] = useState('');
@@ -89,20 +91,10 @@ export default function PageComponent({
     return mergeCategoryTags(categoryId, prompts);
   }, [categoryId, prompts]);
 
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return prompts.filter((p) => {
-      if (model !== 'all' && p.model !== model) return false;
-      if (!promptMatchesGalleryFilter(p, categoryId, subTag)) return false;
-      if (!q) return true;
-      return (
-        p.title.toLowerCase().includes(q) ||
-        p.description.toLowerCase().includes(q) ||
-        p.prompt.toLowerCase().includes(q) ||
-        p.tags.some((tag) => tag.toLowerCase().includes(q))
-      );
-    });
-  }, [query, model, categoryId, subTag, prompts]);
+  const filtered = useMemo(
+    () => filterPromptGalleryItems(prompts, { query, model, categoryId, subTag }),
+    [query, model, categoryId, subTag, prompts],
+  );
 
   const categoryLabel = (id: SubmitCategoryKey) => tSubmit(`categories.${id}`);
   const subTagLabel = useCallback(
@@ -390,6 +382,11 @@ export default function PageComponent({
           primaryCtaLabel={t('card.generate')}
           coverErrorText={t('gallery.coverLoadFailed')}
           cardHref={promptHref(locale, p.id)}
+          onImageClick={() => {
+            const images = p.images.filter(Boolean);
+            if (!images.length) return;
+            setPreview({ id: p.id, title: p.title, images });
+          }}
           onMeta={({ width, height }) => rememberCoverMeta(p, width, height)}
           onCtaClick={() => {
             router.push(`/${locale}/create?template=${encodeURIComponent(p.id)}`);
@@ -495,6 +492,21 @@ export default function PageComponent({
 
         <OpenPromptsSiteFooter locale={locale} />
       </div>
+
+      {preview ? (
+        <PromptGallerySwipeViewer
+          open
+          onClose={() => setPreview(null)}
+          images={preview.images}
+          title={preview.title}
+          imageKeyPrefix={preview.id}
+          coverLoadFailedText={t('gallery.coverLoadFailed')}
+          closeLabel={t('createPage.viewerClose')}
+          prevLabel={t('createPage.viewerPrev')}
+          nextLabel={t('createPage.viewerNext')}
+          overlayClassName="bg-black/80"
+        />
+      ) : null}
 
     </>
   );

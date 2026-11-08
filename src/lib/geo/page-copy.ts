@@ -16,7 +16,7 @@ export function geoJsonLd(locale: string) {
         inLanguage: locale === 'zh' ? 'zh' : 'en',
         image: {
           '@type': 'ImageObject',
-          url: `${origin}/og-home.jpg`,
+          url: `${origin}/og-home-v2.jpg`,
           width: 1200,
           height: 630,
         },

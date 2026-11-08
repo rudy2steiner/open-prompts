@@ -92,7 +92,10 @@ export function PromptGalleryCard({
           <span className="sr-only">{item.title}</span>
         </a>
       ) : null}
-      <div className="relative block w-full bg-[var(--surface2)]" style={naturalCover ? undefined : { aspectRatio: coverAspectRatio }}>
+      <div
+        className={`relative block w-full bg-[var(--surface2)]${onImageClick ? ' z-[2]' : ''}`}
+        style={naturalCover ? undefined : { aspectRatio: coverAspectRatio }}
+      >
         {coverSrc ? (
           <CoverImage
             src={coverSrc}
@@ -143,7 +146,7 @@ export function PromptGalleryCard({
         {onImageClick ? (
           <button
             type="button"
-            className="absolute inset-0 z-[1] cursor-pointer bg-transparent"
+            className="absolute inset-0 z-[1] cursor-zoom-in bg-transparent"
             aria-label={item.title}
             onClick={(e) => {
               e.stopPropagation();
@@ -230,7 +233,7 @@ export function PromptGalleryCard({
                   e.stopPropagation();
                   onCtaClick?.();
                 }}
-                className="relative z-[2] rounded-md bg-[var(--amber)] px-2.5 py-1 text-[11px] font-semibold text-[var(--bg)]"
+                className="relative z-[2] min-h-8 rounded-md bg-[var(--amber)] px-3 py-1 text-[11px] font-semibold text-[var(--bg)] sm:min-h-0 sm:px-2.5"
               >
                 {primaryCtaLabel}
               </button>

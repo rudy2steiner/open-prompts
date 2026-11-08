@@ -15,7 +15,10 @@ import { GALLERY_MASONRY_BOOTSTRAP } from '~/lib/prompts/gallery-masonry-bootstr
 const GUTTER_PX = 16;
 const useMasonryLayoutEffect = typeof window === 'undefined' ? useEffect : useLayoutEffect;
 
-function columnCountForWidth(width: number): number {
+function columnCountForWidth(width: number, columnMinWidth?: number): number {
+  if (columnMinWidth) {
+    return Math.max(1, Math.floor((width + GUTTER_PX) / (columnMinWidth + GUTTER_PX)));
+  }
   if (width >= 1280) return 4;
   if (width >= 1024) return 3;
   if (width >= 640) return 2;
@@ -33,13 +36,26 @@ type Props<T> = {
   renderItem: (item: T) => ReactNode;
   /** Bumps when card heights may change (e.g. cover aspect preload). */
   layoutKey?: string;
+  /** Optional compact-layout override; the public gallery keeps its responsive breakpoints. */
+  columnMinWidth?: number;
+  columnCount?: (width: number) => number;
+  /** Disable the SSR bootstrap when the masonry mounts only after a client interaction. */
+  bootstrap?: boolean;
 };
 
 /**
  * Shortest-column masonry in DOM order: #1–#4 span the top row, then each
  * item goes to the shortest column — packed tight, no flex/grid row gaps.
  */
-export function PromptGalleryMasonry<T>({ items, itemKey, renderItem, layoutKey }: Props<T>) {
+export function PromptGalleryMasonry<T>({
+  items,
+  itemKey,
+  renderItem,
+  layoutKey,
+  columnMinWidth,
+  columnCount,
+  bootstrap = true,
+}: Props<T>) {
   const containerRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef(new Map<string, HTMLDivElement>());
   const observerRef = useRef<ResizeObserver | null>(null);
@@ -75,7 +91,7 @@ export function PromptGalleryMasonry<T>({ items, itemKey, renderItem, layoutKey 
     const containerWidth = container.clientWidth;
     if (containerWidth <= 0) return;
 
-    const cols = columnCountForWidth(containerWidth);
+    const cols = columnCount?.(containerWidth) ?? columnCountForWidth(containerWidth, columnMinWidth);
     const width = (containerWidth - GUTTER_PX * (cols - 1)) / cols;
 
     const colHeights = new Array<number>(cols).fill(0);
@@ -113,7 +129,7 @@ export function PromptGalleryMasonry<T>({ items, itemKey, renderItem, layoutKey 
     layoutRef.current = next;
     setColWidth(width);
     setLayout(next);
-  }, [items, itemKey]);
+  }, [items, itemKey, columnMinWidth, columnCount]);
 
   useMasonryLayoutEffect(() => {
     const container = containerRef.current;
@@ -151,10 +167,11 @@ export function PromptGalleryMasonry<T>({ items, itemKey, renderItem, layoutKey 
       className="gallery-masonry-surface"
       data-gallery-masonry="shortest-column"
       data-gallery-initial-layout="columns"
+      data-masonry-column-min-width={columnMinWidth}
       data-masonry-ready={layout.ready ? 'true' : undefined}
       style={layout.ready ? { height: layout.height } : undefined}
     >
-      <script dangerouslySetInnerHTML={{ __html: GALLERY_MASONRY_BOOTSTRAP }} />
+      {bootstrap ? <script dangerouslySetInnerHTML={{ __html: GALLERY_MASONRY_BOOTSTRAP }} /> : null}
       {items.map((item) => {
         const id = itemKey(item);
         const pos = layout.positions.get(id);

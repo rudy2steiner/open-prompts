@@ -13,8 +13,6 @@ import {useCommonContext} from '~/context/common-context'
 import LoadingModal from "./LoadingModal";
 import Image from "next/image";
 import GeneratingModal from "~/components/GeneratingModal";
-import { FaGithub } from "react-icons/fa";
-
 type TopMenuItem = { name: string; href: string };
 type SocialItem = { name: string; href: string; icon: any };
 
@@ -46,7 +44,7 @@ export default function Header({
   const pageSuffix = page ? `/${page}` : '';
 
   return (
-    <header className="sticky top-0 bg-[#44403C] z-20 w-full">
+    <header className="sticky z-20 w-full bg-[#44403C]" style={{ top: 'var(--promo-banner-height, 0px)' }}>
       <LoadingModal loadingText={indexLanguageText.loadingText}/>
       <GeneratingModal generatingText={indexLanguageText.generateText}/>
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
@@ -90,17 +88,6 @@ export default function Header({
           ))}
         </div>
         <div className="flex flex-1 justify-end mr-2 items-center gap-3">
-          <a
-            href="https://github.com/rudy2steiner/open-prompts"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-white/90 hover:text-white hover:bg-white/10"
-            aria-label="GitHub repository"
-            title="GitHub"
-          >
-            <FaGithub className="h-5 w-5" aria-hidden="true" />
-            <span className="hidden sm:inline text-sm font-semibold">GitHub</span>
-          </a>
           {navigation.social.map((item) => (
             <a key={item.name} href={item.href} className="text-gray-500 hover:text-gray-400">
               <span className="sr-only">{item.name}</span>

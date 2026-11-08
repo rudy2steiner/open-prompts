@@ -15,6 +15,13 @@
       "when": 1792778801116,
       "tag": "0001_bored_captain_midlands",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1794030794346,
+      "tag": "0002_billing_tables",
+      "breakpoints": true
     }
   ]
 }

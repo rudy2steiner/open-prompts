@@ -114,7 +114,7 @@ Fill at least:
 
 | Variable | Purpose |
 |----------|---------|
-| `DATABASE_URL` | Postgres connection string (Supabase **Session pooler** on port **5432** is recommended for migrations and admin queries) |
+| `DB` | Cloudflare D1 binding configured in `wrangler.jsonc` |
 | `NEXTAUTH_URL` | `http://localhost:3000` |
 | `NEXTAUTH_SECRET` | `openssl rand -base64 32` |
 | `NEXT_PUBLIC_SITE_URL` | Same as `NEXTAUTH_URL` for local SEO links |
@@ -171,30 +171,30 @@ This app uses [@opennextjs/cloudflare](https://opennext.js.org/cloudflare) to ru
 **Prerequisites:** [Cloudflare account](https://dash.cloudflare.com/sign-up), [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/) (included as a dev dependency), and the same Postgres + OAuth setup as local dev.
 
 1. Log in to Cloudflare: `npx wrangler login`
-2. Copy env vars for local preview: `cp .dev.vars.example .dev.vars` and fill in secrets (same keys as `.env.local`).
-3. Preview locally on Workers runtime: `npm run preview` → [http://localhost:8787](http://localhost:8787)
-4. Set production secrets on Cloudflare (repeat for each key, or use `wrangler secret bulk`):
+2. Create your private Worker config: `cp wrangler.example.jsonc wrangler.jsonc`. Replace the Worker names and use separate production and preview D1 database IDs. The resulting `wrangler.jsonc` is ignored by Git.
+3. Copy env vars for local preview: `cp .dev.vars.example .dev.vars` and fill in secrets (same keys as `.env.local`).
+4. Preview locally on Workers runtime: `npm run preview` → [http://localhost:8787](http://localhost:8787)
+5. Set production secrets on Cloudflare (repeat for each key, or use `wrangler secret bulk`):
 
    ```bash
-   npx wrangler secret put DATABASE_URL
    npx wrangler secret put NEXTAUTH_SECRET
    npx wrangler secret put NEXTAUTH_URL
    # …plus ATLASCLOUD_API_KEY, GITHUB_*, GOOGLE_*, ADMIN_*, etc.
    ```
 
-5. Set `NEXT_PUBLIC_SITE_URL` at **build time** (Worker deploy reads `.env.production` or your CI env). Example:
+6. Set `NEXT_PUBLIC_SITE_URL` at **build time** (Worker deploy reads `.env.production` or your CI env). Example:
 
    ```bash
    NEXT_PUBLIC_SITE_URL=https://your-domain.com npm run deploy
    ```
 
-6. Run `supabase/migrations/` on your Supabase DB, then `npm run seed:prompts` and `npm run seed:admin` locally with that `DATABASE_URL`.
-7. Register OAuth callbacks: `…/api/auth/callback/github` and `…/api/auth/callback/google` on your production domain.
-8. Deploy: `npm run deploy`
+7. Apply pending D1 migrations with `npx wrangler d1 migrations apply open-prompts --remote`.
+8. Register OAuth callbacks: `…/api/auth/callback/github` and `…/api/auth/callback/google` on your production domain.
+9. Deploy: `npm run deploy`
 
 **Notes:**
-- Admin bootstrap does not run on Worker cold start (no `instrumentation.ts` hook). Run `npm run seed:admin` against production `DATABASE_URL` if admin login fails.
-- Postgres connections are per-request on Workers (`src/db/client.ts`); use Supabase's transaction pooler (`?pgbouncer=true`, port 6543).
+- The Worker reads application data through the `DB` D1 binding in `wrangler.jsonc`.
+- D1 maintenance scripts using `--remote` require private `D1_DATABASE_ID` and optionally `D1_DATABASE_NAME` environment variables.
 - Redeploy after env changes.
 
 ---

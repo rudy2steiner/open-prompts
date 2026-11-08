@@ -194,3 +194,35 @@ export function promptMatchesGalleryFilter(
   }
   return true;
 }
+
+export function filterPromptGalleryItems<
+  T extends {
+    title: string;
+    description: string;
+    prompt: string;
+    model: string;
+    category?: string | null;
+    tags: readonly string[];
+  },
+>(
+  prompts: readonly T[],
+  filters: {
+    query: string;
+    model: string;
+    categoryId: 'all' | SubmitCategoryKey;
+    subTag: string | null;
+  },
+): T[] {
+  const query = filters.query.trim().toLowerCase();
+  return prompts.filter((item) => {
+    if (filters.model !== 'all' && item.model !== filters.model) return false;
+    if (!promptMatchesGalleryFilter(item, filters.categoryId, filters.subTag)) return false;
+    if (!query) return true;
+    return (
+      item.title.toLowerCase().includes(query) ||
+      item.description.toLowerCase().includes(query) ||
+      item.prompt.toLowerCase().includes(query) ||
+      item.tags.some((tag) => tag.toLowerCase().includes(query))
+    );
+  });
+}

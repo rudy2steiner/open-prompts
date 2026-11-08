@@ -69,7 +69,7 @@ cp .env.example .env.local
 
 | 变量                     | 用途                                                                 |
 | ---------------------- | ------------------------------------------------------------------ |
-| `DATABASE_URL`         | Postgres 连接串（迁移与管理员查询建议使用 Supabase **Session pooler**，端口 **5432**） |
+| `DB`                   | 在 `wrangler.jsonc` 中配置的 Cloudflare D1 binding |
 | `NEXTAUTH_URL`         | `http://localhost:3000`                                            |
 | `NEXTAUTH_SECRET`      | 执行 `openssl rand -base64 32` 生成                                    |
 | `NEXT_PUBLIC_SITE_URL` | 本地与 `NEXTAUTH_URL` 相同，用于 SEO 链接                                    |
@@ -152,7 +152,7 @@ npm run start
 
 | 变量                     | 示例 / 说明                                                      |
 | ---------------------- | ------------------------------------------------------------ |
-| `DATABASE_URL`         | Supabase pooler URI（端口 **5432**，用户 `postgres.<project-ref>`） |
+| `DB`                   | 在 `wrangler.jsonc` 中配置的 Cloudflare D1 binding |
 | `NEXTAUTH_URL`         | `https://your-app.vercel.app`（末尾不要加 `/`）                     |
 | `NEXTAUTH_SECRET`      | 强随机字符串                                                       |
 | `NEXT_PUBLIC_SITE_URL` | 与 `NEXTAUTH_URL` 相同                                          |
@@ -181,15 +181,12 @@ npm run start
 
 修改环境变量后请重新部署。
 
-### 3. Supabase 数据库
+### 3. Cloudflare D1 数据库
 
-1. 创建 Supabase 项目，复制 **Session mode** 连接串（端口 **5432**）。
-2. 在 SQL 编辑器中按顺序执行 `supabase/migrations/` 下的迁移。
-3. 在本地机器上（`DATABASE_URL` 指向该库）执行：
-  ```bash
-   npm run seed:prompts
-   npm run seed:admin
-  ```
+1. 执行 `cp wrangler.example.jsonc wrangler.jsonc`，填写自己的 Worker 名称，并为正式和预览环境配置不同的 D1 数据库 ID。`wrangler.jsonc` 已被 Git 忽略，不应提交。
+2. 执行 `npx wrangler d1 migrations apply open-prompts --remote` 应用迁移。
+3. 带 `--remote` 的 D1 数据脚本需要通过私有环境变量提供 `D1_DATABASE_ID`，可选提供 `D1_DATABASE_NAME`。
+4. 历史 PostgreSQL 数据导出仅使用显式的 `SOURCE_DATABASE_URL`；应用运行时不读取旧连接串。
 
 ### 4. 验证
 
@@ -197,7 +194,7 @@ npm run start
 - 使用 GitHub / Google 或管理员邮箱密码登录。
 - 以管理员身份打开 `/account` 使用审核队列。
 
-**说明：** 设置 `ADMIN_EMAIL` 与 `ADMIN_PASSWORD` 后，`instrumentation.ts` 会在服务启动时初始化管理员用户。重置密码请对生产环境的 `DATABASE_URL` 执行 `npm run seed:admin`。
+**说明：** 正式 Worker 通过 `DB` binding 访问 D1；请在 Cloudflare 环境中配置 `ADMIN_EMAIL` 与 `ADMIN_PASSWORD`。
 
 ---
 

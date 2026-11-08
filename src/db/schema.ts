@@ -101,3 +101,136 @@ export const verificationTokens = sqliteTable(
     pk: primaryKey({ columns: [t.identifier, t.token] }),
   })
 );
+
+const billingTimestamps = {
+  createdAt: integer('created_at', { mode: 'timestamp_ms' }).notNull().default(sql`(unixepoch() * 1000)`),
+  updatedAt: integer('updated_at', { mode: 'timestamp_ms' }).notNull().default(sql`(unixepoch() * 1000)`),
+};
+
+/** 用户 id 或访客 id。访客不写入 p_users。 */
+export const orders = sqliteTable('p_orders', {
+  orderNo: text('order_no').primaryKey(),
+  ownerId: text('owner_id').notNull(),
+  amount: integer('amount').notNull(),
+  currency: text('currency').notNull().default('usd'),
+  productId: text('product_id').notNull(),
+  productName: text('product_name').notNull(),
+  credits: integer('credits').notNull(),
+  status: text('status').notNull().default('created'),
+  stripeSessionId: text('stripe_session_id'),
+  stripePaymentIntentId: text('stripe_payment_intent_id'),
+  paidAt: integer('paid_at', { mode: 'timestamp_ms' }),
+  ...billingTimestamps,
+}, t => ({
+  statusCheck: check('p_orders_status_chk', sql`${t.status} IN ('created', 'paid', 'refunded')`),
+  amountCheck: check('p_orders_amount_chk', sql`${t.amount} > 0`),
+  creditsCheck: check('p_orders_credits_chk', sql`${t.credits} > 0`),
+  ownerIndex: index('p_orders_owner_idx').on(t.ownerId, t.createdAt),
+  sessionIndex: uniqueIndex('p_orders_session_idx').on(t.stripeSessionId),
+}));
+
+export const creditAccounts = sqliteTable('p_credit_accounts', {
+  ownerId: text('owner_id').primaryKey(),
+  purchasedBalance: integer('purchased_balance').notNull().default(0),
+  monthlyBalance: integer('monthly_balance').notNull().default(0),
+  monthlyExpiresAt: integer('monthly_expires_at', { mode: 'timestamp_ms' }),
+  ...billingTimestamps,
+}, t => ({
+  purchasedCheck: check('p_credit_accounts_purchased_chk', sql`${t.purchasedBalance} >= 0`),
+  monthlyCheck: check('p_credit_accounts_monthly_chk', sql`${t.monthlyBalance} >= 0`),
+}));
+
+export const creditTransactions = sqliteTable('p_credit_transactions', {
+  id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
+  ownerId: text('owner_id').notNull(),
+  amount: integer('amount').notNull(),
+  kind: text('kind').notNull(),
+  referenceId: text('reference_id').notNull(),
+  idempotencyKey: text('idempotency_key').notNull(),
+  balanceAfter: integer('balance_after').notNull(),
+  pool: text('pool').notNull(),
+  createdAt: integer('created_at', { mode: 'timestamp_ms' }).notNull().default(sql`(unixepoch() * 1000)`),
+}, t => ({
+  kindCheck: check('p_credit_transactions_kind_chk', sql`${t.kind} IN ('purchase', 'signup', 'reserve', 'refund', 'merge')`),
+  poolCheck: check('p_credit_transactions_pool_chk', sql`${t.pool} IN ('purchased', 'monthly')`),
+  amountCheck: check('p_credit_transactions_amount_chk', sql`${t.amount} != 0`),
+  balanceCheck: check('p_credit_transactions_balance_chk', sql`${t.balanceAfter} >= 0`),
+  idempotencyIndex: uniqueIndex('p_credit_transactions_idempotency_idx').on(t.idempotencyKey),
+  ownerIndex: index('p_credit_transactions_owner_idx').on(t.ownerId, t.createdAt),
+}));
+
+export const subscriptions = sqliteTable('p_subscriptions', {
+  stripeSubscriptionId: text('stripe_subscription_id').primaryKey(),
+  stripeCustomerId: text('stripe_customer_id').notNull(),
+  ownerId: text('owner_id').notNull(),
+  status: text('status').notNull(),
+  currentPeriodEnd: integer('current_period_end', { mode: 'timestamp_ms' }),
+  latestGrantedPeriodEnd: integer('latest_granted_period_end', { mode: 'timestamp_ms' }),
+  ...billingTimestamps,
+}, t => ({
+  statusCheck: check('p_subscriptions_status_chk', sql`${t.status} IN ('incomplete', 'active', 'past_due', 'canceled', 'unpaid')`),
+  ownerIndex: index('p_subscriptions_owner_idx').on(t.ownerId, t.updatedAt),
+  customerIndex: index('p_subscriptions_customer_idx').on(t.stripeCustomerId),
+}));
+
+export const stripeEvents = sqliteTable('p_stripe_events', {
+  eventId: text('event_id').primaryKey(),
+  eventType: text('event_type').notNull(),
+  status: text('status').notNull(),
+  createdAt: integer('created_at', { mode: 'timestamp_ms' }).notNull().default(sql`(unixepoch() * 1000)`),
+  processedAt: integer('processed_at', { mode: 'timestamp_ms' }),
+}, t => ({
+  statusCheck: check('p_stripe_events_status_chk', sql`${t.status} IN ('processing', 'processed', 'ignored', 'failed')`),
+}));
+
+export const generations = sqliteTable('p_generations', {
+  id: text('id').primaryKey().$defaultFn(() => crypto.randomUUID()),
+  ownerId: text('owner_id').notNull(),
+  model: text('model').notNull(),
+  credits: integer('credits').notNull(),
+  monthlyCredits: integer('monthly_credits').notNull().default(0),
+  purchasedCredits: integer('purchased_credits').notNull().default(0),
+  status: text('status').notNull(),
+  images: text('images', { mode: 'json' }).$type<string[]>().notNull().default(sql`'[]'`),
+  createdAt: integer('created_at', { mode: 'timestamp_ms' }).notNull().default(sql`(unixepoch() * 1000)`),
+}, t => ({
+  statusCheck: check('p_generations_status_chk', sql`${t.status} IN ('reserved', 'succeeded', 'failed')`),
+  creditsCheck: check('p_generations_credits_chk', sql`${t.credits} > 0`),
+  ownerIndex: index('p_generations_owner_idx').on(t.ownerId, t.createdAt),
+}));
+
+export const analyticsEvents = sqliteTable('p_analytics_events', {
+  id: text('id').primaryKey(),
+  eventName: text('event_name').notNull(),
+  ownerId: text('owner_id'),
+  locale: text('locale').notNull(),
+  page: text('page').notNull(),
+  subject: text('subject').notNull(),
+  propertiesJson: text('properties_json').notNull().default('{}'),
+  createdAt: integer('created_at', { mode: 'timestamp_ms' }).notNull().default(sql`(unixepoch() * 1000)`),
+}, t => ({
+  nameCheck: check('p_analytics_events_name_chk', sql`${t.eventName} IN ('Pricing Plan Click')`),
+  createdIndex: index('p_analytics_events_created_idx').on(t.createdAt),
+  nameCreatedIndex: index('p_analytics_events_name_created_idx').on(t.eventName, t.createdAt),
+  ownerIndex: index('p_analytics_events_owner_idx').on(t.ownerId, t.createdAt),
+}));
+
+/** 账号已经获得过的提示词。重复下载同一条不新增记录。 */
+export const promptDownloads = sqliteTable('p_prompt_downloads', {
+  ownerId: text('owner_id').notNull(),
+  promptId: text('prompt_id').notNull(),
+  createdAt: integer('created_at', { mode: 'timestamp_ms' }).notNull().default(sql`(unixepoch() * 1000)`),
+}, t => ({
+  pk: primaryKey({ columns: [t.ownerId, t.promptId] }),
+  ownerIndex: index('p_prompt_downloads_owner_idx').on(t.ownerId, t.createdAt),
+}));
+
+export const guestSessions = sqliteTable('p_guest_sessions', {
+  tokenHash: text('token_hash').primaryKey(),
+  guestId: text('guest_id').notNull(),
+  expiresAt: integer('expires_at', { mode: 'timestamp_ms' }).notNull(),
+  ...billingTimestamps,
+}, t => ({
+  guestIndex: index('p_guest_sessions_guest_idx').on(t.guestId),
+  expiryIndex: index('p_guest_sessions_expiry_idx').on(t.expiresAt),
+}));

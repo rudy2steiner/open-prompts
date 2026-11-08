@@ -99,7 +99,7 @@ test('subscription credits arrive on invoice.paid and status events do not grant
   const replay = await handleStripeWebhook(invoice.body, invoice.signature, store, secret);
   assert.equal(granted.body.result, 'credited');
   assert.equal(replay.body.result, 'duplicate');
-  assert.equal((await store.getAccount('user-1')).monthlyBalance, 619);
+  assert.equal((await store.getAccount('user-1')).monthlyBalance, 749);
 
   const deleted = signed({
     id: 'evt_deleted', type: 'customer.subscription.deleted',
@@ -107,7 +107,7 @@ test('subscription credits arrive on invoice.paid and status events do not grant
   });
   await handleStripeWebhook(deleted.body, deleted.signature, store, secret);
   assert.equal(subscriptions.get('sub_1'), 'canceled');
-  assert.equal((await store.getAccount('user-1')).monthlyBalance, 619);
+  assert.equal((await store.getAccount('user-1')).monthlyBalance, 749);
 
   const failed = signed({
     id: 'evt_failed', type: 'invoice.payment_failed',
@@ -115,5 +115,5 @@ test('subscription credits arrive on invoice.paid and status events do not grant
   });
   await handleStripeWebhook(failed.body, failed.signature, store, secret);
   assert.equal(subscriptions.get('sub_1'), 'past_due');
-  assert.equal((await store.getAccount('user-1')).monthlyBalance, 619);
+  assert.equal((await store.getAccount('user-1')).monthlyBalance, 749);
 });

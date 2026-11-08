@@ -20,7 +20,7 @@ export async function generateMetadata(props: {
     path: geoPath(),
     title: normalized === 'zh' ? 'AI 提示词库' : normalized === 'ja' ? 'AI Prompts' : 'AI Prompt Library',
     description: copy.metaDescription,
-    image: { url: '/og-home.jpg', width: 1200, height: 630, alt: 'Open Prompts' },
+    image: { url: '/og-home-v2.jpg', width: 1200, height: 630, alt: 'Open Prompts' },
   });
   return {
     ...metadata,

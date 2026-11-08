@@ -2,6 +2,7 @@
 
 import './prompt-gallery-viewer.css';
 import { useEffect, useRef, useState } from 'react';
+import { FocusTrap } from '@headlessui/react';
 import { CoverImage } from '~/components/prompt-gallery/CoverImage';
 
 function clampIdx(idx: number, len: number) {
@@ -36,6 +37,7 @@ export type PromptGallerySwipeViewerProps = {
   /** Create-page style header with download (gallery uses minimal chrome). */
   showDownloadButton?: boolean;
   downloadTitle?: string;
+  onDownload?: (index: number) => void;
   closeLabel?: string;
   prevLabel?: string;
   nextLabel?: string;
@@ -52,12 +54,13 @@ export function PromptGallerySwipeViewer({
   coverLoadFailedText,
   showDownloadButton = false,
   downloadTitle,
+  onDownload,
   closeLabel,
   prevLabel,
   nextLabel,
   overlayClassName = 'bg-black/75',
 }: PromptGallerySwipeViewerProps) {
-  const [viewerIndex, setViewerIndex] = useState(0);
+  const [viewerIndex, setViewerIndex] = useState(() => clampIdx(initialIndex, images.length));
   const [ratioByImageKey, setRatioByImageKey] = useState<Record<string, string>>({});
   const viewerStripRef = useRef<HTMLDivElement | null>(null);
   const viewerThumbRef = useRef<HTMLDivElement | null>(null);
@@ -133,7 +136,7 @@ export function PromptGallerySwipeViewer({
 
   if (showDownloadButton) {
     return (
-      <div
+      <FocusTrap
         className={`op-viewer-overlay fixed inset-0 z-50 ${overlayClassName}`}
         role="dialog"
         aria-modal="true"
@@ -147,6 +150,7 @@ export function PromptGallerySwipeViewer({
             <div className="flex items-center gap-2">
               <a
                 href={images[viewerIndex]}
+                onClick={onDownload ? event => { event.preventDefault(); onDownload(viewerIndex); } : undefined}
                 target="_blank"
                 rel="noreferrer"
                 download
@@ -280,12 +284,12 @@ export function PromptGallerySwipeViewer({
             </div>
           ) : null}
         </div>
-      </div>
+      </FocusTrap>
     );
   }
 
   return (
-    <div
+    <FocusTrap
       className={`op-viewer-overlay fixed inset-0 z-50 ${overlayClassName} backdrop-blur-[2px]`}
       role="dialog"
       aria-modal="true"
@@ -421,6 +425,6 @@ export function PromptGallerySwipeViewer({
           </div>
         ) : null}
       </div>
-    </div>
+    </FocusTrap>
   );
 }

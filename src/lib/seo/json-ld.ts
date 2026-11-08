@@ -41,7 +41,7 @@ export function buildHomeJsonLd(
         name: 'Open Prompts',
         image: {
           '@type': 'ImageObject',
-          url: `${base}/og-home.jpg`,
+          url: `${base}/og-home-v2.jpg`,
           width: 1200,
           height: 630,
         },

@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import { strict as assert } from 'node:assert';
+import { readFileSync } from 'node:fs';
 import { createCheckout, parsePaymentMethod, productionCheckoutGate } from '../src/lib/billing/checkout';
 import { checkoutQuote, findPurchasablePlan } from '../src/lib/billing/catalog';
 import { stripeCheckoutParams } from '../src/lib/billing/stripe';
@@ -13,6 +14,15 @@ const deps = (sessions: Array<Record<string, unknown>>, orders: Array<Record<str
     return { id: 'cs_test_1', url: 'https://checkout.stripe.com/c/pay/cs_test_1' };
   },
   attachStripeSession: async () => undefined,
+});
+
+test('WeChat Pay is shown only in Chinese and its button does not expose a price', () => {
+  const pricingPlans = readFileSync('src/components/billing/PricingPlans.tsx', 'utf8');
+  const zhMessages = JSON.parse(readFileSync('messages/zh.json', 'utf8'));
+
+  assert.match(pricingPlans, /locale === 'zh' && plan\.kind === 'one_time'/);
+  assert.equal(zhMessages.OpenPrompts.pricingPage.wechatPay, '微信支付');
+  assert.doesNotMatch(pricingPlans, /pricingPage\.wechatPay[^\n]*price/);
 });
 
 test('checkout quotes keep card prices in USD and use fixed CNY prices for WeChat Pay', () => {

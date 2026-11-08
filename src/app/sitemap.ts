@@ -6,6 +6,7 @@ import {
   promptPath,
 } from '~/lib/prompts/seo-paths';
 import { getMotionSlugs } from '~/lib/motion/catalog';
+import { CREATION_TYPES, creationTypePath } from '~/lib/generation/creation-types';
 import { absoluteUrl, LOCALES } from '~/lib/seo/metadata';
 
 const PUBLIC_PATHS = [
@@ -16,9 +17,14 @@ const PUBLIC_PATHS = [
   '/category',
   '/submit',
   '/create',
-  '/login',
   '/privacy-policy',
   '/terms-of-service',
+  '/help',
+  '/contact',
+  '/community',
+  '/privacy',
+  '/terms',
+  '/cookies',
 ] as const;
 
 
@@ -40,6 +46,12 @@ function taxonomyEntries(now: Date): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: 'weekly' as const,
       priority: 0.75,
+    })),
+    ...CREATION_TYPES.map((type) => ({
+      url: absoluteUrl(locale, creationTypePath(type.slug)),
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
     })),
     ...CATEGORY_SEO_SLUG_LIST.map((slug) => ({
       url: absoluteUrl(locale, `/category/${slug}`),

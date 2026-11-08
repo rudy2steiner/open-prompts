@@ -1,0 +1,250 @@
+TAP version 13
+# Subtest: history/390px: natural-ratio masonry keeps fullscreen, download, reuse and delete
+ok 1 - history/390px: natural-ratio masonry keeps fullscreen, download, reuse and delete
+  ---
+  duration_ms: 1851.184708
+  type: 'test'
+  ...
+# Subtest: history/1440px: natural-ratio masonry keeps fullscreen, download, reuse and delete
+ok 2 - history/1440px: natural-ratio masonry keeps fullscreen, download, reuse and delete
+  ---
+  duration_ms: 1367.876667
+  type: 'test'
+  ...
+# Subtest: old history without a stored ratio still displays its natural image and opens fullscreen
+ok 3 - old history without a stored ratio still displays its natural image and opens fullscreen
+  ---
+  duration_ms: 1162.404
+  type: 'test'
+  ...
+# Subtest: denied storage access does not crash the creation workspace
+ok 4 - denied storage access does not crash the creation workspace
+  ---
+  duration_ms: 1037.91875
+  type: 'test'
+  ...
+# Subtest: two open tabs preserve both generation histories and synchronize deletion
+ok 5 - two open tabs preserve both generation histories and synchronize deletion
+  ---
+  duration_ms: 2117.742125
+  type: 'test'
+  ...
+# Subtest: 320px: roomy result canvas precedes four mode-matched, usable inspirations
+ok 6 - 320px: roomy result canvas precedes four mode-matched, usable inspirations
+  ---
+  duration_ms: 4279.061042
+  type: 'test'
+  ...
+# Subtest: 390px: roomy result canvas precedes four mode-matched, usable inspirations
+ok 7 - 390px: roomy result canvas precedes four mode-matched, usable inspirations
+  ---
+  duration_ms: 4301.690584
+  type: 'test'
+  ...
+# Subtest: 1440px: roomy result canvas precedes four mode-matched, usable inspirations
+ok 8 - 1440px: roomy result canvas precedes four mode-matched, usable inspirations
+  ---
+  duration_ms: 1766.977542
+  type: 'test'
+  ...
+# Subtest: 390px: 1 generated images fit the canvas, preview, download and persist in history
+ok 9 - 390px: 1 generated images fit the canvas, preview, download and persist in history
+  ---
+  duration_ms: 2308.990209
+  type: 'test'
+  ...
+# Subtest: 390px: 4 generated images fit the canvas, preview, download and persist in history
+ok 10 - 390px: 4 generated images fit the canvas, preview, download and persist in history
+  ---
+  duration_ms: 2258.86775
+  type: 'test'
+  ...
+# Subtest: 1440px: 1 generated images fit the canvas, preview, download and persist in history
+ok 11 - 1440px: 1 generated images fit the canvas, preview, download and persist in history
+  ---
+  duration_ms: 1384.866916
+  type: 'test'
+  ...
+# Subtest: 1440px: 4 generated images fit the canvas, preview, download and persist in history
+ok 12 - 1440px: 4 generated images fit the canvas, preview, download and persist in history
+  ---
+  duration_ms: 1403.631417
+  type: 'test'
+  ...
+# Subtest: short desktop: inspiration remains on screen when switching result tabs
+ok 13 - short desktop: inspiration remains on screen when switching result tabs
+  ---
+  duration_ms: 1097.638625
+  type: 'test'
+  ...
+# Subtest: 390px: inspiration shows whole images and is not obscured by the generate button
+ok 14 - 390px: inspiration shows whole images and is not obscured by the generate button
+  ---
+  duration_ms: 1152.958084
+  type: 'test'
+  ...
+# Subtest: 1440px: inspiration shows whole images and is not obscured by the generate button
+ok 15 - 1440px: inspiration shows whole images and is not obscured by the generate button
+  ---
+  duration_ms: 1475.0915
+  type: 'test'
+  ...
+# Subtest: 390px: large equal-height artworks follow native proportions without side gaps
+ok 16 - 390px: large equal-height artworks follow native proportions without side gaps
+  ---
+  duration_ms: 2041.47425
+  type: 'test'
+  ...
+# Subtest: 1440px: large equal-height artworks follow native proportions without side gaps
+ok 17 - 1440px: large equal-height artworks follow native proportions without side gaps
+  ---
+  duration_ms: 1793.904
+  type: 'test'
+  ...
+# Subtest: unavailable artwork is removed from inspiration without substituting a different creation mode
+ok 18 - unavailable artwork is removed from inspiration without substituting a different creation mode
+  ---
+  duration_ms: 1130.033083
+  type: 'test'
+  ...
+# Subtest: ja: inspiration controls are localized and follow the creation mode
+ok 19 - ja: inspiration controls are localized and follow the creation mode
+  ---
+  duration_ms: 1243.842041
+  type: 'test'
+  ...
+# Subtest: fr: inspiration controls are localized and follow the creation mode
+ok 20 - fr: inspiration controls are localized and follow the creation mode
+  ---
+  duration_ms: 1039.021833
+  type: 'test'
+  ...
+# Subtest: credits/390px/zh: button quotes every open parameter combination without submitting
+ok 21 - credits/390px/zh: button quotes every open parameter combination without submitting
+  ---
+  duration_ms: 1477.409167
+  type: 'test'
+  ...
+# Subtest: credits/1440px/zh: button quotes every open parameter combination without submitting
+ok 22 - credits/1440px/zh: button quotes every open parameter combination without submitting
+  ---
+  duration_ms: 1438.575416
+  type: 'test'
+  ...
+# Subtest: credits/1440px/en: button quotes every open parameter combination without submitting
+ok 23 - credits/1440px/en: button quotes every open parameter combination without submitting
+  ---
+  duration_ms: 1523.736125
+  type: 'test'
+  ...
+# Subtest: resolution/390px: ratio shares a row, quality stays independent, legal 4K submits the selected settings
+ok 24 - resolution/390px: ratio shares a row, quality stays independent, legal 4K submits the selected settings
+  ---
+  duration_ms: 2433.510459
+  type: 'test'
+  ...
+# Subtest: resolution/1440px: ratio shares a row, quality stays independent, legal 4K submits the selected settings
+ok 25 - resolution/1440px: ratio shares a row, quality stays independent, legal 4K submits the selected settings
+  ---
+  duration_ms: 1391.461625
+  type: 'test'
+  ...
+# Subtest: history retains submitted resolution when controls change during generation
+ok 26 - history retains submitted resolution when controls change during generation
+  ---
+  duration_ms: 1236.064375
+  type: 'test'
+  ...
+# Subtest: API rejects illegal paths, unknown models, and unavailable models before any charge
+ok 27 - API rejects illegal paths, unknown models, and unavailable models before any charge
+  ---
+  duration_ms: 139.448416
+  type: 'test'
+  ...
+# Subtest: API recomputes same-price modes at reference limits and ignores client-supplied credits
+ok 28 - API recomputes same-price modes at reference limits and ignores client-supplied credits
+  ---
+  duration_ms: 540.857875
+  type: 'test'
+  ...
+# Subtest: API rejects malformed counts before billing and preserves valid count quotes
+ok 29 - API rejects malformed counts before billing and preserves valid count quotes
+  ---
+  duration_ms: 219.190209
+  type: 'test'
+  ...
+# Subtest: API rejects malformed resolution and unsupported 4K before billing
+ok 30 - API rejects malformed resolution and unsupported 4K before billing
+  ---
+  duration_ms: 207.632417
+  type: 'test'
+  ...
+# Subtest: 390px: site demo countryside-film-collage-2a70f109 restores genuine local reference and settings without uploading
+ok 31 - 390px: site demo countryside-film-collage-2a70f109 restores genuine local reference and settings without uploading
+  ---
+  duration_ms: 4840.729083
+  type: 'test'
+  ...
+# Subtest: 390px: site demo gpt-image-2-on-chatgpt-f7a4c7af restores genuine local reference and settings without uploading
+ok 32 - 390px: site demo gpt-image-2-on-chatgpt-f7a4c7af restores genuine local reference and settings without uploading
+  ---
+  duration_ms: 4201.501666
+  type: 'test'
+  ...
+# Subtest: 1440px: site demo countryside-film-collage-2a70f109 restores genuine local reference and settings without uploading
+ok 33 - 1440px: site demo countryside-film-collage-2a70f109 restores genuine local reference and settings without uploading
+  ---
+  duration_ms: 4079.961416
+  type: 'test'
+  ...
+# Subtest: 1440px: site demo gpt-image-2-on-chatgpt-f7a4c7af restores genuine local reference and settings without uploading
+ok 34 - 1440px: site demo gpt-image-2-on-chatgpt-f7a4c7af restores genuine local reference and settings without uploading
+  ---
+  duration_ms: 3933.019042
+  type: 'test'
+  ...
+# Subtest: 320px: local-only multiple images can be previewed, removed and sent together
+ok 35 - 320px: local-only multiple images can be previewed, removed and sent together
+  ---
+  duration_ms: 2409.637
+  type: 'test'
+  ...
+# Subtest: 390px: local-only multiple images can be previewed, removed and sent together
+ok 36 - 390px: local-only multiple images can be previewed, removed and sent together
+  ---
+  duration_ms: 2542.951542
+  type: 'test'
+  ...
+# Subtest: 1440px: local-only multiple images can be previewed, removed and sent together
+ok 37 - 1440px: local-only multiple images can be previewed, removed and sent together
+  ---
+  duration_ms: 2217.796916
+  type: 'test'
+  ...
+# Subtest: reference preview traps keyboard focus and restores the thumbnail on close
+ok 38 - reference preview traps keyboard focus and restores the thumbnail on close
+  ---
+  duration_ms: 1367.097292
+  type: 'test'
+  ...
+# Subtest: local drag/drop, validation and removing selected images preserve previews without uploading
+ok 39 - local drag/drop, validation and removing selected images preserve previews without uploading
+  ---
+  duration_ms: 2354.320708
+  type: 'test'
+  ...
+# Subtest: submitted partial upload failure blocks generation and retry reuses successful images
+ok 40 - submitted partial upload failure blocks generation and retry reuses successful images
+  ---
+  duration_ms: 1409.242083
+  type: 'test'
+  ...
+1..40
+# tests 40
+# suites 0
+# pass 40
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 78632.294917

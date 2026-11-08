@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd /Users/xuandu/mywsp/open-prompts && npx tsc --noEmit -p . 2>&1 | grep -i \"create/PageComponent\" | head; echo \"tsc done\"; curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/zh/create)",
+      "Bash(cd /Users/xuandu/mywsp/open-prompts && node -e 'const z=require\\(\"./messages/zh.json\"\\).OpenPrompts.gen;console.log\\(z.aspectRatio,z.quality,z.count,z.generate\\)'; git diff --stat messages/zh.json; git show HEAD:messages/zh.json | node -e 'let s=\"\";process.stdin.on\\(\"data\",d=>s+=d\\).on\\(\"end\",\\(\\)=>{const g=JSON.parse\\(s\\).OpenPrompts.gen;console.log\\(g.aspectRatio,g.quality,g.count,g.generate\\)}\\)')",
+      "Bash(cd /Users/xuandu/mywsp/open-prompts && node -e '\nconst en=require\\(\"./messages/en.json\"\\).OpenPrompts.gen;\nfor \\(const l of [\"zh\",\"ja\",\"ko\",\"de\",\"es\",\"fr\",\"pt\"]\\) {\n  const g=require\\(\"./messages/\"+l+\".json\"\\).OpenPrompts.gen||{};\n  const same=Object.keys\\(en\\).filter\\(k=>typeof en[k]===\"string\"&&g[k]===en[k]\\);\n  const missing=Object.keys\\(en\\).filter\\(k=>!\\(k in g\\)\\);\n  console.log\\(l,\"same:\",same.join\\(\",\"\\),\"| missing:\",missing.join\\(\",\"\\)\\);\n}')",
+      "Bash(cd /Users/xuandu/mywsp/open-prompts && node -e '\nfor \\(const l of [\"en\",\"zh\",\"ja\",\"ko\"]\\) { const g=require\\(\"./messages/\"+l+\".json\"\\).OpenPrompts.gen; console.log\\(l, JSON.stringify\\({provider:g.provider,aspectRatio:g.aspectRatio,count:g.count,quality:g.quality,generate:g.generate,generating:g.generating,jobLabel:g.jobLabel,prompt:g.prompt,path:g.path}\\)\\);}'; grep -n '\"aspectRatio\"\\\\|\"generating\"\\\\|\"jobLabel\"' messages/zh.json messages/ja.json)",
+      "Bash(cd /Users/xuandu/mywsp/open-prompts && npx tsc --noEmit -p . 2>&1 | grep -i \"create/PageComponent\"; node -e 'require\\(\"./messages/zh.json\"\\);require\\(\"./messages/ja.json\"\\);console.log\\(\"json ok\"\\)')",
+      "Bash(cd /Users/xuandu/mywsp/open-prompts && npx tsc --noEmit -p . 2>&1 | grep -i \"create/PageComponent\"; npx eslint \"src/app/[locale]/create/PageComponent.tsx\" 2>&1 | tail -15; grep -n \"provider\\\\b\\\\|setProvider\\\\|getApiKey\\\\|keyDialog\\\\|providerLabel\" \"src/app/[locale]/create/PageComponent.tsx\")",
+      "Bash(cd /Users/xuandu/mywsp/open-prompts && ls node_modules | grep -i -E \"^playwright|^puppeteer|^@playwright\" ; ls ~/Library/Caches/ms-playwright 2>/dev/null | head; ls tests e2e 2>/dev/null | head)",
+      "Bash(cd /Users/xuandu/mywsp/open-prompts && ls tests; grep -n \"playwright\\\\|chromium\\\\|390\\\\|375\\\\|mobile\" tests/create-workspace.test.ts | head -30; python3 -c \"import playwright;print\\('py playwright ok'\\)\")",
+      "Bash(cd /Users/xuandu/mywsp/open-prompts && grep -n '\"test' package.json; npx tsx --test tests/create-workspace.test.ts 2>&1 | grep -E \"^\\(not ok|ok|# \\(pass|fail\\)\\)\" )",
+      "Bash(cd /Users/xuandu/mywsp/open-prompts && git show HEAD:\"src/app/[locale]/create/PageComponent.tsx\" | grep -c \"advancedOpen\\\\|data-create-advanced\"; git diff HEAD --stat -- \"src/app/[locale]/create/PageComponent.tsx\")",
+      "Bash(cd /tmp && \"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --hide-scrollbars --window-size=390,2200 --virtual-time-budget=8000 --screenshot=/tmp/create-m.png \"http://localhost:3000/zh/create\" 2>&1 | tail -2; ls -la /tmp/create-m.png)",
+      "Bash(cd /tmp && npx -y playwright@1.49.1 screenshot --device=\"iPhone 13\" --full-page --wait-for-timeout=4000 \"http://localhost:3000/zh/create\" /tmp/create-iphone.png 2>&1 | tail -3)",
+      "Bash(cd /tmp && npx -y playwright@1.49.1 screenshot --device=\"iPhone 13\" --full-page --wait-for-timeout=4000 \"http://localhost:3000/zh/create\" /tmp/create-iphone.png 2>&1 | grep -v \"^║\\\\|^╔\\\\|^╚\" | tail -5; ls -la /tmp/create-iphone.png)",
+      "Bash(cd /tmp && npx -y playwright@1.49.1 screenshot -b cr --device=\"iPhone 13\" --full-page --wait-for-timeout=4000 \"http://localhost:3000/zh/create\" /tmp/create-iphone.png 2>&1 | grep -v \"^║\\\\|^╔\\\\|^╚\" | tail -3; ls -la /tmp/create-iphone.png)",
+      "Bash(cd /tmp && npx -y playwright@1.49.1 screenshot -b cr --viewport-size=390,844 --full-page --wait-for-timeout=4000 \"http://localhost:3000/zh/create\" /tmp/create-iphone.png 2>&1 | grep -v \"^║\\\\|^╔\\\\|^╚\" | tail -3; ls -la /tmp/create-iphone.png)",
+      "Bash(cd /tmp && sips -g pixelWidth -g pixelHeight create-iphone.png | tail -2; cp create-iphone.png c1.png && sips -c 1000 390 --cropOffset 0 0 c1.png >/dev/null; cp create-iphone.png c2.png && sips -c 900 390 --cropOffset 900 0 c2.png >/dev/null; echo ok)",
+      "Bash(ls -d ~/.npm/_npx/*/node_modules/playwright 2>/dev/null | head -3)",
+      "Bash(for d in ~/.npm/_npx/*/node_modules/playwright; do echo \"$d $\\(node -p \"require\\('$d/package.json'\\).version\"\\)\"; done)",
+      "Bash(node:*)"
+    ]
+  }
+}

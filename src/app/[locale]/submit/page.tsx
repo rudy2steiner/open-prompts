@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
-import { Suspense } from 'react';
 import { SUBMIT_QUICK_TAGS } from '~/lib/prompts/prompt-categories';
 import { buildPageMetadata, normalizeLocale } from '~/lib/seo/metadata';
 import PageComponent from './PageComponent';
@@ -9,6 +8,12 @@ import './submit-page.css';
 type SubmitMessages = {
   quickTags?: string[];
 };
+
+type SearchParams = Record<string, string | string[] | undefined>;
+
+function firstValue(value: string | string[] | undefined): string | undefined {
+  return Array.isArray(value) ? value[0] : value;
+}
 
 export async function generateMetadata({
   params,
@@ -31,8 +36,15 @@ export async function generateMetadata({
   });
 }
 
-export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+export default async function Page({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<SearchParams>;
+}) {
   const { locale: raw } = await params;
+  const query = await searchParams;
   const locale = normalizeLocale(raw);
   setRequestLocale(locale);
   const messages = await getMessages();
@@ -40,9 +52,12 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
   const submitPage = op?.submitPage;
   const quickTags = submitPage?.quickTags?.length ? submitPage.quickTags : [...SUBMIT_QUICK_TAGS];
 
-  return (
-    <Suspense fallback={null}>
-      <PageComponent locale={locale} quickTags={quickTags} />
-    </Suspense>
-  );
+  return <PageComponent
+    locale={locale}
+    quickTags={quickTags}
+    initialQuery={{
+      edit: firstValue(query.edit),
+      visibility: firstValue(query.visibility),
+    }}
+  />;
 }

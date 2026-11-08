@@ -79,7 +79,7 @@ export function buildPageMetadata(input: BuildPageMetadataInput): Metadata {
   const alternates = buildAlternates(locale, path);
   const fullTitle = buildFullPageTitle(title, locale);
   const safeDescription = clampMetaDescription(description, locale);
-  const cover = image ?? { url: '/og-home.jpg', width: 1200, height: 630 };
+  const cover = image ?? { url: '/og-home-v2.jpg', width: 1200, height: 630 };
   const ogImage = { ...cover, alt: cover.alt ?? fullTitle };
   return {
     title: { absolute: fullTitle },

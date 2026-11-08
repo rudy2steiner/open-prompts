@@ -35,6 +35,11 @@ const nextConfig = {
         return [
             { source: '/gallery', destination: '/image-prompts', permanent: true },
             { source: '/prompt/:slug', destination: '/image-prompts/:slug', permanent: true },
+            ...['text-to-image', 'reference-to-image', 'image-edit'].map(type => ({
+                source: `/create/${type}`,
+                destination: `/${type}`,
+                permanent: true,
+            })),
             ...['en', 'zh', 'ja', 'ko', 'fr', 'de', 'es', 'pt'].flatMap(locale => ([
                 {
                     source: `/${locale}/gallery`,
@@ -46,6 +51,11 @@ const nextConfig = {
                     destination: `/${locale}/image-prompts/:slug`,
                     permanent: true,
                 },
+                ...['text-to-image', 'reference-to-image', 'image-edit'].map(type => ({
+                    source: `/${locale}/create/${type}`,
+                    destination: `${locale === 'en' ? '' : `/${locale}`}/${type}`,
+                    permanent: true,
+                })),
             ])),
         ];
     },

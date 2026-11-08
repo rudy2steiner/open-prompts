@@ -1,0 +1,184 @@
+TAP version 13
+# Subtest: 390px: latest inspiration restores real demo images, prompts and references without submission
+ok 1 - 390px: latest inspiration restores real demo images, prompts and references without submission
+  ---
+  duration_ms: 5232.712375
+  type: 'test'
+  ...
+# Subtest: 1440px: latest inspiration restores real demo images, prompts and references without submission
+ok 2 - 1440px: latest inspiration restores real demo images, prompts and references without submission
+  ---
+  duration_ms: 1572.326417
+  type: 'test'
+  ...
+# Subtest: 320px: roomy result canvas precedes curated mode-matched, usable inspirations
+ok 3 - 320px: roomy result canvas precedes curated mode-matched, usable inspirations
+  ---
+  duration_ms: 5155.831166
+  type: 'test'
+  ...
+# Subtest: 390px: roomy result canvas precedes curated mode-matched, usable inspirations
+ok 4 - 390px: roomy result canvas precedes curated mode-matched, usable inspirations
+  ---
+  duration_ms: 11053.078542
+  type: 'test'
+  ...
+# Subtest: 1440px: roomy result canvas precedes curated mode-matched, usable inspirations
+ok 5 - 1440px: roomy result canvas precedes curated mode-matched, usable inspirations
+  ---
+  duration_ms: 1938.306875
+  type: 'test'
+  ...
+# Subtest: 390px: 1 generated images fit the canvas, preview, download and persist in history
+ok 6 - 390px: 1 generated images fit the canvas, preview, download and persist in history
+  ---
+  duration_ms: 2433.126917
+  type: 'test'
+  ...
+# Subtest: 390px: 4 generated images fit the canvas, preview, download and persist in history
+ok 7 - 390px: 4 generated images fit the canvas, preview, download and persist in history
+  ---
+  duration_ms: 2354.815042
+  type: 'test'
+  ...
+# Subtest: 1440px: 1 generated images fit the canvas, preview, download and persist in history
+ok 8 - 1440px: 1 generated images fit the canvas, preview, download and persist in history
+  ---
+  duration_ms: 1348.267625
+  type: 'test'
+  ...
+# Subtest: 1440px: 4 generated images fit the canvas, preview, download and persist in history
+ok 9 - 1440px: 4 generated images fit the canvas, preview, download and persist in history
+  ---
+  duration_ms: 1593.97125
+  type: 'test'
+  ...
+# Subtest: short desktop: history hides inspiration and current restores it on screen
+ok 10 - short desktop: history hides inspiration and current restores it on screen
+  ---
+  duration_ms: 1385.074375
+  type: 'test'
+  ...
+# Subtest: 390px: inspiration shows whole images and is not obscured by the generate button
+ok 11 - 390px: inspiration shows whole images and is not obscured by the generate button
+  ---
+  duration_ms: 1306.905708
+  type: 'test'
+  ...
+# Subtest: 1440px: inspiration shows whole images and is not obscured by the generate button
+ok 12 - 1440px: inspiration shows whole images and is not obscured by the generate button
+  ---
+  duration_ms: 1251.728708
+  type: 'test'
+  ...
+# Subtest: 390px: large equal-height artworks follow native proportions without side gaps
+ok 13 - 390px: large equal-height artworks follow native proportions without side gaps
+  ---
+  duration_ms: 1726.437209
+  type: 'test'
+  ...
+# Subtest: 1440px: large equal-height artworks follow native proportions without side gaps
+ok 14 - 1440px: large equal-height artworks follow native proportions without side gaps
+  ---
+  duration_ms: 1694.823458
+  type: 'test'
+  ...
+# Subtest: unavailable artwork is removed from inspiration without substituting a different creation mode
+ok 15 - unavailable artwork is removed from inspiration without substituting a different creation mode
+  ---
+  duration_ms: 1000.895208
+  type: 'test'
+  ...
+# Subtest: ja: inspiration controls are localized and follow the creation mode
+ok 16 - ja: inspiration controls are localized and follow the creation mode
+  ---
+  duration_ms: 1375.469417
+  type: 'test'
+  ...
+# Subtest: fr: inspiration controls are localized and follow the creation mode
+ok 17 - fr: inspiration controls are localized and follow the creation mode
+  ---
+  duration_ms: 1129.618042
+  type: 'test'
+  ...
+# Subtest: 390px: site demo countryside-film-collage-2a70f109 restores genuine local reference and settings without uploading
+ok 18 - 390px: site demo countryside-film-collage-2a70f109 restores genuine local reference and settings without uploading
+  ---
+  duration_ms: 3694.254
+  type: 'test'
+  ...
+# Subtest: 390px: site demo gpt-image-2-on-chatgpt-f7a4c7af restores genuine local reference and settings without uploading
+ok 19 - 390px: site demo gpt-image-2-on-chatgpt-f7a4c7af restores genuine local reference and settings without uploading
+  ---
+  duration_ms: 4222.289208
+  type: 'test'
+  ...
+# Subtest: 1440px: site demo countryside-film-collage-2a70f109 restores genuine local reference and settings without uploading
+ok 20 - 1440px: site demo countryside-film-collage-2a70f109 restores genuine local reference and settings without uploading
+  ---
+  duration_ms: 4498.356167
+  type: 'test'
+  ...
+# Subtest: 1440px: site demo gpt-image-2-on-chatgpt-f7a4c7af restores genuine local reference and settings without uploading
+ok 21 - 1440px: site demo gpt-image-2-on-chatgpt-f7a4c7af restores genuine local reference and settings without uploading
+  ---
+  duration_ms: 4220.746458
+  type: 'test'
+  ...
+# Subtest: leaving reference mode cancels a pending automatic site-demo reference
+ok 22 - leaving reference mode cancels a pending automatic site-demo reference
+  ---
+  duration_ms: 3030.347709
+  type: 'test'
+  ...
+# Subtest: invalidating site-demo context closes its reference viewer and preserves manual references
+ok 23 - invalidating site-demo context closes its reference viewer and preserves manual references
+  ---
+  duration_ms: 2130.684375
+  type: 'test'
+  ...
+# Subtest: 320px: local-only multiple images can be previewed, removed and sent together
+ok 24 - 320px: local-only multiple images can be previewed, removed and sent together
+  ---
+  duration_ms: 2811.553958
+  type: 'test'
+  ...
+# Subtest: 390px: local-only multiple images can be previewed, removed and sent together
+ok 25 - 390px: local-only multiple images can be previewed, removed and sent together
+  ---
+  duration_ms: 14090.19975
+  type: 'test'
+  ...
+# Subtest: 1440px: local-only multiple images can be previewed, removed and sent together
+ok 26 - 1440px: local-only multiple images can be previewed, removed and sent together
+  ---
+  duration_ms: 2259.991833
+  type: 'test'
+  ...
+# Subtest: reference preview traps keyboard focus and restores the thumbnail on close
+ok 27 - reference preview traps keyboard focus and restores the thumbnail on close
+  ---
+  duration_ms: 1529.897208
+  type: 'test'
+  ...
+# Subtest: local drag/drop, validation and removing selected images preserve previews without uploading
+ok 28 - local drag/drop, validation and removing selected images preserve previews without uploading
+  ---
+  duration_ms: 2988.499833
+  type: 'test'
+  ...
+# Subtest: submitted partial upload failure blocks generation and retry reuses successful images
+ok 29 - submitted partial upload failure blocks generation and retry reuses successful images
+  ---
+  duration_ms: 1539.326791
+  type: 'test'
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 91681.677875

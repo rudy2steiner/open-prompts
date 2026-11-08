@@ -1,0 +1,20 @@
+# 复制为 .prod.vars 后按需填写；.prod.vars 已被 Git 忽略。
+# 该文件用于发布前核对，正式敏感值仍通过 `wrangler secret put --env=""` 管理。
+NEXTAUTH_URL=https://www.open-prompts.com
+NEXT_PUBLIC_SITE_URL=https://www.open-prompts.com
+ENABLE_PRODUCTION_CHECKOUT=true
+USE_TEST_MODE=false
+
+# 以下值不得提交真实内容。
+NEXTAUTH_SECRET=
+ADMIN_EMAIL=
+ADMIN_PASSWORD=
+ADMIN_NAME=
+GITHUB_ID=
+GITHUB_SECRET=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+ATLASCLOUD_API_KEY=
+CREDITS_COOKIE_SECRET=

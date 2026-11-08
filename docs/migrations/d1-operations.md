@@ -2,7 +2,7 @@
 
 ## 数据库
 
-正式 binding：`DB`；名称：`open-prompts`；ID：`97a63f9c-b95c-4597-952c-0235b1425fde`。仅四张 `p_` 表，旧订单、积分等仍在原 Supabase。业务运行不再使用 PostgreSQL TCP。
+正式 binding：`DB`；数据库名称与 ID 由部署者在本地 `wrangler.jsonc` 中配置，不写入公开仓库。仅四张 `p_` 表，旧订单、积分等仍在原 Supabase。业务运行不再使用 PostgreSQL TCP。
 
 ## 表结构与开发
 

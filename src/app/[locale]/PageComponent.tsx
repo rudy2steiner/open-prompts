@@ -5,6 +5,7 @@ import type { PromptGalleryItem } from '~/data/promptGallery';
 import { OpenPromptsSiteFooter } from '~/components/open-prompts/OpenPromptsSiteFooter';
 import { OpenPromptsSiteHeader } from '~/components/open-prompts/OpenPromptsSiteHeader';
 import { galleryHref } from '~/lib/prompts/gallery-path';
+import { CREATION_TYPES, creationTypeHref } from '~/lib/generation/creation-types';
 import { buildLocaleHref } from '~/lib/op-locale';
 import { formatGalleryStatCount } from '~/lib/prompts/gallery-stats';
 import { landingFontClassName } from './landing-fonts';
@@ -86,6 +87,7 @@ function pickHeroPreviews(prompts: PromptGalleryItem[]): PromptGalleryItem[] {
 
 export default async function PageComponent({ locale, prompts, children }: Props) {
   const t = await getTranslations({ locale, namespace: 'OpenPrompts' });
+  const creation = await getTranslations({ locale, namespace: 'OpenPrompts.creationTypes' });
   const promptCount = formatGalleryStatCount(prompts.length, locale);
   const promptCountLabel = `${promptCount}+`;
   const previews = pickHeroPreviews(prompts);
@@ -120,10 +122,17 @@ export default async function PageComponent({ locale, prompts, children }: Props
                   {t('homePage.submitPrompt')}
                 </a>
               </div>
+              <nav className="op-landing-creation-nav" aria-label={creation('section.title')}>
+                {CREATION_TYPES.map(type => (
+                  <a key={type.slug} href={creationTypeHref(locale, type.slug)} className="op-landing-model-pill">
+                    {creation(`types.${type.key}.name`)}
+                  </a>
+                ))}
+              </nav>
               <div className="op-landing-stats">
                 {[
                   [promptCountLabel, t('stats.prompts')],
-                  ['6,200+', t('stats.members')],
+                  ['1000+', t('stats.members')],
                   [t('stats.daily'), t('stats.newPrompts')],
                   [t('stats.curated'), t('stats.fromX')],
                 ].map(([num, label]) => (

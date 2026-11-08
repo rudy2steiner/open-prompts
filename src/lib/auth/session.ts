@@ -9,7 +9,7 @@ export async function getAuthSession() {
 
 /** Comma- or semicolon-separated list from `ADMIN_EMAIL`. */
 export function getAdminEmails(): string[] {
-  const raw = process.env.ADMIN_EMAIL?.trim();
+  const raw = [process.env.ADMIN_EMAILS, process.env.ADMIN_EMAIL].map((value) => value?.trim()).filter(Boolean).join(',');
   if (!raw) return [];
   return raw
     .split(/[,;]+/)

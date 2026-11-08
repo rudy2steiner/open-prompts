@@ -2,6 +2,9 @@ import { test } from 'node:test';
 import { strict as assert } from 'node:assert';
 import { readFileSync } from 'node:fs';
 import { parse } from '@formatjs/icu-messageformat-parser';
+import { createTranslator } from 'next-intl';
+import { modelDisplayLabel, PROVIDER_CAPABILITIES } from '../src/lib/generation/capabilities';
+import { atlasModelSlug } from '../src/lib/billing/quotes';
 import { locales, languages } from '../src/config';
 import { buildLocaleHref, parseOpLocale } from '../src/lib/op-locale';
 import { buildAlternates, normalizeLocale } from '../src/lib/seo/metadata';
@@ -37,3 +40,39 @@ test('new languages contain the entire message tree with valid ICU and preserved
     }
   }
 });
+
+const modelDescriptions = {
+  en: ['Detailed', 'Fast', 'Default'],
+  zh: ['精细版', '快速版', '默认模型'],
+  ja: ['高精細', '高速', 'デフォルト'],
+  ko: ['고정밀', '고속', '기본 모델'],
+  fr: ['Détaillé', 'Rapide', 'Modèle par défaut'],
+  de: ['Detailreich', 'Schnell', 'Standardmodell'],
+  es: ['Detallado', 'Rápido', 'Modelo predeterminado'],
+  pt: ['Detalhado', 'Rápido', 'Modelo padrão'],
+};
+for (const [locale, [detailed, fast, defaultLabel]] of Object.entries(modelDescriptions)) {
+  test(`${locale}: model descriptions are localized without changing brands or API identities`, () => {
+    const messages = JSON.parse(readFileSync(`messages/${locale}.json`, 'utf8'));
+    const t = createTranslator({ locale, messages, namespace: 'OpenPrompts' });
+    for (const version of ['2.5', '2.6']) {
+      assert.equal(modelDisplayLabel(`GPT Image ${version} Sunburst`, t), `GPT Image ${version} · ${detailed}`);
+      assert.equal(modelDisplayLabel(`GPT Image ${version} Flare`, t), `GPT Image ${version} · ${fast}`);
+      assert.equal(atlasModelSlug(`GPT Image ${version} Sunburst`, 'text-to-image'), `openai/gpt-image-${version}-sunburst/text-to-image`);
+      assert.equal(atlasModelSlug(`GPT Image ${version} Flare`, 'edit'), `openai/gpt-image-${version}-flare/edit`);
+    }
+    assert.equal(modelDisplayLabel('Default', t), defaultLabel);
+    for (const label of ['GPT Image 2', 'Nano Banana 2', 'Custom Flare', 'vendor/custom-model']) {
+      assert.equal(modelDisplayLabel(label, t), label);
+    }
+    for (const provider of ['internal', 'atlascloud']) {
+      assert.deepEqual(PROVIDER_CAPABILITIES[provider].models?.map(model => model.value), [
+        'GPT Image 2.6 Sunburst', 'GPT Image 2.6 Flare',
+        'GPT Image 2.5 Sunburst', 'GPT Image 2.5 Flare', 'GPT Image 2', 'Nano Banana 2',
+      ]);
+    }
+    for (const key of ['modelDetailed', 'modelFast', 'modelDefault']) {
+      assert.doesNotThrow(() => parse(messages.OpenPrompts.gen[key]));
+    }
+  });
+}

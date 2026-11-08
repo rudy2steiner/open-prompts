@@ -30,7 +30,7 @@ export async function generateMetadata(
     title,
     description,
     keywords,
-    image: { url: '/og-image-prompts.jpg', width: 1200, height: 630 },
+    image: { url: '/og-image-prompts-v2.jpg', width: 1200, height: 630 },
   });
 }
 

@@ -91,6 +91,14 @@
 .motion-detail-prompt pre { max-height: min(60vh, 640px); overflow-y: auto; scrollbar-gutter: stable; padding-right: 12px; white-space: pre-wrap; overflow-wrap: anywhere; font: 13px/1.85 var(--font-dm-sans), sans-serif; color: var(--text2); margin-block: 20px; }
 .motion-detail-back { display: inline-block; color: var(--amber2); margin-top: 40px; font-size: 14px; }
 @media (max-width: 960px) { .motion-detail-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (pointer: coarse) {
+  .motion-detail-back,
+  .motion-detail-meta .motion-author {
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+  }
+}
 
 /* 列表只加载封面，用户播放时才请求视频。 */
 .motion-media-play { display: flex; justify-content: center; width: 100%; position: relative; cursor: pointer; }

@@ -1,6 +1,7 @@
 import '~/app/[locale]/landing-page.css';
 import { getTranslations } from 'next-intl/server';
 import type { PromptGalleryItem } from '~/data/promptGallery';
+import { CreationTypesSection } from '~/components/open-prompts/CreationTypesSection';
 import { galleryHref } from '~/lib/prompts/gallery-path';
 import { promptHref, promptPath } from '~/lib/prompts/seo-paths';
 import { formatGalleryStatCount } from '~/lib/prompts/gallery-stats';
@@ -100,6 +101,8 @@ export async function HomeSeoSections({ locale, prompts }: Props) {
             ))}
           </div>
         </section>
+
+        <CreationTypesSection locale={locale} prompts={prompts} />
 
         <section className="op-landing-seo-block" aria-labelledby="home-seo-how">
           <div className="op-landing-section-head">

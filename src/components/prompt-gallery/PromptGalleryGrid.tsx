@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import type { PromptGalleryItem } from '~/data/promptGallery';
 import { PromptGalleryCard } from '~/components/prompt-gallery/PromptGalleryCard';
+import { PromptGallerySwipeViewer } from '~/components/prompt-gallery/PromptGallerySwipeViewer';
 import { PromptGalleryMasonry } from '~/components/prompt-gallery/PromptGalleryMasonry';
 import { galleryAuthorLabel, galleryAuthorUrl } from '~/lib/prompts/gallery-attribution';
 import { formatAspectTag } from '~/lib/prompts/format-aspect-tag';
@@ -33,6 +34,7 @@ function coverUrls(items: PromptGalleryItem[]): string[] {
 export function PromptGalleryGrid({ locale, prompts, className }: Props) {
   const t = useTranslations('OpenPrompts');
   const router = useRouter();
+  const [preview, setPreview] = useState<{ id: string; title: string; images: string[] } | null>(null);
   const [limit, setLimit] = useState(PAGE_SIZE);
   const [autoLoading, setAutoLoading] = useState(false);
   const [enteringDelays, setEnteringDelays] = useState<Map<string, number>>(() => new Map());
@@ -225,6 +227,11 @@ export function PromptGalleryGrid({ locale, prompts, className }: Props) {
           primaryCtaLabel={t('card.generate')}
           coverErrorText={t('gallery.coverLoadFailed')}
           cardHref={promptHref(locale, p.id)}
+          onImageClick={() => {
+            const images = p.images.filter(Boolean);
+            if (!images.length) return;
+            setPreview({ id: p.id, title: p.title, images });
+          }}
           onMeta={({ width, height }) => rememberCoverMeta(p, width, height)}
           onCtaClick={() => {
             router.push(createHref(p.id));
@@ -235,16 +242,32 @@ export function PromptGalleryGrid({ locale, prompts, className }: Props) {
   };
 
   return (
-    <div className={className ?? 'mt-8'}>
-      <PromptGalleryMasonry
-        items={visible}
-        itemKey={(p) => p.id}
-        layoutKey={Object.keys(ratioByUrl).join(',')}
-        renderItem={renderGalleryCard}
-      />
-      {hasMore ? (
-        <div ref={sentinelRef} className="h-px w-full" aria-hidden="true" />
+    <>
+      <div className={className ?? 'mt-8'}>
+        <PromptGalleryMasonry
+          items={visible}
+          itemKey={(p) => p.id}
+          layoutKey={Object.keys(ratioByUrl).join(',')}
+          renderItem={renderGalleryCard}
+        />
+        {hasMore ? (
+          <div ref={sentinelRef} className="h-px w-full" aria-hidden="true" />
+        ) : null}
+      </div>
+      {preview ? (
+        <PromptGallerySwipeViewer
+          open
+          onClose={() => setPreview(null)}
+          images={preview.images}
+          title={preview.title}
+          imageKeyPrefix={preview.id}
+          coverLoadFailedText={t('gallery.coverLoadFailed')}
+          closeLabel={t('createPage.viewerClose')}
+          prevLabel={t('createPage.viewerPrev')}
+          nextLabel={t('createPage.viewerNext')}
+          overlayClassName="bg-black/80"
+        />
       ) : null}
-    </div>
+    </>
   );
 }

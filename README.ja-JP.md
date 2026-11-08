@@ -66,7 +66,7 @@ cp .env.example .env.local
 
 | 変数 | 用途 |
 |------|------|
-| `DATABASE_URL` | Postgres 接続文字列（マイグレーションと管理者クエリには Supabase **Session pooler** ポート **5432** を推奨） |
+| `DB` | `wrangler.jsonc` で設定する Cloudflare D1 バインディング |
 | `NEXTAUTH_URL` | `http://localhost:3000` |
 | `NEXTAUTH_SECRET` | `openssl rand -base64 32` で生成 |
 | `NEXT_PUBLIC_SITE_URL` | ローカルでは `NEXTAUTH_URL` と同じ（SEO 用） |
@@ -122,10 +122,10 @@ npm run dev
 
 1. [Vercel](https://vercel.com) でリポジトリをインポート（Next.js プリセット、ビルド `npm run build`）。
 2. 手順 2 と同じ環境変数を設定。`NEXTAUTH_URL` と `NEXT_PUBLIC_SITE_URL` は `https://your-app.vercel.app` にする。
-3. Supabase で `supabase/migrations/` を実行し、ローカルでその `DATABASE_URL` に対して `npm run seed:prompts` と `npm run seed:admin` を実行。
+3. `cp wrangler.example.jsonc wrangler.jsonc` を実行し、Worker 名と本番・プレビューそれぞれの D1 ID を設定してからマイグレーションを適用します。ローカルの `wrangler.jsonc` は Git の対象外です。
 4. OAuth コールバックを登録：`…/api/auth/callback/github` と `…/api/auth/callback/google`（Vercel のドメインに置き換え）。
 
-環境変数変更後は再デプロイ。管理者ログインに失敗したら、本番の `DATABASE_URL` で `npm run seed:admin` を実行。
+環境変数を変更した後は再デプロイし、管理者ログインに失敗した場合は D1 バインディングと Worker ログを確認してください。
 
 ---
 

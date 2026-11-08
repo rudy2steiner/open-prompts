@@ -12,7 +12,6 @@ export const playfairDisplay = Playfair_Display({
 
 export const dmSans = DM_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500'],
   display: 'swap',
   // 慢线路优先传输 HTML 和封面，字体在需要时按普通优先级加载。
   preload: false,

@@ -395,7 +395,7 @@ export default function PageComponent({
                       <button
                         type="button"
                         tabIndex={-1}
-                        className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--text3)] hover:text-[var(--text2)]"
+                        className="absolute right-1 top-1/2 grid h-9 w-9 -translate-y-1/2 place-items-center text-[var(--text3)] hover:text-[var(--text2)]"
                         onClick={() => setPwVisible((v) => !v)}
                         aria-label={pwVisible ? 'Hide password' : 'Show password'}
                       >
@@ -405,8 +405,8 @@ export default function PageComponent({
                   </div>
 
                   <div className="mb-5">
-                    <label className="flex cursor-pointer items-center text-xs text-[var(--text2)]">
-                      <input type="checkbox" defaultChecked className="mr-2 accent-[var(--amber)]" />
+                    <label className="flex min-h-9 cursor-pointer items-center text-xs text-[var(--text2)]">
+                      <input type="checkbox" defaultChecked className="mr-2 h-4 w-4 accent-[var(--amber)]" />
                       {t('remember')}
                     </label>
                   </div>

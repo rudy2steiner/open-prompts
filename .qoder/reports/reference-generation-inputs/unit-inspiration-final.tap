@@ -1,0 +1,1581 @@
+TAP version 13
+# Subtest: pricing clicks keep only the plan and payment fields and reject other events
+ok 1 - pricing clicks keep only the plan and payment fields and reject other events
+  ---
+  duration_ms: 0.684
+  type: 'test'
+  ...
+# Subtest: admin pages stay on the users, generations, and pricing-click tabs
+ok 2 - admin pages stay on the users, generations, and pricing-click tabs
+  ---
+  duration_ms: 0.101416
+  type: 'test'
+  ...
+# Subtest: guest credits merge once and a second merge does not add them again
+ok 3 - guest credits merge once and a second merge does not add them again
+  ---
+  duration_ms: 1.45825
+  type: 'test'
+  ...
+# Subtest: image download allows the owner or an admin and rejects everyone else
+ok 4 - image download allows the owner or an admin and rejects everyone else
+  ---
+  duration_ms: 0.09925
+  type: 'test'
+  ...
+# Subtest: portal and admin access fail closed
+ok 5 - portal and admin access fail closed
+  ---
+  duration_ms: 0.100834
+  type: 'test'
+  ...
+# Subtest: the promo banner and billing summary render only their own data
+ok 6 - the promo banner and billing summary render only their own data
+  ---
+  duration_ms: 2.223
+  type: 'test'
+  ...
+# Subtest: the user billing page stays on orders, credits, and generations
+ok 7 - the user billing page stays on orders, credits, and generations
+  ---
+  duration_ms: 0.106334
+  type: 'test'
+  ...
+# Subtest: catalog prices keep a 50 percent margin in credits
+ok 8 - catalog prices keep a 50 percent margin in credits
+  ---
+  duration_ms: 0.831042
+  type: 'test'
+  ...
+# Subtest: batch download includes every matching template up to the plan cap
+ok 9 - batch download includes every matching template up to the plan cap
+  ---
+  duration_ms: 0.265292
+  type: 'test'
+  ...
+# Subtest: download quota is the total of distinct prompts, and repeats are free
+ok 10 - download quota is the total of distinct prompts, and repeats are free
+  ---
+  duration_ms: 0.105792
+  type: 'test'
+  ...
+# Subtest: unknown products are rejected
+ok 11 - unknown products are rejected
+  ---
+  duration_ms: 0.035792
+  type: 'test'
+  ...
+# Subtest: WeChat Pay is shown only in Chinese and its button does not expose a price
+ok 12 - WeChat Pay is shown only in Chinese and its button does not expose a price
+  ---
+  duration_ms: 2.334667
+  type: 'test'
+  ...
+# Subtest: checkout quotes keep card prices in USD and use fixed CNY prices for WeChat Pay
+ok 13 - checkout quotes keep card prices in USD and use fixed CNY prices for WeChat Pay
+  ---
+  duration_ms: 0.588208
+  type: 'test'
+  ...
+# Subtest: monthly WeChat Pay is rejected before an order or Stripe session is created
+ok 14 - monthly WeChat Pay is rejected before an order or Stripe session is created
+  ---
+  duration_ms: 0.283958
+  type: 'test'
+  ...
+# Subtest: payment method parsing accepts only the checkout allowlist
+ok 15 - payment method parsing accepts only the checkout allowlist
+  ---
+  duration_ms: 0.065958
+  type: 'test'
+  ...
+# Subtest: one-time checkout is a payment and monthly checkout uses inline monthly price data
+ok 16 - one-time checkout is a payment and monthly checkout uses inline monthly price data
+  ---
+  duration_ms: 0.279792
+  type: 'test'
+  ...
+# Subtest: Stripe checkout exposes only the explicitly selected payment method
+ok 17 - Stripe checkout exposes only the explicitly selected payment method
+  ---
+  duration_ms: 0.086208
+  type: 'test'
+  ...
+# Subtest: unknown plans and a closed live key do not create a session
+ok 18 - unknown plans and a closed live key do not create a session
+  ---
+  duration_ms: 0.131666
+  type: 'test'
+  ...
+# Subtest: the same guest cookie keeps one guest id
+ok 19 - the same guest cookie keeps one guest id
+  ---
+  duration_ms: 12.5075
+  type: 'test'
+  ...
+# Subtest: all 3960 selectable GPT combinations share the published tariff with the button and debit
+ok 20 - all 3960 selectable GPT combinations share the published tariff with the button and debit
+  ---
+  duration_ms: 24.24325
+  type: 'test'
+  ...
+# Subtest: fixed examples apply the minimum and per-image rounding before quantity in every mode
+ok 21 - fixed examples apply the minimum and per-image rounding before quantity in every mode
+  ---
+  duration_ms: 0.243583
+  type: 'test'
+  ...
+# Subtest: unknown models, malformed modes, qualities, dimensions and counts cannot acquire a tariff
+ok 22 - unknown models, malformed modes, qualities, dimensions and counts cannot acquire a tariff
+  ---
+  duration_ms: 0.11275
+  type: 'test'
+  ...
+# Subtest: edit requires reference input while priced, anonymous, insufficient and BYOK paths retain billing boundaries
+ok 23 - edit requires reference input while priced, anonymous, insufficient and BYOK paths retain billing boundaries
+  ---
+  duration_ms: 0.101
+  type: 'test'
+  ...
+# Subtest: the generation modal exposes a localized quote before the prompt or reference is ready
+ok 24 - the generation modal exposes a localized quote before the prompt or reference is ready
+  ---
+  duration_ms: 14.762709
+  type: 'test'
+  ...
+# Subtest: the generate button follows current parameters and only redirects when site credits are short
+ok 25 - the generate button follows current parameters and only redirects when site credits are short
+  ---
+  duration_ms: 0.498792
+  type: 'test'
+  ...
+# Subtest: first login grants 3 purchased credits once
+ok 26 - first login grants 3 purchased credits once
+  ---
+  duration_ms: 0.366042
+  type: 'test'
+  ...
+# Subtest: monthly credits are spent before purchased credits
+ok 27 - monthly credits are spent before purchased credits
+  ---
+  duration_ms: 0.306375
+  type: 'test'
+  ...
+# Subtest: expired monthly credits are not spent
+ok 28 - expired monthly credits are not spent
+  ---
+  duration_ms: 0.044417
+  type: 'test'
+  ...
+# Subtest: partial monthly balance still needs purchased credits
+ok 29 - partial monthly balance still needs purchased credits
+  ---
+  duration_ms: 0.043833
+  type: 'test'
+  ...
+# Subtest: insufficient balance does not change the account
+ok 30 - insufficient balance does not change the account
+  ---
+  duration_ms: 0.038375
+  type: 'test'
+  ...
+# Subtest: a failed generation refunds the original split
+ok 31 - a failed generation refunds the original split
+  ---
+  duration_ms: 0.046583
+  type: 'test'
+  ...
+# Subtest: an invalid webhook signature does not change the balance
+ok 32 - an invalid webhook signature does not change the balance
+  ---
+  duration_ms: 1.518542
+  type: 'test'
+  ...
+# Subtest: a matching one-time payment credits once and a mismatched amount does not
+ok 33 - a matching one-time payment credits once and a mismatched amount does not
+  ---
+  duration_ms: 0.963708
+  type: 'test'
+  ...
+# Subtest: a matching CNY WeChat payment credits once and rejects amount, currency, or method mismatches
+ok 34 - a matching CNY WeChat payment credits once and rejects amount, currency, or method mismatches
+  ---
+  duration_ms: 0.971333
+  type: 'test'
+  ...
+# Subtest: subscription credits arrive on invoice.paid and status events do not grant credits
+ok 35 - subscription credits arrive on invoice.paid and status events do not grant credits
+  ---
+  duration_ms: 0.995083
+  type: 'test'
+  ...
+# Subtest: simultaneous stale tabs serialize writes and preserve every entry
+ok 36 - simultaneous stale tabs serialize writes and preserve every entry
+  ---
+  duration_ms: 1.376584
+  type: 'test'
+  ...
+# Subtest: concurrent deletion never restores another deleted entry or drops a new entry
+ok 37 - concurrent deletion never restores another deleted entry or drops a new entry
+  ---
+  duration_ms: 0.167416
+  type: 'test'
+  ...
+# Subtest: denied reads and failed writes preserve subsequent in-memory add and delete
+ok 38 - denied reads and failed writes preserve subsequent in-memory add and delete
+  ---
+  duration_ms: 0.311959
+  type: 'test'
+  ...
+# Subtest: history is capped at 30 and ignores invalid stored data
+ok 39 - history is capped at 30 and ignores invalid stored data
+  ---
+  duration_ms: 1.298667
+  type: 'test'
+  ...
+# Subtest: invalid stored timestamps are normalized to a valid date
+ok 40 - invalid stored timestamps are normalized to a valid date
+  ---
+  duration_ms: 0.107833
+  type: 'test'
+  ...
+# Subtest: create workspace uses a document-scrolling two-panel shell
+ok 41 - create workspace uses a document-scrolling two-panel shell
+  ---
+  duration_ms: 2.628
+  type: 'test'
+  ...
+# Subtest: result stage and mobile generate action are always rendered
+ok 42 - result stage and mobile generate action are always rendered
+  ---
+  duration_ms: 0.557292
+  type: 'test'
+  ...
+# Subtest: marketing content follows the workspace instead of living inside it
+ok 43 - marketing content follows the workspace instead of living inside it
+  ---
+  duration_ms: 0.45775
+  type: 'test'
+  ...
+# Subtest: generation polling carries generationId through settlement
+ok 44 - generation polling carries generationId through settlement
+  ---
+  duration_ms: 0.183708
+  type: 'test'
+  ...
+# Subtest: generate action validates required inputs without a fake 2000 character cap
+ok 45 - generate action validates required inputs without a fake 2000 character cap
+  ---
+  duration_ms: 0.28
+  type: 'test'
+  ...
+# Subtest: workspace exposes template picker, resolution settings, and result tabs
+ok 46 - workspace exposes template picker, resolution settings, and result tabs
+  ---
+  duration_ms: 0.14675
+  type: 'test'
+  ...
+# Subtest: template selection is optional and a selected template can be previewed or cleared
+ok 47 - template selection is optional and a selected template can be previewed or cleared
+  ---
+  duration_ms: 0.16975
+  type: 'test'
+  ...
+# Subtest: template picker keeps natural cover ratios in a masonry flow
+ok 48 - template picker keeps natural cover ratios in a masonry flow
+  ---
+  duration_ms: 0.447958
+  type: 'test'
+  ...
+# Subtest: template picker reuses the gallery category and sub-tag filters
+ok 49 - template picker reuses the gallery category and sub-tag filters
+  ---
+  duration_ms: 0.183875
+  type: 'test'
+  ...
+# Subtest: template picker reuses gallery cards and previews every template image
+ok 50 - template picker reuses gallery cards and previews every template image
+  ---
+  duration_ms: 0.500709
+  type: 'test'
+  ...
+# Subtest: template picker includes the gallery model filter and progressively renders results
+ok 51 - template picker includes the gallery model filter and progressively renders results
+  ---
+  duration_ms: 0.225959
+  type: 'test'
+  ...
+# Subtest: text inspiration does not substitute keyword matches for missing curated examples
+ok 52 - text inspiration does not substitute keyword matches for missing curated examples
+  ---
+  duration_ms: 1.0605
+  type: 'test'
+  ...
+# Subtest: reference inspiration does not substitute keyword matches for missing curated examples
+ok 53 - reference inspiration does not substitute keyword matches for missing curated examples
+  ---
+  duration_ms: 0.109375
+  type: 'test'
+  ...
+# Subtest: edit inspiration does not substitute keyword matches for missing curated examples
+ok 54 - edit inspiration does not substitute keyword matches for missing curated examples
+  ---
+  duration_ms: 0.040416
+  type: 'test'
+  ...
+# Subtest: missing matching artwork never falls back to another creation mode
+ok 55 - missing matching artwork never falls back to another creation mode
+  ---
+  duration_ms: 0.06175
+  type: 'test'
+  ...
+# Subtest: duplicates and incomplete entries do not crowd out usable inspiration
+ok 56 - duplicates and incomplete entries do not crowd out usable inspiration
+  ---
+  duration_ms: 0.050875
+  type: 'test'
+  ...
+# Subtest: workspace inspiration follows the latest landing examples and uses qualified site-demo results without mutating catalog data
+ok 57 - workspace inspiration follows the latest landing examples and uses qualified site-demo results without mutating catalog data
+  ---
+  duration_ms: 0.621084
+  type: 'test'
+  ...
+# Subtest: landing examples reserve each template for one mode, including the three heroes
+ok 58 - landing examples reserve each template for one mode, including the three heroes
+  ---
+  duration_ms: 0.148959
+  type: 'test'
+  ...
+# Subtest: reference landing replaces the rejected character sheet without removing the identity example
+ok 59 - reference landing replaces the rejected character sheet without removing the identity example
+  ---
+  duration_ms: 0.069709
+  type: 'test'
+  ...
+# Subtest: reference landing uses a product scene rather than food-photo retouching
+ok 60 - reference landing uses a product scene rather than food-photo retouching
+  ---
+  duration_ms: 0.155792
+  type: 'test'
+  ...
+# Subtest: missing or incomplete curated artwork never substitutes a keyword match from another mode
+ok 61 - missing or incomplete curated artwork never substitutes a keyword match from another mode
+  ---
+  duration_ms: 0.247833
+  type: 'test'
+  ...
+# Subtest: reference showcases prefer verified pairs over keyword-heavy entries without displacing the pinned travel and figure cases
+ok 62 - reference showcases prefer verified pairs over keyword-heavy entries without displacing the pinned travel and figure cases
+  ---
+  duration_ms: 1.156125
+  type: 'test'
+  ...
+# Warning: React does not recognize the `fetchPriority` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `fetchpriority` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
+#     at img
+#     at button
+#     at div
+#     at div
+#     at section
+#     at ArtworkRail (/Users/xuandu/mywsp/open-prompts/src/components/create/CreationShowcaseMedia.tsx:30:3)
+#     at div
+#     at div
+#     at CreationShowcaseMedia (/Users/xuandu/mywsp/open-prompts/src/components/create/CreationShowcaseMedia.tsx:176:3)
+# Subtest: explicit site demos show genuine independent local inputs and every qualified output
+ok 63 - explicit site demos show genuine independent local inputs and every qualified output
+  ---
+  duration_ms: 6.072792
+  type: 'test'
+  ...
+# Subtest: site demos cannot be restored by ordinary, mismatched or arbitrary URL context
+ok 64 - site demos cannot be restored by ordinary, mismatched or arbitrary URL context
+  ---
+  duration_ms: 0.071375
+  type: 'test'
+  ...
+# Subtest: an embedded reference stays hidden without displaying a source caption
+ok 65 - an embedded reference stays hidden without displaying a source caption
+  ---
+  duration_ms: 0.241292
+  type: 'test'
+  ...
+# Subtest: embedded originals do not show a redundant incomplete-extraction notice
+ok 66 - embedded originals do not show a redundant incomplete-extraction notice
+  ---
+  duration_ms: 0.248708
+  type: 'test'
+  ...
+# Subtest: mixed references hide only the crop already included in a displayed output
+ok 67 - mixed references hide only the crop already included in a displayed output
+  ---
+  duration_ms: 0.372959
+  type: 'test'
+  ...
+# Subtest: results without standalone inputs are tiled with every image directly accessible
+ok 68 - results without standalone inputs are tiled with every image directly accessible
+  ---
+  duration_ms: 0.29375
+  type: 'test'
+  ...
+# Subtest: separate reference inputs keep their output carousel instead of becoming tiles
+ok 69 - separate reference inputs keep their output carousel instead of becoming tiles
+  ---
+  duration_ms: 0.233834
+  type: 'test'
+  ...
+# Subtest: every composite stays accessible without embedded-reference captions or source links
+ok 70 - every composite stays accessible without embedded-reference captions or source links
+  ---
+  duration_ms: 0.203917
+  type: 'test'
+  ...
+# Subtest: independent original references remain visible beside a clean generated result
+ok 71 - independent original references remain visible beside a clean generated result
+  ---
+  duration_ms: 0.524916
+  type: 'test'
+  ...
+# Subtest: cola storyboard and generated campaign preview form one output-only group
+ok 72 - cola storyboard and generated campaign preview form one output-only group
+  ---
+  duration_ms: 0.550417
+  type: 'test'
+  ...
+# Subtest: unverified catalog images stay visible without guessing input or output roles
+ok 73 - unverified catalog images stay visible without guessing input or output roles
+  ---
+  duration_ms: 0.044
+  type: 'test'
+  ...
+# Subtest: multiple verified inputs are independent of a single output
+ok 74 - multiple verified inputs are independent of a single output
+  ---
+  duration_ms: 0.040875
+  type: 'test'
+  ...
+# Subtest: one input and multiple outputs preserve every result and exclude the input from attachments
+ok 75 - one input and multiple outputs preserve every result and exclude the input from attachments
+  ---
+  duration_ms: 0.037208
+  type: 'test'
+  ...
+# Subtest: missing references never reuse a verified output as an input
+ok 76 - missing references never reuse a verified output as an input
+  ---
+  duration_ms: 0.028375
+  type: 'test'
+  ...
+# Subtest: partially recovered references retain the incomplete-input status
+ok 77 - partially recovered references retain the incomplete-input status
+  ---
+  duration_ms: 0.029959
+  type: 'test'
+  ...
+# Subtest: extracted references retain provenance while the complete original composite remains an output
+ok 78 - extracted references retain provenance while the complete original composite remains an output
+  ---
+  duration_ms: 0.039459
+  type: 'test'
+  ...
+# Subtest: new or unclassified catalog images are retained without reclassifying changed URLs
+ok 79 - new or unclassified catalog images are retained without reclassifying changed URLs
+  ---
+  duration_ms: 0.025875
+  type: 'test'
+  ...
+# Subtest: duplicate catalog URLs do not inflate group counts or hide distinct originals
+ok 80 - duplicate catalog URLs do not inflate group counts or hide distinct originals
+  ---
+  duration_ms: 0.029541
+  type: 'test'
+  ...
+# Subtest: the character source preview is marked as partial video reference rather than a complete original photo
+ok 81 - the character source preview is marked as partial video reference rather than a complete original photo
+  ---
+  duration_ms: 0.034958
+  type: 'test'
+  ...
+# Subtest: the same-face countryside collage is one complete output without an invented reference panel
+ok 82 - the same-face countryside collage is one complete output without an invented reference panel
+  ---
+  duration_ms: 0.209375
+  type: 'test'
+  ...
+# Subtest: brand campaign posters are two outputs, never a guessed before-and-after pair
+ok 83 - brand campaign posters are two outputs, never a guessed before-and-after pair
+  ---
+  duration_ms: 0.119584
+  type: 'test'
+  ...
+# Subtest: restored portraits retain both composites and source-matched extracted old-photo regions
+ok 84 - restored portraits retain both composites and source-matched extracted old-photo regions
+  ---
+  duration_ms: 0.041208
+  type: 'test'
+  ...
+# Subtest: product retouching preserves the independently verified before and after photos in either catalog order
+ok 85 - product retouching preserves the independently verified before and after photos in either catalog order
+  ---
+  duration_ms: 0.047417
+  type: 'test'
+  ...
+# Subtest: the product reference and new-scene result use verified source roles regardless of gallery order
+ok 86 - the product reference and new-scene result use verified source roles regardless of gallery order
+  ---
+  duration_ms: 0.038584
+  type: 'test'
+  ...
+# Subtest: text-to-image links directly to its root landing page in every locale
+ok 87 - text-to-image links directly to its root landing page in every locale
+  ---
+  duration_ms: 0.903
+  type: 'test'
+  ...
+# Subtest: text-to-image canonical, language alternates and Open Graph use the root route
+ok 88 - text-to-image canonical, language alternates and Open Graph use the root route
+  ---
+  duration_ms: 0.540334
+  type: 'test'
+  ...
+# Subtest: reference-to-image links directly to its root landing page in every locale
+ok 89 - reference-to-image links directly to its root landing page in every locale
+  ---
+  duration_ms: 0.089792
+  type: 'test'
+  ...
+# Subtest: reference-to-image canonical, language alternates and Open Graph use the root route
+ok 90 - reference-to-image canonical, language alternates and Open Graph use the root route
+  ---
+  duration_ms: 0.183459
+  type: 'test'
+  ...
+# Subtest: image-edit links directly to its root landing page in every locale
+ok 91 - image-edit links directly to its root landing page in every locale
+  ---
+  duration_ms: 0.036083
+  type: 'test'
+  ...
+# Subtest: image-edit canonical, language alternates and Open Graph use the root route
+ok 92 - image-edit canonical, language alternates and Open Graph use the root route
+  ---
+  duration_ms: 0.109584
+  type: 'test'
+  ...
+# Subtest: old creation landing URLs permanently redirect without redirecting the workspace
+ok 93 - old creation landing URLs permanently redirect without redirecting the workspace
+  ---
+  duration_ms: 80.762458
+  type: 'test'
+  ...
+# Subtest: site demo CTA carries explicit context without changing ordinary template links
+ok 94 - site demo CTA carries explicit context without changing ordinary template links
+  ---
+  duration_ms: 0.342
+  type: 'test'
+  ...
+# Subtest: generation CTAs still open the workspace with their mode and template
+ok 95 - generation CTAs still open the workspace with their mode and template
+  ---
+  duration_ms: 0.249333
+  type: 'test'
+  ...
+# (node:90733) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+# (Use `node --trace-deprecation ...` to show where the warning was created)
+# Subtest: D1 preserves business types, OAuth linking, search, constraints and large fields
+ok 96 - D1 preserves business types, OAuth linking, search, constraints and large fields
+  ---
+  duration_ms: 1217.335334
+  type: 'test'
+  ...
+# Subtest: bulk moderation and owner deletion support 100 IDs within D1 binding limits
+ok 97 - bulk moderation and owner deletion support 100 IDs within D1 binding limits
+  ---
+  duration_ms: 3158.462125
+  type: 'test'
+  ...
+# Subtest: all eight locales have native labels, localized links and region aliases
+ok 98 - all eight locales have native labels, localized links and region aliases
+  ---
+  duration_ms: 0.881084
+  type: 'test'
+  ...
+# Subtest: new languages contain the entire message tree with valid ICU and preserved placeholders
+ok 99 - new languages contain the entire message tree with valid ICU and preserved placeholders
+  ---
+  duration_ms: 39.223208
+  type: 'test'
+  ...
+# Subtest: en: model descriptions are localized without changing brands or API identities
+ok 100 - en: model descriptions are localized without changing brands or API identities
+  ---
+  duration_ms: 1.29675
+  type: 'test'
+  ...
+# Subtest: zh: model descriptions are localized without changing brands or API identities
+ok 101 - zh: model descriptions are localized without changing brands or API identities
+  ---
+  duration_ms: 0.890042
+  type: 'test'
+  ...
+# Subtest: ja: model descriptions are localized without changing brands or API identities
+ok 102 - ja: model descriptions are localized without changing brands or API identities
+  ---
+  duration_ms: 0.884959
+  type: 'test'
+  ...
+# Subtest: ko: model descriptions are localized without changing brands or API identities
+ok 103 - ko: model descriptions are localized without changing brands or API identities
+  ---
+  duration_ms: 0.797125
+  type: 'test'
+  ...
+# Subtest: fr: model descriptions are localized without changing brands or API identities
+ok 104 - fr: model descriptions are localized without changing brands or API identities
+  ---
+  duration_ms: 0.502666
+  type: 'test'
+  ...
+# Subtest: de: model descriptions are localized without changing brands or API identities
+ok 105 - de: model descriptions are localized without changing brands or API identities
+  ---
+  duration_ms: 0.526917
+  type: 'test'
+  ...
+# Subtest: es: model descriptions are localized without changing brands or API identities
+ok 106 - es: model descriptions are localized without changing brands or API identities
+  ---
+  duration_ms: 0.578917
+  type: 'test'
+  ...
+# Subtest: pt: model descriptions are localized without changing brands or API identities
+ok 107 - pt: model descriptions are localized without changing brands or API identities
+  ---
+  duration_ms: 0.842417
+  type: 'test'
+  ...
+# Subtest: first paint only carries visible cards without full prompt bodies
+ok 108 - first paint only carries visible cards without full prompt bodies
+  ---
+  duration_ms: 0.400625
+  type: 'test'
+  ...
+# Subtest: preview offsets are bounded integers and the end does not request another page
+ok 109 - preview offsets are bounded integers and the end does not request another page
+  ---
+  duration_ms: 3.488167
+  type: 'test'
+  ...
+# Subtest: default first paint does not download the complete search catalog
+ok 110 - default first paint does not download the complete search catalog
+  ---
+  duration_ms: 4.797333
+  type: 'test'
+  ...
+# Subtest: scroll appends a small preview page, preserves existing cards and stops at the end
+ok 111 - scroll appends a small preview page, preserves existing cards and stops at the end
+  ---
+  duration_ms: 11.471167
+  type: 'test'
+  ...
+# Subtest: a failed preview page can retry without advancing the offset
+ok 112 - a failed preview page can retry without advancing the offset
+  ---
+  duration_ms: 1.618375
+  type: 'test'
+  ...
+# Subtest: search cancels an in-flight preview and retains full prompt bodies
+ok 113 - search cancels an in-flight preview and retains full prompt bodies
+  ---
+  duration_ms: 0.927167
+  type: 'test'
+  ...
+# Subtest: a filtered initial page cannot be mixed with an unfiltered offset page after clearing filters
+ok 114 - a filtered initial page cannot be mixed with an unfiltered offset page after clearing filters
+  ---
+  duration_ms: 1.1765
+  type: 'test'
+  ...
+# Subtest: newer records arriving during pagination still leave the feed in date-descending order
+ok 115 - newer records arriving during pagination still leave the feed in date-descending order
+  ---
+  duration_ms: 1.153167
+  type: 'test'
+  ...
+# Subtest: gallery uses its original shortest-column masonry with visible server-rendered cards
+ok 116 - gallery uses its original shortest-column masonry with visible server-rendered cards
+  ---
+  duration_ms: 2.927583
+  type: 'test'
+  ...
+# Subtest: cover pixels do not wait for a React onLoad handler to become visible
+ok 117 - cover pixels do not wait for a React onLoad handler to become visible
+  ---
+  duration_ms: 2.882959
+  type: 'test'
+  ...
+# Subtest: gallery requests medium X covers while leaving original values untouched
+ok 118 - gallery requests medium X covers while leaving original values untouched
+  ---
+  duration_ms: 0.59725
+  type: 'test'
+  ...
+# Subtest: other media and invalid or missing sources are left unchanged
+ok 119 - other media and invalid or missing sources are left unchanged
+  ---
+  duration_ms: 0.147834
+  type: 'test'
+  ...
+# Subtest: inline first-paint layout packs date-ordered cards before the React application is available
+ok 120 - inline first-paint layout packs date-ordered cards before the React application is available
+  ---
+  duration_ms: 1.231209
+  type: 'test'
+  ...
+# Subtest: public gallery cache uses own domain and a build-scoped key
+ok 121 - public gallery cache uses own domain and a build-scoped key
+  ---
+  duration_ms: 9.662334
+  type: 'test'
+  ...
+# Subtest: cache or binding unavailability returns visible previews, never caches a fallback
+ok 122 - cache or binding unavailability returns visible previews, never caches a fallback
+  ---
+  duration_ms: 1.166
+  type: 'test'
+  ...
+# Subtest: anonymous HTML hits avoid rendering, preserve locale cookie and isolate builds/language
+ok 123 - anonymous HTML hits avoid rendering, preserve locale cookie and isolate builds/language
+  ---
+  duration_ms: 11.583291
+  type: 'test'
+  ...
+# Subtest: public gallery strips identity before rendering and shares only anonymous HTML
+ok 124 - public gallery strips identity before rendering and shares only anonymous HTML
+  ---
+  duration_ms: 0.59
+  type: 'test'
+  ...
+# Subtest: APIs, query filters and every RSC variant bypass the HTML cache
+ok 125 - APIs, query filters and every RSC variant bypass the HTML cache
+  ---
+  duration_ms: 0.558041
+  type: 'test'
+  ...
+# Subtest: redirects, errors and non-locale Set-Cookie responses are never cached
+ok 126 - redirects, errors and non-locale Set-Cookie responses are never cached
+  ---
+  duration_ms: 0.297458
+  type: 'test'
+  ...
+# Subtest: cache failure serves original HTML
+ok 127 - cache failure serves original HTML
+  ---
+  duration_ms: 1.155083
+  type: 'test'
+  ...
+# Subtest: new locale HTML caches preserve each locale cookie without mixing languages
+ok 128 - new locale HTML caches preserve each locale cookie without mixing languages
+  ---
+  duration_ms: 1.992125
+  type: 'test'
+  ...
+# Subtest: gallery uses three columns at medium desktop width and fills the shortest column
+ok 129 - gallery uses three columns at medium desktop width and fills the shortest column
+  ---
+  duration_ms: 6.839375
+  type: 'test'
+  ...
+# Subtest: server markup is already a responsive column waterfall, with no grid-to-absolute handoff
+ok 130 - server markup is already a responsive column waterfall, with no grid-to-absolute handoff
+  ---
+  duration_ms: 2.884833
+  type: 'test'
+  ...
+# Subtest: natural covers can acquire their real aspect before React loads
+ok 131 - natural covers can acquire their real aspect before React loads
+  ---
+  duration_ms: 8.249
+  type: 'test'
+  ...
+# Subtest: remote gallery covers do not send the page referrer
+ok 132 - remote gallery covers do not send the page referrer
+  ---
+  duration_ms: 0.430542
+  type: 'test'
+  ...
+# Subtest: download filename uses the real image format
+ok 133 - download filename uses the real image format
+  ---
+  duration_ms: 0.452209
+  type: 'test'
+  ...
+# Subtest: download filename falls back to the url extension when the type is generic
+ok 134 - download filename falls back to the url extension when the type is generic
+  ---
+  duration_ms: 0.065459
+  type: 'test'
+  ...
+# [op:provider:atlascloud:create:start] {
+#   model: 'openai/gpt-image-2.6-sunburst/edit',
+#   aspectRatio: '16:9',
+#   quality: '2k',
+#   pickedSize: { width: 1536, height: 864 }
+# }
+# [op:provider:atlascloud:create:done] {
+#   status: 'processing',
+#   providerJobId: 'resolution-job',
+#   elapsedMs: 11
+# }
+# [op:provider:atlascloud:create:start] {
+#   model: 'openai/gpt-image-2.6-sunburst/edit',
+#   aspectRatio: '16:9',
+#   quality: '2k',
+#   pickedSize: { width: 2048, height: 1152 }
+# }
+# [op:provider:atlascloud:create:done] { status: 'processing', providerJobId: 'resolution-job', elapsedMs: 0 }
+# [op:provider:atlascloud:create:start] {
+#   model: 'openai/gpt-image-2.6-sunburst/edit',
+#   aspectRatio: '16:9',
+#   quality: '2k',
+#   pickedSize: { width: 3840, height: 2160 }
+# }
+# [op:provider:atlascloud:create:done] { status: 'processing', providerJobId: 'resolution-job', elapsedMs: 0 }
+# [op:provider:atlascloud:create:start] {
+#   model: 'openai/gpt-image-2/text-to-image',
+#   aspectRatio: undefined,
+#   quality: undefined,
+#   pickedSize: { width: 1024, height: 1024 }
+# }
+# [op:provider:atlascloud:create:done] { status: 'processing', providerJobId: 'count-job', elapsedMs: 1 }
+# [op:provider:atlascloud:create:start] {
+#   model: 'openai/gpt-image-2/text-to-image',
+#   aspectRatio: undefined,
+#   quality: undefined,
+#   pickedSize: { width: 1024, height: 1024 }
+# }
+# [op:provider:atlascloud:create:done] { status: 'processing', providerJobId: 'count-job', elapsedMs: 0 }
+# [op:provider:atlascloud:create:start] {
+#   model: 'openai/gpt-image-2/text-to-image',
+#   aspectRatio: undefined,
+#   quality: undefined,
+#   pickedSize: { width: 1024, height: 1024 }
+# }
+# [op:provider:atlascloud:create:done] { status: 'processing', providerJobId: 'count-job', elapsedMs: 0 }
+# [op:provider:atlascloud:create:start] {
+#   model: 'openai/gpt-image-2/text-to-image',
+#   aspectRatio: undefined,
+#   quality: undefined,
+#   pickedSize: { width: 1024, height: 1024 }
+# }
+# [op:provider:atlascloud:create:done] { status: 'processing', providerJobId: 'count-job', elapsedMs: 0 }
+# [op:provider:atlascloud:poll:done] {
+#   providerJobId: 'count-job',
+#   rawStatus: 'completed',
+#   status: 'succeeded',
+#   images: 4,
+#   hasError: false,
+#   elapsedMs: 0
+# }
+# Subtest: resolution changes actual dimensions without collapsing aspect ratios
+ok 135 - resolution changes actual dimensions without collapsing aspect ratios
+  ---
+  duration_ms: 0.964458
+  type: 'test'
+  ...
+# Subtest: resolution lookup matches exact provider dimensions and never guesses a tier
+ok 136 - resolution lookup matches exact provider dimensions and never guesses a tier
+  ---
+  duration_ms: 0.254458
+  type: 'test'
+  ...
+# Subtest: size resolver rejects inherited keys and malformed resolution values
+ok 137 - size resolver rejects inherited keys and malformed resolution values
+  ---
+  duration_ms: 0.067292
+  type: 'test'
+  ...
+# Subtest: AtlasCloud sends documented size independent of quality and preserves edit references
+ok 138 - AtlasCloud sends documented size independent of quality and preserves edit references
+  ---
+  duration_ms: 13.266917
+  type: 'test'
+  ...
+# Subtest: AtlasCloud forwards image counts using n and preserves all polled outputs
+ok 139 - AtlasCloud forwards image counts using n and preserves all polled outputs
+  ---
+  duration_ms: 2.555958
+  type: 'test'
+  ...
+# Subtest: AtlasCloud rejects invalid counts before issuing a paid request
+ok 140 - AtlasCloud rejects invalid counts before issuing a paid request
+  ---
+  duration_ms: 0.374542
+  type: 'test'
+  ...
+# Subtest: actual dimensions determine resolution multipliers independently of quality
+ok 141 - actual dimensions determine resolution multipliers independently of quality
+  ---
+  duration_ms: 0.280375
+  type: 'test'
+  ...
+# Subtest: history restores independent resolution and defaults old records without interpreting quality
+ok 142 - history restores independent resolution and defaults old records without interpreting quality
+  ---
+  duration_ms: 0.131625
+  type: 'test'
+  ...
+# Subtest: geo brief cites the real libraries and does not invent a price page
+ok 143 - geo brief cites the real libraries and does not invent a price page
+  ---
+  duration_ms: 0.602333
+  type: 'test'
+  ...
+# Subtest: geo page json-ld matches the visible definition and faq
+ok 144 - geo page json-ld matches the visible definition and faq
+  ---
+  duration_ms: 0.393584
+  type: 'test'
+  ...
+# Subtest: en: homepage no-account claims apply to browsing and copying, not creation
+ok 145 - en: homepage no-account claims apply to browsing and copying, not creation
+  ---
+  duration_ms: 11.365709
+  type: 'test'
+  ...
+# Subtest: zh: homepage no-account claims apply to browsing and copying, not creation
+ok 146 - zh: homepage no-account claims apply to browsing and copying, not creation
+  ---
+  duration_ms: 1.364458
+  type: 'test'
+  ...
+# Subtest: ja: homepage no-account claims apply to browsing and copying, not creation
+ok 147 - ja: homepage no-account claims apply to browsing and copying, not creation
+  ---
+  duration_ms: 1.958167
+  type: 'test'
+  ...
+# Subtest: ko: homepage no-account claims apply to browsing and copying, not creation
+ok 148 - ko: homepage no-account claims apply to browsing and copying, not creation
+  ---
+  duration_ms: 0.868
+  type: 'test'
+  ...
+# Subtest: fr: homepage no-account claims apply to browsing and copying, not creation
+ok 149 - fr: homepage no-account claims apply to browsing and copying, not creation
+  ---
+  duration_ms: 0.86175
+  type: 'test'
+  ...
+# Subtest: de: homepage no-account claims apply to browsing and copying, not creation
+ok 150 - de: homepage no-account claims apply to browsing and copying, not creation
+  ---
+  duration_ms: 1.21475
+  type: 'test'
+  ...
+# Subtest: es: homepage no-account claims apply to browsing and copying, not creation
+ok 151 - es: homepage no-account claims apply to browsing and copying, not creation
+  ---
+  duration_ms: 1.528459
+  type: 'test'
+  ...
+# Subtest: pt: homepage no-account claims apply to browsing and copying, not creation
+ok 152 - pt: homepage no-account claims apply to browsing and copying, not creation
+  ---
+  duration_ms: 0.863333
+  type: 'test'
+  ...
+# Subtest: navigation, page heading and SEO use the image prompts name in every language
+ok 153 - navigation, page heading and SEO use the image prompts name in every language
+  ---
+  duration_ms: 0.400417
+  type: 'test'
+  ...
+# Subtest: image prompt links use the new localized route and retain filters
+ok 154 - image prompt links use the new localized route and retain filters
+  ---
+  duration_ms: 0.396417
+  type: 'test'
+  ...
+# Subtest: breadcrumb label drops the generated slug suffix
+ok 155 - breadcrumb label drops the generated slug suffix
+  ---
+  duration_ms: 0.10175
+  type: 'test'
+  ...
+# Subtest: image prompt details use the image-prompts path
+ok 156 - image prompt details use the image-prompts path
+  ---
+  duration_ms: 0.051667
+  type: 'test'
+  ...
+# Subtest: legacy gallery routes permanently redirect to the matching image prompt route
+ok 157 - legacy gallery routes permanently redirect to the matching image prompt route
+  ---
+  duration_ms: 148.693041
+  type: 'test'
+  ...
+# Subtest: responsive columns distribute cards horizontally in source order
+ok 158 - responsive columns distribute cards horizontally in source order
+  ---
+  duration_ms: 6.107542
+  type: 'test'
+  ...
+# Subtest: appending any batch size preserves every column prefix
+ok 159 - appending any batch size preserves every column prefix
+  ---
+  duration_ms: 6.789208
+  type: 'test'
+  ...
+# Subtest: maintenance protects API routes for every supported locale
+ok 160 - maintenance protects API routes for every supported locale
+  ---
+  duration_ms: 3.44125
+  type: 'test'
+  ...
+# Subtest: create page only offers independent resolution for AtlasCloud
+ok 161 - create page only offers independent resolution for AtlasCloud
+  ---
+  duration_ms: 668.87475
+  type: 'test'
+  ...
+# Subtest: en: generation modal renders localized labels with unchanged option values
+ok 162 - en: generation modal renders localized labels with unchanged option values
+  ---
+  duration_ms: 2.438459
+  type: 'test'
+  ...
+# Subtest: zh: generation modal renders localized labels with unchanged option values
+ok 163 - zh: generation modal renders localized labels with unchanged option values
+  ---
+  duration_ms: 1.636209
+  type: 'test'
+  ...
+# Subtest: ja: generation modal renders localized labels with unchanged option values
+ok 164 - ja: generation modal renders localized labels with unchanged option values
+  ---
+  duration_ms: 2.307667
+  type: 'test'
+  ...
+# Subtest: ko: generation modal renders localized labels with unchanged option values
+ok 165 - ko: generation modal renders localized labels with unchanged option values
+  ---
+  duration_ms: 1.505083
+  type: 'test'
+  ...
+# Subtest: fr: generation modal renders localized labels with unchanged option values
+ok 166 - fr: generation modal renders localized labels with unchanged option values
+  ---
+  duration_ms: 1.3345
+  type: 'test'
+  ...
+# Subtest: de: generation modal renders localized labels with unchanged option values
+ok 167 - de: generation modal renders localized labels with unchanged option values
+  ---
+  duration_ms: 1.369917
+  type: 'test'
+  ...
+# Subtest: es: generation modal renders localized labels with unchanged option values
+ok 168 - es: generation modal renders localized labels with unchanged option values
+  ---
+  duration_ms: 1.6365
+  type: 'test'
+  ...
+# Subtest: pt: generation modal renders localized labels with unchanged option values
+ok 169 - pt: generation modal renders localized labels with unchanged option values
+  ---
+  duration_ms: 1.89275
+  type: 'test'
+  ...
+# Subtest: catalog contains only approved works and preserves existing detail IDs
+ok 170 - catalog contains only approved works and preserves existing detail IDs
+  ---
+  duration_ms: 0.877375
+  type: 'test'
+  ...
+# Subtest: pages contain summaries only and advance without duplicates
+ok 171 - pages contain summaries only and advance without duplicates
+  ---
+  duration_ms: 1.479584
+  type: 'test'
+  ...
+# Subtest: filters apply before pagination and invalid categories return no results
+ok 172 - filters apply before pagination and invalid categories return no results
+  ---
+  duration_ms: 0.545625
+  type: 'test'
+  ...
+# Subtest: preview fields use local images on the final page too
+ok 173 - preview fields use local images on the final page too
+  ---
+  duration_ms: 0.254584
+  type: 'test'
+  ...
+# Subtest: hero preview does not serialize the full prompt
+ok 174 - hero preview does not serialize the full prompt
+  ---
+  duration_ms: 0.09275
+  type: 'test'
+  ...
+# Subtest: numeric source IDs resolve to readable canonical slugs without breaking old links
+ok 175 - numeric source IDs resolve to readable canonical slugs without breaking old links
+  ---
+  duration_ms: 19.930792
+  type: 'test'
+  ...
+# Subtest: reported logo reveal uses the native video belonging to that source post
+ok 176 - reported logo reveal uses the native video belonging to that source post
+  ---
+  duration_ms: 0.1185
+  type: 'test'
+  ...
+# Subtest: duplicate-title slugs are stable when import order changes
+ok 177 - duplicate-title slugs are stable when import order changes
+  ---
+  duration_ms: 6.067792
+  type: 'test'
+  ...
+# Subtest: excluded works never appear in pages, facets or details
+ok 178 - excluded works never appear in pages, facets or details
+  ---
+  duration_ms: 34.449666
+  type: 'test'
+  ...
+# Subtest: model filters include comparisons, combine with categories and paginate consistently
+ok 179 - model filters include comparisons, combine with categories and paginate consistently
+  ---
+  duration_ms: 10.55525
+  type: 'test'
+  ...
+# Subtest: October 24 batch preserves prompt completeness and promotes the reviewed treasure map
+ok 180 - October 24 batch preserves prompt completeness and promotes the reviewed treasure map
+  ---
+  duration_ms: 0.170083
+  type: 'test'
+  ...
+# Subtest: static deployment cache only applies to three motion list pages
+ok 181 - static deployment cache only applies to three motion list pages
+  ---
+  duration_ms: 1.373917
+  type: 'test'
+  ...
+# Subtest: public motion details reuse a build-scoped edge cache
+ok 182 - public motion details reuse a build-scoped edge cache
+  ---
+  duration_ms: 14.348833
+  type: 'test'
+  ...
+# Subtest: playing without a submitted frame must not remove the poster
+ok 183 - playing without a submitted frame must not remove the poster
+  ---
+  duration_ms: 0.475292
+  type: 'test'
+  ...
+# Subtest: unmount cancels a pending first-frame handoff
+ok 184 - unmount cancels a pending first-frame handoff
+  ---
+  duration_ms: 0.107083
+  type: 'test'
+  ...
+# Subtest: older browsers require real time progress and decoded data
+ok 185 - older browsers require real time progress and decoded data
+  ---
+  duration_ms: 0.096709
+  type: 'test'
+  ...
+# Subtest: motion cards render visibly and once before scripts
+ok 186 - motion cards render visibly and once before scripts
+  ---
+  duration_ms: 2.283625
+  type: 'test'
+  ...
+# Subtest: all loaded motion cards share independent columns without batch height barriers
+ok 187 - all loaded motion cards share independent columns without batch height barriers
+  ---
+  duration_ms: 0.59575
+  type: 'test'
+  ...
+# Subtest: hero and default first page use local lightweight preview video
+ok 188 - hero and default first page use local lightweight preview video
+  ---
+  duration_ms: 1.237
+  type: 'test'
+  ...
+# Subtest: Claude variants count once and only models above 50 have their own group
+ok 189 - Claude variants count once and only models above 50 have their own group
+  ---
+  duration_ms: 1.43075
+  type: 'test'
+  ...
+# Subtest: likes sort is descending, zero is measured, unknown is last
+ok 190 - likes sort is descending, zero is measured, unknown is last
+  ---
+  duration_ms: 0.683458
+  type: 'test'
+  ...
+# Subtest: repository stars are never counted as post likes
+ok 191 - repository stars are never counted as post likes
+  ---
+  duration_ms: 0.145625
+  type: 'test'
+  ...
+# Subtest: ties preserve curated order and sorting does not mutate the catalog
+ok 192 - ties preserve curated order and sorting does not mutate the catalog
+  ---
+  duration_ms: 0.310916
+  type: 'test'
+  ...
+# Subtest: invalid metrics are treated as unknown instead of distorting rank
+ok 193 - invalid metrics are treated as unknown instead of distorting rank
+  ---
+  duration_ms: 0.131541
+  type: 'test'
+  ...
+# Subtest: live catalog sorts the whole filtered result before slicing pages
+ok 194 - live catalog sorts the whole filtered result before slicing pages
+  ---
+  duration_ms: 77.574458
+  type: 'test'
+  ...
+# Subtest: detail does not request the original until short preview has a real frame
+ok 195 - detail does not request the original until short preview has a real frame
+  ---
+  duration_ms: 7.594791
+  type: 'test'
+  ...
+# Subtest: full-video pause/play and buffer recovery do not repeat the handoff or pause it
+ok 196 - full-video pause/play and buffer recovery do not repeat the handoff or pause it
+  ---
+  duration_ms: 1.969708
+  type: 'test'
+  ...
+# Subtest: a paused preview is not hijacked, and seeking updates the full-video handoff
+ok 197 - a paused preview is not hijacked, and seeking updates the full-video handoff
+  ---
+  duration_ms: 0.811208
+  type: 'test'
+  ...
+# Subtest: original load failure keeps the decoded short preview visible
+ok 198 - original load failure keeps the decoded short preview visible
+  ---
+  duration_ms: 0.554709
+  type: 'test'
+  ...
+# Subtest: preview deploy targets an isolated worker while reusing the production D1 database
+ok 199 - preview deploy targets an isolated worker while reusing the production D1 database
+  ---
+  duration_ms: 1.371541
+  type: 'test'
+  ...
+# Subtest: promo banner stays absent when no announcement is configured
+ok 200 - promo banner stays absent when no announcement is configured
+  ---
+  duration_ms: 1.108916
+  type: 'test'
+  ...
+# Subtest: promo banner renders a plain site-wide announcement
+ok 201 - promo banner renders a plain site-wide announcement
+  ---
+  duration_ms: 0.688208
+  type: 'test'
+  ...
+# Subtest: promo banner links promotions and feature launches to their destination
+ok 202 - promo banner links promotions and feature launches to their destination
+  ---
+  duration_ms: 0.522292
+  type: 'test'
+  ...
+# Subtest: chooser catalog includes the first available image and counts all original image files
+ok 203 - chooser catalog includes the first available image and counts all original image files
+  ---
+  duration_ms: 0.719
+  type: 'test'
+  ...
+# Subtest: existing embedded catalog images are exportable without external requests or SVG execution
+ok 204 - existing embedded catalog images are exportable without external requests or SVG execution
+  ---
+  duration_ms: 0.371417
+  type: 'test'
+  ...
+# Subtest: en: both archive formats have usable chooser, progress and failure messages
+ok 205 - en: both archive formats have usable chooser, progress and failure messages
+  ---
+  duration_ms: 4.487292
+  type: 'test'
+  ...
+# Subtest: zh: both archive formats have usable chooser, progress and failure messages
+ok 206 - zh: both archive formats have usable chooser, progress and failure messages
+  ---
+  duration_ms: 1.706334
+  type: 'test'
+  ...
+# Subtest: ja: both archive formats have usable chooser, progress and failure messages
+ok 207 - ja: both archive formats have usable chooser, progress and failure messages
+  ---
+  duration_ms: 1.608291
+  type: 'test'
+  ...
+# Subtest: ko: both archive formats have usable chooser, progress and failure messages
+ok 208 - ko: both archive formats have usable chooser, progress and failure messages
+  ---
+  duration_ms: 0.948875
+  type: 'test'
+  ...
+# Subtest: fr: both archive formats have usable chooser, progress and failure messages
+ok 209 - fr: both archive formats have usable chooser, progress and failure messages
+  ---
+  duration_ms: 1.96
+  type: 'test'
+  ...
+# Subtest: de: both archive formats have usable chooser, progress and failure messages
+ok 210 - de: both archive formats have usable chooser, progress and failure messages
+  ---
+  duration_ms: 6.640584
+  type: 'test'
+  ...
+# Subtest: es: both archive formats have usable chooser, progress and failure messages
+ok 211 - es: both archive formats have usable chooser, progress and failure messages
+  ---
+  duration_ms: 4.529584
+  type: 'test'
+  ...
+# Subtest: pt: both archive formats have usable chooser, progress and failure messages
+ok 212 - pt: both archive formats have usable chooser, progress and failure messages
+  ---
+  duration_ms: 2.811792
+  type: 'test'
+  ...
+# Subtest: ZIP keeps every original image and the exact full prompt together in a safe unique folder
+ok 213 - ZIP keeps every original image and the exact full prompt together in a safe unique folder
+  ---
+  duration_ms: 25.7695
+  type: 'test'
+  ...
+# Subtest: HTML embeds complete gallery records and all images without executable user markup
+ok 214 - HTML embeds complete gallery records and all images without executable user markup
+  ---
+  duration_ms: 1.481917
+  type: 'test'
+  ...
+# Subtest: linked HTML preserves all prompts and absolute original URLs without downloading images
+ok 215 - linked HTML preserves all prompts and absolute original URLs without downloading images
+  ---
+  duration_ms: 1.804708
+  type: 'test'
+  ...
+# Subtest: linked ZIP contains prompt.txt and every original link in images.txt per template
+ok 216 - linked ZIP contains prompt.txt and every original link in images.txt per template
+  ---
+  duration_ms: 0.756334
+  type: 'test'
+  ...
+# Subtest: link-only exports reject unsafe image links before acquiring quota
+ok 217 - link-only exports reject unsafe image links before acquiring quota
+  ---
+  duration_ms: 1.04275
+  type: 'test'
+  ...
+# Subtest: failed image packaging does not acquire new prompt quota or silently omit an image
+ok 218 - failed image packaging does not acquire new prompt quota or silently omit an image
+  ---
+  duration_ms: 0.462875
+  type: 'test'
+  ...
+# Subtest: successful packaging acquires only new IDs, while downloading saved prompts preserves remaining quota
+ok 219 - successful packaging acquires only new IDs, while downloading saved prompts preserves remaining quota
+  ---
+  duration_ms: 0.850583
+  type: 'test'
+  ...
+# Subtest: oversized archives fail before acquiring quota or exposing a file
+ok 220 - oversized archives fail before acquiring quota or exposing a file
+  ---
+  duration_ms: 73.986917
+  type: 'test'
+  ...
+# Subtest: cancelling image packaging returns no file and does not acquire fresh quota
+ok 221 - cancelling image packaging returns no file and does not acquire fresh quota
+  ---
+  duration_ms: 0.8935
+  type: 'test'
+  ...
+# Subtest: media fetching rejects private URLs, API paths, path traversal and unsafe redirects before fetching them
+ok 222 - media fetching rejects private URLs, API paths, path traversal and unsafe redirects before fetching them
+  ---
+  duration_ms: 1.312917
+  type: 'test'
+  ...
+# Subtest: catalog video-cover images are included without altering their bytes in both HTML and ZIP
+ok 223 - catalog video-cover images are included without altering their bytes in both HTML and ZIP
+  ---
+  duration_ms: 10.316333
+  type: 'test'
+  ...
+# Subtest: video-cover image paths do not allow private redirects or unsafe image data
+ok 224 - video-cover image paths do not allow private redirects or unsafe image data
+  ---
+  duration_ms: 1.168417
+  type: 'test'
+  ...
+# Subtest: media fetching preserves original PNG bytes and rejects HTML pretending to be an image
+ok 225 - media fetching preserves original PNG bytes and rejects HTML pretending to be an image
+  ---
+  duration_ms: 0.982583
+  type: 'test'
+  ...
+# (node:91112) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# [op:download:export] original image unavailable
+# [op:download:export] write failure
+# Subtest: download route requires an entitled user and exposes image previews only after the same entitlement check
+ok 226 - download route requires an entitled user and exposes image previews only after the same entitlement check
+  ---
+  duration_ms: 156.998167
+  type: 'test'
+  ...
+# Subtest: download route rejects unsupported formats and excess new selections without silently truncating them
+ok 227 - download route rejects unsupported formats and excess new selections without silently truncating them
+  ---
+  duration_ms: 1.157
+  type: 'test'
+  ...
+# Subtest: real download route records acquisition before releasing the complete archive and preserves free redownloads
+ok 228 - real download route records acquisition before releasing the complete archive and preserves free redownloads
+  ---
+  duration_ms: 4.204667
+  type: 'test'
+  ...
+# Subtest: link-only downloads acquire the same quota without fetching original image bytes
+ok 229 - link-only downloads acquire the same quota without fetching original image bytes
+  ---
+  duration_ms: 2.786166
+  type: 'test'
+  ...
+# Subtest: download route rejects unknown image modes rather than silently fetching originals
+ok 230 - download route rejects unknown image modes rather than silently fetching originals
+  ---
+  duration_ms: 0.28275
+  type: 'test'
+  ...
+# Subtest: real download route leaves fresh quota unchanged when an original image fails
+ok 231 - real download route leaves fresh quota unchanged when an original image fails
+  ---
+  duration_ms: 0.54
+  type: 'test'
+  ...
+# Subtest: all prompt acquisitions roll back together if the archive quota write fails
+ok 232 - all prompt acquisitions roll back together if the archive quota write fails
+  ---
+  duration_ms: 1.001166
+  type: 'test'
+  ...
+# Subtest: the final quota check and acquisition cannot race a competing download
+ok 233 - the final quota check and acquisition cannot race a competing download
+  ---
+  duration_ms: 0.966875
+  type: 'test'
+  ...
+# Subtest: quota consumed elsewhere while images are loading is checked again before completing the archive
+ok 234 - quota consumed elsewhere while images are loading is checked again before completing the archive
+  ---
+  duration_ms: 0.532042
+  type: 'test'
+  ...
+# Subtest: gallery client filter combines model, category, sub-tag, and query
+ok 235 - gallery client filter combines model, category, sub-tag, and query
+  ---
+  duration_ms: 0.635042
+  type: 'test'
+  ...
+# Subtest: GPT Image 2.6 Sunburst: official image-input limit also applies to its provider slug
+ok 236 - GPT Image 2.6 Sunburst: official image-input limit also applies to its provider slug
+  ---
+  duration_ms: 0.442792
+  type: 'test'
+  ...
+# Subtest: GPT Image 2.6 Flare: official image-input limit also applies to its provider slug
+ok 237 - GPT Image 2.6 Flare: official image-input limit also applies to its provider slug
+  ---
+  duration_ms: 0.055084
+  type: 'test'
+  ...
+# Subtest: GPT Image 2.5 Sunburst: official image-input limit also applies to its provider slug
+ok 238 - GPT Image 2.5 Sunburst: official image-input limit also applies to its provider slug
+  ---
+  duration_ms: 0.036459
+  type: 'test'
+  ...
+# Subtest: GPT Image 2.5 Flare: official image-input limit also applies to its provider slug
+ok 239 - GPT Image 2.5 Flare: official image-input limit also applies to its provider slug
+  ---
+  duration_ms: 0.075291
+  type: 'test'
+  ...
+# Subtest: GPT Image 2: official image-input limit also applies to its provider slug
+ok 240 - GPT Image 2: official image-input limit also applies to its provider slug
+  ---
+  duration_ms: 0.065125
+  type: 'test'
+  ...
+# Subtest: Nano Banana 2: official image-input limit also applies to its provider slug
+ok 241 - Nano Banana 2: official image-input limit also applies to its provider slug
+  ---
+  duration_ms: 0.025375
+  type: 'test'
+  ...
+# Subtest: Nano Banana is coming soon while every GPT variant remains available
+ok 242 - Nano Banana is coming soon while every GPT variant remains available
+  ---
+  duration_ms: 0.1025
+  type: 'test'
+  ...
+# Subtest: unknown model image limits are not guessed
+ok 243 - unknown model image limits are not guessed
+  ---
+  duration_ms: 0.030917
+  type: 'test'
+  ...
+# Subtest: image-only reference generation routes through edit, not text-to-image or video reference
+ok 244 - image-only reference generation routes through edit, not text-to-image or video reference
+  ---
+  duration_ms: 0.412792
+  type: 'test'
+  ...
+# Subtest: related prompts stay in the same category before a tag match elsewhere
+ok 245 - related prompts stay in the same category before a tag match elsewhere
+  ---
+  duration_ms: 0.628709
+  type: 'test'
+  ...
+# Subtest: signed-out header opens provider selection instead of navigating to a login page
+ok 246 - signed-out header opens provider selection instead of navigating to a login page
+  ---
+  duration_ms: 34.168459
+  type: 'test'
+  ...
+# Subtest: atlas upload url follows the same base shapes as generation
+ok 247 - atlas upload url follows the same base shapes as generation
+  ---
+  duration_ms: 0.513833
+  type: 'test'
+  ...
+# Subtest: upload response only accepts an https download url
+ok 248 - upload response only accepts an https download url
+  ---
+  duration_ms: 0.1155
+  type: 'test'
+  ...
+# Subtest: upload rejects non-images and files over 8 MB
+ok 249 - upload rejects non-images and files over 8 MB
+  ---
+  duration_ms: 0.053792
+  type: 'test'
+  ...
+1..249
+# tests 249
+# suites 0
+# pass 249
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 18178.593125

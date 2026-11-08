@@ -14,7 +14,7 @@ function parseUserId(raw: string): string | null {
 export async function GET(_req: Request, { params }: { params: Promise<{ id: string }> }) {
   const session = await requireAdminSession();
   if (!session) {
-    return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    return new NextResponse('Not found', { status: 404 });
   }
 
   const db = getDb();

@@ -25,9 +25,15 @@ function popularityFor(id: string, sourceUrl: string): MotionPopularity {
   return { likes: null, stars: null, observedAt: null, scope: null, sourceUrl: null, approximate: false };
 }
 const previewById = previews as Record<string, { previewVideo: string; sourceVideo: string }>;
+function sameVideoAsset(left: string | null | undefined, right: string | null | undefined): boolean {
+  if (!left || !right) return false;
+  if (left === right) return true;
+  const assetId = (value: string) => value.match(/\/(?:amplify_video|ext_tw_video)\/(\d+)\//)?.[1] ?? null;
+  return assetId(left) !== null && assetId(left) === assetId(right);
+}
 // 统一排除未通过媒体质量检查的条目，分页、分类、详情和站点地图共用。
 const excludedIds = new Set(Object.keys(exclusions));
-const catalog = records.filter(record => !!record.poster && !excludedIds.has(record.id)).map(record => ({ ...record, slug: slugs.get(record.id)!, previewVideo: previewById[record.id]?.sourceVideo === record.video ? previewById[record.id].previewVideo : null, popularity: popularityFor(record.id, record.sourceUrl) })) as MotionDetail[];
+const catalog = records.filter(record => !!record.poster && !excludedIds.has(record.id)).map(record => ({ ...record, slug: slugs.get(record.id)!, previewVideo: sameVideoAsset(previewById[record.id]?.sourceVideo, record.video) ? previewById[record.id].previewVideo : null, popularity: popularityFor(record.id, record.sourceUrl) })) as MotionDetail[];
 const modelGroups = groupMotionModels(catalog);
 const byId = new Map(catalog.map(entry => [entry.id, entry]));
 const bySlug = new Map(catalog.map(entry => [entry.slug, entry]));

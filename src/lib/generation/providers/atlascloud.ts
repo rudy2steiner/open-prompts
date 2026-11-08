@@ -3,6 +3,7 @@ import type {
   GenerationCreateResult,
   GenerationPollResult,
   ImageGenerationProvider,
+  ImageResolution,
 } from '~/lib/generation/types';
 
 type AtlascloudCreateResponse = {
@@ -41,28 +42,49 @@ export function createAtlascloudProvider(): ImageGenerationProvider {
   return createAtlascloudProviderWithOptions();
 }
 
-function pickAtlasSize(aspectRatio?: string): { width: number; height: number } | undefined {
-  const ar = String(aspectRatio || '').trim();
-  if (!ar) return undefined;
-  const norm = ar.replace(/\s+/g, '');
-  // AtlasCloud doc highlights common fixed sizes:
-  // 1024×1024, 1024×1536, 1536×1024
-  if (norm === '1:1' || norm === '1/1') return { width: 1024, height: 1024 };
-  // Portrait-like ratios
-  if (norm === '9:16' || norm === '2:3' || norm === '3:4' || norm === '4:5') return { width: 1024, height: 1536 };
-  // Landscape-like ratios
-  if (norm === '16:9' || norm === '3:2' || norm === '4:3' || norm === '5:4' || norm === '2:1')
-    return { width: 1536, height: 1024 };
+const ATLAS_BASE_SIZES: Record<string, [number, number]> = {
+  '1:1': [1024, 1024],
+  '2:1': [1536, 768],
+  '16:9': [1536, 864],
+  '3:2': [1536, 1024],
+  '4:3': [1024, 768],
+  '5:4': [1280, 1024],
+  '9:16': [864, 1536],
+  '3:4': [768, 1024],
+  '2:3': [1024, 1536],
+  '4:5': [1024, 1280],
+};
+
+export function pickAtlasSize(aspectRatio?: string, resolution: string = '1k'): { width: number; height: number } | undefined {
+  if (aspectRatio !== undefined && typeof aspectRatio !== 'string') return undefined;
+  const ratio = (aspectRatio ?? '1:1').trim().replace(/\s+/g, '').replace('/', ':');
+  if (!Object.hasOwn(ATLAS_BASE_SIZES, ratio)) return undefined;
+  const base = ATLAS_BASE_SIZES[ratio];
+  if (resolution === '1k') return { width: base[0], height: base[1] };
+  if (resolution === '2k') {
+    const scale = 2048 / Math.max(...base);
+    return { width: Math.round(base[0] * scale / 16) * 16, height: Math.round(base[1] * scale / 16) * 16 };
+  }
+  if (resolution === '4k' && ratio === '16:9') return { width: 3840, height: 2160 };
+  if (resolution === '4k' && ratio === '9:16') return { width: 2160, height: 3840 };
   return undefined;
+}
+
+export function resolutionForAtlasSize(width: number, height: number): ImageResolution | null {
+  for (const resolution of ['1k', '2k', '4k'] as const) {
+    for (const ratio of Object.keys(ATLAS_BASE_SIZES)) {
+      const size = pickAtlasSize(ratio, resolution);
+      if (size?.width === width && size.height === height) return resolution;
+    }
+  }
+  return null;
 }
 
 function coerceQuality(q?: string): 'low' | 'medium' | 'high' | undefined {
   const s = String(q || '').toLowerCase();
-  if (!s) return undefined;
-  if (s === 'low' || s === 'medium' || s === 'high') return s;
-  // our UI uses "1k" by default
-  if (s.includes('1k')) return 'medium';
-  if (s.includes('2k') || s.includes('4k')) return 'high';
+  if (s === 'low' || s === '1k') return 'low';
+  if (s === 'medium' || s === '2k') return 'medium';
+  if (s === 'high' || s === '4k') return 'high';
   return undefined;
 }
 
@@ -91,8 +113,11 @@ export function createAtlascloudProviderWithOptions(opts?: { baseUrl?: string; a
     async create(params: GenerationCreateParams): Promise<GenerationCreateResult> {
       const modelSlug =
         params.model && params.model.includes('/') ? params.model : 'openai/gpt-image-2/text-to-image';
-      const size = pickAtlasSize(params.aspectRatio);
+      const size = pickAtlasSize(params.aspectRatio, params.resolution);
+      if (!size) throw new Error('Unsupported AtlasCloud size or resolution');
       const quality = coerceQuality(params.quality);
+      const count = params.count === undefined ? 1 : params.count;
+      if (!Number.isInteger(count) || count < 1 || count > 10) throw new Error('Unsupported AtlasCloud image count');
 
       const startedAt = Date.now();
       console.info('[op:provider:atlascloud:create:start]', {
@@ -108,12 +133,11 @@ export function createAtlascloudProviderWithOptions(opts?: { baseUrl?: string; a
           authorization: `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
-          // AtlasCloud docs show both `prompt` and `input.prompt` across examples.
-          // Send both for compatibility.
           model: modelSlug,
           prompt: params.prompt,
-          input: { prompt: params.prompt },
-          ...(size ? size : {}),
+          ...(params.referenceImages?.length ? { images: params.referenceImages } : {}),
+          size: `${size.width}x${size.height}`,
+          n: count,
           ...(quality ? { quality } : {}),
         }),
       });

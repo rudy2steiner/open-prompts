@@ -129,6 +129,14 @@
   color: var(--text2);
 }
 
+@media (pointer: coarse) {
+  .op-gallery-cat-pill,
+  .op-gallery-model-pill,
+  .op-gallery-subtag-pill {
+    min-height: 2.25rem;
+  }
+}
+
 .op-gallery-model-pill.idle:hover {
   border-color: var(--border2);
   color: var(--text);

@@ -12,9 +12,10 @@ type Props = {
   className?: string;
   errorText?: string;
   onMeta?: (meta: { width: number; height: number }) => void;
+  onError?: () => void;
 };
 
-export function CoverImage({ src, alt, sizes, priority, className, errorText, onMeta, naturalAspectRatio }: Props) {
+export function CoverImage({ src, alt, sizes, priority, className, errorText, onMeta, onError, naturalAspectRatio }: Props) {
   const [errored, setErrored] = useState(false);
   const isRemote =
     /^https?:\/\//i.test(src) || src.startsWith('data:') || src.includes('/api/image-proxy');
@@ -42,7 +43,10 @@ export function CoverImage({ src, alt, sizes, priority, className, errorText, on
           const height = img?.naturalHeight ?? 0;
           if (width > 0 && height > 0) onMeta?.({ width, height });
         }}
-        onError={() => setErrored(true)}
+        onError={() => {
+          setErrored(true);
+          onError?.();
+        }}
       />
 
 

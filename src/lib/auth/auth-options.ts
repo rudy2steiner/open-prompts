@@ -87,7 +87,10 @@ export const authOptions: NextAuthOptions = {
     },
     async jwt({ token, user, account }) {
       const db = getDb();
-      if (!db) return token;
+      if (!db) {
+        if (typeof token.email === 'string') token.isAdmin = isAdminEmail(token.email);
+        return token;
+      }
 
       if (account && user) {
         if (account.provider === 'credentials' && user.id) {

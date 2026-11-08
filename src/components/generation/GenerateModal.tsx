@@ -4,7 +4,13 @@ import { useEffect, useMemo, useState } from 'react';
 import type { PromptGalleryItem } from '~/data/promptGallery';
 import { PROMPT_TEMPLATES } from '~/data/promptTemplates';
 import { renderPromptTemplate, TemplateValidationError } from '~/lib/templates/render';
-import { PROVIDER_CAPABILITIES } from '~/lib/generation/capabilities';
+import { IMAGE_RESOLUTIONS, modelDisplayLabel, PROVIDER_CAPABILITIES, qualityDisplayLabel } from '~/lib/generation/capabilities';
+import { notifyCreditsChanged } from '~/lib/billing/credits-changed';
+import { generateButtonCredits, shouldOpenPricing } from '~/lib/billing/generation-charge';
+import { GenerationBillingPrompt, generationBillingOffer } from '~/components/generation/GenerationBillingPrompt';
+import { signIn, useSession } from 'next-auth/react';
+import { pickAtlasSize } from '~/lib/generation/providers/atlascloud';
+import type { ImageResolution } from '~/lib/generation/types';
 import {useTranslations} from 'next-intl';
 import { getOrCreateUserId } from '~/lib/credits/fingerprint';
 import { localeApiPath } from '~/lib/locale-api-path';
@@ -20,6 +26,8 @@ type UiState = 'idle' | 'queued' | 'running' | 'succeeded' | 'failed';
 
 export function GenerateModal({ open, onClose, locale, item }: Props) {
   const t = useTranslations('OpenPrompts');
+  const { status: authStatus } = useSession();
+  const [billingOpen, setBillingOpen] = useState(false);
   const template = useMemo(() => {
     const id = item.templateId;
     return PROMPT_TEMPLATES.find((t) => t.id === id) ?? PROMPT_TEMPLATES[0];
@@ -30,7 +38,14 @@ export function GenerateModal({ open, onClose, locale, item }: Props) {
   const [error, setError] = useState<string | null>(null);
 
   const [provider, setProvider] = useState<string>('atlascloud');
-  const [aspectRatio, setAspectRatio] = useState<string>('9:16');
+  const [model, setModel] = useState<string>('GPT Image 2.6 Sunburst');
+  const [imagePath, setImagePath] = useState<'text-to-image' | 'edit'>('edit');
+  const [referenceImage, setReferenceImage] = useState('');
+  const [aspectRatio, setAspectRatio] = useState<string>('1:1');
+  const [resolution, setResolution] = useState<ImageResolution>('1k');
+  useEffect(() => {
+    if (!pickAtlasSize(aspectRatio, resolution)) setResolution('1k');
+  }, [aspectRatio, resolution]);
   const [quality, setQuality] = useState<string>('1k');
   const [count, setCount] = useState<number>(1);
 
@@ -38,6 +53,7 @@ export function GenerateModal({ open, onClose, locale, item }: Props) {
 
   const [uiState, setUiState] = useState<UiState>('idle');
   const [providerJobId, setProviderJobId] = useState<string | null>(null);
+  const [generationId, setGenerationId] = useState<string | null>(null);
   const [images, setImages] = useState<string[]>([]);
 
   useEffect(() => {
@@ -76,7 +92,8 @@ export function GenerateModal({ open, onClose, locale, item }: Props) {
     let cancelled = false;
     const tick = async () => {
       try {
-        const res = await fetch(localeApiPath(locale, `/api/generations/${encodeURIComponent(providerJobId)}`), {
+        const generationQuery = generationId ? `?generationId=${encodeURIComponent(generationId)}` : '';
+        const res = await fetch(localeApiPath(locale, `/api/generations/${encodeURIComponent(providerJobId)}${generationQuery}`), {
           cache: 'no-store',
         }).then((r) => r.json());
         if (cancelled) return;
@@ -87,9 +104,11 @@ export function GenerateModal({ open, onClose, locale, item }: Props) {
         if (res?.status === 'succeeded') {
           setUiState('succeeded');
           setImages(Array.isArray(res.images) ? res.images : []);
+          notifyCreditsChanged();
           return;
         }
         setUiState('failed');
+        notifyCreditsChanged();
         setError(res?.error || t('gen.generationFailed'));
       } catch (e: any) {
         if (cancelled) return;
@@ -104,13 +123,34 @@ export function GenerateModal({ open, onClose, locale, item }: Props) {
       cancelled = true;
       clearInterval(interval);
     };
-  }, [open, locale, providerJobId, uiState]);
+  }, [open, locale, providerJobId, generationId, uiState]);
 
   const canGenerate = uiState === 'idle' || uiState === 'failed' || uiState === 'succeeded';
 
-  const onGenerate = async () => {
+  const size = pickAtlasSize(aspectRatio, provider === 'atlascloud' ? resolution : undefined);
+  const buttonCredits = generateButtonCredits({ model, path: imagePath, quality, width: size?.width, height: size?.height, count, byok: false });
+
+  const onGenerate = async (skipAuth = false) => {
     if (!rendered?.prompt) {
       setError(error || t('gen.missingPrompt'));
+      return;
+    }
+    if (!skipAuth && authStatus !== 'authenticated') {
+      setBillingOpen(true);
+      return;
+    }
+    if (buttonCredits == null) {
+      if (skipAuth || authStatus !== 'authenticated') {
+        window.location.assign(localeApiPath(locale, '/pricing'));
+        return;
+      }
+      setError(t('pricingPage.rateNote'));
+      setUiState('idle');
+      return;
+    }
+    const balance = await fetch('/api/billing/balance', { cache: 'no-store' }).then((response) => response.json()).catch(() => ({ balance: 0 }));
+    if (shouldOpenPricing({ byok: false, credits: buttonCredits, balance: Number(balance.balance || 0) })) {
+      window.location.assign(localeApiPath(locale, '/pricing'));
       return;
     }
     setError(null);
@@ -124,17 +164,27 @@ export function GenerateModal({ open, onClose, locale, item }: Props) {
           provider,
           prompt: rendered.prompt,
           negativePrompt: rendered.negativePrompt,
-          model: template.model,
+          model,
+          path: imagePath,
+          referenceImages: imagePath === 'edit' && referenceImage.trim() ? [referenceImage.trim()] : [],
           aspectRatio,
+          ...(provider === 'atlascloud' ? { resolution } : {}),
           quality,
           count,
         }),
       }).then((r) => r.json());
 
       if (res?.error) throw new Error(res.error);
+      setGenerationId(typeof res.generationId === 'string' ? res.generationId : null);
       setProviderJobId(res.providerJobId);
       setUiState(res.status || 'queued');
+      notifyCreditsChanged();
     } catch (e: any) {
+      if (authStatus !== 'authenticated' && generationBillingOffer(e?.message)) {
+        setUiState('idle');
+        setBillingOpen(true);
+        return;
+      }
       setUiState('failed');
       setError(e?.message || t('gen.createFailed'));
     }
@@ -196,7 +246,26 @@ export function GenerateModal({ open, onClose, locale, item }: Props) {
             </div>
 
             <div className="mt-6 grid grid-cols-2 gap-3">
-              <div>
+              <div className="col-span-2">
+                <div className="mb-1 text-[11px] font-semibold text-stone-600">{t('gen.model')}</div>
+                <select className="w-full rounded-lg border border-stone-200 bg-white px-3 py-2 text-sm text-stone-800 outline-none focus:border-orange-400" value={model} onChange={(e) => setModel(e.target.value)}>
+                  {(capabilities.models ?? []).map((item) => <option key={item.value ?? item.label} value={item.value ?? item.label}>{modelDisplayLabel(item.label, t)}</option>)}
+                </select>
+              </div>
+              <div className="col-span-2">
+                <div className="mb-1 text-[11px] font-semibold text-stone-600">{t('gen.path')}</div>
+                <select className="w-full rounded-lg border border-stone-200 bg-white px-3 py-2 text-sm text-stone-800 outline-none focus:border-orange-400" value={imagePath} onChange={(e) => setImagePath(e.target.value === 'edit' ? 'edit' : 'text-to-image')}>
+                  <option value="text-to-image">{t('gen.textToImage')}</option>
+                  <option value="edit">{t('gen.imageToImage')}</option>
+                </select>
+              </div>
+              {imagePath === 'edit' ? (
+                <div className="col-span-2">
+                  <div className="mb-1 text-[11px] font-semibold text-stone-600">{t('gen.referenceImage')}</div>
+                  <input className="w-full rounded-lg border border-stone-200 bg-white px-3 py-2 text-sm text-stone-800 outline-none focus:border-orange-400" value={referenceImage} onChange={(e) => setReferenceImage(e.target.value)} placeholder="https://" />
+                </div>
+              ) : null}
+              <div className="col-span-2">
                 <div className="mb-1 text-[11px] font-semibold text-stone-600">{t('gen.provider')}</div>
                 <select
                   className="w-full rounded-lg border border-stone-200 bg-white px-3 py-2 text-sm text-stone-800 outline-none focus:border-orange-400"
@@ -207,21 +276,7 @@ export function GenerateModal({ open, onClose, locale, item }: Props) {
                   <option value="replicate">replicate</option>
                 </select>
               </div>
-              <div>
-                <div className="mb-1 text-[11px] font-semibold text-stone-600">{t('gen.count')}</div>
-                <select
-                  className="w-full rounded-lg border border-stone-200 bg-white px-3 py-2 text-sm text-stone-800 outline-none focus:border-orange-400"
-                  value={String(count)}
-                  onChange={(e) => setCount(Number(e.target.value))}
-                >
-                  {Array.from({ length: capabilities.maxCount }, (_, i) => String(i + 1)).map((v) => (
-                    <option key={v} value={v}>
-                      {v}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div>
+              <div className={provider === 'atlascloud' ? '' : 'col-span-2'}>
                 <div className="mb-1 text-[11px] font-semibold text-stone-600">{t('gen.aspectRatio')}</div>
                 <select
                   className="w-full rounded-lg border border-stone-200 bg-white px-3 py-2 text-sm text-stone-800 outline-none focus:border-orange-400"
@@ -235,6 +290,22 @@ export function GenerateModal({ open, onClose, locale, item }: Props) {
                   ))}
                 </select>
               </div>
+              {provider === 'atlascloud' ? (
+                <label className="min-w-0">
+                  <span className="mb-1 block text-[11px] font-semibold text-stone-600">{t('gen.resolution')}</span>
+                  <select
+                    className="w-full min-w-0 rounded-lg border border-stone-200 bg-white px-3 py-2 text-sm text-stone-800 outline-none focus:border-orange-400"
+                    value={resolution}
+                    onChange={(e) => setResolution(e.target.value as ImageResolution)}
+                  >
+                    {IMAGE_RESOLUTIONS.map((value) => {
+                      const dimensions = pickAtlasSize(aspectRatio, value);
+                      return <option key={value} value={value} disabled={!dimensions}>{value.toUpperCase()}{dimensions ? ` · ${dimensions.width}×${dimensions.height}` : ''}</option>;
+                    })}
+                  </select>
+                </label>
+              ) : null}
+              {provider === 'atlascloud' ? <p className="col-span-2 text-[11px] text-stone-500">{t('gen.resolutionExperimental')}</p> : null}
               <div>
                 <div className="mb-1 text-[11px] font-semibold text-stone-600">{t('gen.quality')}</div>
                 <select
@@ -244,8 +315,20 @@ export function GenerateModal({ open, onClose, locale, item }: Props) {
                 >
                   {capabilities.qualities.map((v) => (
                     <option key={v} value={v}>
-                      {v}
+                      {qualityDisplayLabel(v, t)}
                     </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <div className="mb-1 text-[11px] font-semibold text-stone-600">{t('gen.count')}</div>
+                <select
+                  className="w-full rounded-lg border border-stone-200 bg-white px-3 py-2 text-sm text-stone-800 outline-none focus:border-orange-400"
+                  value={String(count)}
+                  onChange={(e) => setCount(Number(e.target.value))}
+                >
+                  {Array.from({ length: capabilities.maxCount }, (_, i) => String(i + 1)).map((v) => (
+                    <option key={v} value={v}>{v}</option>
                   ))}
                 </select>
               </div>
@@ -254,12 +337,14 @@ export function GenerateModal({ open, onClose, locale, item }: Props) {
             <div className="mt-6">
               <button
                 disabled={!canGenerate}
-                onClick={onGenerate}
+                onClick={() => void onGenerate()}
                 className="w-full rounded-xl bg-stone-900 px-4 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
               >
-                {uiState === 'queued' || uiState === 'running' ? t('gen.generating') : t('gen.generate')}
+                {uiState === 'queued' || uiState === 'running'
+                  ? t('gen.generating')
+                  : `${t('gen.generate')} · ${buttonCredits == null ? t('gen.unpricedLabel') : t('pricingPage.credits', { count: buttonCredits })}`}
               </button>
-              {error ? <div className="mt-2 text-xs text-red-600">{error}</div> : null}
+              {error && !generationBillingOffer(error) ? <div className="mt-2 text-xs text-red-600">{error}</div> : null}
               {providerJobId ? (
                 <div className="mt-2 text-[11px] text-stone-500">
                   {t('gen.jobLabel')}: {providerJobId}
@@ -293,11 +378,12 @@ export function GenerateModal({ open, onClose, locale, item }: Props) {
               {uiState === 'succeeded' ? (
                 images.length ? (
                   <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                    {images.map((u) => (
+                    {images.map((u, index) => (
                       <a
                         key={u}
-                        href={u}
-                        target="_blank"
+                        href={generationId ? `/api/generations/${generationId}/images/${index}` : u}
+                        download={Boolean(generationId)}
+                        target={generationId ? undefined : '_blank'}
                         rel="noreferrer"
                         className="group relative aspect-[4/3] overflow-hidden rounded-lg border border-stone-200 bg-stone-100"
                         title={t('gen.openDownload')}
@@ -314,7 +400,7 @@ export function GenerateModal({ open, onClose, locale, item }: Props) {
                   </div>
                 )
               ) : null}
-              {uiState === 'failed' ? (
+              {uiState === 'failed' && !generationBillingOffer(error) ? (
                 <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
                   {t('gen.failedPrefix')}
                   {error || t('gen.tryAgain')}
@@ -324,6 +410,22 @@ export function GenerateModal({ open, onClose, locale, item }: Props) {
           </div>
         </div>
       </div>
+      <GenerationBillingPrompt
+        open={billingOpen}
+        onClose={() => setBillingOpen(false)}
+        onLogin={() => void signIn('google', { callbackUrl: window.location.href })}
+        onGuest={() => {
+          setBillingOpen(false);
+          void onGenerate(true);
+        }}
+        copy={{
+          title: t('pricingPage.dialogTitle'),
+          body: t('pricingPage.dialogBody'),
+          login: t('pricingPage.dialogLogin'),
+          guest: t('pricingPage.dialogGuest'),
+          close: t('pricingPage.dialogClose'),
+        }}
+      />
     </div>
   );
 }

@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type AnchorHTMLAttributes } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type ComponentProps } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import Link, { useLinkStatus } from 'next/link';
 import { signOut, useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 import { languages, locales } from '~/config';
@@ -59,11 +59,26 @@ export function resolveHeaderAccountView(
   };
 }
 
-/** 仅 Gallery 导航走站内预取，其余入口保留原行为。 */
-function SiteNavLink({ gallery, prefetch, children, ...props }: AnchorHTMLAttributes<HTMLAnchorElement> & {
-  href: string; gallery: boolean; prefetch?: boolean;
-}) {
-  return gallery ? <Link {...props} prefetch={prefetch}>{children}</Link> : <a {...props}>{children}</a>;
+function SiteNavPendingIndicator() {
+  const { pending } = useLinkStatus();
+  return (
+    <span
+      aria-hidden="true"
+      data-nav-pending={pending ? 'true' : 'false'}
+      className={`ml-1 inline-block h-1.5 w-1.5 rounded-full bg-current align-middle transition-opacity ${
+        pending ? 'animate-pulse opacity-60' : 'opacity-0'
+      }`}
+    />
+  );
+}
+
+function SiteNavLink({ children, ...props }: ComponentProps<typeof Link>) {
+  return (
+    <Link {...props} data-op-site-nav="true" prefetch={false}>
+      {children}
+      <SiteNavPendingIndicator />
+    </Link>
+  );
 }
 
 export type OpenPromptsSiteNavKey =
@@ -102,6 +117,19 @@ export function OpenPromptsSiteHeader({
   const [signInOpen, setSignInOpen] = useState(false);
   const langWrapRef = useRef<HTMLDivElement | null>(null);
   const userMenuRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    document.documentElement.dataset.opSiteNavReady = 'true';
+    const navWindow = window as Window & { __opPendingSiteNav?: string };
+    const pendingHref = navWindow.__opPendingSiteNav;
+    if (!pendingHref) return;
+    delete navWindow.__opPendingSiteNav;
+    const pendingUrl = new URL(pendingHref, window.location.href);
+    const pendingLink = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[data-op-site-nav="true"]'))
+      .find((link) => link.href === pendingUrl.href);
+    pendingLink?.removeAttribute('aria-busy');
+    window.requestAnimationFrame(() => pendingLink?.click());
+  }, []);
 
   const accountView = resolveHeaderAccountView(status, session?.user ?? null, cachedAccount);
   const accountUser = accountView.user;
@@ -226,21 +254,19 @@ export function OpenPromptsSiteHeader({
       style={{ top: 'var(--promo-banner-height, 0px)' }}
     >
       <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-4 md:px-6">
-        <a href={locale === 'en' ? '/' : `/${locale}`} className="flex min-w-0 items-center gap-2 whitespace-nowrap text-sm font-semibold tracking-wide">
+        <Link data-op-site-nav="true" prefetch={false} href={locale === 'en' ? '/' : `/${locale}`} className="flex min-w-0 items-center gap-2 whitespace-nowrap text-sm font-semibold tracking-wide">
           <span className="relative grid h-8 w-8 shrink-0 place-items-center overflow-hidden rounded-lg">
             <Image src="/logo.png" alt="Open Prompts" fill sizes="32px" className="object-contain" priority />
           </span>
           <span className="hidden min-w-0 truncate min-[360px]:block">
             Open <span className="italic text-[var(--amber2)]">Prompts</span>
           </span>
-        </a>
+        </Link>
         <nav className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => (
             <SiteNavLink
-              gallery={item.key === 'gallery'}
               key={item.key}
               href={item.href}
-              prefetch={item.key === 'gallery' && activeNav !== 'gallery'}
               aria-current={item.key === activeNav ? 'page' : undefined}
               className={`rounded-lg px-3 py-1.5 text-xs transition ${
                 item.key === activeNav
@@ -412,7 +438,7 @@ export function OpenPromptsSiteHeader({
       </div>
       <nav className="flex w-full items-center gap-1 overflow-x-auto border-t border-[var(--border)] px-4 py-2 lg:hidden">
         {navItems.filter(item => item.href !== '#').map(item => (
-          <SiteNavLink gallery={item.key === 'gallery'} key={item.key} href={item.href} prefetch={item.key === 'gallery' && activeNav !== 'gallery'} aria-current={item.key === activeNav ? 'page' : undefined}
+          <SiteNavLink key={item.key} href={item.href} aria-current={item.key === activeNav ? 'page' : undefined}
             className={`shrink-0 rounded-lg px-3 py-2 text-xs transition ${item.key === activeNav
               ? 'bg-[color-mix(in_oklab,var(--amber)_12%,transparent)] text-[var(--amber2)]'
               : 'text-[var(--text2)] hover:bg-[var(--surface2)] hover:text-[var(--text)]'}`}>
