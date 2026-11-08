@@ -4,7 +4,7 @@ import { test } from 'node:test';
 import { getMotion, getMotionPage, getMotionFacets, getMotionSummary } from '../src/lib/motion/catalog';
 
 test('catalog contains only approved works and preserves existing detail IDs', () => {
-  assert.equal(getMotionFacets().total, 1153);
+  assert.equal(getMotionFacets().total, 1185);
   assert.ok(getMotion('motion-showreel')?.prompt.includes('soundtrack'));
   assert.equal(getMotion('does-not-exist'), undefined);
 });
@@ -51,7 +51,7 @@ test('numeric source IDs resolve to readable canonical slugs without breaking ol
     slugs.push(...page.items.map(e => e.slug));
     offset = page.nextOffset;
   }
-  assert.equal(new Set(slugs).size, 1153);
+  assert.equal(new Set(slugs).size, 1185);
 });
 
 test('reported logo reveal uses the native video belonging to that source post', () => {

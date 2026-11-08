@@ -32,8 +32,8 @@ test('live catalog sorts the whole filtered result before slicing pages', async 
     records.push(...page.items);
     offset = page.nextOffset;
   }
-  assert.equal(records.length, 1153);
-  assert.equal(new Set(records.map(e => e.id)).size, 1153);
+  assert.equal(records.length, 1185);
+  assert.equal(new Set(records.map(e => e.id)).size, 1185);
   let previous = Infinity, unknown = false;
   for (const entry of records) {
     if (entry.popularity.likes === null) { unknown = true; continue; }
