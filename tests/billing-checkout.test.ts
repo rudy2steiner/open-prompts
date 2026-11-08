@@ -110,14 +110,17 @@ test('Stripe checkout exposes only the explicitly selected payment method', () =
   const monthly = stripeCheckoutParams({ ...base, planId: 'monthly', amount: 990, mode: 'subscription' });
 
   assert.deepEqual(card.payment_method_types, ['card']);
+  assert.deepEqual(card.adaptive_pricing, { enabled: false });
   assert.equal(card.payment_method_options?.wechat_pay, undefined);
   assert.equal(card.metadata?.payment_method, 'card');
   assert.deepEqual(wechat.payment_method_types, ['wechat_pay']);
   assert.deepEqual(wechat.payment_method_options?.wechat_pay, { client: 'web' });
   assert.equal(wechat.metadata?.payment_method, 'wechat_pay');
+  assert.deepEqual(wechat.adaptive_pricing, { enabled: false });
   assert.deepEqual(monthly.payment_method_types, ['card']);
   assert.equal(monthly.payment_method_options?.wechat_pay, undefined);
   assert.equal(monthly.subscription_data?.metadata?.payment_method, 'card');
+  assert.deepEqual(monthly.adaptive_pricing, { enabled: false });
 });
 
 test('unknown plans and a closed live key do not create a session', async () => {

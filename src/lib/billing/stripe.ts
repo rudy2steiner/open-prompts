@@ -30,6 +30,7 @@ export function stripeCheckoutParams(input: StripeSessionInput): Stripe.Checkout
   };
   return {
     mode: input.mode,
+    adaptive_pricing: { enabled: false },
     payment_method_types: [input.paymentMethod],
     ...(input.paymentMethod === 'wechat_pay'
       ? { payment_method_options: { wechat_pay: { client: 'web' } } }
