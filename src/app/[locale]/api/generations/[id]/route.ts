@@ -15,7 +15,6 @@ function safeId() {
     ((globalThis as any).crypto?.randomUUID?.() || `req_${Date.now()}_${Math.random().toString(16).slice(2)}`)
   );
 }
-
 export async function GET(req: Request, props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
   const requestId = safeId();
